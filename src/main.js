@@ -204,6 +204,47 @@ function subjectChips(active, prefix = 'sub') {
     .join('');
 }
 
+function wgMcqHtml(options) {
+  return `<div class="wg-options" id="opts">${options
+    .map(
+      (o, i) =>
+        `<button class="wg-opt" data-i="${i}"><span class="shape">${'ABCD'[i]}</span><span>${o}</span></button>`
+    )
+    .join('')}</div>`;
+}
+
+function wgTfHtml() {
+  return `<div class="wg-options tf-row" id="opts">
+    <button class="wg-opt" data-i="true"><span class="shape">T</span><span>正确 True</span></button>
+    <button class="wg-opt" data-i="false"><span class="shape">F</span><span>错误 False</span></button>
+  </div>`;
+}
+
+function wgPlayShell({ title, meta, progressLabel, rightLabel, pct, questionHtml, optsHtml }) {
+  return `
+    ${topbar()}
+    <div class="screen wg-play">
+      <div class="screen-header">${backBtn()}<h2 class="screen-title">${title}</h2></div>
+      <div class="wg-hud">
+        <span class="pill">${progressLabel}</span>
+        <span class="pill">🔥 ${store.streak}</span>
+        <span class="pill">${rightLabel}</span>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="wg-question">
+        <div class="wg-q-meta">${meta}</div>
+        <div class="wg-q-text">${questionHtml}</div>
+      </div>
+      ${optsHtml}
+      <div id="fb"></div>
+      <div class="flash-actions" style="margin-top:14px;display:none" id="nextwrap">
+        <button class="btn btn-primary" id="gonext">Next →</button>
+      </div>
+    </div>`;
+}
+
 /* —— HOME —— */
 function renderHome() {
   const next = days.find((d) => !isDayDone(d.day)) || days[0];
@@ -211,7 +252,7 @@ function renderHome() {
     ${topbar()}
     <section class="hero">
       <h1>Alex<span>Practice</span></h1>
-      <p>按天背单词 · 小测 · 选择判断</p>
+      <p>Daily bilingual science drills · NACIS Grade 8</p>
     </section>
 
     <div class="today-card panel">
@@ -327,7 +368,7 @@ function startDayPractice(dayNum) {
       }
       return {
         id: v.id,
-        prompt: `${v.en} 的中文是？`,
+        prompt: `${v.en}\n「${v.en}」的中文是？ / What is the Chinese for this term?`,
         answer: v.zh,
         options: shuffle([v.zh, ...wrong.slice(0, 3)]),
         tip: v.tip,
@@ -447,36 +488,40 @@ function startDayPractice(dayNum) {
             <div class="progress-meta"><span>${vIdx + 1} / ${vQuiz.length}</span><span>正确 ${vCorrect}</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:${(vIdx / vQuiz.length) * 100}%"></div></div>
           </div>
-          <div class="panel">
-            <div class="quiz-prompt">${item.prompt}</div>
-            <div class="options">
-              ${item.options.map((o, i) => `<button class="option" data-v="${o}"><span class="key">${'ABCD'[i]}</span><span>${o}</span></button>`).join('')}
-            </div>
-            <div id="fb"></div>
-            <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
-              <button class="btn btn-primary" id="nx">下一题 →</button>
-            </div>
+          <div class="wg-question">
+            <div class="wg-q-meta">Day ${plan.day} · Word Quiz</div>
+            <div class="wg-q-text">${item.prompt}</div>
+          </div>
+          <div class="wg-options">
+            ${item.options.map((o, i) => `<button class="wg-opt" data-v="${o}"><span class="shape">${'ABCD'[i]}</span><span>${o}</span></button>`).join('')}
+          </div>
+          <div id="fb"></div>
+          <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
+            <button class="btn btn-primary" id="nx">Next →</button>
           </div>
         </div>`;
-      app.querySelectorAll('.option').forEach((btn) => {
+      app.querySelectorAll('.wg-opt').forEach((btn) => {
         btn.onclick = () => {
           if (locked) return;
           locked = true;
           const ok = btn.dataset.v === item.answer;
-          app.querySelectorAll('.option').forEach((b) => {
+          app.querySelectorAll('.wg-opt').forEach((b) => {
             b.disabled = true;
             if (b.dataset.v === item.answer) b.classList.add('correct');
-            else if (b === btn && !ok) b.classList.add('wrong');
+            else {
+              b.classList.add('dim');
+              if (b === btn && !ok) b.classList.add('wrong');
+            }
           });
           if (ok) {
             vCorrect += 1;
             addXp(8, true);
             celebrate(true);
-            document.getElementById('fb').innerHTML = `<div class="feedback ok"><strong>正确</strong>${item.tip || ''}</div>`;
+            document.getElementById('fb').innerHTML = `<div class="wg-feedback ok"><strong>Correct! 正确</strong>${item.tip || ''}</div>`;
           } else {
             addXp(0, false);
             celebrate(false);
-            document.getElementById('fb').innerHTML = `<div class="feedback no"><strong>不正确</strong>答案：${item.answer}<br>${item.tip || ''}</div>`;
+            document.getElementById('fb').innerHTML = `<div class="wg-feedback no"><strong>Incorrect 不正确</strong>Answer 答案：${item.answer}<br>${item.tip || ''}</div>`;
             recordWrong({
               id: `day${plan.day}-${item.id}`,
               kind: 'vocab',
@@ -504,33 +549,27 @@ function startDayPractice(dayNum) {
       }
       const q = qs[qIdx];
       locked = false;
-      const letters = ['A', 'B', 'C', 'D'];
       app.innerHTML = `
         ${topbar()}
-        <div class="screen">
+        <div class="screen wg-play">
           <div class="screen-header">${backBtn('days')}<h2 class="screen-title">Day ${plan.day} · Questions</h2></div>
           <div class="step-pills"><span>✓ Words</span><span>✓ Quiz</span><span class="on">3 Questions</span></div>
+          <div class="wg-hud">
+            <span class="pill">${qIdx + 1} / ${qs.length}</span>
+            <span class="pill">🔥 ${store.streak}</span>
+            <span class="pill">✓ ${qCorrect}</span>
+          </div>
           <div class="progress-wrap">
-            <div class="progress-meta"><span>${qIdx + 1} / ${qs.length}</span><span>正确 ${qCorrect}</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:${(qIdx / qs.length) * 100}%"></div></div>
           </div>
-          <div class="panel">
-            <div class="flash-chapter" style="margin-bottom:10px">${q.chapter} · ${q.type === 'mcq' ? 'MCQ' : 'T/F'}</div>
-            <div class="quiz-prompt">${q.prompt}</div>
-            ${
-              q.type === 'mcq'
-                ? `<div class="options" id="opts">${q.options
-                    .map((o, i) => `<button class="option" data-i="${i}"><span class="key">${letters[i]}</span><span>${o}</span></button>`)
-                    .join('')}</div>`
-                : `<div class="tf-row" id="opts">
-                    <button class="option" data-i="true"><span class="key">T</span><span>True</span></button>
-                    <button class="option" data-i="false"><span class="key">F</span><span>False</span></button>
-                  </div>`
-            }
-            <div id="fb"></div>
-            <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
-              <button class="btn btn-primary" id="nx">下一题 →</button>
-            </div>
+          <div class="wg-question">
+            <div class="wg-q-meta">${q.chapter} · ${q.type === 'mcq' ? 'MCQ' : 'T/F'}</div>
+            <div class="wg-q-text">${q.prompt}</div>
+          </div>
+          ${q.type === 'mcq' ? wgMcqHtml(q.options) : wgTfHtml()}
+          <div id="fb"></div>
+          <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
+            <button class="btn btn-primary" id="nx">Next →</button>
           </div>
         </div>`;
 
@@ -540,11 +579,11 @@ function startDayPractice(dayNum) {
           qCorrect += 1;
           addXp(10, true);
           celebrate(true);
-          fb.innerHTML = `<div class="feedback ok"><strong>正确</strong>${q.explain}</div>`;
+          fb.innerHTML = `<div class="wg-feedback ok"><strong>Correct! 正确</strong>${q.explain}</div>`;
         } else {
           addXp(0, false);
           celebrate(false);
-          fb.innerHTML = `<div class="feedback no"><strong>不正确</strong>答案：${correctText}<br>${q.explain}</div>`;
+          fb.innerHTML = `<div class="wg-feedback no"><strong>Incorrect 不正确</strong>Answer 答案：${correctText}<br>${q.explain}</div>`;
           recordWrong({
             id: q.id,
             kind: 'question',
@@ -561,16 +600,19 @@ function startDayPractice(dayNum) {
         };
       }
 
-      app.querySelectorAll('#opts .option').forEach((btn) => {
+      app.querySelectorAll('#opts .wg-opt').forEach((btn) => {
         btn.onclick = () => {
           if (locked) return;
           locked = true;
-          const opts = [...app.querySelectorAll('#opts .option')];
+          const opts = [...app.querySelectorAll('#opts .wg-opt')];
           opts.forEach((b) => (b.disabled = true));
           if (q.type === 'mcq') {
             const choice = Number(btn.dataset.i);
             const ok = choice === q.answer;
             opts[q.answer].classList.add('correct');
+            opts.forEach((b, i) => {
+              if (i !== q.answer) b.classList.add('dim');
+            });
             if (!ok) btn.classList.add('wrong');
             finish(ok, q.options[q.answer]);
           } else {
@@ -578,7 +620,10 @@ function startDayPractice(dayNum) {
             const ok = choice === q.answer;
             opts.forEach((b) => {
               if ((b.dataset.i === 'true') === q.answer) b.classList.add('correct');
-              else if (b === btn) b.classList.add('wrong');
+              else {
+                b.classList.add('dim');
+                if (b === btn) b.classList.add('wrong');
+              }
             });
             finish(ok, q.answer ? 'True' : 'False');
           }
@@ -817,7 +862,7 @@ function renderQuiz(mode) {
     queue = filterQuestions({
       subject,
       type,
-      limit: mode === 'mixed' ? 12 : 10,
+      limit: mode === 'mixed' ? 20 : 18,
     });
     idx = 0;
     correctCount = 0;
@@ -860,38 +905,31 @@ function renderQuiz(mode) {
     }
 
     const q = queue[idx];
-    const letters = ['A', 'B', 'C', 'D'];
-
-    app.innerHTML = `
-      ${topbar()}
-      <div class="screen">
-        <div class="screen-header">${backBtn()}<h2 class="screen-title">${title}</h2></div>
-        <div class="filters">${subjectChips(subject)}</div>
-        <div class="progress-wrap">
-          <div class="progress-meta"><span>第 ${idx + 1} / ${queue.length} 题</span><span>正确 ${correctCount} · 连击 ${store.streak}</span></div>
-          <div class="progress-bar"><div class="progress-fill" style="width:${(idx / queue.length) * 100}%"></div></div>
-        </div>
-        <div class="panel">
-          <div class="flash-chapter" style="margin-bottom:10px">${subjects[q.subject]?.name || ''} · ${q.chapter}</div>
-          <div class="quiz-prompt">${q.prompt}</div>
-          ${
-            q.type === 'mcq'
-              ? `<div class="options" id="opts">${q.options
-                  .map((o, i) => `<button class="option" data-i="${i}"><span class="key">${letters[i]}</span><span>${o}</span></button>`)
-                  .join('')}</div>`
-              : `<div class="tf-row" id="opts">
-                  <button class="option" data-i="true"><span class="key">T</span><span>正确 True</span></button>
-                  <button class="option" data-i="false"><span class="key">F</span><span>错误 False</span></button>
-                </div>`
-          }
-          <div id="fb"></div>
-          <div class="flash-actions" style="margin-top:18px;display:none" id="nextwrap">
-            <button class="btn btn-primary" id="gonext">下一题 →</button>
-          </div>
-        </div>
-      </div>`;
-
     answered = false;
+
+    app.innerHTML = wgPlayShell({
+      title,
+      meta: `${subjects[q.subject]?.name || ''} · ${q.chapter}`,
+      progressLabel: `${idx + 1} / ${queue.length}`,
+      rightLabel: `✓ ${correctCount}`,
+      pct: (idx / queue.length) * 100,
+      questionHtml: q.prompt,
+      optsHtml: q.type === 'mcq' ? wgMcqHtml(q.options) : wgTfHtml(),
+    });
+
+    const screen = app.querySelector('.screen');
+    if (screen) {
+      const f = document.createElement('div');
+      f.className = 'filters';
+      f.innerHTML = subjectChips(subject);
+      screen.insertBefore(f, screen.querySelector('.wg-hud'));
+      f.querySelectorAll('[data-sub]').forEach((btn) => {
+        btn.onclick = () => {
+          subject = btn.dataset.sub;
+          rebuild();
+        };
+      });
+    }
 
     function finish(ok, correctText) {
       if (answered) return;
@@ -901,12 +939,12 @@ function renderQuiz(mode) {
         correctCount += 1;
         addXp(10, true);
         celebrate(true);
-        fb.innerHTML = `<div class="feedback ok"><strong>正确！</strong>${q.explain}</div>`;
+        fb.innerHTML = `<div class="wg-feedback ok"><strong>Correct! 正确</strong>${q.explain}</div>`;
         clearWrong(q.id);
       } else {
         addXp(0, false);
         celebrate(false);
-        fb.innerHTML = `<div class="feedback no"><strong>不正确</strong>正确答案：${correctText}<br>${q.explain}</div>`;
+        fb.innerHTML = `<div class="wg-feedback no"><strong>Incorrect 不正确</strong>Answer 答案：${correctText}<br>${q.explain}</div>`;
         wrongs.push({ prompt: q.prompt, correctText, explain: q.explain });
         recordWrong({
           id: q.id,
@@ -924,16 +962,19 @@ function renderQuiz(mode) {
       };
     }
 
-    app.querySelectorAll('#opts .option').forEach((btn) => {
+    app.querySelectorAll('#opts .wg-opt').forEach((btn) => {
       btn.onclick = () => {
         if (answered) return;
-        const opts = [...app.querySelectorAll('#opts .option')];
+        const opts = [...app.querySelectorAll('#opts .wg-opt')];
         opts.forEach((b) => (b.disabled = true));
 
         if (q.type === 'mcq') {
           const choice = Number(btn.dataset.i);
           const ok = choice === q.answer;
           opts[q.answer].classList.add('correct');
+          opts.forEach((b, i) => {
+            if (i !== q.answer) b.classList.add('dim');
+          });
           if (!ok) btn.classList.add('wrong');
           finish(ok, q.options[q.answer]);
         } else {
@@ -942,17 +983,13 @@ function renderQuiz(mode) {
           opts.forEach((b) => {
             const val = b.dataset.i === 'true';
             if (val === q.answer) b.classList.add('correct');
-            else if (b === btn) b.classList.add('wrong');
+            else {
+              b.classList.add('dim');
+              if (b === btn) b.classList.add('wrong');
+            }
           });
           finish(ok, q.answer ? '正确 True' : '错误 False');
         }
-      };
-    });
-
-    app.querySelectorAll('[data-sub]').forEach((btn) => {
-      btn.onclick = () => {
-        subject = btn.dataset.sub;
-        rebuild();
       };
     });
     bindNav();
