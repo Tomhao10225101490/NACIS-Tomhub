@@ -1,10 +1,7 @@
 import { vocabulary } from './vocabulary.js';
 import { questions } from './questions.js';
 
-/**
- * 工作日一条龙：每天学一点新内容（拔尖量大 · 28 天）
- * 流程：背单词 → 单词小测 → 选择/判断
- */
+/** NACIS Grade 8 Daily Days — core curriculum aligned (stretch tagged Qs removed from daily) */
 export const days = [
   {
     "day": 1,
@@ -453,7 +450,7 @@ export const days = [
       "boost-q35",
       "boost-q132",
       "boost-q133",
-      "boost-q134"
+      "q-p49"
     ]
   },
   {
@@ -520,15 +517,15 @@ export const days = [
       "boost-q35",
       "boost-q132",
       "boost-q133",
-      "boost-q134",
       "boost-q135",
       "boost-q168",
-      "boost-q175",
       "boost-q182",
       "q-p31",
       "q-p32",
       "q-p33",
-      "q-p34"
+      "q-p34",
+      "q-p49",
+      "q-p57"
     ]
   },
   {
@@ -1125,10 +1122,10 @@ export const days = [
       "boost-q143",
       "boost-q144",
       "boost-q145",
-      "boost-q146",
       "boost-q147",
       "boost-q170",
-      "boost-q177"
+      "boost-q177",
+      "q-b29"
     ]
   },
   {
@@ -1269,8 +1266,6 @@ export const days = [
       "q-b63",
       "q-b64",
       "q-b65",
-      "boost-q73",
-      "boost-q74",
       "boost-q75",
       "boost-q76",
       "boost-q77",
@@ -1278,7 +1273,9 @@ export const days = [
       "boost-q79",
       "boost-q80",
       "boost-q81",
-      "boost-q82"
+      "boost-q82",
+      "boost-q83",
+      "boost-q90"
     ]
   },
   {
@@ -1334,8 +1331,6 @@ export const days = [
       "q-b63",
       "q-b64",
       "q-b65",
-      "boost-q73",
-      "boost-q74",
       "boost-q75",
       "boost-q76",
       "boost-q77",
@@ -1353,7 +1348,9 @@ export const days = [
       "boost-q89",
       "boost-q90",
       "boost-q148",
-      "boost-q149"
+      "boost-q149",
+      "q-b39",
+      "boost-q185"
     ]
   },
   {
@@ -1421,14 +1418,14 @@ export const days = [
       "boost-q149",
       "boost-q150",
       "boost-q151",
-      "boost-q152",
       "boost-q153",
       "boost-q171",
-      "boost-q178",
       "boost-q185",
       "q-b36",
       "q-b37",
-      "q-b38"
+      "q-b38",
+      "q-b51",
+      "q-b49"
     ]
   },
   {
@@ -1789,7 +1786,6 @@ export const days = [
       "q-c46",
       "q-c47",
       "q-c48",
-      "q-c49",
       "q-c50",
       "q-c51",
       "q-c52",
@@ -1803,7 +1799,8 @@ export const days = [
       "q-c60",
       "q-c61",
       "q-c62",
-      "q-c63"
+      "q-c63",
+      "q-c68"
     ]
   },
   {
@@ -1875,10 +1872,10 @@ export const days = [
       "q-c71",
       "q-c72",
       "q-c73",
-      "q-c74",
       "q-c75",
       "boost-q109",
-      "boost-q110"
+      "boost-q110",
+      "q-c46"
     ]
   },
   {
@@ -1938,14 +1935,12 @@ export const days = [
       "q-c71",
       "q-c72",
       "q-c73",
-      "q-c74",
       "q-c75",
       "boost-q109",
       "boost-q110",
       "boost-q111",
       "boost-q112",
       "boost-q113",
-      "boost-q114",
       "boost-q115",
       "boost-q116",
       "boost-q117",
@@ -1953,7 +1948,9 @@ export const days = [
       "boost-q119",
       "boost-q120",
       "boost-q121",
-      "boost-q122"
+      "q-c36",
+      "q-c50",
+      "boost-q174"
     ]
   },
   {
@@ -2003,14 +2000,12 @@ export const days = [
     "questionIds": [
       "q-c72",
       "q-c73",
-      "q-c74",
       "q-c75",
       "boost-q109",
       "boost-q110",
       "boost-q111",
       "boost-q112",
       "boost-q113",
-      "boost-q114",
       "boost-q115",
       "boost-q116",
       "boost-q117",
@@ -2018,8 +2013,6 @@ export const days = [
       "boost-q119",
       "boost-q120",
       "boost-q121",
-      "boost-q122",
-      "boost-q123",
       "boost-q124",
       "boost-q125",
       "boost-q126",
@@ -2028,7 +2021,11 @@ export const days = [
       "boost-q160",
       "boost-q161",
       "boost-q162",
-      "boost-q163"
+      "boost-q163",
+      "q-c60",
+      "boost-q164",
+      "boost-q166",
+      "boost-q174"
     ]
   },
   {
@@ -2123,5 +2120,5 @@ export function dayQuestions(dayPlan) {
 }
 
 export function subjectLabel(id) {
-  return { physics: '物理', biology: '生物', chemistry: '化学' }[id] || id;
+  return { physics: '物理 Physics', biology: '生物 Biology', chemistry: '化学 Chemistry' }[id] || id;
 }

@@ -3,7 +3,27 @@ import { vocabulary, subjects } from './data/vocabulary.js';
 import { questions, filterQuestions, shuffle } from './data/questions.js';
 import { elements, coreElements, compounds, GROUP_LABELS, buildPeriodicGrid } from './data/elements.js';
 import { days, getDay, dayVocab, dayQuestions, subjectLabel } from './data/days.js';
-import { unlockAudio, sfxClick, sfxCorrect, sfxWrong, sfxFlip, sfxMatch } from './audio.js';
+import {
+  unlockAudio,
+  sfxClick,
+  sfxCorrect,
+  sfxWrong,
+  sfxFlip,
+  sfxMatch,
+  sfxStreak,
+  isSfxEnabled,
+  toggleSfx,
+} from './audio.js';
+import {
+  t,
+  tb,
+  getLang,
+  setLang,
+  localizeText,
+  localizeHtml,
+  subjectName,
+  langToggleHtml,
+} from './i18n.js';
 
 const app = document.getElementById('app');
 const fx = document.getElementById('fx-layer');
@@ -23,6 +43,9 @@ const store = {
   wrong: JSON.parse(localStorage.getItem('nacis_wrong') || '[]'),
   dayProgress: JSON.parse(localStorage.getItem('alex_days') || '{}'),
 };
+
+let currentRoute = 'home';
+let quizLevel = localStorage.getItem('alex_qlevel') || 'core'; // core | all
 
 function save() {
   localStorage.setItem('nacis_xp', String(store.xp));
@@ -177,72 +200,79 @@ function celebrate(correct) {
         burst(x + (Math.random() - 0.5) * 120, y + (Math.random() - 0.5) * 40, CONFETTI[k % CONFETTI.length]);
       }, k * 70);
     }
-    floatText(x, y, store.streak >= 3 ? `${store.streak} Streak!` : 'Correct!', '#86efac');
+    if (store.streak >= 3) {
+      try { sfxStreak(store.streak); } catch (_) { /* ignore */ }
+    }
+    floatText(x, y, store.streak >= 3 ? `${store.streak} Streak!` : (getLang() === 'en' ? 'Correct!' : '正确！'), '#86efac');
   } else {
     try {
       sfxWrong();
     } catch (_) {
       /* ignore */
     }
-    floatText(x, y, 'Try again', '#fca5a5');
+    floatText(x, y, getLang() === 'en' ? 'Try again' : '再想想', '#fca5a5');
   }
 }
 
-/** Split bilingual "中文 / English" prompts onto two lines for Wayground readability */
 function bilingualHtml(text) {
-  const raw = String(text || '');
-  const parts = raw.split(/\s*\/\s*/);
-  if (parts.length >= 2) {
-    const zh = parts[0].trim();
-    const en = parts.slice(1).join(' / ').trim();
-    return `<span class="q-zh">${zh}</span>\n<span class="q-en">${en}</span>`;
-  }
-  return raw;
+  return localizeHtml(text);
 }
 
 /* —— UI helpers —— */
 function topbar(extra = '') {
+  const sfxLabel = isSfxEnabled() ? tb('soundOn') : tb('soundOff');
   return `
     <header class="topbar">
       <div class="brand">
-        <div class="brand-kicker">Grade 8 Science</div>
+        <div class="brand-kicker">${tb('gradeKicker')}</div>
         <div class="brand-title">Alex Practice</div>
       </div>
-      <div class="stats-pill">
-        <div class="stat">XP <em>${store.xp}</em></div>
-        <div class="stat streak-fire">🔥 <em>${store.streak}</em></div>
-        <div class="stat">Days <em>${doneDayCount()}/${days.length}</em></div>
-        ${extra}
+      <div class="topbar-right">
+        ${langToggleHtml()}
+        <button type="button" class="sfx-btn ${isSfxEnabled() ? 'on' : ''}" data-sfx-toggle title="${sfxLabel}">♪</button>
+        <div class="stats-pill">
+          <div class="stat">${tb('xp')} <em>${store.xp}</em></div>
+          <div class="stat streak-fire">🔥 <em>${store.streak}</em></div>
+          <div class="stat">${tb('days')} <em>${doneDayCount()}/${days.length}</em></div>
+          ${extra}
+        </div>
       </div>
     </header>`;
 }
 
 function backBtn(target = 'home') {
-  return `<button class="btn btn-ghost" data-nav="${target}">← 返回</button>`;
+  return `<button class="btn btn-ghost" data-nav="${target}">${tb('back')}</button>`;
 }
 
 function subjectChips(active, prefix = 'sub') {
   return Object.values(subjects)
     .map(
       (s) =>
-        `<button class="chip ${active === s.id ? 'active' : ''}" data-${prefix}="${s.id}">${s.name}</button>`
+        `<button class="chip ${active === s.id ? 'active' : ''}" data-${prefix}="${s.id}">${subjectName(s.id)}</button>`
     )
     .join('');
+}
+
+function levelChips() {
+  return `<div class="filters level-filters">
+    <button class="chip ${quizLevel === 'core' ? 'active' : ''}" data-qlevel="core">${tb('filterCore')}</button>
+    <button class="chip ${quizLevel === 'all' ? 'active' : ''}" data-qlevel="all">${tb('filterAll')}</button>
+  </div>`;
 }
 
 function wgMcqHtml(options) {
   return `<div class="wg-options" id="opts">${options
     .map(
       (o, i) =>
-        `<button class="wg-opt" data-i="${i}"><span class="shape">${'ABCD'[i]}</span><span>${o}</span></button>`
+        `<button class="wg-opt" data-i="${i}"><span class="shape">${'ABCD'[i]}</span><span>${localizeText(o)}</span></button>`
     )
     .join('')}</div>`;
 }
 
 function wgTfHtml() {
   return `<div class="wg-options tf-row" id="opts">
-    <button class="wg-opt" data-i="true"><span class="shape">T</span><span>正确 True</span></button>
-    <button class="wg-opt" data-i="false"><span class="shape">F</span><span>错误 False</span></button>
+    <button class="wg-opt" data-i="true"><span class="shape">T</span><span>${tb('trueOpt')}</span></button>
+    <button class="wg-opt" data-i="false"><span class="shape">F</span><span>${tb('falseOpt')}</span></button>
   </div>`;
 }
 
@@ -266,79 +296,95 @@ function wgPlayShell({ title, meta, progressLabel, rightLabel, pct, questionHtml
       ${optsHtml}
       <div id="fb"></div>
       <div class="flash-actions" style="margin-top:14px;display:none" id="nextwrap">
-        <button class="btn btn-primary" id="gonext">Next →</button>
+        <button class="btn btn-primary" id="gonext">${tb('nextArrow')}</button>
       </div>
     </div>`;
 }
 
+function dayTitle(d) {
+  if (getLang() === 'en') return d.title;
+  if (getLang() === 'zh') return d.titleZh || d.title;
+  return `${d.titleZh || d.title}`;
+}
+
+function feedbackOk(body) {
+  return `<div class="wg-feedback ok"><strong>${tb('correctBanner')}</strong>${localizeHtml(body || '')}</div>`;
+}
+
+function feedbackNo(answer, body) {
+  return `<div class="wg-feedback no"><strong>${tb('incorrectBanner')}</strong>${tb('answerLabel')}${localizeText(answer)}<br>${localizeHtml(body || '')}</div>`;
+}
+
 /* —— HOME —— */
 function renderHome() {
+  currentRoute = 'home';
   const next = days.find((d) => !isDayDone(d.day)) || days[0];
   const nextV = next.vocabIds?.length || 0;
   const nextQ = next.questionIds?.length || 0;
+  const blurb = getLang() === 'en' ? next.blurb : getLang() === 'zh' ? next.titleZh : `${next.titleZh} · ${next.blurb}`;
   app.innerHTML = `
     ${topbar()}
     <section class="hero">
       <h1>Alex<span>Practice</span></h1>
-      <p>上海诺达 NACIS · 八年级理科拔尖 · 中英双语 · Wayground 风格刷题</p>
+      <p>${tb('heroSub')}</p>
     </section>
 
     <div class="today-card panel">
-      <div class="today-label">今日推荐 Today</div>
-      <div class="today-title">Day ${next.day} · ${next.title}</div>
-      <div class="today-sub">${next.titleZh} · ${subjectLabel(next.subject)} · ${next.blurb}<br>本课约 <strong>${nextV}</strong> 词 + <strong>${nextQ}</strong> 题（单词→小测→选择/判断）</div>
-      <button class="btn btn-primary" data-start-day="${next.day}">开始 Day ${next.day}</button>
-      <button class="btn" data-nav="days" style="margin-left:8px">全部天数</button>
+      <div class="today-label">${tb('todayLabel')}</div>
+      <div class="today-title">Day ${next.day} · ${dayTitle(next)}</div>
+      <div class="today-sub">${subjectName(next.subject)} · ${blurb}<br>${tb('lessonLoad')} <strong>${nextV}</strong> ${tb('words')} ${tb('plus')} <strong>${nextQ}</strong> ${tb('questions')}</div>
+      <button class="btn btn-primary" data-start-day="${next.day}">${tb('startDay')} ${next.day}</button>
+      <button class="btn" data-nav="days" style="margin-left:8px">${tb('allDays')}</button>
     </div>
 
-    <h3 class="section-label">更多练习 More Modes</h3>
+    <h3 class="section-label">${tb('moreModes')}</h3>
     <div class="mode-grid">
       <button class="mode-card" data-nav="days">
         <div class="mode-icon">📅</div>
-        <h3>Daily Days</h3>
-        <p>Day 1→${days.length} 拔尖一条龙：每天 ≈36 词 + ≈28 题。</p>
-        <span class="mode-tag">${doneDayCount()} / ${days.length} done</span>
+        <h3>${tb('dailyDays')}</h3>
+        <p>${tb('dailyDaysDesc', { n: days.length })}</p>
+        <span class="mode-tag">${doneDayCount()} / ${days.length}</span>
       </button>
       <button class="mode-card" data-nav="flash">
         <div class="mode-icon">🃏</div>
-        <h3>Flashcards</h3>
-        <p>专有名词英汉闪卡。</p>
-        <span class="mode-tag">${vocabulary.length} words</span>
+        <h3>${tb('flashcards')}</h3>
+        <p>${tb('flashDesc')}</p>
+        <span class="mode-tag">${vocabulary.length} ${tb('words')}</span>
       </button>
       <button class="mode-card" data-nav="match">
         <div class="mode-icon">🔗</div>
-        <h3>Match</h3>
-        <p>英汉配对对战风。</p>
-        <span class="mode-tag">Matching</span>
+        <h3>${tb('match')}</h3>
+        <p>${tb('matchDesc')}</p>
+        <span class="mode-tag">${tb('match')}</span>
       </button>
       <button class="mode-card" data-nav="mcq">
         <div class="mode-icon">✅</div>
-        <h3>MCQ</h3>
-        <p>中英双语选择题。</p>
-        <span class="mode-tag">${questions.filter((q) => q.type === 'mcq').length} Qs</span>
+        <h3>${tb('mcq')}</h3>
+        <p>${tb('mcqDesc')}</p>
+        <span class="mode-tag">${questions.filter((q) => q.type === 'mcq').length} ${tb('questions')}</span>
       </button>
       <button class="mode-card" data-nav="tf">
         <div class="mode-icon">⚖️</div>
-        <h3>True / False</h3>
-        <p>中英双语判断题。</p>
-        <span class="mode-tag">${questions.filter((q) => q.type === 'tf').length} Qs</span>
+        <h3>${tb('tf')}</h3>
+        <p>${tb('tfDesc')}</p>
+        <span class="mode-tag">${questions.filter((q) => q.type === 'tf').length} ${tb('questions')}</span>
       </button>
-      <button class="mode-card" data-nav="periodic" style="--card-glow: rgba(240,163,94,0.3)">
+      <button class="mode-card" data-nav="periodic">
         <div class="mode-icon">⚗️</div>
-        <h3>Periodic</h3>
-        <p>元素周期表。</p>
+        <h3>${tb('periodic')}</h3>
+        <p>${tb('periodicDesc')}</p>
         <span class="mode-tag">Table</span>
       </button>
-      <button class="mode-card" data-nav="mass" style="--card-glow: rgba(62,207,207,0.22)">
+      <button class="mode-card" data-nav="mass">
         <div class="mode-icon">🧮</div>
-        <h3>Ar / Mr</h3>
-        <p>相对原子 / 分子质量。</p>
+        <h3>${tb('mass')}</h3>
+        <p>${tb('massDesc')}</p>
         <span class="mode-tag">Drill</span>
       </button>
-      <button class="mode-card" data-nav="wrong" style="--card-glow: rgba(255,107,122,0.28)">
+      <button class="mode-card" data-nav="wrong">
         <div class="mode-icon">📘</div>
-        <h3>Wrong Book</h3>
-        <p>错题本。</p>
+        <h3>${tb('wrongBook')}</h3>
+        <p>${tb('wrongDesc')}</p>
         <span class="mode-tag">${store.wrong.length}</span>
       </button>
     </div>
@@ -347,21 +393,22 @@ function renderHome() {
 
 /* —— DAILY DAYS —— */
 function renderDays() {
+  currentRoute = 'days';
   app.innerHTML = `
     ${topbar()}
     <div class="screen">
-      <div class="screen-header">${backBtn()}<h2 class="screen-title">Daily Days</h2></div>
-      <p class="days-intro">拔尖强化 · 每天 ≈36 词 + ≈28 题 · Words → Word Quiz → MCQ/TF（中英双语）</p>
+      <div class="screen-header">${backBtn()}<h2 class="screen-title">${tb('dailyDays')}</h2></div>
+      <p class="days-intro">${tb('daysIntro')}</p>
       <div class="day-grid">
         ${days
           .map((d) => {
             const done = isDayDone(d.day);
             return `<button class="day-card ${done ? 'done' : ''}" data-start-day="${d.day}">
               <div class="day-num">Day ${d.day}</div>
-              <div class="day-name">${d.title}</div>
-              <div class="day-zh">${d.titleZh}</div>
-              <div class="day-meta">${subjectLabel(d.subject)} · ${d.vocabIds.length} words · ${d.questionIds.length} Qs</div>
-              <div class="day-status">${done ? '✓ Done' : 'Start →'}</div>
+              <div class="day-name">${dayTitle(d)}</div>
+              <div class="day-zh">${getLang() === 'en' ? d.title : d.titleZh}</div>
+              <div class="day-meta">${subjectName(d.subject)} · ${d.vocabIds.length} ${tb('words')} · ${d.questionIds.length} ${tb('questions')}</div>
+              <div class="day-status">${done ? '✓ ' + tb('done') : tb('start')}</div>
             </button>`;
           })
           .join('')}
@@ -422,7 +469,7 @@ function startDayPractice(dayNum) {
               <span>3 选择/判断 ×${qs.length}</span>
             </div>
             <div class="flash-actions" style="justify-content:flex-start">
-              <button class="btn btn-primary" id="go">开始一条龙 →</button>
+              <button class="btn btn-primary" id="go">${tb('pipeline')}</button>
             </div>
           </div>
         </div>`;
@@ -452,7 +499,7 @@ function startDayPractice(dayNum) {
               <div class="flash-face front">
                 <div class="flash-chapter">Day ${plan.day}</div>
                 <div class="flash-main">${v.en}</div>
-                <div class="flash-sub">Tap to flip</div>
+                <div class="flash-sub">${tb('tapFlip')}</div>
               </div>
               <div class="flash-face back">
                 <div class="flash-chapter">${v.en}</div>
@@ -521,11 +568,11 @@ function startDayPractice(dayNum) {
             <div class="wg-q-text">${bilingualHtml(item.prompt)}</div>
           </div>
           <div class="wg-options">
-            ${item.options.map((o, i) => `<button class="wg-opt" data-v="${o}"><span class="shape">${'ABCD'[i]}</span><span>${o}</span></button>`).join('')}
+            ${item.options.map((o, i) => `<button class="wg-opt" data-v="${o}"><span class="shape">${'ABCD'[i]}</span><span>${localizeText(o)}</span></button>`).join('')}
           </div>
           <div id="fb"></div>
           <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
-            <button class="btn btn-primary" id="nx">Next →</button>
+            <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
           </div>
         </div>`;
       app.querySelectorAll('.wg-opt').forEach((btn) => {
@@ -545,11 +592,11 @@ function startDayPractice(dayNum) {
             vCorrect += 1;
             addXp(8, true);
             celebrate(true);
-            document.getElementById('fb').innerHTML = `<div class="wg-feedback ok"><strong>Correct! 正确</strong>${item.tip || ''}</div>`;
+            document.getElementById('fb').innerHTML = feedbackOk(item.tip || '');
           } else {
             addXp(0, false);
             celebrate(false);
-            document.getElementById('fb').innerHTML = `<div class="wg-feedback no"><strong>Incorrect 不正确</strong>Answer 答案：${item.answer}<br>${item.tip || ''}</div>`;
+            document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip || '');
             recordWrong({
               id: `day${plan.day}-${item.id}`,
               kind: 'vocab',
@@ -597,7 +644,7 @@ function startDayPractice(dayNum) {
           ${q.type === 'mcq' ? wgMcqHtml(q.options) : wgTfHtml()}
           <div id="fb"></div>
           <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
-            <button class="btn btn-primary" id="nx">Next →</button>
+            <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
           </div>
         </div>`;
 
@@ -607,11 +654,11 @@ function startDayPractice(dayNum) {
           qCorrect += 1;
           addXp(10, true);
           celebrate(true);
-          fb.innerHTML = `<div class="wg-feedback ok"><strong>Correct! 正确</strong>${q.explain}</div>`;
+          fb.innerHTML = feedbackOk(q.explain);
         } else {
           addXp(0, false);
           celebrate(false);
-          fb.innerHTML = `<div class="wg-feedback no"><strong>Incorrect 不正确</strong>Answer 答案：${correctText}<br>${q.explain}</div>`;
+          fb.innerHTML = feedbackNo(correctText, q.explain);
           recordWrong({
             id: q.id,
             kind: 'question',
@@ -937,7 +984,7 @@ function renderQuiz(mode) {
 
     app.innerHTML = wgPlayShell({
       title,
-      meta: `${subjects[q.subject]?.name || ''} · ${q.chapter}`,
+      meta: `${subjectName(q.subject)} · ${q.chapter}${q.level === 'stretch' ? ` · ${tb('stretchTag')}` : ''}`,
       progressLabel: `${idx + 1} / ${queue.length}`,
       rightLabel: `✓ ${correctCount}`,
       pct: (idx / queue.length) * 100,
@@ -949,7 +996,7 @@ function renderQuiz(mode) {
     if (screen) {
       const f = document.createElement('div');
       f.className = 'filters';
-      f.innerHTML = subjectChips(subject);
+      f.innerHTML = subjectChips(subject) + levelChips();
       screen.insertBefore(f, screen.querySelector('.wg-hud'));
       f.querySelectorAll('[data-sub]').forEach((btn) => {
         btn.onclick = () => {
@@ -967,12 +1014,12 @@ function renderQuiz(mode) {
         correctCount += 1;
         addXp(10, true);
         celebrate(true);
-        fb.innerHTML = `<div class="wg-feedback ok"><strong>Correct! 正确</strong>${q.explain}</div>`;
+        fb.innerHTML = feedbackOk(q.explain);
         clearWrong(q.id);
       } else {
         addXp(0, false);
         celebrate(false);
-        fb.innerHTML = `<div class="wg-feedback no"><strong>Incorrect 不正确</strong>Answer 答案：${correctText}<br>${q.explain}</div>`;
+        fb.innerHTML = feedbackNo(correctText, q.explain);
         wrongs.push({ prompt: q.prompt, correctText, explain: q.explain });
         recordWrong({
           id: q.id,

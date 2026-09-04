@@ -1,4 +1,4 @@
-/** Alex Practice · bilingual MCQ / TF bank (expanded + fully bilingual) */
+/** Alex Practice · NACIS G8 bilingual bank (core + IGCSE stretch tagged) */
 export const questions = [
   {
     "id": "q-p1",
@@ -13,7 +13,8 @@ export const questions = [
       "流动 flowing"
     ],
     "answer": 0,
-    "explain": "发声体都在振动；振动停止则发声停止。 / Sound is produced by vibration."
+    "explain": "发声体都在振动；振动停止则发声停止。 / Sound is produced by vibration.",
+    "level": "core"
   },
   {
     "id": "q-p2",
@@ -22,7 +23,8 @@ export const questions = [
     "type": "tf",
     "prompt": "声音可以在真空中传播。 / Sound can travel through a vacuum.",
     "answer": false,
-    "explain": "声音是机械波，需介质；真空不能传声。 / Sound needs a medium; vacuum cannot transmit sound."
+    "explain": "声音是机械波，需介质；真空不能传声。 / Sound needs a medium; vacuum cannot transmit sound.",
+    "level": "core"
   },
   {
     "id": "q-p3",
@@ -37,7 +39,8 @@ export const questions = [
       "声速 speed of sound"
     ],
     "answer": 1,
-    "explain": "频率越高，音调越高。 / Higher frequency → higher pitch."
+    "explain": "频率越高，音调越高。 / Higher frequency → higher pitch.",
+    "level": "core"
   },
   {
     "id": "q-p4",
@@ -52,7 +55,8 @@ export const questions = [
       "波长 wavelength"
     ],
     "answer": 1,
-    "explain": "振幅越大，响度越大。 / Larger amplitude → louder sound."
+    "explain": "振幅越大，响度越大。 / Larger amplitude → louder sound.",
+    "level": "core"
   },
   {
     "id": "q-p5",
@@ -61,7 +65,8 @@ export const questions = [
     "type": "tf",
     "prompt": "超声波的频率高于 20000 Hz。 / Ultrasound has frequency above 20 000 Hz.",
     "answer": true,
-    "explain": "高于 20 kHz 为超声，低于 20 Hz 为次声。 / >20 kHz ultrasound; <20 Hz infrasound."
+    "explain": "高于 20 kHz 为超声，低于 20 Hz 为次声。 / >20 kHz ultrasound; <20 Hz infrasound.",
+    "level": "core"
   },
   {
     "id": "q-p6",
@@ -76,7 +81,8 @@ export const questions = [
       "真空 vacuum"
     ],
     "answer": 2,
-    "explain": "通常：固体 > 液体 > 气体。 / Usually solids > liquids > gases."
+    "explain": "通常：固体 > 液体 > 气体。 / Usually solids > liquids > gases.",
+    "level": "core"
   },
   {
     "id": "q-p7",
@@ -91,7 +97,8 @@ export const questions = [
       "回声 echo"
     ],
     "answer": 2,
-    "explain": "音色对应 timbre；pitch=音调；loudness=响度。 / Timbre means tone quality; pitch is 音调; loudness is 响度."
+    "explain": "音色对应 timbre；pitch=音调；loudness=响度。 / Timbre means tone quality; pitch is 音调; loudness is 响度.",
+    "level": "core"
   },
   {
     "id": "q-p8",
@@ -100,7 +107,8 @@ export const questions = [
     "type": "tf",
     "prompt": "音调由振幅决定。 / Pitch is determined by amplitude.",
     "answer": false,
-    "explain": "音调由频率决定；振幅决定响度。 / Pitch→frequency; loudness→amplitude."
+    "explain": "音调由频率决定；振幅决定响度。 / Pitch→frequency; loudness→amplitude.",
+    "level": "core"
   },
   {
     "id": "q-p9",
@@ -115,7 +123,8 @@ export const questions = [
       "提高声音的频率 raise frequency"
     ],
     "answer": 3,
-    "explain": "噪声控制：声源、传播途径、接收处。 / Noise control: at source, along the path, and at the receiver."
+    "explain": "噪声控制：声源、传播途径、接收处。 / Noise control: at source, along the path, and at the receiver.",
+    "level": "core"
   },
   {
     "id": "q-p10",
@@ -130,7 +139,8 @@ export const questions = [
       "声速 speed"
     ],
     "answer": 2,
-    "explain": "分贝表示声音强弱（声强级）。 / The decibel expresses sound intensity level."
+    "explain": "分贝表示声音强弱（声强级）。 / The decibel expresses sound intensity level.",
+    "level": "core"
   },
   {
     "id": "q-p11",
@@ -139,7 +149,8 @@ export const questions = [
     "type": "tf",
     "prompt": "月球上两名宇航员不借助无线电也能直接对话。 / Astronauts on the Moon can talk without radio.",
     "answer": false,
-    "explain": "月球近似真空，声音无法传播。 / Near vacuum — no sound transmission."
+    "explain": "月球近似真空，声音无法传播。 / Near vacuum — no sound transmission.",
+    "level": "core"
   },
   {
     "id": "q-p12",
@@ -154,7 +165,8 @@ export const questions = [
       "仅 440 Hz only A4"
     ],
     "answer": 1,
-    "explain": "约 20 Hz–20 000 Hz。 / About 20 Hz–20 000 Hz."
+    "explain": "约 20 Hz–20 000 Hz。 / About 20 Hz–20 000 Hz.",
+    "level": "core"
   },
   {
     "id": "q-p13",
@@ -169,7 +181,8 @@ export const questions = [
       "3400 m/s 固体量级"
     ],
     "answer": 2,
-    "explain": "约 340 m / About 340 m / s."
+    "explain": "约 340 m/s。 / About 340 m/s in air at ~15°C.",
+    "level": "core"
   },
   {
     "id": "q-p14",
@@ -178,7 +191,8 @@ export const questions = [
     "type": "tf",
     "prompt": "次声波的频率低于 20 Hz。 / Infrasound has frequency below 20 Hz.",
     "answer": true,
-    "explain": "低于 20 Hz 的声波叫次声波。 / Sound below 20 Hz is called infrasound."
+    "explain": "低于 20 Hz 的声波叫次声波。 / Sound below 20 Hz is called infrasound.",
+    "level": "core"
   },
   {
     "id": "q-p15",
@@ -193,7 +207,8 @@ export const questions = [
       "v/t 无意义"
     ],
     "answer": 1,
-    "explain": "单程距离 s = vt / One-way distance s = vt / 2."
+    "explain": "单程距离 s = vt/2。 / One-way distance s = vt/2.",
+    "level": "core"
   },
   {
     "id": "q-p16",
@@ -208,7 +223,8 @@ export const questions = [
       "音调↔振幅 pitch↔amplitude"
     ],
     "answer": 0,
-    "explain": "音调-频率；响度-振幅；音色-波形 / Pitch↔frequency; loudness↔amplitude; timbre↔waveform / material."
+    "explain": "音调-频率；响度-振幅；音色-波形 / Pitch↔frequency; loudness↔amplitude; timbre↔waveform / material.",
+    "level": "core"
   },
   {
     "id": "q-p17",
@@ -217,7 +233,8 @@ export const questions = [
     "type": "tf",
     "prompt": "声音在固体中一定不能传播。 / Sound cannot travel in solids.",
     "answer": false,
-    "explain": "固体通常也能传声，且往往更快。 / Solids usually transmit sound and often faster."
+    "explain": "固体通常也能传声，且往往更快。 / Solids usually transmit sound and often faster.",
+    "level": "core"
   },
   {
     "id": "q-p18",
@@ -232,7 +249,8 @@ export const questions = [
       "真空 vacuum"
     ],
     "answer": 2,
-    "explain": "在人耳（接收处）减弱。 / Reduced at the ear (receiver)."
+    "explain": "在人耳（接收处）减弱。 / Reduced at the ear (receiver).",
+    "level": "core"
   },
   {
     "id": "q-p19",
@@ -247,7 +265,8 @@ export const questions = [
       "不需要介质 no medium"
     ],
     "answer": 1,
-    "explain": "纵波（疏密波）。 / Longitudinal (compression) waves."
+    "explain": "纵波（疏密波）。 / Longitudinal (compression) waves.",
+    "level": "core"
   },
   {
     "id": "q-p20",
@@ -256,7 +275,8 @@ export const questions = [
     "type": "tf",
     "prompt": "频率越高，波长一定越长（同介质、同声速）。 / Higher frequency always means longer wavelength (same medium).",
     "answer": false,
-    "explain": "v=fλ，声速一定时，频率越高波长越短。 / From v=fλ, higher f means shorter λ at fixed speed."
+    "explain": "v=fλ，声速一定时，频率越高波长越短。 / From v=fλ, higher f means shorter λ at fixed speed.",
+    "level": "core"
   },
   {
     "id": "q-p21",
@@ -271,7 +291,8 @@ export const questions = [
       "红外线 infrared"
     ],
     "answer": 2,
-    "explain": "超声波回声定位。 / Ultrasound echolocation."
+    "explain": "超声波回声定位。 / Ultrasound echolocation.",
+    "level": "core"
   },
   {
     "id": "q-p22",
@@ -286,7 +307,8 @@ export const questions = [
       "完全空的太空 empty space"
     ],
     "answer": 0,
-    "explain": "水可以传声；真空不能。 / Water transmits sound; vacuum does not."
+    "explain": "水可以传声；真空不能。 / Water transmits sound; vacuum does not.",
+    "level": "core"
   },
   {
     "id": "q-p23",
@@ -295,7 +317,8 @@ export const questions = [
     "type": "tf",
     "prompt": "振幅越大，音调一定越高。 / Larger amplitude always means higher pitch.",
     "answer": false,
-    "explain": "振幅影响响度，不影响音调。 / Amplitude affects loudness, not pitch."
+    "explain": "振幅影响响度，不影响音调。 / Amplitude affects loudness, not pitch.",
+    "level": "core"
   },
   {
     "id": "q-p24",
@@ -310,7 +333,8 @@ export const questions = [
       "提高智商 higher IQ"
     ],
     "answer": 3,
-    "explain": "噪声影响听力与健康，但不提高智商。 / Noise harms hearing / health but does not raise IQ."
+    "explain": "噪声影响听力与健康，但不提高智商。 / Noise harms hearing / health but does not raise IQ.",
+    "level": "core"
   },
   {
     "id": "q-p25",
@@ -325,7 +349,8 @@ export const questions = [
       "发光 glowing"
     ],
     "answer": 0,
-    "explain": "振动。 / They are vibrating."
+    "explain": "振动。 / They are vibrating.",
+    "level": "core"
   },
   {
     "id": "q-p26",
@@ -334,7 +359,8 @@ export const questions = [
     "type": "tf",
     "prompt": "真空中光速可传播，但声速不能。 / Light can travel in vacuum but sound cannot.",
     "answer": true,
-    "explain": "光是电磁波；声是机械波。 / Light is electromagnetic; sound is mechanical."
+    "explain": "光是电磁波；声是机械波。 / Light is electromagnetic; sound is mechanical.",
+    "level": "core"
   },
   {
     "id": "q-p27",
@@ -349,7 +375,8 @@ export const questions = [
       "先增后减 increases then decreases only"
     ],
     "answer": 1,
-    "explain": "减小。 / It decreases."
+    "explain": "减小。 / It decreases.",
+    "level": "core"
   },
   {
     "id": "q-p28",
@@ -364,7 +391,8 @@ export const questions = [
       "次声预警 only infrasound warning"
     ],
     "answer": 2,
-    "explain": "B 超、测距、清洗等。 / Ultrasound imaging, ranging, cleaning, etc."
+    "explain": "B 超、测距、清洗等。 / Ultrasound imaging, ranging, cleaning, etc.",
+    "level": "core"
   },
   {
     "id": "q-p29",
@@ -373,7 +401,8 @@ export const questions = [
     "type": "tf",
     "prompt": "只要物体振动，人就一定能听到声音。 / Any vibration must be heard by humans.",
     "answer": false,
-    "explain": "频率超出听觉范围或响度太小则听不到。 / If frequency is outside hearing range or loudness is too low, we cannot hear it."
+    "explain": "频率超出听觉范围或响度太小则听不到。 / If frequency is outside hearing range or loudness is too low, we cannot hear it.",
+    "level": "core"
   },
   {
     "id": "q-p30",
@@ -388,7 +417,8 @@ export const questions = [
       "真空 vacuum"
     ],
     "answer": 0,
-    "explain": "声源处。 / At the source."
+    "explain": "声源处。 / At the source.",
+    "level": "core"
   },
   {
     "id": "q-p31",
@@ -397,7 +427,8 @@ export const questions = [
     "type": "tf",
     "prompt": "光在同种均匀介质中沿直线传播。 / Light travels in straight lines in a uniform medium.",
     "answer": true,
-    "explain": "直线传播可解释影子、小孔成像等。 / Rectilinear propagation explains shadows and pinhole images."
+    "explain": "直线传播可解释影子、小孔成像等。 / Rectilinear propagation explains shadows and pinhole images.",
+    "level": "core"
   },
   {
     "id": "q-p32",
@@ -412,7 +443,8 @@ export const questions = [
       "无关 unrelated"
     ],
     "answer": 2,
-    "explain": "反射角等于入射角。 / Angle of reflection equals angle of incidence."
+    "explain": "反射角等于入射角。 / Angle of reflection equals angle of incidence.",
+    "level": "core"
   },
   {
     "id": "q-p33",
@@ -427,7 +459,8 @@ export const questions = [
       "正立放大实像 upright magnified real"
     ],
     "answer": 1,
-    "explain": "正立、等大、虚像。 / Upright, same-size virtual image."
+    "explain": "正立、等大、虚像。 / Upright, same-size virtual image.",
+    "level": "core"
   },
   {
     "id": "q-p34",
@@ -436,7 +469,8 @@ export const questions = [
     "type": "tf",
     "prompt": "虚像可以用光屏承接。 / A virtual image can be caught on a screen.",
     "answer": false,
-    "explain": "虚像不能用光屏承接；实像可以。 / Virtual images cannot be caught on a screen; real images can."
+    "explain": "虚像不能用光屏承接；实像可以。 / Virtual images cannot be caught on a screen; real images can.",
+    "level": "core"
   },
   {
     "id": "q-p35",
@@ -451,7 +485,8 @@ export const questions = [
       "吸收 absorbs"
     ],
     "answer": 1,
-    "explain": "会聚 converging。 / A converging (convex) lens gathers parallel rays."
+    "explain": "会聚 converging。 / A converging (convex) lens gathers parallel rays.",
+    "level": "core"
   },
   {
     "id": "q-p36",
@@ -466,7 +501,8 @@ export const questions = [
       "三棱镜 prism"
     ],
     "answer": 1,
-    "explain": "凹透镜。 / A concave (diverging) lens."
+    "explain": "凹透镜。 / A concave (diverging) lens.",
+    "level": "core"
   },
   {
     "id": "q-p37",
@@ -481,7 +517,8 @@ export const questions = [
       "正立等大实像 upright same-size real"
     ],
     "answer": 0,
-    "explain": "倒立缩小实像（照相机）。 / Inverted diminished real image (camera)."
+    "explain": "倒立缩小实像（照相机）。 / Inverted diminished real image (camera).",
+    "level": "core"
   },
   {
     "id": "q-p38",
@@ -490,7 +527,8 @@ export const questions = [
     "type": "tf",
     "prompt": "光的三原色是红、黄、蓝。 / Primary colours of light are red, yellow, blue.",
     "answer": false,
-    "explain": "光的三原色是红、绿、蓝（RGB）。 / Primary colours of light are red, green and blue (RGB)."
+    "explain": "光的三原色是红、绿、蓝（RGB）。 / Primary colours of light are red, green and blue (RGB).",
+    "level": "core"
   },
   {
     "id": "q-p39",
@@ -505,7 +543,8 @@ export const questions = [
       "杀菌能力强 sterilising"
     ],
     "answer": 1,
-    "explain": "热效应强。 / Strong heating effect."
+    "explain": "热效应强。 / Strong heating effect.",
+    "level": "core"
   },
   {
     "id": "q-p40",
@@ -520,7 +559,8 @@ export const questions = [
       "无法确定 unknown"
     ],
     "answer": 1,
-    "explain": "折射角小于入射角。 / Angle of refraction is smaller than angle of incidence."
+    "explain": "折射角小于入射角。 / Angle of refraction is smaller than angle of incidence.",
+    "level": "core"
   },
   {
     "id": "q-p41",
@@ -529,7 +569,8 @@ export const questions = [
     "type": "tf",
     "prompt": "凹透镜对光有发散作用，可矫正远视。 / A concave lens corrects long-sightedness.",
     "answer": false,
-    "explain": "凹透镜矫正近视；远视用凸透镜。 / Concave lens corrects myopia; convex corrects hyperopia."
+    "explain": "凹透镜矫正近视；远视用凸透镜。 / Concave lens corrects myopia; convex corrects hyperopia.",
+    "level": "core"
   },
   {
     "id": "q-p42",
@@ -544,7 +585,8 @@ export const questions = [
       "正立缩小虚像 upright diminished virtual"
     ],
     "answer": 2,
-    "explain": "u < f：正立放大虚像。 / When u < f: upright magnified virtual image."
+    "explain": "u < f：正立放大虚像。 / When u < f: upright magnified virtual image.",
+    "level": "core"
   },
   {
     "id": "q-p43",
@@ -559,7 +601,8 @@ export const questions = [
       "重合 coincident"
     ],
     "answer": 2,
-    "explain": "垂直。 / Perpendicular (normal)."
+    "explain": "垂直。 / Perpendicular (normal).",
+    "level": "core"
   },
   {
     "id": "q-p44",
@@ -568,7 +611,8 @@ export const questions = [
     "type": "tf",
     "prompt": "入射角是入射光线与镜面的夹角。 / Angle of incidence is between incident ray and mirror.",
     "answer": false,
-    "explain": "入射角是入射光线与法线的夹角。 / Incidence angle is between incident ray and the normal."
+    "explain": "入射角是入射光线与法线的夹角。 / Incidence angle is between incident ray and the normal.",
+    "level": "core"
   },
   {
     "id": "q-p45",
@@ -583,7 +627,8 @@ export const questions = [
       "三棱镜 triangular prism"
     ],
     "answer": 0,
-    "explain": "凸透镜。 / A convex (converging) lens."
+    "explain": "凸透镜。 / A convex (converging) lens.",
+    "level": "core"
   },
   {
     "id": "q-p46",
@@ -598,7 +643,8 @@ export const questions = [
       "紫 violet"
     ],
     "answer": 3,
-    "explain": "紫光偏折最大，红光最小。 / Violet bends most; red least."
+    "explain": "紫光偏折最大，红光最小。 / Violet bends most; red least.",
+    "level": "core"
   },
   {
     "id": "q-p47",
@@ -607,7 +653,8 @@ export const questions = [
     "type": "tf",
     "prompt": "实像一定是倒立的，虚像一定是正立的（透镜常见情形）。 / For common lens cases: real images inverted, virtual upright.",
     "answer": true,
-    "explain": "凸透镜：实像倒立，虚像正立（中学范围）。 / Convex lens: real images inverted; virtual images upright (school level)."
+    "explain": "凸透镜：实像倒立，虚像正立（中学范围）。 / Convex lens: real images inverted; virtual images upright (school level).",
+    "level": "core"
   },
   {
     "id": "q-p48",
@@ -622,7 +669,8 @@ export const questions = [
       "促进维生素 D 合成 vitamin D"
     ],
     "answer": 0,
-    "explain": "紫外线可杀菌、使荧光物质发光；热效应主要是红外。 / UV can sterilise and cause fluorescence; IR mainly heats."
+    "explain": "紫外线可杀菌、使荧光物质发光；热效应主要是红外。 / UV can sterilise and cause fluorescence; IR mainly heats.",
+    "level": "core"
   },
   {
     "id": "q-p49",
@@ -637,7 +685,8 @@ export const questions = [
       "倒立虚像 inverted virtual"
     ],
     "answer": 1,
-    "explain": "倒立的实像。 / An inverted real image."
+    "explain": "倒立的实像。 / An inverted real image.",
+    "level": "core"
   },
   {
     "id": "q-p50",
@@ -646,7 +695,8 @@ export const questions = [
     "type": "tf",
     "prompt": "光在真空中的速度约为 3×10⁸ m/s。 / Speed of light in vacuum is about 3×10⁸ m/s.",
     "answer": true,
-    "explain": "这是光速的常用近似值。 / This is the usual approximate value of c."
+    "explain": "这是光速的常用近似值。 / This is the usual approximate value of c.",
+    "level": "core"
   },
   {
     "id": "q-p51",
@@ -661,7 +711,8 @@ export const questions = [
       "只对红光遵守 only for red"
     ],
     "answer": 1,
-    "explain": "仍然遵守。 / The laws still hold."
+    "explain": "仍然遵守。 / The laws still hold.",
+    "level": "core"
   },
   {
     "id": "q-p52",
@@ -676,7 +727,8 @@ export const questions = [
       "不成像 no image"
     ],
     "answer": 0,
-    "explain": "倒立等大实像。 / Inverted same-size real image."
+    "explain": "倒立等大实像。 / Inverted same-size real image.",
+    "level": "core"
   },
   {
     "id": "q-p53",
@@ -685,7 +737,8 @@ export const questions = [
     "type": "tf",
     "prompt": "平面镜成的像与物到镜面的距离相等。 / Object and plane-mirror image are equidistant from the mirror.",
     "answer": true,
-    "explain": "像与物关于镜面对称。 / Object and image are symmetric about the mirror."
+    "explain": "像与物关于镜面对称。 / Object and image are symmetric about the mirror.",
+    "level": "core"
   },
   {
     "id": "q-p54",
@@ -700,7 +753,8 @@ export const questions = [
       "无关 unrelated"
     ],
     "answer": 0,
-    "explain": "前方。 / In front of the retina."
+    "explain": "前方。 / In front of the retina.",
+    "level": "core"
   },
   {
     "id": "q-p55",
@@ -715,7 +769,8 @@ export const questions = [
       "透镜成像 lens imaging mainly"
     ],
     "answer": 2,
-    "explain": "影子。 / A shadow."
+    "explain": "影子。 / A shadow.",
+    "level": "core"
   },
   {
     "id": "q-p56",
@@ -724,7 +779,8 @@ export const questions = [
     "type": "tf",
     "prompt": "凹透镜对光线有会聚作用。 / A concave lens converges light.",
     "answer": false,
-    "explain": "凹透镜发散光线。 / A concave lens diverges light."
+    "explain": "凹透镜发散光线。 / A concave lens diverges light.",
+    "level": "core"
   },
   {
     "id": "q-p57",
@@ -739,7 +795,8 @@ export const questions = [
       "正立等大虚像 upright same-size virtual"
     ],
     "answer": 1,
-    "explain": "倒立放大实像。 / Inverted magnified real image."
+    "explain": "倒立放大实像。 / Inverted magnified real image.",
+    "level": "core"
   },
   {
     "id": "q-p58",
@@ -754,7 +811,8 @@ export const questions = [
       "一定 90° always 90°"
     ],
     "answer": 0,
-    "explain": "折射角大于入射角。 / Angle of refraction is larger than angle of incidence."
+    "explain": "折射角大于入射角。 / Angle of refraction is larger than angle of incidence.",
+    "level": "core"
   },
   {
     "id": "q-p59",
@@ -763,7 +821,8 @@ export const questions = [
     "type": "tf",
     "prompt": "我们能从不同方向看到本身不发光的物体，是因为漫反射。 / We see non-luminous objects from many directions due to diffuse reflection.",
     "answer": true,
-    "explain": "粗糙表面发生漫反射。 / Rough surfaces cause diffuse reflection."
+    "explain": "粗糙表面发生漫反射。 / Rough surfaces cause diffuse reflection.",
+    "level": "core"
   },
   {
     "id": "q-p60",
@@ -778,7 +837,8 @@ export const questions = [
       "一定反射 reflected"
     ],
     "answer": 2,
-    "explain": "传播方向不变。 / Direction unchanged."
+    "explain": "传播方向不变。 / Direction unchanged.",
+    "level": "core"
   },
   {
     "id": "q-p61",
@@ -793,7 +853,8 @@ export const questions = [
       "力 force"
     ],
     "answer": 1,
-    "explain": "参照物。 / A reference object / frame."
+    "explain": "参照物。 / A reference object / frame.",
+    "level": "core"
   },
   {
     "id": "q-p62",
@@ -808,7 +869,8 @@ export const questions = [
       "v = F÷m 错误式"
     ],
     "answer": 1,
-    "explain": "速度等于路程除以时间：v = s÷t。 / Speed equals distance divided by time: v = s/t."
+    "explain": "速度等于路程除以时间：v = s÷t。 / Speed equals distance divided by time: v = s/t.",
+    "level": "core"
   },
   {
     "id": "q-p63",
@@ -817,7 +879,8 @@ export const questions = [
     "type": "tf",
     "prompt": "力的单位是牛顿，符号为 N。 / The unit of force is the newton (N).",
     "answer": true,
-    "explain": "国际单位制中力的单位是牛顿。 / The SI unit of force is the newton."
+    "explain": "国际单位制中力的单位是牛顿。 / The SI unit of force is the newton.",
+    "level": "core"
   },
   {
     "id": "q-p64",
@@ -832,7 +895,8 @@ export const questions = [
       "人 person"
     ],
     "answer": 2,
-    "explain": "地球。 / The Earth."
+    "explain": "地球。 / The Earth.",
+    "level": "core"
   },
   {
     "id": "q-p65",
@@ -847,7 +911,8 @@ export const questions = [
       "作用在两个不同物体上 on two different bodies"
     ],
     "answer": 3,
-    "explain": "必须作用在同一物体上。 / They must act on the same object."
+    "explain": "必须作用在同一物体上。 / They must act on the same object.",
+    "level": "core"
   },
   {
     "id": "q-p66",
@@ -856,7 +921,8 @@ export const questions = [
     "type": "tf",
     "prompt": "惯性是一种力。 / Inertia is a type of force.",
     "answer": false,
-    "explain": "惯性是物体的固有属性，不是力。 / Inertia is a property of matter, not a force."
+    "explain": "惯性是物体的固有属性，不是力。 / Inertia is a property of matter, not a force.",
+    "level": "core"
   },
   {
     "id": "q-p67",
@@ -871,7 +937,8 @@ export const questions = [
       "加速 accelerate"
     ],
     "answer": 2,
-    "explain": "保持静止或匀速直线运动。 / Remain at rest or in uniform straight-line motion."
+    "explain": "保持静止或匀速直线运动。 / Remain at rest or in uniform straight-line motion.",
+    "level": "core"
   },
   {
     "id": "q-p68",
@@ -886,7 +953,8 @@ export const questions = [
       "0.98 N/kg 过小"
     ],
     "answer": 1,
-    "explain": "9.8 N / About 9.8 N / kg."
+    "explain": "约 9.8 N/kg。 / About 9.8 N/kg.",
+    "level": "core"
   },
   {
     "id": "q-p69",
@@ -895,7 +963,8 @@ export const questions = [
     "type": "tf",
     "prompt": "力可以离开物体而独立存在。 / A force can exist without objects.",
     "answer": false,
-    "explain": "力是物体对物体的作用。 / Force is an interaction between objects."
+    "explain": "力是物体对物体的作用。 / Force is an interaction between objects.",
+    "level": "core"
   },
   {
     "id": "q-p70",
@@ -910,7 +979,8 @@ export const questions = [
       "大小、质量、方向 magnitude, mass, direction"
     ],
     "answer": 1,
-    "explain": "大小、方向、作用点。 / Magnitude, direction and point of application."
+    "explain": "大小、方向、作用点。 / Magnitude, direction and point of application.",
+    "level": "core"
   },
   {
     "id": "q-p71",
@@ -925,7 +995,8 @@ export const questions = [
       "弹力 elastic force"
     ],
     "answer": 1,
-    "explain": "惯性。 / Inertia."
+    "explain": "惯性。 / Inertia.",
+    "level": "core"
   },
   {
     "id": "q-p72",
@@ -934,7 +1005,8 @@ export const questions = [
     "type": "tf",
     "prompt": "物体受到平衡力时一定保持静止。 / Balanced forces mean a body must be at rest.",
     "answer": false,
-    "explain": "也可能做匀速直线运动。 / It may also move at constant velocity in a straight line."
+    "explain": "也可能做匀速直线运动。 / It may also move at constant velocity in a straight line.",
+    "level": "core"
   },
   {
     "id": "q-p73",
@@ -949,7 +1021,8 @@ export const questions = [
       "200 N 过大"
     ],
     "answer": 2,
-    "explain": "重力 G = mg = 2×10 = 20 N。 / Weight G = mg = 2×10 = 20 N."
+    "explain": "重力 G = mg = 2×10 = 20 N。 / Weight G = mg = 2×10 = 20 N.",
+    "level": "core"
   },
   {
     "id": "q-p74",
@@ -964,7 +1037,8 @@ export const questions = [
       "太阳 Sun only"
     ],
     "answer": 0,
-    "explain": "火车（自己）。 / The train itself (as reference)."
+    "explain": "火车（自己）。 / The train itself (as reference).",
+    "level": "core"
   },
   {
     "id": "q-p75",
@@ -973,7 +1047,8 @@ export const questions = [
     "type": "tf",
     "prompt": "质量越大，惯性越大。 / Greater mass means greater inertia.",
     "answer": true,
-    "explain": "惯性大小只与质量有关。 / Inertia depends only on mass."
+    "explain": "惯性大小只与质量有关。 / Inertia depends only on mass.",
+    "level": "core"
   },
   {
     "id": "q-p76",
@@ -988,7 +1063,8 @@ export const questions = [
       "量筒 measuring cylinder"
     ],
     "answer": 2,
-    "explain": "弹簧测力计。 / A spring balance (newtonmeter)."
+    "explain": "弹簧测力计。 / A spring balance (newtonmeter).",
+    "level": "core"
   },
   {
     "id": "q-p77",
@@ -1003,7 +1079,8 @@ export const questions = [
       "不断增大 keeps increasing"
     ],
     "answer": 0,
-    "explain": "大小和方向都不变。 / Both magnitude and direction stay constant."
+    "explain": "大小和方向都不变。 / Both magnitude and direction stay constant.",
+    "level": "core"
   },
   {
     "id": "q-p78",
@@ -1012,7 +1089,8 @@ export const questions = [
     "type": "tf",
     "prompt": "摩擦力的方向总是与物体运动方向相反。 / Friction always opposes the direction of motion.",
     "answer": false,
-    "explain": "阻碍的是相对运动或相对运动趋势，不一定与运动方向相反（如人走路时静摩擦可向前）。 / Friction opposes relative motion or tendency; not always opposite to travel direction."
+    "explain": "阻碍的是相对运动或相对运动趋势，不一定与运动方向相反（如人走路时静摩擦可向前）。 / Friction opposes relative motion or tendency; not always opposite to travel direction.",
+    "level": "core"
   },
   {
     "id": "q-p79",
@@ -1027,7 +1105,8 @@ export const questions = [
       "相等 equal"
     ],
     "answer": 1,
-    "explain": "成正比 G=mg。 / Proportional: G = mg."
+    "explain": "成正比 G=mg。 / Proportional: G = mg.",
+    "level": "core"
   },
   {
     "id": "q-p80",
@@ -1042,7 +1121,8 @@ export const questions = [
       "刹车减速 decelerating"
     ],
     "answer": 2,
-    "explain": "匀速直线或静止。 / Uniform straight-line motion or rest."
+    "explain": "匀速直线或静止。 / Uniform straight-line motion or rest.",
+    "level": "core"
   },
   {
     "id": "q-p81",
@@ -1051,7 +1131,8 @@ export const questions = [
     "type": "tf",
     "prompt": "作用力与反作用力是一对平衡力。 / Action and reaction are a pair of balanced forces.",
     "answer": false,
-    "explain": "作用在两个物体上，不是平衡力。 / They act on two different objects — not a balanced pair on one body."
+    "explain": "作用在两个物体上，不是平衡力。 / They act on two different objects — not a balanced pair on one body.",
+    "level": "core"
   },
   {
     "id": "q-p82",
@@ -1066,7 +1147,8 @@ export const questions = [
       "增大接触面积（滑动） only increase area"
     ],
     "answer": 1,
-    "explain": "加润滑油等。 / Add lubricant, etc."
+    "explain": "加润滑油等。 / Add lubricant, etc.",
+    "level": "core"
   },
   {
     "id": "q-p83",
@@ -1081,7 +1163,8 @@ export const questions = [
       "20 m/s 干扰项"
     ],
     "answer": 2,
-    "explain": "平均速度 = 总路程÷总时间 = 1000÷200 = 5 m/s。 / Average speed = total distance/total time = 5 m/s."
+    "explain": "平均速度 = 总路程÷总时间 = 100÷20 = 5 m/s。 / Average speed = total distance/total time = 100/20 = 5 m/s.",
+    "level": "core"
   },
   {
     "id": "q-p84",
@@ -1090,7 +1173,8 @@ export const questions = [
     "type": "tf",
     "prompt": "力是维持物体运动的原因。 / Force is needed to keep an object moving.",
     "answer": false,
-    "explain": "力是改变运动状态的原因；牛顿第一定律。 / Force changes motion state; Newton I describes inertia."
+    "explain": "力是改变运动状态的原因；牛顿第一定律。 / Force changes motion state; Newton I describes inertia.",
+    "level": "core"
   },
   {
     "id": "q-p85",
@@ -1105,7 +1189,8 @@ export const questions = [
       "施力物体是空气 agent is air"
     ],
     "answer": 0,
-    "explain": "方向竖直向下（指向地心）。 / Vertically downward (towards Earth centre)."
+    "explain": "方向竖直向下（指向地心）。 / Vertically downward (towards Earth centre).",
+    "level": "core"
   },
   {
     "id": "q-p86",
@@ -1120,7 +1205,8 @@ export const questions = [
       "重力消失 gravity vanishes"
     ],
     "answer": 2,
-    "explain": "受到阻力（摩擦等）。 / It experiences resistance (friction, etc.)."
+    "explain": "受到阻力（摩擦等）。 / It experiences resistance (friction, etc.).",
+    "level": "core"
   },
   {
     "id": "q-p87",
@@ -1129,7 +1215,8 @@ export const questions = [
     "type": "tf",
     "prompt": "参照物可以任意选择，但选不同参照物结论可能不同。 / Choice of reference frame can change the description of motion.",
     "answer": true,
-    "explain": "运动具有相对性。 / Motion is relative."
+    "explain": "运动具有相对性。 / Motion is relative.",
+    "level": "core"
   },
   {
     "id": "q-p88",
@@ -1144,7 +1231,8 @@ export const questions = [
       "密度 density"
     ],
     "answer": 1,
-    "explain": "在弹性限度内，弹簧伸长与拉力成正比。 / Within elastic limit, extension ∝ pulling force."
+    "explain": "在弹性限度内，弹簧伸长与拉力成正比。 / Within elastic limit, extension ∝ pulling force.",
+    "level": "core"
   },
   {
     "id": "q-p89",
@@ -1159,7 +1247,8 @@ export const questions = [
       "无法确定 unknown"
     ],
     "answer": 0,
-    "explain": "零。 / Zero."
+    "explain": "零。 / Zero.",
+    "level": "core"
   },
   {
     "id": "q-p90",
@@ -1168,7 +1257,8 @@ export const questions = [
     "type": "tf",
     "prompt": "航天员在太空中质量为零。 / Astronauts in space have zero mass.",
     "answer": false,
-    "explain": "质量不变；失重不等于质量为零。 / Mass unchanged; weightlessness ≠ zero mass."
+    "explain": "质量不变；失重不等于质量为零。 / Mass unchanged; weightlessness ≠ zero mass.",
+    "level": "core"
   },
   {
     "id": "q-b1",
@@ -1183,7 +1273,8 @@ export const questions = [
       "系统 system"
     ],
     "answer": 2,
-    "explain": "细胞 → 组织 → 器官 → 系统。 / Cell → tissue → organ → system."
+    "explain": "细胞 → 组织 → 器官 → 系统。 / Cell → tissue → organ → system.",
+    "level": "core"
   },
   {
     "id": "q-b2",
@@ -1198,7 +1289,8 @@ export const questions = [
       "口腔 mouth"
     ],
     "answer": 1,
-    "explain": "小肠。 / The small intestine."
+    "explain": "小肠。 / The small intestine.",
+    "level": "core"
   },
   {
     "id": "q-b3",
@@ -1207,7 +1299,8 @@ export const questions = [
     "type": "tf",
     "prompt": "动脉是将血液运回心脏的血管。 / Arteries carry blood back to the heart.",
     "answer": false,
-    "explain": "动脉运离心脏；静脉运回心脏。 / Arteries carry blood away; veins return it."
+    "explain": "动脉运离心脏；静脉运回心脏。 / Arteries carry blood away; veins return it.",
+    "level": "core"
   },
   {
     "id": "q-b4",
@@ -1222,7 +1315,8 @@ export const questions = [
       "血浆蛋白 plasma proteins"
     ],
     "answer": 2,
-    "explain": "红细胞（血红蛋白）。 / Red blood cells (haemoglobin)."
+    "explain": "红细胞（血红蛋白）。 / Red blood cells (haemoglobin).",
+    "level": "core"
   },
   {
     "id": "q-b5",
@@ -1237,7 +1331,8 @@ export const questions = [
       "泵血 pumping blood"
     ],
     "answer": 1,
-    "explain": "气体交换。 / Gas exchange."
+    "explain": "气体交换。 / Gas exchange.",
+    "level": "core"
   },
   {
     "id": "q-b6",
@@ -1252,7 +1347,8 @@ export const questions = [
       "尿道 urethra"
     ],
     "answer": 2,
-    "explain": "肾脏。 / The kidneys."
+    "explain": "肾脏。 / The kidneys.",
+    "level": "core"
   },
   {
     "id": "q-b7",
@@ -1261,7 +1357,8 @@ export const questions = [
     "type": "tf",
     "prompt": "酶是生物催化剂，能加快反应速率。 / Enzymes are biological catalysts.",
     "answer": true,
-    "explain": "酶具有催化作用和专一性。 / Enzymes catalyse and are specific."
+    "explain": "酶具有催化作用和专一性。 / Enzymes catalyse and are specific.",
+    "level": "core"
   },
   {
     "id": "q-b8",
@@ -1276,7 +1373,8 @@ export const questions = [
       "5（数值 value）"
     ],
     "answer": 2,
-    "explain": "四个腔。 / Four chambers."
+    "explain": "四个腔。 / Four chambers.",
+    "level": "core"
   },
   {
     "id": "q-b9",
@@ -1291,7 +1389,8 @@ export const questions = [
       "左心室 left ventricle"
     ],
     "answer": 3,
-    "explain": "左心室。 / The left ventricle."
+    "explain": "左心室。 / The left ventricle.",
+    "level": "core"
   },
   {
     "id": "q-b10",
@@ -1300,7 +1399,8 @@ export const questions = [
     "type": "tf",
     "prompt": "肺循环中，血液流经肺部后氧气含量增加。 / Blood gains oxygen in pulmonary circulation.",
     "answer": true,
-    "explain": "肺部气体交换使血氧增加。 / Pulmonary gas exchange raises blood oxygen."
+    "explain": "肺部气体交换使血氧增加。 / Pulmonary gas exchange raises blood oxygen.",
+    "level": "core"
   },
   {
     "id": "q-b11",
@@ -1315,7 +1415,8 @@ export const questions = [
       "运输养料 carry nutrients only"
     ],
     "answer": 2,
-    "explain": "止血和凝血。 / Stopping bleeding and clotting."
+    "explain": "止血和凝血。 / Stopping bleeding and clotting.",
+    "level": "core"
   },
   {
     "id": "q-b12",
@@ -1330,7 +1431,8 @@ export const questions = [
       "小肠 small intestine"
     ],
     "answer": 0,
-    "explain": "口腔。 / The mouth (oral cavity)."
+    "explain": "口腔。 / The mouth (oral cavity).",
+    "level": "core"
   },
   {
     "id": "q-b13",
@@ -1339,7 +1441,8 @@ export const questions = [
     "type": "tf",
     "prompt": "蛋白质的消化从口腔开始。 / Protein digestion begins in the mouth.",
     "answer": false,
-    "explain": "蛋白质化学性消化从胃开始。 / Chemical digestion of protein begins in the stomach."
+    "explain": "蛋白质化学性消化从胃开始。 / Chemical digestion of protein begins in the stomach.",
+    "level": "core"
   },
   {
     "id": "q-b14",
@@ -1354,7 +1457,8 @@ export const questions = [
       "膀胱和输尿管 bladder & ureter"
     ],
     "answer": 1,
-    "explain": "肾小球、肾小囊和肾小管。 / Glomerulus, Bowman’s capsule and tubule."
+    "explain": "肾小球、肾小囊和肾小管。 / Glomerulus, Bowman’s capsule and tubule.",
+    "level": "core"
   },
   {
     "id": "q-b15",
@@ -1369,7 +1473,8 @@ export const questions = [
       "小肠 small intestine"
     ],
     "answer": 2,
-    "explain": "肝脏。 / The liver."
+    "explain": "肝脏。 / The liver.",
+    "level": "core"
   },
   {
     "id": "q-b16",
@@ -1378,7 +1483,8 @@ export const questions = [
     "type": "tf",
     "prompt": "胆汁含有消化酶。 / Bile contains digestive enzymes.",
     "answer": false,
-    "explain": "胆汁不含消化酶，可乳化脂肪。 / Bile has no digestive enzymes; it emulsifies fats."
+    "explain": "胆汁不含消化酶，可乳化脂肪。 / Bile has no digestive enzymes; it emulsifies fats.",
+    "level": "core"
   },
   {
     "id": "q-b17",
@@ -1393,7 +1499,8 @@ export const questions = [
       "与主动脉一样粗 as wide as aorta"
     ],
     "answer": 0,
-    "explain": "非常薄，利于物质交换。 / Very thin walls aid exchange."
+    "explain": "非常薄，利于物质交换。 / Very thin walls aid exchange.",
+    "level": "core"
   },
   {
     "id": "q-b18",
@@ -1408,7 +1515,8 @@ export const questions = [
       "血浆 plasma"
     ],
     "answer": 1,
-    "explain": "红细胞。 / Red blood cells."
+    "explain": "红细胞。 / Red blood cells.",
+    "level": "core"
   },
   {
     "id": "q-b19",
@@ -1417,7 +1525,8 @@ export const questions = [
     "type": "tf",
     "prompt": "左心室壁通常比右心室壁更厚。 / The left ventricle wall is thicker than the right.",
     "answer": true,
-    "explain": "体循环路程更长、阻力更大。 / Systemic route is longer with more resistance."
+    "explain": "体循环路程更长、阻力更大。 / Systemic route is longer with more resistance.",
+    "level": "core"
   },
   {
     "id": "q-b20",
@@ -1432,7 +1541,8 @@ export const questions = [
       "只左右运动 only moves sideways"
     ],
     "answer": 0,
-    "explain": "收缩，顶部下降。 / It contracts and the dome descends."
+    "explain": "收缩，顶部下降。 / It contracts and the dome descends.",
+    "level": "core"
   },
   {
     "id": "q-b21",
@@ -1447,7 +1557,8 @@ export const questions = [
       "甘油 glycerol only"
     ],
     "answer": 2,
-    "explain": "氨基酸。 / Amino acids."
+    "explain": "氨基酸。 / Amino acids.",
+    "level": "core"
   },
   {
     "id": "q-b22",
@@ -1456,7 +1567,8 @@ export const questions = [
     "type": "tf",
     "prompt": "静脉血一定是含氧少的血。 / Venous blood always has low oxygen.",
     "answer": false,
-    "explain": "肺静脉中是含氧丰富的血。 / Pulmonary veins carry oxygen-rich blood."
+    "explain": "肺静脉中是含氧丰富的血。 / Pulmonary veins carry oxygen-rich blood.",
+    "level": "core"
   },
   {
     "id": "q-b23",
@@ -1471,7 +1583,8 @@ export const questions = [
       "右心房 right atrium"
     ],
     "answer": 1,
-    "explain": "右心室。 / The right ventricle."
+    "explain": "右心室。 / The right ventricle.",
+    "level": "core"
   },
   {
     "id": "q-b24",
@@ -1486,7 +1599,8 @@ export const questions = [
       "储存尿液 store urine"
     ],
     "answer": 1,
-    "explain": "增大吸收面积。 / Increase absorption surface area."
+    "explain": "增大吸收面积。 / Increase absorption surface area.",
+    "level": "core"
   },
   {
     "id": "q-b25",
@@ -1495,7 +1609,8 @@ export const questions = [
     "type": "tf",
     "prompt": "大肠是吸收营养物质的主要场所。 / The large intestine is the main site of nutrient absorption.",
     "answer": false,
-    "explain": "主要是小肠；大肠主要吸收水分等。 / Mainly small intestine; large intestine absorbs water mainly."
+    "explain": "主要是小肠；大肠主要吸收水分等。 / Mainly small intestine; large intestine absorbs water mainly.",
+    "level": "core"
   },
   {
     "id": "q-b26",
@@ -1510,7 +1625,8 @@ export const questions = [
       "运动系统 locomotor"
     ],
     "answer": 2,
-    "explain": "泌尿系统。 / The urinary system."
+    "explain": "泌尿系统。 / The urinary system.",
+    "level": "core"
   },
   {
     "id": "q-b27",
@@ -1525,7 +1641,8 @@ export const questions = [
       "运输二氧化碳 only carry CO₂"
     ],
     "answer": 1,
-    "explain": "防御保护（免疫）。 / Defence / immunity."
+    "explain": "防御保护（免疫）。 / Defence / immunity.",
+    "level": "core"
   },
   {
     "id": "q-b28",
@@ -1534,7 +1651,8 @@ export const questions = [
     "type": "tf",
     "prompt": "血浆的功能之一是运输养料和废物。 / Plasma transports nutrients and wastes.",
     "answer": true,
-    "explain": "血浆是血液的液体部分。 / Plasma is the liquid part of blood."
+    "explain": "血浆是血液的液体部分。 / Plasma is the liquid part of blood.",
+    "level": "core"
   },
   {
     "id": "q-b29",
@@ -1549,7 +1667,8 @@ export const questions = [
       "渗透 osmosis only"
     ],
     "answer": 0,
-    "explain": "扩散。 / Diffusion."
+    "explain": "扩散。 / Diffusion.",
+    "level": "core"
   },
   {
     "id": "q-b30",
@@ -1564,7 +1683,8 @@ export const questions = [
       "绒毛 villi"
     ],
     "answer": 2,
-    "explain": "瓣膜。 / Valves."
+    "explain": "瓣膜。 / Valves.",
+    "level": "core"
   },
   {
     "id": "q-b31",
@@ -1573,7 +1693,8 @@ export const questions = [
     "type": "tf",
     "prompt": "组织层次高于器官。 / Tissue is a higher level than organ.",
     "answer": false,
-    "explain": "器官由不同组织构成，层次更高。 / An organ is made of tissues — a higher level."
+    "explain": "器官由不同组织构成，层次更高。 / An organ is made of tissues — a higher level.",
+    "level": "core"
   },
   {
     "id": "q-b32",
@@ -1588,7 +1709,8 @@ export const questions = [
       "维生素 vitamins"
     ],
     "answer": 0,
-    "explain": "淀粉。 / Starch."
+    "explain": "淀粉。 / Starch.",
+    "level": "core"
   },
   {
     "id": "q-b33",
@@ -1603,7 +1725,8 @@ export const questions = [
       "气体交换 gas exchange"
     ],
     "answer": 1,
-    "explain": "滤过。 / Filtration."
+    "explain": "滤过。 / Filtration.",
+    "level": "core"
   },
   {
     "id": "q-b34",
@@ -1612,7 +1735,8 @@ export const questions = [
     "type": "tf",
     "prompt": "动脉血管都流动脉血。 / All arteries carry oxygenated blood.",
     "answer": false,
-    "explain": "肺动脉运的是静脉血（含氧少）。 / Pulmonary artery carries deoxygenated (venous) blood."
+    "explain": "肺动脉运的是静脉血（含氧少）。 / Pulmonary artery carries deoxygenated (venous) blood.",
+    "level": "core"
   },
   {
     "id": "q-b35",
@@ -1627,7 +1751,8 @@ export const questions = [
       "无机盐 mineral salts"
     ],
     "answer": 0,
-    "explain": "糖类。 / Carbohydrates."
+    "explain": "糖类。 / Carbohydrates.",
+    "level": "core"
   },
   {
     "id": "q-b36",
@@ -1642,7 +1767,8 @@ export const questions = [
       "消化 digestion"
     ],
     "answer": 1,
-    "explain": "反射。 / A reflex."
+    "explain": "反射。 / A reflex.",
+    "level": "core"
   },
   {
     "id": "q-b37",
@@ -1657,7 +1783,8 @@ export const questions = [
       "中枢→感受器→效应器 CNS→receptor→effector"
     ],
     "answer": 1,
-    "explain": "感受器→传入→中枢→传出→效应器。 / Receptor → sensory → centre → motor → effector."
+    "explain": "感受器→传入→中枢→传出→效应器。 / Receptor → sensory → centre → motor → effector.",
+    "level": "core"
   },
   {
     "id": "q-b38",
@@ -1666,7 +1793,8 @@ export const questions = [
     "type": "tf",
     "prompt": "胰岛素能升高血糖。 / Insulin raises blood glucose.",
     "answer": false,
-    "explain": "胰岛素降低血糖。 / Insulin lowers blood glucose."
+    "explain": "胰岛素降低血糖。 / Insulin lowers blood glucose.",
+    "level": "core"
   },
   {
     "id": "q-b39",
@@ -1681,7 +1809,8 @@ export const questions = [
       "病原体 pathogen"
     ],
     "answer": 2,
-    "explain": "疫苗。 / A vaccine."
+    "explain": "疫苗。 / A vaccine.",
+    "level": "core"
   },
   {
     "id": "q-b40",
@@ -1696,7 +1825,8 @@ export const questions = [
       "不需血液运输 no blood transport"
     ],
     "answer": 1,
-    "explain": "较慢、范围广、持续时间较长。 / Slower, wider-ranging, longer-lasting."
+    "explain": "较慢、范围广、持续时间较长。 / Slower, wider-ranging, longer-lasting.",
+    "level": "core"
   },
   {
     "id": "q-b41",
@@ -1705,7 +1835,8 @@ export const questions = [
     "type": "tf",
     "prompt": "抗体是由病原体产生的。 / Antibodies are produced by pathogens.",
     "answer": false,
-    "explain": "抗体由人体免疫细胞产生。 / Antibodies are made by immune cells."
+    "explain": "抗体由人体免疫细胞产生。 / Antibodies are made by immune cells.",
+    "level": "core"
   },
   {
     "id": "q-b42",
@@ -1720,7 +1851,8 @@ export const questions = [
       "只含脊髓 spinal cord only"
     ],
     "answer": 0,
-    "explain": "脑和脊髓。 / Brain and spinal cord."
+    "explain": "脑和脊髓。 / Brain and spinal cord.",
+    "level": "core"
   },
   {
     "id": "q-b43",
@@ -1729,7 +1861,8 @@ export const questions = [
     "type": "tf",
     "prompt": "膝跳反射的神经中枢位于大脑皮层。 / The knee-jerk centre is in the cerebral cortex.",
     "answer": false,
-    "explain": "膝跳反射中枢在脊髓。 / Knee-jerk centre is in the spinal cord."
+    "explain": "膝跳反射中枢在脊髓。 / Knee-jerk centre is in the spinal cord.",
+    "level": "core"
   },
   {
     "id": "q-b44",
@@ -1744,7 +1877,8 @@ export const questions = [
       "消化蛋白质 digest protein"
     ],
     "answer": 1,
-    "explain": "促进新陈代谢和生长发育。 / Promote metabolism and growth / development."
+    "explain": "促进新陈代谢和生长发育。 / Promote metabolism and growth / development.",
+    "level": "core"
   },
   {
     "id": "q-b45",
@@ -1759,7 +1893,8 @@ export const questions = [
       "隔离、消毒、吃药 isolate, disinfect, take medicine"
     ],
     "answer": 1,
-    "explain": "传染源、传播途径、易感人群。 / Source, transmission route, susceptible population."
+    "explain": "传染源、传播途径、易感人群。 / Source, transmission route, susceptible population.",
+    "level": "core"
   },
   {
     "id": "q-b46",
@@ -1774,7 +1909,8 @@ export const questions = [
       "红细胞 RBC"
     ],
     "answer": 0,
-    "explain": "神经细胞。 / A nerve cell (neuron)."
+    "explain": "神经细胞。 / A nerve cell (neuron).",
+    "level": "core"
   },
   {
     "id": "q-b47",
@@ -1783,7 +1919,8 @@ export const questions = [
     "type": "tf",
     "prompt": "条件反射是先天就有的。 / Conditioned reflexes are inborn.",
     "answer": false,
-    "explain": "条件反射后天形成，需大脑皮层参与。 / Conditioned reflexes are learned and need the cerebral cortex."
+    "explain": "条件反射后天形成，需大脑皮层参与。 / Conditioned reflexes are learned and need the cerebral cortex.",
+    "level": "core"
   },
   {
     "id": "q-b48",
@@ -1798,7 +1935,8 @@ export const questions = [
       "消化酶 digestive enzyme"
     ],
     "answer": 2,
-    "explain": "胰高血糖素。 / Glucagon."
+    "explain": "胰高血糖素。 / Glucagon.",
+    "level": "core"
   },
   {
     "id": "q-b49",
@@ -1813,7 +1951,8 @@ export const questions = [
       "消灭传染源 destroying sources only"
     ],
     "answer": 1,
-    "explain": "预防，诱导获得性免疫。 / Prevention — inducing adaptive immunity."
+    "explain": "预防，诱导获得性免疫。 / Prevention — inducing adaptive immunity.",
+    "level": "core"
   },
   {
     "id": "q-b50",
@@ -1822,7 +1961,8 @@ export const questions = [
     "type": "tf",
     "prompt": "稳态是指内环境绝对不变。 / Homeostasis means the internal environment never changes.",
     "answer": false,
-    "explain": "稳态是相对稳定，不是绝对不变。 / Homeostasis is relative stability, not absolute constancy."
+    "explain": "稳态是相对稳定，不是绝对不变。 / Homeostasis is relative stability, not absolute constancy.",
+    "level": "core"
   },
   {
     "id": "q-b51",
@@ -1837,7 +1977,8 @@ export const questions = [
       "消化加快 a lot faster digestion only"
     ],
     "answer": 0,
-    "explain": "心跳加快、血压升高等。 / Faster heart rate, higher blood pressure, etc."
+    "explain": "心跳加快、血压升高等。 / Faster heart rate, higher blood pressure, etc.",
+    "level": "core"
   },
   {
     "id": "q-b52",
@@ -1852,7 +1993,8 @@ export const questions = [
       "仅反射弧中枢 centres only"
     ],
     "answer": 2,
-    "explain": "脑神经和脊神经等。 / Cranial and spinal nerves, etc."
+    "explain": "脑神经和脊神经等。 / Cranial and spinal nerves, etc.",
+    "level": "core"
   },
   {
     "id": "q-b53",
@@ -1861,7 +2003,8 @@ export const questions = [
     "type": "tf",
     "prompt": "抗原能引起免疫反应。 / Antigens can trigger immune responses.",
     "answer": true,
-    "explain": "抗原刺激机体产生抗体等免疫应答。 / Antigens trigger antibody / immune responses."
+    "explain": "抗原刺激机体产生抗体等免疫应答。 / Antigens trigger antibody / immune responses.",
+    "level": "core"
   },
   {
     "id": "q-b54",
@@ -1876,7 +2019,8 @@ export const questions = [
       "让病人多运动 more exercise for patients"
     ],
     "answer": 1,
-    "explain": "消毒、戴口罩等。 / Disinfection, masks, etc."
+    "explain": "消毒、戴口罩等。 / Disinfection, masks, etc.",
+    "level": "core"
   },
   {
     "id": "q-b55",
@@ -1891,7 +2035,8 @@ export const questions = [
       "生长激素 only GH"
     ],
     "answer": 0,
-    "explain": "胰岛素。 / Insulin."
+    "explain": "胰岛素。 / Insulin.",
+    "level": "core"
   },
   {
     "id": "q-b56",
@@ -1900,7 +2045,8 @@ export const questions = [
     "type": "tf",
     "prompt": "非特异性免疫是后天获得的。 / Non-specific immunity is acquired after birth.",
     "answer": false,
-    "explain": "非特异性免疫生来就有；特异性免疫可获得。 / Innate immunity is inborn; adaptive can be acquired."
+    "explain": "非特异性免疫生来就有；特异性免疫可获得。 / Innate immunity is inborn; adaptive can be acquired.",
+    "level": "core"
   },
   {
     "id": "q-b57",
@@ -1915,7 +2061,8 @@ export const questions = [
       "只是骨 bone only"
     ],
     "answer": 2,
-    "explain": "肌肉或腺体。 / Muscle or gland."
+    "explain": "肌肉或腺体。 / Muscle or gland.",
+    "level": "core"
   },
   {
     "id": "q-b58",
@@ -1930,7 +2077,8 @@ export const questions = [
       "气体交换 gas exchange"
     ],
     "answer": 1,
-    "explain": "调节其他内分泌腺。 / It regulates other endocrine glands."
+    "explain": "调节其他内分泌腺。 / It regulates other endocrine glands.",
+    "level": "core"
   },
   {
     "id": "q-b59",
@@ -1939,7 +2087,8 @@ export const questions = [
     "type": "tf",
     "prompt": "健康只包括身体没有疾病。 / Health means only the absence of physical disease.",
     "answer": false,
-    "explain": "健康还包括心理与社会适应等方面。 / Health also includes mental and social well-being."
+    "explain": "健康还包括心理与社会适应等方面。 / Health also includes mental and social well-being.",
+    "level": "core"
   },
   {
     "id": "q-b60",
@@ -1954,7 +2103,8 @@ export const questions = [
       "骨生长 bone growth only"
     ],
     "answer": 0,
-    "explain": "特异性免疫。 / Specific (adaptive) immunity."
+    "explain": "特异性免疫。 / Specific (adaptive) immunity.",
+    "level": "core"
   },
   {
     "id": "q-b61",
@@ -1969,7 +2119,8 @@ export const questions = [
       "形成尿液 form urine"
     ],
     "answer": 1,
-    "explain": "调节进入眼睛的光量。 / Regulate light entering the eye."
+    "explain": "调节进入眼睛的光量。 / Regulate light entering the eye.",
+    "level": "core"
   },
   {
     "id": "q-b62",
@@ -1978,7 +2129,8 @@ export const questions = [
     "type": "tf",
     "prompt": "激素需要通过导管运输到靶器官。 / Hormones travel through ducts to target organs.",
     "answer": false,
-    "explain": "内分泌腺无导管，激素经血液运输。 / Endocrine glands lack ducts; hormones travel in blood."
+    "explain": "内分泌腺无导管，激素经血液运输。 / Endocrine glands lack ducts; hormones travel in blood.",
+    "level": "core"
   },
   {
     "id": "q-b63",
@@ -1993,7 +2145,8 @@ export const questions = [
       "营养 nutrition"
     ],
     "answer": 0,
-    "explain": "传染源。 / The source of infection."
+    "explain": "传染源。 / The source of infection.",
+    "level": "core"
   },
   {
     "id": "q-b64",
@@ -2008,7 +2161,8 @@ export const questions = [
       "分泌胰岛素 secrete insulin"
     ],
     "answer": 2,
-    "explain": "协调运动、维持平衡。 / Coordinate movement and keep balance."
+    "explain": "协调运动、维持平衡。 / Coordinate movement and keep balance.",
+    "level": "core"
   },
   {
     "id": "q-b65",
@@ -2017,7 +2171,8 @@ export const questions = [
     "type": "tf",
     "prompt": "疫苗通常含有灭活或减毒的病原体（或其成分）。 / Vaccines often contain weakened/inactivated pathogens or components.",
     "answer": true,
-    "explain": "以诱导机体产生免疫力。 / To induce the body to develop immunity."
+    "explain": "以诱导机体产生免疫力。 / To induce the body to develop immunity.",
+    "level": "core"
   },
   {
     "id": "q-c1",
@@ -2032,7 +2187,8 @@ export const questions = [
       "稀有气体 noble gases"
     ],
     "answer": 1,
-    "explain": "氮气约 78%。 / Nitrogen is about 78%."
+    "explain": "氮气约 78%。 / Nitrogen is about 78%.",
+    "level": "core"
   },
   {
     "id": "q-c2",
@@ -2047,7 +2203,8 @@ export const questions = [
       "淀粉溶液 starch"
     ],
     "answer": 1,
-    "explain": "澄清石灰水。 / Limewater (clear calcium hydroxide)."
+    "explain": "澄清石灰水。 / Limewater (clear calcium hydroxide).",
+    "level": "core"
   },
   {
     "id": "q-c3",
@@ -2056,7 +2213,8 @@ export const questions = [
     "type": "tf",
     "prompt": "氧气可以支持燃烧和呼吸。 / Oxygen supports combustion and respiration.",
     "answer": true,
-    "explain": "氧气化学性质较活泼。 / Oxygen is chemically quite reactive."
+    "explain": "氧气化学性质较活泼。 / Oxygen is chemically quite reactive.",
+    "level": "core"
   },
   {
     "id": "q-c4",
@@ -2071,7 +2229,8 @@ export const questions = [
       "牛奶 milk"
     ],
     "answer": 2,
-    "explain": "蒸馏水。 / Distilled water."
+    "explain": "蒸馏水。 / Distilled water.",
+    "level": "core"
   },
   {
     "id": "q-c5",
@@ -2086,7 +2245,8 @@ export const questions = [
       "氧化反应 oxidation"
     ],
     "answer": 1,
-    "explain": "物理变化。 / A physical change."
+    "explain": "物理变化。 / A physical change.",
+    "level": "core"
   },
   {
     "id": "q-c6",
@@ -2095,7 +2255,8 @@ export const questions = [
     "type": "tf",
     "prompt": "催化剂在反应前后质量和化学性质都改变。 / A catalyst changes its mass and chemical nature.",
     "answer": false,
-    "explain": "催化剂质量和化学性质反应前后不变。 / A catalyst’s mass and chemical nature are unchanged."
+    "explain": "催化剂质量和化学性质反应前后不变。 / A catalyst’s mass and chemical nature are unchanged.",
+    "level": "core"
   },
   {
     "id": "q-c7",
@@ -2110,7 +2271,8 @@ export const questions = [
       "必须有催化剂 a catalyst"
     ],
     "answer": 3,
-    "explain": "不需要催化剂。 / No catalyst is required."
+    "explain": "不需要催化剂。 / No catalyst is required.",
+    "level": "core"
   },
   {
     "id": "q-c8",
@@ -2119,7 +2281,8 @@ export const questions = [
     "type": "tf",
     "prompt": "空气是一种化合物。 / Air is a compound.",
     "answer": false,
-    "explain": "空气是混合物。 / Air is a mixture."
+    "explain": "空气是混合物。 / Air is a mixture.",
+    "level": "core"
   },
   {
     "id": "q-c9",
@@ -2134,7 +2297,8 @@ export const questions = [
       "只与氢气 H₂ only"
     ],
     "answer": 1,
-    "explain": "氧气和水。 / Oxygen and water."
+    "explain": "氧气和水。 / Oxygen and water.",
+    "level": "core"
   },
   {
     "id": "q-c10",
@@ -2149,7 +2313,8 @@ export const questions = [
       "酒精挥发 alcohol evaporating"
     ],
     "answer": 2,
-    "explain": "蜡烛燃烧。 / A candle burning."
+    "explain": "蜡烛燃烧。 / A candle burning.",
+    "level": "core"
   },
   {
     "id": "q-c11",
@@ -2164,7 +2329,8 @@ export const questions = [
       "氢气 H₂"
     ],
     "answer": 0,
-    "explain": "二氧化碳。 / Carbon dioxide."
+    "explain": "二氧化碳。 / Carbon dioxide.",
+    "level": "core"
   },
   {
     "id": "q-c12",
@@ -2173,7 +2339,8 @@ export const questions = [
     "type": "tf",
     "prompt": "氮气的化学性质很活泼，易支持燃烧。 / Nitrogen is very reactive and supports combustion.",
     "answer": false,
-    "explain": "氮气较稳定，通常不支持燃烧。 / Nitrogen is rather inert and usually does not support combustion."
+    "explain": "氮气较稳定，通常不支持燃烧。 / Nitrogen is rather inert and usually does not support combustion.",
+    "level": "core"
   },
   {
     "id": "q-c13",
@@ -2188,7 +2355,8 @@ export const questions = [
       "使石蕊变蓝 litmus blue"
     ],
     "answer": 1,
-    "explain": "点燃时听声音（爆鸣）。 / Listen for a pop (squeaky pop test)."
+    "explain": "点燃时听声音（爆鸣）。 / Listen for a pop (squeaky pop test).",
+    "level": "core"
   },
   {
     "id": "q-c14",
@@ -2203,7 +2371,8 @@ export const questions = [
       "OH 不完整"
     ],
     "answer": 0,
-    "explain": "水的化学式是 H₂O。 / The formula of water is H₂O."
+    "explain": "水的化学式是 H₂O。 / The formula of water is H₂O.",
+    "level": "core"
   },
   {
     "id": "q-c15",
@@ -2212,7 +2381,8 @@ export const questions = [
     "type": "tf",
     "prompt": "光合作用产生氧气并消耗二氧化碳。 / Photosynthesis consumes CO₂ and produces O₂.",
     "answer": true,
-    "explain": "绿色植物光合作用的重要特征。 / A key feature of green-plant photosynthesis."
+    "explain": "绿色植物光合作用的重要特征。 / A key feature of green-plant photosynthesis.",
+    "level": "core"
   },
   {
     "id": "q-c16",
@@ -2227,7 +2397,8 @@ export const questions = [
       "无色无味所以无害 colourless so harmless"
     ],
     "answer": 2,
-    "explain": "与血红蛋白结合更牢固。 / It binds haemoglobin more strongly than oxygen."
+    "explain": "与血红蛋白结合更牢固。 / It binds haemoglobin more strongly than oxygen.",
+    "level": "core"
   },
   {
     "id": "q-c17",
@@ -2242,7 +2413,8 @@ export const questions = [
       "铁 Fe"
     ],
     "answer": 0,
-    "explain": "空气是混合物。 / Air is a mixture."
+    "explain": "空气是混合物。 / Air is a mixture.",
+    "level": "core"
   },
   {
     "id": "q-c18",
@@ -2251,7 +2423,8 @@ export const questions = [
     "type": "tf",
     "prompt": "着火点是可燃物开始燃烧所需的最低温度。 / Ignition temperature is the lowest temperature needed to start burning.",
     "answer": true,
-    "explain": "燃烧三要素之一。 / One of the three requirements for combustion."
+    "explain": "燃烧三要素之一。 / One of the three requirements for combustion.",
+    "level": "core"
   },
   {
     "id": "q-c19",
@@ -2266,7 +2439,8 @@ export const questions = [
       "易支持燃烧 support combustion"
     ],
     "answer": 1,
-    "explain": "很稳定。 / Very stable."
+    "explain": "很稳定。 / Very stable.",
+    "level": "core"
   },
   {
     "id": "q-c20",
@@ -2281,7 +2455,8 @@ export const questions = [
       "溶质与溶剂 always solute from solvent"
     ],
     "answer": 0,
-    "explain": "不溶性固体与液体。 / Insoluble solid from liquid."
+    "explain": "不溶性固体与液体。 / Insoluble solid from liquid.",
+    "level": "core"
   },
   {
     "id": "q-c21",
@@ -2290,7 +2465,8 @@ export const questions = [
     "type": "tf",
     "prompt": "溶液一定是无色的。 / Solutions must be colourless.",
     "answer": false,
-    "explain": "溶液可有颜色，如硫酸铜溶液。 / Solutions can be coloured, e.g. copper sulfate."
+    "explain": "溶液可有颜色，如硫酸铜溶液。 / Solutions can be coloured, e.g. copper sulfate.",
+    "level": "core"
   },
   {
     "id": "q-c22",
@@ -2305,7 +2481,8 @@ export const questions = [
       "大于 10 greater than 10"
     ],
     "answer": 1,
-    "explain": "小于 5.6。 / Less than 5.6."
+    "explain": "小于 5.6。 / Less than 5.6.",
+    "level": "core"
   },
   {
     "id": "q-c23",
@@ -2320,7 +2497,8 @@ export const questions = [
       "干燥剂 drying agent only"
     ],
     "answer": 2,
-    "explain": "催化剂。 / A catalyst."
+    "explain": "催化剂。 / A catalyst.",
+    "level": "core"
   },
   {
     "id": "q-c24",
@@ -2329,7 +2507,8 @@ export const questions = [
     "type": "tf",
     "prompt": "完全燃烧碳时主要产物是二氧化碳。 / Complete combustion of carbon mainly gives CO₂.",
     "answer": true,
-    "explain": "氧气充足时生成 CO₂。 / With enough oxygen, CO₂ forms."
+    "explain": "氧气充足时生成 CO₂。 / With enough oxygen, CO₂ forms.",
+    "level": "core"
   },
   {
     "id": "q-c25",
@@ -2344,7 +2523,8 @@ export const questions = [
       "无变化 no change"
     ],
     "answer": 1,
-    "explain": "紫色石蕊遇酸变红。 / Purple litmus turns red in acid."
+    "explain": "酚酞遇碱溶液变红（或粉红）。 / Phenolphthalein turns red/pink in alkaline solution.",
+    "level": "core"
   },
   {
     "id": "q-c26",
@@ -2359,7 +2539,8 @@ export const questions = [
       "氮气 N₂"
     ],
     "answer": 2,
-    "explain": "钙、镁离子。 / Calcium and magnesium ions."
+    "explain": "钙、镁离子。 / Calcium and magnesium ions.",
+    "level": "core"
   },
   {
     "id": "q-c27",
@@ -2368,7 +2549,8 @@ export const questions = [
     "type": "tf",
     "prompt": "物理变化一定没有能量变化。 / Physical changes never involve energy changes.",
     "answer": false,
-    "explain": "如水沸腾需要吸热，仍是物理变化。 / Boiling water needs heat but is still physical."
+    "explain": "如水沸腾需要吸热，仍是物理变化。 / Boiling water needs heat but is still physical.",
+    "level": "core"
   },
   {
     "id": "q-c28",
@@ -2383,7 +2565,8 @@ export const questions = [
       "加入催化剂 add catalyst"
     ],
     "answer": 0,
-    "explain": "隔离可燃物或隔绝氧气或降温。 / Remove fuel, cut off oxygen, or cool below ignition point."
+    "explain": "隔离可燃物或隔绝氧气或降温。 / Remove fuel, cut off oxygen, or cool below ignition point.",
+    "level": "core"
   },
   {
     "id": "q-c29",
@@ -2398,7 +2581,8 @@ export const questions = [
       "使石灰水变浑浊 turn limewater milky"
     ],
     "answer": 1,
-    "explain": "吸收紫外线。 / Absorb ultraviolet radiation."
+    "explain": "吸收紫外线。 / Absorb ultraviolet radiation.",
+    "level": "core"
   },
   {
     "id": "q-c30",
@@ -2407,7 +2591,8 @@ export const questions = [
     "type": "tf",
     "prompt": "溶剂质量分数越大，溶液一定越浓（中学常用说法需条件）。 / A larger mass of solvent always means a more concentrated solution.",
     "answer": false,
-    "explain": "浓度取决于溶质与溶液（或溶剂）的相对量。 / Concentration depends on relative amounts of solute and solution."
+    "explain": "浓度取决于溶质与溶液（或溶剂）的相对量。 / Concentration depends on relative amounts of solute and solution.",
+    "level": "core"
   },
   {
     "id": "q-c31",
@@ -2422,7 +2607,8 @@ export const questions = [
       "同位素 isotopes only"
     ],
     "answer": 0,
-    "explain": "沸点不同的液体混合物。 / Liquid mixtures with different boiling points."
+    "explain": "沸点不同的液体混合物。 / Liquid mixtures with different boiling points.",
+    "level": "core"
   },
   {
     "id": "q-c32",
@@ -2437,7 +2623,8 @@ export const questions = [
       "臭氧 O₃"
     ],
     "answer": 2,
-    "explain": "二氧化碳（和水等）。 / Carbon dioxide (and water, etc.)."
+    "explain": "二氧化碳（和水等）。 / Carbon dioxide (and water, etc.).",
+    "level": "core"
   },
   {
     "id": "q-c33",
@@ -2446,7 +2633,8 @@ export const questions = [
     "type": "tf",
     "prompt": "盐都是咸的可食用氯化钠。 / All salts are edible table salt.",
     "answer": false,
-    "explain": "化学上的盐是一类化合物，不一定是食盐。 / A chemical salt is a class of compound, not only table salt."
+    "explain": "化学上的盐是一类化合物，不一定是食盐。 / A chemical salt is a class of compound, not only table salt.",
+    "level": "core"
   },
   {
     "id": "q-c34",
@@ -2461,7 +2649,8 @@ export const questions = [
       "只有盐 salt only"
     ],
     "answer": 1,
-    "explain": "盐和水。 / A salt and water."
+    "explain": "盐和水。 / A salt and water.",
+    "level": "core"
   },
   {
     "id": "q-c35",
@@ -2476,7 +2665,8 @@ export const questions = [
       "50% 不正确 incorrect"
     ],
     "answer": 1,
-    "explain": "21%。 / About 21%."
+    "explain": "21%。 / About 21%.",
+    "level": "core"
   },
   {
     "id": "q-c36",
@@ -2491,7 +2681,8 @@ export const questions = [
       "电子 electron"
     ],
     "answer": 1,
-    "explain": "原子。 / The atom."
+    "explain": "原子。 / The atom.",
+    "level": "core"
   },
   {
     "id": "q-c37",
@@ -2506,7 +2697,8 @@ export const questions = [
       "一个电子 one electron"
     ],
     "answer": 2,
-    "explain": "一个¹²C原子质量的 1 / 1 / 12 the mass of one ¹²C atom."
+    "explain": "一个 ¹²C 原子质量的 1/12。 / One-twelfth the mass of one ¹²C atom.",
+    "level": "core"
   },
   {
     "id": "q-c38",
@@ -2521,7 +2713,8 @@ export const questions = [
       "18（数值 value）"
     ],
     "answer": 2,
-    "explain": "氧的相对原子质量约为 16。 / Relative atomic mass of oxygen is about 16."
+    "explain": "氧的相对原子质量约为 16。 / Relative atomic mass of oxygen is about 16.",
+    "level": "core"
   },
   {
     "id": "q-c39",
@@ -2536,7 +2729,8 @@ export const questions = [
       "硫 S"
     ],
     "answer": 1,
-    "explain": "钠的元素符号是 Na。 / The symbol for sodium is Na."
+    "explain": "钠的元素符号是 Na。 / The symbol for sodium is Na.",
+    "level": "core"
   },
   {
     "id": "q-c40",
@@ -2545,7 +2739,8 @@ export const questions = [
     "type": "tf",
     "prompt": "原子序数等于质子数，也等于核电荷数。 / Atomic number equals proton number and nuclear charge.",
     "answer": true,
-    "explain": "原子中还等于核外电子数。 / In a neutral atom it also equals the electron number."
+    "explain": "原子中还等于核外电子数。 / In a neutral atom it also equals the electron number.",
+    "level": "core"
   },
   {
     "id": "q-c41",
@@ -2560,7 +2755,8 @@ export const questions = [
       "16（数值 value）"
     ],
     "answer": 2,
-    "explain": "CO₂ 的相对分子质量 Mr = 12+16×2 = 44。 / Relative molecular mass of CO₂ equals 44."
+    "explain": "CO₂ 的相对分子质量 Mr = 12+16×2 = 44。 / Relative molecular mass of CO₂ equals 44.",
+    "level": "core"
   },
   {
     "id": "q-c42",
@@ -2575,7 +2771,8 @@ export const questions = [
       "系 series"
     ],
     "answer": 1,
-    "explain": "周期 period。 / A period is a horizontal row of the periodic table."
+    "explain": "周期 period。 / A period is a horizontal row of the periodic table.",
+    "level": "core"
   },
   {
     "id": "q-c43",
@@ -2584,7 +2781,8 @@ export const questions = [
     "type": "tf",
     "prompt": "化合物是由不同种元素组成的纯净物。 / A compound is a pure substance of different elements.",
     "answer": true,
-    "explain": "化合物由不同种元素组成，如 H₂O、CO₂。 / Compounds contain different elements, e.g. H₂O, CO₂."
+    "explain": "化合物由不同种元素组成，如 H₂O、CO₂。 / Compounds contain different elements, e.g. H₂O, CO₂.",
+    "level": "core"
   },
   {
     "id": "q-c44",
@@ -2599,7 +2797,8 @@ export const questions = [
       "氧气 O"
     ],
     "answer": 1,
-    "explain": "NaCl 是氯化钠（离子化合物/盐）。 / NaCl is sodium chloride (an ionic salt)."
+    "explain": "NaCl 是氯化钠（离子化合物/盐）。 / NaCl is sodium chloride (an ionic salt).",
+    "level": "core"
   },
   {
     "id": "q-c45",
@@ -2614,7 +2813,8 @@ export const questions = [
       "气体体积一定不变 gas volume unchanged"
     ],
     "answer": 1,
-    "explain": "原子种类数目不变，总质量不变。 / Atom types and numbers unchanged → total mass unchanged."
+    "explain": "原子种类数目不变，总质量不变。 / Atom types and numbers unchanged → total mass unchanged.",
+    "level": "core"
   },
   {
     "id": "q-c46",
@@ -2629,7 +2829,8 @@ export const questions = [
       "锌 65 zinc 65"
     ],
     "answer": 1,
-    "explain": "铁，56。 / Iron, Ar ≈ 56."
+    "explain": "铁，56。 / Iron, Ar ≈ 56.",
+    "level": "core"
   },
   {
     "id": "q-c47",
@@ -2638,7 +2839,8 @@ export const questions = [
     "type": "tf",
     "prompt": "稀有气体的化学性质很活泼。 / Noble gases are chemically very reactive.",
     "answer": false,
-    "explain": "稀有气体性质稳定。 / Noble gases are chemically stable."
+    "explain": "稀有气体性质稳定。 / Noble gases are chemically stable.",
+    "level": "core"
   },
   {
     "id": "q-c48",
@@ -2653,7 +2855,8 @@ export const questions = [
       "电子 electron"
     ],
     "answer": 1,
-    "explain": "带正电的离子。 / A positively charged ion."
+    "explain": "带正电的离子。 / A positively charged ion.",
+    "level": "core"
   },
   {
     "id": "q-c49",
@@ -2668,7 +2871,9 @@ export const questions = [
       "-2 价 oxidation state −2"
     ],
     "answer": 2,
-    "explain": "硫酸根中硫的化合价为 +6。 / Sulphur in sulfate has oxidation number +6."
+    "explain": "硫酸根中硫的化合价为 +6。 / Sulphur in sulfate has oxidation number +6.",
+    "level": "stretch",
+    "stretchNote": "Calculating S oxidation state +6 in H₂SO₄ is advanced redox/valency beyond typical Grade 8 Shanghai core."
   },
   {
     "id": "q-c50",
@@ -2683,7 +2888,8 @@ export const questions = [
       "VIII 族 group VIII"
     ],
     "answer": 1,
-    "explain": "主族。 / A main group."
+    "explain": "主族。 / A main group.",
+    "level": "core"
   },
   {
     "id": "q-c51",
@@ -2692,7 +2898,8 @@ export const questions = [
     "type": "tf",
     "prompt": "相对分子质量等于分子的实际质量（kg）。 / Mr equals the actual mass of a molecule in kg.",
     "answer": false,
-    "explain": "Mr 是相对比值，量纲为 1。 / Mr is a relative ratio (dimensionless)."
+    "explain": "Mr 是相对比值，量纲为 1。 / Mr is a relative ratio (dimensionless).",
+    "level": "core"
   },
   {
     "id": "q-c52",
@@ -2707,7 +2914,8 @@ export const questions = [
       "100（数值 value）"
     ],
     "answer": 1,
-    "explain": "Ca(OH)₂ 的相对式量 = 40+16×2+1×2 = 74。 / Formula mass of Ca(OH)₂ is 74."
+    "explain": "Ca(OH)₂ 的相对式量 = 40+16×2+1×2 = 74。 / Formula mass of Ca(OH)₂ is 74.",
+    "level": "core"
   },
   {
     "id": "q-c53",
@@ -2722,7 +2930,8 @@ export const questions = [
       "钠 Na"
     ],
     "answer": 1,
-    "explain": "氢氧根离子是 OH⁻。 / The hydroxide ion is OH⁻."
+    "explain": "氢氧根离子是 OH⁻。 / The hydroxide ion is OH⁻.",
+    "level": "core"
   },
   {
     "id": "q-c54",
@@ -2731,7 +2940,8 @@ export const questions = [
     "type": "tf",
     "prompt": "同一主族元素化学性质往往相似。 / Elements in the same main group often have similar properties.",
     "answer": true,
-    "explain": "最外层电子数相同。 / Same number of valence electrons."
+    "explain": "最外层电子数相同。 / Same number of valence electrons.",
+    "level": "core"
   },
   {
     "id": "q-c55",
@@ -2746,7 +2956,8 @@ export const questions = [
       "Ka 不正确"
     ],
     "answer": 2,
-    "explain": "钾的元素符号是 K。 / The symbol for potassium is K."
+    "explain": "钾的元素符号是 K。 / The symbol for potassium is K.",
+    "level": "core"
   },
   {
     "id": "q-c56",
@@ -2761,7 +2972,8 @@ export const questions = [
       "质子 proton"
     ],
     "answer": 0,
-    "explain": "氧分子。 / An oxygen molecule."
+    "explain": "氧分子。 / An oxygen molecule.",
+    "level": "core"
   },
   {
     "id": "q-c57",
@@ -2770,7 +2982,8 @@ export const questions = [
     "type": "tf",
     "prompt": "离子是带电的原子或原子团。 / Ions are charged atoms or groups of atoms.",
     "answer": true,
-    "explain": "失去或得到电子形成离子。 / Gain or lose electrons to form ions."
+    "explain": "失去或得到电子形成离子。 / Gain or lose electrons to form ions.",
+    "level": "core"
   },
   {
     "id": "q-c58",
@@ -2785,7 +2998,8 @@ export const questions = [
       "与质子相同 same as proton"
     ],
     "answer": 2,
-    "explain": "不带电。 / Uncharged."
+    "explain": "不带电。 / Uncharged.",
+    "level": "core"
   },
   {
     "id": "q-c59",
@@ -2800,7 +3014,8 @@ export const questions = [
       "20（数值 value）"
     ],
     "answer": 1,
-    "explain": "水的相对分子质量约为 18。 / Mr of water is about 18."
+    "explain": "水的相对分子质量约为 18。 / Mr of water is about 18.",
+    "level": "core"
   },
   {
     "id": "q-c60",
@@ -2809,7 +3024,8 @@ export const questions = [
     "type": "tf",
     "prompt": "配平化学方程式是为了遵守质量守恒。 / Balancing equations reflects conservation of mass.",
     "answer": true,
-    "explain": "使反应前后原子种类和数目相等。 / Equalise atom types and counts before / after."
+    "explain": "使反应前后原子种类和数目相等。 / Equalise atom types and counts before / after.",
+    "level": "core"
   },
   {
     "id": "q-c61",
@@ -2824,7 +3040,8 @@ export const questions = [
       "分子式 formula"
     ],
     "answer": 0,
-    "explain": "族。 / A group (column)."
+    "explain": "族。 / A group (column).",
+    "level": "core"
   },
   {
     "id": "q-c62",
@@ -2839,7 +3056,8 @@ export const questions = [
       "磁荷 magnetic charge"
     ],
     "answer": 1,
-    "explain": "负电荷。 / Negative charge."
+    "explain": "负电荷。 / Negative charge.",
+    "level": "core"
   },
   {
     "id": "q-c63",
@@ -2848,7 +3066,8 @@ export const questions = [
     "type": "tf",
     "prompt": "单质是由同种元素组成的纯净物。 / An element (simple substance) is a pure substance of one element.",
     "answer": true,
-    "explain": "单质由同种元素组成，如 O₂、Fe、He。 / Elements as substances include O₂, Fe, He."
+    "explain": "单质由同种元素组成，如 O₂、Fe、He。 / Elements as substances include O₂, Fe, He.",
+    "level": "core"
   },
   {
     "id": "q-c64",
@@ -2863,7 +3082,8 @@ export const questions = [
       "颜色 colour only"
     ],
     "answer": 0,
-    "explain": "元素种类（原子序数）。 / Element type (atomic number)."
+    "explain": "元素种类（原子序数）。 / Element type (atomic number).",
+    "level": "core"
   },
   {
     "id": "q-c65",
@@ -2878,7 +3098,8 @@ export const questions = [
       "0 价 oxidation state 0"
     ],
     "answer": 1,
-    "explain": "镁通常显 +2 价。 / Magnesium commonly shows +2."
+    "explain": "镁通常显 +2 价。 / Magnesium commonly shows +2.",
+    "level": "core"
   },
   {
     "id": "q-c66",
@@ -2887,7 +3108,8 @@ export const questions = [
     "type": "tf",
     "prompt": "化学式 O₂ 表示氧气这种物质，也可表示一个氧分子。 / O₂ can mean the substance or one molecule.",
     "answer": true,
-    "explain": "化学式具有多种意义。 / A formula can represent several meanings."
+    "explain": "化学式具有多种意义。 / A formula can represent several meanings.",
+    "level": "core"
   },
   {
     "id": "q-c67",
@@ -2902,7 +3124,8 @@ export const questions = [
       "中子数−质子数 n−p"
     ],
     "answer": 2,
-    "explain": "质子数+中子数。 / Protons + neutrons."
+    "explain": "质子数+中子数。 / Protons + neutrons.",
+    "level": "core"
   },
   {
     "id": "q-c68",
@@ -2917,7 +3140,8 @@ export const questions = [
       "氢氧化钠 NaOH"
     ],
     "answer": 0,
-    "explain": "二氧化碳的化学式是 CO₂。 / Carbon dioxide is CO₂."
+    "explain": "二氧化碳的化学式是 CO₂。 / Carbon dioxide is CO₂.",
+    "level": "core"
   },
   {
     "id": "q-c69",
@@ -2926,7 +3150,8 @@ export const questions = [
     "type": "tf",
     "prompt": "化学反应前后原子的种类会改变。 / Chemical reactions change the types of atoms.",
     "answer": false,
-    "explain": "原子种类不变，只是重新组合。 / Atom types unchanged — only rearranged."
+    "explain": "原子种类不变，只是重新组合。 / Atom types unchanged — only rearranged.",
+    "level": "core"
   },
   {
     "id": "q-c70",
@@ -2941,7 +3166,8 @@ export const questions = [
       "阿伏加德罗常数 Nₐ"
     ],
     "answer": 1,
-    "explain": "相对原子质量符号是 Ar。 / Relative atomic mass is denoted Ar."
+    "explain": "相对原子质量符号是 Ar。 / Relative atomic mass is denoted Ar.",
+    "level": "core"
   },
   {
     "id": "q-c71",
@@ -2956,7 +3182,8 @@ export const questions = [
       "得到一个中子 gains a neutron"
     ],
     "answer": 0,
-    "explain": "失去一个电子。 / Lose one electron."
+    "explain": "失去一个电子。 / Lose one electron.",
+    "level": "core"
   },
   {
     "id": "q-c72",
@@ -2965,7 +3192,8 @@ export const questions = [
     "type": "tf",
     "prompt": "同位素的质子数相同、中子数不同。 / Isotopes have the same proton number but different neutron numbers.",
     "answer": true,
-    "explain": "同位素质子数相同、中子数不同，如 ¹²C 与 ¹⁴C。 / Isotopes share Z but differ in neutrons, e.g. ¹²C and ¹⁴C."
+    "explain": "同位素质子数相同、中子数不同，如 ¹²C 与 ¹⁴C。 / Isotopes share Z but differ in neutrons, e.g. ¹²C and ¹⁴C.",
+    "level": "core"
   },
   {
     "id": "q-c73",
@@ -2980,7 +3208,8 @@ export const questions = [
       "液体纯液体 pure liquid"
     ],
     "answer": 2,
-    "explain": "水溶液。 / Aqueous solution."
+    "explain": "水溶液。 / Aqueous solution.",
+    "level": "core"
   },
   {
     "id": "q-c74",
@@ -2995,7 +3224,9 @@ export const questions = [
       "-2 价 oxidation state −2"
     ],
     "answer": 2,
-    "explain": "SO₄²⁻ 中硫为 +6。 / In SO₄²⁻ sulphur is +6."
+    "explain": "SO₄²⁻ 中硫为 +6。 / In SO₄²⁻ sulphur is +6.",
+    "level": "stretch",
+    "stretchNote": "Calculating S oxidation state +6 in SO₄²⁻ is advanced redox/valency beyond typical Grade 8 Shanghai core."
   },
   {
     "id": "q-c75",
@@ -3004,7 +3235,8 @@ export const questions = [
     "type": "tf",
     "prompt": "最外层电子数对元素化学性质影响很大。 / Valence electrons strongly affect chemical properties.",
     "answer": true,
-    "explain": "同主族往往最外层电子数相同。 / Same main group often share valence electron count."
+    "explain": "同主族往往最外层电子数相同。 / Same main group often share valence electron count.",
+    "level": "core"
   },
   {
     "id": "boost-q1",
@@ -3019,7 +3251,8 @@ export const questions = [
       "v = f + λ 错误式"
     ],
     "answer": 0,
-    "explain": "波速等于频率乘以波长。 / Wave speed equals frequency times wavelength."
+    "explain": "波速等于频率乘以波长。 / Wave speed equals frequency times wavelength.",
+    "level": "core"
   },
   {
     "id": "boost-q2",
@@ -3028,7 +3261,8 @@ export const questions = [
     "type": "tf",
     "prompt": "声波在空气中是横波。 / Sound waves in air are transverse waves.",
     "answer": false,
-    "explain": "空气中的声波是纵波（疏密波）。 / Sound in air is a longitudinal wave."
+    "explain": "空气中的声波是纵波（疏密波）。 / Sound in air is a longitudinal wave.",
+    "level": "core"
   },
   {
     "id": "boost-q3",
@@ -3043,7 +3277,8 @@ export const questions = [
       "为零 zero"
     ],
     "answer": 1,
-    "explain": "v 一定时，f 增大则 λ = v/f 减小。 / At fixed v, larger f means smaller λ."
+    "explain": "v 一定时，f 增大则 λ = v/f 减小。 / At fixed v, larger f means smaller λ.",
+    "level": "core"
   },
   {
     "id": "boost-q4",
@@ -3058,7 +3293,8 @@ export const questions = [
       "为零 zero"
     ],
     "answer": 2,
-    "explain": "水中声速约 1500 m/s，快于空气中约 340 m/s。 / About 1500 m/s in water vs ~340 m/s in air."
+    "explain": "水中声速约 1500 m/s，快于空气中约 340 m/s。 / About 1500 m/s in water vs ~340 m/s in air.",
+    "level": "core"
   },
   {
     "id": "boost-q5",
@@ -3067,7 +3303,8 @@ export const questions = [
     "type": "tf",
     "prompt": "混响是由于声音的多次反射造成的。 / Reverberation is caused by multiple reflections of sound.",
     "answer": true,
-    "explain": "多次反射使声音在空间中延续。 / Multiple reflections make sound persist."
+    "explain": "多次反射使声音在空间中延续。 / Multiple reflections make sound persist.",
+    "level": "core"
   },
   {
     "id": "boost-q6",
@@ -3082,7 +3319,8 @@ export const questions = [
       "红外线 infrared"
     ],
     "answer": 1,
-    "explain": "声呐发射超声波并接收回声。 / Sonar emits ultrasound and receives echoes."
+    "explain": "声呐发射超声波并接收回声。 / Sonar emits ultrasound and receives echoes.",
+    "level": "core"
   },
   {
     "id": "boost-q7",
@@ -3097,7 +3335,8 @@ export const questions = [
       "基频 fundamental"
     ],
     "answer": 1,
-    "explain": "听阈是刚能听见的最小声强。 / Threshold of hearing is the quietest detectable sound."
+    "explain": "听阈是刚能听见的最小声强。 / Threshold of hearing is the quietest detectable sound.",
+    "level": "core"
   },
   {
     "id": "boost-q8",
@@ -3106,7 +3345,8 @@ export const questions = [
     "type": "tf",
     "prompt": "泛音（谐波）会影响音色。 / Overtones (harmonics) affect timbre.",
     "answer": true,
-    "explain": "不同泛音成分使音色不同。 / Different harmonic content changes tone quality."
+    "explain": "不同泛音成分使音色不同。 / Different harmonic content changes tone quality.",
+    "level": "core"
   },
   {
     "id": "boost-q9",
@@ -3121,7 +3361,8 @@ export const questions = [
       "产生次声 make infrasound"
     ],
     "answer": 1,
-    "explain": "吸声减弱反射与混响。 / They absorb energy and reduce reflections."
+    "explain": "吸声减弱反射与混响。 / They absorb energy and reduce reflections.",
+    "level": "core"
   },
   {
     "id": "boost-q10",
@@ -3136,7 +3377,8 @@ export const questions = [
       "紫外线 ultraviolet"
     ],
     "answer": 1,
-    "explain": "超声波用于非侵入成像。 / Ultrasound is used for non-invasive imaging."
+    "explain": "超声波用于非侵入成像。 / Ultrasound is used for non-invasive imaging.",
+    "level": "core"
   },
   {
     "id": "boost-q11",
@@ -3145,7 +3387,8 @@ export const questions = [
     "type": "tf",
     "prompt": "机械波可以在真空中传播。 / Mechanical waves can travel through a vacuum.",
     "answer": false,
-    "explain": "机械波需要介质；声波是机械波。 / Mechanical waves need a medium."
+    "explain": "机械波需要介质；声波是机械波。 / Mechanical waves need a medium.",
+    "level": "core"
   },
   {
     "id": "boost-q12",
@@ -3160,7 +3403,8 @@ export const questions = [
       "真空 vacuum"
     ],
     "answer": 1,
-    "explain": "密部（compression）粒子更密、压强更高。 / Compressions have higher pressure."
+    "explain": "密部（compression）粒子更密、压强更高。 / Compressions have higher pressure.",
+    "level": "core"
   },
   {
     "id": "boost-q13",
@@ -3175,7 +3419,8 @@ export const questions = [
       "提高振幅 raise amplitude"
     ],
     "answer": 3,
-    "explain": "提高振幅会更响，不是控制噪声。 / Raising amplitude makes sound louder."
+    "explain": "提高振幅会更响，不是控制噪声。 / Raising amplitude makes sound louder.",
+    "level": "core"
   },
   {
     "id": "boost-q14",
@@ -3184,7 +3429,8 @@ export const questions = [
     "type": "tf",
     "prompt": "频率为 25 kHz 的声音属于超声波。 / A 25 kHz sound is ultrasound.",
     "answer": true,
-    "explain": "高于 20 kHz 为超声。 / Above 20 kHz is ultrasound."
+    "explain": "高于 20 kHz 为超声。 / Above 20 kHz is ultrasound.",
+    "level": "core"
   },
   {
     "id": "boost-q15",
@@ -3199,7 +3445,8 @@ export const questions = [
       "340 m（数值 value）"
     ],
     "answer": 1,
-    "explain": "波长 λ = v÷f = 340÷170 = 2 m。 / Wavelength λ equals v/f = 340/170 = 2 metres."
+    "explain": "波长 λ = v÷f = 340÷170 = 2 m。 / Wavelength λ equals v/f = 340/170 = 2 metres.",
+    "level": "core"
   },
   {
     "id": "boost-q16",
@@ -3214,7 +3461,8 @@ export const questions = [
       "变为零 zero"
     ],
     "answer": 1,
-    "explain": "张力越大，振动越快，音调越高。 / Higher tension → higher pitch."
+    "explain": "张力越大，振动越快，音调越高。 / Higher tension → higher pitch.",
+    "level": "core"
   },
   {
     "id": "boost-q17",
@@ -3223,7 +3471,8 @@ export const questions = [
     "type": "tf",
     "prompt": "回声定位只适用于蝙蝠，人类技术无法利用。 / Only bats can use echolocation; humans cannot.",
     "answer": false,
-    "explain": "声呐、超声测距等就是人工回声定位。 / Sonar and ranging use artificial echolocation."
+    "explain": "声呐、超声测距等就是人工回声定位。 / Sonar and ranging use artificial echolocation.",
+    "level": "core"
   },
   {
     "id": "boost-q18",
@@ -3238,7 +3487,8 @@ export const questions = [
       "热→声 heat to sound"
     ],
     "answer": 1,
-    "explain": "把声信号转换成电信号。 / It converts sound into an electrical signal."
+    "explain": "把声信号转换成电信号。 / It converts sound into an electrical signal.",
+    "level": "core"
   },
   {
     "id": "boost-q19",
@@ -3253,7 +3503,8 @@ export const questions = [
       "n = θ₁/θ₂ 错误式"
     ],
     "answer": 1,
-    "explain": "折射率 n = c÷v。 / Refractive index n equals c divided by v."
+    "explain": "折射率 n = c÷v。 / Refractive index n equals c divided by v.",
+    "level": "core"
   },
   {
     "id": "boost-q20",
@@ -3262,7 +3513,8 @@ export const questions = [
     "type": "tf",
     "prompt": "光从空气斜射入水中，折射角大于入射角。 / Light from air into water obliquely: refraction angle > incidence angle.",
     "answer": false,
-    "explain": "进入光密介质，折射角小于入射角。 / Into denser medium: r < i."
+    "explain": "进入光密介质，折射角小于入射角。 / Into denser medium: r < i.",
+    "level": "core"
   },
   {
     "id": "boost-q21",
@@ -3277,7 +3529,8 @@ export const questions = [
       "衍射 diffraction"
     ],
     "answer": 1,
-    "explain": "纤芯与包层折射率差导致全反射。 / Core–cladding index difference enables TIR."
+    "explain": "纤芯与包层折射率差导致全反射。 / Core–cladding index difference enables TIR.",
+    "level": "core"
   },
   {
     "id": "boost-q22",
@@ -3292,7 +3545,8 @@ export const questions = [
       "正立等大虚像 upright same-size virtual"
     ],
     "answer": 1,
-    "explain": "照相机工作区间：倒立缩小实像。 / Camera range: inverted diminished real."
+    "explain": "照相机工作区间：倒立缩小实像。 / Camera range: inverted diminished real.",
+    "level": "core"
   },
   {
     "id": "boost-q23",
@@ -3307,7 +3561,8 @@ export const questions = [
       "P = 1/f² 错误式"
     ],
     "answer": 1,
-    "explain": "P = 1/f（f 以米为单位）。 / P = 1/f with f in metres."
+    "explain": "P = 1/f（f 以米为单位）。 / P = 1/f with f in metres.",
+    "level": "core"
   },
   {
     "id": "boost-q24",
@@ -3316,7 +3571,8 @@ export const questions = [
     "type": "tf",
     "prompt": "斯涅尔定律定量描述折射：n₁sinθ₁ = n₂sinθ₂。 / Snell’s law: n₁sinθ₁ = n₂sinθ₂.",
     "answer": true,
-    "explain": "这是折射的定量关系。 / This is the quantitative refraction law."
+    "explain": "这是折射的定量关系。 / This is the quantitative refraction law.",
+    "level": "core"
   },
   {
     "id": "boost-q25",
@@ -3331,7 +3587,8 @@ export const questions = [
       "颜料三原色 pigment primaries"
     ],
     "answer": 1,
-    "explain": "互补色光混合可成白光。 / Complementary colours of light mix to white."
+    "explain": "互补色光混合可成白光。 / Complementary colours of light mix to white.",
+    "level": "core"
   },
   {
     "id": "boost-q26",
@@ -3346,7 +3603,8 @@ export const questions = [
       "产生声波 make sound"
     ],
     "answer": 1,
-    "explain": "滤色片选择透过的波段。 / It selectively transmits wavelengths."
+    "explain": "滤色片选择透过的波段。 / It selectively transmits wavelengths.",
+    "level": "core"
   },
   {
     "id": "boost-q27",
@@ -3355,7 +3613,8 @@ export const questions = [
     "type": "tf",
     "prompt": "平面镜成像左右相反（横向倒置）。 / A plane mirror produces lateral inversion.",
     "answer": true,
-    "explain": "平面镜像与物左右相反。 / Left and right appear swapped."
+    "explain": "平面镜像与物左右相反。 / Left and right appear swapped.",
+    "level": "core"
   },
   {
     "id": "boost-q28",
@@ -3370,7 +3629,8 @@ export const questions = [
       "声波干涉 sound interference"
     ],
     "answer": 1,
-    "explain": "阳光在水滴中折射、反射并色散。 / Sunlight refracts, reflects and disperses in droplets."
+    "explain": "阳光在水滴中折射、反射并色散。 / Sunlight refracts, reflects and disperses in droplets.",
+    "level": "core"
   },
   {
     "id": "boost-q29",
@@ -3385,7 +3645,8 @@ export const questions = [
       "只有超声波 ultrasound only"
     ],
     "answer": 0,
-    "explain": "可见光介于红外与紫外之间。 / Visible sits between infrared and ultraviolet."
+    "explain": "可见光介于红外与紫外之间。 / Visible sits between infrared and ultraviolet.",
+    "level": "core"
   },
   {
     "id": "boost-q30",
@@ -3394,7 +3655,8 @@ export const questions = [
     "type": "tf",
     "prompt": "激光通常具有很好的单色性和方向性。 / Lasers are usually highly monochromatic and directional.",
     "answer": true,
-    "explain": "这是激光的重要特性。 / These are key laser properties."
+    "explain": "这是激光的重要特性。 / These are key laser properties.",
+    "level": "core"
   },
   {
     "id": "boost-q31",
@@ -3409,7 +3671,8 @@ export const questions = [
       "声波频率 sound frequency"
     ],
     "answer": 1,
-    "explain": "晶状体曲率改变以看清远近。 / Lens curvature changes for near/far focus."
+    "explain": "晶状体曲率改变以看清远近。 / Lens curvature changes for near/far focus.",
+    "level": "core"
   },
   {
     "id": "boost-q32",
@@ -3424,7 +3687,8 @@ export const questions = [
       "无像 no image"
     ],
     "answer": 0,
-    "explain": "投影仪等工作区间：倒立放大实像。 / Projector range: inverted magnified real."
+    "explain": "投影仪等工作区间：倒立放大实像。 / Projector range: inverted magnified real.",
+    "level": "core"
   },
   {
     "id": "boost-q33",
@@ -3433,7 +3697,8 @@ export const questions = [
     "type": "tf",
     "prompt": "临界角是折射角为 90° 时的入射角（光密→光疏）。 / Critical angle is incidence when refraction is 90° (dense→rare).",
     "answer": true,
-    "explain": "超过临界角发生全反射。 / Beyond it, total internal reflection occurs."
+    "explain": "超过临界角发生全反射。 / Beyond it, total internal reflection occurs.",
+    "level": "core"
   },
   {
     "id": "boost-q34",
@@ -3448,7 +3713,8 @@ export const questions = [
       "m = u×v 错误式"
     ],
     "answer": 1,
-    "explain": "放大率 m ≈ 像距÷物距 = v÷u。 / Magnification m is approximately v divided by u."
+    "explain": "放大率 m ≈ 像距÷物距 = v÷u。 / Magnification m is approximately v divided by u.",
+    "level": "core"
   },
   {
     "id": "boost-q35",
@@ -3463,7 +3729,8 @@ export const questions = [
       "光源本身 the source itself"
     ],
     "answer": 1,
-    "explain": "本影是光完全照不到的区域。 / Umbra is the full shadow."
+    "explain": "本影是光完全照不到的区域。 / Umbra is the full shadow.",
+    "level": "core"
   },
   {
     "id": "boost-q36",
@@ -3478,7 +3745,8 @@ export const questions = [
       "F = a/m 错误式"
     ],
     "answer": 1,
-    "explain": "合力等于质量乘以加速度。 / Net force equals mass times acceleration."
+    "explain": "合力等于质量乘以加速度。 / Net force equals mass times acceleration.",
+    "level": "core"
   },
   {
     "id": "boost-q37",
@@ -3487,7 +3755,8 @@ export const questions = [
     "type": "tf",
     "prompt": "作用力与反作用力作用在同一物体上，是一对平衡力。 / Action and reaction act on the same body and are balanced forces.",
     "answer": false,
-    "explain": "它们作用在两个物体上，不是平衡力。 / They act on two bodies, not a balanced pair on one."
+    "explain": "它们作用在两个物体上，不是平衡力。 / They act on two bodies, not a balanced pair on one.",
+    "level": "core"
   },
   {
     "id": "boost-q38",
@@ -3502,7 +3771,8 @@ export const questions = [
       "M = m/a 错误式"
     ],
     "answer": 1,
-    "explain": "力矩等于力与力臂之积。 / Moment = force × perpendicular distance."
+    "explain": "力矩等于力与力臂之积。 / Moment = force × perpendicular distance.",
+    "level": "core"
   },
   {
     "id": "boost-q39",
@@ -3517,7 +3787,8 @@ export const questions = [
       "无需条件 no condition"
     ],
     "answer": 1,
-    "explain": "力矩平衡：两边力矩之和相等。 / Principle of moments."
+    "explain": "力矩平衡：两边力矩之和相等。 / Principle of moments.",
+    "level": "core"
   },
   {
     "id": "boost-q40",
@@ -3532,7 +3803,8 @@ export const questions = [
       "p = F + A 错误式"
     ],
     "answer": 1,
-    "explain": "压强等于压力除以受力面积。 / Pressure = force / area."
+    "explain": "压强等于压力除以受力面积。 / Pressure = force / area.",
+    "level": "core"
   },
   {
     "id": "boost-q41",
@@ -3541,7 +3813,8 @@ export const questions = [
     "type": "tf",
     "prompt": "液体压强随深度增加而增大：p = ρgh。 / Liquid pressure increases with depth: p = ρgh.",
     "answer": true,
-    "explain": "同种液体中，深度越大压强越大。 / Deeper → greater pressure."
+    "explain": "同种液体中，深度越大压强越大。 / Deeper → greater pressure.",
+    "level": "core"
   },
   {
     "id": "boost-q42",
@@ -3556,7 +3829,8 @@ export const questions = [
       "ρ = m + V 错误式"
     ],
     "answer": 1,
-    "explain": "密度等于质量除以体积。 / Density = mass / volume."
+    "explain": "密度等于质量除以体积。 / Density = mass / volume.",
+    "level": "core"
   },
   {
     "id": "boost-q43",
@@ -3571,7 +3845,8 @@ export const questions = [
       "压强 pressure"
     ],
     "answer": 1,
-    "explain": "斜率 = Δs/Δt = 速度。 / Gradient = speed."
+    "explain": "斜率 = Δs/Δt = 速度。 / Gradient = speed.",
+    "level": "core"
   },
   {
     "id": "boost-q44",
@@ -3586,7 +3861,8 @@ export const questions = [
       "压强 pressure"
     ],
     "answer": 1,
-    "explain": "面积对应路程。 / The area equals distance travelled."
+    "explain": "面积对应路程。 / The area equals distance travelled.",
+    "level": "core"
   },
   {
     "id": "boost-q45",
@@ -3595,7 +3871,8 @@ export const questions = [
     "type": "tf",
     "prompt": "停车总距离 = 反应距离 + 制动距离。 / Stopping distance = thinking distance + braking distance.",
     "answer": true,
-    "explain": "这是中学交通安全常用关系。 / Standard road-safety relation."
+    "explain": "这是中学交通安全常用关系。 / Standard road-safety relation.",
+    "level": "core"
   },
   {
     "id": "boost-q46",
@@ -3610,7 +3887,8 @@ export const questions = [
       "F = x/k 错误式"
     ],
     "answer": 1,
-    "explain": "弹力与伸长成正比：F = kx。 / Force proportional to extension."
+    "explain": "弹力与伸长成正比：F = kx。 / Force proportional to extension.",
+    "level": "core"
   },
   {
     "id": "boost-q47",
@@ -3625,7 +3903,8 @@ export const questions = [
       "不受重力 no gravity"
     ],
     "answer": 1,
-    "explain": "阻力与重力平衡，匀速下落。 / Drag balances weight; net force zero."
+    "explain": "阻力与重力平衡，匀速下落。 / Drag balances weight; net force zero.",
+    "level": "core"
   },
   {
     "id": "boost-q48",
@@ -3634,7 +3913,8 @@ export const questions = [
     "type": "tf",
     "prompt": "速度是矢量，路程是标量。 / Velocity is a vector; distance (path length) is a scalar.",
     "answer": true,
-    "explain": "速度有方向；路程只有大小。 / Velocity has direction; distance does not."
+    "explain": "速度有方向；路程只有大小。 / Velocity has direction; distance does not.",
+    "level": "core"
   },
   {
     "id": "boost-q49",
@@ -3649,7 +3929,8 @@ export const questions = [
       "大气压 atmospheric pressure"
     ],
     "answer": 1,
-    "explain": "浮力等于排开流体的重力。 / Upthrust = weight of displaced fluid."
+    "explain": "浮力等于排开流体的重力。 / Upthrust = weight of displaced fluid.",
+    "level": "core"
   },
   {
     "id": "boost-q50",
@@ -3664,7 +3945,8 @@ export const questions = [
       "W = m/a 错误式"
     ],
     "answer": 1,
-    "explain": "W = Fs。 / Work = force × distance."
+    "explain": "W = Fs。 / Work = force × distance.",
+    "level": "core"
   },
   {
     "id": "boost-q51",
@@ -3679,7 +3961,8 @@ export const questions = [
       "Ek = Fd 错误式"
     ],
     "answer": 1,
-    "explain": "Ek = ½mv²。 / Energy due to motion."
+    "explain": "Ek = ½mv²。 / Energy due to motion.",
+    "level": "core"
   },
   {
     "id": "boost-q52",
@@ -3688,7 +3971,8 @@ export const questions = [
     "type": "tf",
     "prompt": "重心越低、支承面越大，一般越稳定。 / Lower centre of gravity and wider base usually increase stability.",
     "answer": true,
-    "explain": "这是稳定性的基本结论。 / Basic stability rule."
+    "explain": "这是稳定性的基本结论。 / Basic stability rule.",
+    "level": "core"
   },
   {
     "id": "boost-q53",
@@ -3703,7 +3987,8 @@ export const questions = [
       "9.8 Pa（数值 value）"
     ],
     "answer": 1,
-    "explain": "约 1.01×10⁵ Pa。 / About 1.0×10⁵ Pa."
+    "explain": "约 1.01×10⁵ Pa。 / About 1.0×10⁵ Pa.",
+    "level": "core"
   },
   {
     "id": "boost-q54",
@@ -3718,7 +4003,8 @@ export const questions = [
       "为零 zero"
     ],
     "answer": 1,
-    "explain": "p = F/A，A 越小 p 越大。 / Smaller A → larger p."
+    "explain": "p = F/A，A 越小 p 越大。 / Smaller A → larger p.",
+    "level": "core"
   },
   {
     "id": "boost-q55",
@@ -3733,7 +4019,8 @@ export const questions = [
       "甘油 glycerol"
     ],
     "answer": 1,
-    "explain": "淀粉酶催化淀粉→麦芽糖。 / Amylase: starch → maltose."
+    "explain": "淀粉酶催化淀粉→麦芽糖。 / Amylase: starch → maltose.",
+    "level": "core"
   },
   {
     "id": "boost-q56",
@@ -3742,7 +4029,8 @@ export const questions = [
     "type": "tf",
     "prompt": "胆汁含有脂肪酶，可直接水解脂肪。 / Bile contains lipase and directly hydrolyses fats.",
     "answer": false,
-    "explain": "胆汁不含消化酶，只乳化脂肪。 / Bile emulsifies fats; no digestive enzymes."
+    "explain": "胆汁不含消化酶，只乳化脂肪。 / Bile emulsifies fats; no digestive enzymes.",
+    "level": "core"
   },
   {
     "id": "boost-q57",
@@ -3757,7 +4045,8 @@ export const questions = [
       "麦芽糖 maltose"
     ],
     "answer": 2,
-    "explain": "脂肪→甘油+脂肪酸。 / Fats → glycerol + fatty acids."
+    "explain": "脂肪→甘油+脂肪酸。 / Fats → glycerol + fatty acids.",
+    "level": "core"
   },
   {
     "id": "boost-q58",
@@ -3772,7 +4061,8 @@ export const questions = [
       "滤过尿素 filter urea"
     ],
     "answer": 1,
-    "explain": "极大增加吸收表面积。 / They hugely increase surface area."
+    "explain": "极大增加吸收表面积。 / They hugely increase surface area.",
+    "level": "core"
   },
   {
     "id": "boost-q59",
@@ -3787,7 +4077,8 @@ export const questions = [
       "形成尿液 forms urine"
     ],
     "answer": 1,
-    "explain": "消化吸收后的血液经肝门静脉到肝。 / Absorbed nutrients go to the liver via HPV."
+    "explain": "消化吸收后的血液经肝门静脉到肝。 / Absorbed nutrients go to the liver via HPV.",
+    "level": "core"
   },
   {
     "id": "boost-q60",
@@ -3796,7 +4087,8 @@ export const questions = [
     "type": "tf",
     "prompt": "人体具有双循环：肺循环与体循环。 / Humans have double circulation: pulmonary and systemic.",
     "answer": true,
-    "explain": "血液两次经过心脏完成一次全身循环。 / Blood passes heart twice per full circuit."
+    "explain": "血液两次经过心脏完成一次全身循环。 / Blood passes heart twice per full circuit.",
+    "level": "core"
   },
   {
     "id": "boost-q61",
@@ -3811,7 +4103,8 @@ export const questions = [
       "分泌激素 secrete hormones"
     ],
     "answer": 1,
-    "explain": "保证血液单向流动。 / They keep one-way flow."
+    "explain": "保证血液单向流动。 / They keep one-way flow.",
+    "level": "core"
   },
   {
     "id": "boost-q62",
@@ -3826,7 +4119,8 @@ export const questions = [
       "形成尿液 form urine"
     ],
     "answer": 1,
-    "explain": "心肌自身的血液供应来自冠状动脉。 / They feed the myocardium."
+    "explain": "心肌自身的血液供应来自冠状动脉。 / They feed the myocardium.",
+    "level": "core"
   },
   {
     "id": "boost-q63",
@@ -3841,7 +4135,8 @@ export const questions = [
       "变成骨骼 becomes bone"
     ],
     "answer": 1,
-    "explain": "收缩使胸腔容积增大。 / Contraction increases thoracic volume."
+    "explain": "收缩使胸腔容积增大。 / Contraction increases thoracic volume.",
+    "level": "core"
   },
   {
     "id": "boost-q64",
@@ -3850,7 +4145,8 @@ export const questions = [
     "type": "tf",
     "prompt": "肺泡壁和毛细血管壁都很薄，利于气体扩散。 / Alveolar and capillary walls are thin to aid diffusion.",
     "answer": true,
-    "explain": "薄壁缩短扩散距离。 / Thin walls shorten diffusion distance."
+    "explain": "薄壁缩短扩散距离。 / Thin walls shorten diffusion distance.",
+    "level": "core"
   },
   {
     "id": "boost-q65",
@@ -3865,7 +4161,8 @@ export const questions = [
       "分泌胆汁 bile secretion"
     ],
     "answer": 1,
-    "explain": "滤出血浆成分形成原尿。 / It filters plasma to form filtrate."
+    "explain": "滤出血浆成分形成原尿。 / It filters plasma to form filtrate.",
+    "level": "core"
   },
   {
     "id": "boost-q66",
@@ -3880,7 +4177,8 @@ export const questions = [
       "产生抗体 make antibodies"
     ],
     "answer": 0,
-    "explain": "重吸收葡萄糖、水和部分盐等。 / They reclaim useful substances."
+    "explain": "重吸收葡萄糖、水和部分盐等。 / They reclaim useful substances.",
+    "level": "core"
   },
   {
     "id": "boost-q67",
@@ -3889,7 +4187,8 @@ export const questions = [
     "type": "tf",
     "prompt": "排遗（egestion）等于排泄（excretion）。 / Egestion is the same as excretion.",
     "answer": false,
-    "explain": "排遗排出未消化残渣；排泄排出代谢废物。 / Egestion ≠ metabolic excretion."
+    "explain": "排遗排出未消化残渣；排泄排出代谢废物。 / Egestion ≠ metabolic excretion.",
+    "level": "core"
   },
   {
     "id": "boost-q68",
@@ -3904,7 +4203,8 @@ export const questions = [
       "淀粉 starch"
     ],
     "answer": 1,
-    "explain": "蛋白质→氨基酸。 / Proteins → amino acids."
+    "explain": "蛋白质→氨基酸。 / Proteins → amino acids.",
+    "level": "core"
   },
   {
     "id": "boost-q69",
@@ -3913,13 +4213,14 @@ export const questions = [
     "type": "mcq",
     "prompt": "氧合血红蛋白存在于？ / Oxyhaemoglobin is found in ______.",
     "options": [
-      "与氧结合的血红蛋白 haemoglobin bound to oxygen",
+      "红细胞内 in red blood cells",
       "只在血浆中 only in plasma",
       "只在胆汁中 only in bile",
       "只在尿液中 only in urine"
     ],
     "answer": 0,
-    "explain": "Hb 与 O₂ 结合形成氧合血红蛋白。 / Hb + O₂ forms oxyhaemoglobin."
+    "explain": "氧合血红蛋白存在于红细胞内。 / Oxyhaemoglobin is found in red blood cells.",
+    "level": "core"
   },
   {
     "id": "boost-q70",
@@ -3934,7 +4235,8 @@ export const questions = [
       "抗体结合抗原 antibody binding"
     ],
     "answer": 1,
-    "explain": "物理粉碎与推送属于物理性消化。 / Physical breakdown without chemical change of molecules."
+    "explain": "物理粉碎与推送属于物理性消化。 / Physical breakdown without chemical change of molecules.",
+    "level": "core"
   },
   {
     "id": "boost-q71",
@@ -3943,7 +4245,8 @@ export const questions = [
     "type": "tf",
     "prompt": "左心室壁通常比右心室壁更厚。 / The left ventricular wall is usually thicker than the right.",
     "answer": true,
-    "explain": "体循环路程更长、阻力更大。 / Systemic circuit needs higher pressure."
+    "explain": "体循环路程更长、阻力更大。 / Systemic circuit needs higher pressure.",
+    "level": "core"
   },
   {
     "id": "boost-q72",
@@ -3958,7 +4261,8 @@ export const questions = [
       "制造胃酸 make stomach acid"
     ],
     "answer": 0,
-    "explain": "人工清除血液中代谢废物。 / Artificially removes wastes from blood."
+    "explain": "人工清除血液中代谢废物。 / Artificially removes wastes from blood.",
+    "level": "core"
   },
   {
     "id": "boost-q73",
@@ -3973,7 +4277,9 @@ export const questions = [
       "淀粉 starch"
     ],
     "answer": 0,
-    "explain": "化学信号（神经递质）跨越突触间隙。 / Chemicals cross the synaptic cleft."
+    "explain": "化学信号（神经递质）跨越突触间隙。 / Chemicals cross the synaptic cleft.",
+    "level": "stretch",
+    "stretchNote": "Synaptic neurotransmitter transmission is IGCSE/A-level neurophysiology depth beyond Shanghai Grade 8 biology."
   },
   {
     "id": "boost-q74",
@@ -3982,7 +4288,9 @@ export const questions = [
     "type": "tf",
     "prompt": "髓鞘可以加快神经冲动的传导。 / Myelin sheath speeds nerve impulse conduction.",
     "answer": true,
-    "explain": "有髓纤维传导更快。 / Myelinated fibres conduct faster."
+    "explain": "有髓纤维传导更快。 / Myelinated fibres conduct faster.",
+    "level": "stretch",
+    "stretchNote": "Myelin-sheath saltatory conduction is advanced nervous-system detail beyond Grade 8 scope."
   },
   {
     "id": "boost-q75",
@@ -3997,7 +4305,8 @@ export const questions = [
       "滤过尿液 filter urine"
     ],
     "answer": 1,
-    "explain": "控制进入眼睛的光量。 / It controls light entering the eye."
+    "explain": "控制进入眼睛的光量。 / It controls light entering the eye.",
+    "level": "core"
   },
   {
     "id": "boost-q76",
@@ -4012,7 +4321,8 @@ export const questions = [
       "生长激素 only GH"
     ],
     "answer": 1,
-    "explain": "胰岛素促进降血糖。 / Insulin lowers blood glucose."
+    "explain": "胰岛素促进降血糖。 / Insulin lowers blood glucose.",
+    "level": "core"
   },
   {
     "id": "boost-q77",
@@ -4027,7 +4337,8 @@ export const questions = [
       "只增加噪声 only add noise"
     ],
     "answer": 1,
-    "explain": "结果反过来抑制过程，维持相对稳定。 / Output inhibits the process."
+    "explain": "结果反过来抑制过程，维持相对稳定。 / Output inhibits the process.",
+    "level": "core"
   },
   {
     "id": "boost-q78",
@@ -4036,7 +4347,8 @@ export const questions = [
     "type": "tf",
     "prompt": "抗生素能有效杀死病毒。 / Antibiotics effectively kill viruses.",
     "answer": false,
-    "explain": "抗生素针对细菌，对病毒通常无效。 / Antibiotics target bacteria, not viruses."
+    "explain": "抗生素针对细菌，对病毒通常无效。 / Antibiotics target bacteria, not viruses.",
+    "level": "core"
   },
   {
     "id": "boost-q79",
@@ -4051,7 +4363,8 @@ export const questions = [
       "排尿 urination"
     ],
     "answer": 1,
-    "explain": "刺激机体产生抗体与记忆细胞。 / Body makes its own adaptive response."
+    "explain": "刺激机体产生抗体与记忆细胞。 / Body makes its own adaptive response.",
+    "level": "core"
   },
   {
     "id": "boost-q80",
@@ -4066,7 +4379,8 @@ export const questions = [
       "只消化脂肪 only digest fat"
     ],
     "answer": 1,
-    "explain": "二次免疫应答迅速。 / Secondary response is rapid."
+    "explain": "二次免疫应答迅速。 / Secondary response is rapid.",
+    "level": "core"
   },
   {
     "id": "boost-q81",
@@ -4081,7 +4395,8 @@ export const questions = [
       "停止代谢 stop metabolism"
     ],
     "answer": 1,
-    "explain": "战斗或逃跑准备。 / Fight-or-flight preparation."
+    "explain": "战斗或逃跑准备。 / Fight-or-flight preparation.",
+    "level": "core"
   },
   {
     "id": "boost-q82",
@@ -4090,7 +4405,8 @@ export const questions = [
     "type": "tf",
     "prompt": "1型糖尿病与胰岛素分泌不足密切相关。 / Type 1 diabetes is closely linked to insufficient insulin.",
     "answer": true,
-    "explain": "需补充胰岛素等治疗。 / Often treated with insulin."
+    "explain": "需补充胰岛素等治疗。 / Often treated with insulin.",
+    "level": "core"
   },
   {
     "id": "boost-q83",
@@ -4105,7 +4421,8 @@ export const questions = [
       "重力消失 loss of gravity"
     ],
     "answer": 0,
-    "explain": "耐药菌被选择保留。 / Resistant bacteria are selected."
+    "explain": "耐药菌被选择保留。 / Resistant bacteria are selected.",
+    "level": "core"
   },
   {
     "id": "boost-q84",
@@ -4120,7 +4437,8 @@ export const questions = [
       "抗生素 antibiotic"
     ],
     "answer": 1,
-    "explain": "减慢神经活动，影响判断。 / It slows CNS activity."
+    "explain": "减慢神经活动，影响判断。 / It slows CNS activity.",
+    "level": "core"
   },
   {
     "id": "boost-q85",
@@ -4129,7 +4447,8 @@ export const questions = [
     "type": "tf",
     "prompt": "皮肤和黏膜属于先天防御屏障。 / Skin and mucous membranes are innate barriers.",
     "answer": true,
-    "explain": "第一道防线阻止病原体侵入。 / First-line defence."
+    "explain": "第一道防线阻止病原体侵入。 / First-line defence.",
+    "level": "core"
   },
   {
     "id": "boost-q86",
@@ -4144,7 +4463,8 @@ export const questions = [
       "只靠阳光 only sunlight"
     ],
     "answer": 0,
-    "explain": "如注射抗体或母传抗体。 / e.g. injected or maternal antibodies."
+    "explain": "如注射抗体或母传抗体。 / e.g. injected or maternal antibodies.",
+    "level": "core"
   },
   {
     "id": "boost-q87",
@@ -4159,7 +4479,8 @@ export const questions = [
       "只破坏指甲 only nails"
     ],
     "answer": 1,
-    "explain": "攻击免疫细胞，导致免疫缺陷。 / Attacks immune cells."
+    "explain": "攻击免疫细胞，导致免疫缺陷。 / Attacks immune cells.",
+    "level": "core"
   },
   {
     "id": "boost-q88",
@@ -4174,7 +4495,8 @@ export const questions = [
       "只传导声音 only conduct sound"
     ],
     "answer": 1,
-    "explain": "调节代谢率与发育。 / Controls metabolic rate and development."
+    "explain": "调节代谢率与发育。 / Controls metabolic rate and development.",
+    "level": "core"
   },
   {
     "id": "boost-q89",
@@ -4183,7 +4505,8 @@ export const questions = [
     "type": "tf",
     "prompt": "条件反射是先天就有的，不需要学习。 / Conditioned reflexes are inborn and need no learning.",
     "answer": false,
-    "explain": "条件反射后天形成，常需大脑皮层。 / They are learned."
+    "explain": "条件反射后天形成，常需大脑皮层。 / They are learned.",
+    "level": "core"
   },
   {
     "id": "boost-q90",
@@ -4198,7 +4521,8 @@ export const questions = [
       "提高肺活量 increasing vital capacity"
     ],
     "answer": 3,
-    "explain": "吸烟损害呼吸与健康，不提高肺活量。 / Smoking harms health; does not raise vital capacity."
+    "explain": "吸烟损害呼吸与健康，不提高肺活量。 / Smoking harms health; does not raise vital capacity.",
+    "level": "core"
   },
   {
     "id": "boost-q91",
@@ -4213,7 +4537,8 @@ export const questions = [
       "磁选 magnetic separation"
     ],
     "answer": 1,
-    "explain": "利用沸点不同分馏。 / Different boiling points allow fractional distillation."
+    "explain": "利用沸点不同分馏。 / Different boiling points allow fractional distillation.",
+    "level": "core"
   },
   {
     "id": "boost-q92",
@@ -4222,7 +4547,8 @@ export const questions = [
     "type": "tf",
     "prompt": "空气中氧气的体积分数约为 21%。 / Oxygen is about 21% by volume in air.",
     "answer": true,
-    "explain": "氮气约 78%，氧气约 21%。 / Nitrogen about 78 percent, oxygen about 21 percent."
+    "explain": "氮气约 78%，氧气约 21%。 / Nitrogen about 78 percent, oxygen about 21 percent.",
+    "level": "core"
   },
   {
     "id": "boost-q93",
@@ -4237,7 +4563,8 @@ export const questions = [
       "真空 vacuum"
     ],
     "answer": 1,
-    "explain": "铁与 O₂、水等共同作用而生锈。 / Iron, oxygen and water together."
+    "explain": "铁与 O₂、水等共同作用而生锈。 / Iron, oxygen and water together.",
+    "level": "core"
   },
   {
     "id": "boost-q94",
@@ -4252,7 +4579,8 @@ export const questions = [
       "锌能传声 zinc transmits sound"
     ],
     "answer": 1,
-    "explain": "锌作牺牲阳极保护铁。 / Zinc acts as sacrificial protection."
+    "explain": "锌作牺牲阳极保护铁。 / Zinc acts as sacrificial protection.",
+    "level": "core"
   },
   {
     "id": "boost-q95",
@@ -4267,7 +4595,8 @@ export const questions = [
       "石蕊试纸只测气味 litmus for smell"
     ],
     "answer": 1,
-    "explain": "余烬复燃说明有氧气。 / Glowing splint relights."
+    "explain": "余烬复燃说明有氧气。 / Glowing splint relights.",
+    "level": "core"
   },
   {
     "id": "boost-q96",
@@ -4276,7 +4605,8 @@ export const questions = [
     "type": "tf",
     "prompt": "过氧化氢在二氧化锰催化下分解可制氧气。 / H₂O₂ with MnO₂ catalyst can produce oxygen.",
     "answer": true,
-    "explain": "常见实验室制氧方法。 / Common lab preparation of O₂."
+    "explain": "常见实验室制氧方法。 / Common lab preparation of O₂.",
+    "level": "core"
   },
   {
     "id": "boost-q97",
@@ -4291,7 +4621,8 @@ export const questions = [
       "氮气 N₂"
     ],
     "answer": 2,
-    "explain": "CO₂ 与氢氧化钙反应生成碳酸钙沉淀。 / CO₂ forms CaCO₃ precipitate."
+    "explain": "CO₂ 与氢氧化钙反应生成碳酸钙沉淀。 / CO₂ forms CaCO₃ precipitate.",
+    "level": "core"
   },
   {
     "id": "boost-q98",
@@ -4306,7 +4637,8 @@ export const questions = [
       "石蕊变蓝 litmus blue"
     ],
     "answer": 1,
-    "explain": "氢气燃烧有爆鸣声。 / Lit hydrogen gives a pop."
+    "explain": "氢气燃烧有爆鸣声。 / Lit hydrogen gives a pop.",
+    "level": "core"
   },
   {
     "id": "boost-q99",
@@ -4321,7 +4653,8 @@ export const questions = [
       "只加热到 10℃ heating to 10°C only"
     ],
     "answer": 1,
-    "explain": "氯杀灭微生物。 / Chlorine kills microbes."
+    "explain": "氯杀灭微生物。 / Chlorine kills microbes.",
+    "level": "core"
   },
   {
     "id": "boost-q100",
@@ -4330,7 +4663,8 @@ export const questions = [
     "type": "tf",
     "prompt": "饱和溶液在该温度下不能再溶解更多该溶质。 / A saturated solution cannot dissolve more of that solute at that temperature.",
     "answer": true,
-    "explain": "达到溶解平衡。 / Dissolution equilibrium reached."
+    "explain": "达到溶解平衡。 / Dissolution equilibrium reached.",
+    "level": "core"
   },
   {
     "id": "boost-q101",
@@ -4345,7 +4679,8 @@ export const questions = [
       "绿色 green"
     ],
     "answer": 1,
-    "explain": "酚酞遇碱变红。 / Pink/red in alkaline solution."
+    "explain": "酚酞遇碱变红。 / Pink/red in alkaline solution.",
+    "level": "core"
   },
   {
     "id": "boost-q102",
@@ -4360,7 +4695,8 @@ export const questions = [
       "等于 14 equal to 14"
     ],
     "answer": 2,
-    "explain": "一般把 pH < 5.6 的降水称为酸雨。 / Rain with pH < 5.6."
+    "explain": "一般把 pH < 5.6 的降水称为酸雨。 / Rain with pH < 5.6.",
+    "level": "core"
   },
   {
     "id": "boost-q103",
@@ -4369,7 +4705,8 @@ export const questions = [
     "type": "tf",
     "prompt": "不完全燃烧可能产生有毒的一氧化碳。 / Incomplete combustion may produce toxic carbon monoxide.",
     "answer": true,
-    "explain": "氧气不足时易生成 CO。 / Limited oxygen favours CO."
+    "explain": "氧气不足时易生成 CO。 / Limited oxygen favours CO.",
+    "level": "core"
   },
   {
     "id": "boost-q104",
@@ -4384,7 +4721,8 @@ export const questions = [
       "制取氢气 only make H₂"
     ],
     "answer": 1,
-    "explain": "把 CO、NOx 等转化为较无害气体。 / Converts pollutants to less harmful gases."
+    "explain": "把 CO、NOx 等转化为较无害气体。 / Converts pollutants to less harmful gases.",
+    "level": "core"
   },
   {
     "id": "boost-q105",
@@ -4399,7 +4737,8 @@ export const questions = [
       "只有超声波 only ultrasound"
     ],
     "answer": 0,
-    "explain": "SO₂ 是酸雨的重要成因之一。 / SO₂ contributes to acid rain."
+    "explain": "SO₂ 是酸雨的重要成因之一。 / SO₂ contributes to acid rain.",
+    "level": "core"
   },
   {
     "id": "boost-q106",
@@ -4414,7 +4753,8 @@ export const questions = [
       "不能导电 never conduct"
     ],
     "answer": 1,
-    "explain": "合金可获得更优机械性能。 / Alloying improves properties."
+    "explain": "合金可获得更优机械性能。 / Alloying improves properties.",
+    "level": "core"
   },
   {
     "id": "boost-q107",
@@ -4423,7 +4763,8 @@ export const questions = [
     "type": "tf",
     "prompt": "钢是铁的碳合金。 / Steel is an alloy of iron and carbon.",
     "answer": true,
-    "explain": "铁碳合金，碳含量可控。 / Iron–carbon alloy."
+    "explain": "铁碳合金，碳含量可控。 / Iron–carbon alloy.",
+    "level": "core"
   },
   {
     "id": "boost-q108",
@@ -4438,7 +4779,8 @@ export const questions = [
       "只有氮气 only nitrogen"
     ],
     "answer": 1,
-    "explain": "CO₂ 等温室气体增强保温效应。 / Greenhouse gases enhance warming."
+    "explain": "CO₂ 等温室气体增强保温效应。 / Greenhouse gases enhance warming.",
+    "level": "core"
   },
   {
     "id": "boost-q109",
@@ -4453,7 +4795,8 @@ export const questions = [
       "8,2,1（排布 config）"
     ],
     "answer": 0,
-    "explain": "钠有 11 个电子：2,8,1。 / Sodium: 11 electrons → 2,8,1."
+    "explain": "钠有 11 个电子：2,8,1。 / Sodium: 11 electrons → 2,8,1.",
+    "level": "core"
   },
   {
     "id": "boost-q110",
@@ -4462,7 +4805,8 @@ export const questions = [
     "type": "tf",
     "prompt": "第一电子层最多容纳 2 个电子，第二层最多 8 个（中学范围）。 / 1st shell max 2 electrons; 2nd max 8 (school level).",
     "answer": true,
-    "explain": "这是中学常用电子层容量规则。 / Standard school shell capacities."
+    "explain": "这是中学常用电子层容量规则。 / Standard school shell capacities.",
+    "level": "core"
   },
   {
     "id": "boost-q111",
@@ -4477,7 +4821,8 @@ export const questions = [
       "声波传递 sound transmission"
     ],
     "answer": 1,
-    "explain": "正负离子相互吸引。 / Opposite ions attract."
+    "explain": "正负离子相互吸引。 / Opposite ions attract.",
+    "level": "core"
   },
   {
     "id": "boost-q112",
@@ -4492,7 +4837,8 @@ export const questions = [
       "无电子 none of electrons"
     ],
     "answer": 1,
-    "explain": "原子共用电子对成键。 / Atoms share electron pairs."
+    "explain": "原子共用电子对成键。 / Atoms share electron pairs.",
+    "level": "core"
   },
   {
     "id": "boost-q113",
@@ -4507,7 +4853,8 @@ export const questions = [
       "提高光速 increase c"
     ],
     "answer": 0,
-    "explain": "符合质量守恒与原子守恒。 / Atom and mass conservation."
+    "explain": "符合质量守恒与原子守恒。 / Atom and mass conservation.",
+    "level": "core"
   },
   {
     "id": "boost-q114",
@@ -4516,7 +4863,9 @@ export const questions = [
     "type": "tf",
     "prompt": "化学计量数（系数）之比可表示反应的摩尔比。 / Coefficients give the mole ratio of a reaction.",
     "answer": true,
-    "explain": "这是化学计量入门基础。 / Basis of stoichiometry."
+    "explain": "这是化学计量入门基础。 / Basis of stoichiometry.",
+    "level": "stretch",
+    "stretchNote": "Links equation coefficients to mole ratios — introductory moles stoichiometry beyond basic Grade 8 mass/Mr work."
   },
   {
     "id": "boost-q115",
@@ -4531,7 +4880,8 @@ export const questions = [
       "1（数值 value）"
     ],
     "answer": 1,
-    "explain": "水的相对分子质量 Mr(H₂O) = 1×2+16 = 18。 / Relative molecular mass of water equals 18."
+    "explain": "水的相对分子质量 Mr(H₂O) = 1×2+16 = 18。 / Relative molecular mass of water equals 18.",
+    "level": "core"
   },
   {
     "id": "boost-q116",
@@ -4546,7 +4896,8 @@ export const questions = [
       "钠 Na"
     ],
     "answer": 2,
-    "explain": "氧气以 O₂ 分子存在。 / Oxygen exists as O₂."
+    "explain": "氧气以 O₂ 分子存在。 / Oxygen exists as O₂.",
+    "level": "core"
   },
   {
     "id": "boost-q117",
@@ -4561,7 +4912,8 @@ export const questions = [
       "电子 electron"
     ],
     "answer": 1,
-    "explain": "由多个原子构成的带电基团。 / Multi-atom charged group."
+    "explain": "由多个原子构成的带电基团。 / Multi-atom charged group.",
+    "level": "core"
   },
   {
     "id": "boost-q118",
@@ -4570,7 +4922,8 @@ export const questions = [
     "type": "tf",
     "prompt": "写化学式时正负化合价代数和必须为零。 / In formulas, the algebraic sum of valencies must be zero.",
     "answer": true,
-    "explain": "化合物整体电中性。 / Compounds are electrically neutral overall."
+    "explain": "化合物整体电中性。 / Compounds are electrically neutral overall.",
+    "level": "core"
   },
   {
     "id": "boost-q119",
@@ -4585,7 +4938,8 @@ export const questions = [
       "一定同为气体 always same gas state"
     ],
     "answer": 1,
-    "explain": "质子数相同、中子数不同。 / Same Z, different neutrons."
+    "explain": "质子数相同、中子数不同。 / Same Z, different neutrons.",
+    "level": "core"
   },
   {
     "id": "boost-q120",
@@ -4600,7 +4954,8 @@ export const questions = [
       "水溶液 aqueous solution"
     ],
     "answer": 3,
-    "explain": "aqueous：溶解在水中。 / Dissolved in water."
+    "explain": "aqueous：溶解在水中。 / Dissolved in water.",
+    "level": "core"
   },
   {
     "id": "boost-q121",
@@ -4615,7 +4970,8 @@ export const questions = [
       "只有氮气 nitrogen only"
     ],
     "answer": 1,
-    "explain": "酸+碱→盐+水。 / Acid + alkali → salt + water."
+    "explain": "酸+碱→盐+水。 / Acid + alkali → salt + water.",
+    "level": "core"
   },
   {
     "id": "boost-q122",
@@ -4624,7 +4980,9 @@ export const questions = [
     "type": "tf",
     "prompt": "不足量反应物会限制生成物的产量。 / A limiting reactant limits the amount of product.",
     "answer": true,
-    "explain": "先耗尽的反应物决定最大产量。 / The reactant used up first caps yield."
+    "explain": "先耗尽的反应物决定最大产量。 / The reactant used up first caps yield.",
+    "level": "stretch",
+    "stretchNote": "Limiting-reactant concept is advanced stoichiometry calculation, not core Shanghai Grade 8."
   },
   {
     "id": "boost-q123",
@@ -4639,7 +4997,9 @@ export const questions = [
       "永远 200% always 200%"
     ],
     "answer": 1,
-    "explain": "实际产量除以理论产量再乘 100%。 / Actual over theoretical × 100%."
+    "explain": "实际产量除以理论产量再乘 100%。 / Actual over theoretical × 100%.",
+    "level": "stretch",
+    "stretchNote": "Percentage-yield formula (actual/theoretical × 100%) is advanced stoichiometry beyond Grade 8 scope."
   },
   {
     "id": "boost-q124",
@@ -4654,7 +5014,8 @@ export const questions = [
       "没有新物质 no new substance"
     ],
     "answer": 0,
-    "explain": "单质与化合物反应生成新单质与新化合物。 / Element + compound → new element + compound."
+    "explain": "单质与化合物反应生成新单质与新化合物。 / Element + compound → new element + compound.",
+    "level": "core"
   },
   {
     "id": "boost-q125",
@@ -4669,7 +5030,8 @@ export const questions = [
       "一定中和 neutralisation always"
     ],
     "answer": 1,
-    "explain": "两种或多种物质生成一种。 / Two or more substances form one."
+    "explain": "两种或多种物质生成一种。 / Two or more substances form one.",
+    "level": "core"
   },
   {
     "id": "boost-q126",
@@ -4678,7 +5040,8 @@ export const questions = [
     "type": "tf",
     "prompt": "稀有气体原子通常具有稳定的最外层电子结构。 / Noble-gas atoms usually have stable outer shells.",
     "answer": true,
-    "explain": "因此化学性质稳定。 / Hence low reactivity."
+    "explain": "因此化学性质稳定。 / Hence low reactivity.",
+    "level": "core"
   },
   {
     "id": "boost-q127",
@@ -4693,7 +5056,8 @@ export const questions = [
       "催化剂 a catalyst"
     ],
     "answer": 1,
-    "explain": "晶体中结合的水分子。 / Water of crystallisation."
+    "explain": "晶体中结合的水分子。 / Water of crystallisation.",
+    "level": "core"
   },
   {
     "id": "boost-q128",
@@ -4708,7 +5072,8 @@ export const questions = [
       "失去质子数 lose proton number"
     ],
     "answer": 1,
-    "explain": "活动性强的金属可置换弱的。 / More reactive metals displace less reactive ones."
+    "explain": "活动性强的金属可置换弱的。 / More reactive metals displace less reactive ones.",
+    "level": "core"
   },
   {
     "id": "boost-q129",
@@ -4723,7 +5088,8 @@ export const questions = [
       "只有次声 only infrasound"
     ],
     "answer": 1,
-    "explain": "痛阈是引起听觉疼痛的声强级。 / Level that causes pain."
+    "explain": "痛阈是引起听觉疼痛的声强级。 / Level that causes pain.",
+    "level": "core"
   },
   {
     "id": "boost-q130",
@@ -4732,7 +5098,9 @@ export const questions = [
     "type": "tf",
     "prompt": "两相近频率的声音叠合可产生拍音。 / Two close frequencies can produce beats.",
     "answer": true,
-    "explain": "强弱周期性交替即拍。 / Periodic loudness variation."
+    "explain": "强弱周期性交替即拍。 / Periodic loudness variation.",
+    "level": "stretch",
+    "stretchNote": "Acoustic beats from interfering close frequencies are wave-interference detail beyond core Grade 8 sound topics."
   },
   {
     "id": "boost-q131",
@@ -4747,7 +5115,9 @@ export const questions = [
       "核反应 nuclear reactions"
     ],
     "answer": 0,
-    "explain": "空化气泡有助于剥离污垢。 / Cavitation helps remove dirt."
+    "explain": "空化气泡有助于剥离污垢。 / Cavitation helps remove dirt.",
+    "level": "stretch",
+    "stretchNote": "Ultrasonic cleaning via cavitation is specialized physics beyond standard Grade 8 sound applications."
   },
   {
     "id": "boost-q132",
@@ -4762,7 +5132,8 @@ export const questions = [
       "只有化学变化 only chemistry"
     ],
     "answer": 0,
-    "explain": "两次反射改变视线方向。 / Two reflections redirect the line of sight."
+    "explain": "两次反射改变视线方向。 / Two reflections redirect the line of sight.",
+    "level": "core"
   },
   {
     "id": "boost-q133",
@@ -4771,7 +5142,8 @@ export const questions = [
     "type": "tf",
     "prompt": "海市蜃楼与空气折射率梯度引起的折射有关。 / Mirages relate to refraction in air with refractive-index gradients.",
     "answer": true,
-    "explain": "不同气层光速不同导致光线弯曲。 / Varying n bends light rays."
+    "explain": "不同气层光速不同导致光线弯曲。 / Varying n bends light rays.",
+    "level": "core"
   },
   {
     "id": "boost-q134",
@@ -4786,7 +5158,9 @@ export const questions = [
       "只有水流 water flow only"
     ],
     "answer": 1,
-    "explain": "横波可偏振；光是横波。 / Transverse waves can be polarised."
+    "explain": "横波可偏振；光是横波。 / Transverse waves can be polarised.",
+    "level": "stretch",
+    "stretchNote": "Light polarisation and transverse-wave polarisation are advanced wave optics, not Shanghai Grade 8 core."
   },
   {
     "id": "boost-q135",
@@ -4801,7 +5175,8 @@ export const questions = [
       "声速过快 too-fast sound"
     ],
     "answer": 0,
-    "explain": "不同方向焦距不同导致模糊。 / Different focal powers in different meridians."
+    "explain": "不同方向焦距不同导致模糊。 / Different focal powers in different meridians.",
+    "level": "core"
   },
   {
     "id": "boost-q136",
@@ -4816,7 +5191,8 @@ export const questions = [
       "只有催化剂 only a catalyst"
     ],
     "answer": 0,
-    "explain": "杠杆绕支点转动。 / Lever rotates about the pivot."
+    "explain": "杠杆绕支点转动。 / Lever rotates about the pivot.",
+    "level": "core"
   },
   {
     "id": "boost-q137",
@@ -4825,7 +5201,8 @@ export const questions = [
     "type": "tf",
     "prompt": "重力势能入门公式为 Ep = mgh。 / Gravitational potential energy (intro) is Ep = mgh.",
     "answer": true,
-    "explain": "与质量和高度有关。 / Depends on mass and height."
+    "explain": "与质量和高度有关。 / Depends on mass and height.",
+    "level": "core"
   },
   {
     "id": "boost-q138",
@@ -4840,7 +5217,8 @@ export const questions = [
       "只与电台频道 only radio station"
     ],
     "answer": 1,
-    "explain": "反应时间内仍以原速前进。 / Distance = speed × reaction time."
+    "explain": "反应时间内仍以原速前进。 / Distance = speed × reaction time.",
+    "level": "core"
   },
   {
     "id": "boost-q139",
@@ -4855,7 +5233,8 @@ export const questions = [
       "1 m/s² 加速度单位"
     ],
     "answer": 1,
-    "explain": "1 Pa = 1 N/m²。 / SI unit of pressure."
+    "explain": "1 Pa = 1 N/m²。 / SI unit of pressure.",
+    "level": "core"
   },
   {
     "id": "boost-q140",
@@ -4870,7 +5249,8 @@ export const questions = [
       "消灭惯性 destroys inertia"
     ],
     "answer": 1,
-    "explain": "产生加速度，改变速度。 / Causes acceleration."
+    "explain": "产生加速度，改变速度。 / Causes acceleration.",
+    "level": "core"
   },
   {
     "id": "boost-q141",
@@ -4885,7 +5265,8 @@ export const questions = [
       "真空 vacuum"
     ],
     "answer": 1,
-    "explain": "胃内酸性环境利于胃蛋白酶。 / Stomach acid suits pepsin."
+    "explain": "胃内酸性环境利于胃蛋白酶。 / Stomach acid suits pepsin.",
+    "level": "core"
   },
   {
     "id": "boost-q142",
@@ -4894,7 +5275,8 @@ export const questions = [
     "type": "tf",
     "prompt": "动脉瓣（半月瓣）防止血液从动脉倒流入心室。 / Semilunar valves stop backflow from arteries into ventricles.",
     "answer": true,
-    "explain": "保证单向泵血。 / Maintain one-way pumping."
+    "explain": "保证单向泵血。 / Maintain one-way pumping.",
+    "level": "core"
   },
   {
     "id": "boost-q143",
@@ -4909,7 +5291,8 @@ export const questions = [
       "只有空气 only air"
     ],
     "answer": 0,
-    "explain": "毛细血管血浆成分进入组织间隙。 / Plasma filters into tissues."
+    "explain": "毛细血管血浆成分进入组织间隙。 / Plasma filters into tissues.",
+    "level": "core"
   },
   {
     "id": "boost-q144",
@@ -4924,7 +5307,8 @@ export const questions = [
       "尿量 urine volume"
     ],
     "answer": 1,
-    "explain": "反映呼吸功能的常用指标。 / Common lung function measure."
+    "explain": "反映呼吸功能的常用指标。 / Common lung function measure.",
+    "level": "core"
   },
   {
     "id": "boost-q145",
@@ -4939,7 +5323,8 @@ export const questions = [
       "分泌胰岛素 secrete insulin"
     ],
     "answer": 1,
-    "explain": "防止气管塌陷。 / Prevent airway collapse."
+    "explain": "防止气管塌陷。 / Prevent airway collapse.",
+    "level": "core"
   },
   {
     "id": "boost-q146",
@@ -4948,7 +5333,9 @@ export const questions = [
     "type": "tf",
     "prompt": "抗利尿激素（ADH）可促进肾小管对水的重吸收。 / ADH promotes water reabsorption in kidney tubules.",
     "answer": true,
-    "explain": "有助于减少尿量、保水。 / Helps conserve water."
+    "explain": "有助于减少尿量、保水。 / Helps conserve water.",
+    "level": "stretch",
+    "stretchNote": "ADH-mediated renal water reabsorption is detailed endocrine–renal physiology beyond Grade 8 core."
   },
   {
     "id": "boost-q147",
@@ -4963,7 +5350,8 @@ export const questions = [
       "只有输尿管 only ureter"
     ],
     "answer": 0,
-    "explain": "冠状动脉狭窄导致心肌缺血。 / Narrowed coronaries starve heart muscle."
+    "explain": "冠状动脉狭窄导致心肌缺血。 / Narrowed coronaries starve heart muscle.",
+    "level": "core"
   },
   {
     "id": "boost-q148",
@@ -4978,7 +5366,8 @@ export const questions = [
       "只有唾液 only saliva"
     ],
     "answer": 1,
-    "explain": "调节血糖的关键内分泌结构。 / Key endocrine control of blood glucose."
+    "explain": "调节血糖的关键内分泌结构。 / Key endocrine control of blood glucose.",
+    "level": "core"
   },
   {
     "id": "boost-q149",
@@ -4987,7 +5376,8 @@ export const questions = [
     "type": "tf",
     "prompt": "兴奋剂加快神经系统活动；抑制剂减慢。 / Stimulants speed the CNS; depressants slow it.",
     "answer": true,
-    "explain": "两类药物对神经活动影响相反。 / Opposite effects on nervous activity."
+    "explain": "两类药物对神经活动影响相反。 / Opposite effects on nervous activity.",
+    "level": "core"
   },
   {
     "id": "boost-q150",
@@ -5002,7 +5392,8 @@ export const questions = [
       "凸透镜 convex lens"
     ],
     "answer": 0,
-    "explain": "媒介生物携带病原体传播疾病。 / Vectors carry pathogens."
+    "explain": "媒介生物携带病原体传播疾病。 / Vectors carry pathogens.",
+    "level": "core"
   },
   {
     "id": "boost-q151",
@@ -5017,7 +5408,8 @@ export const questions = [
       "光速变慢 slower light"
     ],
     "answer": 0,
-    "explain": "身体依赖导致不适反应。 / Dependence produces withdrawal."
+    "explain": "身体依赖导致不适反应。 / Dependence produces withdrawal.",
+    "level": "core"
   },
   {
     "id": "boost-q152",
@@ -5032,7 +5424,9 @@ export const questions = [
       "只制造合金 only alloys"
     ],
     "answer": 0,
-    "explain": "性激素调节第二性征与生殖相关变化。 / Sex hormone effects."
+    "explain": "性激素调节第二性征与生殖相关变化。 / Sex hormone effects.",
+    "level": "stretch",
+    "stretchNote": "Oestrogen and female secondary sexual characteristics are reproductive-endocrine depth beyond Grade 8 Shanghai biology."
   },
   {
     "id": "boost-q153",
@@ -5041,7 +5435,8 @@ export const questions = [
     "type": "tf",
     "prompt": "随意动作受大脑皮层控制。 / Voluntary actions are controlled by the cerebral cortex.",
     "answer": true,
-    "explain": "有意识控制的运动。 / Conscious control of movement."
+    "explain": "有意识控制的运动。 / Conscious control of movement.",
+    "level": "core"
   },
   {
     "id": "boost-q154",
@@ -5056,7 +5451,8 @@ export const questions = [
       "只有氩 only argon"
     ],
     "answer": 0,
-    "explain": "钙镁离子使水变硬。 / Calcium and magnesium ions."
+    "explain": "钙镁离子使水变硬。 / Calcium and magnesium ions.",
+    "level": "core"
   },
   {
     "id": "boost-q155",
@@ -5071,7 +5467,8 @@ export const questions = [
       "测量血压 measure blood pressure"
     ],
     "answer": 0,
-    "explain": "不同 pH 显不同颜色。 / Different colours at different pH."
+    "explain": "不同 pH 显不同颜色。 / Different colours at different pH.",
+    "level": "core"
   },
   {
     "id": "boost-q156",
@@ -5080,7 +5477,8 @@ export const questions = [
     "type": "tf",
     "prompt": "氮氧化物（NOx）可参与形成酸雨和光化学烟雾。 / NOx can contribute to acid rain and photochemical smog.",
     "answer": true,
-    "explain": "重要的空气污染物。 / Important air pollutants."
+    "explain": "重要的空气污染物。 / Important air pollutants.",
+    "level": "core"
   },
   {
     "id": "boost-q157",
@@ -5095,7 +5493,8 @@ export const questions = [
       "天然气 natural gas"
     ],
     "answer": 2,
-    "explain": "风能可持续利用。 / Wind is renewable."
+    "explain": "风能可持续利用。 / Wind is renewable.",
+    "level": "core"
   },
   {
     "id": "boost-q158",
@@ -5110,7 +5509,8 @@ export const questions = [
       "制造超声波 make ultrasound"
     ],
     "answer": 0,
-    "explain": "颗粒沉降便于后续过滤。 / Particles settle before filtration."
+    "explain": "颗粒沉降便于后续过滤。 / Particles settle before filtration.",
+    "level": "core"
   },
   {
     "id": "boost-q159",
@@ -5125,7 +5525,8 @@ export const questions = [
       "绿色 green"
     ],
     "answer": 0,
-    "explain": "酸红碱蓝。 / Red in acid, blue in alkali."
+    "explain": "酸红碱蓝。 / Red in acid, blue in alkali.",
+    "level": "core"
   },
   {
     "id": "boost-q160",
@@ -5140,7 +5541,8 @@ export const questions = [
       "只表示焦距 only focal length"
     ],
     "answer": 0,
-    "explain": "展示原子如何共用或转移电子。 / Shows how electrons are shared/transferred."
+    "explain": "展示原子如何共用或转移电子。 / Shows how electrons are shared/transferred.",
+    "level": "core"
   },
   {
     "id": "boost-q161",
@@ -5149,7 +5551,8 @@ export const questions = [
     "type": "tf",
     "prompt": "分解反应是一种物质生成两种或多种物质。 / Decomposition: one substance forms two or more.",
     "answer": true,
-    "explain": "与化合反应相反。 / Opposite of combination."
+    "explain": "与化合反应相反。 / Opposite of combination.",
+    "level": "core"
   },
   {
     "id": "boost-q162",
@@ -5164,7 +5567,8 @@ export const questions = [
       "只有虚像 only virtual image"
     ],
     "answer": 0,
-    "explain": "出现沉淀（ppt）。 / An insoluble product appears."
+    "explain": "出现沉淀（ppt）。 / An insoluble product appears.",
+    "level": "core"
   },
   {
     "id": "boost-q163",
@@ -5179,7 +5583,8 @@ export const questions = [
       "只适用于透镜 only lenses"
     ],
     "answer": 1,
-    "explain": "按化学式把各原子 Ar 相加。 / Sum Ar values in the formula."
+    "explain": "按化学式把各原子 Ar 相加。 / Sum Ar values in the formula.",
+    "level": "core"
   },
   {
     "id": "boost-q164",
@@ -5194,7 +5599,8 @@ export const questions = [
       "相同颜色 same colour always"
     ],
     "answer": 1,
-    "explain": "价电子数决定化学性质相似性。 / Valence electrons drive similarity."
+    "explain": "价电子数决定化学性质相似性。 / Valence electrons drive similarity.",
+    "level": "core"
   },
   {
     "id": "boost-q165",
@@ -5203,7 +5609,9 @@ export const questions = [
     "type": "tf",
     "prompt": "原子利用率关注期望产物中原子的利用效率。 / Atom economy concerns how efficiently atoms end in the desired product.",
     "answer": true,
-    "explain": "绿色化学入门概念。 / Green chemistry intro idea."
+    "explain": "绿色化学入门概念。 / Green chemistry intro idea.",
+    "level": "stretch",
+    "stretchNote": "Atom economy is green-chemistry extension beyond Shanghai Grade 8 and basic IGCSE foundation."
   },
   {
     "id": "boost-q166",
@@ -5218,7 +5626,8 @@ export const questions = [
       "一定是合金 always an alloy"
     ],
     "answer": 1,
-    "explain": "失去结晶水后的状态。 / Without water of crystallisation."
+    "explain": "失去结晶水后的状态。 / Without water of crystallisation.",
+    "level": "core"
   },
   {
     "id": "boost-q167",
@@ -5233,7 +5642,8 @@ export const questions = [
       "变为负 becomes negative"
     ],
     "answer": 1,
-    "explain": "s = vt/2，t 越大 s 越大。 / Larger t → larger s."
+    "explain": "s = vt/2，t 越大 s 越大。 / Larger t → larger s.",
+    "level": "core"
   },
   {
     "id": "boost-q168",
@@ -5248,7 +5658,8 @@ export const questions = [
       "空气 air ever"
     ],
     "answer": 0,
-    "explain": "视神经穿出视网膜处无感光细胞。 / No rods/cones where optic nerve exits."
+    "explain": "视神经穿出视网膜处无感光细胞。 / No rods/cones where optic nerve exits.",
+    "level": "core"
   },
   {
     "id": "boost-q169",
@@ -5263,7 +5674,8 @@ export const questions = [
       "压强 pressure"
     ],
     "answer": 1,
-    "explain": "斜率 = Δv/Δt = 加速度。 / Gradient = acceleration."
+    "explain": "斜率 = Δv/Δt = 加速度。 / Gradient = acceleration.",
+    "level": "core"
   },
   {
     "id": "boost-q170",
@@ -5278,7 +5690,8 @@ export const questions = [
       "形成虚像 forms virtual images"
     ],
     "answer": 0,
-    "explain": "小液滴更易被脂肪酶催化。 / Tiny droplets aid enzyme action."
+    "explain": "小液滴更易被脂肪酶催化。 / Tiny droplets aid enzyme action.",
+    "level": "core"
   },
   {
     "id": "boost-q171",
@@ -5293,7 +5706,8 @@ export const questions = [
       "主动只针对病毒 active only for viruses"
     ],
     "answer": 0,
-    "explain": "主动通常更持久。 / Active usually longer-lasting."
+    "explain": "主动通常更持久。 / Active usually longer-lasting.",
+    "level": "core"
   },
   {
     "id": "boost-q172",
@@ -5308,7 +5722,8 @@ export const questions = [
       "只有化合价 only valency"
     ],
     "answer": 0,
-    "explain": "细颗粒物危害呼吸健康。 / Fine particles harm respiratory health."
+    "explain": "细颗粒物危害呼吸健康。 / Fine particles harm respiratory health.",
+    "level": "core"
   },
   {
     "id": "boost-q173",
@@ -5323,7 +5738,8 @@ export const questions = [
       "只有反射 reflection only"
     ],
     "answer": 0,
-    "explain": "发光发热的氧化反应。 / Vigorous oxidation with heat and light."
+    "explain": "发光发热的氧化反应。 / Vigorous oxidation with heat and light.",
+    "level": "core"
   },
   {
     "id": "boost-q174",
@@ -5332,7 +5748,8 @@ export const questions = [
     "type": "tf",
     "prompt": "化学变化中原子种类不变，只是重新组合。 / In chemical changes, atom types stay the same; they rearrange.",
     "answer": true,
-    "explain": "质量守恒的微观解释。 / Microscopic basis of mass conservation."
+    "explain": "质量守恒的微观解释。 / Microscopic basis of mass conservation.",
+    "level": "core"
   },
   {
     "id": "boost-q175",
@@ -5347,7 +5764,9 @@ export const questions = [
       "u × v = f 错误式"
     ],
     "answer": 0,
-    "explain": "1/u + 1/v = 1/f（注意符号规则）。 / Reciprocal form with sign convention."
+    "explain": "1/u + 1/v = 1/f（注意符号规则）。 / Reciprocal form with sign convention.",
+    "level": "stretch",
+    "stretchNote": "Thin-lens formula 1/u + 1/v = 1/f with sign conventions exceeds basic Shanghai Grade 8 lens rules."
   },
   {
     "id": "boost-q176",
@@ -5362,7 +5781,8 @@ export const questions = [
       "无方向 has no direction"
     ],
     "answer": 1,
-    "explain": "流体对物体的向上托力。 / Upward force from the fluid."
+    "explain": "流体对物体的向上托力。 / Upward force from the fluid.",
+    "level": "core"
   },
   {
     "id": "boost-q177",
@@ -5377,7 +5797,8 @@ export const questions = [
       "产生神经冲动 making nerve impulses"
     ],
     "answer": 0,
-    "explain": "消化过程的第一步。 / First step of feeding/digestion sequence."
+    "explain": "消化过程的第一步。 / First step of feeding/digestion sequence.",
+    "level": "core"
   },
   {
     "id": "boost-q178",
@@ -5392,7 +5813,9 @@ export const questions = [
       "只降低气压 only lowering air pressure"
     ],
     "answer": 0,
-    "explain": "雄性激素作用。 / Androgen effects."
+    "explain": "雄性激素作用。 / Androgen effects.",
+    "level": "stretch",
+    "stretchNote": "Testosterone and male secondary sexual characteristics are reproductive-endocrine depth beyond Grade 8 Shanghai biology."
   },
   {
     "id": "boost-q179",
@@ -5407,7 +5830,8 @@ export const questions = [
       "一定不同声速 different sound speed always"
     ],
     "answer": 0,
-    "explain": "描述溶质含量高低。 / How much solute is present."
+    "explain": "描述溶质含量高低。 / How much solute is present.",
+    "level": "core"
   },
   {
     "id": "boost-q180",
@@ -5422,7 +5846,8 @@ export const questions = [
       "变为负 becomes negative"
     ],
     "answer": 1,
-    "explain": "核电荷增加，外层电子拉得更紧。 / Increasing nuclear charge pulls shells in."
+    "explain": "核电荷增加，外层电子拉得更紧。 / Increasing nuclear charge pulls shells in.",
+    "level": "core"
   },
   {
     "id": "boost-q181",
@@ -5431,7 +5856,8 @@ export const questions = [
     "type": "tf",
     "prompt": "声强是单位面积上的声功率。 / Sound intensity is sound power per unit area.",
     "answer": true,
-    "explain": "与响度相关但概念不同。 / Related to, but not identical with, loudness."
+    "explain": "与响度相关但概念不同。 / Related to, but not identical with, loudness.",
+    "level": "core"
   },
   {
     "id": "boost-q182",
@@ -5440,7 +5866,8 @@ export const questions = [
     "type": "tf",
     "prompt": "光照度描述单位面积接收的光通量。 / Illuminance describes luminous flux per unit area.",
     "answer": true,
-    "explain": "表示被照面明亮程度。 / How brightly a surface is lit."
+    "explain": "表示被照面明亮程度。 / How brightly a surface is lit.",
+    "level": "core"
   },
   {
     "id": "boost-q183",
@@ -5449,7 +5876,8 @@ export const questions = [
     "type": "tf",
     "prompt": "矢量既有大小又有方向。 / A vector has both magnitude and direction.",
     "answer": true,
-    "explain": "力、速度、加速度等都是矢量。 / Force, velocity, acceleration are vectors."
+    "explain": "力、速度、加速度等都是矢量。 / Force, velocity, acceleration are vectors.",
+    "level": "core"
   },
   {
     "id": "boost-q184",
@@ -5458,7 +5886,8 @@ export const questions = [
     "type": "tf",
     "prompt": "同化是指吸收的营养被细胞利用。 / Assimilation means absorbed nutrients are used by cells.",
     "answer": true,
-    "explain": "营养进入代谢与构建过程。 / Nutrients enter metabolism/building."
+    "explain": "营养进入代谢与构建过程。 / Nutrients enter metabolism/building.",
+    "level": "core"
   },
   {
     "id": "boost-q185",
@@ -5467,7 +5896,8 @@ export const questions = [
     "type": "tf",
     "prompt": "黏液可以阻挡并帮助清除病原体。 / Mucus can trap and help remove pathogens.",
     "answer": true,
-    "explain": "呼吸道等处的屏障作用。 / Barrier in airways etc."
+    "explain": "呼吸道等处的屏障作用。 / Barrier in airways etc.",
+    "level": "core"
   },
   {
     "id": "boost-q186",
@@ -5476,7 +5906,8 @@ export const questions = [
     "type": "tf",
     "prompt": "弱酸完全电离（中学定性：弱酸部分电离）。 / Weak acids fully ionise (school: they partially ionise).",
     "answer": false,
-    "explain": "弱酸只部分电离。 / Weak acids ionise partially."
+    "explain": "弱酸只部分电离。 / Weak acids ionise partially.",
+    "level": "core"
   },
   {
     "id": "boost-q187",
@@ -5485,7 +5916,9 @@ export const questions = [
     "type": "tf",
     "prompt": "同位素丰度会影响元素的平均相对原子质量。 / Isotope abundance affects average relative atomic mass.",
     "answer": true,
-    "explain": "Ar 是按丰度加权平均。 / Ar is abundance-weighted."
+    "explain": "Ar 是按丰度加权平均。 / Ar is abundance-weighted.",
+    "level": "stretch",
+    "stretchNote": "Isotope abundance weighting average relative atomic mass is beyond basic isotope definition at Grade 8."
   },
   {
     "id": "boost-q188",
@@ -5500,7 +5933,8 @@ export const questions = [
       "无法握笔 unable to hold a pen"
     ],
     "answer": 0,
-    "explain": "走路、握物都需要摩擦。 / Walking and gripping need friction."
+    "explain": "走路、握物都需要摩擦。 / Walking and gripping need friction.",
+    "level": "core"
   },
   {
     "id": "boost-q189",
@@ -5515,7 +5949,8 @@ export const questions = [
       "传导神经冲动 conducts nerve impulses"
     ],
     "answer": 0,
-    "explain": "储存并按需释放胆汁。 / Stores and releases bile."
+    "explain": "储存并按需释放胆汁。 / Stores and releases bile.",
+    "level": "core"
   },
   {
     "id": "boost-q190",
@@ -5530,16 +5965,18 @@ export const questions = [
       "打破质子数 changing proton numbers freely"
     ],
     "answer": 0,
-    "explain": "左右原子种类数目与总质量不变。 / Atoms and total mass conserved."
+    "explain": "左右原子种类数目与总质量不变。 / Atoms and total mass conserved.",
+    "level": "core"
   }
 ];
 
-
-export function filterQuestions({ subject = 'all', type = 'all', chapter = null, limit = 0 } = {}) {
+export function filterQuestions({ subject = 'all', type = 'all', chapter = null, limit = 0, level = 'all' } = {}) {
   let list = questions.slice();
   if (subject && subject !== 'all') list = list.filter((q) => q.subject === subject);
   if (type && type !== 'all') list = list.filter((q) => q.type === type);
   if (chapter) list = list.filter((q) => q.chapter === chapter);
+  if (level === 'core') list = list.filter((q) => q.level !== 'stretch');
+  if (level === 'stretch') list = list.filter((q) => q.level === 'stretch');
   shuffle(list);
   if (limit > 0) list = list.slice(0, limit);
   return list;

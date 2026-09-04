@@ -1,0 +1,58 @@
+[
+  {
+    "id": "q-p13",
+    "issue": "Explanation garbles the unit: reads '340 m' instead of 340 m/s.",
+    "fix": {
+      "explain": "约 340 m/s。 / About 340 m/s in air at ~15°C."
+    }
+  },
+  {
+    "id": "q-p15",
+    "issue": "Explanation omits ÷2 for one-way echo distance; states s = vt instead of s = vt/2.",
+    "fix": {
+      "explain": "单程距离 s = vt/2。 / One-way distance s = vt/2."
+    }
+  },
+  {
+    "id": "q-p68",
+    "issue": "Explanation garbles g as '9.8 N' instead of 9.8 N/kg.",
+    "fix": {
+      "explain": "约 9.8 N/kg。 / About 9.8 N/kg."
+    }
+  },
+  {
+    "id": "q-p83",
+    "issue": "Explanation uses wrong numbers (1000÷200) though the keyed answer 5 m/s is correct.",
+    "fix": {
+      "explain": "平均速度 = 总路程÷总时间 = 100÷20 = 5 m/s。 / Average speed = total distance/total time = 100/20 = 5 m/s."
+    }
+  },
+  {
+    "id": "q-c25",
+    "issue": "Explanation describes litmus in acid, not phenolphthalein turning red/pink in alkali.",
+    "fix": {
+      "explain": "酚酞遇碱溶液变红（或粉红）。 / Phenolphthalein turns red/pink in alkaline solution."
+    }
+  },
+  {
+    "id": "q-c37",
+    "issue": "Explanation garbles the ¹²C standard as '1 / 1 / 12' instead of one-twelfth.",
+    "fix": {
+      "explain": "一个 ¹²C 原子质量的 1/12。 / One-twelfth the mass of one ¹²C atom."
+    }
+  },
+  {
+    "id": "boost-q69",
+    "issue": "Prompt asks where oxyhaemoglobin is found, but the keyed option is a definition, not a location.",
+    "fix": {
+      "options": [
+        "红细胞内 in red blood cells",
+        "只在血浆中 only in plasma",
+        "只在胆汁中 only in bile",
+        "只在尿液中 only in urine"
+      ],
+      "answer": 0,
+      "explain": "氧合血红蛋白存在于红细胞内。 / Oxyhaemoglobin is found in red blood cells."
+    }
+  }
+]

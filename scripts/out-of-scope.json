@@ -1,0 +1,66 @@
+[
+  {
+    "id": "q-c49",
+    "reason": "Calculating S oxidation state +6 in H₂SO₄ is advanced redox/valency beyond typical Grade 8 Shanghai core."
+  },
+  {
+    "id": "q-c74",
+    "reason": "Calculating S oxidation state +6 in SO₄²⁻ is advanced redox/valency beyond typical Grade 8 Shanghai core."
+  },
+  {
+    "id": "boost-q114",
+    "reason": "Links equation coefficients to mole ratios — introductory moles stoichiometry beyond basic Grade 8 mass/Mr work."
+  },
+  {
+    "id": "boost-q122",
+    "reason": "Limiting-reactant concept is advanced stoichiometry calculation, not core Shanghai Grade 8."
+  },
+  {
+    "id": "boost-q123",
+    "reason": "Percentage-yield formula (actual/theoretical × 100%) is advanced stoichiometry beyond Grade 8 scope."
+  },
+  {
+    "id": "boost-q165",
+    "reason": "Atom economy is green-chemistry extension beyond Shanghai Grade 8 and basic IGCSE foundation."
+  },
+  {
+    "id": "boost-q187",
+    "reason": "Isotope abundance weighting average relative atomic mass is beyond basic isotope definition at Grade 8."
+  },
+  {
+    "id": "boost-q130",
+    "reason": "Acoustic beats from interfering close frequencies are wave-interference detail beyond core Grade 8 sound topics."
+  },
+  {
+    "id": "boost-q131",
+    "reason": "Ultrasonic cleaning via cavitation is specialized physics beyond standard Grade 8 sound applications."
+  },
+  {
+    "id": "boost-q134",
+    "reason": "Light polarisation and transverse-wave polarisation are advanced wave optics, not Shanghai Grade 8 core."
+  },
+  {
+    "id": "boost-q175",
+    "reason": "Thin-lens formula 1/u + 1/v = 1/f with sign conventions exceeds basic Shanghai Grade 8 lens rules."
+  },
+  {
+    "id": "boost-q73",
+    "reason": "Synaptic neurotransmitter transmission is IGCSE/A-level neurophysiology depth beyond Shanghai Grade 8 biology."
+  },
+  {
+    "id": "boost-q74",
+    "reason": "Myelin-sheath saltatory conduction is advanced nervous-system detail beyond Grade 8 scope."
+  },
+  {
+    "id": "boost-q146",
+    "reason": "ADH-mediated renal water reabsorption is detailed endocrine–renal physiology beyond Grade 8 core."
+  },
+  {
+    "id": "boost-q152",
+    "reason": "Oestrogen and female secondary sexual characteristics are reproductive-endocrine depth beyond Grade 8 Shanghai biology."
+  },
+  {
+    "id": "boost-q178",
+    "reason": "Testosterone and male secondary sexual characteristics are reproductive-endocrine depth beyond Grade 8 Shanghai biology."
+  }
+]

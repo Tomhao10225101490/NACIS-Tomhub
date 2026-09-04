@@ -1247,3 +1247,97 @@ body::before {
   font-family: var(--font-display);
   margin-bottom: 8px;
 }
+
+/* —— Language + SFX toggles —— */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  gap: 2px;
+}
+
+.lang-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #f3e8ff;
+  font: inherit;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  min-width: 36px;
+  transition: 0.15s ease;
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.lang-btn.on {
+  background: #fff;
+  color: #461a42;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sfx-btn {
+  appearance: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.28);
+  color: #f9a8d4;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.sfx-btn.on {
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  color: #fff;
+  border-color: transparent;
+}
+
+.sfx-btn:not(.on) {
+  opacity: 0.55;
+  filter: grayscale(0.4);
+}
+
+.level-filters {
+  margin-top: 4px;
+}
+
+.stretch-pill {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(251, 191, 36, 0.25);
+  color: #fde68a;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .topbar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
