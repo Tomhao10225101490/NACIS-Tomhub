@@ -126,23 +126,32 @@ function initCanvas() {
 }
 
 /* —— FX —— */
-function burst(x, y, color = '#3ecfcf') {
-  for (let i = 0; i < 18; i++) {
+const CONFETTI = ['#e21b3c', '#1368ce', '#d89e00', '#26890c', '#f9a8d4', '#fbbf24', '#fff'];
+
+function burst(x, y, color = '#4ade80') {
+  for (let i = 0; i < 22; i++) {
     const el = document.createElement('div');
-    el.className = 'burst';
-    const angle = (Math.PI * 2 * i) / 18;
-    const dist = 40 + Math.random() * 70;
+    el.className = 'burst confetti';
+    const angle = (Math.PI * 2 * i) / 22 + Math.random() * 0.2;
+    const dist = 50 + Math.random() * 90;
     el.style.left = `${x}px`;
     el.style.top = `${y}px`;
-    el.style.background = color;
+    el.style.background = color || CONFETTI[i % CONFETTI.length];
     el.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
-    el.style.setProperty('--dy', `${Math.sin(angle) * dist}px`);
+    el.style.setProperty('--dy', `${Math.sin(angle) * dist - 20}px`);
     fx.appendChild(el);
-    setTimeout(() => el.remove(), 850);
+    setTimeout(() => el.remove(), 900);
   }
 }
 
-function floatText(x, y, text, color = '#5fd48a') {
+function screenFlash(ok) {
+  const el = document.createElement('div');
+  el.className = `wg-flash ${ok ? 'ok' : 'no'}`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 480);
+}
+
+function floatText(x, y, text, color = '#86efac') {
   const el = document.createElement('div');
   el.className = 'float-text';
   el.textContent = text;
@@ -155,23 +164,40 @@ function floatText(x, y, text, color = '#5fd48a') {
 
 function celebrate(correct) {
   const x = window.innerWidth / 2;
-  const y = window.innerHeight * 0.38;
+  const y = window.innerHeight * 0.36;
+  screenFlash(correct);
   if (correct) {
     try {
       sfxCorrect();
     } catch (_) {
       /* ignore */
     }
-    burst(x, y, store.streak >= 5 ? '#ffb86b' : '#7dffb0');
-    floatText(x, y, store.streak >= 3 ? `${store.streak} 连击!` : '+XP', '#7dffb0');
+    for (let k = 0; k < 3; k++) {
+      setTimeout(() => {
+        burst(x + (Math.random() - 0.5) * 120, y + (Math.random() - 0.5) * 40, CONFETTI[k % CONFETTI.length]);
+      }, k * 70);
+    }
+    floatText(x, y, store.streak >= 3 ? `${store.streak} Streak!` : 'Correct!', '#86efac');
   } else {
     try {
       sfxWrong();
     } catch (_) {
       /* ignore */
     }
-    floatText(x, y, '再想想', '#ff8a96');
+    floatText(x, y, 'Try again', '#fca5a5');
   }
+}
+
+/** Split bilingual "中文 / English" prompts onto two lines for Wayground readability */
+function bilingualHtml(text) {
+  const raw = String(text || '');
+  const parts = raw.split(/\s*\/\s*/);
+  if (parts.length >= 2) {
+    const zh = parts[0].trim();
+    const en = parts.slice(1).join(' / ').trim();
+    return `<span class="q-zh">${zh}</span>\n<span class="q-en">${en}</span>`;
+  }
+  return raw;
 }
 
 /* —— UI helpers —— */
@@ -235,7 +261,7 @@ function wgPlayShell({ title, meta, progressLabel, rightLabel, pct, questionHtml
       </div>
       <div class="wg-question">
         <div class="wg-q-meta">${meta}</div>
-        <div class="wg-q-text">${questionHtml}</div>
+        <div class="wg-q-text">${bilingualHtml(questionHtml)}</div>
       </div>
       ${optsHtml}
       <div id="fb"></div>
@@ -248,51 +274,53 @@ function wgPlayShell({ title, meta, progressLabel, rightLabel, pct, questionHtml
 /* —— HOME —— */
 function renderHome() {
   const next = days.find((d) => !isDayDone(d.day)) || days[0];
+  const nextV = next.vocabIds?.length || 0;
+  const nextQ = next.questionIds?.length || 0;
   app.innerHTML = `
     ${topbar()}
     <section class="hero">
       <h1>Alex<span>Practice</span></h1>
-      <p>Daily bilingual science drills · NACIS Grade 8</p>
+      <p>上海诺达 NACIS · 八年级理科拔尖 · 中英双语 · Wayground 风格刷题</p>
     </section>
 
     <div class="today-card panel">
-      <div class="today-label">今日推荐</div>
+      <div class="today-label">今日推荐 Today</div>
       <div class="today-title">Day ${next.day} · ${next.title}</div>
-      <div class="today-sub">${next.titleZh} · ${subjectLabel(next.subject)} · ${next.blurb}</div>
+      <div class="today-sub">${next.titleZh} · ${subjectLabel(next.subject)} · ${next.blurb}<br>本课约 <strong>${nextV}</strong> 词 + <strong>${nextQ}</strong> 题（单词→小测→选择/判断）</div>
       <button class="btn btn-primary" data-start-day="${next.day}">开始 Day ${next.day}</button>
       <button class="btn" data-nav="days" style="margin-left:8px">全部天数</button>
     </div>
 
-    <h3 class="section-label">更多练习</h3>
+    <h3 class="section-label">更多练习 More Modes</h3>
     <div class="mode-grid">
-      <button class="mode-card" data-nav="days" style="--card-glow: rgba(62,207,207,0.28)">
+      <button class="mode-card" data-nav="days">
         <div class="mode-icon">📅</div>
         <h3>Daily Days</h3>
-        <p>Day 1 → Day ${days.length}，每天一条龙：单词 + 测验。</p>
+        <p>Day 1→${days.length} 拔尖一条龙：每天 ≈36 词 + ≈28 题。</p>
         <span class="mode-tag">${doneDayCount()} / ${days.length} done</span>
       </button>
-      <button class="mode-card" data-nav="flash" style="--card-glow: rgba(62,207,207,0.22)">
+      <button class="mode-card" data-nav="flash">
         <div class="mode-icon">🃏</div>
         <h3>Flashcards</h3>
-        <p>自由刷专有名词。</p>
+        <p>专有名词英汉闪卡。</p>
         <span class="mode-tag">${vocabulary.length} words</span>
       </button>
-      <button class="mode-card" data-nav="match" style="--card-glow: rgba(95,212,138,0.25)">
+      <button class="mode-card" data-nav="match">
         <div class="mode-icon">🔗</div>
         <h3>Match</h3>
-        <p>英汉配对。</p>
+        <p>英汉配对对战风。</p>
         <span class="mode-tag">Matching</span>
       </button>
-      <button class="mode-card" data-nav="mcq" style="--card-glow: rgba(240,163,94,0.28)">
+      <button class="mode-card" data-nav="mcq">
         <div class="mode-icon">✅</div>
         <h3>MCQ</h3>
-        <p>选择题。</p>
+        <p>中英双语选择题。</p>
         <span class="mode-tag">${questions.filter((q) => q.type === 'mcq').length} Qs</span>
       </button>
-      <button class="mode-card" data-nav="tf" style="--card-glow: rgba(255,107,122,0.22)">
+      <button class="mode-card" data-nav="tf">
         <div class="mode-icon">⚖️</div>
         <h3>True / False</h3>
-        <p>判断题。</p>
+        <p>中英双语判断题。</p>
         <span class="mode-tag">${questions.filter((q) => q.type === 'tf').length} Qs</span>
       </button>
       <button class="mode-card" data-nav="periodic" style="--card-glow: rgba(240,163,94,0.3)">
@@ -323,7 +351,7 @@ function renderDays() {
     ${topbar()}
     <div class="screen">
       <div class="screen-header">${backBtn()}<h2 class="screen-title">Daily Days</h2></div>
-      <p class="days-intro">每个工作日一条龙：背单词 → 单词小测 → 选择/判断</p>
+      <p class="days-intro">拔尖强化 · 每天 ≈36 词 + ≈28 题 · Words → Word Quiz → MCQ/TF（中英双语）</p>
       <div class="day-grid">
         ${days
           .map((d) => {
@@ -490,7 +518,7 @@ function startDayPractice(dayNum) {
           </div>
           <div class="wg-question">
             <div class="wg-q-meta">Day ${plan.day} · Word Quiz</div>
-            <div class="wg-q-text">${item.prompt}</div>
+            <div class="wg-q-text">${bilingualHtml(item.prompt)}</div>
           </div>
           <div class="wg-options">
             ${item.options.map((o, i) => `<button class="wg-opt" data-v="${o}"><span class="shape">${'ABCD'[i]}</span><span>${o}</span></button>`).join('')}
@@ -564,7 +592,7 @@ function startDayPractice(dayNum) {
           </div>
           <div class="wg-question">
             <div class="wg-q-meta">${q.chapter} · ${q.type === 'mcq' ? 'MCQ' : 'T/F'}</div>
-            <div class="wg-q-text">${q.prompt}</div>
+            <div class="wg-q-text">${bilingualHtml(q.prompt)}</div>
           </div>
           ${q.type === 'mcq' ? wgMcqHtml(q.options) : wgTfHtml()}
           <div id="fb"></div>
@@ -862,7 +890,7 @@ function renderQuiz(mode) {
     queue = filterQuestions({
       subject,
       type,
-      limit: mode === 'mixed' ? 20 : 18,
+      limit: mode === 'mixed' ? 30 : 28,
     });
     idx = 0;
     correctCount = 0;

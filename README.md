@@ -1,27 +1,37 @@
 # Alex Practice
 
-Grade 8 science practice: daily days, vocabulary, MCQ / True-False, periodic table.
+上海诺达 **NACIS** · Grade 8 理科拔尖 · 中英双语刷题  
+UI 复刻 **Wayground（原 Quizizz）** 答题模式。
 
-## Run locally
+## 更新并启动
 
 ```bash
+cd NACIS-Tomhub
 git pull
 npm install
 npm run dev
 ```
 
-Open **http://localhost:5173/**
+打开 **http://localhost:5173/**
 
-> In China, if `npm install` is slow:
-> `npm config set registry https://registry.npmmirror.com`
+国内安装慢：
 
-## Features
+```bash
+npm config set registry https://registry.npmmirror.com
+```
 
-- **Daily Days** — Day 1…Day 18 pipeline: words → word quiz → MCQ/TF
-- Flashcards / Match / MCQ / True-False
-- Periodic table + Ar/Mr drill
-- Wrong book (localStorage)
+## 内容量（拔尖）
 
-## Stack
+| 模块 | 规模 |
+|------|------|
+| 专有名词 | ≈560+ 中英词条 |
+| 选择题 / 判断题 | ≈420 题（题干·选项·解析全双语） |
+| Daily Days | Day 1–28，每天 ≈36 词 + ≈28 题 |
 
-Vite + vanilla JS. Content in `src/data/`.
+覆盖：沪教八年级物理（声/光/运动和力）、生物（人体·调节与健康）、化学（身边物质·物质构成）+ IGCSE 衔接拔高。
+
+## 功能
+
+- **Daily Days**：单词闪卡 → 单词小测 → MCQ/TF 一条龙
+- **Wayground 风答题**：紫底、红蓝黄绿 ABCD、连击 HUD、彩带反馈
+- 闪卡 / 配对 / 周期表 / Ar·Mr / 本地错题本
