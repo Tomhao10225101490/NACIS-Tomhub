@@ -1,10 +1,19 @@
 import './style.css';
 import { vocabulary, subjects } from './data/vocabulary.js';
 import { questions, filterQuestions, shuffle } from './data/questions.js';
-import { elements, coreElements, compounds } from './data/elements.js';
+import { elements, coreElements, compounds, GROUP_LABELS, buildPeriodicGrid } from './data/elements.js';
+import { unlockAudio, sfxClick, sfxCorrect, sfxWrong, sfxFlip, sfxMatch } from './audio.js';
 
 const app = document.getElementById('app');
 const fx = document.getElementById('fx-layer');
+
+document.addEventListener(
+  'pointerdown',
+  () => {
+    unlockAudio();
+  },
+  { once: true }
+);
 
 const store = {
   xp: Number(localStorage.getItem('nacis_xp') || 0),
@@ -129,10 +138,12 @@ function celebrate(correct) {
   const x = window.innerWidth / 2;
   const y = window.innerHeight * 0.38;
   if (correct) {
-    burst(x, y, store.streak >= 5 ? '#f0a35e' : '#5fd48a');
-    floatText(x, y, store.streak >= 3 ? `${store.streak} 连击!` : '+XP', '#5fd48a');
+    sfxCorrect();
+    burst(x, y, store.streak >= 5 ? '#ffb86b' : '#7dffb0');
+    floatText(x, y, store.streak >= 3 ? `${store.streak} 连击!` : '+XP', '#7dffb0');
   } else {
-    floatText(x, y, '再想想', '#ff6b7a');
+    sfxWrong();
+    floatText(x, y, '再想想', '#ff8a96');
   }
 }
 
@@ -275,10 +286,12 @@ function renderFlash() {
 
     document.getElementById('flash').onclick = () => {
       flipped = !flipped;
+      sfxFlip();
       document.getElementById('flash').classList.toggle('flipped', flipped);
     };
     document.getElementById('flip').onclick = () => {
       flipped = !flipped;
+      sfxFlip();
       document.getElementById('flash').classList.toggle('flipped', flipped);
     };
     document.getElementById('next').onclick = () => {
@@ -379,7 +392,8 @@ function renderMatch() {
         selected = null;
         if (matched === 6) {
           setTimeout(() => {
-            floatText(window.innerWidth / 2, window.innerHeight * 0.35, '全部配对!', '#f0a35e');
+            sfxMatch();
+            floatText(window.innerWidth / 2, window.innerHeight * 0.35, '全部配对!', '#ffb86b');
             setTimeout(deal, 700);
           }, 400);
         }
@@ -590,43 +604,82 @@ function renderPeriodic() {
 
   function paint() {
     if (mode === 'browse') {
+      const cells = buildPeriodicGrid();
+      const headers = GROUP_LABELS.map(
+        (g, i) =>
+          `<div class="pt-group-h" style="grid-column:${i + 2};grid-row:1"><span class="cn">${g.cn}</span>${g.iupac}<span class="note">${g.note}</span></div>`
+      ).join('');
+      const body = cells
+        .map((c) => {
+          const col = c.group + 1;
+          const row = c.period + 1;
+          if (!c.element) {
+            return `<div class="el-cell empty" style="grid-column:${col};grid-row:${row}"></div>`;
+          }
+          const e = c.element;
+          return `<button class="el-cell ${e.category}" data-z="${e.z}" style="grid-column:${col};grid-row:${row}" title="${e.en}">
+            <div class="el-z">${e.z}</div>
+            <div class="el-sym">${e.symbol}</div>
+            <div class="el-name">${e.zh}</div>
+            <div class="el-ar">${e.ar}</div>
+          </button>`;
+        })
+        .join('');
+      const periodHeads = [1, 2, 3, 4, 5, 6]
+        .map((p) => `<div class="pt-period-h" style="grid-column:1;grid-row:${p + 1}">${p}</div>`)
+        .join('');
+
       app.innerHTML = `
         ${topbar()}
         <div class="screen">
           <div class="screen-header">${backBtn()}<h2 class="screen-title">元素周期表</h2>
             <button class="btn btn-primary" id="startq">开始元素测验</button>
           </div>
-          <p style="color:var(--muted);margin-bottom:14px;font-size:0.92rem">点击元素查看详情 · 颜色：金属 / 非金属 / 类金属 / 稀有气体</p>
+          <p style="color:#dff2f6;margin-bottom:10px;font-size:0.92rem">标准 18 列长式周期表 · 上方为中国中学常用主族/副族标注 · 点击元素查看详情</p>
+          <div class="pt-legend">
+            <span><i style="background:rgba(255,184,107,0.7)"></i>金属</span>
+            <span><i style="background:rgba(255,160,120,0.7)"></i>过渡/副族</span>
+            <span><i style="background:rgba(94,231,231,0.7)"></i>非金属</span>
+            <span><i style="background:rgba(125,255,176,0.7)"></i>类金属</span>
+            <span><i style="background:rgba(180,160,255,0.7)"></i>稀有气体</span>
+          </div>
           <div class="panel">
-            <div class="ptable">
-              ${elements
-                .map(
-                  (e) => `<button class="el-cell ${e.category}" data-z="${e.z}">
-                    <div class="el-z">${e.z}</div>
-                    <div class="el-sym">${e.symbol}</div>
-                    <div class="el-name">${e.zh}</div>
-                    <div class="el-ar">${e.ar}</div>
-                  </button>`
-                )
-                .join('')}
+            <div class="ptable-scroll">
+              <div class="ptable-official">
+                <div class="pt-corner"></div>
+                ${headers}
+                ${periodHeads}
+                ${body}
+              </div>
             </div>
             <div class="el-detail" id="detail"></div>
           </div>
         </div>`;
 
-      document.getElementById('startq').onclick = startQuiz;
-      app.querySelectorAll('.el-cell').forEach((btn) => {
+      document.getElementById('startq').onclick = () => {
+        sfxClick();
+        startQuiz();
+      };
+      app.querySelectorAll('.el-cell:not(.empty)').forEach((btn) => {
         btn.onclick = () => {
+          sfxClick();
           const e = elements.find((x) => x.z === Number(btn.dataset.z));
           const d = document.getElementById('detail');
           d.classList.add('show');
+          const catMap = {
+            metal: '金属 metal',
+            nonmetal: '非金属 non-metal',
+            metalloid: '类金属 metalloid',
+            noble: '稀有气体 noble gas',
+            transition: '过渡元素 / 副族 transition',
+          };
           d.innerHTML = `
-            <div style="font-family:var(--font-display);font-size:1.6rem;margin-bottom:6px">${e.symbol} · ${e.zh} · ${e.en}</div>
-            <div style="color:var(--muted);line-height:1.6">
-              原子序数 Z = <strong style="color:var(--text)">${e.z}</strong><br>
+            <div style="font-family:var(--font-display);font-size:1.6rem;margin-bottom:6px;color:#fff">${e.symbol} · ${e.zh} · ${e.en}</div>
+            <div style="color:#e4f4f8;line-height:1.7">
+              原子序数 Z = <strong style="color:#fff">${e.z}</strong><br>
               相对原子质量 Ar ≈ <strong style="color:var(--accent-2)">${e.ar}</strong><br>
-              周期 Period ${e.period} · 族 Group ${e.group}<br>
-              类别：${{ metal: '金属 metal', nonmetal: '非金属 non-metal', metalloid: '类金属 metalloid', noble: '稀有气体 noble gas' }[e.category]}
+              周期 Period ${e.period} · IUPAC 族 Group ${e.group} · 中学标注 <strong style="color:var(--accent)">${e.groupCn}</strong>（${e.group <= 2 || e.group >= 13 ? '主族' : '副族'}）<br>
+              类别：${catMap[e.category] || e.category}
             </div>`;
         };
       });
@@ -1002,6 +1055,8 @@ function bindNav() {
 }
 
 function navigate(name) {
+  unlockAudio();
+  sfxClick();
   const fn = routes[name] || renderHome;
   window.scrollTo({ top: 0, behavior: 'smooth' });
   fn();
