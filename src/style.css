@@ -14,8 +14,8 @@
   --chemistry: #ffb86b;
   --glow: 0 0 40px rgba(94, 231, 231, 0.28);
   --radius: 18px;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Manrope', sans-serif;
+  --font-display: 'Nunito', 'Noto Sans SC', sans-serif;
+  --font-body: 'Nunito Sans', 'Noto Sans SC', sans-serif;
 }
 
 * {
@@ -98,7 +98,7 @@ body::before {
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 3vw, 1.85rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   background: linear-gradient(120deg, #fff 20%, var(--accent) 55%, var(--accent-2) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -141,8 +141,8 @@ body::before {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 6vw, 3.6rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.12;
+  letter-spacing: 0;
   margin-bottom: 12px;
 }
 

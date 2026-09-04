@@ -1049,9 +1049,7 @@ const routes = {
 };
 
 function bindNav() {
-  app.querySelectorAll('[data-nav]').forEach((el) => {
-    el.onclick = () => navigate(el.dataset.nav);
-  });
+  // 事件委托已接管，保留空函数避免旧调用报错
 }
 
 function navigate(name) {
@@ -1062,6 +1060,13 @@ function navigate(name) {
   fn();
 }
 
+/* 全局导航委托：避免返回首页后 data-nav 未重新绑定 */
+app.addEventListener('click', (e) => {
+  const navEl = e.target.closest('[data-nav]');
+  if (!navEl || !app.contains(navEl)) return;
+  e.preventDefault();
+  navigate(navEl.dataset.nav);
+});
+
 initCanvas();
 navigate('home');
-bindNav();
