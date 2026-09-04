@@ -1,2559 +1,865 @@
-/** Alex Practice · bilingual MCQ / TF bank (expanded) */
+/** 选择题 + 判断题题库（拔尖扩充 · 双语 · 答案已核对） */
 export const questions = [
-  {
-    "id": "q-p1",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "声音是由物体的什么产生的？ / Sound is produced by ______.",
-    "options": [
-      "振动 vibration",
-      "发光 light emission",
-      "传热 heat transfer",
-      "流动 flowing"
-    ],
-    "answer": 0,
-    "explain": "一切正在发声的物体都在振动；振动停止，发声停止。"
-  },
-  {
-    "id": "q-p2",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "tf",
-    "prompt": "声音可以在真空中传播。 / Sound can travel through a vacuum.",
-    "answer": false,
-    "explain": "声音是机械波，传播必须依靠介质；真空中没有介质，不能传声。"
-  },
-  {
-    "id": "q-p3",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "决定音调高低的是？ / What determines pitch?",
-    "options": [
-      "振幅 amplitude",
-      "频率 frequency",
-      "音色 timbre",
-      "声速 speed of sound"
-    ],
-    "answer": 1,
-    "explain": "频率越高，音调越高；振幅影响响度，不决定音调。"
-  },
-  {
-    "id": "q-p4",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "决定响度大小的主要因素是？ / Loudness mainly depends on ______.",
-    "options": [
-      "频率",
-      "振幅",
-      "音色",
-      "波长"
-    ],
-    "answer": 1,
-    "explain": "振幅越大，响度越大；还与距声源远近有关。"
-  },
-  {
-    "id": "q-p5",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "tf",
-    "prompt": "超声波的频率高于 20000 Hz。",
-    "answer": true,
-    "explain": "人耳听觉范围约 20–20000 Hz；高于 20000 Hz 为超声波，低于 20 Hz 为次声波。"
-  },
-  {
-    "id": "q-p6",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "一般情况下，声音在哪种介质中传播最快？",
-    "options": [
-      "空气",
-      "水",
-      "钢铁",
-      "真空"
-    ],
-    "answer": 2,
-    "explain": "通常：固体 > 液体 > 气体；真空不能传声。"
-  },
-  {
-    "id": "q-p7",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "“音色”的英文是？",
-    "options": [
-      "pitch",
-      "loudness",
-      "timbre",
-      "echo"
-    ],
-    "answer": 2,
-    "explain": "timbre（也称 quality of sound）= 音色；pitch=音调；loudness=响度。"
-  },
-  {
-    "id": "q-p25",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "tf",
-    "prompt": "音调由振幅决定。",
-    "answer": false,
-    "explain": "音调由频率决定；振幅决定响度。"
-  },
-  {
-    "id": "q-p26",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "减弱噪声的途径不包括？",
-    "options": [
-      "在声源处减弱",
-      "在传播途径中减弱",
-      "在人耳处减弱",
-      "提高声音的频率"
-    ],
-    "answer": 3,
-    "explain": "噪声控制三环节：声源、传播途径、接收处；提高频率不能减弱噪声。"
-  },
-  {
-    "id": "q-p27",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "分贝（dB）用来表示？",
-    "options": [
-      "音调",
-      "音色",
-      "声音强弱（声强级）",
-      "声速"
-    ],
-    "answer": 2,
-    "explain": "分贝是声强级的单位，用来表示声音的强弱。"
-  },
-  {
-    "id": "q-p28",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "tf",
-    "prompt": "月球上两名宇航员不借助无线电设备也能直接对话。",
-    "answer": false,
-    "explain": "月球表面近似真空，声音无法传播，需靠无线电。"
-  },
-  {
-    "id": "q-p8",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "tf",
-    "prompt": "光在同种均匀介质中沿直线传播。",
-    "answer": true,
-    "explain": "这是光的直线传播规律；影子、小孔成像、日食月食等与此有关。"
-  },
-  {
-    "id": "q-p9",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "光的反射定律中，反射角 ______ 入射角。",
-    "options": [
-      "大于",
-      "小于",
-      "等于",
-      "无关"
-    ],
-    "answer": 2,
-    "explain": "反射角等于入射角；反射光线、入射光线和法线在同一平面内，反射光线与入射光线分居法线两侧。"
-  },
-  {
-    "id": "q-p10",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "平面镜成像的特点是？",
-    "options": [
-      "倒立、缩小、实像",
-      "正立、等大、虚像",
-      "倒立、放大、虚像",
-      "正立、放大、实像"
-    ],
-    "answer": 1,
-    "explain": "平面镜成正立、等大的虚像；像与物关于镜面对称。"
-  },
-  {
-    "id": "q-p11",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "tf",
-    "prompt": "虚像可以用光屏承接。",
-    "answer": false,
-    "explain": "实像能用光屏承接；虚像由光线反向延长线会聚而成，不能用光屏承接。"
-  },
-  {
-    "id": "q-p12",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "凸透镜对光线的作用是？ / A convex lens ______ light.",
-    "options": [
-      "发散 diverges",
-      "会聚 converges",
-      "既不会聚也不发散",
-      "吸收 absorbs"
-    ],
-    "answer": 1,
-    "explain": "凸透镜中间厚、边缘薄，对光有会聚作用（会聚透镜）。"
-  },
-  {
-    "id": "q-p13",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "矫正近视眼应使用？",
-    "options": [
-      "凸透镜",
-      "凹透镜",
-      "平面镜",
-      "三棱镜"
-    ],
-    "answer": 1,
-    "explain": "近视时像成在视网膜前方，需用凹透镜使光线发散后再成像于视网膜。"
-  },
-  {
-    "id": "q-p14",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "当物距 u > 2f 时，凸透镜成的像是？",
-    "options": [
-      "倒立缩小实像",
-      "倒立放大实像",
-      "正立放大虚像",
-      "正立等大实像"
-    ],
-    "answer": 0,
-    "explain": "照相机原理：u > 2f，成倒立、缩小的实像（像距 f < v < 2f）。"
-  },
-  {
-    "id": "q-p15",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "tf",
-    "prompt": "光的三原色是红、黄、蓝。",
-    "answer": false,
-    "explain": "光的三原色是红、绿、蓝（RGB）；颜料的三原色才常说红、黄、蓝。"
-  },
-  {
-    "id": "q-p16",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "红外线的显著特点是？",
-    "options": [
-      "化学作用强",
-      "热效应强",
-      "荧光作用强",
-      "杀菌能力强"
-    ],
-    "answer": 1,
-    "explain": "红外线热效应强；紫外线化学作用强、可杀菌、能使荧光物质发光。"
-  },
-  {
-    "id": "q-p29",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "光从空气斜射入水中时，折射角 ______ 入射角。",
-    "options": [
-      "大于",
-      "小于",
-      "等于",
-      "无法确定"
-    ],
-    "answer": 1,
-    "explain": "光从空气斜射入水或玻璃等介质时，折射光线向法线偏折，折射角小于入射角。"
-  },
-  {
-    "id": "q-p30",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "tf",
-    "prompt": "凹透镜对光有发散作用，可矫正远视。",
-    "answer": false,
-    "explain": "凹透镜发散光线，用于矫正近视；远视用凸透镜矫正。"
-  },
-  {
-    "id": "q-p31",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "放大镜利用凸透镜成什么像？",
-    "options": [
-      "倒立缩小实像",
-      "倒立放大实像",
-      "正立放大虚像",
-      "正立缩小虚像"
-    ],
-    "answer": 2,
-    "explain": "物距 u < f 时，凸透镜成正立、放大的虚像，即放大镜。"
-  },
-  {
-    "id": "q-p32",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "法线与镜面的关系是？",
-    "options": [
-      "平行",
-      "成 45°",
-      "垂直",
-      "重合"
-    ],
-    "answer": 2,
-    "explain": "法线是过入射点垂直于反射面的直线。"
-  },
-  {
-    "id": "q-p33",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "tf",
-    "prompt": "入射角是入射光线与镜面的夹角。",
-    "answer": false,
-    "explain": "入射角是入射光线与法线的夹角，不是与镜面的夹角。"
-  },
-  {
-    "id": "q-p17",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "判断物体运动或静止，必须选定？",
-    "options": [
-      "质量",
-      "参照物",
-      "速度",
-      "力"
-    ],
-    "answer": 1,
-    "explain": "运动具有相对性，描述运动或静止必须先选定参照物。"
-  },
-  {
-    "id": "q-p18",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "速度公式是？ / The formula for speed is ______.",
-    "options": [
-      "v = s × t",
-      "v = s / t",
-      "v = t / s",
-      "v = F / m"
-    ],
-    "answer": 1,
-    "explain": "v = s/t；常见单位 m/s 或 km/h。"
-  },
-  {
-    "id": "q-p19",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "力的单位是牛顿，符号为 N。",
-    "answer": true,
-    "explain": "力的国际单位是牛顿（newton），符号 N。"
-  },
-  {
-    "id": "q-p20",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "重力的施力物体是？",
-    "options": [
-      "桌子",
-      "空气",
-      "地球",
-      "人"
-    ],
-    "answer": 2,
-    "explain": "重力是由于地球的吸引而使物体受到的力，施力物体是地球。"
-  },
-  {
-    "id": "q-p21",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "二力平衡的条件不包括？",
-    "options": [
-      "大小相等",
-      "方向相反",
-      "作用在同一直线上",
-      "作用在两个不同物体上"
-    ],
-    "answer": 3,
-    "explain": "二力平衡必须作用在同一物体上，且等大、反向、共线。"
-  },
-  {
-    "id": "q-p22",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "惯性是一种力。",
-    "answer": false,
-    "explain": "惯性是物体的固有属性（保持原有运动状态的性质），不是力；质量越大，惯性越大。"
-  },
-  {
-    "id": "q-p23",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "牛顿第一定律指出：物体不受力时将？",
-    "options": [
-      "一定静止",
-      "一定做匀速直线运动",
-      "保持静止或匀速直线运动",
-      "加速运动"
-    ],
-    "answer": 2,
-    "explain": "一切物体在没有受到力的作用时，总保持静止状态或匀速直线运动状态。"
-  },
-  {
-    "id": "q-p24",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "G = mg 中，g 的近似值通常取？",
-    "options": [
-      "1 N/kg",
-      "9.8 N/kg",
-      "100 N/kg",
-      "0.98 N/kg"
-    ],
-    "answer": 1,
-    "explain": "g ≈ 9.8 N/kg（计算中有时近似取 10 N/kg）。"
-  },
-  {
-    "id": "q-p34",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "力可以离开物体而独立存在。",
-    "answer": false,
-    "explain": "力是物体对物体的作用，不能离开物体单独存在；有受力物体必有施力物体。"
-  },
-  {
-    "id": "q-p35",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "力的三要素是？",
-    "options": [
-      "大小、方向、速度",
-      "大小、方向、作用点",
-      "质量、方向、作用点",
-      "大小、质量、方向"
-    ],
-    "answer": 1,
-    "explain": "力的三要素：大小、方向、作用点。"
-  },
-  {
-    "id": "q-p36",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "汽车突然刹车，乘客身体向前倾，是因为乘客具有？",
-    "options": [
-      "重力",
-      "惯性",
-      "摩擦力",
-      "弹力"
-    ],
-    "answer": 1,
-    "explain": "刹车时车厢减速，乘客由于惯性仍保持原来的运动状态，故向前倾。"
-  },
-  {
-    "id": "q-p37",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "物体受到平衡力作用时，一定保持静止。",
-    "answer": false,
-    "explain": "受平衡力时，运动状态不变：原来静止则仍静止，原来运动则做匀速直线运动。"
-  },
-  {
-    "id": "q-p38",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "质量为 2 kg 的物体，所受重力约为？（g 取 10 N/kg）",
-    "options": [
-      "2 N",
-      "10 N",
-      "20 N",
-      "200 N"
-    ],
-    "answer": 2,
-    "explain": "G = mg = 2 × 10 = 20 N。"
-  },
-  {
-    "id": "q-b1",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "人体结构和功能的基本单位是？ / The basic unit is the ______.",
-    "options": [
-      "组织 tissue",
-      "器官 organ",
-      "细胞 cell",
-      "系统 system"
-    ],
-    "answer": 2,
-    "explain": "层次：细胞 → 组织 → 器官 → 系统 → 人体。"
-  },
-  {
-    "id": "q-b2",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "消化和吸收的主要场所是？",
-    "options": [
-      "胃",
-      "小肠",
-      "大肠",
-      "口腔"
-    ],
-    "answer": 1,
-    "explain": "小肠很长，有皱襞和绒毛，含多种消化酶，是消化和吸收的主要场所。"
-  },
-  {
-    "id": "q-b3",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "动脉是将血液运回心脏的血管。",
-    "answer": false,
-    "explain": "动脉：运离心脏；静脉：运回心脏；毛细血管：物质交换。"
-  },
-  {
-    "id": "q-b4",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "运输氧气的主要是？",
-    "options": [
-      "白细胞",
-      "血小板",
-      "红细胞",
-      "血浆蛋白"
-    ],
-    "answer": 2,
-    "explain": "红细胞含血红蛋白，主要功能是运输氧气。"
-  },
-  {
-    "id": "q-b5",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "肺泡的主要功能是？ / Alveoli are mainly for ______.",
-    "options": [
-      "消化 digestion",
-      "气体交换 gas exchange",
-      "产生尿液 urine formation",
-      "泵血 pumping blood"
-    ],
-    "answer": 1,
-    "explain": "肺泡壁很薄、数量多，是肺与血液进行气体交换的主要场所。"
-  },
-  {
-    "id": "q-b6",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "形成尿液的主要器官是？",
-    "options": [
-      "膀胱",
-      "输尿管",
-      "肾脏",
-      "尿道"
-    ],
-    "answer": 2,
-    "explain": "肾脏中的肾单位通过滤过和重吸收等过程形成尿液。"
-  },
-  {
-    "id": "q-b7",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "酶是生物催化剂，能加快化学反应速率。",
-    "answer": true,
-    "explain": "酶具有催化作用和专一性，可大大加快生化反应速率。"
-  },
-  {
-    "id": "q-b8",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "心脏有几个腔？",
-    "options": [
-      "2",
-      "3",
-      "4",
-      "5"
-    ],
-    "answer": 2,
-    "explain": "左心房、左心室、右心房、右心室，共四个腔。"
-  },
-  {
-    "id": "q-b15",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "体循环的起点是？",
-    "options": [
-      "右心房",
-      "右心室",
-      "左心房",
-      "左心室"
-    ],
-    "answer": 3,
-    "explain": "体循环：左心室 → 主动脉 → 全身 → 上下腔静脉 → 右心房。"
-  },
-  {
-    "id": "q-b16",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "肺循环中，血液流经肺部后氧气含量增加。",
-    "answer": true,
-    "explain": "肺循环：右心室→肺动脉→肺部毛细血管（气体交换，血氧增加）→肺静脉→左心房。"
-  },
-  {
-    "id": "q-b17",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "血小板的主要功能是？",
-    "options": [
-      "运输氧气",
-      "吞噬病菌",
-      "止血和凝血",
-      "运输养料"
-    ],
-    "answer": 2,
-    "explain": "血小板能释放与凝血有关的物质，促进止血和凝血。"
-  },
-  {
-    "id": "q-b18",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "淀粉的消化开始于？",
-    "options": [
-      "口腔",
-      "食道",
-      "胃",
-      "小肠"
-    ],
-    "answer": 0,
-    "explain": "唾液中含唾液淀粉酶，淀粉的化学性消化从口腔开始。"
-  },
-  {
-    "id": "q-b19",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "蛋白质的消化从口腔开始。",
-    "answer": false,
-    "explain": "蛋白质的化学性消化从胃开始（胃蛋白酶），最终在小肠被彻底消化。"
-  },
-  {
-    "id": "q-b20",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "肾单位包括？",
-    "options": [
-      "肾小球和肾小囊",
-      "肾小球、肾小囊和肾小管",
-      "只含肾小管",
-      "膀胱和输尿管"
-    ],
-    "answer": 1,
-    "explain": "肾单位 = 肾小体（肾小球+肾小囊）+ 肾小管。"
-  },
-  {
-    "id": "q-b9",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "神经系统调节的基本方式是？",
-    "options": [
-      "激素分泌",
-      "反射",
-      "血液循环",
-      "消化"
-    ],
-    "answer": 1,
-    "explain": "反射是神经调节的基本方式，通过反射弧完成。"
-  },
-  {
-    "id": "q-b10",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "反射弧的正确顺序是？",
-    "options": [
-      "效应器→神经中枢→感受器",
-      "感受器→传入神经→神经中枢→传出神经→效应器",
-      "感受器→效应器→神经中枢",
-      "神经中枢→感受器→效应器"
-    ],
-    "answer": 1,
-    "explain": "完整反射弧五部分：感受器、传入神经、神经中枢、传出神经、效应器。"
-  },
-  {
-    "id": "q-b11",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "tf",
-    "prompt": "胰岛素能升高血糖。",
-    "answer": false,
-    "explain": "胰岛素的作用是降低血糖；血糖过低时由胰高血糖素等升高血糖。"
-  },
-  {
-    "id": "q-b12",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "vaccine 的中文是？",
-    "options": [
-      "抗体",
-      "抗原",
-      "疫苗",
-      "病原体"
-    ],
-    "answer": 2,
-    "explain": "vaccine=疫苗；antibody=抗体；antigen=抗原；pathogen=病原体。"
-  },
-  {
-    "id": "q-b13",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "激素调节与神经调节相比，通常？",
-    "options": [
-      "更快、作用范围更窄",
-      "较慢、作用范围较广、持续时间较长",
-      "只作用于肌肉",
-      "不需要血液运输"
-    ],
-    "answer": 1,
-    "explain": "激素经血液运输，作用较缓慢、范围广、时间较长；神经调节迅速、准确。"
-  },
-  {
-    "id": "q-b14",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "tf",
-    "prompt": "抗体是由病原体产生的。",
-    "answer": false,
-    "explain": "抗体由人体免疫细胞（如淋巴细胞）产生，用以对抗抗原/病原体。"
-  },
-  {
-    "id": "q-b21",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "中枢神经系统包括？",
-    "options": [
-      "脑和脊髓",
-      "只含大脑",
-      "脑神经和脊神经",
-      "只含脊髓"
-    ],
-    "answer": 0,
-    "explain": "中枢神经系统 = 脑 + 脊髓；周围神经系统包括脑神经、脊神经等。"
-  },
-  {
-    "id": "q-b22",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "tf",
-    "prompt": "膝跳反射的神经中枢位于大脑皮层。",
-    "answer": false,
-    "explain": "膝跳反射属于非条件反射，神经中枢在脊髓，不在大脑皮层。"
-  },
-  {
-    "id": "q-b23",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "甲状腺激素的主要作用是？",
-    "options": [
-      "降低血糖",
-      "促进新陈代谢和生长发育",
-      "升高血压仅在睡眠时",
-      "消化蛋白质"
-    ],
-    "answer": 1,
-    "explain": "甲状腺激素能促进新陈代谢和生长发育，提高神经系统的兴奋性。"
-  },
-  {
-    "id": "q-b24",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "传染病流行的三个基本环节是？",
-    "options": [
-      "病原体、抗体、疫苗",
-      "传染源、传播途径、易感人群",
-      "细菌、病毒、真菌",
-      "隔离、消毒、吃药"
-    ],
-    "answer": 1,
-    "explain": "传染病流行必须同时具备：传染源、传播途径、易感人群。"
-  },
-  {
-    "id": "q-c1",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "空气中体积分数最大的气体是？",
-    "options": [
-      "氧气 O₂",
-      "氮气 N₂",
-      "二氧化碳 CO₂",
-      "稀有气体"
-    ],
-    "answer": 1,
-    "explain": "按体积分数：氮气约 78%，氧气约 21%，其余为稀有气体、二氧化碳等。"
-  },
-  {
-    "id": "q-c2",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "检验二氧化碳常用？",
-    "options": [
-      "石蕊试纸直接变红即可确认",
-      "澄清石灰水",
-      "酚酞",
-      "淀粉溶液"
-    ],
-    "answer": 1,
-    "explain": "CO₂ 通入澄清石灰水变浑浊：Ca(OH)₂ + CO₂ = CaCO₃↓ + H₂O。"
-  },
-  {
-    "id": "q-c3",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "tf",
-    "prompt": "氧气可以支持燃烧和呼吸。",
-    "answer": true,
-    "explain": "氧气化学性质较活泼，能支持燃烧，也是呼吸作用所必需。"
-  },
-  {
-    "id": "q-c4",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "下列属于纯净物的是？",
-    "options": [
-      "空气",
-      "海水",
-      "蒸馏水",
-      "牛奶"
-    ],
-    "answer": 2,
-    "explain": "蒸馏水是由水一种物质组成的纯净物；空气、海水、牛奶都是混合物。"
-  },
-  {
-    "id": "q-c5",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "冰融化成水属于？",
-    "options": [
-      "化学变化",
-      "物理变化",
-      "既是物理又是化学变化",
-      "氧化反应"
-    ],
-    "answer": 1,
-    "explain": "只是物态变化，没有新物质生成，属于物理变化。"
-  },
-  {
-    "id": "q-c6",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "tf",
-    "prompt": "催化剂在化学反应前后，质量和化学性质都发生改变。",
-    "answer": false,
-    "explain": "催化剂能改变化学反应速率，其本身的质量和化学性质在反应前后不变。"
-  },
-  {
-    "id": "q-c21",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "燃烧需要的条件不包括？",
-    "options": [
-      "可燃物",
-      "氧气（或空气）",
-      "温度达到着火点",
-      "必须有催化剂"
-    ],
-    "answer": 3,
-    "explain": "燃烧三要素：可燃物、氧气（或空气）、温度达到着火点；不需要催化剂。"
-  },
-  {
-    "id": "q-c22",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "tf",
-    "prompt": "空气是一种化合物。",
-    "answer": false,
-    "explain": "空气由氮气、氧气等多种物质混合而成，是混合物，不是化合物。"
-  },
-  {
-    "id": "q-c23",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "铁生锈的主要相关物质是？",
-    "options": [
-      "只与氮气有关",
-      "氧气和水",
-      "只与二氧化碳有关",
-      "只与氢气有关"
-    ],
-    "answer": 1,
-    "explain": "铁在潮湿空气中易生锈，主要与氧气和水共同作用有关。"
-  },
-  {
-    "id": "q-c24",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "下列变化属于化学变化的是？",
-    "options": [
-      "水沸腾",
-      "玻璃破碎",
-      "蜡烛燃烧",
-      "酒精挥发"
-    ],
-    "answer": 2,
-    "explain": "蜡烛燃烧有新物质（二氧化碳、水等）生成；其余没有新物质生成。"
-  },
-  {
-    "id": "q-c7",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "化学变化中的最小粒子是？ / The smallest particle in a chemical change is the ______.",
-    "options": [
-      "分子 molecule",
-      "原子 atom",
-      "离子 ion",
-      "电子 electron"
-    ],
-    "answer": 1,
-    "explain": "原子是化学变化中的最小粒子；分子是保持物质化学性质的最小粒子。"
-  },
-  {
-    "id": "q-c8",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "相对原子质量的标准是？",
-    "options": [
-      "一个氢原子的质量",
-      "一个氧原子质量的 1/16",
-      "一个¹²C原子质量的 1/12",
-      "一个电子的质量"
-    ],
-    "answer": 2,
-    "explain": "国际上以一个碳-12（¹²C）原子质量的 1/12 作为相对原子质量的标准。"
-  },
-  {
-    "id": "q-c9",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "氧元素的相对原子质量约为？",
-    "options": [
-      "1",
-      "12",
-      "16",
-      "18"
-    ],
-    "answer": 2,
-    "explain": "Ar(O) ≈ 16；H₂O 的 Mr = 1×2 + 16 = 18。"
-  },
-  {
-    "id": "q-c10",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "钠的元素符号是？",
-    "options": [
-      "So",
-      "Na",
-      "N",
-      "S"
-    ],
-    "answer": 1,
-    "explain": "Sodium 的元素符号是 Na（源于拉丁文 natrium）。"
-  },
-  {
-    "id": "q-c11",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "原子序数等于质子数，也等于核电荷数。",
-    "answer": true,
-    "explain": "在原子中：原子序数 = 质子数 = 核电荷数 = 核外电子数。"
-  },
-  {
-    "id": "q-c12",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "CO₂ 的相对分子质量是？（C=12, O=16）",
-    "options": [
-      "28",
-      "32",
-      "44",
-      "16"
-    ],
-    "answer": 2,
-    "explain": "Mr(CO₂) = 12 + 16×2 = 44。"
-  },
-  {
-    "id": "q-c13",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "元素周期表中，横行叫做？",
-    "options": [
-      "族 group",
-      "周期 period",
-      "区 block",
-      "系 series"
-    ],
-    "answer": 1,
-    "explain": "横行叫周期（period），纵列叫族（group）。"
-  },
-  {
-    "id": "q-c14",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "化合物是由不同种元素组成的纯净物。",
-    "answer": true,
-    "explain": "如 H₂O、CO₂；由同种元素组成的纯净物叫单质，如 O₂、Fe。"
-  },
-  {
-    "id": "q-c15",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "下列化学式书写正确的是？",
-    "options": [
-      "氧化镁 MgO₂",
-      "氯化钠 NaCl",
-      "水 H₂O₂",
-      "氧气 O"
-    ],
-    "answer": 1,
-    "explain": "正确写法：MgO、NaCl、H₂O、O₂。"
-  },
-  {
-    "id": "q-c16",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "质量守恒定律说明化学反应前后？",
-    "options": [
-      "分子个数一定不变",
-      "原子的种类和数目不变，各物质质量总和不变",
-      "物质的种类不变",
-      "气体体积一定不变"
-    ],
-    "answer": 1,
-    "explain": "参加反应的各物质质量总和等于生成的各物质质量总和；原子种类、数目、质量不变。"
-  },
-  {
-    "id": "q-c17",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "Fe 的中文名称和相对原子质量约为？",
-    "options": [
-      "氟，19",
-      "铁，56",
-      "铜，64",
-      "锌，65"
-    ],
-    "answer": 1,
-    "explain": "Fe = Iron = 铁，中学常用 Ar(Fe) ≈ 56。"
-  },
-  {
-    "id": "q-c18",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "稀有气体的化学性质很活泼。",
-    "answer": false,
-    "explain": "稀有气体（noble gases）化学性质稳定，不易与其他物质反应。"
-  },
-  {
-    "id": "q-c19",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "阳离子是？ / A cation is ______.",
-    "options": [
-      "带负电的离子",
-      "带正电的离子",
-      "不带电的原子",
-      "电子"
-    ],
-    "answer": 1,
-    "explain": "阳离子（cation）带正电；阴离子（anion）带负电。"
-  },
-  {
-    "id": "q-c20",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "H₂SO₄ 中硫元素的化合价是？",
-    "options": [
-      "+2",
-      "+4",
-      "+6",
-      "-2"
-    ],
-    "answer": 2,
-    "explain": "H 为 +1，O 为 -2：(+1)×2 + S + (-2)×4 = 0 ⇒ S = +6。"
-  },
-  {
-    "id": "q-c25",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "元素周期表中，IA 族属于？",
-    "options": [
-      "副族",
-      "主族",
-      "0 族",
-      "VIII 族"
-    ],
-    "answer": 1,
-    "explain": "IA、IIA、IIIA–VIIA 与 0 族为主族；中间过渡元素多为副族。"
-  },
-  {
-    "id": "q-c26",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "相对分子质量等于分子的实际质量（单位 kg）。",
-    "answer": false,
-    "explain": "相对分子质量是比值，量纲为 1，不是分子的实际质量。"
-  },
-  {
-    "id": "q-c27",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "Ca(OH)₂ 的相对分子质量是？（Ca=40, O=16, H=1）",
-    "options": [
-      "57",
-      "74",
-      "58",
-      "100"
-    ],
-    "answer": 1,
-    "explain": "Mr = 40 + (16+1)×2 = 40 + 34 = 74。"
-  },
-  {
-    "id": "q-c28",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "下列属于原子团的是？",
-    "options": [
-      "H₂O",
-      "OH⁻",
-      "O₂",
-      "Na"
-    ],
-    "answer": 1,
-    "explain": "氢氧根 OH⁻ 是原子团；常作为整体参加反应。"
-  },
-  {
-    "id": "q-c29",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "在元素周期表中，同一主族元素的化学性质往往相似。",
-    "answer": true,
-    "explain": "同一主族元素最外层电子数相同，化学性质往往相似。"
-  },
-  {
-    "id": "q-c30",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "钾的元素符号是？",
-    "options": [
-      "P",
-      "Po",
-      "K",
-      "Ka"
-    ],
-    "answer": 2,
-    "explain": "Potassium 的元素符号是 K（源于拉丁文 kalium）。"
-  },
-  {
-    "id": "q-n1",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "音调由什么决定？\nWhat determines pitch?",
-    "options": [
-      "振幅 amplitude",
-      "频率 frequency",
-      "音色 timbre",
-      "声速"
-    ],
-    "answer": 1,
-    "explain": "频率越高音调越高。\nHigher frequency → higher pitch."
-  },
-  {
-    "id": "q-n2",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "响度主要由什么决定？\nLoudness mainly depends on?",
-    "options": [
-      "频率",
-      "振幅 amplitude",
-      "波长",
-      "音色"
-    ],
-    "answer": 1,
-    "explain": "振幅越大响度越大。\nLarger amplitude → louder sound."
-  },
-  {
-    "id": "q-n3",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "真空能传声。\nSound can travel in a vacuum.",
-    "answer": false
-  },
-  {
-    "id": "q-n4",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "超声波频率范围？\nUltrasound frequency is?",
-    "options": [
-      "<20 Hz",
-      "20–20000 Hz",
-      ">20000 Hz",
-      "任意"
-    ],
-    "answer": 2,
-    "explain": "高于20000Hz为超声。\nAbove 20 kHz is ultrasound."
-  },
-  {
-    "id": "q-n5",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "反射角等于？\nThe angle of reflection equals?",
-    "options": [
-      "折射角",
-      "入射角 angle of incidence",
-      "临界角",
-      "90°"
-    ],
-    "answer": 1,
-    "explain": "反射定律：i=r。\nLaw of reflection: i = r."
-  },
-  {
-    "id": "q-n6",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "平面镜成像特点？\nPlane mirror image is?",
-    "options": [
-      "倒立缩小实像",
-      "正立等大虚像",
-      "倒立放大虚像",
-      "正立放大实像"
-    ],
-    "answer": 1,
-    "explain": "正立、等大、虚像。\nUpright, same size, virtual."
-  },
-  {
-    "id": "q-n7",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "虚像可用光屏承接。\nA virtual image can be caught on a screen.",
-    "answer": false
-  },
-  {
-    "id": "q-n8",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "凸透镜对光的作用？\nA convex lens ______ light.",
-    "options": [
-      "发散",
-      "会聚 converges",
-      "反射",
-      "吸收"
-    ],
-    "answer": 1,
-    "explain": "凸透镜会聚光线。\nConvex lens converges light."
-  },
-  {
-    "id": "q-n9",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "近视矫正用？\nMyopia is corrected with?",
-    "options": [
-      "凸透镜",
-      "凹透镜 concave lens",
-      "平面镜",
-      "三棱镜"
-    ],
-    "answer": 1,
-    "explain": "凹透镜发散。\nConcave (diverging) lens."
-  },
-  {
-    "id": "q-n10",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "u>2f时凸透镜成像？\nFor u > 2f, convex lens forms?",
-    "options": [
-      "倒立缩小实像",
-      "倒立放大实像",
-      "正立放大虚像",
-      "正立等大"
-    ],
-    "answer": 0,
-    "explain": "照相机原理。\nCamera principle."
-  },
-  {
-    "id": "q-n11",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "光的三原色是红黄蓝。\nPrimary colours of light are red, yellow, blue.",
-    "answer": false
-  },
-  {
-    "id": "q-n12",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "红外线主要特点？\nInfrared is mainly known for?",
-    "options": [
-      "杀菌",
-      "热效应 heat effect",
-      "化学作用",
-      "荧光"
-    ],
-    "answer": 1,
-    "explain": "红外线热效应强。\nStrong heating effect."
-  },
-  {
-    "id": "q-n13",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "速度公式？\nSpeed formula?",
-    "options": [
-      "v=st",
-      "v=s/t",
-      "v=t/s",
-      "v=F/m"
-    ],
-    "answer": 1,
-    "explain": "v = s/t\nundefined"
-  },
-  {
-    "id": "q-n14",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "力的单位？\nSI unit of force?",
-    "options": [
-      "kg",
-      "J",
-      "N newton",
-      "W"
-    ],
-    "answer": 2,
-    "explain": "牛顿 N。\nNewton (N)."
-  },
-  {
-    "id": "q-n15",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "惯性是一种力。\nInertia is a force.",
-    "answer": false
-  },
-  {
-    "id": "q-n16",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "牛顿第一定律说明物体不受力时？\nNewton's 1st law: if no net force, object?",
-    "options": [
-      "一定静止",
-      "一定加速",
-      "保持静止或匀速直线",
-      "一定减速"
-    ],
-    "answer": 2,
-    "explain": "保持原状态。\nRemains at rest or uniform motion."
-  },
-  {
-    "id": "q-n17",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "二力平衡条件不包括？\nBalanced forces do NOT require?",
-    "options": [
-      "等大",
-      "反向",
-      "共线",
-      "作用在两个物体"
-    ],
-    "answer": 3,
-    "explain": "必须同一物体。\nMust act on the same object."
-  },
-  {
-    "id": "q-n18",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "G=mg中g约为？\nIn G=mg, g is about?",
-    "options": [
-      "1 N/kg",
-      "9.8 N/kg",
-      "100",
-      "0.98"
-    ],
-    "answer": 1,
-    "explain": "约9.8 N/kg。\n≈9.8 N/kg."
-  },
-  {
-    "id": "q-n19",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "质量随位置改变。\nMass changes with location.",
-    "answer": false
-  },
-  {
-    "id": "q-n20",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "压强公式？\nPressure formula?",
-    "options": [
-      "p=F/A",
-      "p=FA",
-      "p=A/F",
-      "p=mg"
-    ],
-    "answer": 0,
-    "explain": "p = F/A\nundefined"
-  },
-  {
-    "id": "q-n21",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "密度公式？\nDensity formula?",
-    "options": [
-      "ρ=V/m",
-      "ρ=m/V",
-      "ρ=mV",
-      "ρ=g/m"
-    ],
-    "answer": 1,
-    "explain": "ρ = m/V\nundefined"
-  },
-  {
-    "id": "q-n22",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "光从空气斜射入水中，折射角大于入射角。\nLight from air to water: refraction angle > incidence angle.",
-    "answer": false
-  },
-  {
-    "id": "q-n23",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "放大镜成像条件？\nMagnifying glass condition?",
-    "options": [
-      "u>2f",
-      "u=2f",
-      "f<u<2f",
-      "u<f"
-    ],
-    "answer": 3,
-    "explain": "物距小于焦距。\nObject inside focal length."
-  },
-  {
-    "id": "q-n24",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "声音在下列哪种介质中通常最快？\nSound is usually fastest in?",
-    "options": [
-      "空气",
-      "水",
-      "钢",
-      "真空"
-    ],
-    "answer": 2,
-    "explain": "固体通常最快。\nUsually fastest in solids."
-  },
-  {
-    "id": "q-n25",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "力可以离开物体单独存在。\nA force can exist without objects.",
-    "answer": false
-  },
-  {
-    "id": "q-n26",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "决定音色的主要因素是？\nTimbre mainly depends on?",
-    "options": [
-      "频率",
-      "振幅",
-      "发声体材料与结构 material/structure",
-      "声速"
-    ],
-    "answer": 2,
-    "explain": "音色由发声体材料和结构决定。\nTimbre depends on material and structure."
-  },
-  {
-    "id": "q-n27",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "tf",
-    "prompt": "次声波频率高于20000Hz。\nInfrasound has frequency above 20 kHz.",
-    "answer": false
-  },
-  {
-    "id": "q-n28",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "噪声控制三环节不包括？\nNoise control does NOT include?",
-    "options": [
-      "声源处",
-      "传播途径",
-      "人耳处",
-      "提高音调 raise pitch"
-    ],
-    "answer": 3,
-    "explain": "不能靠提高音调控制噪声。\nRaising pitch is not a method."
-  },
-  {
-    "id": "q-n29",
-    "subject": "physics",
-    "chapter": "声",
-    "type": "mcq",
-    "prompt": "空气中声速约？\nSpeed of sound in air is about?",
-    "options": [
-      "3×10⁸ m/s",
-      "340 m/s",
-      "1500 m/s",
-      "0"
-    ],
-    "answer": 1,
-    "explain": "约340 m/s（15℃）。\n≈340 m/s at 15°C."
-  },
-  {
-    "id": "q-n30",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "法线与镜面关系？\nThe normal is ______ to the mirror.",
-    "options": [
-      "平行",
-      "成45°",
-      "垂直 perpendicular",
-      "重合"
-    ],
-    "answer": 2,
-    "explain": "法线垂直界面。\nNormal is perpendicular to surface."
-  },
-  {
-    "id": "q-n31",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "tf",
-    "prompt": "入射角是入射光线与镜面的夹角。\nAngle of incidence is between ray and mirror surface.",
-    "answer": false
-  },
-  {
-    "id": "q-n32",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "远视矫正用？\nHyperopia is corrected with?",
-    "options": [
-      "凹透镜",
-      "凸透镜 convex lens",
-      "平面镜",
-      "墨镜"
-    ],
-    "answer": 1,
-    "explain": "凸透镜会聚。\nConvex (converging) lens."
-  },
-  {
-    "id": "q-n33",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "紫外线作用？\nUltraviolet is useful for?",
-    "options": [
-      "加热食物",
-      "杀菌 sterilising",
-      "无线电",
-      "雷达"
-    ],
-    "answer": 1,
-    "explain": "紫外线可杀菌。\nUV can kill bacteria."
-  },
-  {
-    "id": "q-n34",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "tf",
-    "prompt": "漫反射不遵守反射定律。\nDiffuse reflection does not obey reflection law.",
-    "answer": false
-  },
-  {
-    "id": "q-n35",
-    "subject": "physics",
-    "chapter": "光",
-    "type": "mcq",
-    "prompt": "物距等于2f时凸透镜成像？\nWhen u = 2f, image is?",
-    "options": [
-      "倒立等大实像",
-      "正立放大虚像",
-      "倒立缩小实像",
-      "不成像"
-    ],
-    "answer": 0,
-    "explain": "倒立、等大、实像。\nInverted, same size, real."
-  },
-  {
-    "id": "q-n36",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "力的三要素？\nThree elements of a force?",
-    "options": [
-      "大小方向速度",
-      "大小方向作用点 magnitude, direction, point",
-      "质量方向作用点",
-      "大小质量方向"
-    ],
-    "answer": 1,
-    "explain": "大小、方向、作用点。\nMagnitude, direction, point of application."
-  },
-  {
-    "id": "q-n37",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "汽车刹车人前倾因为？\nPassengers lurch forward when braking because of?",
-    "options": [
-      "重力",
-      "惯性 inertia",
-      "摩擦力",
-      "弹力"
-    ],
-    "answer": 1,
-    "explain": "惯性保持原运动状态。\nInertia keeps previous motion."
-  },
-  {
-    "id": "q-n38",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "受平衡力时物体一定静止。\nBalanced forces mean the object must be at rest.",
-    "answer": false
-  },
-  {
-    "id": "q-n39",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "2kg物体重力约为？（g=10）\nWeight of 2 kg mass (g=10)?",
-    "options": [
-      "2N",
-      "10N",
-      "20N",
-      "200N"
-    ],
-    "answer": 2,
-    "explain": "G=mg=20N。\nG = mg = 20 N."
-  },
-  {
-    "id": "q-n40",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "参照物的作用？\nA reference object is used to?",
-    "options": [
-      "测量质量",
-      "判断运动或静止 judge motion/rest",
-      "产生力",
-      "改变惯性"
-    ],
-    "answer": 1,
-    "explain": "运动具有相对性。\nMotion is relative."
-  },
-  {
-    "id": "q-n41",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "tf",
-    "prompt": "速度是标量，只有大小。\nSpeed is a vector.",
-    "answer": false
-  },
-  {
-    "id": "q-n42",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "弹簧测力计测量？\nA spring balance measures?",
-    "options": [
-      "质量",
-      "力 / 重力 force",
-      "密度",
-      "时间"
-    ],
-    "answer": 1,
-    "explain": "测力的大小。\nMeasures force."
-  },
-  {
-    "id": "q-n43",
-    "subject": "physics",
-    "chapter": "运动和力",
-    "type": "mcq",
-    "prompt": "匀速直线运动特点？\nUniform linear motion means?",
-    "options": [
-      "速度方向变",
-      "速度大小方向都不变",
-      "只有大小变",
-      "加速度很大"
-    ],
-    "answer": 1,
-    "explain": "大小和方向都不变。\nConstant speed and direction."
-  },
-  {
-    "id": "q-n44",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "人体结构和功能基本单位？\nBasic unit of human body?",
-    "options": [
-      "组织",
-      "器官",
-      "细胞 cell",
-      "系统"
-    ],
-    "answer": 2,
-    "explain": "细胞。\nThe cell."
-  },
-  {
-    "id": "q-n45",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "消化吸收主要场所？\nMain site of digestion & absorption?",
-    "options": [
-      "胃",
-      "小肠 small intestine",
-      "大肠",
-      "口腔"
-    ],
-    "answer": 1,
-    "explain": "小肠。\nSmall intestine."
-  },
-  {
-    "id": "q-n46",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "动脉把血液运回心脏。\nArteries carry blood back to the heart.",
-    "answer": false
-  },
-  {
-    "id": "q-n47",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "运输氧气主要靠？\nOxygen is mainly carried by?",
-    "options": [
-      "白细胞",
-      "血小板",
-      "红细胞 RBC",
-      "血浆蛋白"
-    ],
-    "answer": 2,
-    "explain": "红细胞含血红蛋白。\nRBCs contain haemoglobin."
-  },
-  {
-    "id": "q-n48",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "肺泡功能？\nFunction of alveoli?",
-    "options": [
-      "消化",
-      "气体交换 gas exchange",
-      "产尿",
-      "泵血"
-    ],
-    "answer": 1,
-    "explain": "气体交换。\nGas exchange."
-  },
-  {
-    "id": "q-n49",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "形成尿液主要器官？\nMain organ forming urine?",
-    "options": [
-      "膀胱",
-      "输尿管",
-      "肾脏 kidney",
-      "尿道"
-    ],
-    "answer": 2,
-    "explain": "肾脏。\nKidney."
-  },
-  {
-    "id": "q-n50",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "酶具有专一性。\nEnzymes are specific.",
-    "answer": true
-  },
-  {
-    "id": "q-n51",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "心脏有几个腔？\nHow many chambers does the heart have?",
-    "options": [
-      "2",
-      "3",
-      "4",
-      "5"
-    ],
-    "answer": 2,
-    "explain": "四腔。\nFour chambers."
-  },
-  {
-    "id": "q-n52",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "体循环起点？\nSystemic circulation starts at?",
-    "options": [
-      "右心房",
-      "右心室",
-      "左心房",
-      "左心室 left ventricle"
-    ],
-    "answer": 3,
-    "explain": "左心室。\nLeft ventricle."
-  },
-  {
-    "id": "q-n53",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "肺循环后血液含氧量升高。\nBlood becomes more oxygenated after pulmonary circulation.",
-    "answer": true
-  },
-  {
-    "id": "q-n54",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "血小板功能？\nPlatelets function to?",
-    "options": [
-      "运氧",
-      "吞噬病菌",
-      "止血凝血 clotting",
-      "消化"
-    ],
-    "answer": 2,
-    "explain": "止血和凝血。\nHelp clotting."
-  },
-  {
-    "id": "q-n55",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "淀粉消化开始于？\nStarch digestion begins in?",
-    "options": [
-      "口腔 mouth",
-      "胃",
-      "小肠",
-      "大肠"
-    ],
-    "answer": 0,
-    "explain": "唾液淀粉酶。\nSalivary amylase."
-  },
-  {
-    "id": "q-n56",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "蛋白质消化从口腔开始。\nProtein digestion starts in the mouth.",
-    "answer": false
-  },
-  {
-    "id": "q-n57",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "肾单位包括？\nA nephron includes?",
-    "options": [
-      "只有肾小球",
-      "肾小球、肾小囊、肾小管",
-      "只有膀胱",
-      "输尿管"
-    ],
-    "answer": 1,
-    "explain": "肾小体+肾小管。\nRenal corpuscle + tubule."
-  },
-  {
-    "id": "q-n58",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "mcq",
-    "prompt": "胆汁作用？\nBile helps to?",
-    "options": [
-      "消化蛋白质",
-      "乳化脂肪 emulsify fats",
-      "消化淀粉",
-      "产生胰岛素"
-    ],
-    "answer": 1,
-    "explain": "乳化脂肪。\nEmulsifies fats."
-  },
-  {
-    "id": "q-n59",
-    "subject": "biology",
-    "chapter": "人体生命活动",
-    "type": "tf",
-    "prompt": "膈肌收缩有助于吸气。\nDiaphragm contraction helps inhalation.",
-    "answer": true
-  },
-  {
-    "id": "q-n60",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "神经调节基本方式？\nBasic form of nervous regulation?",
-    "options": [
-      "激素",
-      "反射 reflex",
-      "循环",
-      "消化"
-    ],
-    "answer": 1,
-    "explain": "反射。\nReflex."
-  },
-  {
-    "id": "q-n61",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "反射弧顺序？\nReflex arc order?",
-    "options": [
-      "效应器→中枢→感受器",
-      "感受器→传入→中枢→传出→效应器",
-      "感受器→效应器",
-      "中枢→感受器"
-    ],
-    "answer": 1,
-    "explain": "五部分缺一不可。\nFive parts required."
-  },
-  {
-    "id": "q-n62",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "tf",
-    "prompt": "胰岛素升高血糖。\nInsulin raises blood glucose.",
-    "answer": false
-  },
-  {
-    "id": "q-n63",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "vaccine中文？\nvaccine means?",
-    "options": [
-      "抗体",
-      "抗原",
-      "疫苗",
-      "病原体"
-    ],
-    "answer": 2,
-    "explain": "疫苗。\nVaccine."
-  },
-  {
-    "id": "q-n64",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "激素调节特点？\nHormone regulation is usually?",
-    "options": [
-      "更快更窄",
-      "较慢、范围广、持久 slower, widespread, longer",
-      "只作用于肌肉",
-      "不需血液"
-    ],
-    "answer": 1,
-    "explain": "经血液运输。\nVia blood transport."
-  },
-  {
-    "id": "q-n65",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "tf",
-    "prompt": "抗体由病原体产生。\nAntibodies are produced by pathogens.",
-    "answer": false
-  },
-  {
-    "id": "q-n66",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "中枢神经系统包括？\nCNS includes?",
-    "options": [
-      "脑和脊髓 brain & spinal cord",
-      "只大脑",
-      "脑神经",
-      "脊神经"
-    ],
-    "answer": 0,
-    "explain": "脑+脊髓。\nBrain and spinal cord."
-  },
-  {
-    "id": "q-n67",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "tf",
-    "prompt": "膝跳反射中枢在大脑皮层。\nKnee-jerk centre is in the cerebral cortex.",
-    "answer": false
-  },
-  {
-    "id": "q-n68",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "传染病流行三环节？\nThree links of infectious disease?",
-    "options": [
-      "病原体抗体疫苗",
-      "传染源、传播途径、易感人群",
-      "细菌病毒真菌",
-      "隔离消毒吃药"
-    ],
-    "answer": 1,
-    "explain": "传染源、途径、易感人群。\nSource, route, susceptible population."
-  },
-  {
-    "id": "q-n69",
-    "subject": "biology",
-    "chapter": "调节与健康",
-    "type": "mcq",
-    "prompt": "主动免疫是？\nActive immunity means?",
-    "options": [
-      "直接注射抗体",
-      "机体自身产生抗体 body makes antibodies",
-      "输血",
-      "休息"
-    ],
-    "answer": 1,
-    "explain": "自身产生。\nBody produces antibodies."
-  },
-  {
-    "id": "q-n70",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "空气中最多的气体？\nMost abundant gas in air?",
-    "options": [
-      "O₂",
-      "N₂ nitrogen",
-      "CO₂",
-      "He"
-    ],
-    "answer": 1,
-    "explain": "氮气约78%。\nN₂ ≈ 78%."
-  },
-  {
-    "id": "q-n71",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "检验CO₂常用？\nCO₂ is tested with?",
-    "options": [
-      "酚酞",
-      "澄清石灰水 limewater",
-      "淀粉",
-      "石蕊直接确认"
-    ],
-    "answer": 1,
-    "explain": "变浑浊。\nTurns limewater milky."
-  },
-  {
-    "id": "q-n72",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "tf",
-    "prompt": "氧气支持燃烧和呼吸。\nOxygen supports combustion and respiration.",
-    "answer": true
-  },
-  {
-    "id": "q-n73",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "属于纯净物？\nWhich is a pure substance?",
-    "options": [
-      "空气",
-      "海水",
-      "蒸馏水 distilled water",
-      "牛奶"
-    ],
-    "answer": 2,
-    "explain": "蒸馏水。\nDistilled water."
-  },
-  {
-    "id": "q-n74",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "冰融化属于？\nIce melting is?",
-    "options": [
-      "化学变化",
-      "物理变化 physical change",
-      "氧化还原",
-      "中和"
-    ],
-    "answer": 1,
-    "explain": "无新物质。\nNo new substance."
-  },
-  {
-    "id": "q-n75",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "tf",
-    "prompt": "催化剂质量和化学性质反应前后改变。\nA catalyst changes its mass and chemical nature.",
-    "answer": false
-  },
-  {
-    "id": "q-n76",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "燃烧条件不包括？\nCombustion does NOT require?",
-    "options": [
-      "可燃物",
-      "氧气",
-      "着火点",
-      "催化剂 catalyst"
-    ],
-    "answer": 3,
-    "explain": "不需要催化剂。\nNo catalyst needed."
-  },
-  {
-    "id": "q-n77",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "tf",
-    "prompt": "空气是化合物。\nAir is a compound.",
-    "answer": false
-  },
-  {
-    "id": "q-n78",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "铁生锈主要与？\nIron rusting mainly involves?",
-    "options": [
-      "只氮气",
-      "氧气和水 oxygen & water",
-      "只氢气",
-      "只CO₂"
-    ],
-    "answer": 1,
-    "explain": "氧气和水。\nOxygen and water."
-  },
-  {
-    "id": "q-n79",
-    "subject": "chemistry",
-    "chapter": "身边的物质",
-    "type": "mcq",
-    "prompt": "属于化学变化？\nWhich is a chemical change?",
-    "options": [
-      "水沸腾",
-      "玻璃破碎",
-      "蜡烛燃烧 burning candle",
-      "酒精挥发"
-    ],
-    "answer": 2,
-    "explain": "有新物质生成。\nNew substances form."
-  },
-  {
-    "id": "q-n80",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "化学变化中最小粒子？\nSmallest particle in chemical change?",
-    "options": [
-      "分子",
-      "原子 atom",
-      "离子",
-      "电子"
-    ],
-    "answer": 1,
-    "explain": "原子。\nAtom."
-  },
-  {
-    "id": "q-n81",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "相对原子质量标准？\nAr standard is?",
-    "options": [
-      "氢原子",
-      "氧的1/16",
-      "¹²C的1/12",
-      "电子"
-    ],
-    "answer": 2,
-    "explain": "碳-12的1/12。\n1/12 of carbon-12."
-  },
-  {
-    "id": "q-n82",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "氧的Ar约为？\nAr of oxygen ≈ ?",
-    "options": [
-      "1",
-      "12",
-      "16",
-      "18"
-    ],
-    "answer": 2,
-    "explain": "约为16。\nAbout 16."
-  },
-  {
-    "id": "q-n83",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "钠的元素符号？\nSymbol for sodium?",
-    "options": [
-      "So",
-      "Na",
-      "N",
-      "S"
-    ],
-    "answer": 1,
-    "explain": "Na。\nNa (natrium)."
-  },
-  {
-    "id": "q-n84",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "原子序数=质子数=核电荷数。\nAtomic number = proton number = nuclear charge.",
-    "answer": true
-  },
-  {
-    "id": "q-n85",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "CO₂的Mr？（C=12,O=16）\nMr of CO₂?",
-    "options": [
-      "28",
-      "32",
-      "44",
-      "16"
-    ],
-    "answer": 2,
-    "explain": "12+32=44。\n12+32=44."
-  },
-  {
-    "id": "q-n86",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "周期表横行叫？\nA horizontal row is a?",
-    "options": [
-      "族 group",
-      "周期 period",
-      "区",
-      "系"
-    ],
-    "answer": 1,
-    "explain": "周期。\nPeriod."
-  },
-  {
-    "id": "q-n87",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "化合物由不同种元素组成的纯净物。\nA compound is a pure substance of different elements.",
-    "answer": true
-  },
-  {
-    "id": "q-n88",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "化学式正确的是？\nCorrect formula?",
-    "options": [
-      "MgO₂",
-      "NaCl",
-      "H₂O₂(水)",
-      "O(氧气)"
-    ],
-    "answer": 1,
-    "explain": "NaCl正确。\nNaCl is correct."
-  },
-  {
-    "id": "q-n89",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "质量守恒定律？\nConservation of mass means?",
-    "options": [
-      "分子数不变",
-      "原子种类数目不变且总质量不变",
-      "物质种类不变",
-      "体积不变"
-    ],
-    "answer": 1,
-    "explain": "总质量不变。\nTotal mass unchanged."
-  },
-  {
-    "id": "q-n90",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "Fe是？\nFe is?",
-    "options": [
-      "氟19",
-      "铁56 iron",
-      "铜64",
-      "锌65"
-    ],
-    "answer": 1,
-    "explain": "铁，Ar≈56。\nIron ≈56."
-  },
-  {
-    "id": "q-n91",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "稀有气体很活泼。\nNoble gases are very reactive.",
-    "answer": false
-  },
-  {
-    "id": "q-n92",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "阳离子？\nA cation is?",
-    "options": [
-      "负离子",
-      "正离子 positive ion",
-      "原子",
-      "电子"
-    ],
-    "answer": 1,
-    "explain": "带正电。\nPositively charged."
-  },
-  {
-    "id": "q-n93",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "H₂SO₄中S化合价？\nOxidation number of S in H₂SO₄?",
-    "options": [
-      "+2",
-      "+4",
-      "+6",
-      "-2"
-    ],
-    "answer": 2,
-    "explain": "S为+6。\nS is +6."
-  },
-  {
-    "id": "q-n94",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "IA族属于？\nGroup IA is?",
-    "options": [
-      "副族",
-      "主族 main group",
-      "0族",
-      "VIII"
-    ],
-    "answer": 1,
-    "explain": "主族。\nMain group."
-  },
-  {
-    "id": "q-n95",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "相对分子质量是分子实际质量（kg）。\nMr is the actual mass in kg.",
-    "answer": false
-  },
-  {
-    "id": "q-n96",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "Ca(OH)₂的Mr？（Ca40 O16 H1）\nMr of Ca(OH)₂?",
-    "options": [
-      "57",
-      "74",
-      "58",
-      "100"
-    ],
-    "answer": 1,
-    "explain": "40+34=74。\n40+34=74."
-  },
-  {
-    "id": "q-n97",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "属于原子团？\nWhich is a radical/group?",
-    "options": [
-      "H₂O",
-      "OH⁻",
-      "O₂",
-      "Na"
-    ],
-    "answer": 1,
-    "explain": "氢氧根。\nHydroxide ion."
-  },
-  {
-    "id": "q-n98",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "同一主族元素化学性质往往相似。\nSame main group elements often have similar properties.",
-    "answer": true
-  },
-  {
-    "id": "q-n99",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "钾的符号？\nSymbol of potassium?",
-    "options": [
-      "P",
-      "Po",
-      "K",
-      "Ka"
-    ],
-    "answer": 2,
-    "explain": "K（kalium）。\nK."
-  },
-  {
-    "id": "q-n100",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "卤素属于？\nHalogens are in?",
-    "options": [
-      "IA",
-      "IIA",
-      "VIIA",
-      "0"
-    ],
-    "answer": 2,
-    "explain": "VIIA族。\nGroup VIIA."
-  },
-  {
-    "id": "q-n101",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "中和反应产物？\nNeutralisation products?",
-    "options": [
-      "只有盐",
-      "盐和水 salt + water",
-      "只有水",
-      "氧气"
-    ],
-    "answer": 1,
-    "explain": "盐+水。\nSalt and water."
-  },
-  {
-    "id": "q-n102",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "tf",
-    "prompt": "pH<7溶液一定是酸溶液。\npH<7 must be an acid solution.",
-    "answer": false
-  },
-  {
-    "id": "q-n103",
-    "subject": "chemistry",
-    "chapter": "物质构成",
-    "type": "mcq",
-    "prompt": "同位素区别在于？\nIsotopes differ in?",
-    "options": [
-      "质子数",
-      "中子数 neutron number",
-      "电子数一定不同",
-      "原子序数"
-    ],
-    "answer": 1,
-    "explain": "中子数不同。\nDifferent neutrons."
-  }
+
+  // ========== 物理 · 声 ==========
+  { id: 'q-p1', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '声音是由物体的什么产生的？\nWhat produces sound?',
+    options: ['振动 vibration', '发光 light emission', '传热 heat transfer', '流动 flowing'],
+    answer: 0, explain: '发声体都在振动；振动停止则发声停止。\nSound is produced by vibration.' },
+  { id: 'q-p2', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '声音可以在真空中传播。\nSound can travel through a vacuum.',
+    answer: false, explain: '声音是机械波，需介质；真空不能传声。\nSound needs a medium; vacuum cannot transmit sound.' },
+  { id: 'q-p3', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '决定音调高低的是？\nWhat determines pitch?',
+    options: ['振幅 amplitude', '频率 frequency', '音色 timbre', '声速 speed of sound'],
+    answer: 1, explain: '频率越高，音调越高。\nHigher frequency → higher pitch.' },
+  { id: 'q-p4', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '决定响度大小的主要因素是？\nLoudness mainly depends on ______.',
+    options: ['频率 frequency', '振幅 amplitude', '音色 timbre', '波长 wavelength'],
+    answer: 1, explain: '振幅越大，响度越大。\nLarger amplitude → louder sound.' },
+  { id: 'q-p5', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '超声波的频率高于 20000 Hz。\nUltrasound has frequency above 20 000 Hz.',
+    answer: true, explain: '高于 20 kHz 为超声，低于 20 Hz 为次声。\n>20 kHz ultrasound; <20 Hz infrasound.' },
+  { id: 'q-p6', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '一般情况下，声音在哪种介质中传播最快？\nIn which medium does sound usually travel fastest?',
+    options: ['空气 air', '水 water', '钢铁 steel', '真空 vacuum'],
+    answer: 2, explain: '通常：固体 > 液体 > 气体。\nUsually solids > liquids > gases.' },
+  { id: 'q-p7', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '“音色”的英文是？\nThe English word for 音色 is ______.',
+    options: ['pitch', 'loudness', 'timbre', 'echo'],
+    answer: 2, explain: 'timbre = 音色；pitch=音调；loudness=响度。' },
+  { id: 'q-p8', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '音调由振幅决定。\nPitch is determined by amplitude.',
+    answer: false, explain: '音调由频率决定；振幅决定响度。\nPitch→frequency; loudness→amplitude.' },
+  { id: 'q-p9', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '减弱噪声的途径不包括？\nWhich is NOT a way to reduce noise?',
+    options: ['在声源处减弱 at source', '在传播途径中减弱 along path', '在人耳处减弱 at ear', '提高声音的频率 raise frequency'],
+    answer: 3, explain: '噪声控制：声源、传播途径、接收处。' },
+  { id: 'q-p10', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '分贝（dB）用来表示？\nThe decibel (dB) is used to express ______.',
+    options: ['音调 pitch', '音色 timbre', '声音强弱 sound level', '声速 speed'],
+    answer: 2, explain: '分贝表示声音强弱（声强级）。' },
+  { id: 'q-p11', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '月球上两名宇航员不借助无线电也能直接对话。\nAstronauts on the Moon can talk without radio.',
+    answer: false, explain: '月球近似真空，声音无法传播。\nNear vacuum — no sound transmission.' },
+  { id: 'q-p12', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '人耳的听觉频率范围大约是？\nHuman hearing range is about ______.',
+    options: ['0–20 Hz', '20–20 000 Hz', '20 kHz–2 MHz', '仅 440 Hz'],
+    answer: 1, explain: '约 20 Hz–20 000 Hz。' },
+  { id: 'q-p13', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '空气中声速大约是（15℃）？\nSpeed of sound in air at ~15°C is about ______.',
+    options: ['3×10⁸ m/s', '34 m/s', '340 m/s', '3400 m/s'],
+    answer: 2, explain: '约 340 m/s。' },
+  { id: 'q-p14', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '次声波的频率低于 20 Hz。\nInfrasound has frequency below 20 Hz.',
+    answer: true, explain: '低于 20 Hz 的声波叫次声波。' },
+  { id: 'q-p15', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '回声测距中，若声速为 v、往返时间为 t，距离约为？\nEcho ranging: distance ≈ ______.',
+    options: ['vt', 'vt/2', '2vt', 'v/t'],
+    answer: 1, explain: '单程距离 s = vt/2。' },
+  { id: 'q-p16', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '下列关于乐音三要素，对应正确的是？\nWhich pairing is correct?',
+    options: ['音调↔频率 pitch↔frequency', '响度↔频率 loudness↔frequency', '音色↔振幅 timbre↔amplitude', '音调↔振幅 pitch↔amplitude'],
+    answer: 0, explain: '音调-频率；响度-振幅；音色-波形/材料结构。' },
+  { id: 'q-p17', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '声音在固体中一定不能传播。\nSound cannot travel in solids.',
+    answer: false, explain: '固体通常也能传声，且往往更快。' },
+  { id: 'q-p18', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '用棉花塞耳属于在何处减弱噪声？\nCotton in ears reduces noise at the ______.',
+    options: ['声源 source', '传播途径 path', '人耳 receiver', '真空 vacuum'],
+    answer: 2, explain: '在人耳（接收处）减弱。' },
+  { id: 'q-p19', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '声波在空气中属于？\nSound waves in air are ______.',
+    options: ['横波 transverse', '纵波 longitudinal', '电磁波 electromagnetic', '不需要介质 no medium'],
+    answer: 1, explain: '纵波（疏密波）。' },
+  { id: 'q-p20', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '频率越高，波长一定越长（同介质、同声速）。\nHigher frequency always means longer wavelength (same medium).',
+    answer: false, explain: 'v=fλ，声速一定时，频率越高波长越短。' },
+  { id: 'q-p21', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '蝙蝠探测障碍物主要利用？\nBats detect obstacles mainly using ______.',
+    options: ['次声波 infrasound', '可见光 visible light', '超声波 ultrasound', '红外线 infrared'],
+    answer: 2, explain: '超声波回声定位。' },
+  { id: 'q-p22', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '下列能传声的是？\nWhich can transmit sound?',
+    options: ['水 water', '真空 vacuum', '月球表面无介质处 vacuum on Moon', '完全空的太空 empty space'],
+    answer: 0, explain: '水可以传声；真空不能。' },
+  { id: 'q-p23', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '振幅越大，音调一定越高。\nLarger amplitude always means higher pitch.',
+    answer: false, explain: '振幅影响响度，不影响音调。' },
+  { id: 'q-p24', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '噪声污染主要危害不包括？\nNoise pollution does NOT mainly cause ______.',
+    options: ['听力损伤 hearing loss', '睡眠干扰 sleep disturbance', '情绪烦躁 annoyance', '提高智商 higher IQ'],
+    answer: 3, explain: '噪声影响听力与健康，但不提高智商。' },
+  { id: 'q-p25', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '音叉发声时，叉股在？\nWhen a tuning fork sounds, its prongs are ______.',
+    options: ['振动 vibrating', '静止 still', '熔化 melting', '发光 glowing'],
+    answer: 0, explain: '振动。' },
+  { id: 'q-p26', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '真空中光速可传播，但声速不能。\nLight can travel in vacuum but sound cannot.',
+    answer: true, explain: '光是电磁波；声是机械波。' },
+  { id: 'q-p27', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '同一声源，距离越远通常响度？\nFarther from a source, loudness usually ______.',
+    options: ['增大 increases', '减小 decreases', '不变 unchanged', '先增后减 increases then decreases only'],
+    answer: 1, explain: '减小。' },
+  { id: 'q-p28', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '下列属于超声波应用的是？\nAn application of ultrasound is ______.',
+    options: ['广播电台 radio broadcast', '人耳听音乐 listening to music', '医学 B 超 medical ultrasound scan', '次声预警 only infrasound warning'],
+    answer: 2, explain: 'B 超、测距、清洗等。' },
+  { id: 'q-p29', subject: 'physics', chapter: '声', type: 'tf',
+    prompt: '只要物体振动，人就一定能听到声音。\nAny vibration must be heard by humans.',
+    answer: false, explain: '频率超出听觉范围或响度太小则听不到。' },
+  { id: 'q-p30', subject: 'physics', chapter: '声', type: 'mcq',
+    prompt: '“禁止鸣笛”是在何处控制噪声？\n\'No horn\' controls noise at the ______.',
+    options: ['声源 source', '传播途径 path', '人耳 ear', '真空 vacuum'],
+    answer: 0, explain: '声源处。' },
+
+  // ========== 物理 · 光 ==========
+  { id: 'q-p31', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '光在同种均匀介质中沿直线传播。\nLight travels in straight lines in a uniform medium.',
+    answer: true, explain: '直线传播可解释影子、小孔成像等。' },
+  { id: 'q-p32', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '光的反射定律中，反射角 ______ 入射角。\nIn reflection, angle of reflection ______ angle of incidence.',
+    options: ['大于 >', '小于 <', '等于 =', '无关 unrelated'],
+    answer: 2, explain: '反射角等于入射角。' },
+  { id: 'q-p33', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '平面镜成像的特点是？\nA plane mirror forms an image that is ______.',
+    options: ['倒立缩小实像 inverted diminished real', '正立等大虚像 upright same-size virtual', '倒立放大虚像 inverted magnified virtual', '正立放大实像 upright magnified real'],
+    answer: 1, explain: '正立、等大、虚像。' },
+  { id: 'q-p34', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '虚像可以用光屏承接。\nA virtual image can be caught on a screen.',
+    answer: false, explain: '虚像不能用光屏承接；实像可以。' },
+  { id: 'q-p35', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '凸透镜对光线的作用是？\nA convex lens ______ light.',
+    options: ['发散 diverges', '会聚 converges', '既不会聚也不发散 neither', '吸收 absorbs'],
+    answer: 1, explain: '会聚 converging。' },
+  { id: 'q-p36', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '矫正近视眼应使用？\nMyopia is corrected with a ______.',
+    options: ['凸透镜 convex lens', '凹透镜 concave lens', '平面镜 plane mirror', '三棱镜 prism'],
+    answer: 1, explain: '凹透镜。' },
+  { id: 'q-p37', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '当物距 u > 2f 时，凸透镜成的像是？\nFor a convex lens, if u > 2f, the image is ______.',
+    options: ['倒立缩小实像 inverted diminished real', '倒立放大实像 inverted magnified real', '正立放大虚像 upright magnified virtual', '正立等大实像 upright same-size real'],
+    answer: 0, explain: '倒立缩小实像（照相机）。' },
+  { id: 'q-p38', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '光的三原色是红、黄、蓝。\nPrimary colours of light are red, yellow, blue.',
+    answer: false, explain: '光的三原色是红、绿、蓝（RGB）。' },
+  { id: 'q-p39', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '红外线的显著特点是？\nA key property of infrared is ______.',
+    options: ['化学作用强 strong chemical effect', '热效应强 strong heating effect', '荧光作用强 fluorescence', '杀菌能力强 sterilising'],
+    answer: 1, explain: '热效应强。' },
+  { id: 'q-p40', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '光从空气斜射入水中时，折射角 ______ 入射角。\nAir to water: angle of refraction ______ angle of incidence.',
+    options: ['大于 >', '小于 <', '等于 =', '无法确定 unknown'],
+    answer: 1, explain: '折射角小于入射角。' },
+  { id: 'q-p41', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '凹透镜对光有发散作用，可矫正远视。\nA concave lens corrects long-sightedness.',
+    answer: false, explain: '凹透镜矫正近视；远视用凸透镜。' },
+  { id: 'q-p42', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '放大镜利用凸透镜成什么像？\nA magnifying glass forms a ______.',
+    options: ['倒立缩小实像', '倒立放大实像', '正立放大虚像 upright magnified virtual', '正立缩小虚像'],
+    answer: 2, explain: 'u < f：正立放大虚像。' },
+  { id: 'q-p43', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '法线与镜面的关系是？\nThe normal is ______ to the mirror surface.',
+    options: ['平行 parallel', '成 45° at 45°', '垂直 perpendicular', '重合 coincident'],
+    answer: 2, explain: '垂直。' },
+  { id: 'q-p44', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '入射角是入射光线与镜面的夹角。\nAngle of incidence is between incident ray and mirror.',
+    answer: false, explain: '入射角是入射光线与法线的夹角。' },
+  { id: 'q-p45', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '矫正远视眼应使用？\nHyperopia is corrected with a ______.',
+    options: ['凸透镜 convex lens', '凹透镜 concave lens', '平面镜', '三棱镜'],
+    answer: 0, explain: '凸透镜。' },
+  { id: 'q-p46', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '白光通过三棱镜色散后，偏折最大的通常是？\nIn dispersion, which colour is bent most?',
+    options: ['红 red', '绿 green', '黄 yellow', '紫 violet'],
+    answer: 3, explain: '紫光偏折最大，红光最小。' },
+  { id: 'q-p47', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '实像一定是倒立的，虚像一定是正立的（透镜常见情形）。\nFor common lens cases: real images inverted, virtual upright.',
+    answer: true, explain: '凸透镜：实像倒立，虚像正立（中学范围）。' },
+  { id: 'q-p48', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '紫外线的作用不包括？\nUltraviolet is NOT mainly used for ______.',
+    options: ['强热取暖 strong heating', '杀菌 sterilisation', '使荧光物质发光 fluorescence', '促进维生素 D 合成 vitamin D'],
+    answer: 0, explain: '紫外线可杀菌、使荧光物质发光；热效应主要是红外。' },
+  { id: 'q-p49', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '小孔成像成的是？\nA pinhole forms a ______.',
+    options: ['正立虚像 upright virtual', '倒立实像 inverted real', '正立实像 upright real', '倒立虚像 inverted virtual'],
+    answer: 1, explain: '倒立的实像。' },
+  { id: 'q-p50', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '光在真空中的速度约为 3×10⁸ m/s。\nSpeed of light in vacuum is about 3×10⁸ m/s.',
+    answer: true, explain: '这是光速的常用近似值。' },
+  { id: 'q-p51', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '漫反射 ______ 遵守反射定律。\nDiffuse reflection ______ the laws of reflection.',
+    options: ['不遵守 does not obey', '遵守 obeys', '只在夜间遵守 only at night', '只对红光遵守 only for red'],
+    answer: 1, explain: '仍然遵守。' },
+  { id: 'q-p52', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '当 u = 2f 时，凸透镜成？\nFor convex lens at u = 2f, image is ______.',
+    options: ['倒立等大实像 inverted same-size real', '正立放大虚像', '倒立缩小实像', '不成像 no image'],
+    answer: 0, explain: '倒立等大实像。' },
+  { id: 'q-p53', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '平面镜成的像与物到镜面的距离相等。\nObject and plane-mirror image are equidistant from the mirror.',
+    answer: true, explain: '像与物关于镜面对称。' },
+  { id: 'q-p54', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '近视眼成像落在视网膜的？\nIn myopia, the image forms ______ the retina.',
+    options: ['前方 in front of', '后方 behind', '之上 on', '无关 unrelated'],
+    answer: 0, explain: '前方。' },
+  { id: 'q-p55', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '下列属于光的直线传播现象的是？\nWhich is due to rectilinear propagation?',
+    options: ['海市蜃楼 mirage', '彩虹 rainbow', '影子 shadow', '透镜成像 lens imaging mainly'],
+    answer: 2, explain: '影子。' },
+  { id: 'q-p56', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '凹透镜对光线有会聚作用。\nA concave lens converges light.',
+    answer: false, explain: '凹透镜发散光线。' },
+  { id: 'q-p57', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '投影仪利用凸透镜成？\nA projector forms a ______.',
+    options: ['正立放大虚像', '倒立放大实像 inverted magnified real', '倒立缩小实像', '正立等大虚像'],
+    answer: 1, explain: '倒立放大实像。' },
+  { id: 'q-p58', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '光从水斜射入空气，折射角 ______ 入射角。\nWater to air: refraction angle ______ incidence angle.',
+    options: ['大于 >', '小于 <', '等于 =', '一定 90° always 90°'],
+    answer: 0, explain: '折射角大于入射角。' },
+  { id: 'q-p59', subject: 'physics', chapter: '光', type: 'tf',
+    prompt: '我们能从不同方向看到本身不发光的物体，是因为漫反射。\nWe see non-luminous objects from many directions due to diffuse reflection.',
+    answer: true, explain: '粗糙表面发生漫反射。' },
+  { id: 'q-p60', subject: 'physics', chapter: '光', type: 'mcq',
+    prompt: '过光心的光线经透镜后？\nA ray through the optical centre ______.',
+    options: ['一定过焦点 through focus', '一定平行主光轴 parallel to axis', '方向不变 undeviated', '一定反射 reflected'],
+    answer: 2, explain: '传播方向不变。' },
+
+  // ========== 物理 · 运动和力 ==========
+  { id: 'q-p61', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '判断物体运动或静止，必须选定？\nTo judge motion or rest you must choose a ______.',
+    options: ['质量 mass', '参照物 reference object', '速度 speed', '力 force'],
+    answer: 1, explain: '参照物。' },
+  { id: 'q-p62', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '速度公式是？\nThe formula for speed is ______.',
+    options: ['v = s × t', 'v = s / t', 'v = t / s', 'v = F / m'],
+    answer: 1, explain: 'v = s/t。' },
+  { id: 'q-p63', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '力的单位是牛顿，符号为 N。\nThe unit of force is the newton (N).',
+    answer: true, explain: '国际单位制中力的单位是牛顿。' },
+  { id: 'q-p64', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '重力的施力物体是？\nThe agent of gravity on Earth is the ______.',
+    options: ['桌子 table', '空气 air', '地球 Earth', '人 person'],
+    answer: 2, explain: '地球。' },
+  { id: 'q-p65', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '二力平衡的条件不包括？\nWhich is NOT required for two-force balance?',
+    options: ['大小相等 equal magnitude', '方向相反 opposite direction', '作用在同一直线上 same line', '作用在两个不同物体上 on two different bodies'],
+    answer: 3, explain: '必须作用在同一物体上。' },
+  { id: 'q-p66', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '惯性是一种力。\nInertia is a type of force.',
+    answer: false, explain: '惯性是物体的固有属性，不是力。' },
+  { id: 'q-p67', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '牛顿第一定律指出：物体不受力时将？\nNewton\'s first law: if no net force, a body ______.',
+    options: ['一定静止 always at rest', '一定匀速直线 always uniform motion', '保持静止或匀速直线 rest or uniform motion', '加速 accelerate'],
+    answer: 2, explain: '保持静止或匀速直线运动。' },
+  { id: 'q-p68', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: 'G = mg 中，g 的近似值通常取？\nIn G = mg, g is about ______.',
+    options: ['1 N/kg', '9.8 N/kg', '100 N/kg', '0.98 N/kg'],
+    answer: 1, explain: '9.8 N/kg。' },
+  { id: 'q-p69', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '力可以离开物体而独立存在。\nA force can exist without objects.',
+    answer: false, explain: '力是物体对物体的作用。' },
+  { id: 'q-p70', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '力的三要素是？\nThe three elements of a force are ______.',
+    options: ['大小、方向、速度', '大小、方向、作用点 magnitude, direction, point', '质量、方向、作用点', '大小、质量、方向'],
+    answer: 1, explain: '大小、方向、作用点。' },
+  { id: 'q-p71', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '汽车突然刹车，乘客向前倾是因为？\nPassengers lurch forward in sudden braking due to ______.',
+    options: ['重力 gravity', '惯性 inertia', '摩擦力 friction', '弹力 elastic force'],
+    answer: 1, explain: '惯性。' },
+  { id: 'q-p72', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '物体受到平衡力时一定保持静止。\nBalanced forces mean a body must be at rest.',
+    answer: false, explain: '也可能做匀速直线运动。' },
+  { id: 'q-p73', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '质量 2 kg 的物体，重力约为？（g=10 N/kg）\nMass 2 kg; weight ≈ ? (g=10)',
+    options: ['2 N', '10 N', '20 N', '200 N'],
+    answer: 2, explain: 'G=20 N。' },
+  { id: 'q-p74', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '坐在行驶火车上的人看路旁树在后退，所选参照物是？\nTrees seem to move backward; reference is likely the ______.',
+    options: ['火车 train', '树 trees', '地面 ground only', '太阳 Sun only'],
+    answer: 0, explain: '火车（自己）。' },
+  { id: 'q-p75', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '质量越大，惯性越大。\nGreater mass means greater inertia.',
+    answer: true, explain: '惯性大小只与质量有关。' },
+  { id: 'q-p76', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '测量力的常用仪器是？\nForce is commonly measured with a ______.',
+    options: ['天平 balance', '温度计 thermometer', '弹簧测力计 spring balance', '量筒 measuring cylinder'],
+    answer: 2, explain: '弹簧测力计。' },
+  { id: 'q-p77', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '匀速直线运动的速度？\nIn uniform linear motion, speed ______.',
+    options: ['大小方向都不变 constant magnitude & direction', '只大小变 only magnitude changes', '只方向变 only direction changes', '不断增大 keeps increasing'],
+    answer: 0, explain: '大小和方向都不变。' },
+  { id: 'q-p78', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '摩擦力的方向总是与物体运动方向相反。\nFriction always opposes the direction of motion.',
+    answer: false, explain: '阻碍的是相对运动或相对运动趋势，不一定与运动方向相反（如人走路时静摩擦可向前）。' },
+  { id: 'q-p79', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '同一地点，物体重量与质量的关系是？\nAt the same place, weight and mass are ______.',
+    options: ['无关 unrelated', '成正比 proportional', '成反比 inversely proportional', '相等 equal'],
+    answer: 1, explain: '成正比 G=mg。' },
+  { id: 'q-p80', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '下列属于平衡状态的是？\nWhich is an equilibrium state?',
+    options: ['自由落体加速 accelerating free fall', '转弯转弯 turning', '静止或匀速直线 rest or uniform motion', '刹车减速 decelerating'],
+    answer: 2, explain: '匀速直线或静止。' },
+  { id: 'q-p81', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '作用力与反作用力是一对平衡力。\nAction and reaction are a pair of balanced forces.',
+    answer: false, explain: '作用在两个物体上，不是平衡力。' },
+  { id: 'q-p82', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '减小有害摩擦的方法是？\nA way to reduce unwanted friction is ______.',
+    options: ['增大压力 increase pressure', '加润滑剂 lubricate', '把接触面弄得更粗糙 roughen surfaces', '增大接触面积（滑动） only increase area'],
+    answer: 1, explain: '加润滑油等。' },
+  { id: 'q-p83', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '路程 100 m，时间 20 s，平均速度是？\nDistance 100 m in 20 s; average speed = ______.',
+    options: ['2000 m/s', '0.2 m/s', '5 m/s', '20 m/s'],
+    answer: 2, explain: '5 m/s。' },
+  { id: 'q-p84', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '力是维持物体运动的原因。\nForce is needed to keep an object moving.',
+    answer: false, explain: '力是改变运动状态的原因；牛顿第一定律。' },
+  { id: 'q-p85', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '下列关于重力，正确的是？\nWhich statement about gravity is correct?',
+    options: ['方向竖直向下 vertically downward', '方向总水平 always horizontal', '与质量无关 independent of mass', '施力物体是空气 agent is air'],
+    answer: 0, explain: '方向竖直向下（指向地心）。' },
+  { id: 'q-p86', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '踢出的足球在草地上越滚越慢，是因为？\nA rolling ball slows on grass mainly due to ______.',
+    options: ['没有惯性 no inertia', '惯性消失 inertia vanishes', '受到摩擦等阻力 friction/resistance', '重力消失 gravity vanishes'],
+    answer: 2, explain: '受到阻力（摩擦等）。' },
+  { id: 'q-p87', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '参照物可以任意选择，但选不同参照物结论可能不同。\nChoice of reference frame can change the description of motion.',
+    answer: true, explain: '运动具有相对性。' },
+  { id: 'q-p88', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '弹簧测力计的原理基于？\nA spring balance works based on ______.',
+    options: ['惯性 inertia', '胡克定律/弹性形变 Hooke / elasticity', '光速 light speed', '密度 density'],
+    answer: 1, explain: '在弹性限度内，弹簧伸长与拉力成正比。' },
+  { id: 'q-p89', subject: 'physics', chapter: '运动和力', type: 'mcq',
+    prompt: '一对平衡力的合力是？\nThe resultant of two balanced forces is ______.',
+    options: ['零 zero', '等于较大的力 the larger force', '等于两力之和 sum', '无法确定 unknown'],
+    answer: 0, explain: '零。' },
+  { id: 'q-p90', subject: 'physics', chapter: '运动和力', type: 'tf',
+    prompt: '航天员在太空中质量为零。\nAstronauts in space have zero mass.',
+    answer: false, explain: '质量不变；失重不等于质量为零。' },
+
+  // ========== 生物 · 人体生命活动 ==========
+  { id: 'q-b1', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '人体结构和功能的基本单位是？\nThe basic unit of the human body is the ______.',
+    options: ['组织 tissue', '器官 organ', '细胞 cell', '系统 system'],
+    answer: 2, explain: '细胞 → 组织 → 器官 → 系统。' },
+  { id: 'q-b2', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '消化和吸收的主要场所是？\nMain site of digestion and absorption is the ______.',
+    options: ['胃 stomach', '小肠 small intestine', '大肠 large intestine', '口腔 mouth'],
+    answer: 1, explain: '小肠。' },
+  { id: 'q-b3', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '动脉是将血液运回心脏的血管。\nArteries carry blood back to the heart.',
+    answer: false, explain: '动脉运离心脏；静脉运回心脏。' },
+  { id: 'q-b4', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '运输氧气的主要是？\nOxygen is mainly transported by ______.',
+    options: ['白细胞 WBC', '血小板 platelets', '红细胞 RBC', '血浆蛋白 plasma proteins'],
+    answer: 2, explain: '红细胞（血红蛋白）。' },
+  { id: 'q-b5', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '肺泡的主要功能是？\nAlveoli are mainly for ______.',
+    options: ['消化 digestion', '气体交换 gas exchange', '产生尿液 urine formation', '泵血 pumping blood'],
+    answer: 1, explain: '气体交换。' },
+  { id: 'q-b6', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '形成尿液的主要器官是？\nUrine is mainly formed in the ______.',
+    options: ['膀胱 bladder', '输尿管 ureter', '肾脏 kidney', '尿道 urethra'],
+    answer: 2, explain: '肾脏。' },
+  { id: 'q-b7', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '酶是生物催化剂，能加快反应速率。\nEnzymes are biological catalysts.',
+    answer: true, explain: '酶具有催化作用和专一性。' },
+  { id: 'q-b8', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '心脏有几个腔？\nHow many chambers does the heart have?',
+    options: ['2', '3', '4', '5'],
+    answer: 2, explain: '四个腔。' },
+  { id: 'q-b9', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '体循环的起点是？\nSystemic circulation starts from the ______.',
+    options: ['右心房 right atrium', '右心室 right ventricle', '左心房 left atrium', '左心室 left ventricle'],
+    answer: 3, explain: '左心室。' },
+  { id: 'q-b10', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '肺循环中，血液流经肺部后氧气含量增加。\nBlood gains oxygen in pulmonary circulation.',
+    answer: true, explain: '肺部气体交换使血氧增加。' },
+  { id: 'q-b11', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '血小板的主要功能是？\nPlatelets mainly help in ______.',
+    options: ['运输氧气 carry O₂', '吞噬病菌 phagocytosis', '止血和凝血 clotting', '运输养料 carry nutrients only'],
+    answer: 2, explain: '止血和凝血。' },
+  { id: 'q-b12', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '淀粉的消化开始于？\nStarch digestion begins in the ______.',
+    options: ['口腔 mouth', '食道 oesophagus', '胃 stomach', '小肠 small intestine'],
+    answer: 0, explain: '口腔。' },
+  { id: 'q-b13', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '蛋白质的消化从口腔开始。\nProtein digestion begins in the mouth.',
+    answer: false, explain: '蛋白质化学性消化从胃开始。' },
+  { id: 'q-b14', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '肾单位包括？\nA nephron includes ______.',
+    options: ['仅肾小球和肾小囊', '肾小球、肾小囊和肾小管', '只含肾小管', '膀胱和输尿管'],
+    answer: 1, explain: '肾小球、肾小囊和肾小管。' },
+  { id: 'q-b15', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '胆汁由哪个器官分泌？\nBile is secreted by the ______.',
+    options: ['胃 stomach', '胰腺 pancreas', '肝脏 liver', '小肠 small intestine'],
+    answer: 2, explain: '肝脏。' },
+  { id: 'q-b16', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '胆汁含有消化酶。\nBile contains digestive enzymes.',
+    answer: false, explain: '胆汁不含消化酶，可乳化脂肪。' },
+  { id: 'q-b17', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '毛细血管的管壁特点是？\nCapillary walls are ______.',
+    options: ['很薄 very thin', '很厚 very thick', '有瓣膜 always have valves', '与主动脉一样粗 as wide as aorta'],
+    answer: 0, explain: '非常薄，利于物质交换。' },
+  { id: 'q-b18', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '血红蛋白存在于？\nHaemoglobin is found in ______.',
+    options: ['白细胞 WBC', '红细胞 RBC', '血小板 platelets', '血浆 plasma'],
+    answer: 1, explain: '红细胞。' },
+  { id: 'q-b19', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '左心室壁通常比右心室壁更厚。\nThe left ventricle wall is thicker than the right.',
+    answer: true, explain: '体循环路程更长、阻力更大。' },
+  { id: 'q-b20', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '吸气时膈肌？\nDuring inhalation the diaphragm ______.',
+    options: ['收缩下降 contracts and moves down', '舒张上升 relaxes and moves up', '不运动 does not move', '只左右运动 only moves sideways'],
+    answer: 0, explain: '收缩，顶部下降。' },
+  { id: 'q-b21', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '蛋白质消化的终产物主要是？\nEnd products of protein digestion are mainly ______.',
+    options: ['葡萄糖 glucose', '脂肪酸 fatty acids', '氨基酸 amino acids', '甘油 glycerol only'],
+    answer: 2, explain: '氨基酸。' },
+  { id: 'q-b22', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '静脉血一定是含氧少的血。\nVenous blood always has low oxygen.',
+    answer: false, explain: '肺静脉中是含氧丰富的血。' },
+  { id: 'q-b23', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '肺循环的起点是？\nPulmonary circulation starts from the ______.',
+    options: ['左心室 left ventricle', '右心室 right ventricle', '左心房 left atrium', '右心房 right atrium'],
+    answer: 1, explain: '右心室。' },
+  { id: 'q-b24', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '小肠绒毛的作用是？\nVilli in the small intestine ______.',
+    options: ['分泌盐酸 secrete HCl', '增大吸收面积 increase surface area', '产生红细胞 make RBCs', '储存尿液 store urine'],
+    answer: 1, explain: '增大吸收面积。' },
+  { id: 'q-b25', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '大肠是吸收营养物质的主要场所。\nThe large intestine is the main site of nutrient absorption.',
+    answer: false, explain: '主要是小肠；大肠主要吸收水分等。' },
+  { id: 'q-b26', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '尿素主要通过哪个系统排出？\nUrea is mainly excreted by the ______.',
+    options: ['消化系统 digestive', '呼吸系统 respiratory', '泌尿系统 urinary', '运动系统 locomotor'],
+    answer: 2, explain: '泌尿系统。' },
+  { id: 'q-b27', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '白细胞的主要功能是？\nWhite blood cells mainly ______.',
+    options: ['运输氧气 carry O₂', '防御病原体 defend against pathogens', '凝血 clotting', '运输二氧化碳 only carry CO₂'],
+    answer: 1, explain: '防御保护（免疫）。' },
+  { id: 'q-b28', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '血浆的功能之一是运输养料和废物。\nPlasma transports nutrients and wastes.',
+    answer: true, explain: '血浆是血液的液体部分。' },
+  { id: 'q-b29', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '气体交换的主要方式是？\nGas exchange occurs mainly by ______.',
+    options: ['扩散 diffusion', '主动运输 active transport only', '吞噬 phagocytosis', '渗透 osmosis only'],
+    answer: 0, explain: '扩散。' },
+  { id: 'q-b30', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '心脏中防止血液倒流的结构是？\nStructures that prevent backflow in the heart are ______.',
+    options: ['肺泡 alveoli', '神经元 neurons', '瓣膜 valves', '绒毛 villi'],
+    answer: 2, explain: '瓣膜。' },
+  { id: 'q-b31', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '组织层次高于器官。\nTissue is a higher level than organ.',
+    answer: false, explain: '器官由不同组织构成，层次更高。' },
+  { id: 'q-b32', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '唾液中主要消化哪种营养？\nSaliva mainly starts digesting ______.',
+    options: ['淀粉 starch', '蛋白质 protein', '脂肪 fat', '维生素 vitamins'],
+    answer: 0, explain: '淀粉。' },
+  { id: 'q-b33', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '肾小球的主要作用是？\nThe glomerulus mainly performs ______.',
+    options: ['重吸收 reabsorption', '滤过 filtration', '分泌胆汁 bile secretion', '气体交换 gas exchange'],
+    answer: 1, explain: '滤过。' },
+  { id: 'q-b34', subject: 'biology', chapter: '人体生命活动', type: 'tf',
+    prompt: '动脉血管都流动脉血。\nAll arteries carry oxygenated blood.',
+    answer: false, explain: '肺动脉运的是静脉血（含氧少）。' },
+  { id: 'q-b35', subject: 'biology', chapter: '人体生命活动', type: 'mcq',
+    prompt: '人体所需能量的主要来源通常是？\nThe main energy source is usually ______.',
+    options: ['糖类 carbohydrates', '维生素 vitamins', '水 water', '无机盐 mineral salts'],
+    answer: 0, explain: '糖类。' },
+
+  // ========== 生物 · 调节与健康 ==========
+  { id: 'q-b36', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '神经系统调节的基本方式是？\nThe basic form of nervous regulation is ______.',
+    options: ['激素分泌 hormone secretion', '反射 reflex', '血液循环 circulation', '消化 digestion'],
+    answer: 1, explain: '反射。' },
+  { id: 'q-b37', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '反射弧的正确顺序是？\nCorrect order of a reflex arc is ______.',
+    options: ['效应器→中枢→感受器', '感受器→传入神经→神经中枢→传出神经→效应器', '感受器→效应器→中枢', '中枢→感受器→效应器'],
+    answer: 1, explain: '感受器→传入→中枢→传出→效应器。' },
+  { id: 'q-b38', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '胰岛素能升高血糖。\nInsulin raises blood glucose.',
+    answer: false, explain: '胰岛素降低血糖。' },
+  { id: 'q-b39', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: 'vaccine 的中文是？\nVaccine in Chinese is ______.',
+    options: ['抗体 antibody', '抗原 antigen', '疫苗 vaccine', '病原体 pathogen'],
+    answer: 2, explain: '疫苗。' },
+  { id: 'q-b40', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '激素调节与神经调节相比，通常？\nCompared with nervous control, hormonal control is usually ______.',
+    options: ['更快、范围更窄 faster & narrower', '较慢、范围较广、较持久 slower, wider, longer', '只作用于肌肉 muscles only', '不需血液运输 no blood transport'],
+    answer: 1, explain: '较慢、范围广、持续时间较长。' },
+  { id: 'q-b41', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '抗体是由病原体产生的。\nAntibodies are produced by pathogens.',
+    answer: false, explain: '抗体由人体免疫细胞产生。' },
+  { id: 'q-b42', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '中枢神经系统包括？\nThe CNS includes ______.',
+    options: ['脑和脊髓 brain and spinal cord', '只含大脑 cerebrum only', '脑神经和脊神经 cranial & spinal nerves', '只含脊髓 spinal cord only'],
+    answer: 0, explain: '脑和脊髓。' },
+  { id: 'q-b43', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '膝跳反射的神经中枢位于大脑皮层。\nThe knee-jerk centre is in the cerebral cortex.',
+    answer: false, explain: '膝跳反射中枢在脊髓。' },
+  { id: 'q-b44', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '甲状腺激素的主要作用是？\nThyroxine mainly ______.',
+    options: ['降低血糖 lower glucose', '促进代谢与生长 boost metabolism & growth', '仅睡眠时升血压 raise BP only in sleep', '消化蛋白质 digest protein'],
+    answer: 1, explain: '促进新陈代谢和生长发育。' },
+  { id: 'q-b45', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '传染病流行的三个基本环节是？\nThree links of infectious disease spread are ______.',
+    options: ['病原体、抗体、疫苗', '传染源、传播途径、易感人群', '细菌、病毒、真菌', '隔离、消毒、吃药'],
+    answer: 1, explain: '传染源、传播途径、易感人群。' },
+  { id: 'q-b46', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '神经元是？\nA neuron is ______.',
+    options: ['神经细胞 nerve cell', '肌细胞 muscle cell', '骨细胞 bone cell', '红细胞 RBC'],
+    answer: 0, explain: '神经细胞。' },
+  { id: 'q-b47', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '条件反射是先天就有的。\nConditioned reflexes are inborn.',
+    answer: false, explain: '条件反射后天形成，需大脑皮层参与。' },
+  { id: 'q-b48', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '能升高血糖的激素是？\nWhich hormone raises blood glucose?',
+    options: ['胰岛素 insulin', '生长激素 growth hormone only', '胰高血糖素 glucagon', '消化酶 digestive enzyme'],
+    answer: 2, explain: '胰高血糖素。' },
+  { id: 'q-b49', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '接种疫苗属于？\nVaccination is a form of ______.',
+    options: ['治疗传染病 treating infection only', '获得性免疫预防 acquired immunity prevention', '切断所有传播途径 cutting all routes instantly', '消灭传染源 destroying sources only'],
+    answer: 1, explain: '预防，诱导获得性免疫。' },
+  { id: 'q-b50', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '稳态是指内环境绝对不变。\nHomeostasis means the internal environment never changes.',
+    answer: false, explain: '稳态是相对稳定，不是绝对不变。' },
+  { id: 'q-b51', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '肾上腺素在紧急情况下可使？\nAdrenaline in emergency can ______.',
+    options: ['心跳加快 heart rate rises', '血糖立即降为零 glucose to zero', '停止呼吸 stop breathing', '消化加快 a lot faster digestion only'],
+    answer: 0, explain: '心跳加快、血压升高等。' },
+  { id: 'q-b52', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '周围神经系统主要包括？\nThe PNS mainly includes ______.',
+    options: ['仅大脑 cerebrum only', '仅脊髓 spinal cord only', '脑神经和脊神经 cranial and spinal nerves', '仅反射弧中枢 centres only'],
+    answer: 2, explain: '脑神经和脊神经等。' },
+  { id: 'q-b53', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '抗原能引起免疫反应。\nAntigens can trigger immune responses.',
+    answer: true, explain: '抗原刺激机体产生抗体等免疫应答。' },
+  { id: 'q-b54', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '切断传播途径的措施是？\nWhich cuts the route of transmission?',
+    options: ['隔离病人 isolation of patient (source control)', '消毒环境 disinfection', '给易感者增加营养 only better diet', '让病人多运动 more exercise for patients'],
+    answer: 1, explain: '消毒、戴口罩等。' },
+  { id: 'q-b55', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '糖尿病与下列哪种激素关系最直接？\nDiabetes is most directly related to ______.',
+    options: ['胰岛素 insulin', '胆汁 bile', '胃蛋白酶 pepsin', '生长激素 only GH'],
+    answer: 0, explain: '胰岛素。' },
+  { id: 'q-b56', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '非特异性免疫是后天获得的。\nNon-specific immunity is acquired after birth.',
+    answer: false, explain: '非特异性免疫生来就有；特异性免疫可获得。' },
+  { id: 'q-b57', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '效应器可以是？\nAn effector can be ______.',
+    options: ['只是感受器 receptor only', '只是神经中枢 centre only', '肌肉或腺体 muscle or gland', '只是骨 bone only'],
+    answer: 2, explain: '肌肉或腺体。' },
+  { id: 'q-b58', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '垂体的重要作用之一是？\nOne key role of the pituitary is ______.',
+    options: ['消化脂肪 digest fat', '调节其他内分泌腺 regulate other glands', '形成尿液 form urine', '气体交换 gas exchange'],
+    answer: 1, explain: '调节其他内分泌腺。' },
+  { id: 'q-b59', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '健康只包括身体没有疾病。\nHealth means only the absence of physical disease.',
+    answer: false, explain: '健康还包括心理与社会适应等方面。' },
+  { id: 'q-b60', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '淋巴细胞主要参与？\nLymphocytes are mainly involved in ______.',
+    options: ['特异性免疫 specific immunity', '消化蛋白质 protein digestion', '运输氧气 oxygen transport', '骨生长 bone growth only'],
+    answer: 0, explain: '特异性免疫。' },
+  { id: 'q-b61', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '瞳孔对光反射的意义是？\nThe pupil light reflex helps to ______.',
+    options: ['消化食物 digest food', '调节进光量 control light entering eye', '产生激素 make hormones', '形成尿液 form urine'],
+    answer: 1, explain: '调节进入眼睛的光量。' },
+  { id: 'q-b62', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '激素需要通过导管运输到靶器官。\nHormones travel through ducts to target organs.',
+    answer: false, explain: '内分泌腺无导管，激素经血液运输。' },
+  { id: 'q-b63', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '隔离病人主要是为了控制？\nIsolating patients mainly controls the ______.',
+    options: ['传染源 source of infection', '易感人群 susceptibles only', '抗体 antibody', '营养 nutrition'],
+    answer: 0, explain: '传染源。' },
+  { id: 'q-b64', subject: 'biology', chapter: '调节与健康', type: 'mcq',
+    prompt: '小脑的主要功能是？\nThe cerebellum mainly ______.',
+    options: ['思维 only thinking', '视觉 only vision', '协调运动与平衡 coordinate movement & balance', '分泌胰岛素 secrete insulin'],
+    answer: 2, explain: '协调运动、维持平衡。' },
+  { id: 'q-b65', subject: 'biology', chapter: '调节与健康', type: 'tf',
+    prompt: '疫苗通常含有灭活或减毒的病原体（或其成分）。\nVaccines often contain weakened/inactivated pathogens or components.',
+    answer: true, explain: '以诱导机体产生免疫力。' },
+
+  // ========== 化学 · 身边的物质 ==========
+  { id: 'q-c1', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '空气中体积分数最大的气体是？\nThe most abundant gas in air by volume is ______.',
+    options: ['氧气 O₂', '氮气 N₂', '二氧化碳 CO₂', '稀有气体 noble gases'],
+    answer: 1, explain: '氮气约 78%。' },
+  { id: 'q-c2', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '检验二氧化碳常用？\nCO₂ is commonly tested with ______.',
+    options: ['石蕊直接确认 litmus alone', '澄清石灰水 limewater', '酚酞 phenolphthalein', '淀粉溶液 starch'],
+    answer: 1, explain: '澄清石灰水。' },
+  { id: 'q-c3', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '氧气可以支持燃烧和呼吸。\nOxygen supports combustion and respiration.',
+    answer: true, explain: '氧气化学性质较活泼。' },
+  { id: 'q-c4', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '下列属于纯净物的是？\nWhich is a pure substance?',
+    options: ['空气 air', '海水 sea water', '蒸馏水 distilled water', '牛奶 milk'],
+    answer: 2, explain: '蒸馏水。' },
+  { id: 'q-c5', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '冰融化成水属于？\nIce melting is a ______.',
+    options: ['化学变化 chemical change', '物理变化 physical change', '既是物理又是化学 both', '氧化反应 oxidation'],
+    answer: 1, explain: '物理变化。' },
+  { id: 'q-c6', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '催化剂在反应前后质量和化学性质都改变。\nA catalyst changes its mass and chemical nature.',
+    answer: false, explain: '催化剂质量和化学性质反应前后不变。' },
+  { id: 'q-c7', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '燃烧需要的条件不包括？\nWhich is NOT needed for combustion?',
+    options: ['可燃物 fuel', '氧气（或空气） oxygen/air', '温度达到着火点 ignition temperature', '必须有催化剂 a catalyst'],
+    answer: 3, explain: '不需要催化剂。' },
+  { id: 'q-c8', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '空气是一种化合物。\nAir is a compound.',
+    answer: false, explain: '空气是混合物。' },
+  { id: 'q-c9', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '铁生锈主要与哪些物质有关？\nIron rusting mainly involves ______.',
+    options: ['只与氮气 nitrogen only', '氧气和水 oxygen and water', '只与二氧化碳 CO₂ only', '只与氢气 H₂ only'],
+    answer: 1, explain: '氧气和水。' },
+  { id: 'q-c10', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '下列属于化学变化的是？\nWhich is a chemical change?',
+    options: ['水沸腾 boiling water', '玻璃破碎 breaking glass', '蜡烛燃烧 candle burning', '酒精挥发 alcohol evaporating'],
+    answer: 2, explain: '蜡烛燃烧。' },
+  { id: 'q-c11', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '澄清石灰水变浑浊，通常说明有？\nLimewater turning milky suggests ______.',
+    options: ['CO₂', 'O₂', 'N₂', 'H₂'],
+    answer: 0, explain: '二氧化碳。' },
+  { id: 'q-c12', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '氮气的化学性质很活泼，易支持燃烧。\nNitrogen is very reactive and supports combustion.',
+    answer: false, explain: '氮气较稳定，通常不支持燃烧。' },
+  { id: 'q-c13', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '氢气验纯的常用方法与？\nA common test related to hydrogen purity involves ______.',
+    options: ['使石灰水变浑浊 limewater', '点燃听爆鸣声 pop test', '使火焰立即熄灭 always extinguish', '使石蕊变蓝 litmus blue'],
+    answer: 1, explain: '点燃时听声音（爆鸣）。' },
+  { id: 'q-c14', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '水的化学式是？\nThe formula of water is ______.',
+    options: ['H₂O', 'H₂O₂', 'HO₂', 'OH'],
+    answer: 0, explain: 'H₂O。' },
+  { id: 'q-c15', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '光合作用产生氧气并消耗二氧化碳。\nPhotosynthesis consumes CO₂ and produces O₂.',
+    answer: true, explain: '绿色植物光合作用的重要特征。' },
+  { id: 'q-c16', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '一氧化碳有毒是因为？\nCO is toxic mainly because it ______.',
+    options: ['密度太大 too dense', '支持燃烧 supports combustion', '易与血红蛋白结合 binds to haemoglobin', '无色无味所以无害 colourless so harmless'],
+    answer: 2, explain: '与血红蛋白结合更牢固。' },
+  { id: 'q-c17', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '下列属于混合物的是？\nWhich is a mixture?',
+    options: ['空气 air', '氧气 O₂', '二氧化碳 CO₂', '铁 Fe'],
+    answer: 0, explain: '空气。' },
+  { id: 'q-c18', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '着火点是可燃物开始燃烧所需的最低温度。\nIgnition temperature is the lowest temperature needed to start burning.',
+    answer: true, explain: '燃烧三要素之一。' },
+  { id: 'q-c19', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '稀有气体化学性质通常？\nNoble gases are usually ______.',
+    options: ['很活泼 very reactive', '很稳定 very stable', '易燃烧 flammable', '易支持燃烧 support combustion'],
+    answer: 1, explain: '很稳定。' },
+  { id: 'q-c20', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '过滤主要用于分离？\nFiltration mainly separates ______.',
+    options: ['不溶固体与液体 insoluble solid & liquid', '互溶液体 miscible liquids', '气体与气体 gases', '溶质与溶剂 always solute from solvent'],
+    answer: 0, explain: '不溶性固体与液体。' },
+  { id: 'q-c21', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '溶液一定是无色的。\nSolutions must be colourless.',
+    answer: false, explain: '溶液可有颜色，如硫酸铜溶液。' },
+  { id: 'q-c22', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '酸雨的 pH 通常？\nAcid rain typically has pH ______.',
+    options: ['等于 7 =7', '小于 5.6 <5.6', '等于 14 =14', '大于 10 >10'],
+    answer: 1, explain: '小于 5.6。' },
+  { id: 'q-c23', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '实验室常用双氧水制氧气时，二氧化锰作？\nIn H₂O₂ → O₂, MnO₂ acts as a ______.',
+    options: ['反应物 reactant', '生成物 product', '催化剂 catalyst', '干燥剂 drying agent only'],
+    answer: 2, explain: '催化剂。' },
+  { id: 'q-c24', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '完全燃烧碳时主要产物是二氧化碳。\nComplete combustion of carbon mainly gives CO₂.',
+    answer: true, explain: '氧气充足时生成 CO₂。' },
+  { id: 'q-c25', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '酚酞遇碱溶液通常？\nPhenolphthalein in alkali usually turns ______.',
+    options: ['蓝色 blue', '红色 red', '紫色 purple always', '无变化 no change'],
+    answer: 1, explain: '红色。' },
+  { id: 'q-c26', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '硬水中常含较多？\nHard water often contains more ______.',
+    options: ['钠离子 only Na⁺', '氯气 Cl₂ gas', '钙镁离子 Ca²⁺/Mg²⁺', '氮气 N₂'],
+    answer: 2, explain: '钙、镁离子。' },
+  { id: 'q-c27', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '物理变化一定没有能量变化。\nPhysical changes never involve energy changes.',
+    answer: false, explain: '如水沸腾需要吸热，仍是物理变化。' },
+  { id: 'q-c28', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '灭火的原理本质是破坏燃烧条件，例如？\nFire fighting works by removing a combustion condition, e.g. ______.',
+    options: ['隔离可燃物/隔绝氧气/降温 remove fuel/O₂/heat', '增加氧气 add oxygen', '提高着火点 raise ignition point of air', '加入催化剂 add catalyst'],
+    answer: 0, explain: '隔离可燃物或隔绝氧气或降温。' },
+  { id: 'q-c29', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '臭氧 O₃ 的重要作用之一是？\nOne role of ozone is to ______.',
+    options: ['提供呼吸氧 for breathing', '吸收紫外线 absorb UV', '组成空气78% make 78% of air', '使石灰水变浑浊 turn limewater milky'],
+    answer: 1, explain: '吸收紫外线。' },
+  { id: 'q-c30', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '溶剂质量分数越大，溶液一定越浓（中学常用说法需条件）。\nA larger mass of solvent always means a more concentrated solution.',
+    answer: false, explain: '浓度取决于溶质与溶液（或溶剂）的相对量。' },
+  { id: 'q-c31', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '蒸馏可分离？\nDistillation can separate ______.',
+    options: ['沸点不同的液体 liquids of different boiling points', '铁屑与沙子 iron filings & sand by magnet only', '不滤即得气体 gases without heating', '同位素 isotopes only'],
+    answer: 0, explain: '沸点不同的液体混合物。' },
+  { id: 'q-c32', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '呼吸作用消耗氧气并产生？\nRespiration uses O₂ and produces ______.',
+    options: ['氮气 N₂', '氢气 H₂', '二氧化碳 CO₂', '臭氧 O₃'],
+    answer: 2, explain: '二氧化碳（和水等）。' },
+  { id: 'q-c33', subject: 'chemistry', chapter: '身边的物质', type: 'tf',
+    prompt: '盐都是咸的可食用氯化钠。\nAll salts are edible table salt.',
+    answer: false, explain: '化学上的盐是一类化合物，不一定是食盐。' },
+  { id: 'q-c34', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '中和反应的生成物是？\nNeutralisation produces ______.',
+    options: ['酸和碱 acid and alkali', '盐和水 salt and water', '只有水 water only', '只有盐 salt only'],
+    answer: 1, explain: '盐和水。' },
+  { id: 'q-c35', subject: 'chemistry', chapter: '身边的物质', type: 'mcq',
+    prompt: '空气中氧气的体积分数约为？\nOxygen in air is about ______ by volume.',
+    options: ['78%', '21%', '0.03%', '50%'],
+    answer: 1, explain: '21%。' },
+
+  // ========== 化学 · 物质构成 ==========
+  { id: 'q-c36', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '化学变化中的最小粒子是？\nThe smallest particle in a chemical change is the ______.',
+    options: ['分子 molecule', '原子 atom', '离子 ion', '电子 electron'],
+    answer: 1, explain: '原子。' },
+  { id: 'q-c37', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '相对原子质量的标准是？\nAr is based on ______.',
+    options: ['一个氢原子 one H atom', '氧原子质量的1/16 1/16 of O', '一个¹²C原子质量的1/12 1/12 of ¹²C', '一个电子 one electron'],
+    answer: 2, explain: '一个¹²C原子质量的 1/12。' },
+  { id: 'q-c38', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '氧元素的相对原子质量约为？\nAr(O) is about ______.',
+    options: ['1', '12', '16', '18'],
+    answer: 2, explain: '16。' },
+  { id: 'q-c39', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '钠的元素符号是？\nThe symbol for sodium is ______.',
+    options: ['So', 'Na', 'N', 'S'],
+    answer: 1, explain: 'Na。' },
+  { id: 'q-c40', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '原子序数等于质子数，也等于核电荷数。\nAtomic number equals proton number and nuclear charge.',
+    answer: true, explain: '原子中还等于核外电子数。' },
+  { id: 'q-c41', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: 'CO₂ 的相对分子质量是？（C=12,O=16）\nMr(CO₂) = ? (C=12,O=16)',
+    options: ['28', '32', '44', '16'],
+    answer: 2, explain: '44。' },
+  { id: 'q-c42', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '元素周期表中，横行叫做？\nA horizontal row in the periodic table is a ______.',
+    options: ['族 group', '周期 period', '区 block', '系 series'],
+    answer: 1, explain: '周期 period。' },
+  { id: 'q-c43', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '化合物是由不同种元素组成的纯净物。\nA compound is a pure substance of different elements.',
+    answer: true, explain: '如 H₂O、CO₂。' },
+  { id: 'q-c44', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '下列化学式书写正确的是？\nWhich formula is correct?',
+    options: ['氧化镁 MgO₂', '氯化钠 NaCl', '水 H₂O₂', '氧气 O'],
+    answer: 1, explain: 'NaCl。' },
+  { id: 'q-c45', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '质量守恒定律说明反应前后？\nConservation of mass means ______.',
+    options: ['分子个数一定不变 molecules unchanged', '原子种类和数目不变，总质量不变 atoms & total mass conserved', '物质种类不变 substances unchanged', '气体体积一定不变 gas volume unchanged'],
+    answer: 1, explain: '原子种类数目不变，总质量不变。' },
+  { id: 'q-c46', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: 'Fe 的中文名称和 Ar 约为？\nFe is ______ with Ar ≈ ______.',
+    options: ['氟 19 fluorine 19', '铁 56 iron 56', '铜 64 copper 64', '锌 65 zinc 65'],
+    answer: 1, explain: '铁，56。' },
+  { id: 'q-c47', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '稀有气体的化学性质很活泼。\nNoble gases are chemically very reactive.',
+    answer: false, explain: '稀有气体性质稳定。' },
+  { id: 'q-c48', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '阳离子是？\nA cation is ______.',
+    options: ['带负电 anion', '带正电 positive ion', '不带电中性原子 neutral atom', '电子 electron'],
+    answer: 1, explain: '带正电的离子。' },
+  { id: 'q-c49', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: 'H₂SO₄ 中硫的化合价是？\nOxidation number of S in H₂SO₄ is ______.',
+    options: ['+2', '+4', '+6', '-2'],
+    answer: 2, explain: '+6。' },
+  { id: 'q-c50', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '元素周期表中，IA 族属于？\nGroup IA belongs to ______.',
+    options: ['副族 subgroup', '主族 main group', '0 族 group 0', 'VIII 族 group VIII'],
+    answer: 1, explain: '主族。' },
+  { id: 'q-c51', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '相对分子质量等于分子的实际质量（kg）。\nMr equals the actual mass of a molecule in kg.',
+    answer: false, explain: 'Mr 是相对比值，量纲为 1。' },
+  { id: 'q-c52', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: 'Ca(OH)₂ 的 Mr 是？（Ca=40,O=16,H=1）\nMr of Ca(OH)₂ = ?',
+    options: ['57', '74', '58', '100'],
+    answer: 1, explain: '74。' },
+  { id: 'q-c53', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '下列属于原子团的是？\nWhich is an atomic group/radical?',
+    options: ['H₂O', 'OH⁻', 'O₂', 'Na'],
+    answer: 1, explain: 'OH⁻。' },
+  { id: 'q-c54', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '同一主族元素化学性质往往相似。\nElements in the same main group often have similar properties.',
+    answer: true, explain: '最外层电子数相同。' },
+  { id: 'q-c55', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '钾的元素符号是？\nThe symbol for potassium is ______.',
+    options: ['P', 'Po', 'K', 'Ka'],
+    answer: 2, explain: 'K。' },
+  { id: 'q-c56', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '保持氧气化学性质的最小粒子是？\nThe smallest particle keeping O₂\'s chemical properties is ______.',
+    options: ['氧分子 O₂ molecule', '氧原子 O atom', '电子 electron', '质子 proton'],
+    answer: 0, explain: '氧分子。' },
+  { id: 'q-c57', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '离子是带电的原子或原子团。\nIons are charged atoms or groups of atoms.',
+    answer: true, explain: '失去或得到电子形成离子。' },
+  { id: 'q-c58', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '中子的电性是？\nA neutron has charge ______.',
+    options: ['正电 positive', '负电 negative', '不带电 neutral', '与质子相同 same as proton'],
+    answer: 2, explain: '不带电。' },
+  { id: 'q-c59', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: 'H₂O 的 Mr 是？（H=1,O=16）\nMr(H₂O) = ?',
+    options: ['16', '18', '17', '20'],
+    answer: 1, explain: '18。' },
+  { id: 'q-c60', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '配平化学方程式是为了遵守质量守恒。\nBalancing equations reflects conservation of mass.',
+    answer: true, explain: '使反应前后原子种类和数目相等。' },
+  { id: 'q-c61', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '纵列在周期表中称为？\nA vertical column is called a ______.',
+    options: ['族 group', '周期 period', '同位素 isotope', '分子式 formula'],
+    answer: 0, explain: '族。' },
+  { id: 'q-c62', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '阴离子带？\nAn anion carries ______.',
+    options: ['正电荷 positive charge', '负电荷 negative charge', '不带电 no charge', '磁荷 magnetic charge'],
+    answer: 1, explain: '负电荷。' },
+  { id: 'q-c63', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '单质是由同种元素组成的纯净物。\nAn element (simple substance) is a pure substance of one element.',
+    answer: true, explain: '如 O₂、Fe、He。' },
+  { id: 'q-c64', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '质子数决定？\nProton number determines ______.',
+    options: ['元素种类 element identity', '中子数 neutron number only', '分子质量 molecular mass only', '颜色 colour only'],
+    answer: 0, explain: '元素种类（原子序数）。' },
+  { id: 'q-c65', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: 'MgO 中镁的化合价是？\nValence of Mg in MgO is ______.',
+    options: ['+1', '+2', '-2', '0'],
+    answer: 1, explain: '+2。' },
+  { id: 'q-c66', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '化学式 O₂ 表示氧气这种物质，也可表示一个氧分子。\nO₂ can mean the substance or one molecule.',
+    answer: true, explain: '化学式具有多种意义。' },
+  { id: 'q-c67', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '质量数等于？\nMass number equals ______.',
+    options: ['质子数 only protons', '电子数 only electrons', '质子数+中子数 protons+neutrons', '中子数−质子数 n−p'],
+    answer: 2, explain: '质子数+中子数。' },
+  { id: 'q-c68', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '下列属于氧化物的是？\nWhich is an oxide?',
+    options: ['CO₂', 'NaCl', 'HCl', 'NaOH'],
+    answer: 0, explain: 'CO₂。' },
+  { id: 'q-c69', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '化学反应前后原子的种类会改变。\nChemical reactions change the types of atoms.',
+    answer: false, explain: '原子种类不变，只是重新组合。' },
+  { id: 'q-c70', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '相对原子质量的符号是？\nThe symbol for relative atomic mass is ______.',
+    options: ['Mr', 'Ar', 'm', 'Nₐ'],
+    answer: 1, explain: 'Ar。' },
+  { id: 'q-c71', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: 'Na⁺ 的形成是钠原子？\nNa⁺ forms when a sodium atom ______.',
+    options: ['失去一个电子 loses one electron', '得到一个电子 gains one electron', '失去一个质子 loses a proton', '得到一个中子 gains a neutron'],
+    answer: 0, explain: '失去一个电子。' },
+  { id: 'q-c72', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '同位素的质子数相同、中子数不同。\nIsotopes have the same proton number but different neutron numbers.',
+    answer: true, explain: '如 ¹²C 与 ¹⁴C。' },
+  { id: 'q-c73', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: '化学方程式中 (aq) 表示？\nIn equations, (aq) means ______.',
+    options: ['固体 solid', '气体 gas', '水溶液 aqueous solution', '液体纯液体 pure liquid'],
+    answer: 2, explain: '水溶液。' },
+  { id: 'q-c74', subject: 'chemistry', chapter: '物质构成', type: 'mcq',
+    prompt: 'SO₄²⁻ 中硫的化合价是？\nOxidation number of S in SO₄²⁻ is ______.',
+    options: ['+2', '+4', '+6', '-2'],
+    answer: 2, explain: '+6。' },
+  { id: 'q-c75', subject: 'chemistry', chapter: '物质构成', type: 'tf',
+    prompt: '最外层电子数对元素化学性质影响很大。\nValence electrons strongly affect chemical properties.',
+    answer: true, explain: '同主族往往最外层电子数相同。' },
 ];
 
 export function filterQuestions({ subject = 'all', type = 'all', chapter = null, limit = 0 } = {}) {
