@@ -19,19 +19,23 @@ export function unlockAudio() {
 }
 
 function tone(freq, start, dur, type = 'sine', gain = 0.08) {
-  const c = getCtx();
-  if (!c) return;
-  const o = c.createOscillator();
-  const g = c.createGain();
-  o.type = type;
-  o.frequency.setValueAtTime(freq, c.currentTime + start);
-  g.gain.setValueAtTime(0.0001, c.currentTime + start);
-  g.gain.exponentialRampToValueAtTime(gain, c.currentTime + start + 0.015);
-  g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + start + dur);
-  o.connect(g);
-  g.connect(c.destination);
-  o.start(c.currentTime + start);
-  o.stop(c.currentTime + start + dur + 0.02);
+  try {
+    const c = getCtx();
+    if (!c) return;
+    const o = c.createOscillator();
+    const g = c.createGain();
+    o.type = type;
+    o.frequency.setValueAtTime(freq, c.currentTime + start);
+    g.gain.setValueAtTime(0.0001, c.currentTime + start);
+    g.gain.exponentialRampToValueAtTime(Math.max(gain, 0.0001), c.currentTime + start + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + start + dur);
+    o.connect(g);
+    g.connect(c.destination);
+    o.start(c.currentTime + start);
+    o.stop(c.currentTime + start + dur + 0.02);
+  } catch (_) {
+    /* ignore audio errors */
+  }
 }
 
 export function sfxClick() {

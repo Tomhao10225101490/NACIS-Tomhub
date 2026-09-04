@@ -133,8 +133,154 @@ body::before {
 /* —— Home hero —— */
 .hero {
   text-align: center;
-  padding: 28px 12px 36px;
+  padding: 20px 12px 24px;
   animation: fadeSlide 0.7s 0.05s ease both;
+}
+
+.section-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin: 28px 0 12px;
+  color: #e8f7fa;
+}
+
+.today-card {
+  text-align: left;
+  margin-bottom: 8px;
+  animation: fadeSlide 0.7s 0.08s ease both;
+}
+
+.today-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.today-title {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.today-sub {
+  color: #dff2f6;
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+
+.days-intro {
+  color: #dff2f6;
+  margin-bottom: 14px;
+}
+
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.day-card {
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  padding: 16px;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.day-card.done {
+  border-color: rgba(125, 255, 176, 0.45);
+}
+
+.day-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.day-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.day-zh {
+  color: #e8f7fa;
+  margin: 4px 0 8px;
+  font-size: 0.92rem;
+}
+
+.day-meta {
+  font-size: 0.78rem;
+  color: #c5dde6;
+}
+
+.day-status {
+  margin-top: 10px;
+  font-weight: 800;
+  color: var(--accent-2);
+  font-size: 0.85rem;
+}
+
+.day-card.done .day-status {
+  color: var(--good);
+}
+
+.day-pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.day-pipeline span {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.step-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.step-pills span {
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(255,255,255,0.06);
+  color: #b9d8e0;
+  border: 1px solid var(--line);
+}
+
+.step-pills span.on {
+  background: rgba(94, 231, 231, 0.2);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.day-intro .flash-chapter {
+  margin-bottom: 0;
 }
 
 .hero h1 {

@@ -2,6 +2,7 @@ import './style.css';
 import { vocabulary, subjects } from './data/vocabulary.js';
 import { questions, filterQuestions, shuffle } from './data/questions.js';
 import { elements, coreElements, compounds, GROUP_LABELS, buildPeriodicGrid } from './data/elements.js';
+import { days, getDay, dayVocab, dayQuestions, subjectLabel } from './data/days.js';
 import { unlockAudio, sfxClick, sfxCorrect, sfxWrong, sfxFlip, sfxMatch } from './audio.js';
 
 const app = document.getElementById('app');
@@ -20,6 +21,7 @@ const store = {
   streak: Number(localStorage.getItem('nacis_streak') || 0),
   bestStreak: Number(localStorage.getItem('nacis_best') || 0),
   wrong: JSON.parse(localStorage.getItem('nacis_wrong') || '[]'),
+  dayProgress: JSON.parse(localStorage.getItem('alex_days') || '{}'),
 };
 
 function save() {
@@ -27,6 +29,23 @@ function save() {
   localStorage.setItem('nacis_streak', String(store.streak));
   localStorage.setItem('nacis_best', String(store.bestStreak));
   localStorage.setItem('nacis_wrong', JSON.stringify(store.wrong.slice(-80)));
+  localStorage.setItem('alex_days', JSON.stringify(store.dayProgress));
+}
+
+function markDayDone(dayNum) {
+  store.dayProgress[String(dayNum)] = {
+    done: true,
+    at: Date.now(),
+  };
+  save();
+}
+
+function isDayDone(dayNum) {
+  return Boolean(store.dayProgress[String(dayNum)]?.done);
+}
+
+function doneDayCount() {
+  return days.filter((d) => isDayDone(d.day)).length;
 }
 
 function addXp(n, correct) {
@@ -138,11 +157,19 @@ function celebrate(correct) {
   const x = window.innerWidth / 2;
   const y = window.innerHeight * 0.38;
   if (correct) {
-    sfxCorrect();
+    try {
+      sfxCorrect();
+    } catch (_) {
+      /* ignore */
+    }
     burst(x, y, store.streak >= 5 ? '#ffb86b' : '#7dffb0');
     floatText(x, y, store.streak >= 3 ? `${store.streak} 连击!` : '+XP', '#7dffb0');
   } else {
-    sfxWrong();
+    try {
+      sfxWrong();
+    } catch (_) {
+      /* ignore */
+    }
     floatText(x, y, '再想想', '#ff8a96');
   }
 }
@@ -152,20 +179,20 @@ function topbar(extra = '') {
   return `
     <header class="topbar">
       <div class="brand">
-        <div class="brand-kicker">NACIS Shanghai · Grade 8</div>
-        <div class="brand-title">理科实验室 Science Lab</div>
+        <div class="brand-kicker">Grade 8 Science</div>
+        <div class="brand-title">Alex Practice</div>
       </div>
       <div class="stats-pill">
         <div class="stat">XP <em>${store.xp}</em></div>
         <div class="stat streak-fire">🔥 <em>${store.streak}</em></div>
-        <div class="stat">最佳 <em>${store.bestStreak}</em></div>
+        <div class="stat">Days <em>${doneDayCount()}/${days.length}</em></div>
         ${extra}
       </div>
     </header>`;
 }
 
-function backBtn() {
-  return `<button class="btn btn-ghost" data-nav="home">← 返回</button>`;
+function backBtn(target = 'home') {
+  return `<button class="btn btn-ghost" data-nav="${target}">← 返回</button>`;
 }
 
 function subjectChips(active, prefix = 'sub') {
@@ -179,64 +206,413 @@ function subjectChips(active, prefix = 'sub') {
 
 /* —— HOME —— */
 function renderHome() {
+  const next = days.find((d) => !isDayDone(d.day)) || days[0];
   app.innerHTML = `
     ${topbar()}
     <section class="hero">
-      <h1>上海诺达 · 八年级理科<span>动态学习站</span></h1>
-      <p>专有名词英汉对照 · 选择/判断测验 · 元素周期表 · 相对原子质量</p>
-      <p class="hero-note">沪教/上海课标基础 + 双语 IGCSE 衔接 · 本地运行 · 错题自动收录</p>
+      <h1>Alex<span>Practice</span></h1>
+      <p>按天背单词 · 小测 · 选择判断</p>
     </section>
+
+    <div class="today-card panel">
+      <div class="today-label">今日推荐</div>
+      <div class="today-title">Day ${next.day} · ${next.title}</div>
+      <div class="today-sub">${next.titleZh} · ${subjectLabel(next.subject)} · ${next.blurb}</div>
+      <button class="btn btn-primary" data-start-day="${next.day}">开始 Day ${next.day}</button>
+      <button class="btn" data-nav="days" style="margin-left:8px">全部天数</button>
+    </div>
+
+    <h3 class="section-label">更多练习</h3>
     <div class="mode-grid">
-      <button class="mode-card" data-nav="flash" style="--card-glow: rgba(62,207,207,0.28)">
+      <button class="mode-card" data-nav="days" style="--card-glow: rgba(62,207,207,0.28)">
+        <div class="mode-icon">📅</div>
+        <h3>Daily Days</h3>
+        <p>Day 1 → Day ${days.length}，每天一条龙：单词 + 测验。</p>
+        <span class="mode-tag">${doneDayCount()} / ${days.length} done</span>
+      </button>
+      <button class="mode-card" data-nav="flash" style="--card-glow: rgba(62,207,207,0.22)">
         <div class="mode-icon">🃏</div>
-        <h3>单词翻转卡</h3>
-        <p>英汉专有名词闪卡，点击翻转看中文释义与记忆提示。</p>
-        <span class="mode-tag">Vocabulary · ${vocabulary.length} 词</span>
+        <h3>Flashcards</h3>
+        <p>自由刷专有名词。</p>
+        <span class="mode-tag">${vocabulary.length} words</span>
       </button>
       <button class="mode-card" data-nav="match" style="--card-glow: rgba(95,212,138,0.25)">
         <div class="mode-icon">🔗</div>
-        <h3>英汉配对</h3>
-        <p>把英文术语和中文快速配对，练反应速度。</p>
-        <span class="mode-tag">Matching Game</span>
+        <h3>Match</h3>
+        <p>英汉配对。</p>
+        <span class="mode-tag">Matching</span>
       </button>
       <button class="mode-card" data-nav="mcq" style="--card-glow: rgba(240,163,94,0.28)">
         <div class="mode-icon">✅</div>
-        <h3>选择题挑战</h3>
-        <p>知识点选择题，错了立刻看正确答案与解析。</p>
-        <span class="mode-tag">Multiple Choice · ${questions.filter((q) => q.type === 'mcq').length} 题</span>
+        <h3>MCQ</h3>
+        <p>选择题。</p>
+        <span class="mode-tag">${questions.filter((q) => q.type === 'mcq').length} Qs</span>
       </button>
       <button class="mode-card" data-nav="tf" style="--card-glow: rgba(255,107,122,0.22)">
         <div class="mode-icon">⚖️</div>
-        <h3>判断题冲刺</h3>
-        <p>对或错？快速检验易混淆概念。</p>
-        <span class="mode-tag">True / False · ${questions.filter((q) => q.type === 'tf').length} 题</span>
+        <h3>True / False</h3>
+        <p>判断题。</p>
+        <span class="mode-tag">${questions.filter((q) => q.type === 'tf').length} Qs</span>
       </button>
       <button class="mode-card" data-nav="periodic" style="--card-glow: rgba(240,163,94,0.3)">
         <div class="mode-icon">⚗️</div>
-        <h3>元素周期表</h3>
-        <p>浏览常见元素，再挑战符号 / 中文名 / 相对原子质量。</p>
-        <span class="mode-tag">Periodic Table</span>
+        <h3>Periodic</h3>
+        <p>元素周期表。</p>
+        <span class="mode-tag">Table</span>
       </button>
       <button class="mode-card" data-nav="mass" style="--card-glow: rgba(62,207,207,0.22)">
         <div class="mode-icon">🧮</div>
-        <h3>相对原子质量</h3>
-        <p>背 Ar、算 Mr，化合物相对分子质量速练。</p>
-        <span class="mode-tag">Ar & Mr Drill</span>
-      </button>
-      <button class="mode-card" data-nav="mixed" style="--card-glow: rgba(232,213,163,0.25)">
-        <div class="mode-icon">🎲</div>
-        <h3>综合随机测</h3>
-        <p>三科混合抽题，模拟课堂小测节奏。</p>
-        <span class="mode-tag">Mixed Quiz</span>
+        <h3>Ar / Mr</h3>
+        <p>相对原子 / 分子质量。</p>
+        <span class="mode-tag">Drill</span>
       </button>
       <button class="mode-card" data-nav="wrong" style="--card-glow: rgba(255,107,122,0.28)">
         <div class="mode-icon">📘</div>
-        <h3>错题本</h3>
-        <p>复习错过的题与词，巩固薄弱点。</p>
-        <span class="mode-tag">Wrong Book · ${store.wrong.length}</span>
+        <h3>Wrong Book</h3>
+        <p>错题本。</p>
+        <span class="mode-tag">${store.wrong.length}</span>
       </button>
     </div>
   `;
+}
+
+/* —— DAILY DAYS —— */
+function renderDays() {
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen">
+      <div class="screen-header">${backBtn()}<h2 class="screen-title">Daily Days</h2></div>
+      <p class="days-intro">每个工作日一条龙：背单词 → 单词小测 → 选择/判断</p>
+      <div class="day-grid">
+        ${days
+          .map((d) => {
+            const done = isDayDone(d.day);
+            return `<button class="day-card ${done ? 'done' : ''}" data-start-day="${d.day}">
+              <div class="day-num">Day ${d.day}</div>
+              <div class="day-name">${d.title}</div>
+              <div class="day-zh">${d.titleZh}</div>
+              <div class="day-meta">${subjectLabel(d.subject)} · ${d.vocabIds.length} words · ${d.questionIds.length} Qs</div>
+              <div class="day-status">${done ? '✓ Done' : 'Start →'}</div>
+            </button>`;
+          })
+          .join('')}
+      </div>
+    </div>`;
+}
+
+function startDayPractice(dayNum) {
+  const plan = getDay(dayNum);
+  if (!plan) {
+    navigate('days');
+    return;
+  }
+  const vocab = dayVocab(plan);
+  const qs = shuffle(dayQuestions(plan).slice());
+  let step = 0; // 0 intro, 1 words, 2 vocab quiz, 3 questions, 4 done
+  let wordIndex = 0;
+  let flipped = false;
+  let vQuiz = [];
+  let vIdx = 0;
+  let vCorrect = 0;
+  let qIdx = 0;
+  let qCorrect = 0;
+  let locked = false;
+
+  function buildVocabQuiz() {
+    vQuiz = shuffle(vocab.slice()).map((v) => {
+      const wrong = shuffle(vocab.filter((x) => x.id !== v.id).map((x) => x.zh)).slice(0, 3);
+      while (wrong.length < 3) {
+        const pool = vocabulary.filter((x) => x.zh !== v.zh);
+        wrong.push(pool[Math.floor(Math.random() * pool.length)].zh);
+      }
+      return {
+        id: v.id,
+        prompt: `${v.en} 的中文是？`,
+        answer: v.zh,
+        options: shuffle([v.zh, ...wrong.slice(0, 3)]),
+        tip: v.tip,
+      };
+    });
+    vIdx = 0;
+    vCorrect = 0;
+  }
+
+  function paint() {
+    if (step === 0) {
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('days')}<h2 class="screen-title">Day ${plan.day}</h2></div>
+          <div class="panel day-intro">
+            <div class="flash-chapter">${subjectLabel(plan.subject)} · ${plan.titleZh}</div>
+            <h2 style="font-family:var(--font-display);font-size:1.8rem;margin:8px 0">${plan.title}</h2>
+            <p style="color:#dff2f6;margin-bottom:16px">${plan.blurb}</p>
+            <div class="day-pipeline">
+              <span>1 背单词 ×${vocab.length}</span>
+              <span>2 单词小测</span>
+              <span>3 选择/判断 ×${qs.length}</span>
+            </div>
+            <div class="flash-actions" style="justify-content:flex-start">
+              <button class="btn btn-primary" id="go">开始一条龙 →</button>
+            </div>
+          </div>
+        </div>`;
+      document.getElementById('go').onclick = () => {
+        sfxClick();
+        step = 1;
+        wordIndex = 0;
+        flipped = false;
+        paint();
+      };
+      return;
+    }
+
+    if (step === 1) {
+      const v = vocab[wordIndex];
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('days')}<h2 class="screen-title">Day ${plan.day} · Words</h2></div>
+          <div class="step-pills"><span class="on">1 Words</span><span>2 Quiz</span><span>3 Questions</span></div>
+          <div class="progress-wrap">
+            <div class="progress-meta"><span>${wordIndex + 1} / ${vocab.length}</span><span>${v.zh}</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${((wordIndex + 1) / vocab.length) * 100}%"></div></div>
+          </div>
+          <div class="flash-card ${flipped ? 'flipped' : ''}" id="flash">
+            <div class="flash-inner">
+              <div class="flash-face front">
+                <div class="flash-chapter">Day ${plan.day}</div>
+                <div class="flash-main">${v.en}</div>
+                <div class="flash-sub">Tap to flip</div>
+              </div>
+              <div class="flash-face back">
+                <div class="flash-chapter">${v.en}</div>
+                <div class="flash-main">${v.zh}</div>
+                <div class="flash-tip">${v.tip}</div>
+              </div>
+            </div>
+          </div>
+          <div class="flash-actions">
+            <button class="btn" id="prev" ${wordIndex === 0 ? 'disabled' : ''}>上一张</button>
+            <button class="btn btn-primary" id="flip">翻转</button>
+            <button class="btn" id="next">${wordIndex >= vocab.length - 1 ? '去小测 →' : '下一张'}</button>
+          </div>
+        </div>`;
+      const flip = () => {
+        flipped = !flipped;
+        sfxFlip();
+        document.getElementById('flash').classList.toggle('flipped', flipped);
+      };
+      document.getElementById('flash').onclick = flip;
+      document.getElementById('flip').onclick = flip;
+      document.getElementById('prev').onclick = () => {
+        if (wordIndex > 0) {
+          wordIndex -= 1;
+          flipped = false;
+          paint();
+        }
+      };
+      document.getElementById('next').onclick = () => {
+        sfxClick();
+        if (wordIndex >= vocab.length - 1) {
+          buildVocabQuiz();
+          step = 2;
+          paint();
+        } else {
+          wordIndex += 1;
+          flipped = false;
+          paint();
+        }
+      };
+      return;
+    }
+
+    if (step === 2) {
+      if (vIdx >= vQuiz.length) {
+        step = 3;
+        qIdx = 0;
+        qCorrect = 0;
+        locked = false;
+        paint();
+        return;
+      }
+      const item = vQuiz[vIdx];
+      locked = false;
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('days')}<h2 class="screen-title">Day ${plan.day} · Word Quiz</h2></div>
+          <div class="step-pills"><span>✓ Words</span><span class="on">2 Quiz</span><span>3 Questions</span></div>
+          <div class="progress-wrap">
+            <div class="progress-meta"><span>${vIdx + 1} / ${vQuiz.length}</span><span>正确 ${vCorrect}</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${(vIdx / vQuiz.length) * 100}%"></div></div>
+          </div>
+          <div class="panel">
+            <div class="quiz-prompt">${item.prompt}</div>
+            <div class="options">
+              ${item.options.map((o, i) => `<button class="option" data-v="${o}"><span class="key">${'ABCD'[i]}</span><span>${o}</span></button>`).join('')}
+            </div>
+            <div id="fb"></div>
+            <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
+              <button class="btn btn-primary" id="nx">下一题 →</button>
+            </div>
+          </div>
+        </div>`;
+      app.querySelectorAll('.option').forEach((btn) => {
+        btn.onclick = () => {
+          if (locked) return;
+          locked = true;
+          const ok = btn.dataset.v === item.answer;
+          app.querySelectorAll('.option').forEach((b) => {
+            b.disabled = true;
+            if (b.dataset.v === item.answer) b.classList.add('correct');
+            else if (b === btn && !ok) b.classList.add('wrong');
+          });
+          if (ok) {
+            vCorrect += 1;
+            addXp(8, true);
+            celebrate(true);
+            document.getElementById('fb').innerHTML = `<div class="feedback ok"><strong>正确</strong>${item.tip || ''}</div>`;
+          } else {
+            addXp(0, false);
+            celebrate(false);
+            document.getElementById('fb').innerHTML = `<div class="feedback no"><strong>不正确</strong>答案：${item.answer}<br>${item.tip || ''}</div>`;
+            recordWrong({
+              id: `day${plan.day}-${item.id}`,
+              kind: 'vocab',
+              prompt: item.prompt,
+              correctText: item.answer,
+              explain: item.tip || '',
+              subject: plan.subject,
+            });
+          }
+          document.getElementById('nw').style.display = 'flex';
+          document.getElementById('nx').onclick = () => {
+            vIdx += 1;
+            paint();
+          };
+        };
+      });
+      return;
+    }
+
+    if (step === 3) {
+      if (qIdx >= qs.length) {
+        step = 4;
+        paint();
+        return;
+      }
+      const q = qs[qIdx];
+      locked = false;
+      const letters = ['A', 'B', 'C', 'D'];
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('days')}<h2 class="screen-title">Day ${plan.day} · Questions</h2></div>
+          <div class="step-pills"><span>✓ Words</span><span>✓ Quiz</span><span class="on">3 Questions</span></div>
+          <div class="progress-wrap">
+            <div class="progress-meta"><span>${qIdx + 1} / ${qs.length}</span><span>正确 ${qCorrect}</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${(qIdx / qs.length) * 100}%"></div></div>
+          </div>
+          <div class="panel">
+            <div class="flash-chapter" style="margin-bottom:10px">${q.chapter} · ${q.type === 'mcq' ? 'MCQ' : 'T/F'}</div>
+            <div class="quiz-prompt">${q.prompt}</div>
+            ${
+              q.type === 'mcq'
+                ? `<div class="options" id="opts">${q.options
+                    .map((o, i) => `<button class="option" data-i="${i}"><span class="key">${letters[i]}</span><span>${o}</span></button>`)
+                    .join('')}</div>`
+                : `<div class="tf-row" id="opts">
+                    <button class="option" data-i="true"><span class="key">T</span><span>True</span></button>
+                    <button class="option" data-i="false"><span class="key">F</span><span>False</span></button>
+                  </div>`
+            }
+            <div id="fb"></div>
+            <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
+              <button class="btn btn-primary" id="nx">下一题 →</button>
+            </div>
+          </div>
+        </div>`;
+
+      function finish(ok, correctText) {
+        const fb = document.getElementById('fb');
+        if (ok) {
+          qCorrect += 1;
+          addXp(10, true);
+          celebrate(true);
+          fb.innerHTML = `<div class="feedback ok"><strong>正确</strong>${q.explain}</div>`;
+        } else {
+          addXp(0, false);
+          celebrate(false);
+          fb.innerHTML = `<div class="feedback no"><strong>不正确</strong>答案：${correctText}<br>${q.explain}</div>`;
+          recordWrong({
+            id: q.id,
+            kind: 'question',
+            prompt: q.prompt,
+            correctText,
+            explain: q.explain,
+            subject: q.subject,
+          });
+        }
+        document.getElementById('nw').style.display = 'flex';
+        document.getElementById('nx').onclick = () => {
+          qIdx += 1;
+          paint();
+        };
+      }
+
+      app.querySelectorAll('#opts .option').forEach((btn) => {
+        btn.onclick = () => {
+          if (locked) return;
+          locked = true;
+          const opts = [...app.querySelectorAll('#opts .option')];
+          opts.forEach((b) => (b.disabled = true));
+          if (q.type === 'mcq') {
+            const choice = Number(btn.dataset.i);
+            const ok = choice === q.answer;
+            opts[q.answer].classList.add('correct');
+            if (!ok) btn.classList.add('wrong');
+            finish(ok, q.options[q.answer]);
+          } else {
+            const choice = btn.dataset.i === 'true';
+            const ok = choice === q.answer;
+            opts.forEach((b) => {
+              if ((b.dataset.i === 'true') === q.answer) b.classList.add('correct');
+              else if (b === btn) b.classList.add('wrong');
+            });
+            finish(ok, q.answer ? 'True' : 'False');
+          }
+        };
+      });
+      return;
+    }
+
+    // step 4 done
+    markDayDone(plan.day);
+    const totalQ = vQuiz.length + qs.length;
+    const totalOk = vCorrect + qCorrect;
+    const pct = totalQ ? Math.round((totalOk / totalQ) * 100) : 100;
+    const next = getDay(plan.day + 1);
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen">
+        <div class="screen-header">${backBtn()}<h2 class="screen-title">Day ${plan.day} Done</h2></div>
+        <div class="panel results" style="--pct:${pct}">
+          <div class="score-ring">${pct}%</div>
+          <h3 style="font-family:var(--font-display);margin-bottom:8px">Day ${plan.day} · ${plan.title}</h3>
+          <p style="color:#dff2f6;margin-bottom:8px">单词小测 ${vCorrect}/${vQuiz.length} · 题目 ${qCorrect}/${qs.length}</p>
+          <p style="color:var(--good);margin-bottom:18px">✓ 已记为完成</p>
+          <div class="flash-actions">
+            ${next ? `<button class="btn btn-primary" data-start-day="${next.day}">Day ${next.day} →</button>` : ''}
+            <button class="btn" data-nav="days">全部天数</button>
+            <button class="btn" data-nav="home">Home</button>
+          </div>
+        </div>
+      </div>`;
+    celebrate(true);
+  }
+
+  paint();
 }
 
 /* —— FLASHCARDS —— */
@@ -1038,6 +1414,7 @@ function renderWrong() {
 /* —— Router —— */
 const routes = {
   home: renderHome,
+  days: renderDays,
   flash: renderFlash,
   match: renderMatch,
   mcq: () => renderQuiz('mcq'),
@@ -1049,24 +1426,49 @@ const routes = {
 };
 
 function bindNav() {
-  // 事件委托已接管，保留空函数避免旧调用报错
+  // 事件委托已接管
 }
 
-function navigate(name) {
-  unlockAudio();
-  sfxClick();
-  const fn = routes[name] || renderHome;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  fn();
-}
-
-/* 全局导航委托：避免返回首页后 data-nav 未重新绑定 */
 app.addEventListener('click', (e) => {
+  const dayBtn = e.target.closest('[data-start-day]');
+  if (dayBtn && app.contains(dayBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    const n = Number(dayBtn.getAttribute('data-start-day'));
+    try {
+      unlockAudio();
+    } catch (_) {
+      /* ignore */
+    }
+    try {
+      sfxClick();
+    } catch (_) {
+      /* ignore */
+    }
+    startDayPractice(n);
+    return;
+  }
   const navEl = e.target.closest('[data-nav]');
   if (!navEl || !app.contains(navEl)) return;
   e.preventDefault();
   navigate(navEl.dataset.nav);
 });
+
+function navigate(name) {
+  try {
+    unlockAudio();
+  } catch (_) {
+    /* ignore */
+  }
+  try {
+    sfxClick();
+  } catch (_) {
+    /* ignore */
+  }
+  const fn = routes[name] || renderHome;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  fn();
+}
 
 initCanvas();
 navigate('home');
