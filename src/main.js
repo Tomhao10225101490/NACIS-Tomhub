@@ -103,123 +103,204 @@ function clearWrong(id) {
   save();
 }
 
-/* —— Background particles —— */
+/* —— Background particles (premium soft orbs) —— */
 function initCanvas() {
   const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let w, h, particles;
+  let w, h, orbs, mouse = { x: 0.5, y: 0.4 }, reduce = false;
+
+  try {
+    reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (_) {
+    /* ignore */
+  }
 
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
-    particles = Array.from({ length: Math.min(60, Math.floor(w / 24)) }, () => ({
+    const n = reduce ? 12 : Math.min(36, Math.floor(w / 40) + 14);
+    orbs = Array.from({ length: n }, (_, i) => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 2 + 0.5,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      a: Math.random() * 0.45 + 0.15,
+      r: 40 + Math.random() * 110,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      hue: [320, 280, 200, 160, 40][i % 5],
+      a: 0.04 + Math.random() * 0.07,
+      phase: Math.random() * Math.PI * 2,
     }));
   }
 
-  function tick() {
+  window.addEventListener(
+    'pointermove',
+    (e) => {
+      mouse.x = e.clientX / Math.max(1, w);
+      mouse.y = e.clientY / Math.max(1, h);
+    },
+    { passive: true }
+  );
+
+  function tick(t = 0) {
     ctx.clearRect(0, 0, w, h);
-    for (const p of particles) {
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0 || p.x > w) p.vx *= -1;
-      if (p.y < 0 || p.y > h) p.vy *= -1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(62, 207, 207, ${p.a})`;
-      ctx.fill();
-    }
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const a = particles[i];
-        const b = particles[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const d = Math.hypot(dx, dy);
-        if (d < 120) {
-          ctx.strokeStyle = `rgba(62, 207, 207, ${0.12 * (1 - d / 120)})`;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
+    const px = (mouse.x - 0.5) * 24;
+    const py = (mouse.y - 0.5) * 18;
+    for (const o of orbs) {
+      if (!reduce) {
+        o.x += o.vx;
+        o.y += o.vy;
+        o.phase += 0.008;
+        if (o.x < -o.r) o.x = w + o.r;
+        if (o.x > w + o.r) o.x = -o.r;
+        if (o.y < -o.r) o.y = h + o.r;
+        if (o.y > h + o.r) o.y = -o.r;
       }
+      const pulse = 1 + Math.sin(o.phase) * 0.1;
+      const depth = 0.55 + (o.r / 200);
+      const ox = o.x + px * depth;
+      const oy = o.y + py * depth;
+      const g = ctx.createRadialGradient(ox, oy, 0, ox, oy, o.r * pulse);
+      g.addColorStop(0, `hsla(${o.hue + Math.sin(o.phase) * 6}, 88%, 70%, ${o.a * 1.15})`);
+      g.addColorStop(0.45, `hsla(${o.hue}, 80%, 58%, ${o.a * 0.4})`);
+      g.addColorStop(1, `hsla(${o.hue}, 70%, 50%, 0)`);
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(ox, oy, o.r * pulse, 0, Math.PI * 2);
+      ctx.fill();
     }
     requestAnimationFrame(tick);
   }
 
   resize();
   window.addEventListener('resize', resize);
-  tick();
+  requestAnimationFrame(tick);
 }
 
 /* —— FX —— */
-const CONFETTI = ['#e21b3c', '#1368ce', '#d89e00', '#26890c', '#f9a8d4', '#fbbf24', '#fff'];
+const CONFETTI = ['#e21b3c', '#1368ce', '#d89e00', '#26890c', '#f9a8d4', '#fbbf24', '#a78bfa', '#34d399', '#fff'];
 
-function burst(x, y, color = '#4ade80') {
-  for (let i = 0; i < 22; i++) {
+function prefersReducedMotion() {
+  try {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (_) {
+    return false;
+  }
+}
+
+function burst(x, y, color = '#4ade80', count = 34) {
+  if (prefersReducedMotion()) return;
+  for (let i = 0; i < count; i++) {
     const el = document.createElement('div');
-    el.className = 'burst confetti';
-    const angle = (Math.PI * 2 * i) / 22 + Math.random() * 0.2;
-    const dist = 50 + Math.random() * 90;
+    const kind = i % 4;
+    el.className =
+      kind === 0
+        ? 'burst confetti rect'
+        : kind === 1
+          ? 'burst confetti dot'
+          : kind === 2
+            ? 'burst confetti shard'
+            : 'burst confetti star';
+    const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;
+    const dist = 70 + Math.random() * 150;
+    const rot = (Math.random() * 720 - 360) | 0;
+    const delay = Math.random() * 80;
     el.style.left = `${x}px`;
     el.style.top = `${y}px`;
     el.style.background = color || CONFETTI[i % CONFETTI.length];
     el.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
-    el.style.setProperty('--dy', `${Math.sin(angle) * dist - 20}px`);
+    el.style.setProperty('--dy', `${Math.sin(angle) * dist - 40 - Math.random() * 50}px`);
+    el.style.setProperty('--rot', `${rot}deg`);
+    el.style.setProperty('--s', `${0.65 + Math.random() * 1.15}`);
+    el.style.animationDelay = `${delay}ms`;
     fx.appendChild(el);
-    setTimeout(() => el.remove(), 900);
+    setTimeout(() => el.remove(), 1200 + delay);
   }
+}
+
+function shockwave(x, y, ok = true) {
+  const el = document.createElement('div');
+  el.className = `shockwave ${ok ? 'ok' : 'no'}`;
+  el.style.left = `${x}px`;
+  el.style.top = `${y}px`;
+  fx.appendChild(el);
+  setTimeout(() => el.remove(), 700);
+}
+
+function streakBanner(n) {
+  if (prefersReducedMotion()) return;
+  const el = document.createElement('div');
+  el.className = 'streak-banner';
+  const label = getLang() === 'en' ? 'STREAK' : getLang() === 'zh' ? '连击' : 'STREAK 连击';
+  el.innerHTML = `<span class="streak-flame">🔥</span><strong>×${n}</strong><em>${label}</em>`;
+  fx.appendChild(el);
+  setTimeout(() => el.remove(), 1600);
 }
 
 function screenFlash(ok) {
   const el = document.createElement('div');
   el.className = `wg-flash ${ok ? 'ok' : 'no'}`;
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 480);
+  setTimeout(() => el.remove(), 520);
 }
 
 function floatText(x, y, text, color = '#86efac') {
   const el = document.createElement('div');
-  el.className = 'float-text';
+  el.className = 'float-text premium';
   el.textContent = text;
   el.style.left = `${x}px`;
   el.style.top = `${y}px`;
   el.style.color = color;
   fx.appendChild(el);
-  setTimeout(() => el.remove(), 950);
+  setTimeout(() => el.remove(), 1100);
 }
 
 function celebrate(correct) {
   const x = window.innerWidth / 2;
   const y = window.innerHeight * 0.36;
   screenFlash(correct);
+  shockwave(x, y, correct);
+  document.body.classList.remove('hit-ok', 'hit-bad');
+  void document.body.offsetWidth;
+  document.body.classList.add(correct ? 'hit-ok' : 'hit-bad');
+  setTimeout(() => document.body.classList.remove('hit-ok', 'hit-bad'), 480);
   if (correct) {
     try {
       sfxCorrect();
     } catch (_) {
       /* ignore */
     }
-    for (let k = 0; k < 3; k++) {
+    const waves = store.streak >= 5 ? 6 : 4;
+    for (let k = 0; k < waves; k++) {
       setTimeout(() => {
-        burst(x + (Math.random() - 0.5) * 120, y + (Math.random() - 0.5) * 40, CONFETTI[k % CONFETTI.length]);
-      }, k * 70);
+        burst(
+          x + (Math.random() - 0.5) * 180,
+          y + (Math.random() - 0.5) * 60,
+          CONFETTI[k % CONFETTI.length],
+          store.streak >= 5 ? 42 : 34
+        );
+      }, k * 48);
     }
-    if (store.streak >= 3) {
-      try { sfxStreak(store.streak); } catch (_) { /* ignore */ }
+    if (store.streak >= 2) {
+      try {
+        sfxStreak(store.streak);
+      } catch (_) {
+        /* ignore */
+      }
+      if (store.streak >= 3) streakBanner(store.streak);
     }
-    floatText(x, y, store.streak >= 3 ? `${store.streak} Streak!` : (getLang() === 'en' ? 'Correct!' : '正确！'), '#86efac');
+    floatText(
+      x,
+      y,
+      store.streak >= 3 ? `${store.streak} Streak!` : getLang() === 'en' ? 'Correct!' : '正确！',
+      '#86efac'
+    );
   } else {
     try {
       sfxWrong();
     } catch (_) {
       /* ignore */
     }
+    burst(x, y, '#ef4444', 16);
     floatText(x, y, getLang() === 'en' ? 'Try again' : '再想想', '#fca5a5');
   }
 }
@@ -2209,9 +2290,67 @@ function navigate(name) {
     /* ignore */
   }
   const fn = routes[name] || renderHome;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+  app.classList.remove('page-enter');
+  void app.offsetWidth;
   fn();
+  requestAnimationFrame(() => {
+    app.classList.add('page-enter');
+    bindMagneticCards();
+  });
 }
 
+function bindMagneticCards() {
+  if (prefersReducedMotion()) return;
+  const cards = app.querySelectorAll('.hub-card, .mode-card, .day-card');
+  cards.forEach((card) => {
+    if (card.dataset.magnetic === '1') return;
+    card.dataset.magnetic = '1';
+    card.addEventListener(
+      'pointermove',
+      (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty('--mx', `${px * 10}deg`);
+        card.style.setProperty('--my', `${-py * 8}deg`);
+        card.style.setProperty('--gx', `${(px + 0.5) * 100}%`);
+        card.style.setProperty('--gy', `${(py + 0.5) * 100}%`);
+        card.classList.add('magnetic');
+      },
+      { passive: true }
+    );
+    card.addEventListener('pointerleave', () => {
+      card.classList.remove('magnetic');
+      card.style.removeProperty('--mx');
+      card.style.removeProperty('--my');
+      card.style.removeProperty('--gx');
+      card.style.removeProperty('--gy');
+    });
+  });
+}
+
+
+
+app.addEventListener(
+  'click',
+  (e) => {
+    const btn = e.target.closest('.wg-opt, .match-item, .choice-btn, [data-v], [data-i]');
+    if (!btn || !app.contains(btn)) return;
+    requestAnimationFrame(() => {
+      if (btn.classList.contains('correct') || btn.classList.contains('wrong')) {
+        btn.classList.add('answer-impact');
+      }
+    });
+  },
+  true
+);
+
+const _mo = new MutationObserver(() => {
+  if (app.querySelector('.hub-card, .mode-card, .day-card')) bindMagneticCards();
+});
+_mo.observe(app, { childList: true, subtree: false });
+
 initCanvas();
+document.documentElement.classList.add('motion-ready');
 navigate('home');
