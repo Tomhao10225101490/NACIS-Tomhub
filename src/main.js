@@ -3,6 +3,10 @@ import { vocabulary, subjects } from './data/vocabulary.js';
 import { questions, filterQuestions, shuffle } from './data/questions.js';
 import { elements, coreElements, compounds, GROUP_LABELS, buildPeriodicGrid } from './data/elements.js';
 import { days, getDay, dayVocab, dayQuestions, subjectLabel } from './data/days.js';
+import { ieltsWords, ieltsDays, getIeltsDay, ieltsDayWords } from './data/ielts.js';
+import { chineseVocab, chineseQuestions } from './data/chinese.js';
+import { mathVocab, mathQuestions } from './data/math.js';
+import { HUBS, getHub } from './data/hubs.js';
 import {
   unlockAudio,
   sfxClick,
@@ -23,6 +27,8 @@ import {
   localizeHtml,
   subjectName,
   langToggleHtml,
+  hubTitle,
+  hubBlurb,
 } from './i18n.js';
 
 const app = document.getElementById('app');
@@ -42,6 +48,8 @@ const store = {
   bestStreak: Number(localStorage.getItem('nacis_best') || 0),
   wrong: JSON.parse(localStorage.getItem('nacis_wrong') || '[]'),
   dayProgress: JSON.parse(localStorage.getItem('alex_days') || '{}'),
+  ieltsProgress: JSON.parse(localStorage.getItem('toms_ielts') || '{}'),
+  activeHub: localStorage.getItem('toms_hub') || '',
 };
 
 let currentRoute = 'home';
@@ -53,6 +61,8 @@ function save() {
   localStorage.setItem('nacis_best', String(store.bestStreak));
   localStorage.setItem('nacis_wrong', JSON.stringify(store.wrong.slice(-80)));
   localStorage.setItem('alex_days', JSON.stringify(store.dayProgress));
+  localStorage.setItem('toms_ielts', JSON.stringify(store.ieltsProgress || {}));
+  localStorage.setItem('toms_hub', store.activeHub || '');
 }
 
 function markDayDone(dayNum) {
@@ -225,7 +235,7 @@ function topbar(extra = '') {
     <header class="topbar">
       <div class="brand">
         <div class="brand-kicker">${tb('gradeKicker')}</div>
-        <div class="brand-title">Alex Practice</div>
+        <div class="brand-title">Tom's Ground</div>
       </div>
       <div class="topbar-right">
         ${langToggleHtml()}
@@ -315,92 +325,129 @@ function feedbackNo(answer, body) {
   return `<div class="wg-feedback no"><strong>${tb('incorrectBanner')}</strong>${tb('answerLabel')}${localizeText(answer)}<br>${localizeHtml(body || '')}</div>`;
 }
 
-/* —— HOME —— */
+/* —— HOME · Tom's Ground subject portal —— */
+function isIeltsDayDone(n) {
+  return Boolean(store.ieltsProgress[String(n)]?.done);
+}
+
+function markIeltsDayDone(n) {
+  store.ieltsProgress[String(n)] = { done: true, at: Date.now() };
+  save();
+}
+
+function ieltsDoneCount() {
+  return ieltsDays.filter((d) => isIeltsDayDone(d.day)).length;
+}
+
+function modeCard(nav, icon, title, desc, tag) {
+  return `<button class="mode-card" data-nav="${nav}">
+    <div class="mode-icon">${icon}</div>
+    <h3>${title}</h3>
+    <p>${desc || ''}</p>
+    <span class="mode-tag">${tag}</span>
+  </button>`;
+}
+
 function renderHome() {
   currentRoute = 'home';
-  const next = days.find((d) => !isDayDone(d.day)) || days[0];
-  const nextV = next.vocabIds?.length || 0;
-  const nextQ = next.questionIds?.length || 0;
-  const blurb = getLang() === 'en' ? next.blurb : getLang() === 'zh' ? next.titleZh : `${next.titleZh} · ${next.blurb}`;
+  const nextIelts = ieltsDays.find((d) => !isIeltsDayDone(d.day)) || ieltsDays[0];
   app.innerHTML = `
     ${topbar()}
-    <section class="hero">
-      <h1>Alex<span>Practice</span></h1>
+    <section class="hero hero-portal">
+      <div class="hero-kicker">${tb('portalKicker')}</div>
+      <h1>Tom's <span>Ground</span></h1>
       <p>${tb('heroSub')}</p>
     </section>
 
-    <div class="today-card panel">
-      <div class="today-label">${tb('todayLabel')}</div>
-      <div class="today-title">Day ${next.day} · ${dayTitle(next)}</div>
-      <div class="today-sub">${subjectName(next.subject)} · ${blurb}<br>${tb('lessonLoad')} <strong>${nextV}</strong> ${tb('words')} ${tb('plus')} <strong>${nextQ}</strong> ${tb('questions')}</div>
-      <button class="btn btn-primary" data-start-day="${next.day}">${tb('startDay')} ${next.day}</button>
-      <button class="btn" data-nav="days" style="margin-left:8px">${tb('allDays')}</button>
+    <div class="today-card panel ielts-spotlight">
+      <div class="today-label">${tb('todayIelts')}</div>
+      <div class="today-title">${tb('dayOf', { n: nextIelts.day })} · ${getLang() === 'en' ? nextIelts.title : nextIelts.titleZh}</div>
+      <div class="today-sub">${tb('band7')} · ${tb('words25')} · ${nextIelts.topic || ''}</div>
+      <button class="btn btn-primary" data-ielts-day="${nextIelts.day}">${tb('startMemorize')}</button>
+      <button class="btn" data-hub="english" style="margin-left:8px">${tb('ieltsDays')}</button>
     </div>
 
-    <h3 class="section-label">${tb('moreModes')}</h3>
-    <div class="mode-grid">
-      <button class="mode-card" data-nav="days">
-        <div class="mode-icon">📅</div>
-        <h3>${tb('dailyDays')}</h3>
-        <p>${tb('dailyDaysDesc', { n: days.length })}</p>
-        <span class="mode-tag">${doneDayCount()} / ${days.length}</span>
-      </button>
-      <button class="mode-card" data-nav="flash">
-        <div class="mode-icon">🃏</div>
-        <h3>${tb('flashcards')}</h3>
-        <p>${tb('flashDesc')}</p>
-        <span class="mode-tag">${vocabulary.length} ${tb('words')}</span>
-      </button>
-      <button class="mode-card" data-nav="match">
-        <div class="mode-icon">🔗</div>
-        <h3>${tb('match')}</h3>
-        <p>${tb('matchDesc')}</p>
-        <span class="mode-tag">${tb('match')}</span>
-      </button>
-      <button class="mode-card" data-nav="mcq">
-        <div class="mode-icon">✅</div>
-        <h3>${tb('mcq')}</h3>
-        <p>${tb('mcqDesc')}</p>
-        <span class="mode-tag">${questions.filter((q) => q.type === 'mcq').length} ${tb('questions')}</span>
-      </button>
-      <button class="mode-card" data-nav="tf">
-        <div class="mode-icon">⚖️</div>
-        <h3>${tb('tf')}</h3>
-        <p>${tb('tfDesc')}</p>
-        <span class="mode-tag">${questions.filter((q) => q.type === 'tf').length} ${tb('questions')}</span>
-      </button>
-      <button class="mode-card" data-nav="periodic">
-        <div class="mode-icon">⚗️</div>
-        <h3>${tb('periodic')}</h3>
-        <p>${tb('periodicDesc')}</p>
-        <span class="mode-tag">Table</span>
-      </button>
-      <button class="mode-card" data-nav="mass">
-        <div class="mode-icon">🧮</div>
-        <h3>${tb('mass')}</h3>
-        <p>${tb('massDesc')}</p>
-        <span class="mode-tag">Drill</span>
-      </button>
-      <button class="mode-card" data-nav="wrong">
-        <div class="mode-icon">📘</div>
-        <h3>${tb('wrongBook')}</h3>
-        <p>${tb('wrongDesc')}</p>
-        <span class="mode-tag">${store.wrong.length}</span>
-      </button>
+    <h3 class="section-label">${tb('pickSubject')}</h3>
+    <p class="section-hint">${tb('pickSubjectSub')}</p>
+    <div class="hub-grid">
+      ${HUBS.map(
+        (h) => `<button class="hub-card" data-hub="${h.id}" style="--hub-accent:${h.accent};--hub-glow:${h.glow}">
+          <div class="hub-orb"></div>
+          <div class="hub-icon">${h.icon}</div>
+          <div class="hub-name">${hubTitle(h)}</div>
+          <div class="hub-blurb">${hubBlurb(h)}</div>
+          <div class="hub-cta">${tb('start')}</div>
+        </button>`
+      ).join('')}
     </div>
   `;
+}
+
+function renderHub(hubId) {
+  const h = getHub(hubId);
+  if (!h) return renderHome();
+  currentRoute = 'hub-' + hubId;
+  store.activeHub = hubId;
+  save();
+  let modes = '';
+  if (hubId === 'english') {
+    modes = [
+      modeCard('ielts-days', '📅', tb('ieltsDays'), tb('band7'), `${ieltsDoneCount()}/${ieltsDays.length}`),
+      modeCard('ielts-go', '🃏', tb('ieltsMemorize'), tb('words25'), `${ieltsWords.length} ${tb('words')}`),
+      modeCard('ielts-spot', '🎯', tb('ieltsSpot'), tb('spotHint'), tb('start')),
+      modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
+    ].join('');
+  } else if (hubId === 'chinese') {
+    modes = [
+      modeCard('cn-flash', '🃏', tb('chineseFlash'), '', `${chineseVocab.length} ${tb('words')}`),
+      modeCard('cn-quiz', '✅', tb('chineseQuiz'), '', `${chineseQuestions.length} ${tb('questions')}`),
+      modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
+    ].join('');
+  } else if (hubId === 'math') {
+    modes = [
+      modeCard('math-flash', '🃏', tb('mathFlash'), '', `${mathVocab.length} ${tb('words')}`),
+      modeCard('math-quiz', '✅', tb('mathQuiz'), '', `${mathQuestions.length} ${tb('questions')}`),
+      modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
+    ].join('');
+  } else {
+    const sciDays = days.filter((d) => d.subject === hubId);
+    const sciV = vocabulary.filter((v) => v.subject === hubId);
+    const sciQ = questions.filter((q) => q.subject === hubId);
+    modes = [
+      modeCard('days', '📅', tb('scienceDays'), '', `${sciDays.filter((d) => isDayDone(d.day)).length}/${sciDays.length}`),
+      modeCard('flash', '🃏', tb('scienceFlash'), '', `${sciV.length}`),
+      modeCard('match', '🔗', tb('scienceMatch'), '', tb('start')),
+      modeCard('mcq', '✅', tb('scienceMcq'), '', String(sciQ.filter((q) => q.type === 'mcq').length)),
+      modeCard('tf', '⚖️', tb('scienceTf'), '', String(sciQ.filter((q) => q.type === 'tf').length)),
+      hubId === 'chemistry' ? modeCard('periodic', '⚗️', tb('periodic'), '', 'Table') : '',
+      hubId === 'chemistry' ? modeCard('mass', '🧮', tb('mass'), '', 'Drill') : '',
+      modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
+    ].join('');
+  }
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen hub-screen">
+      <div class="screen-header">${backBtn('home')}<h2 class="screen-title">${h.icon} ${hubTitle(h)}</h2></div>
+      <p class="hub-lead">${hubBlurb(h)}</p>
+      <h3 class="section-label">${tb('hubModes')}</h3>
+      <div class="mode-grid">${modes}</div>
+    </div>`;
 }
 
 /* —— DAILY DAYS —— */
 function renderDays() {
   currentRoute = 'days';
+  const hubBack = ['physics','chemistry','biology'].includes(store.activeHub) ? ('hub-' + store.activeHub) : 'home';
+  const list = ['physics','chemistry','biology'].includes(store.activeHub)
+    ? days.filter((d) => d.subject === store.activeHub)
+    : days;
   app.innerHTML = `
     ${topbar()}
     <div class="screen">
-      <div class="screen-header">${backBtn()}<h2 class="screen-title">${tb('dailyDays')}</h2></div>
+      <div class="screen-header">${backBtn(hubBack)}<h2 class="screen-title">${tb('dailyDays')}</h2></div>
       <p class="days-intro">${tb('daysIntro')}</p>
       <div class="day-grid">
-        ${days
+        ${list
           .map((d) => {
             const done = isDayDone(d.day);
             return `<button class="day-card ${done ? 'done' : ''}" data-start-day="${d.day}">
@@ -1523,6 +1570,525 @@ function renderWrong() {
   bindNav();
 }
 
+/* —— Tom's Ground · IELTS / Chinese / Math runners —— */
+
+function renderIeltsDays() {
+  currentRoute = 'ielts-days';
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen">
+      <div class="screen-header">${backBtn('hub-english')}<h2 class="screen-title">${tb('ieltsDays')}</h2></div>
+      <p class="days-intro">${tb('band7')} · ${tb('words25')} · ${tb('ieltsMemorize')} → ${tb('ieltsSpot')}</p>
+      <div class="day-grid">
+        ${ieltsDays
+          .map((d) => {
+            const done = isIeltsDayDone(d.day);
+            return `<button class="day-card ${done ? 'done' : ''}" data-ielts-day="${d.day}">
+              <div class="day-num">${tb('dayOf', { n: d.day })}</div>
+              <div class="day-name">${getLang() === 'en' ? d.title : d.titleZh}</div>
+              <div class="day-zh">${d.topic || ''}</div>
+              <div class="day-meta">25 ${tb('words')}</div>
+              <div class="day-status">${done ? '✓ ' + tb('done') : tb('start')}</div>
+            </button>`;
+          })
+          .join('')}
+      </div>
+    </div>`;
+}
+
+function startIeltsDay(dayNum) {
+  const plan = getIeltsDay(dayNum);
+  if (!plan) return;
+  const words = ieltsDayWords(plan);
+  let step = 0;
+  let idx = 0;
+  let flipped = false;
+  let spotIdx = 0;
+  let spotCorrect = 0;
+  let locked = false;
+  let spotItems = [];
+
+  function buildSpot() {
+    spotItems = shuffle(words.slice()).map((w) => {
+      const askZh = Math.random() > 0.4;
+      const distractors = shuffle(ieltsWords.filter((x) => x.id !== w.id))
+        .slice(0, 3)
+        .map((x) => x.word);
+      return {
+        id: w.id,
+        prompt: askZh ? `${w.zh}\n(${w.pos})` : `${w.enDef}\n(${w.pos})`,
+        answer: w.word,
+        tip: `${w.word} ${w.phonetic || ''}\n${w.zh} · ${w.enDef}\n${w.example || ''}\n${w.exampleZh || ''}`,
+        options: shuffle([w.word, ...distractors]),
+      };
+    });
+  }
+
+  function paint() {
+    if (step === 0) {
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('ielts-days')}<h2 class="screen-title">${tb('dayOf', { n: plan.day })}</h2></div>
+          <div class="panel day-intro ielts-intro">
+            <div class="flash-chapter">${tb('band7')} · ${plan.topic || ''}</div>
+            <h3>${getLang() === 'en' ? plan.title : plan.titleZh}</h3>
+            <p>${tb('words25')}</p>
+            <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
+            <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
+          </div>
+        </div>`;
+      document.getElementById('go').onclick = () => {
+        sfxClick();
+        step = 1;
+        idx = 0;
+        flipped = false;
+        paint();
+      };
+      return;
+    }
+
+    if (step === 1) {
+      const w = words[idx];
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('ielts-days')}<h2 class="screen-title">${tb('ieltsMemorize')}</h2></div>
+          <div class="step-pills"><span class="on">1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
+          <div class="progress-wrap">
+            <div class="progress-meta"><span>${idx + 1} / ${words.length}</span><span>${w.topic || ''}</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${((idx + 1) / words.length) * 100}%"></div></div>
+          </div>
+          <div class="flash-card ielts-card ${flipped ? 'flipped' : ''}" id="flash">
+            <div class="flash-inner">
+              <div class="flash-face front">
+                <div class="flash-chapter">${w.pos} · ${w.phonetic || ''}</div>
+                <div class="flash-main">${w.word}</div>
+                <div class="flash-sub">${tb('tapFlip')}</div>
+              </div>
+              <div class="flash-face back">
+                <div class="flash-chapter">${w.word}</div>
+                <div class="flash-main">${w.zh}</div>
+                <div class="flash-tip">${w.enDef}</div>
+                <div class="flash-example"><strong>${tb('example')}</strong> ${w.example || ''}<br>${w.exampleZh || ''}</div>
+              </div>
+            </div>
+          </div>
+          <div class="flash-actions">
+            <button class="btn" id="prev" ${idx === 0 ? 'disabled' : ''}>${tb('prev')}</button>
+            <button class="btn" id="flip">${tb('flip')}</button>
+            <button class="btn btn-primary" id="nx">${idx >= words.length - 1 ? tb('toSpot') : tb('next')}</button>
+          </div>
+        </div>`;
+      const doFlip = () => {
+        flipped = !flipped;
+        sfxFlip();
+        paint();
+      };
+      document.getElementById('flash').onclick = doFlip;
+      document.getElementById('flip').onclick = doFlip;
+      document.getElementById('prev').onclick = () => {
+        if (idx > 0) {
+          idx -= 1;
+          flipped = false;
+          sfxClick();
+          paint();
+        }
+      };
+      document.getElementById('nx').onclick = () => {
+        sfxClick();
+        if (idx >= words.length - 1) {
+          buildSpot();
+          step = 2;
+          spotIdx = 0;
+          spotCorrect = 0;
+          paint();
+        } else {
+          idx += 1;
+          flipped = false;
+          paint();
+        }
+      };
+      return;
+    }
+
+    if (step === 2) {
+      if (spotIdx >= spotItems.length) {
+        step = 3;
+        paint();
+        return;
+      }
+      const item = spotItems[spotIdx];
+      locked = false;
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen wg-play">
+          <div class="screen-header">${backBtn('ielts-days')}<h2 class="screen-title">${tb('ieltsSpot')}</h2></div>
+          <div class="step-pills"><span>✓ ${tb('ieltsMemorize')}</span><span class="on">2 ${tb('ieltsSpot')}</span></div>
+          <div class="wg-hud">
+            <span class="pill">${spotIdx + 1} / ${spotItems.length}</span>
+            <span class="pill">🔥 ${store.streak}</span>
+            <span class="pill">✓ ${spotCorrect}</span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill" style="width:${(spotIdx / spotItems.length) * 100}%"></div></div>
+          </div>
+          <div class="wg-question">
+            <div class="wg-q-meta">${tb('spotHint')}</div>
+            <div class="wg-q-text">${localizeHtml(item.prompt)}</div>
+          </div>
+          <div class="wg-options" id="opts">
+            ${item.options
+              .map(
+                (o, i) =>
+                  `<button class="wg-opt" data-v="${o}"><span class="shape">${'ABCD'[i]}</span><span>${o}</span></button>`
+              )
+              .join('')}
+          </div>
+          <div id="fb"></div>
+          <div class="flash-actions" style="display:none;margin-top:14px" id="nw">
+            <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
+          </div>
+        </div>`;
+      app.querySelectorAll('.wg-opt').forEach((btn) => {
+        btn.onclick = () => {
+          if (locked) return;
+          locked = true;
+          const ok = btn.dataset.v === item.answer;
+          app.querySelectorAll('.wg-opt').forEach((b) => {
+            b.disabled = true;
+            if (b.dataset.v === item.answer) b.classList.add('correct');
+            else {
+              b.classList.add('dim');
+              if (b === btn && !ok) b.classList.add('wrong');
+            }
+          });
+          if (ok) {
+            spotCorrect += 1;
+            addXp(10, true);
+            celebrate(true);
+            document.getElementById('fb').innerHTML = feedbackOk(item.tip);
+          } else {
+            addXp(0, false);
+            celebrate(false);
+            document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
+            recordWrong({
+              id: `ielts-${item.id}-${Date.now()}`,
+              kind: 'ielts',
+              prompt: item.prompt,
+              correctText: item.answer,
+              explain: item.tip,
+              subject: 'english',
+            });
+          }
+          document.getElementById('nw').style.display = 'flex';
+          document.getElementById('nx').onclick = () => {
+            spotIdx += 1;
+            paint();
+          };
+        };
+      });
+      return;
+    }
+
+    markIeltsDayDone(plan.day);
+    const pct = Math.round((spotCorrect / Math.max(1, spotItems.length)) * 100);
+    const next = getIeltsDay(plan.day + 1);
+    celebrate(true);
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen">
+        <div class="screen-header">${backBtn('home')}<h2 class="screen-title">${tb('spotDone')}</h2></div>
+        <div class="panel results" style="--pct:${pct}">
+          <div class="score-ring">${pct}%</div>
+          <h3>${spotCorrect} / ${spotItems.length} ${tb('correctN')}</h3>
+          <p>${pct >= 80 ? tb('great') : pct >= 60 ? tb('okish') : tb('keepGoing')}</p>
+          <div class="flash-actions">
+            ${next ? `<button class="btn btn-primary" data-ielts-day="${next.day}">${tb('nextDay')}</button>` : ''}
+            <button class="btn" data-hub="english">${tb('ieltsDays')}</button>
+            <button class="btn" data-nav="home">${tb('home')}</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  paint();
+}
+
+function renderIeltsFreeSpot() {
+  currentRoute = 'ielts-spot';
+  const words = shuffle(ieltsWords.slice()).slice(0, 25);
+  let spotIdx = 0;
+  let spotCorrect = 0;
+  let locked = false;
+  const spotItems = words.map((w) => {
+    const askZh = Math.random() > 0.4;
+    const distractors = shuffle(ieltsWords.filter((x) => x.id !== w.id))
+      .slice(0, 3)
+      .map((x) => x.word);
+    return {
+      id: w.id,
+      prompt: askZh ? `${w.zh}\n(${w.pos})` : `${w.enDef}\n(${w.pos})`,
+      answer: w.word,
+      tip: `${w.word} · ${w.zh} · ${w.enDef}`,
+      options: shuffle([w.word, ...distractors]),
+    };
+  });
+
+  function paint() {
+    if (spotIdx >= spotItems.length) {
+      const pct = Math.round((spotCorrect / spotItems.length) * 100);
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('hub-english')}<h2 class="screen-title">${tb('results')}</h2></div>
+          <div class="panel results" style="--pct:${pct}">
+            <div class="score-ring">${pct}%</div>
+            <h3>${spotCorrect}/${spotItems.length}</h3>
+            <div class="flash-actions">
+              <button class="btn btn-primary" data-nav="ielts-spot">${tb('again')}</button>
+              <button class="btn" data-hub="english">${tb('home')}</button>
+            </div>
+          </div>
+        </div>`;
+      return;
+    }
+    const item = spotItems[spotIdx];
+    locked = false;
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen wg-play">
+        <div class="screen-header">${backBtn('hub-english')}<h2 class="screen-title">${tb('ieltsSpot')}</h2></div>
+        <div class="wg-hud">
+          <span class="pill">${spotIdx + 1}/${spotItems.length}</span>
+          <span class="pill">✓ ${spotCorrect}</span>
+        </div>
+        <div class="wg-question">
+          <div class="wg-q-meta">${tb('spotHint')}</div>
+          <div class="wg-q-text">${localizeHtml(item.prompt)}</div>
+        </div>
+        <div class="wg-options">
+          ${item.options
+            .map((o, i) => `<button class="wg-opt" data-v="${o}"><span class="shape">${'ABCD'[i]}</span><span>${o}</span></button>`)
+            .join('')}
+        </div>
+        <div id="fb"></div>
+        <div class="flash-actions" style="display:none;margin-top:14px" id="nw">
+          <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
+        </div>
+      </div>`;
+    app.querySelectorAll('.wg-opt').forEach((btn) => {
+      btn.onclick = () => {
+        if (locked) return;
+        locked = true;
+        const ok = btn.dataset.v === item.answer;
+        app.querySelectorAll('.wg-opt').forEach((b) => {
+          b.disabled = true;
+          if (b.dataset.v === item.answer) b.classList.add('correct');
+          else b.classList.add('dim');
+          if (b === btn && !ok) b.classList.add('wrong');
+        });
+        if (ok) {
+          spotCorrect += 1;
+          addXp(8, true);
+          celebrate(true);
+          document.getElementById('fb').innerHTML = feedbackOk(item.tip);
+        } else {
+          addXp(0, false);
+          celebrate(false);
+          document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
+        }
+        document.getElementById('nw').style.display = 'flex';
+        document.getElementById('nx').onclick = () => {
+          spotIdx += 1;
+          paint();
+        };
+      };
+    });
+  }
+  paint();
+}
+
+function renderSubjectFlash(kind) {
+  currentRoute = kind === 'chinese' ? 'cn-flash' : 'math-flash';
+  const list = shuffle((kind === 'chinese' ? chineseVocab : mathVocab).slice()).slice(0, 30);
+  let idx = 0;
+  let flipped = false;
+  const back = kind === 'chinese' ? 'hub-chinese' : 'hub-math';
+
+  function paint() {
+    const w = list[idx];
+    const front = kind === 'chinese' ? w.term : w.zh;
+    const backMain = kind === 'chinese' ? w.zh : w.en;
+    const tip = kind === 'chinese' ? `${w.en || ''}\n${w.tip || ''}` : `${(w.detail || w.detail || '')}\n${w.tip || ''}`;
+    const chapter = kind === 'chinese' ? w.category : w.chapter;
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen">
+        <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${kind === 'chinese' ? tb('chineseFlash') : tb('mathFlash')}</h2></div>
+        <div class="progress-wrap">
+          <div class="progress-meta"><span>${idx + 1}/${list.length}</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${((idx + 1) / list.length) * 100}%"></div></div>
+        </div>
+        <div class="flash-card ${flipped ? 'flipped' : ''}" id="flash">
+          <div class="flash-inner">
+            <div class="flash-face front">
+              <div class="flash-chapter">${chapter || ''}</div>
+              <div class="flash-main">${front}</div>
+              <div class="flash-sub">${tb('tapFlip')}</div>
+            </div>
+            <div class="flash-face back">
+              <div class="flash-main">${backMain}</div>
+              <div class="flash-tip">${tip}</div>
+            </div>
+          </div>
+        </div>
+        <div class="flash-actions">
+          <button class="btn" id="prev" ${idx === 0 ? 'disabled' : ''}>${tb('prev')}</button>
+          <button class="btn" id="flip">${tb('flip')}</button>
+          <button class="btn btn-primary" id="nx">${idx >= list.length - 1 ? tb('home') : tb('next')}</button>
+        </div>
+      </div>`;
+    const doFlip = () => {
+      flipped = !flipped;
+      sfxFlip();
+      paint();
+    };
+    document.getElementById('flash').onclick = doFlip;
+    document.getElementById('flip').onclick = doFlip;
+    document.getElementById('prev').onclick = () => {
+      if (idx > 0) {
+        idx -= 1;
+        flipped = false;
+        paint();
+      }
+    };
+    document.getElementById('nx').onclick = () => {
+      if (idx >= list.length - 1) {
+        navigate(back);
+        return;
+      }
+      idx += 1;
+      flipped = false;
+      sfxClick();
+      paint();
+    };
+  }
+  paint();
+}
+
+function renderSubjectQuiz(kind) {
+  currentRoute = kind === 'chinese' ? 'cn-quiz' : 'math-quiz';
+  const bank = shuffle((kind === 'chinese' ? chineseQuestions : mathQuestions).slice()).slice(0, 20);
+  let idx = 0;
+  let correct = 0;
+  let locked = false;
+  const back = kind === 'chinese' ? 'hub-chinese' : 'hub-math';
+
+  function paint() {
+    if (idx >= bank.length) {
+      const pct = Math.round((correct / bank.length) * 100);
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${tb('results')}</h2></div>
+          <div class="panel results" style="--pct:${pct}">
+            <div class="score-ring">${pct}%</div>
+            <h3>${correct}/${bank.length}</h3>
+            <div class="flash-actions">
+              <button class="btn btn-primary" data-nav="${currentRoute}">${tb('again')}</button>
+              <button class="btn" data-hub="${kind}">${tb('home')}</button>
+            </div>
+          </div>
+        </div>`;
+      return;
+    }
+    const q = bank[idx];
+    locked = false;
+    const opts =
+      q.type === 'tf'
+        ? `<div class="wg-options tf-row" id="opts">
+            <button class="wg-opt" data-i="true"><span class="shape">T</span><span>${tb('trueOpt')}</span></button>
+            <button class="wg-opt" data-i="false"><span class="shape">F</span><span>${tb('falseOpt')}</span></button>
+          </div>`
+        : wgMcqHtml(q.options);
+
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen wg-play">
+        <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${kind === 'chinese' ? tb('chineseQuiz') : tb('mathQuiz')}</h2></div>
+        <div class="wg-hud">
+          <span class="pill">${idx + 1}/${bank.length}</span>
+          <span class="pill">✓ ${correct}</span>
+        </div>
+        <div class="wg-question">
+          <div class="wg-q-meta">${q.category || q.chapter || ''}</div>
+          <div class="wg-q-text">${localizeHtml(q.prompt)}</div>
+        </div>
+        ${opts}
+        <div id="fb"></div>
+        <div class="flash-actions" style="display:none;margin-top:14px" id="nw">
+          <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
+        </div>
+      </div>`;
+
+    app.querySelectorAll('.wg-opt').forEach((btn) => {
+      btn.onclick = () => {
+        if (locked) return;
+        locked = true;
+        let ok = false;
+        let correctText = '';
+        if (q.type === 'tf') {
+          const choice = btn.dataset.i === 'true';
+          ok = choice === q.answer;
+          correctText = q.answer ? tb('trueOpt') : tb('falseOpt');
+        } else {
+          const choice = Number(btn.dataset.i);
+          ok = choice === q.answer;
+          correctText = q.options[q.answer];
+        }
+        app.querySelectorAll('.wg-opt').forEach((b) => {
+          b.disabled = true;
+          if (q.type === 'mcq') {
+            if (Number(b.dataset.i) === q.answer) b.classList.add('correct');
+            else b.classList.add('dim');
+          } else {
+            const val = b.dataset.i === 'true';
+            if (val === q.answer) b.classList.add('correct');
+            else b.classList.add('dim');
+          }
+          if (b === btn && !ok) b.classList.add('wrong');
+        });
+        if (ok) {
+          correct += 1;
+          addXp(10, true);
+          celebrate(true);
+          document.getElementById('fb').innerHTML = feedbackOk(q.explain);
+        } else {
+          addXp(0, false);
+          celebrate(false);
+          document.getElementById('fb').innerHTML = feedbackNo(correctText, q.explain);
+          recordWrong({
+            id: q.id,
+            kind,
+            prompt: q.prompt,
+            correctText,
+            explain: q.explain,
+            subject: kind,
+          });
+        }
+        document.getElementById('nw').style.display = 'flex';
+        document.getElementById('nx').onclick = () => {
+          idx += 1;
+          paint();
+        };
+      };
+    });
+  }
+  paint();
+}
+
+
 /* —— Router —— */
 const routes = {
   home: renderHome,
@@ -1535,6 +2101,22 @@ const routes = {
   periodic: renderPeriodic,
   mass: renderMass,
   wrong: renderWrong,
+  'ielts-days': renderIeltsDays,
+  'ielts-go': () => {
+    const n = (ieltsDays.find((d) => !isIeltsDayDone(d.day)) || ieltsDays[0]).day;
+    startIeltsDay(n);
+  },
+  'ielts-spot': renderIeltsFreeSpot,
+  'cn-flash': () => renderSubjectFlash('chinese'),
+  'cn-quiz': () => renderSubjectQuiz('chinese'),
+  'math-flash': () => renderSubjectFlash('math'),
+  'math-quiz': () => renderSubjectQuiz('math'),
+  'hub-chinese': () => renderHub('chinese'),
+  'hub-math': () => renderHub('math'),
+  'hub-english': () => renderHub('english'),
+  'hub-physics': () => renderHub('physics'),
+  'hub-chemistry': () => renderHub('chemistry'),
+  'hub-biology': () => renderHub('biology'),
 };
 
 function bindNav() {
@@ -1542,6 +2124,55 @@ function bindNav() {
 }
 
 app.addEventListener('click', (e) => {
+  const langBtn = e.target.closest('[data-lang]');
+  if (langBtn && app.contains(langBtn)) {
+    e.preventDefault();
+    setLang(langBtn.getAttribute('data-lang'));
+    try {
+      sfxClick();
+    } catch (_) {}
+    const fn = routes[currentRoute] || renderHome;
+    fn();
+    return;
+  }
+  const sfxBtn = e.target.closest('[data-sfx-toggle]');
+  if (sfxBtn && app.contains(sfxBtn)) {
+    e.preventDefault();
+    toggleSfx();
+    try {
+      unlockAudio();
+      sfxClick();
+    } catch (_) {}
+    const fn = routes[currentRoute] || renderHome;
+    fn();
+    return;
+  }
+  const hubBtn = e.target.closest('[data-hub]');
+  if (hubBtn && app.contains(hubBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      unlockAudio();
+    } catch (_) {}
+    try {
+      sfxClick();
+    } catch (_) {}
+    renderHub(hubBtn.getAttribute('data-hub'));
+    return;
+  }
+  const ieltsBtn = e.target.closest('[data-ielts-day]');
+  if (ieltsBtn && app.contains(ieltsBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      unlockAudio();
+    } catch (_) {}
+    try {
+      sfxClick();
+    } catch (_) {}
+    startIeltsDay(Number(ieltsBtn.getAttribute('data-ielts-day')));
+    return;
+  }
   const dayBtn = e.target.closest('[data-start-day]');
   if (dayBtn && app.contains(dayBtn)) {
     e.preventDefault();
