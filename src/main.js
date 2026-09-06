@@ -2035,7 +2035,7 @@ async function startIeltsDay(dayNum) {
               <div class="flash-face back">
                 <div class="flash-chapter">${tb('meaning')}</div>
                 <div class="flash-main">${w.zh}</div>
-                <div class="flash-tip">${w.exampleZh || ''}</div>
+                <div class="flash-tip">${[w.enDef, w.example ? `${tb('example')}: ${w.example}` : '', w.exampleZh || ''].filter(Boolean).join(' · ')}</div>
               </div>
             </div>
           </div>
