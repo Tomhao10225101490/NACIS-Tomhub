@@ -2579,8 +2579,7 @@ body.hit-bad::after {
 }
 
 
-/* Speak / gloss aliases */
-.btn-speak { }
+/* Speak / gloss layout aliases */
 .work-speak-row,
 .work-speak-row {
   display: flex;
