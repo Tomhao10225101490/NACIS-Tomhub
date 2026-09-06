@@ -30,8 +30,14 @@ export const packs = {
   ieltsDays: [],
   getIeltsDay: () => null,
   ieltsDayWords: () => [],
+  chineseWorks: [],
   chineseVocab: [],
   chineseQuestions: [],
+  filterChineseWorks: () => [],
+  filterChineseVocab: () => [],
+  filterChineseQuestions: () => [],
+  worksByGrade: () => [],
+  gradeLabel: (g) => `${g}`,
   mathVocab: [],
   mathQuestions: [],
 };
@@ -78,8 +84,14 @@ export function ensureIelts() {
 export function ensureChinese() {
   if (!ready.chinese) {
     ready.chinese = import('./chinese.js').then((m) => {
+      packs.chineseWorks = m.chineseWorks;
       packs.chineseVocab = m.chineseVocab;
       packs.chineseQuestions = m.chineseQuestions;
+      packs.filterChineseWorks = m.filterChineseWorks;
+      packs.filterChineseVocab = m.filterChineseVocab;
+      packs.filterChineseQuestions = m.filterChineseQuestions;
+      packs.worksByGrade = m.worksByGrade;
+      packs.gradeLabel = m.gradeLabel;
     });
   }
   return ready.chinese;

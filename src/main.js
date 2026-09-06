@@ -60,8 +60,16 @@ let ieltsWords = [];
 let ieltsDays = [];
 let getIeltsDay = () => null;
 let ieltsDayWords = () => [];
+let chineseWorks = [];
 let chineseVocab = [];
 let chineseQuestions = [];
+let filterChineseWorks = () => [];
+let filterChineseVocab = () => [];
+let filterChineseQuestions = () => [];
+let worksByGrade = () => [];
+let gradeLabel = (g) => `${g}`;
+/** @type {'all'|7|8|9} */
+let chineseGrade = 'all';
 let mathVocab = [];
 let mathQuestions = [];
 
@@ -90,8 +98,14 @@ function bindIelts() {
 }
 
 function bindChinese() {
+  chineseWorks = packs.chineseWorks;
   chineseVocab = packs.chineseVocab;
   chineseQuestions = packs.chineseQuestions;
+  filterChineseWorks = packs.filterChineseWorks;
+  filterChineseVocab = packs.filterChineseVocab;
+  filterChineseQuestions = packs.filterChineseQuestions;
+  worksByGrade = packs.worksByGrade;
+  gradeLabel = packs.gradeLabel;
 }
 
 function bindMath() {
@@ -709,9 +723,12 @@ async function renderHub(hubId) {
       modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
     ].join('');
   } else if (hubId === 'chinese') {
+    const pool = filterChineseWorks(chineseGrade);
+    const qPool = filterChineseQuestions(chineseGrade);
     modes = [
-      modeCard('cn-flash', '🃏', tb('chineseFlash'), '', `${chineseVocab.length} ${tb('words')}`),
-      modeCard('cn-quiz', '✅', tb('chineseQuiz'), '', `${chineseQuestions.length} ${tb('questions')}`),
+      modeCard('cn-list', '📚', tb('chineseList'), tb('chineseListHint'), `${pool.length} ${tb('worksCount')}`),
+      modeCard('cn-flash', '🃏', tb('chineseFlash'), tb('chineseFlashHint'), `${pool.length} ${tb('worksCount')}`),
+      modeCard('cn-quiz', '✅', tb('chineseQuiz'), tb('chineseQuizHint'), `${qPool.length} ${tb('questions')}`),
       modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
     ].join('');
   } else if (hubId === 'math') {
@@ -740,9 +757,29 @@ async function renderHub(hubId) {
     <div class="screen hub-screen">
       <div class="screen-header">${backBtn('home')}<h2 class="screen-title">${h.icon} ${hubTitle(h)}</h2></div>
       <p class="hub-lead">${hubBlurb(h)}</p>
+      ${
+        hubId === 'chinese'
+          ? `<div class="chip-row grade-chips" id="cn-grade-chips">
+              <button class="chip ${chineseGrade === 'all' ? 'active' : ''}" data-grade="all">${tb('gradeAll')}</button>
+              <button class="chip ${chineseGrade === 7 ? 'active' : ''}" data-grade="7">${tb('grade7')}</button>
+              <button class="chip ${chineseGrade === 8 ? 'active' : ''}" data-grade="8">${tb('grade8')}</button>
+              <button class="chip ${chineseGrade === 9 ? 'active' : ''}" data-grade="9">${tb('grade9')}</button>
+            </div>`
+          : ''
+      }
       <h3 class="section-label">${tb('hubModes')}</h3>
       <div class="mode-grid">${modes}</div>
     </div>`;
+  if (hubId === 'chinese') {
+    app.querySelectorAll('#cn-grade-chips [data-grade]').forEach((btn) => {
+      btn.onclick = () => {
+        sfxClick();
+        const g = btn.dataset.grade;
+        chineseGrade = g === 'all' ? 'all' : Number(g);
+        renderHub('chinese');
+      };
+    });
+  }
 }
 
 /* —— DAILY DAYS —— */
@@ -2286,27 +2323,133 @@ async function renderIeltsFreeSpot() {
   paint();
 }
 
+async function renderChineseList() {
+  await needChinese();
+  currentRoute = 'cn-list';
+  const groups = chineseGrade === 'all'
+    ? worksByGrade()
+    : [{ grade: chineseGrade, label: gradeLabel(chineseGrade), works: filterChineseWorks(chineseGrade) }];
+
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen">
+      <div class="screen-header">${backBtn('hub-chinese')}<h2 class="screen-title">${tb('chineseList')}</h2></div>
+      <p class="hub-lead">${tb('chineseListHint')}</p>
+      <div class="chip-row grade-chips" id="cn-list-chips">
+        <button class="chip ${chineseGrade === 'all' ? 'active' : ''}" data-grade="all">${tb('gradeAll')}</button>
+        <button class="chip ${chineseGrade === 7 ? 'active' : ''}" data-grade="7">${tb('grade7')}</button>
+        <button class="chip ${chineseGrade === 8 ? 'active' : ''}" data-grade="8">${tb('grade8')}</button>
+        <button class="chip ${chineseGrade === 9 ? 'active' : ''}" data-grade="9">${tb('grade9')}</button>
+      </div>
+      <div class="work-catalog">
+        ${groups
+          .map(
+            (g) => `
+          <section class="work-grade-block">
+            <h3 class="work-grade-title">${g.label}<span>${g.works.length} ${tb('worksCount')}</span></h3>
+            <div class="work-grid">
+              ${g.works
+                .map(
+                  (w) => `
+                <article class="work-card" data-work="${w.id}">
+                  <div class="work-card-top">
+                    <span class="work-type">${({ poem: '诗', ci: '词', prose: '文' })[w.type] || ''}</span>
+                    <span class="work-dynasty">${w.dynasty}</span>
+                  </div>
+                  <h4 class="work-title">${w.title}</h4>
+                  <div class="work-author">${w.author}</div>
+                  <p class="work-line">${w.keyLines[0] || ''}</p>
+                </article>`
+                )
+                .join('')}
+            </div>
+          </section>`
+          )
+          .join('')}
+      </div>
+    </div>`;
+
+  app.querySelectorAll('#cn-list-chips [data-grade]').forEach((btn) => {
+    btn.onclick = () => {
+      sfxClick();
+      const g = btn.dataset.grade;
+      chineseGrade = g === 'all' ? 'all' : Number(g);
+      renderChineseList();
+    };
+  });
+
+  app.querySelectorAll('.work-card').forEach((card) => {
+    card.onclick = () => {
+      sfxClick();
+      const w = chineseWorks.find((x) => x.id === card.dataset.work);
+      if (!w) return;
+      const panel = document.createElement('div');
+      panel.className = 'work-detail panel';
+      panel.innerHTML = `
+        <div class="work-detail-head">
+          <div>
+            <div class="flash-chapter">${gradeLabel(w.grade)} · ${({ poem: '古诗', ci: '词', prose: '古文' })[w.type]}</div>
+            <h3>${w.title}</h3>
+            <div class="work-author">${w.author} · ${w.dynasty}</div>
+          </div>
+          <button class="btn" id="wd-close">✕</button>
+        </div>
+        <h4 class="work-sec">${tb('keyLines')}</h4>
+        <pre class="work-text key">${w.keyLines.join('\n')}</pre>
+        <h4 class="work-sec">${tb('fullText')}</h4>
+        <pre class="work-text">${w.text}</pre>
+        <h4 class="work-sec">${tb('meaningLabel')}</h4>
+        <p class="work-meaning">${w.meaning}</p>
+        <p class="work-tip">${w.tip}</p>`;
+      const host = app.querySelector('.work-catalog');
+      const old = host.querySelector('.work-detail');
+      if (old) old.remove();
+      host.prepend(panel);
+      panel.querySelector('#wd-close').onclick = (e) => {
+        e.stopPropagation();
+        panel.remove();
+      };
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+  });
+}
+
 async function renderSubjectFlash(kind) {
   if (kind === 'chinese') await needChinese();
   else await needMath();
   currentRoute = kind === 'chinese' ? 'cn-flash' : 'math-flash';
-  const list = shuffle((kind === 'chinese' ? chineseVocab : mathVocab).slice()).slice(0, 30);
+  const source =
+    kind === 'chinese' ? filterChineseVocab(chineseGrade) : mathVocab;
+  const list = shuffle(source.slice()).slice(0, Math.min(30, source.length || 30));
   let idx = 0;
   let flipped = false;
   const back = kind === 'chinese' ? 'hub-chinese' : 'hub-math';
 
   function paint() {
+    if (!list.length) {
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${tb('chineseFlash')}</h2></div>
+          <div class="panel"><p>${tb('chineseListHint')}</p></div>
+        </div>`;
+      return;
+    }
     const w = list[idx];
     const front = kind === 'chinese' ? w.term : w.zh;
+    const frontSub = kind === 'chinese' ? w.en || tb('tapFlip') : tb('tapFlip');
     const backMain = kind === 'chinese' ? w.zh : w.en;
-    const tipRaw = kind === 'chinese' ? [w.en, w.tip].filter(Boolean).join(' · ') : [w.detail, w.tip].filter(Boolean).join(' · ');
+    const tipRaw =
+      kind === 'chinese'
+        ? w.tip || ''
+        : [w.detail, w.tip].filter(Boolean).join(' · ');
     const chapter = kind === 'chinese' ? w.category : w.chapter;
     app.innerHTML = `
       ${topbar()}
       <div class="screen">
         <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${kind === 'chinese' ? tb('chineseFlash') : tb('mathFlash')}</h2></div>
         <div class="progress-wrap">
-          <div class="progress-meta"><span>${idx + 1}/${list.length}</span></div>
+          <div class="progress-meta"><span>${idx + 1}/${list.length}</span><span>${kind === 'chinese' ? (chineseGrade === 'all' ? tb('gradeAll') : gradeLabel(chineseGrade)) : ''}</span></div>
           <div class="progress-bar"><div class="progress-fill" style="width:${((idx + 1) / list.length) * 100}%"></div></div>
         </div>
         <div class="flash-card ${flipped ? 'flipped' : ''}" id="flash">
@@ -2314,11 +2457,11 @@ async function renderSubjectFlash(kind) {
             <div class="flash-face front">
               <div class="flash-chapter">${chapter || ''}</div>
               <div class="flash-main">${front}</div>
-              <div class="flash-sub">${tb('tapFlip')}</div>
+              <div class="flash-sub">${frontSub}</div>
             </div>
             <div class="flash-face back">
-              <div class="flash-chapter">${chapter || ''}</div>
-              <div class="flash-main">${backMain}</div>
+              <div class="flash-chapter">${tb('keyLines')}</div>
+              <div class="flash-main flash-lines">${backMain}</div>
               <div class="flash-tip">${tipRaw}</div>
             </div>
           </div>
@@ -2363,13 +2506,26 @@ async function renderSubjectQuiz(kind) {
   if (kind === 'chinese') await needChinese();
   else await needMath();
   currentRoute = kind === 'chinese' ? 'cn-quiz' : 'math-quiz';
-  const bank = shuffle((kind === 'chinese' ? chineseQuestions : mathQuestions).slice()).slice(0, 20);
+  const source =
+    kind === 'chinese' ? filterChineseQuestions(chineseGrade) : mathQuestions;
+  const bank = shuffle(source.slice()).slice(0, Math.min(20, source.length || 20));
   let idx = 0;
   let correct = 0;
   let locked = false;
   const back = kind === 'chinese' ? 'hub-chinese' : 'hub-math';
 
   function paint() {
+    if (!bank.length) {
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${kind === 'chinese' ? tb('chineseQuiz') : tb('mathQuiz')}</h2></div>
+          <div class="panel"><p>${kind === 'chinese' ? tb('chineseListHint') : tb('mathQuiz')}</p>
+            <div class="flash-actions"><button class="btn" data-nav="${back}">${tb('home')}</button></div>
+          </div>
+        </div>`;
+      return;
+    }
     if (idx >= bank.length) {
       const pct = Math.round((correct / bank.length) * 100);
       app.innerHTML = `
@@ -2492,6 +2648,7 @@ const routes = {
     await startIeltsDay(n);
   },
   'ielts-spot': renderIeltsFreeSpot,
+  'cn-list': renderChineseList,
   'cn-flash': () => renderSubjectFlash('chinese'),
   'cn-quiz': () => renderSubjectQuiz('chinese'),
   'math-flash': () => renderSubjectFlash('math'),

@@ -1,1914 +1,928 @@
-/** Tom's Ground · NACIS Grade 8 · Chinese */
-export const chineseVocab = [
-  {
-    "id": "ch-v001",
-    "category": "成语",
-    "term": "画龙点睛",
-    "tag": "idiom",
-    "zh": "比喻关键处点明要旨",
-    "en": "In writing, add a vivid detail at the key moment.",
-    "tip": "写作时在关键处添一笔传神细节。"
-  },
-  {
-    "id": "ch-v002",
-    "category": "成语",
-    "term": "守株待兔",
-    "tag": "idiom",
-    "zh": "比喻死守经验不知变通",
-    "en": "Waiting for luck without effort is like 守株待兔.",
-    "tip": "不努力只等运气如同守株待兔。"
-  },
-  {
-    "id": "ch-v003",
-    "category": "成语",
-    "term": "亡羊补牢",
-    "tag": "idiom",
-    "zh": "出了问题及时补救",
-    "en": "Fix the leak now; 亡羊补牢 is never too late.",
-    "tip": "现在修补漏洞，亡羊补牢为时未晚。"
-  },
-  {
-    "id": "ch-v004",
-    "category": "成语",
-    "term": "刻舟求剑",
-    "tag": "idiom",
-    "zh": "拘泥成规不知变通",
-    "en": "Using old methods blindly is 刻舟求剑.",
-    "tip": "盲目用旧法就是刻舟求剑。"
-  },
-  {
-    "id": "ch-v005",
-    "category": "成语",
-    "term": "掩耳盗铃",
-    "tag": "idiom",
-    "zh": "自欺欺人",
-    "en": "Ignoring feedback is like 掩耳盗铃.",
-    "tip": "忽视反馈如同掩耳盗铃。"
-  },
-  {
-    "id": "ch-v006",
-    "category": "成语",
-    "term": "滥竽充数",
-    "tag": "idiom",
-    "zh": "没有真才实学混在行伍中",
-    "en": "Do not 滥竽充数 in group projects.",
-    "tip": "小组作业不要滥竽充数。"
-  },
-  {
-    "id": "ch-v007",
-    "category": "成语",
-    "term": "自相矛盾",
-    "tag": "idiom",
-    "zh": "前后说法抵触",
-    "en": "Your two claims 自相矛盾.",
-    "tip": "你的两个说法自相矛盾。"
-  },
-  {
-    "id": "ch-v008",
-    "category": "成语",
-    "term": "叶公好龙",
-    "tag": "idiom",
-    "zh": "口头上爱好实际上并不真喜欢",
-    "en": "He talks about reading but 叶公好龙.",
-    "tip": "他嘴上说爱读书，实则叶公好龙。"
-  },
-  {
-    "id": "ch-v009",
-    "category": "成语",
-    "term": "杯弓蛇影",
-    "tag": "idiom",
-    "zh": "疑神疑鬼自相惊扰",
-    "en": "Do not let fear create 杯弓蛇影.",
-    "tip": "别让恐惧造成杯弓蛇影。"
-  },
-  {
-    "id": "ch-v010",
-    "category": "成语",
-    "term": "买椟还珠",
-    "tag": "idiom",
-    "zh": "取舍不当",
-    "en": "Choosing packaging over content is 买椟还珠.",
-    "tip": "重包装轻内容就是买椟还珠。"
-  },
-  {
-    "id": "ch-v011",
-    "category": "成语",
-    "term": "南辕北辙",
-    "tag": "idiom",
-    "zh": "行动与目的相反",
-    "en": "Wrong strategy leads to 南辕北辙.",
-    "tip": "策略错误会南辕北辙。"
-  },
-  {
-    "id": "ch-v012",
-    "category": "成语",
-    "term": "邯郸学步",
-    "tag": "idiom",
-    "zh": "模仿别人不成反失本色",
-    "en": "Blind imitation becomes 邯郸学步.",
-    "tip": "盲目模仿会变成邯郸学步。"
-  },
-  {
-    "id": "ch-v013",
-    "category": "成语",
-    "term": "狐假虎威",
-    "tag": "idiom",
-    "zh": "倚仗别人的威势欺压人",
-    "en": "Bullies often 狐假虎威.",
-    "tip": "仗势欺人常是狐假虎威。"
-  },
-  {
-    "id": "ch-v014",
-    "category": "成语",
-    "term": "对牛弹琴",
-    "tag": "idiom",
-    "zh": "对不懂的人讲深奥道理",
-    "en": "Explaining poetry to him is 对牛弹琴.",
-    "tip": "对他讲诗如同对牛弹琴。"
-  },
-  {
-    "id": "ch-v015",
-    "category": "成语",
-    "term": "望梅止渴",
-    "tag": "idiom",
-    "zh": "用空想安慰自己",
-    "en": "Empty promises only 望梅止渴.",
-    "tip": "空头承诺只是望梅止渴。"
-  },
-  {
-    "id": "ch-v016",
-    "category": "成语",
-    "term": "破釜沉舟",
-    "tag": "idiom",
-    "zh": "下定决心不顾一切",
-    "en": "She studied with 破釜沉舟 determination.",
-    "tip": "她以破釜沉舟的决心备考。"
-  },
-  {
-    "id": "ch-v017",
-    "category": "成语",
-    "term": "卧薪尝胆",
-    "tag": "idiom",
-    "zh": "刻苦自励发愤图强",
-    "en": "Success came after years of 卧薪尝胆.",
-    "tip": "成功来自多年卧薪尝胆。"
-  },
-  {
-    "id": "ch-v018",
-    "category": "成语",
-    "term": "纸上谈兵",
-    "tag": "idiom",
-    "zh": "空谈不能解决实际问题",
-    "en": "Theory without practice is 纸上谈兵.",
-    "tip": "只谈理论不实践是纸上谈兵。"
-  },
-  {
-    "id": "ch-v019",
-    "category": "成语",
-    "term": "指鹿为马",
-    "tag": "idiom",
-    "zh": "故意颠倒黑白",
-    "en": "Twisting facts is 指鹿为马.",
-    "tip": "歪曲事实是指鹿为马。"
-  },
-  {
-    "id": "ch-v020",
-    "category": "成语",
-    "term": "乐不思蜀",
-    "tag": "idiom",
-    "zh": "乐而忘返不想回去",
-    "en": "After the trip he 乐不思蜀.",
-    "tip": "旅行后他乐不思蜀。"
-  },
-  {
-    "id": "ch-v021",
-    "category": "成语",
-    "term": "三顾茅庐",
-    "tag": "idiom",
-    "zh": "诚心诚意一再邀请",
-    "en": "The coach 三顾茅庐 to recruit her.",
-    "tip": "教练三顾茅庐招她入队。"
-  },
-  {
-    "id": "ch-v022",
-    "category": "成语",
-    "term": "初出茅庐",
-    "tag": "idiom",
-    "zh": "刚出来做事缺乏经验",
-    "en": "Though 初出茅庐, she wrote well.",
-    "tip": "虽初出茅庐，她写得很好。"
-  },
-  {
-    "id": "ch-v023",
-    "category": "成语",
-    "term": "完璧归赵",
-    "tag": "idiom",
-    "zh": "原物完整归还",
-    "en": "Return borrowed books like 完璧归赵.",
-    "tip": "借书应完璧归赵。"
-  },
-  {
-    "id": "ch-v024",
-    "category": "成语",
-    "term": "负荆请罪",
-    "tag": "idiom",
-    "zh": "主动认错请求责罚",
-    "en": "He 负荆请罪 after the argument.",
-    "tip": "争执后他负荆请罪。"
-  },
-  {
-    "id": "ch-v025",
-    "category": "成语",
-    "term": "围魏救赵",
-    "tag": "idiom",
-    "zh": "袭击敌人薄弱处解困",
-    "en": "The team used 围魏救赵 in debate.",
-    "tip": "辩论队用围魏救赵策略。"
-  },
-  {
-    "id": "ch-v026",
-    "category": "成语",
-    "term": "一鼓作气",
-    "tag": "idiom",
-    "zh": "趁劲头大一口气完成",
-    "en": "Finish the essay 一鼓作气 tonight.",
-    "tip": "今晚一鼓作气写完作文。"
-  },
-  {
-    "id": "ch-v027",
-    "category": "成语",
-    "term": "退避三舍",
-    "tag": "idiom",
-    "zh": "主动退让回避",
-    "en": "He chose to 退避三舍 from conflict.",
-    "tip": "他选择退避三舍避免冲突。"
-  },
-  {
-    "id": "ch-v028",
-    "category": "成语",
-    "term": "毛遂自荐",
-    "tag": "idiom",
-    "zh": "自己推荐承担任务",
-    "en": "She 毛遂自荐当组长.",
-    "tip": "她毛遂自荐当组长。"
-  },
-  {
-    "id": "ch-v029",
-    "category": "成语",
-    "term": "桃李满天下",
-    "tag": "idiom",
-    "zh": "学生遍布各地",
-    "en": "Our teacher truly 桃李满天下.",
-    "tip": "我们的老师真是桃李满天下。"
-  },
-  {
-    "id": "ch-v030",
-    "category": "成语",
-    "term": "青出于蓝",
-    "tag": "idiom",
-    "zh": "学生超过老师",
-    "en": "Her essay 青出于蓝而胜于蓝.",
-    "tip": "她的作文青出于蓝而胜于蓝。"
-  },
-  {
-    "id": "ch-v031",
-    "category": "成语",
-    "term": "水滴石穿",
-    "tag": "idiom",
-    "zh": "坚持不懈就能成功",
-    "en": "Daily reading shows 水滴石穿.",
-    "tip": "每日阅读体现水滴石穿。"
-  },
-  {
-    "id": "ch-v032",
-    "category": "成语",
-    "term": "百折不挠",
-    "tag": "idiom",
-    "zh": "意志坚强不屈不挠",
-    "en": "Athletes need 百折不挠 spirit.",
-    "tip": "运动员需百折不挠精神。"
-  },
-  {
-    "id": "ch-v033",
-    "category": "成语",
-    "term": "锲而不舍",
-    "tag": "idiom",
-    "zh": "有恒心坚持不懈",
-    "en": "Keep 锲而不舍 when learning classical Chinese.",
-    "tip": "学文言要锲而不舍。"
-  },
-  {
-    "id": "ch-v034",
-    "category": "成语",
-    "term": "悬梁刺股",
-    "tag": "idiom",
-    "zh": "形容勤奋苦读",
-    "en": "Exam season feels like 悬梁刺股.",
-    "tip": "备考季如悬梁刺股。"
-  },
-  {
-    "id": "ch-v035",
-    "category": "成语",
-    "term": "囊萤映雪",
-    "tag": "idiom",
-    "zh": "形容家境贫寒仍刻苦读书",
-    "en": "Ancient scholars 囊萤映雪 to study.",
-    "tip": "古人囊萤映雪苦读。"
-  },
-  {
-    "id": "ch-v036",
-    "category": "成语",
-    "term": "开卷有益",
-    "tag": "idiom",
-    "zh": "读书总有好处",
-    "en": "Remember: 开卷有益.",
-    "tip": "记住：开卷有益。"
-  },
-  {
-    "id": "ch-v037",
-    "category": "成语",
-    "term": "温故知新",
-    "tag": "idiom",
-    "zh": "复习旧知识得到新理解",
-    "en": "Review notes to 温故知新.",
-    "tip": "复习笔记以温故知新。"
-  },
-  {
-    "id": "ch-v038",
-    "category": "成语",
-    "term": "学而不厌",
-    "tag": "idiom",
-    "zh": "学习总不满足",
-    "en": "Good learners 学而不厌.",
-    "tip": "好学者学而不厌。"
-  },
-  {
-    "id": "ch-v039",
-    "category": "成语",
-    "term": "诲人不倦",
-    "tag": "idiom",
-    "zh": "教导别人不知疲倦",
-    "en": "Our Chinese teacher 诲人不倦.",
-    "tip": "语文老师诲人不倦。"
-  },
-  {
-    "id": "ch-v040",
-    "category": "成语",
-    "term": "三人行必有我师",
-    "tag": "idiom",
-    "zh": "到处都有可学习的人",
-    "en": "In group work, 三人行必有我师.",
-    "tip": "小组合作中三人行必有我师。"
-  },
-  {
-    "id": "ch-v041",
-    "category": "修辞",
-    "term": "比喻",
-    "tag": "rhetoric",
-    "zh": "用一事物比另一事物",
-    "en": "Metaphor (比喻) links unlike things.",
-    "tip": "比喻把不同事物联系起来。"
-  },
-  {
-    "id": "ch-v042",
-    "category": "修辞",
-    "term": "拟人",
-    "tag": "rhetoric",
-    "zh": "把物当作人来写",
-    "en": "Personification (拟人) gives objects human traits.",
-    "tip": "拟人赋予事物人的特征。"
-  },
-  {
-    "id": "ch-v043",
-    "category": "修辞",
-    "term": "夸张",
-    "tag": "rhetoric",
-    "zh": "有意夸大或缩小",
-    "en": "Hyperbole (夸张) stresses emotion.",
-    "tip": "夸张强化情感。"
-  },
-  {
-    "id": "ch-v044",
-    "category": "修辞",
-    "term": "排比",
-    "tag": "rhetoric",
-    "zh": "结构相似的句子并列",
-    "en": "Parallelism (排比) builds rhythm.",
-    "tip": "排比增强节奏。"
-  },
-  {
-    "id": "ch-v045",
-    "category": "修辞",
-    "term": "对偶",
-    "tag": "rhetoric",
-    "zh": "字数相等结构相同",
-    "en": "Antithetical pairs (对偶) balance phrases.",
-    "tip": "对偶使语句工整。"
-  },
-  {
-    "id": "ch-v046",
-    "category": "修辞",
-    "term": "反问",
-    "tag": "rhetoric",
-    "zh": "用疑问形式表达确定意思",
-    "en": "Rhetorical question (反问) asserts strongly.",
-    "tip": "反问语气肯定。"
-  },
-  {
-    "id": "ch-v047",
-    "category": "修辞",
-    "term": "设问",
-    "tag": "rhetoric",
-    "zh": "自问自答引起注意",
-    "en": "Question-and-answer (设问) draws attention.",
-    "tip": "设问引起读者注意。"
-  },
-  {
-    "id": "ch-v048",
-    "category": "修辞",
-    "term": "反复",
-    "tag": "rhetoric",
-    "zh": "有意重复词语或句子",
-    "en": "Repetition (反复) emphasizes key ideas.",
-    "tip": "反复突出关键意思。"
-  },
-  {
-    "id": "ch-v049",
-    "category": "修辞",
-    "term": "借代",
-    "tag": "rhetoric",
-    "zh": "不直接说出所指事物",
-    "en": "Metonymy (借代) uses related terms.",
-    "tip": "借代用相关事物代本体。"
-  },
-  {
-    "id": "ch-v050",
-    "category": "修辞",
-    "term": "双关",
-    "tag": "rhetoric",
-    "zh": "一词多义或谐音",
-    "en": "Pun (双关) plays on double meaning.",
-    "tip": "双关利用一语两义。"
-  },
-  {
-    "id": "ch-v051",
-    "category": "修辞",
-    "term": "反语",
-    "tag": "rhetoric",
-    "zh": "说反话表达本意",
-    "en": "Irony (反语) says the opposite.",
-    "tip": "反语正话反说。"
-  },
-  {
-    "id": "ch-v052",
-    "category": "修辞",
-    "term": "引用",
-    "tag": "rhetoric",
-    "zh": "援引名言诗文",
-    "en": "Quotation (引用) adds authority.",
-    "tip": "引用增强说服力。"
-  },
-  {
-    "id": "ch-v053",
-    "category": "修辞",
-    "term": "对比",
-    "tag": "rhetoric",
-    "zh": "把两种事物对照",
-    "en": "Contrast (对比) highlights differences.",
-    "tip": "对比突出差异。"
-  },
-  {
-    "id": "ch-v054",
-    "category": "修辞",
-    "term": "衬托",
-    "tag": "rhetoric",
-    "zh": "用次要事物突出主要事物",
-    "en": "Foiling (衬托) highlights the main subject.",
-    "tip": "衬托突出主体。"
-  },
-  {
-    "id": "ch-v055",
-    "category": "修辞",
-    "term": "象征",
-    "tag": "rhetoric",
-    "zh": "用具体事物代表抽象意义",
-    "en": "Symbolism (象征) conveys deeper meaning.",
-    "tip": "象征表达深层含义。"
-  },
-  {
-    "id": "ch-v056",
-    "category": "修辞",
-    "term": "通感",
-    "tag": "rhetoric",
-    "zh": "不同感官互通",
-    "en": "Synesthesia (通感) mixes senses.",
-    "tip": "通感沟通不同感官。"
-  },
-  {
-    "id": "ch-v057",
-    "category": "修辞",
-    "term": "顶真",
-    "tag": "rhetoric",
-    "zh": "上句末尾与下句开头相同",
-    "en": "Anadiplosis (顶真) links clauses.",
-    "tip": "顶真勾连上下句。"
-  },
-  {
-    "id": "ch-v058",
-    "category": "修辞",
-    "term": "互文",
-    "tag": "rhetoric",
-    "zh": "上下文词语互相补充",
-    "en": "Mutual reference (互文) splits meaning.",
-    "tip": "互文前后语义互补。"
-  },
-  {
-    "id": "ch-v059",
-    "category": "修辞",
-    "term": "层递",
-    "tag": "rhetoric",
-    "zh": "由轻到重或由重到轻",
-    "en": "Climax/anticlimax (层递) orders intensity.",
-    "tip": "层递排列语势。"
-  },
-  {
-    "id": "ch-v060",
-    "category": "修辞",
-    "term": "仿词",
-    "tag": "rhetoric",
-    "zh": "模仿现成词语造新词",
-    "en": "Word imitation (仿词) creates echo.",
-    "tip": "仿词模仿现成格式。"
-  },
-  {
-    "id": "ch-v061",
-    "category": "修辞",
-    "term": "婉曲",
-    "tag": "rhetoric",
-    "zh": "不直接说出本意",
-    "en": "Euphemism (婉曲) softens expression.",
-    "tip": "婉曲使表达含蓄。"
-  },
-  {
-    "id": "ch-v062",
-    "category": "修辞",
-    "term": "摹状",
-    "tag": "rhetoric",
-    "zh": "生动描摹形态声音",
-    "en": "Descriptive mimicry (摹状) paints scenes.",
-    "tip": "摹状再现形态声音。"
-  },
-  {
-    "id": "ch-v063",
-    "category": "修辞",
-    "term": "设问开头",
-    "tag": "rhetoric",
-    "zh": "以问题开篇",
-    "en": "Opening with 设问 hooks readers.",
-    "tip": "设问开头吸引读者。"
-  },
-  {
-    "id": "ch-v064",
-    "category": "修辞",
-    "term": "修辞效果",
-    "tag": "rhetoric",
-    "zh": "手法产生的表达作用",
-    "en": "Rhetorical effect (修辞效果) shapes tone.",
-    "tip": "修辞效果决定表达语气。"
-  },
-  {
-    "id": "ch-v065",
-    "category": "修辞",
-    "term": "明喻",
-    "tag": "rhetoric",
-    "zh": "用像如仿佛等词",
-    "en": "Simile (明喻) uses like/as markers.",
-    "tip": "明喻常用像、如、仿佛。"
-  },
-  {
-    "id": "ch-v066",
-    "category": "文言实词",
-    "term": "之",
-    "tag": "particle/noun",
-    "zh": "的；到；他（代词）",
-    "en": "Classical 之 often marks possession or object.",
-    "tip": "文言“之”常表所属或宾语。"
-  },
-  {
-    "id": "ch-v067",
-    "category": "文言实词",
-    "term": "其",
-    "tag": "pronoun",
-    "zh": "他的；那；大概",
-    "en": "Classical 其 can mean his/its/probably.",
-    "tip": "“其”可表他的、那、大概。"
-  },
-  {
-    "id": "ch-v068",
-    "category": "文言实词",
-    "term": "而",
-    "tag": "conj",
-    "zh": "并且；却；就",
-    "en": "Classical 而 links clauses with varied sense.",
-    "tip": "“而”连接分句，义灵活。"
-  },
-  {
-    "id": "ch-v069",
-    "category": "文言实词",
-    "term": "以",
-    "tag": "prep",
-    "zh": "用；把；因为；来",
-    "en": "Classical 以 often means with/by/in order to.",
-    "tip": "“以”常用用、把、因为、来。"
-  },
-  {
-    "id": "ch-v070",
-    "category": "文言实词",
-    "term": "于",
-    "tag": "prep",
-    "zh": "在；到；比；对",
-    "en": "Classical 于 marks place/time/comparison.",
-    "tip": "“于”表处所、时间、比较。"
-  },
-  {
-    "id": "ch-v071",
-    "category": "文言实词",
-    "term": "为",
-    "tag": "verb",
-    "zh": "做；是；成为；被",
-    "en": "Classical 为 covers do/be/become/passive.",
-    "tip": "“为”有做、是、成为、被等义。"
-  },
-  {
-    "id": "ch-v072",
-    "category": "文言实词",
-    "term": "者",
-    "tag": "particle",
-    "zh": "……的人/事/物",
-    "en": "Classical 者 nominalizes preceding phrase.",
-    "tip": "“者”使前面词语名词化。"
-  },
-  {
-    "id": "ch-v073",
-    "category": "文言实词",
-    "term": "也",
-    "tag": "particle",
-    "zh": "句末表判断或解释",
-    "en": "Classical 也 often ends declarative sentences.",
-    "tip": "“也”常作句末语气词。"
-  },
-  {
-    "id": "ch-v074",
-    "category": "文言实词",
-    "term": "乎",
-    "tag": "particle",
-    "zh": "吗；呢；啊",
-    "en": "Classical 乎 marks questions or exclamation.",
-    "tip": "“乎”表疑问或感叹。"
-  },
-  {
-    "id": "ch-v075",
-    "category": "文言实词",
-    "term": "焉",
-    "tag": "particle",
-    "zh": "于此；怎么；呢",
-    "en": "Classical 焉 combines here/how/question.",
-    "tip": "“焉”可表于此、怎么、呢。"
-  },
-  {
-    "id": "ch-v076",
-    "category": "文言实词",
-    "term": "矣",
-    "tag": "particle",
-    "zh": "了；啊",
-    "en": "Classical 矣 shows change or completion.",
-    "tip": "“矣”表变化或完成。"
-  },
-  {
-    "id": "ch-v077",
-    "category": "文言实词",
-    "term": "何",
-    "tag": "pron/adv",
-    "zh": "什么；为什么",
-    "en": "Classical 何 asks what or why.",
-    "tip": "“何”表什么、为什么。"
-  },
-  {
-    "id": "ch-v078",
-    "category": "文言实词",
-    "term": "虽",
-    "tag": "conj",
-    "zh": "虽然",
-    "en": "Classical 虽 introduces concession.",
-    "tip": "“虽”引出让步。"
-  },
-  {
-    "id": "ch-v079",
-    "category": "文言实词",
-    "term": "然",
-    "tag": "conj/adv",
-    "zh": "然而；这样",
-    "en": "Classical 然 means however or thus.",
-    "tip": "“然”表然而或这样。"
-  },
-  {
-    "id": "ch-v080",
-    "category": "文言实词",
-    "term": "则",
-    "tag": "conj",
-    "zh": "就；却；那么",
-    "en": "Classical 则 marks result or contrast.",
-    "tip": "“则”表承接或转折。"
-  },
-  {
-    "id": "ch-v081",
-    "category": "文言实词",
-    "term": "故",
-    "tag": "conj/noun",
-    "zh": "所以；缘故",
-    "en": "Classical 故 means therefore/reason.",
-    "tip": "“故”表所以或缘故。"
-  },
-  {
-    "id": "ch-v082",
-    "category": "文言实词",
-    "term": "因",
-    "tag": "prep/verb",
-    "zh": "凭借；顺着；于是",
-    "en": "Classical 因 shows cause or means.",
-    "tip": "“因”表凭借、顺着、于是。"
-  },
-  {
-    "id": "ch-v083",
-    "category": "文言实词",
-    "term": "与",
-    "tag": "conj/prep",
-    "zh": "和；给；参与",
-    "en": "Classical 与 links nouns or means give.",
-    "tip": "“与”可连名词或表给予。"
-  },
-  {
-    "id": "ch-v084",
-    "category": "文言实词",
-    "term": "乃",
-    "tag": "adv/pron",
-    "zh": "就；才；你",
-    "en": "Classical 乃 marks emphasis or then.",
-    "tip": "“乃”表就、才或你。"
-  },
-  {
-    "id": "ch-v085",
-    "category": "文言实词",
-    "term": "且",
-    "tag": "adv/conj",
-    "zh": "将要；而且；暂且",
-    "en": "Classical 且 adds and/yet/for now.",
-    "tip": "“且”表将要、而且、暂且。"
-  },
-  {
-    "id": "ch-v086",
-    "category": "文言实词",
-    "term": "或",
-    "tag": "pron/adv",
-    "zh": "有人；有时；或许",
-    "en": "Classical 或 means someone/sometimes.",
-    "tip": "“或”表有人、有时、或许。"
-  },
-  {
-    "id": "ch-v087",
-    "category": "文言实词",
-    "term": "悉",
-    "tag": "adv",
-    "zh": "全；都",
-    "en": "Classical 悉 means all/every.",
-    "tip": "“悉”义为全、都。"
-  },
-  {
-    "id": "ch-v088",
-    "category": "文言实词",
-    "term": "已",
-    "tag": "adv/particle",
-    "zh": "已经；停止",
-    "en": "Classical 已 marks already or stop.",
-    "tip": "“已”表已经或停止。"
-  },
-  {
-    "id": "ch-v089",
-    "category": "文言实词",
-    "term": "甚",
-    "tag": "adv",
-    "zh": "很；什么（反问）",
-    "en": "Classical 甚 intensifies or questions.",
-    "tip": "“甚”表很或反问什么。"
-  },
-  {
-    "id": "ch-v090",
-    "category": "文言实词",
-    "term": "见",
-    "tag": "verb",
-    "zh": "看见；出现；被（见）",
-    "en": "Classical 见 can be see/appear/passive.",
-    "tip": "“见”可见、出现、被。"
-  },
-  {
-    "id": "ch-v091",
-    "category": "文言实词",
-    "term": "闻",
-    "tag": "verb",
-    "zh": "听见；听说；闻名",
-    "en": "Classical 闻 means hear/learn of.",
-    "tip": "“闻”表听见、听说。"
-  },
-  {
-    "id": "ch-v092",
-    "category": "文言实词",
-    "term": "去",
-    "tag": "verb",
-    "zh": "离开；距离",
-    "en": "Classical 去 means leave/distance.",
-    "tip": "“去”表离开或距离。"
-  },
-  {
-    "id": "ch-v093",
-    "category": "文言实词",
-    "term": "走",
-    "tag": "verb",
-    "zh": "跑（古义）",
-    "en": "In classical Chinese 走 means run.",
-    "tip": "古汉语“走”义为跑。"
-  },
-  {
-    "id": "ch-v094",
-    "category": "文言实词",
-    "term": "兵",
-    "tag": "noun",
-    "zh": "士兵；兵器；战争",
-    "en": "Classical 兵 may mean troops/weapons/war.",
-    "tip": "“兵”可指士兵、兵器、战争。"
-  },
-  {
-    "id": "ch-v095",
-    "category": "文言实词",
-    "term": "汤",
-    "tag": "noun",
-    "zh": "热水；商汤（专有）",
-    "en": "Classical 汤 often means hot water.",
-    "tip": "文言“汤”常指热水。"
-  },
-  {
-    "id": "ch-v096",
-    "category": "阅读",
-    "term": "主旨",
-    "tag": "reading",
-    "zh": "文章中心思想",
-    "en": "Main idea (主旨) answers what the author mainly says.",
-    "tip": "主旨回答作者主要说什么。"
-  },
-  {
-    "id": "ch-v097",
-    "category": "阅读",
-    "term": "线索",
-    "tag": "reading",
-    "zh": "贯穿全文的脉络",
-    "en": "Thread (线索) connects events in a text.",
-    "tip": "线索串联全文内容。"
-  },
-  {
-    "id": "ch-v098",
-    "category": "阅读",
-    "term": "伏笔",
-    "tag": "reading",
-    "zh": "前文对后文的暗示",
-    "en": "Foreshadowing (伏笔) hints at later events.",
-    "tip": "伏笔暗示后文发展。"
-  },
-  {
-    "id": "ch-v099",
-    "category": "阅读",
-    "term": "照应",
-    "tag": "reading",
-    "zh": "前后内容相呼应",
-    "en": "Echo (照应) links earlier and later details.",
-    "tip": "照应使前后呼应。"
-  },
-  {
-    "id": "ch-v100",
-    "category": "阅读",
-    "term": "铺垫",
-    "tag": "reading",
-    "zh": "为主要内容做准备",
-    "en": "Setup (铺垫) prepares major plot points.",
-    "tip": "铺垫为主要情节做准备。"
-  },
-  {
-    "id": "ch-v101",
-    "category": "阅读",
-    "term": "悬念",
-    "tag": "reading",
-    "zh": "引起读者期待",
-    "en": "Suspense (悬念) keeps readers curious.",
-    "tip": "悬念引发读者期待。"
-  },
-  {
-    "id": "ch-v102",
-    "category": "阅读",
-    "term": "环境描写",
-    "tag": "reading",
-    "zh": "写自然环境或社会环境",
-    "en": "Setting description shows atmosphere.",
-    "tip": "环境描写营造氛围。"
-  },
-  {
-    "id": "ch-v103",
-    "category": "阅读",
-    "term": "人物描写",
-    "tag": "reading",
-    "zh": "外貌语言动作心理等",
-    "en": "Characterization reveals personality.",
-    "tip": "人物描写揭示性格。"
-  },
-  {
-    "id": "ch-v104",
-    "category": "阅读",
-    "term": "细节描写",
-    "tag": "reading",
-    "zh": "具体细微的刻画",
-    "en": "Detail description adds vividness.",
-    "tip": "细节描写增加生动性。"
-  },
-  {
-    "id": "ch-v105",
-    "category": "阅读",
-    "term": "表达方式",
-    "tag": "reading",
-    "zh": "记叙说明议论抒情",
-    "en": "Expression modes: narrative, expository, argumentative, lyrical.",
-    "tip": "表达方式含记叙、说明、议论、抒情。"
-  },
-  {
-    "id": "ch-v106",
-    "category": "阅读",
-    "term": "记叙顺序",
-    "tag": "reading",
-    "zh": "顺叙倒叙插叙",
-    "en": "Narrative order: chronological, flashback, inset.",
-    "tip": "记叙顺序有顺叙、倒叙、插叙。"
-  },
-  {
-    "id": "ch-v107",
-    "category": "阅读",
-    "term": "说明顺序",
-    "tag": "reading",
-    "zh": "时间空间逻辑",
-    "en": "Expository order: time, space, logic.",
-    "tip": "说明顺序含时间、空间、逻辑。"
-  },
-  {
-    "id": "ch-v108",
-    "category": "阅读",
-    "term": "论证方法",
-    "tag": "reading",
-    "zh": "举例对比引用等",
-    "en": "Argument methods include examples and contrast.",
-    "tip": "论证方法含举例、对比等。"
-  },
-  {
-    "id": "ch-v109",
-    "category": "阅读",
-    "term": "标题作用",
-    "tag": "reading",
-    "zh": "概括内容点明主旨等",
-    "en": "Title functions: summarize, hint theme.",
-    "tip": "标题可概括内容、点明主旨。"
-  },
-  {
-    "id": "ch-v110",
-    "category": "阅读",
-    "term": "关键词",
-    "tag": "reading",
-    "zh": "理解文意的重要词语",
-    "en": "Key words unlock textual meaning.",
-    "tip": "关键词帮助理解文意。"
-  },
-  {
-    "id": "ch-v111",
-    "category": "阅读",
-    "term": "语境",
-    "tag": "reading",
-    "zh": "语言环境",
-    "en": "Context (语境) clarifies word sense.",
-    "tip": "语境明确词语含义。"
-  },
-  {
-    "id": "ch-v112",
-    "category": "阅读",
-    "term": "概括",
-    "tag": "reading",
-    "zh": "简明归纳内容",
-    "en": "Summarize (概括) in concise language.",
-    "tip": "概括用简明语言归纳。"
-  },
-  {
-    "id": "ch-v113",
-    "category": "阅读",
-    "term": "赏析",
-    "tag": "reading",
-    "zh": "分析品味语言写法",
-    "en": "Appreciation (赏析) examines language and craft.",
-    "tip": "赏析分析语言与写法。"
-  },
-  {
-    "id": "ch-v114",
-    "category": "阅读",
-    "term": "感悟",
-    "tag": "reading",
-    "zh": "阅读后的体会",
-    "en": "Reflection (感悟) shares personal insight.",
-    "tip": "感悟分享阅读体会。"
-  },
-  {
-    "id": "ch-v115",
-    "category": "阅读",
-    "term": "文体",
-    "tag": "reading",
-    "zh": "文章体裁",
-    "en": "Genre (文体) identifies text type.",
-    "tip": "文体标识文章体裁。"
-  },
-  {
-    "id": "ch-v116",
-    "category": "阅读",
-    "term": "语体",
-    "tag": "reading",
-    "zh": "口语或书面语色彩",
-    "en": "Register (语体) shows formal/informal tone.",
-    "tip": "语体体现口语或书面色彩。"
-  },
-  {
-    "id": "ch-v117",
-    "category": "阅读",
-    "term": "中心论点",
-    "tag": "reading",
-    "zh": "议论文主要观点",
-    "en": "Central claim is the main argument.",
-    "tip": "中心论点是议论文主要观点。"
-  },
-  {
-    "id": "ch-v118",
-    "category": "阅读",
-    "term": "论据",
-    "tag": "reading",
-    "zh": "证明论点的材料",
-    "en": "Evidence (论据) supports the claim.",
-    "tip": "论据用来证明论点。"
-  },
-  {
-    "id": "ch-v119",
-    "category": "阅读",
-    "term": "论证",
-    "tag": "reading",
-    "zh": "用论据证明论点的过程",
-    "en": "Reasoning (论证) links evidence to claim.",
-    "tip": "论证连接论据与论点。"
-  },
-  {
-    "id": "ch-v120",
-    "category": "阅读",
-    "term": "起承转合",
-    "tag": "reading",
-    "zh": "文章结构四部分",
-    "en": "Classic structure: open, develop, turn, close.",
-    "tip": "起承转合是常见结构。"
-  }
+/**
+ * Tom's Ground · 语文
+ * 部编版初中必备古诗古文（按七 / 八 / 九年级整理）
+ * 侧重背诵名句 + 篇目常识小测（不再做成语闪卡）
+ */
+
+const TYPE_LABEL = { poem: '古诗', ci: '词', prose: '古文' };
+
+/** @type {Array<{
+ *  id: string, grade: 7|8|9, type: 'poem'|'ci'|'prose',
+ *  title: string, author: string, dynasty: string,
+ *  text: string, keyLines: string[], meaning: string, tip: string
+ * }>} */
+export const chineseWorks = [
+  // —— 七年级 ——
+  {
+    id: 'cn-w01',
+    grade: 7,
+    type: 'poem',
+    title: '观沧海',
+    author: '曹操',
+    dynasty: '东汉',
+    text: '东临碣石，以观沧海。\n水何澹澹，山岛竦峙。\n树木丛生，百草丰茂。\n秋风萧瑟，洪波涌起。\n日月之行，若出其中；\n星汉灿烂，若出其里。\n幸甚至哉，歌以咏志。',
+    keyLines: ['东临碣石，以观沧海。', '水何澹澹，山岛竦峙。', '日月之行，若出其中；星汉灿烂，若出其里。'],
+    meaning: '写登山望海所见，展现开阔胸襟与统一天下的雄心。',
+    tip: '重点默写：日月之行 / 星汉灿烂两句。',
+  },
+  {
+    id: 'cn-w02',
+    grade: 7,
+    type: 'poem',
+    title: '次北固山下',
+    author: '王湾',
+    dynasty: '唐',
+    text: '客路青山外，行舟绿水前。\n潮平两岸阔，风正一帆悬。\n海日生残夜，江春入旧年。\n乡书何处达？归雁洛阳边。',
+    keyLines: ['潮平两岸阔，风正一帆悬。', '海日生残夜，江春入旧年。'],
+    meaning: '写江行所见与时序更替，寄托淡淡乡思。',
+    tip: '名句「海日生残夜，江春入旧年」写新旧交替。',
+  },
+  {
+    id: 'cn-w03',
+    grade: 7,
+    type: 'poem',
+    title: '钱塘湖春行',
+    author: '白居易',
+    dynasty: '唐',
+    text: '孤山寺北贾亭西，水面初平云脚低。\n几处早莺争暖树，谁家新燕啄春泥。\n乱花渐欲迷人眼，浅草才能没马蹄。\n最爱湖东行不足，绿杨阴里白沙堤。',
+    keyLines: ['几处早莺争暖树，谁家新燕啄春泥。', '乱花渐欲迷人眼，浅草才能没马蹄。'],
+    meaning: '描绘西湖早春生机，表达游春喜悦。',
+    tip: '抓住「早莺」「新燕」「乱花」「浅草」感受早春。',
+  },
+  {
+    id: 'cn-w04',
+    grade: 7,
+    type: 'ci',
+    title: '天净沙·秋思',
+    author: '马致远',
+    dynasty: '元',
+    text: '枯藤老树昏鸦，\n小桥流水人家，\n古道西风瘦马。\n夕阳西下，\n断肠人在天涯。',
+    keyLines: ['枯藤老树昏鸦，小桥流水人家，古道西风瘦马。', '夕阳西下，断肠人在天涯。'],
+    meaning: '用密集意象写秋日羁旅之苦。',
+    tip: '前三句意象并列，末句点明「断肠人」。',
+  },
+  {
+    id: 'cn-w05',
+    grade: 7,
+    type: 'poem',
+    title: '闻王昌龄左迁龙标遥有此寄',
+    author: '李白',
+    dynasty: '唐',
+    text: '杨花落尽子规啼，闻道龙标过五溪。\n我寄愁心与明月，随君直到夜郎西。',
+    keyLines: ['杨花落尽子规啼，闻道龙标过五溪。', '我寄愁心与明月，随君直到夜郎西。'],
+    meaning: '借明月寄托对友人被贬的关切。',
+    tip: '「寄愁心与明月」是友情名句。',
+  },
+  {
+    id: 'cn-w06',
+    grade: 7,
+    type: 'poem',
+    title: '夜雨寄北',
+    author: '李商隐',
+    dynasty: '唐',
+    text: '君问归期未有期，巴山夜雨涨秋池。\n何当共剪西窗烛，却话巴山夜雨时。',
+    keyLines: ['君问归期未有期，巴山夜雨涨秋池。', '何当共剪西窗烛，却话巴山夜雨时。'],
+    meaning: '写客中思念，期盼团聚后再话今夜雨。',
+    tip: '注意「未有期」与「何当」的时空对照。',
+  },
+  {
+    id: 'cn-w07',
+    grade: 7,
+    type: 'poem',
+    title: '泊秦淮',
+    author: '杜牧',
+    dynasty: '唐',
+    text: '烟笼寒水月笼沙，夜泊秦淮近酒家。\n商女不知亡国恨，隔江犹唱后庭花。',
+    keyLines: ['烟笼寒水月笼沙，夜泊秦淮近酒家。', '商女不知亡国恨，隔江犹唱后庭花。'],
+    meaning: '表面写夜泊听歌，实则讽喻沉湎声色、忘却兴亡。',
+    tip: '「后庭花」是亡国之音的典故。',
+  },
+  {
+    id: 'cn-w08',
+    grade: 7,
+    type: 'poem',
+    title: '过零丁洋',
+    author: '文天祥',
+    dynasty: '宋',
+    text: '辛苦遭逢起一经，干戈寥落四周星。\n山河破碎风飘絮，身世浮沉雨打萍。\n惶恐滩头说惶恐，零丁洋里叹零丁。\n人生自古谁无死？留取丹心照汗青。',
+    keyLines: ['山河破碎风飘絮，身世浮沉雨打萍。', '人生自古谁无死？留取丹心照汗青。'],
+    meaning: '写国破家亡之痛与舍生取义的决心。',
+    tip: '末联是千古名句，须会背会写。',
+  },
+  {
+    id: 'cn-w09',
+    grade: 7,
+    type: 'prose',
+    title: '论语十二章（节选）',
+    author: '孔子及其弟子',
+    dynasty: '春秋',
+    text: '子曰：“学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知而不愠，不亦君子乎？”\n子曰：“温故而知新，可以为师矣。”\n子曰：“学而不思则罔，思而不学则殆。”\n子曰：“三人行，必有我师焉。择其善者而从之，其不善者而改之。”',
+    keyLines: ['学而时习之，不亦说乎？', '温故而知新，可以为师矣。', '学而不思则罔，思而不学则殆。', '三人行，必有我师焉。'],
+    meaning: '谈学习态度、方法与交友处世。',
+    tip: '「说」通「悦」；「罔」「殆」常考解释。',
+  },
+  {
+    id: 'cn-w10',
+    grade: 7,
+    type: 'prose',
+    title: '虽有嘉肴',
+    author: '《礼记》',
+    dynasty: '西汉',
+    text: '虽有嘉肴，弗食，不知其旨也；虽有至道，弗学，不知其善也。是故学然后知不足，教然后知困。知不足，然后能自反也；知困，然后能自强也。故曰：教学相长也。',
+    keyLines: ['学然后知不足，教然后知困。', '教学相长也。'],
+    meaning: '说明教与学相互促进的道理。',
+    tip: '核心观点：教学相长。',
+  },
+  {
+    id: 'cn-w11',
+    grade: 7,
+    type: 'prose',
+    title: '陋室铭',
+    author: '刘禹锡',
+    dynasty: '唐',
+    text: '山不在高，有仙则名。水不在深，有龙则灵。斯是陋室，惟吾德馨。苔痕上阶绿，草色入帘青。谈笑有鸿儒，往来无白丁。可以调素琴，阅金经。无丝竹之乱耳，无案牍之劳形。南阳诸葛庐，西蜀子云亭。孔子云：何陋之有？',
+    keyLines: ['山不在高，有仙则名。水不在深，有龙则灵。', '斯是陋室，惟吾德馨。', '谈笑有鸿儒，往来无白丁。', '孔子云：何陋之有？'],
+    meaning: '借陋室抒写高洁志趣与安贫乐道。',
+    tip: '「德馨」是文眼；末句反问收束有力。',
+  },
+  {
+    id: 'cn-w12',
+    grade: 7,
+    type: 'prose',
+    title: '爱莲说',
+    author: '周敦颐',
+    dynasty: '北宋',
+    text: '水陆草木之花，可爱者甚蕃。晋陶渊明独爱菊。自李唐来，世人甚爱牡丹。予独爱莲之出淤泥而不染，濯清涟而不妖，中通外直，不蔓不枝，香远益清，亭亭净植，可远观而不可亵玩焉。……莲，花之君子者也。',
+    keyLines: ['出淤泥而不染，濯清涟而不妖。', '中通外直，不蔓不枝，香远益清，亭亭净植。', '莲，花之君子者也。'],
+    meaning: '托物言志，以莲喻君子品格。',
+    tip: '对比菊、牡丹，突出莲的君子象征。',
+  },
+
+  // —— 八年级 ——
+  {
+    id: 'cn-w13',
+    grade: 8,
+    type: 'poem',
+    title: '望岳',
+    author: '杜甫',
+    dynasty: '唐',
+    text: '岱宗夫如何？齐鲁青未了。\n造化钟神秀，阴阳割昏晓。\n荡胸生曾云，决眦入归鸟。\n会当凌绝顶，一览众山小。',
+    keyLines: ['造化钟神秀，阴阳割昏晓。', '会当凌绝顶，一览众山小。'],
+    meaning: '写泰山雄奇，抒少年壮志。',
+    tip: '末联表达勇攀高峰的志向。',
+  },
+  {
+    id: 'cn-w14',
+    grade: 8,
+    type: 'poem',
+    title: '春望',
+    author: '杜甫',
+    dynasty: '唐',
+    text: '国破山河在，城春草木深。\n感时花溅泪，恨别鸟惊心。\n烽火连三月，家书抵万金。\n白头搔更短，浑欲不胜簪。',
+    keyLines: ['国破山河在，城春草木深。', '感时花溅泪，恨别鸟惊心。', '烽火连三月，家书抵万金。'],
+    meaning: '写战乱中的家国之痛与思亲之情。',
+    tip: '「溅泪」「惊心」是移情于物。',
+  },
+  {
+    id: 'cn-w15',
+    grade: 8,
+    type: 'poem',
+    title: '使至塞上',
+    author: '王维',
+    dynasty: '唐',
+    text: '单车欲问边，属国过居延。\n征蓬出汉塞，归雁入胡天。\n大漠孤烟直，长河落日圆。\n萧关逢候骑，都护在燕然。',
+    keyLines: ['征蓬出汉塞，归雁入胡天。', '大漠孤烟直，长河落日圆。'],
+    meaning: '写出使边塞途中所见壮阔景象。',
+    tip: '「大漠孤烟直，长河落日圆」是写景名句。',
+  },
+  {
+    id: 'cn-w16',
+    grade: 8,
+    type: 'poem',
+    title: '渡荆门送别',
+    author: '李白',
+    dynasty: '唐',
+    text: '渡远荆门外，来从楚国游。\n山随平野尽，江入大荒流。\n月下飞天镜，云生结海楼。\n仍怜故乡水，万里送行舟。',
+    keyLines: ['山随平野尽，江入大荒流。', '月下飞天镜，云生结海楼。', '仍怜故乡水，万里送行舟。'],
+    meaning: '写离蜀东下所见江山开阔，并寄乡情。',
+    tip: '颔联写山势江流变化，意境开阔。',
+  },
+  {
+    id: 'cn-w17',
+    grade: 8,
+    type: 'poem',
+    title: '黄鹤楼',
+    author: '崔颢',
+    dynasty: '唐',
+    text: '昔人已乘黄鹤去，此地空余黄鹤楼。\n黄鹤一去不复返，白云千载空悠悠。\n晴川历历汉阳树，芳草萋萋鹦鹉洲。\n日暮乡关何处是？烟波江上使人愁。',
+    keyLines: ['黄鹤一去不复返，白云千载空悠悠。', '日暮乡关何处是？烟波江上使人愁。'],
+    meaning: '吊古伤今，抒发乡愁。',
+    tip: '传说李白见此诗而搁笔。',
+  },
+  {
+    id: 'cn-w18',
+    grade: 8,
+    type: 'poem',
+    title: '石壕吏',
+    author: '杜甫',
+    dynasty: '唐',
+    text: '暮投石壕村，有吏夜捉人。\n老翁逾墙走，老妇出门看。\n……\n天明登前途，独与老翁别。',
+    keyLines: ['暮投石壕村，有吏夜捉人。', '老翁逾墙走，老妇出门看。', '天明登前途，独与老翁别。'],
+    meaning: '通过差吏夜捉人，揭露安史之乱中人民苦难。',
+    tip: '属于「三吏」「三别」组诗。',
+  },
+  {
+    id: 'cn-w19',
+    grade: 8,
+    type: 'prose',
+    title: '桃花源记',
+    author: '陶渊明',
+    dynasty: '东晋',
+    text: '晋太元中，武陵人捕鱼为业。……土地平旷，屋舍俨然，有良田美池桑竹之属。阡陌交通，鸡犬相闻。……黄发垂髫，并怡然自乐。……此人一一为具言所闻，皆叹惋。……后遂无问津者。',
+    keyLines: ['土地平旷，屋舍俨然，有良田美池桑竹之属。', '阡陌交通，鸡犬相闻。', '黄发垂髫，并怡然自乐。', '后遂无问津者。'],
+    meaning: '虚构世外桃源，寄托对理想社会的向往。',
+    tip: '「问津」常考；文中多处描写和平安宁。',
+  },
+  {
+    id: 'cn-w20',
+    grade: 8,
+    type: 'prose',
+    title: '小石潭记',
+    author: '柳宗元',
+    dynasty: '唐',
+    text: '从小丘西行百二十步，隔篁竹，闻水声，如鸣珮环，心乐之。……潭中鱼可百许头，皆若空游无所依。……坐潭上，四面竹树环合，寂寥无人，凄神寒骨，悄怆幽邃。以其境过清，不可久居，乃记之而去。',
+    keyLines: ['闻水声，如鸣珮环，心乐之。', '潭中鱼可百许头，皆若空游无所依。', '凄神寒骨，悄怆幽邃。'],
+    meaning: '写小石潭清幽，透出作者贬谪后的孤寂。',
+    tip: '写鱼「空游」是侧面写水清。',
+  },
+  {
+    id: 'cn-w21',
+    grade: 8,
+    type: 'prose',
+    title: '三峡',
+    author: '郦道元',
+    dynasty: '北魏',
+    text: '自三峡七百里中，两岸连山，略无阙处。……至于夏水襄陵，沿溯阻绝。……春冬之时，则素湍绿潭，回清倒影。……每至晴初霜旦，林寒涧肃，常有高猿长啸，属引凄异，空谷传响，哀转久绝。故渔者歌曰：“巴东三峡巫峡长，猿鸣三声泪沾裳。”',
+    keyLines: ['两岸连山，略无阙处。', '素湍绿潭，回清倒影。', '巴东三峡巫峡长，猿鸣三声泪沾裳。'],
+    meaning: '写三峡四季山水特征，突出雄奇凄清。',
+    tip: '夏写水势，春冬写清景，秋写猿啸。',
+  },
+  {
+    id: 'cn-w22',
+    grade: 8,
+    type: 'prose',
+    title: '记承天寺夜游',
+    author: '苏轼',
+    dynasty: '北宋',
+    text: '元丰六年十月十二日夜，解衣欲睡，月色入户，欣然起行。念无与为乐者，遂至承天寺寻张怀民。怀民亦未寝，相与步于中庭。庭下如积水空明，水中藻、荇交横，盖竹柏影也。何夜无月？何处无竹柏？但少闲人如吾两人者耳。',
+    keyLines: ['庭下如积水空明，水中藻、荇交横，盖竹柏影也。', '何夜无月？何处无竹柏？但少闲人如吾两人者耳。'],
+    meaning: '写月夜漫步，抒发旷达而略含无奈的心境。',
+    tip: '「闲人」一词意蕴丰富，常考理解。',
+  },
+  {
+    id: 'cn-w23',
+    grade: 8,
+    type: 'prose',
+    title: '送东阳马生序（节选）',
+    author: '宋濂',
+    dynasty: '明',
+    text: '余幼时即嗜学。家贫，无从致书以观，每假借于藏书之家，手自笔录，计日以还。……当余之从师也，负箧曳屣行深山巨谷中。……以中有足乐者，不知口体之奉不若人也。',
+    keyLines: ['余幼时即嗜学。', '每假借于藏书之家，手自笔录，计日以还。', '以中有足乐者，不知口体之奉不若人也。'],
+    meaning: '作者自述少年苦学经历，勉励后生专心求学。',
+    tip: '抓住「嗜学」与艰苦条件的对比。',
+  },
+  {
+    id: 'cn-w24',
+    grade: 8,
+    type: 'poem',
+    title: '茅屋为秋风所破歌（节选）',
+    author: '杜甫',
+    dynasty: '唐',
+    text: '安得广厦千万间，大庇天下寒士俱欢颜！\n风雨不动安如山。\n呜呼！何时眼前突兀见此屋，吾庐独破受冻死亦足！',
+    keyLines: ['安得广厦千万间，大庇天下寒士俱欢颜！', '吾庐独破受冻死亦足！'],
+    meaning: '由一己之苦推及天下寒士，胸怀博大。',
+    tip: '末段由个人推及社会，是诗眼。',
+  },
+
+  // —— 九年级 ——
+  {
+    id: 'cn-w25',
+    grade: 9,
+    type: 'poem',
+    title: '行路难（其一）',
+    author: '李白',
+    dynasty: '唐',
+    text: '金樽清酒斗十千，玉盘珍羞直万钱。\n停杯投箸不能食，拔剑四顾心茫然。\n欲渡黄河冰塞川，将登太行雪满山。\n闲来垂钓碧溪上，忽复乘舟梦日边。\n行路难，行路难，多歧路，今安在？\n长风破浪会有时，直挂云帆济沧海。',
+    keyLines: ['停杯投箸不能食，拔剑四顾心茫然。', '长风破浪会有时，直挂云帆济沧海。'],
+    meaning: '写仕途坎坷中的苦闷，终以信心作结。',
+    tip: '末句是乐观豪迈的千古名句。',
+  },
+  {
+    id: 'cn-w26',
+    grade: 9,
+    type: 'poem',
+    title: '酬乐天扬州初逢席上见赠',
+    author: '刘禹锡',
+    dynasty: '唐',
+    text: '巴山楚水凄凉地，二十三年弃置身。\n怀旧空吟闻笛赋，到乡翻似烂柯人。\n沉舟侧畔千帆过，病树前头万木春。\n今日听君歌一曲，暂凭杯酒长精神。',
+    keyLines: ['怀旧空吟闻笛赋，到乡翻似烂柯人。', '沉舟侧畔千帆过，病树前头万木春。'],
+    meaning: '写长期贬谪后的感慨，又以新陈代谢之理自勉。',
+    tip: '「沉舟」「病树」一联富有理趣。',
+  },
+  {
+    id: 'cn-w27',
+    grade: 9,
+    type: 'poem',
+    title: '水调歌头·明月几时有',
+    author: '苏轼',
+    dynasty: '北宋',
+    text: '明月几时有？把酒问青天。不知天上宫阙，今夕是何年。……人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共婵娟。',
+    keyLines: ['人有悲欢离合，月有阴晴圆缺，此事古难全。', '但愿人长久，千里共婵娟。'],
+    meaning: '中秋思亲，由出世之想转为人间祝愿。',
+    tip: '末两句是中秋祝福的经典表达。',
+  },
+  {
+    id: 'cn-w28',
+    grade: 9,
+    type: 'ci',
+    title: '渔家傲·秋思',
+    author: '范仲淹',
+    dynasty: '北宋',
+    text: '塞下秋来风景异，衡阳雁去无留意。四面边声连角起，千嶂里，长烟落日孤城闭。\n浊酒一杯家万里，燕然未勒归无计。羌管悠悠霜满地，人不寐，将军白发征夫泪。',
+    keyLines: ['四面边声连角起，千嶂里，长烟落日孤城闭。', '浊酒一杯家万里，燕然未勒归无计。', '将军白发征夫泪。'],
+    meaning: '写边塞秋景与将士思乡、功业未成之苦。',
+    tip: '「燕然未勒」用窦宪典故，表功业未成。',
+  },
+  {
+    id: 'cn-w29',
+    grade: 9,
+    type: 'ci',
+    title: '江城子·密州出猎',
+    author: '苏轼',
+    dynasty: '北宋',
+    text: '老夫聊发少年狂，左牵黄，右擎苍，锦帽貂裘，千骑卷平冈。……会挽雕弓如满月，西北望，射天狼。',
+    keyLines: ['老夫聊发少年狂，左牵黄，右擎苍。', '会挽雕弓如满月，西北望，射天狼。'],
+    meaning: '写出猎豪情与报国之志。',
+    tip: '「射天狼」喻指抵御边患。',
+  },
+  {
+    id: 'cn-w30',
+    grade: 9,
+    type: 'ci',
+    title: '破阵子·为陈同甫赋壮词以寄之',
+    author: '辛弃疾',
+    dynasty: '南宋',
+    text: '醉里挑灯看剑，梦回吹角连营。八百里分麾下炙，五十弦翻塞外声，沙场秋点兵。……了却君王天下事，赢得生前身后名。可怜白发生！',
+    keyLines: ['醉里挑灯看剑，梦回吹角连营。', '了却君王天下事，赢得生前身后名。可怜白发生！'],
+    meaning: '梦中壮阔军旅与醒来白发的强烈反差，写壮志难酬。',
+    tip: '结句「可怜白发生」是感情转折。',
+  },
+  {
+    id: 'cn-w31',
+    grade: 9,
+    type: 'prose',
+    title: '出师表（节选）',
+    author: '诸葛亮',
+    dynasty: '三国',
+    text: '先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。……亲贤臣，远小人，此先汉所以兴隆也；亲小人，远贤臣，此后汉所以倾颓也。……臣本布衣，躬耕于南阳。……受任于败军之际，奉命于危难之间。……愿陛下托臣以讨贼兴复之效，不效，则治臣之罪，以告先帝之灵。',
+    keyLines: ['此诚危急存亡之秋也。', '亲贤臣，远小人。', '受任于败军之际，奉命于危难之间。'],
+    meaning: '出师前向后主陈情，劝用贤纳谏，表白忠贞。',
+    tip: '「亲贤臣，远小人」是核心劝谏。',
+  },
+  {
+    id: 'cn-w32',
+    grade: 9,
+    type: 'prose',
+    title: '曹刿论战',
+    author: '《左传》',
+    dynasty: '春秋',
+    text: '十年春，齐师伐我。公将战，曹刿请见。……夫战，勇气也。一鼓作气，再而衰，三而竭。彼竭我盈，故克之。……',
+    keyLines: ['肉食者鄙，未能远谋。', '一鼓作气，再而衰，三而竭。', '彼竭我盈，故克之。'],
+    meaning: '写曹刿论战，强调取信于民与把握战机。',
+    tip: '「一鼓作气」成语即出于此。',
+  },
+  {
+    id: 'cn-w33',
+    grade: 9,
+    type: 'prose',
+    title: '邹忌讽齐王纳谏',
+    author: '《战国策》',
+    dynasty: '西汉整理',
+    text: '邹忌修八尺有余，而形貌昳丽。……吾妻之美我者，私我也；妾之美我者，畏我也；客之美我者，欲有求于我也。……群臣吏民能面刺寡人之过者，受上赏……',
+    keyLines: ['吾妻之美我者，私我也；妾之美我者，畏我也；客之美我者，欲有求于我也。', '能面刺寡人之过者，受上赏。'],
+    meaning: '邹忌以家事喻国事，劝齐王广开言路。',
+    tip: '设喻说理是本文关键。',
+  },
+  {
+    id: 'cn-w34',
+    grade: 9,
+    type: 'prose',
+    title: '鱼我所欲也（节选）',
+    author: '孟子',
+    dynasty: '战国',
+    text: '鱼，我所欲也；熊掌，亦我所欲也。二者不可得兼，舍鱼而取熊掌者也。生，亦我所欲也；义，亦我所欲也。二者不可得兼，舍生而取义者也。……',
+    keyLines: ['二者不可得兼，舍鱼而取熊掌者也。', '生，亦我所欲也；义，亦我所欲也。二者不可得兼，舍生而取义者也。'],
+    meaning: '论证在生与义冲突时应舍生取义。',
+    tip: '「舍生取义」是核心主张。',
+  },
+  {
+    id: 'cn-w35',
+    grade: 9,
+    type: 'poem',
+    title: '渔家傲（李清照）',
+    author: '李清照',
+    dynasty: '宋',
+    text: '天接云涛连晓雾，星河欲转千帆舞。仿佛梦魂归帝所。闻天语，殷勤问我归何处。\n我报路长嗟日暮，学诗谩有惊人句。九万里风鹏正举。风休住，蓬舟吹取三山去！',
+    keyLines: ['天接云涛连晓雾，星河欲转千帆舞。', '九万里风鹏正举。风休住，蓬舟吹取三山去！'],
+    meaning: '记梦抒怀，表达对理想境界的追求。',
+    tip: '风格偏豪放，与其婉约词不同。',
+  },
+  {
+    id: 'cn-w36',
+    grade: 9,
+    type: 'poem',
+    title: '山坡羊·潼关怀古',
+    author: '张养浩',
+    dynasty: '元',
+    text: '峰峦如聚，波涛如怒，山河表里潼关路。望西都，意踌躇。伤心秦汉经行处，宫阙万间都做了土。兴，百姓苦；亡，百姓苦。',
+    keyLines: ['峰峦如聚，波涛如怒，山河表里潼关路。', '兴，百姓苦；亡，百姓苦。'],
+    meaning: '怀古伤今，揭示王朝兴亡皆苦百姓。',
+    tip: '末句是全曲主旨，对比鲜明。',
+  },
 ];
 
+/** 闪卡：一篇一卡，正面篇名作者，背面名句+大意 */
+export const chineseVocab = chineseWorks.map((w) => ({
+  id: w.id,
+  grade: w.grade,
+  category: `${w.grade}年级 · ${TYPE_LABEL[w.type]}`,
+  term: w.title,
+  tag: w.type,
+  zh: w.keyLines.join('\n'),
+  en: `${w.author} · ${w.dynasty}`,
+  tip: `${w.meaning}\n${w.tip}`,
+  text: w.text,
+  author: w.author,
+  dynasty: w.dynasty,
+  type: w.type,
+  keyLines: w.keyLines,
+  meaning: w.meaning,
+}));
+
+/** 配套小测：默写填空意识、篇目常识、名句理解 */
 export const chineseQuestions = [
+  // 七年级
   {
-    "id": "ch-q001",
-    "category": "修辞",
-    "type": "mcq",
-    "prompt": "“春风又绿江南岸” mainly uses which figure? / 「春风又绿江南岸」主要用了哪种修辞？",
-    "options": [
-      "拟人 personification",
-      "比喻 metaphor",
-      "夸张 hyperbole",
-      "对偶 antithesis"
+    id: 'cn-q01',
+    grade: 7,
+    workId: 'cn-w01',
+    category: '默写',
+    type: 'mcq',
+    prompt: '《观沧海》中表现大海吞吐日月星辰的句子是？',
+    options: [
+      '日月之行，若出其中；星汉灿烂，若出其里。',
+      '水何澹澹，山岛竦峙。',
+      '秋风萧瑟，洪波涌起。',
+      '东临碣石，以观沧海。',
     ],
-    "answer": 0,
-    "explain": "“绿”字把春风写得像有生命，是拟人。 / 绿字赋予春风人的动作。"
+    answer: 0,
+    explain: '「日月之行……若出其里」写沧海包容宇宙的气势。',
   },
   {
-    "id": "ch-q002",
-    "category": "修辞",
-    "type": "mcq",
-    "prompt": "“飞流直下三千尺” is an example of? / 「飞流直下三千尺」属于？",
-    "options": [
-      "夸张 hyperbole",
-      "借代 metonymy",
-      "设问 rhetorical question",
-      "反复 repetition"
+    id: 'cn-q02',
+    grade: 7,
+    workId: 'cn-w02',
+    category: '默写',
+    type: 'mcq',
+    prompt: '“海日生残夜，江春入旧年”出自哪一首？',
+    options: ['《次北固山下》', '《钱塘湖春行》', '《夜雨寄北》', '《泊秦淮》'],
+    answer: 0,
+    explain: '王湾《次北固山下》颔联，写时序交替。',
+  },
+  {
+    id: 'cn-q03',
+    grade: 7,
+    workId: 'cn-w04',
+    category: '理解',
+    type: 'mcq',
+    prompt: '《天净沙·秋思》点明主旨、直接抒情的句子是？',
+    options: ['夕阳西下，断肠人在天涯。', '枯藤老树昏鸦', '小桥流水人家', '古道西风瘦马'],
+    answer: 0,
+    explain: '前面铺陈意象，末句点出「断肠人」。',
+  },
+  {
+    id: 'cn-q04',
+    grade: 7,
+    workId: 'cn-w09',
+    category: '文言',
+    type: 'mcq',
+    prompt: '“学而不思则罔，思而不学则殆”中「罔」的意思更接近？',
+    options: ['迷惑而无所得', '危险', '通「悦」，愉快', '怨恨'],
+    answer: 0,
+    explain: '罔：迷惑；殆：有害、危险。',
+  },
+  {
+    id: 'cn-q05',
+    grade: 7,
+    workId: 'cn-w11',
+    category: '理解',
+    type: 'mcq',
+    prompt: '《陋室铭》的文眼（核心）是哪一句？',
+    options: ['斯是陋室，惟吾德馨。', '苔痕上阶绿，草色入帘青。', '无丝竹之乱耳', '何陋之有？'],
+    answer: 0,
+    explain: '「德馨」点明室陋而人不陋。',
+  },
+  {
+    id: 'cn-q06',
+    grade: 7,
+    workId: 'cn-w12',
+    category: '理解',
+    type: 'tf',
+    prompt: '《爱莲说》中，作者用牡丹象征追求富贵的世风。',
+    answer: true,
+    explain: '文中以菊、牡丹衬托莲；牡丹象征富贵。',
+  },
+  {
+    id: 'cn-q07',
+    grade: 7,
+    workId: 'cn-w08',
+    category: '默写',
+    type: 'mcq',
+    prompt: '《过零丁洋》中表明舍生取义决心的名句是？',
+    options: [
+      '人生自古谁无死？留取丹心照汗青。',
+      '山河破碎风飘絮，身世浮沉雨打萍。',
+      '惶恐滩头说惶恐，零丁洋里叹零丁。',
+      '辛苦遭逢起一经，干戈寥落四周星。',
     ],
-    "answer": 0,
-    "explain": "数字极度放大，是夸张。 / Extreme number = hyperbole."
+    answer: 0,
+    explain: '尾联直抒胸臆，是千古名句。',
   },
   {
-    "id": "ch-q003",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "明喻一定出现“像”“如”等词。 / A simile (明喻) must use words like 像 or 如.",
-    "answer": true,
-    "explain": "明喻常用像、如、仿佛等标记。 / Similes often mark with 像/如."
+    id: 'cn-q08',
+    grade: 7,
+    workId: 'cn-w05',
+    category: '常识',
+    type: 'mcq',
+    prompt: '“我寄愁心与明月，随君直到夜郎西”的作者是？',
+    options: ['李白', '杜甫', '白居易', '杜牧'],
+    answer: 0,
+    explain: '李白《闻王昌龄左迁龙标遥有此寄》。',
   },
   {
-    "id": "ch-q004",
-    "category": "修辞",
-    "type": "mcq",
-    "prompt": "“问君能有几多愁？恰似一江春水向东流” uses? / 该句用了？",
-    "options": [
-      "设问 + 比喻 question + metaphor",
-      "反问 + 夸张 rhetorical Q + hyperbole",
-      "对偶 + 借代 antithesis + metonymy",
-      "反复 + 通感 repetition + synesthesia"
+    id: 'cn-q09',
+    grade: 7,
+    workId: 'cn-w03',
+    category: '理解',
+    type: 'tf',
+    prompt: '《钱塘湖春行》主要描写的是深秋西湖景色。',
+    answer: false,
+    explain: '写的是早春：早莺、新燕、浅草等。',
+  },
+  {
+    id: 'cn-q10',
+    grade: 7,
+    workId: 'cn-w10',
+    category: '文言',
+    type: 'mcq',
+    prompt: '《虽有嘉肴》提出的核心观点是？',
+    options: ['教学相长', '温故知新', '舍生取义', '出淤泥而不染'],
+    answer: 0,
+    explain: '文末点明「教学相长也」。',
+  },
+  {
+    id: 'cn-q11',
+    grade: 7,
+    workId: 'cn-w06',
+    category: '默写',
+    type: 'mcq',
+    prompt: '补全：何当共剪西窗烛，______。',
+    options: ['却话巴山夜雨时', '巴山夜雨涨秋池', '君问归期未有期', '随君直到夜郎西'],
+    answer: 0,
+    explain: '李商隐《夜雨寄北》后两句。',
+  },
+  {
+    id: 'cn-q12',
+    grade: 7,
+    workId: 'cn-w07',
+    category: '理解',
+    type: 'mcq',
+    prompt: '《泊秦淮》中「后庭花」常被用来象征？',
+    options: ['亡国之音 / 荒淫误国', '春天的欢乐', '边塞军乐', '田园闲适'],
+    answer: 0,
+    explain: '《玉树后庭花》是陈后主亡国之音的典故。',
+  },
+
+  // 八年级
+  {
+    id: 'cn-q13',
+    grade: 8,
+    workId: 'cn-w13',
+    category: '默写',
+    type: 'mcq',
+    prompt: '《望岳》中抒发登临绝顶壮志的句子是？',
+    options: [
+      '会当凌绝顶，一览众山小。',
+      '造化钟神秀，阴阳割昏晓。',
+      '荡胸生曾云，决眦入归鸟。',
+      '岱宗夫如何？齐鲁青未了。',
     ],
-    "answer": 0,
-    "explain": "前句设问，后句比喻。 / Question then metaphor."
+    answer: 0,
+    explain: '尾联直抒攀登绝顶、俯视群山的志向。',
   },
   {
-    "id": "ch-q005",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "排比只限于三个句子。 / Parallelism (排比) must be exactly three sentences.",
-    "answer": false,
-    "explain": "排比通常三句及以上，结构相似即可。 / Usually ≥3 parallel clauses."
+    id: 'cn-q14',
+    grade: 8,
+    workId: 'cn-w14',
+    category: '默写',
+    type: 'mcq',
+    prompt: '补全：烽火连三月，______。',
+    options: ['家书抵万金', '城春草木深', '恨别鸟惊心', '浑欲不胜簪'],
+    answer: 0,
+    explain: '杜甫《春望》颈联。',
   },
   {
-    "id": "ch-q006",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "比喻死守经验不知变通的是？ / Which idiom means rigidly clinging to old ways?",
-    "options": [
-      "守株待兔 wait by the stump",
-      "画蛇添足 add legs to a snake",
-      "亡羊补牢 mend the fold",
-      "三顾茅庐 three visits"
+    id: 'cn-q15',
+    grade: 8,
+    workId: 'cn-w15',
+    category: '默写',
+    type: 'mcq',
+    prompt: '“大漠孤烟直，长河落日圆”出自？',
+    options: ['《使至塞上》', '《渡荆门送别》', '《望岳》', '《黄鹤楼》'],
+    answer: 0,
+    explain: '王维《使至塞上》名句。',
+  },
+  {
+    id: 'cn-q16',
+    grade: 8,
+    workId: 'cn-w19',
+    category: '文言',
+    type: 'mcq',
+    prompt: '《桃花源记》中「阡陌交通」的「交通」意思是？',
+    options: ['交错相通', '运输往来', '通讯联络', '道路堵塞'],
+    answer: 0,
+    explain: '古义：交错相通。与今义不同。',
+  },
+  {
+    id: 'cn-q17',
+    grade: 8,
+    workId: 'cn-w20',
+    category: '理解',
+    type: 'mcq',
+    prompt: '《小石潭记》写「潭中鱼……皆若空游无所依」，主要是为了写？',
+    options: ['潭水清澈', '鱼很多', '作者快乐', '天气晴朗'],
+    answer: 0,
+    explain: '侧面描写，以鱼衬水清。',
+  },
+  {
+    id: 'cn-q18',
+    grade: 8,
+    workId: 'cn-w22',
+    category: '理解',
+    type: 'mcq',
+    prompt: '《记承天寺夜游》中「闲人」主要表达作者？',
+    options: ['贬谪后的自嘲与旷达', '纯粹的悠闲快乐', '对忙碌的羡慕', '对张怀民的责备'],
+    answer: 0,
+    explain: '「闲人」含无奈，也含月下漫步的自得。',
+  },
+  {
+    id: 'cn-q19',
+    grade: 8,
+    workId: 'cn-w21',
+    category: '常识',
+    type: 'tf',
+    prompt: '《三峡》的作者是郦道元，选自《水经注》。',
+    answer: true,
+    explain: '正确。',
+  },
+  {
+    id: 'cn-q20',
+    grade: 8,
+    workId: 'cn-w24',
+    category: '理解',
+    type: 'mcq',
+    prompt: '“安得广厦千万间，大庇天下寒士俱欢颜”体现杜甫？',
+    options: ['推己及人、心忧天下', '只求自己安居', '归隐山水', '歌颂盛世'],
+    answer: 0,
+    explain: '由个人遭际想到天下寒士。',
+  },
+  {
+    id: 'cn-q21',
+    grade: 8,
+    workId: 'cn-w16',
+    category: '默写',
+    type: 'mcq',
+    prompt: '《渡荆门送别》中写山江开阔的一联是？',
+    options: [
+      '山随平野尽，江入大荒流。',
+      '月下飞天镜，云生结海楼。',
+      '仍怜故乡水，万里送行舟。',
+      '渡远荆门外，来从楚国游。',
     ],
-    "answer": 0,
-    "explain": "守株待兔喻不知变通。 / Wait-for-rabbit = inflexible."
+    answer: 0,
+    explain: '颔联写景阔大。',
   },
   {
-    "id": "ch-q007",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "“亡羊补牢”告诉我们要？ / 亡羊补牢 teaches us to ______.",
-    "options": [
-      "及时补救 correct in time",
-      "放弃努力 give up",
-      "盲目模仿 copy blindly",
-      "自欺欺人 deceive oneself"
+    id: 'cn-q22',
+    grade: 8,
+    workId: 'cn-w18',
+    category: '常识',
+    type: 'tf',
+    prompt: '《石壕吏》属于杜甫「三吏」之一，反映战乱中的人民苦难。',
+    answer: true,
+    explain: '正确。',
+  },
+  {
+    id: 'cn-q23',
+    grade: 8,
+    workId: 'cn-w23',
+    category: '理解',
+    type: 'mcq',
+    prompt: '《送东阳马生序》主要写作意图是？',
+    options: ['勉励后生勤奋求学', '炫耀自己学问', '批评老师严厉', '描写山水风景'],
+    answer: 0,
+    explain: '以己之苦学经历劝学。',
+  },
+  {
+    id: 'cn-q24',
+    grade: 8,
+    workId: 'cn-w17',
+    category: '默写',
+    type: 'mcq',
+    prompt: '补全：日暮乡关何处是？______。',
+    options: ['烟波江上使人愁', '白云千载空悠悠', '芳草萋萋鹦鹉洲', '晴川历历汉阳树'],
+    answer: 0,
+    explain: '崔颢《黄鹤楼》尾联。',
+  },
+
+  // 九年级
+  {
+    id: 'cn-q25',
+    grade: 9,
+    workId: 'cn-w25',
+    category: '默写',
+    type: 'mcq',
+    prompt: '《行路难》中表达信心的名句是？',
+    options: [
+      '长风破浪会有时，直挂云帆济沧海。',
+      '停杯投箸不能食，拔剑四顾心茫然。',
+      '欲渡黄河冰塞川，将登太行雪满山。',
+      '行路难，行路难，多歧路，今安在？',
     ],
-    "answer": 0,
-    "explain": "出了问题及时补救。 / Fix problems promptly."
+    answer: 0,
+    explain: '尾句振起全篇，乐观豪迈。',
   },
   {
-    "id": "ch-q008",
-    "category": "成语",
-    "type": "tf",
-    "prompt": "“刻舟求剑”讽刺不知变通的人。 / 刻舟求剑 mocks those who cannot adapt.",
-    "answer": true,
-    "explain": "刻舟求剑喻拘泥成规。 / Marks rigidity."
+    id: 'cn-q26',
+    grade: 9,
+    workId: 'cn-w26',
+    category: '理解',
+    type: 'mcq',
+    prompt: '“沉舟侧畔千帆过，病树前头万木春”主要说明？',
+    options: ['新事物必将取代旧事物 / 前景仍可乐观', '船只很多', '春天来了', '作者已绝望'],
+    answer: 0,
+    explain: '以自然景象喻社会人事更迭，含自勉之意。',
   },
   {
-    "id": "ch-q009",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "“青出于蓝而胜于蓝”说明？ / This idiom means ______.",
-    "options": [
-      "学生可超过老师 students may surpass teachers",
-      "颜色更深 colours darken",
-      "水比蓝草蓝 water is bluer",
-      "学习无用 study is useless"
-    ],
-    "answer": 0,
-    "explain": "比喻后人超过前人。 / Later generation excels."
+    id: 'cn-q27',
+    grade: 9,
+    workId: 'cn-w27',
+    category: '默写',
+    type: 'mcq',
+    prompt: '补全：但愿人长久，______。',
+    options: ['千里共婵娟', '月有阴晴圆缺', '把酒问青天', '此事古难全'],
+    answer: 0,
+    explain: '苏轼《水调歌头》结尾祝愿。',
   },
   {
-    "id": "ch-q010",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "形容刻苦自励、发愤图强的是？ / Which idiom means self-discipline to improve?",
-    "options": [
-      "卧薪尝胆 sleep on brushwood",
-      "乐不思蜀 forget home in joy",
-      "对牛弹琴 play lute to cow",
-      "买椟还珠 return pearl keep box"
-    ],
-    "answer": 0,
-    "explain": "卧薪尝胆喻刻苦自励。 / Brushwood/gall = resolve."
+    id: 'cn-q28',
+    grade: 9,
+    workId: 'cn-w32',
+    category: '文言',
+    type: 'mcq',
+    prompt: '《曹刿论战》中「一鼓作气」强调的是？',
+    options: ['士气与战机', '兵器优劣', '兵力多少', '天气好坏'],
+    answer: 0,
+    explain: '「彼竭我盈」即抓住敌方气衰、我方气盛之时。',
   },
   {
-    "id": "ch-q011",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "“之”在“公将鼓之”中的用法是？ / 之 in 公将鼓之 is ______.",
-    "options": [
-      "代词 it/him pronoun",
-      "的 (possessive)",
-      "到 go to",
-      "主谓之间取消句子独立性"
-    ],
-    "answer": 0,
-    "explain": "此处“之”代指曹公之鼓声/齐师。 / Pronoun object."
+    id: 'cn-q29',
+    grade: 9,
+    workId: 'cn-w31',
+    category: '理解',
+    type: 'mcq',
+    prompt: '《出师表》中诸葛亮反复劝后主做到？',
+    options: ['亲贤臣，远小人', '穷兵黩武', '闭关锁国', '重用宦官'],
+    answer: 0,
+    explain: '这是表中核心劝谏。',
   },
   {
-    "id": "ch-q012",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "“而”在“学而不思则罔”中表示？ / 而 here means ______.",
-    "options": [
-      "转折 but/yet",
-      "并列 and",
-      "修饰",
-      "顺承 then"
-    ],
-    "answer": 0,
-    "explain": "学而不思则罔：只学不思，表转折。 / Contrast."
+    id: 'cn-q30',
+    grade: 9,
+    workId: 'cn-w34',
+    category: '理解',
+    type: 'tf',
+    prompt: '《鱼我所欲也》主张：当生与义不可兼得时，应舍生取义。',
+    answer: true,
+    explain: '正确，这是孟子的核心论点。',
   },
   {
-    "id": "ch-q013",
-    "category": "文言",
-    "type": "tf",
-    "prompt": "古汉语“走”常义为“跑”。 / Classical 走 usually means run.",
-    "answer": true,
-    "explain": "古义走=跑，今义走=walk。 / Archaic 走 = run."
+    id: 'cn-q31',
+    grade: 9,
+    workId: 'cn-w33',
+    category: '理解',
+    type: 'mcq',
+    prompt: '邹忌劝齐王纳谏，主要用了什么方法？',
+    options: ['设喻（以家事比国事）', '严厉批评', '引经据典堆砌', '武力威胁'],
+    answer: 0,
+    explain: '由妻妾客的偏私推及宫妇朝廷，设喻说理。',
   },
   {
-    "id": "ch-q014",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "“以”在“不以物喜”中意思是？ / 以 in 不以物喜 means ______.",
-    "options": [
-      "因为 because",
-      "用 with",
-      "把 take",
-      "把……当作 regard as"
-    ],
-    "answer": 0,
-    "explain": "不以物喜：不因为外物而喜。 / Because of."
+    id: 'cn-q32',
+    grade: 9,
+    workId: 'cn-w36',
+    category: '默写',
+    type: 'mcq',
+    prompt: '《山坡羊·潼关怀古》点明主旨的句子是？',
+    options: ['兴，百姓苦；亡，百姓苦。', '峰峦如聚，波涛如怒', '望西都，意踌躇', '宫阙万间都做了土'],
+    answer: 0,
+    explain: '末句揭示兴亡皆苦百姓。',
   },
   {
-    "id": "ch-q015",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "“者”在“陈胜者，阳城人也”中的作用是？ / 者 here ______.",
-    "options": [
-      "表判断/停顿 marks judgment/pause",
-      "……的人 person who",
-      "代词 he",
-      "语气词 only"
-    ],
-    "answer": 0,
-    "explain": "……者，……也：判断句式。 / Judgment pattern."
+    id: 'cn-q33',
+    grade: 9,
+    workId: 'cn-w30',
+    category: '理解',
+    type: 'mcq',
+    prompt: '《破阵子·为陈同甫赋壮词以寄之》感情转折的关键句是？',
+    options: ['可怜白发生！', '醉里挑灯看剑', '沙场秋点兵', '马作的卢飞快'],
+    answer: 0,
+    explain: '梦境豪迈，醒来白发，反差强烈。',
   },
   {
-    "id": "ch-q016",
-    "category": "阅读",
-    "type": "mcq",
-    "prompt": "分析“伏笔”主要关注？ / Foreshadowing analysis focuses on ______.",
-    "options": [
-      "后文照应 later echo",
-      "修辞手法 only rhetoric",
-      "字音押韵 rhyme",
-      "标点用法 punctuation"
-    ],
-    "answer": 0,
-    "explain": "伏笔为后文情节做暗示。 / Hints future plot."
+    id: 'cn-q34',
+    grade: 9,
+    workId: 'cn-w28',
+    category: '常识',
+    type: 'mcq',
+    prompt: '“燕然未勒归无计”中的「燕然」典故与谁有关？',
+    options: ['窦宪勒石燕然', '岳飞抗金', '诸葛亮出师', '曹操观沧海'],
+    answer: 0,
+    explain: '东汉窦宪破北匈奴，刻石燕然山纪功。',
   },
   {
-    "id": "ch-q017",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "环境描写只写自然景物。 / Setting description only covers nature.",
-    "answer": false,
-    "explain": "环境描写含自然环境与社会环境。 / Natural + social setting."
+    id: 'cn-q35',
+    grade: 9,
+    workId: 'cn-w29',
+    category: '理解',
+    type: 'tf',
+    prompt: '《江城子·密州出猎》中「射天狼」表达抵御边患、报效朝廷的志向。',
+    answer: true,
+    explain: '正确。',
   },
   {
-    "id": "ch-q018",
-    "category": "阅读",
-    "type": "mcq",
-    "prompt": "议论文的“论据”不包括？ / Which is NOT evidence in argumentative writing?",
-    "options": [
-      "作者主观情绪 alone author mood alone",
-      "事实数据 facts/data",
-      "道理论证 reasoning",
-      "引用名言 quotations"
-    ],
-    "answer": 0,
-    "explain": "论据需客观材料，非纯情绪。 / Evidence needs support, not mood alone."
+    id: 'cn-q36',
+    grade: 9,
+    workId: 'cn-w25',
+    category: '常识',
+    type: 'mcq',
+    prompt: '“长风破浪会有时”的作者是？',
+    options: ['李白', '杜甫', '苏轼', '辛弃疾'],
+    answer: 0,
+    explain: '李白《行路难》（其一）。',
   },
-  {
-    "id": "ch-q019",
-    "category": "病句",
-    "type": "mcq",
-    "prompt": "哪句有语病？ / Which sentence is faulty?",
-    "options": [
-      "通过这次活动，使我们收获很大。 Through this activity, we gained much.",
-      "这次活动使我们收获很大。",
-      "我们在活动中收获很大。",
-      "这次活动让同学们收获很大。"
-    ],
-    "answer": 0,
-    "explain": "“通过……使……”缺主语。 / Missing subject."
-  },
-  {
-    "id": "ch-q020",
-    "category": "病句",
-    "type": "mcq",
-    "prompt": "哪句搭配不当？ / Which has improper collocation?",
-    "options": [
-      "提高水平 raise level",
-      "改善条件 improve conditions",
-      "增加质量 increase quality",
-      "增强意识 strengthen awareness"
-    ],
-    "answer": 2,
-    "explain": "应说“提高质量”，不说“增加质量”。 / Improve quality, not increase."
-  },
-  {
-    "id": "ch-q021",
-    "category": "病句",
-    "type": "tf",
-    "prompt": "“能否坚持，是成功的关键”没有语病。 / 能否坚持，是成功的关键 is correct.",
-    "answer": false,
-    "explain": "两面对一面：能否 vs 成功。 / Two-sided vs one-sided."
-  },
-  {
-    "id": "ch-q022",
-    "category": "病句",
-    "type": "mcq",
-    "prompt": "“原因是……造成的”属于？ / 原因是……造成的 is ______.",
-    "options": [
-      "句式杂糅 mixed pattern",
-      "成分残缺 missing element",
-      "语序不当 wrong order",
-      "表意不明 ambiguous"
-    ],
-    "answer": 0,
-    "explain": "“原因是……”与“……造成的”杂糅。 / Redundant structure."
-  },
-  {
-    "id": "ch-q023",
-    "category": "阅读",
-    "type": "mcq",
-    "prompt": "倒叙的作用常是？ / Flashback often ______.",
-    "options": [
-      "设置悬念 create suspense",
-      "说明事理 explain facts",
-      "列举数据 list data",
-      "直接点明主旨 state theme directly"
-    ],
-    "answer": 0,
-    "explain": "倒叙常制造悬念或突出结果。 / Suspense/emphasis."
-  },
-  {
-    "id": "ch-q024",
-    "category": "修辞",
-    "type": "mcq",
-    "prompt": "“双关”依靠？ / Pun (双关) relies on ______.",
-    "options": [
-      "一词多义或谐音 double meaning/homophone",
-      "数量夸张 numeric hyperbole",
-      "人物对话 dialogue only",
-      "环境描写 setting"
-    ],
-    "answer": 0,
-    "explain": "双关利用语义或语音双关。 / Meaning or sound double."
-  },
-  {
-    "id": "ch-q025",
-    "category": "成语",
-    "type": "tf",
-    "prompt": "“滥竽充数”比喻没有真才实学混在其中。 / 滥竽充数 means lacking skill but pretending.",
-    "answer": true,
-    "explain": "不会吹竽却混在乐队里。 / Pretend competence."
-  },
-  {
-    "id": "ch-q026",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「画龙点睛」的意思是？ / Meaning of 画龙点睛?",
-    "options": [
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救",
-      "拘泥成规不知变通"
-    ],
-    "answer": 0,
-    "explain": "写作时在关键处添一笔传神细节。 / In writing, add a vivid detail at the key moment."
-  },
-  {
-    "id": "ch-q027",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「守株待兔」的意思是？ / Meaning of 守株待兔?",
-    "options": [
-      "比喻死守经验不知变通",
-      "比喻关键处点明要旨",
-      "出了问题及时补救",
-      "拘泥成规不知变通"
-    ],
-    "answer": 0,
-    "explain": "不努力只等运气如同守株待兔。 / Waiting for luck without effort is like 守株待兔."
-  },
-  {
-    "id": "ch-q028",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「亡羊补牢」的意思是？ / Meaning of 亡羊补牢?",
-    "options": [
-      "出了问题及时补救",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "拘泥成规不知变通"
-    ],
-    "answer": 0,
-    "explain": "现在修补漏洞，亡羊补牢为时未晚。 / Fix the leak now; 亡羊补牢 is never too late."
-  },
-  {
-    "id": "ch-q029",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「刻舟求剑」的意思是？ / Meaning of 刻舟求剑?",
-    "options": [
-      "拘泥成规不知变通",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "盲目用旧法就是刻舟求剑。 / Using old methods blindly is 刻舟求剑."
-  },
-  {
-    "id": "ch-q030",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「掩耳盗铃」的意思是？ / Meaning of 掩耳盗铃?",
-    "options": [
-      "自欺欺人",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "忽视反馈如同掩耳盗铃。 / Ignoring feedback is like 掩耳盗铃."
-  },
-  {
-    "id": "ch-q031",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「滥竽充数」的意思是？ / Meaning of 滥竽充数?",
-    "options": [
-      "没有真才实学混在行伍中",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "小组作业不要滥竽充数。 / Do not 滥竽充数 in group projects."
-  },
-  {
-    "id": "ch-q032",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「自相矛盾」的意思是？ / Meaning of 自相矛盾?",
-    "options": [
-      "前后说法抵触",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "你的两个说法自相矛盾。 / Your two claims 自相矛盾."
-  },
-  {
-    "id": "ch-q033",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「叶公好龙」的意思是？ / Meaning of 叶公好龙?",
-    "options": [
-      "口头上爱好实际上并不真喜欢",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "他嘴上说爱读书，实则叶公好龙。 / He talks about reading but 叶公好龙."
-  },
-  {
-    "id": "ch-q034",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「杯弓蛇影」的意思是？ / Meaning of 杯弓蛇影?",
-    "options": [
-      "疑神疑鬼自相惊扰",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "别让恐惧造成杯弓蛇影。 / Do not let fear create 杯弓蛇影."
-  },
-  {
-    "id": "ch-q035",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「买椟还珠」的意思是？ / Meaning of 买椟还珠?",
-    "options": [
-      "取舍不当",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "重包装轻内容就是买椟还珠。 / Choosing packaging over content is 买椟还珠."
-  },
-  {
-    "id": "ch-q036",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「南辕北辙」的意思是？ / Meaning of 南辕北辙?",
-    "options": [
-      "行动与目的相反",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "策略错误会南辕北辙。 / Wrong strategy leads to 南辕北辙."
-  },
-  {
-    "id": "ch-q037",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「邯郸学步」的意思是？ / Meaning of 邯郸学步?",
-    "options": [
-      "模仿别人不成反失本色",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "盲目模仿会变成邯郸学步。 / Blind imitation becomes 邯郸学步."
-  },
-  {
-    "id": "ch-q038",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「狐假虎威」的意思是？ / Meaning of 狐假虎威?",
-    "options": [
-      "倚仗别人的威势欺压人",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "仗势欺人常是狐假虎威。 / Bullies often 狐假虎威."
-  },
-  {
-    "id": "ch-q039",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「对牛弹琴」的意思是？ / Meaning of 对牛弹琴?",
-    "options": [
-      "对不懂的人讲深奥道理",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "对他讲诗如同对牛弹琴。 / Explaining poetry to him is 对牛弹琴."
-  },
-  {
-    "id": "ch-q040",
-    "category": "成语",
-    "type": "mcq",
-    "prompt": "「望梅止渴」的意思是？ / Meaning of 望梅止渴?",
-    "options": [
-      "用空想安慰自己",
-      "比喻关键处点明要旨",
-      "比喻死守经验不知变通",
-      "出了问题及时补救"
-    ],
-    "answer": 0,
-    "explain": "空头承诺只是望梅止渴。 / Empty promises only 望梅止渴."
-  },
-  {
-    "id": "ch-q041",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「比喻」属于修辞手法。 / 比喻 is a rhetorical device.",
-    "answer": true,
-    "explain": "用一事物比另一事物：比喻把不同事物联系起来。"
-  },
-  {
-    "id": "ch-q042",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「拟人」属于修辞手法。 / 拟人 is a rhetorical device.",
-    "answer": true,
-    "explain": "把物当作人来写：拟人赋予事物人的特征。"
-  },
-  {
-    "id": "ch-q043",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「夸张」属于修辞手法。 / 夸张 is a rhetorical device.",
-    "answer": true,
-    "explain": "有意夸大或缩小：夸张强化情感。"
-  },
-  {
-    "id": "ch-q044",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「排比」属于修辞手法。 / 排比 is a rhetorical device.",
-    "answer": true,
-    "explain": "结构相似的句子并列：排比增强节奏。"
-  },
-  {
-    "id": "ch-q045",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「对偶」属于修辞手法。 / 对偶 is a rhetorical device.",
-    "answer": true,
-    "explain": "字数相等结构相同：对偶使语句工整。"
-  },
-  {
-    "id": "ch-q046",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「反问」属于修辞手法。 / 反问 is a rhetorical device.",
-    "answer": true,
-    "explain": "用疑问形式表达确定意思：反问语气肯定。"
-  },
-  {
-    "id": "ch-q047",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「设问」属于修辞手法。 / 设问 is a rhetorical device.",
-    "answer": true,
-    "explain": "自问自答引起注意：设问引起读者注意。"
-  },
-  {
-    "id": "ch-q048",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「反复」属于修辞手法。 / 反复 is a rhetorical device.",
-    "answer": true,
-    "explain": "有意重复词语或句子：反复突出关键意思。"
-  },
-  {
-    "id": "ch-q049",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「借代」属于修辞手法。 / 借代 is a rhetorical device.",
-    "answer": true,
-    "explain": "不直接说出所指事物：借代用相关事物代本体。"
-  },
-  {
-    "id": "ch-q050",
-    "category": "修辞",
-    "type": "tf",
-    "prompt": "「双关」属于修辞手法。 / 双关 is a rhetorical device.",
-    "answer": true,
-    "explain": "一词多义或谐音：双关利用一语两义。"
-  },
-  {
-    "id": "ch-q051",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「之」常见义包括？ / Common sense of 之?",
-    "options": [
-      "的；到；他（代词）",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "文言“之”常表所属或宾语。"
-  },
-  {
-    "id": "ch-q052",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「其」常见义包括？ / Common sense of 其?",
-    "options": [
-      "他的；那；大概",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“其”可表他的、那、大概。"
-  },
-  {
-    "id": "ch-q053",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「而」常见义包括？ / Common sense of 而?",
-    "options": [
-      "并且；却；就",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“而”连接分句，义灵活。"
-  },
-  {
-    "id": "ch-q054",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「以」常见义包括？ / Common sense of 以?",
-    "options": [
-      "用；把；因为；来",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“以”常用用、把、因为、来。"
-  },
-  {
-    "id": "ch-q055",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「于」常见义包括？ / Common sense of 于?",
-    "options": [
-      "在；到；比；对",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“于”表处所、时间、比较。"
-  },
-  {
-    "id": "ch-q056",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「为」常见义包括？ / Common sense of 为?",
-    "options": [
-      "做；是；成为；被",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“为”有做、是、成为、被等义。"
-  },
-  {
-    "id": "ch-q057",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「者」常见义包括？ / Common sense of 者?",
-    "options": [
-      "……的人/事/物",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“者”使前面词语名词化。"
-  },
-  {
-    "id": "ch-q058",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「也」常见义包括？ / Common sense of 也?",
-    "options": [
-      "句末表判断或解释",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“也”常作句末语气词。"
-  },
-  {
-    "id": "ch-q059",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「乎」常见义包括？ / Common sense of 乎?",
-    "options": [
-      "吗；呢；啊",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“乎”表疑问或感叹。"
-  },
-  {
-    "id": "ch-q060",
-    "category": "文言",
-    "type": "mcq",
-    "prompt": "文言虚词/实词「焉」常见义包括？ / Common sense of 焉?",
-    "options": [
-      "于此；怎么；呢",
-      "仅作语气词 only modal",
-      "无实义 no meaning",
-      "只能作主语 subject only"
-    ],
-    "answer": 0,
-    "explain": "“焉”可表于此、怎么、呢。"
-  },
-  {
-    "id": "ch-q061",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "阅读术语「主旨」：文章中心思想。 / Reading term 主旨: Main idea (主旨) answers what the author mainly says.",
-    "answer": true,
-    "explain": "主旨回答作者主要说什么。"
-  },
-  {
-    "id": "ch-q062",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "阅读术语「线索」：贯穿全文的脉络。 / Reading term 线索: Thread (线索) connects events in a text.",
-    "answer": true,
-    "explain": "线索串联全文内容。"
-  },
-  {
-    "id": "ch-q063",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "阅读术语「伏笔」：前文对后文的暗示。 / Reading term 伏笔: Foreshadowing (伏笔) hints at later events.",
-    "answer": true,
-    "explain": "伏笔暗示后文发展。"
-  },
-  {
-    "id": "ch-q064",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "阅读术语「照应」：前后内容相呼应。 / Reading term 照应: Echo (照应) links earlier and later details.",
-    "answer": true,
-    "explain": "照应使前后呼应。"
-  },
-  {
-    "id": "ch-q065",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "阅读术语「铺垫」：为主要内容做准备。 / Reading term 铺垫: Setup (铺垫) prepares major plot points.",
-    "answer": true,
-    "explain": "铺垫为主要情节做准备。"
-  },
-  {
-    "id": "ch-q066",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "阅读术语「悬念」：引起读者期待。 / Reading term 悬念: Suspense (悬念) keeps readers curious.",
-    "answer": true,
-    "explain": "悬念引发读者期待。"
-  },
-  {
-    "id": "ch-q067",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "阅读术语「环境描写」：写自然环境或社会环境。 / Reading term 环境描写: Setting description shows atmosphere.",
-    "answer": true,
-    "explain": "环境描写营造氛围。"
-  },
-  {
-    "id": "ch-q068",
-    "category": "阅读",
-    "type": "tf",
-    "prompt": "阅读术语「人物描写」：外貌语言动作心理等。 / Reading term 人物描写: Characterization reveals personality.",
-    "answer": true,
-    "explain": "人物描写揭示性格。"
-  }
 ];
 
-export function filterChineseVocab({ category = 'all', tag = 'all', limit = 0 } = {}) {
-  let list = chineseVocab.slice();
-  if (category && category !== 'all') list = list.filter((v) => v.category === category);
-  if (tag && tag !== 'all') list = list.filter((v) => v.tag === tag);
-  shuffle(list);
-  if (limit > 0) list = list.slice(0, limit);
-  return list;
+export function gradeLabel(grade) {
+  return ({ 7: '七年级', 8: '八年级', 9: '九年级' })[grade] || `${grade}年级`;
 }
 
-export function filterChineseQuestions({ category = 'all', type = 'all', limit = 0 } = {}) {
-  let list = chineseQuestions.slice();
-  if (category && category !== 'all') list = list.filter((q) => q.category === category);
-  if (type && type !== 'all') list = list.filter((q) => q.type === type);
-  shuffle(list);
-  if (limit > 0) list = list.slice(0, limit);
-  return list;
+export function typeLabel(type) {
+  return TYPE_LABEL[type] || type;
 }
 
-export function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
+export function filterChineseWorks(grade = 'all') {
+  if (grade === 'all' || grade == null) return chineseWorks.slice();
+  const g = Number(grade);
+  return chineseWorks.filter((w) => w.grade === g);
+}
+
+export function filterChineseVocab(grade = 'all') {
+  if (grade === 'all' || grade == null) return chineseVocab.slice();
+  const g = Number(grade);
+  return chineseVocab.filter((v) => v.grade === g);
+}
+
+export function filterChineseQuestions(grade = 'all') {
+  if (grade === 'all' || grade == null) return chineseQuestions.slice();
+  const g = Number(grade);
+  return chineseQuestions.filter((q) => q.grade === g);
+}
+
+export function worksByGrade() {
+  return [7, 8, 9].map((g) => ({
+    grade: g,
+    label: gradeLabel(g),
+    works: chineseWorks.filter((w) => w.grade === g),
+  }));
 }
