@@ -8,6 +8,7 @@ const ready = {
   ielts: null,
   chinese: null,
   math: null,
+  hs: {},
 };
 
 /** @type {Record<string, any>} */
@@ -30,6 +31,7 @@ export const packs = {
   ieltsDays: [],
   getIeltsDay: () => null,
   ieltsDayWords: () => [],
+  hsWords: {},
   chineseWorks: [],
   chineseVocab: [],
   chineseQuestions: [],
@@ -97,6 +99,26 @@ export function ensureChinese() {
     });
   }
   return ready.chinese;
+}
+
+const HS_LOADERS = {
+  b1: () => import('./hs-english/b1.js'),
+  b2: () => import('./hs-english/b2.js'),
+  b3: () => import('./hs-english/b3.js'),
+  x1: () => import('./hs-english/x1.js'),
+  x2: () => import('./hs-english/x2.js'),
+  x3: () => import('./hs-english/x3.js'),
+  x4: () => import('./hs-english/x4.js'),
+};
+
+export function ensureHsEnglish(bookId) {
+  if (!bookId || !HS_LOADERS[bookId]) return Promise.resolve();
+  if (!ready.hs[bookId]) {
+    ready.hs[bookId] = HS_LOADERS[bookId]().then((m) => {
+      packs.hsWords[bookId] = m.words || [];
+    });
+  }
+  return ready.hs[bookId];
 }
 
 export function ensureMath() {

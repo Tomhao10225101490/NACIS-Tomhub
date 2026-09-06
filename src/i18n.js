@@ -138,6 +138,33 @@ const dict = {
   speakOther: { zh: '读另一面', en: 'Other side' },
   glossFallback: { zh: '结合上下文理解', en: 'Read in context' },
   glossHint: { zh: '点字看释义', en: 'Tap a character for gloss' },
+  ieltsTrack: { zh: '雅思 Band 7', en: 'IELTS Band 7' },
+  ieltsTrackBlurb: {
+    zh: '1500 词 · 60 天闪卡与抽查，路径不变',
+    en: '1500 words · 60-day flashcards & spot check',
+  },
+  ieltsTrackModes: { zh: '雅思练习', en: 'IELTS practice' },
+  hsTrack: { zh: '高中教材', en: 'High school books' },
+  hsTrackBlurb: {
+    zh: '人教版 2019 · 7 册封面选书 · 按 Unit 背词',
+    en: 'PEP 2019 · 7 covers · memorize by unit',
+  },
+  hsShelf: { zh: '高中英语书架', en: 'High-school bookshelf' },
+  hsShelfHint: {
+    zh: '点封面选书，按课本 Unit 背课后单词',
+    en: 'Pick a cover, then memorize each textbook unit',
+  },
+  pep2019: { zh: '人教版 2019', en: 'PEP 2019' },
+  hsCompulsory: { zh: '必修', en: 'Compulsory' },
+  hsSelective: { zh: '选必', en: 'Selective' },
+  hsUnits: { zh: '单元', en: 'units' },
+  hsLearned: { zh: '已学 {n}/{t} 单元', en: '{n}/{t} units done' },
+  unitOf: { zh: 'Unit {n}', en: 'Unit {n}' },
+  welcomeUnit: { zh: 'Welcome Unit', en: 'Welcome Unit' },
+  hsOpenBook: { zh: '打开这本书', en: 'Open this book' },
+  hsToShelf: { zh: '回书架', en: 'Bookshelf' },
+  hsNextUnit: { zh: '下一单元 →', en: 'Next unit →' },
+  hsNextBook: { zh: '下一册 →', en: 'Next book →' },
 };
 
 export function t(key, vars = {}) {

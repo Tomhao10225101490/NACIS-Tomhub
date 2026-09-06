@@ -6,6 +6,7 @@ import {
   ensureIelts,
   ensureChinese,
   ensureMath,
+  ensureHsEnglish,
   prefetchInBackground,
 } from './data/load.js';
 import {
@@ -13,6 +14,7 @@ import {
   IELTS_WORD_TOTAL,
   IELTS_DAY_TOTAL,
 } from './data/ielts-meta.js';
+import { HS_BOOKS, HS_WORD_TOTAL, getHsBook, getHsUnit } from './data/hs-english/meta.js';
 import { shuffle } from './util/shuffle.js';
 import {
   unlockAudio,
@@ -78,6 +80,8 @@ let gradeLabel = (g) => `${g}`;
 let chineseGrade = 'all';
 let mathVocab = [];
 let mathQuestions = [];
+let hsActiveBook = '';
+let hsActiveUnit = '';
 
 function bindScience() {
   vocabulary = packs.vocabulary;
@@ -178,6 +182,16 @@ async function needMath() {
   }
 }
 
+async function needHsBook(bookId) {
+  if (!bookId) return;
+  showPackLoading(tb('hsOpenBook'));
+  try {
+    await ensureHsEnglish(bookId);
+  } finally {
+    hidePackLoading();
+  }
+}
+
 
 
 document.addEventListener(
@@ -201,6 +215,7 @@ function readJson(key, fallback) {
 const _wrong = readJson('nacis_wrong', []);
 const _days = readJson('alex_days', {});
 const _ielts = readJson('toms_ielts', {});
+const _hs = readJson('toms_hs_en', {});
 
 const store = {
   xp: Number(localStorage.getItem('nacis_xp') || 0),
@@ -209,6 +224,7 @@ const store = {
   wrong: Array.isArray(_wrong) ? _wrong : [],
   dayProgress: _days && typeof _days === 'object' && !Array.isArray(_days) ? _days : {},
   ieltsProgress: _ielts && typeof _ielts === 'object' && !Array.isArray(_ielts) ? _ielts : {},
+  hsProgress: _hs && typeof _hs === 'object' && !Array.isArray(_hs) ? _hs : {},
   activeHub: localStorage.getItem('toms_hub') || '',
 };
 
@@ -402,6 +418,7 @@ function save() {
   localStorage.setItem('nacis_wrong', JSON.stringify(store.wrong.slice(-80)));
   localStorage.setItem('alex_days', JSON.stringify(store.dayProgress));
   localStorage.setItem('toms_ielts', JSON.stringify(store.ieltsProgress || {}));
+  localStorage.setItem('toms_hs_en', JSON.stringify(store.hsProgress || {}));
   localStorage.setItem('toms_hub', store.activeHub || '');
   localStorage.setItem('alex_qlevel', quizLevel);
 }
@@ -796,6 +813,51 @@ function ieltsDoneCount() {
   return n;
 }
 
+function hsProgressKey(bookId, unitId) {
+  return `${bookId}:${unitId}`;
+}
+
+function isHsUnitDone(bookId, unitId) {
+  return Boolean(store.hsProgress[hsProgressKey(bookId, unitId)]?.done);
+}
+
+function markHsUnitDone(bookId, unitId) {
+  store.hsProgress[hsProgressKey(bookId, unitId)] = { done: true, at: Date.now() };
+  save();
+}
+
+function hsBookDoneCount(book) {
+  return (book?.units || []).filter((u) => isHsUnitDone(book.id, u.id)).length;
+}
+
+function publicUrl(rel) {
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base.replace(/\/?$/, '/')}${String(rel || '').replace(/^\//, '')}`;
+}
+
+function hsBookTitle(book) {
+  if (!book) return '';
+  const L = getLang();
+  if (L === 'en') return book.en;
+  if (L === 'zh') return book.zh;
+  return `${book.zh} · ${book.en}`;
+}
+
+function hsUnitNumLabel(unit) {
+  if (!unit) return '';
+  if (unit.n === 0) return tb('welcomeUnit');
+  return tb('unitOf', { n: unit.n });
+}
+
+function hsUnitHeading(unit) {
+  if (!unit) return '';
+  const num = hsUnitNumLabel(unit);
+  const L = getLang();
+  if (L === 'en') return `${num} · ${unit.en}`;
+  if (L === 'zh') return `${num} · ${unit.zh}`;
+  return `${num} · ${unit.en} · ${unit.zh}`;
+}
+
 function modeCard(nav, icon, title, desc, tag) {
   return `<button class="mode-card" data-nav="${nav}">
     <div class="mode-icon">${icon}</div>
@@ -852,12 +914,36 @@ async function renderHub(hubId) {
   else if (hubId !== 'english') await needScience();
   let modes = '';
   if (hubId === 'english') {
-    modes = [
-      modeCard('ielts-days', '📅', tb('ieltsDays'), tb('band7'), `${ieltsDoneCount()}/${IELTS_DAY_TOTAL}`),
-      modeCard('ielts-go', '🃏', tb('ieltsMemorize'), tb('words25'), `${IELTS_WORD_TOTAL} ${tb('words')}`),
-      modeCard('ielts-spot', '🎯', tb('ieltsSpot'), tb('spotHint'), tb('start')),
-      modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
-    ].join('');
+    modes = `
+      <div class="en-dual">
+        <div class="en-col">
+          <button class="en-track en-track-ielts" data-nav="ielts-days" style="--hub-accent:#10b981">
+            <div class="en-track-kicker">Track A</div>
+            <h3>${tb('ieltsTrack')}</h3>
+            <p>${tb('ieltsTrackBlurb')}</p>
+            <span class="mode-tag">${ieltsDoneCount()}/${IELTS_DAY_TOTAL} ${tb('done')}</span>
+          </button>
+          <div class="mode-grid en-ielts-modes">
+            ${modeCard('ielts-days', '📅', tb('ieltsDays'), tb('band7'), `${ieltsDoneCount()}/${IELTS_DAY_TOTAL}`)}
+            ${modeCard('ielts-go', '🃏', tb('ieltsMemorize'), tb('words25'), `${IELTS_WORD_TOTAL} ${tb('words')}`)}
+            ${modeCard('ielts-spot', '🎯', tb('ieltsSpot'), tb('spotHint'), tb('start'))}
+          </div>
+        </div>
+        <div class="en-col">
+          <button class="en-track en-track-hs" data-nav="hs-shelf" style="--hub-accent:#f59e0b">
+            <div class="en-track-kicker">Track B</div>
+            <h3>${tb('hsTrack')}</h3>
+            <p>${tb('hsTrackBlurb')}</p>
+            <div class="en-track-covers" aria-hidden="true">
+              ${HS_BOOKS.map((b) => `<img src="${publicUrl(b.cover)}" alt="" />`).join('')}
+            </div>
+            <span class="mode-tag">${tb('pep2019')} · ${HS_WORD_TOTAL} ${tb('words')}</span>
+          </button>
+        </div>
+      </div>
+      <div class="mode-grid" style="margin-top:16px">
+        ${modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length))}
+      </div>`;
   } else if (hubId === 'chinese') {
     const pool = filterChineseWorks(chineseGrade);
     const qPool = filterChineseQuestions(chineseGrade);
@@ -903,8 +989,12 @@ async function renderHub(hubId) {
             </div>`
           : ''
       }
-      <h3 class="section-label">${tb('hubModes')}</h3>
-      <div class="mode-grid">${modes}</div>
+      ${
+        hubId === 'english'
+          ? modes
+          : `<h3 class="section-label">${tb('hubModes')}</h3>
+      <div class="mode-grid">${modes}</div>`
+      }
     </div>`;
   if (hubId === 'chinese') {
     app.querySelectorAll('#cn-grade-chips [data-grade]').forEach((btn) => {
@@ -2846,6 +2936,332 @@ async function renderSubjectQuiz(kind) {
 }
 
 
+/* —— High-school PEP 2019 bookshelf / units / flash+spot —— */
+
+function renderHsShelf() {
+  currentRoute = 'hs-shelf';
+  setSessionRepaint(renderHsShelf);
+  store.activeHub = 'english';
+  save();
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen hs-shelf-screen">
+      <div class="screen-header">${backBtn('hub-english')}<h2 class="screen-title">${tb('hsShelf')}</h2></div>
+      <p class="days-intro">${tb('hsShelfHint')}</p>
+      <div class="hs-shelf">
+        ${HS_BOOKS.map((book) => {
+          const done = hsBookDoneCount(book);
+          const badge = book.series === 'compulsory' ? tb('hsCompulsory') : tb('hsSelective');
+          return `<button class="hs-book" data-hs-book="${book.id}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
+            <div class="hs-book-3d">
+              <div class="hs-spine" aria-hidden="true"></div>
+              <div class="hs-cover">
+                <img src="${publicUrl(book.cover)}" alt="${escapeHtml(hsBookTitle(book))}" />
+                <span class="hs-badge">${badge} ${book.n}</span>
+              </div>
+            </div>
+            <div class="hs-book-info">
+              <div class="hs-book-name">${escapeHtml(hsBookTitle(book))}</div>
+              <div class="hs-book-meta">${book.wordCount} ${tb('words')} · ${tb('hsLearned', { n: done, t: book.units.length })}</div>
+            </div>
+          </button>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+function renderHsBook(bookId) {
+  const book = getHsBook(bookId || hsActiveBook);
+  if (!book) return renderHsShelf();
+  hsActiveBook = book.id;
+  currentRoute = 'hs-book';
+  setSessionRepaint(() => renderHsBook(hsActiveBook));
+  store.activeHub = 'english';
+  save();
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen hs-book-screen">
+      <div class="screen-header">${backBtn('hs-shelf')}<h2 class="screen-title">${escapeHtml(hsBookTitle(book))}</h2></div>
+      <div class="hs-book-hero" style="--book-accent:${book.accent};--book-spine:${book.spine}">
+        <div class="hs-book-3d hs-book-3d-lg">
+          <div class="hs-spine" aria-hidden="true"></div>
+          <div class="hs-cover">
+            <img src="${publicUrl(book.cover)}" alt="${escapeHtml(hsBookTitle(book))}" />
+            <span class="hs-badge">${book.series === 'compulsory' ? tb('hsCompulsory') : tb('hsSelective')} ${book.n}</span>
+          </div>
+        </div>
+        <div>
+          <p class="days-intro">${tb('pep2019')} · ${book.wordCount} ${tb('words')} · ${tb('hsLearned', { n: hsBookDoneCount(book), t: book.units.length })}</p>
+        </div>
+      </div>
+      <div class="hs-unit-list">
+        ${book.units
+          .map((unit) => {
+            const done = isHsUnitDone(book.id, unit.id);
+            return `<button class="hs-unit-row ${done ? 'done' : ''}" data-hs-unit="${book.id}:${unit.id}">
+              <div class="hs-unit-num">${escapeHtml(hsUnitNumLabel(unit))}</div>
+              <div class="hs-unit-titles">
+                <div class="hs-unit-en">${escapeHtml(unit.en)}</div>
+                <div class="hs-unit-zh">${escapeHtml(unit.zh)}</div>
+              </div>
+              <div class="hs-unit-side">
+                <span>${unit.wordCount} ${tb('words')}</span>
+                <span class="day-status">${done ? '✓ ' + tb('done') : tb('start')}</span>
+              </div>
+            </button>`;
+          })
+          .join('')}
+      </div>
+    </div>`;
+}
+
+async function startHsUnit(bookId, unitId) {
+  const book = getHsBook(bookId);
+  const unit = getHsUnit(book, unitId);
+  if (!book || !unit) return renderHsShelf();
+  hsActiveBook = book.id;
+  hsActiveUnit = unit.id;
+  currentRoute = 'hs-unit';
+  await needHsBook(book.id);
+  const bank = packs.hsWords[book.id] || [];
+  const words = bank.filter((w) => w.unit === unit.id);
+  if (!words.length) return renderHsBook(book.id);
+
+  let step = 0;
+  let idx = 0;
+  let flipped = false;
+  let spotIdx = 0;
+  let spotCorrect = 0;
+  let locked = false;
+  let spotItems = [];
+
+  function buildSpot() {
+    spotItems = shuffle(words.slice()).map((w) => {
+      const askZh = Math.random() > 0.4;
+      const distractors = shuffle(bank.filter((x) => x.id !== w.id && x.word !== w.word))
+        .slice(0, 3)
+        .map((x) => x.word);
+      while (distractors.length < 3) distractors.push('—');
+      return {
+        id: w.id,
+        prompt: askZh ? `${w.zh}\n(${w.pos})` : `${w.enDef}\n(${w.pos})`,
+        answer: w.word,
+        tip: `${w.word} ${w.phonetic || ''}\n${w.zh} · ${w.enDef}\n${w.example || ''}\n${w.exampleZh || ''}`,
+        options: shuffle([w.word, ...distractors.slice(0, 3)]),
+      };
+    });
+  }
+
+  function paint() {
+    setSessionRepaint(paint);
+    clearFlashKeys();
+    if (step === 0) {
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${escapeHtml(hsUnitHeading(unit))}</h2></div>
+          <div class="panel day-intro ielts-intro">
+            <div class="flash-chapter">${escapeHtml(hsBookTitle(book))} · ${tb('pep2019')}</div>
+            <h3 class="result-title">${escapeHtml(hsUnitHeading(unit))}</h3>
+            <p>${unit.wordCount} ${tb('words')}</p>
+            <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
+            <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
+          </div>
+        </div>`;
+      document.getElementById('go').onclick = () => {
+        sfxClick();
+        step = 1;
+        idx = 0;
+        flipped = false;
+        paint();
+      };
+      return;
+    }
+
+    if (step === 1) {
+      const w = words[idx];
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${tb('ieltsMemorize')}</h2></div>
+          <div class="step-pills"><span class="on">1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
+          <div class="progress-wrap">
+            <div class="progress-meta"><span>${idx + 1} / ${words.length}</span><span>${escapeHtml(w.unitTitle || '')}</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${((idx + 1) / words.length) * 100}%"></div></div>
+          </div>
+          <div class="flash-card ielts-card ${flipped ? 'flipped' : ''}" id="flash">
+            <div class="flash-inner">
+              <div class="flash-face front">
+                ${flashSpeakHtml()}
+                <div class="flash-chapter">${escapeHtml(w.pos)} · ${escapeHtml(w.phonetic || '')}</div>
+                <div class="flash-main">${escapeHtml(w.word)}</div>
+                <div class="flash-sub">${tb('tapFlip')}</div>
+              </div>
+              <div class="flash-face back">
+                ${flashSpeakHtml()}
+                <div class="flash-chapter">${tb('meaning')}</div>
+                <div class="flash-main">${escapeHtml(w.zh)}</div>
+                ${(() => { const tip = [w.enDef, w.example ? `${tb('example')}: ${w.example}` : '', w.exampleZh || ''].filter(Boolean).join(' · '); return tip ? `<div class="flash-tip">${escapeHtml(tip)}</div>` : ''; })()}
+              </div>
+            </div>
+          </div>
+          <div class="flash-actions">
+            <button class="btn" id="prev" ${idx === 0 ? 'disabled' : ''}>${tb('prev')}</button>
+            <button class="btn" id="flip">${tb('flip')}</button>
+            <button class="btn btn-primary" id="nx">${idx >= words.length - 1 ? tb('toSpot') : tb('next')}</button>
+          </div>
+        </div>`;
+      const doFlip = () => {
+        stopSpeak();
+        flipped = !flipped;
+        sfxFlip();
+        document.getElementById('flash')?.classList.toggle('flipped', flipped);
+      };
+      const goNext = () => {
+        stopSpeak();
+        sfxClick();
+        if (idx >= words.length - 1) {
+          buildSpot();
+          step = 2;
+          spotIdx = 0;
+          spotCorrect = 0;
+          paint();
+        } else {
+          idx += 1;
+          flipped = false;
+          paint();
+        }
+      };
+      document.getElementById('flash').onclick = doFlip;
+      document.getElementById('flip').onclick = doFlip;
+      document.getElementById('prev').onclick = () => {
+        if (idx > 0) {
+          stopSpeak();
+          idx -= 1;
+          flipped = false;
+          sfxClick();
+          paint();
+        }
+      };
+      document.getElementById('nx').onclick = goNext;
+      bindFlashSpeak({
+        getFlipped: () => flipped,
+        frontText: w.word,
+        backText: w.zh,
+        frontLang: 'en-GB',
+        backLang: 'zh-CN',
+      });
+      bindFlashKeys({ onFlip: doFlip, onNext: goNext });
+      return;
+    }
+
+    if (step === 2) {
+      if (spotIdx >= spotItems.length) {
+        step = 3;
+        paint();
+        return;
+      }
+      const item = spotItems[spotIdx];
+      locked = false;
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen wg-play">
+          <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${tb('ieltsSpot')}</h2></div>
+          <div class="step-pills"><span>✓ ${tb('ieltsMemorize')}</span><span class="on">2 ${tb('ieltsSpot')}</span></div>
+          <div class="wg-hud">
+            <span class="pill">${spotIdx + 1} / ${spotItems.length}</span>
+            <span class="pill">🔥 ${store.streak}</span>
+            <span class="pill">✓ ${spotCorrect}</span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill" style="width:${(spotIdx / spotItems.length) * 100}%"></div></div>
+          </div>
+          <div class="wg-question">
+            <div class="wg-q-meta">${tb('spotHint')}</div>
+            <div class="wg-q-text">${localizeHtml(item.prompt)}</div>
+          </div>
+          <div class="wg-options" id="opts">
+            ${item.options
+              .map(
+                (o, i) =>
+                  `<button class="wg-opt" data-v="${escapeHtml(o)}"><span class="shape">${'ABCD'[i]}</span><span>${escapeHtml(o)}</span></button>`
+              )
+              .join('')}
+          </div>
+          <div id="fb"></div>
+          <div class="flash-actions" style="display:none;margin-top:14px" id="nw">
+            <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
+          </div>
+        </div>`;
+      app.querySelectorAll('.wg-opt').forEach((btn) => {
+        btn.onclick = () => {
+          if (locked) return;
+          locked = true;
+          const ok = btn.dataset.v === item.answer;
+          app.querySelectorAll('.wg-opt').forEach((b) => {
+            b.disabled = true;
+            if (b.dataset.v === item.answer) b.classList.add('correct');
+            else {
+              b.classList.add('dim');
+              if (b === btn && !ok) b.classList.add('wrong');
+            }
+          });
+          if (ok) {
+            spotCorrect += 1;
+            addXp(10, true);
+            celebrate(true);
+            document.getElementById('fb').innerHTML = feedbackOk(item.tip);
+          } else {
+            addXp(0, false);
+            celebrate(false);
+            document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
+            recordWrong({
+              id: `hs-en-${item.id}`,
+              kind: 'hs-en',
+              prompt: item.prompt,
+              correctText: item.answer,
+              explain: item.tip,
+              subject: 'english',
+            });
+          }
+          document.getElementById('nw').style.display = 'flex';
+          document.getElementById('nx').onclick = () => {
+            spotIdx += 1;
+            paint();
+          };
+        };
+      });
+      return;
+    }
+
+    markHsUnitDone(book.id, unit.id);
+    const pct = Math.round((spotCorrect / Math.max(1, spotItems.length)) * 100);
+    const uIdx = book.units.findIndex((u) => u.id === unit.id);
+    const nextUnit = book.units[uIdx + 1];
+    const nextBook = !nextUnit ? HS_BOOKS[HS_BOOKS.findIndex((b) => b.id === book.id) + 1] : null;
+    fanfare(tb('spotDone'));
+    clearSessionRepaint();
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen">
+        <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${tb('spotDone')}</h2></div>
+        <div class="panel results" style="--pct:${pct}">
+          <div class="score-ring">${pct}%</div>
+          <h3 class="result-title">${spotCorrect} / ${spotItems.length} ${tb('correctN')}</h3>
+          <p>${pct >= 80 ? tb('great') : pct >= 60 ? tb('okish') : tb('keepGoing')}</p>
+          <div class="flash-actions">
+            ${nextUnit ? `<button class="btn btn-primary" data-hs-unit="${book.id}:${nextUnit.id}">${tb('hsNextUnit')}</button>` : ''}
+            ${nextBook ? `<button class="btn btn-primary" data-hs-book="${nextBook.id}">${tb('hsNextBook')}</button>` : ''}
+            <button class="btn" data-hs-book="${book.id}">${escapeHtml(hsBookTitle(book))}</button>
+            <button class="btn" data-nav="hs-shelf">${tb('hsToShelf')}</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  paint();
+}
+
 /* —— Router —— */
 const routes = {
   home: renderHome,
@@ -2865,6 +3281,9 @@ const routes = {
     await startIeltsDay(n);
   },
   'ielts-spot': renderIeltsFreeSpot,
+  'hs-shelf': renderHsShelf,
+  'hs-book': () => renderHsBook(hsActiveBook),
+  'hs-unit': () => startHsUnit(hsActiveBook, hsActiveUnit),
   'cn-list': renderChineseList,
   'cn-flash': () => renderSubjectFlash('chinese'),
   'cn-quiz': () => renderSubjectQuiz('chinese'),
@@ -2948,6 +3367,37 @@ app.addEventListener('click', (e) => {
     go(() => startIeltsDay(n));
     return;
   }
+  const hsBookBtn = e.target.closest('[data-hs-book]');
+  if (hsBookBtn && app.contains(hsBookBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      unlockAudio();
+    } catch (_) {}
+    try {
+      sfxClick();
+    } catch (_) {}
+    hsActiveBook = hsBookBtn.getAttribute('data-hs-book') || '';
+    go(() => renderHsBook(hsActiveBook));
+    return;
+  }
+  const hsUnitBtn = e.target.closest('[data-hs-unit]');
+  if (hsUnitBtn && app.contains(hsUnitBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      unlockAudio();
+    } catch (_) {}
+    try {
+      sfxClick();
+    } catch (_) {}
+    const raw = hsUnitBtn.getAttribute('data-hs-unit') || '';
+    const [bookId, unitId] = raw.split(':');
+    hsActiveBook = bookId || '';
+    hsActiveUnit = unitId || '';
+    go(() => startHsUnit(hsActiveBook, hsActiveUnit));
+    return;
+  }
   const dayBtn = e.target.closest('[data-start-day]');
   if (dayBtn && app.contains(dayBtn)) {
     e.preventDefault();
@@ -3008,7 +3458,7 @@ function scienceBackTarget() {
 
 function bindMagneticCards() {
   if (prefersReducedMotion()) return;
-  const cards = app.querySelectorAll('.hub-card, .mode-card, .day-card');
+  const cards = app.querySelectorAll('.hub-card, .mode-card, .day-card, .en-track, .hs-unit-row');
   cards.forEach((card) => {
     if (card.dataset.magnetic === '1') return;
     card.dataset.magnetic = '1';
