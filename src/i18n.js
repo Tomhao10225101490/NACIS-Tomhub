@@ -68,7 +68,7 @@ const dict = {
   nextArrow: { zh: '下一题 →', en: 'Next →' },
   nextDay: { zh: '下一天 →', en: 'Next day →' },
   toSpot: { zh: '去抽查 →', en: 'Spot check →' },
-  tapFlip: { zh: '点击翻转', en: 'Tap to flip' },
+  tapFlip: { zh: '空格翻转 · 回车下一张', en: 'Space flip · Enter next' },
   correctBanner: { zh: '正确！', en: 'Correct!' },
   incorrectBanner: { zh: '不正确', en: 'Incorrect' },
   answerLabel: { zh: '答案：', en: 'Answer: ' },

@@ -202,6 +202,38 @@ function setSessionRepaint(fn) {
 
 function clearSessionRepaint() {
   sessionRepaint = null;
+  clearFlashKeys();
+}
+
+/** Wayground-style: Space flips, Enter goes next. */
+let flashKeysCleanup = null;
+
+function clearFlashKeys() {
+  if (flashKeysCleanup) {
+    flashKeysCleanup();
+    flashKeysCleanup = null;
+  }
+}
+
+function bindFlashKeys({ onFlip, onNext }) {
+  clearFlashKeys();
+  const onKey = (e) => {
+    if (e.repeat) return;
+    const el = e.target;
+    const tag = el && el.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el?.isContentEditable) return;
+    if (e.code === 'Space' || e.key === ' ') {
+      e.preventDefault();
+      onFlip?.();
+      return;
+    }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      onNext?.();
+    }
+  };
+  window.addEventListener('keydown', onKey);
+  flashKeysCleanup = () => window.removeEventListener('keydown', onKey);
 }
 
 function softChromeRefresh() {
@@ -784,6 +816,7 @@ async function startDayPractice(dayNum) {
 
   function paint() {
     setSessionRepaint(paint);
+    clearFlashKeys();
     if (step === 0) {
       app.innerHTML = `
         ${topbar()}
@@ -847,18 +880,9 @@ async function startDayPractice(dayNum) {
       const flip = () => {
         flipped = !flipped;
         sfxFlip();
-        document.getElementById('flash').classList.toggle('flipped', flipped);
+        document.getElementById('flash')?.classList.toggle('flipped', flipped);
       };
-      document.getElementById('flash').onclick = flip;
-      document.getElementById('flip').onclick = flip;
-      document.getElementById('prev').onclick = () => {
-        if (wordIndex > 0) {
-          wordIndex -= 1;
-          flipped = false;
-          paint();
-        }
-      };
-      document.getElementById('next').onclick = () => {
+      const goNext = () => {
         sfxClick();
         if (wordIndex >= vocab.length - 1) {
           buildVocabQuiz();
@@ -870,6 +894,17 @@ async function startDayPractice(dayNum) {
           paint();
         }
       };
+      document.getElementById('flash').onclick = flip;
+      document.getElementById('flip').onclick = flip;
+      document.getElementById('prev').onclick = () => {
+        if (wordIndex > 0) {
+          wordIndex -= 1;
+          flipped = false;
+          paint();
+        }
+      };
+      document.getElementById('next').onclick = goNext;
+      bindFlashKeys({ onFlip: flip, onNext: goNext });
       return;
     }
 
@@ -1096,7 +1131,7 @@ async function renderFlash() {
             <div class="flash-face front">
               <div class="flash-chapter">${v.chapter}</div>
               <div class="flash-main">${v.en}</div>
-              <div class="flash-sub">点击卡片翻转 · Tap to flip</div>
+              <div class="flash-sub">${tb('tapFlip')}</div>
             </div>
             <div class="flash-face back">
               <div class="flash-chapter">${v.en}</div>
@@ -1113,21 +1148,19 @@ async function renderFlash() {
         </div>
       </div>`;
 
-    document.getElementById('flash').onclick = () => {
+    const flip = () => {
       flipped = !flipped;
       sfxFlip();
-      document.getElementById('flash').classList.toggle('flipped', flipped);
+      document.getElementById('flash')?.classList.toggle('flipped', flipped);
     };
-    document.getElementById('flip').onclick = () => {
-      flipped = !flipped;
-      sfxFlip();
-      document.getElementById('flash').classList.toggle('flipped', flipped);
-    };
-    document.getElementById('next').onclick = () => {
+    const goNext = () => {
       i = (i + 1) % list.length;
       flipped = false;
       paint();
     };
+    document.getElementById('flash').onclick = flip;
+    document.getElementById('flip').onclick = flip;
+    document.getElementById('next').onclick = goNext;
     document.getElementById('prev').onclick = () => {
       i = (i - 1 + list.length) % list.length;
       flipped = false;
@@ -1137,10 +1170,7 @@ async function renderFlash() {
       addXp(5, true, { countStreak: false });
       fanfare(tb('correctBanner'));
       burst(e.clientX, e.clientY);
-      i = (i + 1) % list.length;
-      flipped = false;
-      paint();
-      // refresh top xp without full remount of listeners - paint already remounts
+      goNext();
     };
 
     app.querySelectorAll('[data-sub]').forEach((btn) => {
@@ -1154,6 +1184,7 @@ async function renderFlash() {
         paint();
       };
     });
+    bindFlashKeys({ onFlip: flip, onNext: goNext });
     bindNav();
   }
 
@@ -1959,6 +1990,7 @@ async function startIeltsDay(dayNum) {
 
   function paint() {
     setSessionRepaint(paint);
+    clearFlashKeys();
     if (step === 0) {
       app.innerHTML = `
         ${topbar()}
@@ -2016,19 +2048,9 @@ async function startIeltsDay(dayNum) {
       const doFlip = () => {
         flipped = !flipped;
         sfxFlip();
-        document.getElementById('flash').classList.toggle('flipped', flipped);
+        document.getElementById('flash')?.classList.toggle('flipped', flipped);
       };
-      document.getElementById('flash').onclick = doFlip;
-      document.getElementById('flip').onclick = doFlip;
-      document.getElementById('prev').onclick = () => {
-        if (idx > 0) {
-          idx -= 1;
-          flipped = false;
-          sfxClick();
-          paint();
-        }
-      };
-      document.getElementById('nx').onclick = () => {
+      const goNext = () => {
         sfxClick();
         if (idx >= words.length - 1) {
           buildSpot();
@@ -2042,6 +2064,18 @@ async function startIeltsDay(dayNum) {
           paint();
         }
       };
+      document.getElementById('flash').onclick = doFlip;
+      document.getElementById('flip').onclick = doFlip;
+      document.getElementById('prev').onclick = () => {
+        if (idx > 0) {
+          idx -= 1;
+          flipped = false;
+          sfxClick();
+          paint();
+        }
+      };
+      document.getElementById('nx').onclick = goNext;
+      bindFlashKeys({ onFlip: doFlip, onNext: goNext });
       return;
     }
 
@@ -2298,7 +2332,17 @@ async function renderSubjectFlash(kind) {
     const doFlip = () => {
       flipped = !flipped;
       sfxFlip();
-      document.getElementById('flash').classList.toggle('flipped', flipped);
+      document.getElementById('flash')?.classList.toggle('flipped', flipped);
+    };
+    const goNext = () => {
+      if (idx >= list.length - 1) {
+        navigate(back);
+        return;
+      }
+      idx += 1;
+      flipped = false;
+      sfxClick();
+      paint();
     };
     document.getElementById('flash').onclick = doFlip;
     document.getElementById('flip').onclick = doFlip;
@@ -2309,16 +2353,8 @@ async function renderSubjectFlash(kind) {
         paint();
       }
     };
-    document.getElementById('nx').onclick = () => {
-      if (idx >= list.length - 1) {
-        navigate(back);
-        return;
-      }
-      idx += 1;
-      flipped = false;
-      sfxClick();
-      paint();
-    };
+    document.getElementById('nx').onclick = goNext;
+    bindFlashKeys({ onFlip: doFlip, onNext: goNext });
   }
   paint();
 }
