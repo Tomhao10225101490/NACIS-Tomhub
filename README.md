@@ -59,6 +59,18 @@ npm run build
 npm run preview
 ```
 
+### 在线访问（GitHub Pages）
+
+学生可直接打开：
+
+**https://tomhao10225101490.github.io/NACIS-Tomhub/**
+
+- 纯静态托管（HTML / CSS / JS），电脑关机也照样在线
+- 推送到 `main` 后，GitHub Actions 会自动 `npm run build` 并部署
+- 进度存在学生浏览器的 `localStorage`，无需后端
+
+首次启用：仓库 **Settings → Pages → Build and deployment → Source** 选 **GitHub Actions**（若尚未选中）。
+
 ---
 
 ## 产品结构
