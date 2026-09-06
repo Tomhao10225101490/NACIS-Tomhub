@@ -206,3 +206,117 @@ export function sfxTick() {
 export function isAudioUnlocked() {
   return unlocked;
 }
+
+/* —— Web Speech TTS (GitHub Pages friendly, no backend) —— */
+
+let voicesCache = [];
+let voicesReady = false;
+
+function refreshVoices() {
+  try {
+    if (!('speechSynthesis' in window)) return [];
+    voicesCache = window.speechSynthesis.getVoices() || [];
+    voicesReady = voicesCache.length > 0;
+    return voicesCache;
+  } catch (_) {
+    return [];
+  }
+}
+
+if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+  refreshVoices();
+  try {
+    window.speechSynthesis.onvoiceschanged = refreshVoices;
+  } catch (_) {
+    /* ignore */
+  }
+}
+
+export function canSpeak() {
+  return typeof window !== 'undefined' && 'speechSynthesis' in window;
+}
+
+function scoreVoice(voice, lang) {
+  const name = String(voice.name || '').toLowerCase();
+  const vLang = String(voice.lang || '').toLowerCase();
+  const want = String(lang || 'en-US').toLowerCase();
+  const wantBase = want.split('-')[0];
+  let score = 0;
+  if (vLang === want) score += 40;
+  else if (vLang.startsWith(wantBase)) score += 25;
+  else return -1;
+
+  const preferred = [
+    'google',
+    'microsoft',
+    'samantha',
+    'tingting',
+    'ting-ting',
+    'meijia',
+    'xiaoxiao',
+    'yunxi',
+    'jenny',
+    'aria',
+    'guy',
+    'natural',
+    'premium',
+    'enhanced',
+  ];
+  for (const p of preferred) {
+    if (name.includes(p)) score += 12;
+  }
+  if (voice.localService) score += 3;
+  if (/compact|eloquence|novelty/.test(name)) score -= 8;
+  return score;
+}
+
+export function pickVoice(lang = 'en-US') {
+  const voices = refreshVoices();
+  if (!voices.length) return null;
+  let best = null;
+  let bestScore = -1;
+  for (const v of voices) {
+    const s = scoreVoice(v, lang);
+    if (s > bestScore) {
+      bestScore = s;
+      best = v;
+    }
+  }
+  return bestScore >= 0 ? best : null;
+}
+
+export function stopSpeak() {
+  try {
+    if (canSpeak()) window.speechSynthesis.cancel();
+  } catch (_) {
+    /* ignore */
+  }
+}
+
+/**
+ * @param {string} text
+ * @param {string} [lang='en-US']
+ */
+export function speakText(text, lang = 'en-US') {
+  if (!canSpeak()) return false;
+  const clean = String(text || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!clean) return false;
+  try {
+    stopSpeak();
+    const u = new SpeechSynthesisUtterance(clean);
+    u.lang = lang;
+    u.rate = lang.startsWith('zh') ? 0.92 : 0.95;
+    u.pitch = 1;
+    const voice = pickVoice(lang);
+    if (voice) {
+      u.voice = voice;
+      if (voice.lang) u.lang = voice.lang;
+    }
+    window.speechSynthesis.speak(u);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}

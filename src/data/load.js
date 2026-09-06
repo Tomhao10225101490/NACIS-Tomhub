@@ -33,6 +33,7 @@ export const packs = {
   chineseWorks: [],
   chineseVocab: [],
   chineseQuestions: [],
+  classicGloss: {},
   filterChineseWorks: () => [],
   filterChineseVocab: () => [],
   filterChineseQuestions: () => [],
@@ -87,6 +88,7 @@ export function ensureChinese() {
       packs.chineseWorks = m.chineseWorks;
       packs.chineseVocab = m.chineseVocab;
       packs.chineseQuestions = m.chineseQuestions;
+      packs.classicGloss = m.classicGloss;
       packs.filterChineseWorks = m.filterChineseWorks;
       packs.filterChineseVocab = m.filterChineseVocab;
       packs.filterChineseQuestions = m.filterChineseQuestions;

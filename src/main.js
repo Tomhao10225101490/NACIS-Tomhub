@@ -24,6 +24,9 @@ import {
   sfxStreak,
   isSfxEnabled,
   toggleSfx,
+  speakText,
+  stopSpeak,
+  canSpeak,
 } from './audio.js';
 import {
   t,
@@ -63,6 +66,7 @@ let ieltsDayWords = () => [];
 let chineseWorks = [];
 let chineseVocab = [];
 let chineseQuestions = [];
+let classicGloss = {};
 let filterChineseWorks = () => [];
 let filterChineseVocab = () => [];
 let filterChineseQuestions = () => [];
@@ -101,6 +105,7 @@ function bindChinese() {
   chineseWorks = packs.chineseWorks;
   chineseVocab = packs.chineseVocab;
   chineseQuestions = packs.chineseQuestions;
+  classicGloss = packs.classicGloss || {};
   filterChineseWorks = packs.filterChineseWorks;
   filterChineseVocab = packs.filterChineseVocab;
   filterChineseQuestions = packs.filterChineseQuestions;
@@ -249,6 +254,128 @@ function bindFlashKeys({ onFlip, onNext }) {
   window.addEventListener('keydown', onKey);
   flashKeysCleanup = () => window.removeEventListener('keydown', onKey);
 }
+
+
+function escapeHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function speakBtnHtml(id, labelKey = 'speak') {
+  if (!canSpeak()) return '';
+  return `<button type="button" class="btn btn-speak" id="${id}" title="${tb(labelKey)}"><span class="speak-ico" aria-hidden="true">🔊</span><span>${tb(labelKey)}</span></button>`;
+}
+
+function bilingualSpeakBtns() {
+  if (!canSpeak()) return '';
+  return `${speakBtnHtml('speak-main', 'speakCurrent')}${speakBtnHtml('speak-alt', 'speakOther')}`;
+}
+
+function bindBilingualSpeak({ getFlipped, frontText, backText, frontLang = 'en-US', backLang = 'zh-CN' }) {
+  const mainBtn = document.getElementById('speak-main');
+  const altBtn = document.getElementById('speak-alt');
+  if (mainBtn) {
+    mainBtn.onclick = (e) => {
+      e.stopPropagation();
+      sfxClick();
+      const flipped = !!getFlipped();
+      speakText(flipped ? backText : frontText, flipped ? backLang : frontLang);
+    };
+  }
+  if (altBtn) {
+    altBtn.onclick = (e) => {
+      e.stopPropagation();
+      sfxClick();
+      const flipped = !!getFlipped();
+      speakText(flipped ? frontText : backText, flipped ? frontLang : backLang);
+    };
+  }
+}
+
+function isGlossableChar(ch) {
+  return /[\u4e00-\u9fff]/.test(ch);
+}
+
+function renderClassicMarkup(text) {
+  return Array.from(String(text || ''))
+    .map((ch, i) => {
+      if (ch === '\n') return '<br>';
+      if (!isGlossableChar(ch)) return `<span class="classic-punct">${escapeHtml(ch)}</span>`;
+      return `<button type="button" class="classic-char" data-i="${i}">${escapeHtml(ch)}</button>`;
+    })
+    .join('');
+}
+
+function findGlossAt(text, cpIndex, notes = []) {
+  const chars = Array.from(String(text || ''));
+  const strIndex = chars.slice(0, cpIndex).join('').length;
+  let best = null;
+  for (const n of notes || []) {
+    const phrase = n?.from;
+    if (!phrase) continue;
+    let start = 0;
+    while (true) {
+      const at = text.indexOf(phrase, start);
+      if (at < 0) break;
+      if (strIndex >= at && strIndex < at + phrase.length) {
+        if (!best || phrase.length > best.from.length) best = n;
+      }
+      start = at + 1;
+    }
+  }
+  if (best) return { from: best.from, gloss: best.gloss };
+  const ch = chars[cpIndex] || '';
+  if (ch && classicGloss[ch]) return { from: ch, gloss: classicGloss[ch] };
+  return { from: ch, gloss: tb('glossFallback') };
+}
+
+function bindClassicGloss(host, text, notes = []) {
+  let pop = null;
+  const clear = () => {
+    pop?.remove();
+    pop = null;
+    host.querySelectorAll('.classic-char.is-active').forEach((el) => el.classList.remove('is-active'));
+  };
+  host.querySelectorAll('.classic-char').forEach((btn) => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      const i = Number(btn.dataset.i);
+      const g = findGlossAt(text, i, notes);
+      clear();
+      btn.classList.add('is-active');
+      pop = document.createElement('div');
+      pop.className = 'gloss-pop';
+      pop.innerHTML = `<div class="gloss-from">${escapeHtml(g.from)}</div><div class="gloss-to">${escapeHtml(g.gloss)}</div>`;
+      host.appendChild(pop);
+      const r = btn.getBoundingClientRect();
+      const hr = host.getBoundingClientRect();
+      let left = r.left - hr.left;
+      let top = r.bottom - hr.top + 6;
+      pop.style.left = `${Math.max(0, left)}px`;
+      pop.style.top = `${top}px`;
+      requestAnimationFrame(() => {
+        if (!pop) return;
+        const pr = pop.getBoundingClientRect();
+        if (pr.right > hr.right - 4) {
+          pop.style.left = `${Math.max(0, left - (pr.right - hr.right + 8))}px`;
+        }
+      });
+    };
+  });
+  host.addEventListener(
+    'click',
+    (e) => {
+      if (!(e.target instanceof Element)) return;
+      if (e.target.closest('.classic-char') || e.target.closest('.gloss-pop')) return;
+      clear();
+    },
+    true
+  );
+}
+
 
 function softChromeRefresh() {
   const bar = app.querySelector('.topbar');
@@ -904,22 +1031,25 @@ async function startDayPractice(dayNum) {
               <div class="flash-face back">
                 <div class="flash-chapter">${tb('meaning')}</div>
                 <div class="flash-main">${v.zh}</div>
-                <div class="flash-tip">${v.tip || ''}</div>
+                ${v.tip ? `<div class="flash-tip">${v.tip}</div>` : ''}
               </div>
             </div>
           </div>
           <div class="flash-actions">
             <button class="btn" id="prev" ${wordIndex === 0 ? 'disabled' : ''}>上一张</button>
             <button class="btn btn-primary" id="flip">翻转</button>
+            ${bilingualSpeakBtns()}
             <button class="btn" id="next">${wordIndex >= vocab.length - 1 ? '去小测 →' : '下一张'}</button>
           </div>
         </div>`;
       const flip = () => {
+        stopSpeak();
         flipped = !flipped;
         sfxFlip();
         document.getElementById('flash')?.classList.toggle('flipped', flipped);
       };
       const goNext = () => {
+        stopSpeak();
         sfxClick();
         if (wordIndex >= vocab.length - 1) {
           buildVocabQuiz();
@@ -935,12 +1065,20 @@ async function startDayPractice(dayNum) {
       document.getElementById('flip').onclick = flip;
       document.getElementById('prev').onclick = () => {
         if (wordIndex > 0) {
+          stopSpeak();
           wordIndex -= 1;
           flipped = false;
           paint();
         }
       };
       document.getElementById('next').onclick = goNext;
+      bindBilingualSpeak({
+        getFlipped: () => flipped,
+        frontText: v.en,
+        backText: v.zh,
+        frontLang: 'en-US',
+        backLang: 'zh-CN',
+      });
       bindFlashKeys({ onFlip: flip, onNext: goNext });
       return;
     }
@@ -1173,24 +1311,27 @@ async function renderFlash() {
             <div class="flash-face back">
               <div class="flash-chapter">${tb('meaning')}</div>
               <div class="flash-main">${v.zh}</div>
-              <div class="flash-tip">${v.tip || ''}</div>
+              ${v.tip ? `<div class="flash-tip">${v.tip}</div>` : ''}
             </div>
           </div>
         </div>
         <div class="flash-actions">
           <button class="btn" id="prev">上一张</button>
           <button class="btn btn-primary" id="flip">翻转</button>
+          ${bilingualSpeakBtns()}
           <button class="btn" id="next">下一张</button>
           <button class="btn btn-good" id="know">会了 ✓</button>
         </div>
       </div>`;
 
     const flip = () => {
+      stopSpeak();
       flipped = !flipped;
       sfxFlip();
       document.getElementById('flash')?.classList.toggle('flipped', flipped);
     };
     const goNext = () => {
+      stopSpeak();
       i = (i + 1) % list.length;
       flipped = false;
       paint();
@@ -1199,11 +1340,13 @@ async function renderFlash() {
     document.getElementById('flip').onclick = flip;
     document.getElementById('next').onclick = goNext;
     document.getElementById('prev').onclick = () => {
+      stopSpeak();
       i = (i - 1 + list.length) % list.length;
       flipped = false;
       paint();
     };
     document.getElementById('know').onclick = (e) => {
+      stopSpeak();
       addXp(5, true, { countStreak: false });
       fanfare(tb('correctBanner'));
       burst(e.clientX, e.clientY);
@@ -1212,6 +1355,7 @@ async function renderFlash() {
 
     app.querySelectorAll('[data-sub]').forEach((btn) => {
       btn.onclick = () => {
+        stopSpeak();
         subject = btn.dataset.sub;
         list = shuffle(
           vocabulary.filter((v) => subject === 'all' || v.subject === subject)
@@ -1220,6 +1364,13 @@ async function renderFlash() {
         flipped = false;
         paint();
       };
+    });
+    bindBilingualSpeak({
+      getFlipped: () => flipped,
+      frontText: v.en,
+      backText: v.zh,
+      frontLang: 'en-US',
+      backLang: 'zh-CN',
     });
     bindFlashKeys({ onFlip: flip, onNext: goNext });
     bindNav();
@@ -2072,22 +2223,25 @@ async function startIeltsDay(dayNum) {
               <div class="flash-face back">
                 <div class="flash-chapter">${tb('meaning')}</div>
                 <div class="flash-main">${w.zh}</div>
-                <div class="flash-tip">${[w.enDef, w.example ? `${tb('example')}: ${w.example}` : '', w.exampleZh || ''].filter(Boolean).join(' · ')}</div>
+                ${(() => { const tip = [w.enDef, w.example ? `${tb('example')}: ${w.example}` : '', w.exampleZh || ''].filter(Boolean).join(' · '); return tip ? `<div class="flash-tip">${tip}</div>` : ''; })()}
               </div>
             </div>
           </div>
           <div class="flash-actions">
             <button class="btn" id="prev" ${idx === 0 ? 'disabled' : ''}>${tb('prev')}</button>
             <button class="btn" id="flip">${tb('flip')}</button>
+            ${bilingualSpeakBtns()}
             <button class="btn btn-primary" id="nx">${idx >= words.length - 1 ? tb('toSpot') : tb('next')}</button>
           </div>
         </div>`;
       const doFlip = () => {
+        stopSpeak();
         flipped = !flipped;
         sfxFlip();
         document.getElementById('flash')?.classList.toggle('flipped', flipped);
       };
       const goNext = () => {
+        stopSpeak();
         sfxClick();
         if (idx >= words.length - 1) {
           buildSpot();
@@ -2105,6 +2259,7 @@ async function startIeltsDay(dayNum) {
       document.getElementById('flip').onclick = doFlip;
       document.getElementById('prev').onclick = () => {
         if (idx > 0) {
+          stopSpeak();
           idx -= 1;
           flipped = false;
           sfxClick();
@@ -2112,6 +2267,13 @@ async function startIeltsDay(dayNum) {
         }
       };
       document.getElementById('nx').onclick = goNext;
+      bindBilingualSpeak({
+        getFlipped: () => flipped,
+        frontText: w.word,
+        backText: w.zh,
+        frontLang: 'en-GB',
+        backLang: 'zh-CN',
+      });
       bindFlashKeys({ onFlip: doFlip, onNext: goNext });
       return;
     }
@@ -2385,6 +2547,8 @@ async function renderChineseList() {
       if (!w) return;
       const panel = document.createElement('div');
       panel.className = 'work-detail panel';
+      const keysText = w.keyLines.join('\n');
+      const fullText = w.text;
       panel.innerHTML = `
         <div class="work-detail-head">
           <div>
@@ -2394,10 +2558,17 @@ async function renderChineseList() {
           </div>
           <button class="btn" id="wd-close">✕</button>
         </div>
+        <div class="work-speak-row">
+          ${speakBtnHtml('wd-speak-keys', 'speakKeys')}
+          ${speakBtnHtml('wd-speak-full', 'speakFull')}
+        </div>
+        <p class="work-gloss-hint">${tb('glossHint')}</p>
         <h4 class="work-sec">${tb('keyLines')}</h4>
-        <pre class="work-text key">${w.keyLines.join('\n')}</pre>
+        <ul class="work-key-list">
+          ${w.keyLines.map((line) => `<li class="work-readable" data-kind="keys">${renderClassicMarkup(line)}</li>`).join('')}
+        </ul>
         <h4 class="work-sec">${tb('fullText')}</h4>
-        <pre class="work-text">${w.text}</pre>
+        <div class="work-text work-readable" data-kind="full">${renderClassicMarkup(fullText)}</div>
         <h4 class="work-sec">${tb('meaningLabel')}</h4>
         <p class="work-meaning">${w.meaning}</p>
         <p class="work-tip">${w.tip}</p>`;
@@ -2407,8 +2578,24 @@ async function renderChineseList() {
       host.prepend(panel);
       panel.querySelector('#wd-close').onclick = (e) => {
         e.stopPropagation();
+        stopSpeak();
         panel.remove();
       };
+      panel.querySelector('#wd-speak-keys')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sfxClick();
+        speakText(keysText, 'zh-CN');
+      });
+      panel.querySelector('#wd-speak-full')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sfxClick();
+        speakText(fullText, 'zh-CN');
+      });
+      panel.querySelectorAll('.work-key-list .work-readable').forEach((el, i) => {
+        bindClassicGloss(el, w.keyLines[i] || '', w.notes || []);
+      });
+      const fullEl = panel.querySelector('.work-readable[data-kind="full"]');
+      if (fullEl) bindClassicGloss(fullEl, fullText, w.notes || []);
       panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
   });
@@ -2462,22 +2649,25 @@ async function renderSubjectFlash(kind) {
             <div class="flash-face back">
               <div class="flash-chapter">${tb('keyLines')}</div>
               <div class="flash-main flash-lines">${backMain}</div>
-              <div class="flash-tip">${tipRaw}</div>
+              ${tipRaw ? `<div class="flash-tip">${tipRaw}</div>` : ''}
             </div>
           </div>
         </div>
         <div class="flash-actions">
           <button class="btn" id="prev" ${idx === 0 ? 'disabled' : ''}>${tb('prev')}</button>
           <button class="btn" id="flip">${tb('flip')}</button>
+          ${bilingualSpeakBtns()}
           <button class="btn btn-primary" id="nx">${idx >= list.length - 1 ? tb('home') : tb('next')}</button>
         </div>
       </div>`;
     const doFlip = () => {
+      stopSpeak();
       flipped = !flipped;
       sfxFlip();
       document.getElementById('flash')?.classList.toggle('flipped', flipped);
     };
     const goNext = () => {
+      stopSpeak();
       if (idx >= list.length - 1) {
         navigate(back);
         return;
@@ -2491,12 +2681,22 @@ async function renderSubjectFlash(kind) {
     document.getElementById('flip').onclick = doFlip;
     document.getElementById('prev').onclick = () => {
       if (idx > 0) {
+        stopSpeak();
         idx -= 1;
         flipped = false;
         paint();
       }
     };
     document.getElementById('nx').onclick = goNext;
+    const frontLang = kind === 'chinese' ? 'zh-CN' : 'zh-CN';
+    const backLang = kind === 'chinese' ? 'zh-CN' : 'en-US';
+    bindBilingualSpeak({
+      getFlipped: () => flipped,
+      frontText: front,
+      backText: backMain,
+      frontLang,
+      backLang,
+    });
     bindFlashKeys({ onFlip: doFlip, onNext: goNext });
   }
   paint();

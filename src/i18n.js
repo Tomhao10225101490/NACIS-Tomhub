@@ -129,6 +129,15 @@ const dict = {
   spotDone: { zh: '抽查完成！', en: 'Spot check complete!' },
   memorizeDone: { zh: '背诵完成！', en: 'Memorize complete!' },
   emptyWrong: { zh: '暂无错题，继续保持！', en: 'No wrong answers yet!' },
+  speak: { zh: '朗读', en: 'Speak' },
+  speakEn: { zh: '读英文', en: 'EN' },
+  speakZh: { zh: '读中文', en: 'ZH' },
+  speakKeys: { zh: '朗读名句', en: 'Speak keys' },
+  speakFull: { zh: '朗读全文', en: 'Speak text' },
+  speakCurrent: { zh: '朗读本面', en: 'Speak face' },
+  speakOther: { zh: '读另一面', en: 'Other side' },
+  glossFallback: { zh: '结合上下文理解', en: 'Read in context' },
+  glossHint: { zh: '点字看释义', en: 'Tap a character for gloss' },
 };
 
 export function t(key, vars = {}) {
