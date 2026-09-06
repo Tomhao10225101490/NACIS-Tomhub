@@ -865,9 +865,9 @@ async function startDayPractice(dayNum) {
                 <div class="flash-sub">${tb('tapFlip')}</div>
               </div>
               <div class="flash-face back">
-                <div class="flash-chapter">${v.en}</div>
+                <div class="flash-chapter">${tb('meaning')}</div>
                 <div class="flash-main">${v.zh}</div>
-                <div class="flash-tip">${v.tip}</div>
+                <div class="flash-tip">${v.tip || ''}</div>
               </div>
             </div>
           </div>
@@ -1134,9 +1134,9 @@ async function renderFlash() {
               <div class="flash-sub">${tb('tapFlip')}</div>
             </div>
             <div class="flash-face back">
-              <div class="flash-chapter">${v.en}</div>
+              <div class="flash-chapter">${tb('meaning')}</div>
               <div class="flash-main">${v.zh}</div>
-              <div class="flash-tip">${v.tip}</div>
+              <div class="flash-tip">${v.tip || ''}</div>
             </div>
           </div>
         </div>
@@ -2033,9 +2033,9 @@ async function startIeltsDay(dayNum) {
                 <div class="flash-sub">${tb('tapFlip')}</div>
               </div>
               <div class="flash-face back">
-                <div class="flash-chapter">${w.word}</div>
+                <div class="flash-chapter">${tb('meaning')}</div>
                 <div class="flash-main">${w.zh}</div>
-                <div class="flash-tip">${[w.enDef, w.example ? `${tb('example')}: ${w.example}` : '', w.exampleZh || ''].filter(Boolean).join(' · ')}</div>
+                <div class="flash-tip">${w.exampleZh || ''}</div>
               </div>
             </div>
           </div>
