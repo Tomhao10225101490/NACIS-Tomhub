@@ -24,6 +24,7 @@ function getCtx() {
 
 export function unlockAudio() {
   getCtx();
+  primeSpeech();
 }
 
 export function isSfxEnabled() {
@@ -207,16 +208,26 @@ export function isAudioUnlocked() {
   return unlocked;
 }
 
-/* —— Web Speech TTS (GitHub Pages friendly, no backend) —— */
+/* —— Web Speech TTS (GitHub Pages friendly, no backend) ——
+ * Chrome (esp. macOS) quirks this module works around:
+ * - Utterance must be held on a global or GC cancels speech
+ * - cancel() then speak() in the same turn is dropped
+ * - synth can start / become paused; resume() watchdog needed
+ * - getVoices() is often empty until voiceschanged
+ */
 
 let voicesCache = [];
-let voicesReady = false;
+/** Must keep a live reference — Chrome GCs otherwise and Mac goes silent. */
+let heldUtterance = null;
+let speakTimer = 0;
+let watchdogTimer = 0;
+let speaking = false;
+let primed = false;
 
 function refreshVoices() {
   try {
     if (!('speechSynthesis' in window)) return [];
     voicesCache = window.speechSynthesis.getVoices() || [];
-    voicesReady = voicesCache.length > 0;
     return voicesCache;
   } catch (_) {
     return [];
@@ -226,14 +237,71 @@ function refreshVoices() {
 if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
   refreshVoices();
   try {
-    window.speechSynthesis.onvoiceschanged = refreshVoices;
+    window.speechSynthesis.addEventListener('voiceschanged', refreshVoices);
   } catch (_) {
-    /* ignore */
+    try {
+      window.speechSynthesis.onvoiceschanged = refreshVoices;
+    } catch (_) {
+      /* ignore */
+    }
   }
 }
 
 export function canSpeak() {
   return typeof window !== 'undefined' && 'speechSynthesis' in window;
+}
+
+export function isSpeaking() {
+  return speaking;
+}
+
+function markSpeaking(on) {
+  speaking = Boolean(on);
+  try {
+    document.querySelectorAll('.speak-fab').forEach((el) => {
+      el.classList.toggle('is-speaking', speaking);
+      el.setAttribute('aria-pressed', speaking ? 'true' : 'false');
+    });
+  } catch (_) {
+    /* ignore */
+  }
+}
+
+function startWatchdog() {
+  stopWatchdog();
+  watchdogTimer = window.setInterval(() => {
+    try {
+      const synth = window.speechSynthesis;
+      if (!synth.speaking) {
+        stopWatchdog();
+        markSpeaking(false);
+        return;
+      }
+      if (synth.paused) synth.resume();
+    } catch (_) {
+      /* ignore */
+    }
+  }, 4000);
+}
+
+function stopWatchdog() {
+  if (watchdogTimer) {
+    clearInterval(watchdogTimer);
+    watchdogTimer = 0;
+  }
+}
+
+/** Warm voices / resume on a user gesture so later clicks work on Mac Chrome. */
+export function primeSpeech() {
+  if (!canSpeak()) return;
+  try {
+    refreshVoices();
+    const synth = window.speechSynthesis;
+    if (synth.paused) synth.resume();
+    primed = true;
+  } catch (_) {
+    /* ignore */
+  }
 }
 
 function scoreVoice(voice, lang) {
@@ -287,10 +355,20 @@ export function pickVoice(lang = 'en-US') {
 
 export function stopSpeak() {
   try {
-    if (canSpeak()) window.speechSynthesis.cancel();
+    if (speakTimer) {
+      clearTimeout(speakTimer);
+      speakTimer = 0;
+    }
+    stopWatchdog();
+    if (canSpeak()) {
+      window.speechSynthesis.cancel();
+      if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+    }
   } catch (_) {
     /* ignore */
   }
+  heldUtterance = null;
+  markSpeaking(false);
 }
 
 /**
@@ -303,20 +381,66 @@ export function speakText(text, lang = 'en-US') {
     .replace(/\s+/g, ' ')
     .trim();
   if (!clean) return false;
+
+  primeSpeech();
+  const synth = window.speechSynthesis;
+  const busy = Boolean(synth.speaking || synth.pending);
   try {
-    stopSpeak();
-    const u = new SpeechSynthesisUtterance(clean);
-    u.lang = lang;
-    u.rate = lang.startsWith('zh') ? 0.92 : 0.95;
-    u.pitch = 1;
-    const voice = pickVoice(lang);
-    if (voice) {
-      u.voice = voice;
-      if (voice.lang) u.lang = voice.lang;
-    }
-    window.speechSynthesis.speak(u);
-    return true;
+    if (busy) synth.cancel();
+    if (synth.paused) synth.resume();
   } catch (_) {
-    return false;
+    /* ignore */
   }
+
+  const run = (allowVoice) => {
+    try {
+      const u = new SpeechSynthesisUtterance(clean);
+      heldUtterance = u;
+      u.lang = lang;
+      u.rate = lang.startsWith('zh') ? 0.92 : 0.95;
+      u.pitch = 1;
+      u.volume = 1;
+      if (allowVoice) {
+        const voice = pickVoice(lang);
+        if (voice && String(voice.lang || '').slice(0, 2) === String(lang).slice(0, 2)) {
+          u.voice = voice;
+          if (voice.lang) u.lang = voice.lang;
+        }
+      }
+      u.onstart = () => {
+        markSpeaking(true);
+        startWatchdog();
+      };
+      u.onend = () => {
+        if (heldUtterance === u) heldUtterance = null;
+        stopWatchdog();
+        markSpeaking(false);
+      };
+      u.onerror = (ev) => {
+        const err = ev && ev.error;
+        if (err === 'interrupted' || err === 'canceled') return;
+        if (allowVoice) {
+          run(false);
+          return;
+        }
+        if (heldUtterance === u) heldUtterance = null;
+        stopWatchdog();
+        markSpeaking(false);
+      };
+      synth.speak(u);
+      if (synth.paused) synth.resume();
+      markSpeaking(true);
+      startWatchdog();
+    } catch (_) {
+      markSpeaking(false);
+    }
+  };
+
+  if (speakTimer) clearTimeout(speakTimer);
+  if (busy) {
+    speakTimer = window.setTimeout(() => run(true), 60);
+  } else {
+    run(true);
+  }
+  return true;
 }
