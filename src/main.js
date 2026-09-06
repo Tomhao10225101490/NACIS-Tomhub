@@ -272,27 +272,29 @@ function speakIconSvg() {
 
 function speakIconBtn(id, titleKey = 'speak') {
   if (!canSpeak()) return '';
-  return `<button type="button" class="speak-fab" id="${id}" aria-label="${tb(titleKey)}" title="${tb('speak')}">${speakIconSvg()}</button>`;
+  const idAttr = id ? `id="${id}"` : '';
+  return `<button type="button" class="speak-fab" ${idAttr} aria-label="${tb(titleKey)}" title="${tb('speak')}">${speakIconSvg()}</button>`;
 }
 
 function flashSpeakHtml() {
-  return speakIconBtn('flash-speak');
+  if (!canSpeak()) return '';
+  return `<button type="button" class="speak-fab flash-speak" aria-label="${tb('speak')}" title="${tb('speak')}">${speakIconSvg()}</button>`;
 }
 
 function bindFlashSpeak({ getFlipped, frontText, backText, frontLang = 'en-US', backLang = 'zh-CN' }) {
-  const btn = document.getElementById('flash-speak');
-  if (!btn) return;
-  btn.onclick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    primeSpeech();
-    if (isSpeaking()) {
-      stopSpeak();
-      return;
-    }
-    const flipped = !!getFlipped();
-    speakText(flipped ? backText : frontText, flipped ? backLang : frontLang);
-  };
+  document.querySelectorAll('#flash .flash-speak').forEach((btn) => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      primeSpeech();
+      if (isSpeaking()) {
+        stopSpeak();
+        return;
+      }
+      const flipped = !!getFlipped();
+      speakText(flipped ? backText : frontText, flipped ? backLang : frontLang);
+    };
+  });
 }
 
 function isGlossableChar(ch) {
@@ -1029,14 +1031,15 @@ async function startDayPractice(dayNum) {
             <div class="progress-bar"><div class="progress-fill" style="width:${((wordIndex + 1) / vocab.length) * 100}%"></div></div>
           </div>
           <div class="flash-card ${flipped ? 'flipped' : ''}" id="flash">
-            ${flashSpeakHtml()}
             <div class="flash-inner">
               <div class="flash-face front">
+                ${flashSpeakHtml()}
                 <div class="flash-chapter">Day ${plan.day}</div>
                 <div class="flash-main">${v.en}</div>
                 <div class="flash-sub">${tb('tapFlip')}</div>
               </div>
               <div class="flash-face back">
+                ${flashSpeakHtml()}
                 <div class="flash-chapter">${tb('meaning')}</div>
                 <div class="flash-main">${v.zh}</div>
                 ${v.tip ? `<div class="flash-tip">${v.tip}</div>` : ''}
@@ -1309,14 +1312,15 @@ async function renderFlash() {
           <div class="progress-bar"><div class="progress-fill" style="width:${((i + 1) / list.length) * 100}%"></div></div>
         </div>
         <div class="flash-card ${flipped ? 'flipped' : ''}" id="flash">
-          ${flashSpeakHtml()}
           <div class="flash-inner">
             <div class="flash-face front">
+              ${flashSpeakHtml()}
               <div class="flash-chapter">${v.chapter}</div>
               <div class="flash-main">${v.en}</div>
               <div class="flash-sub">${tb('tapFlip')}</div>
             </div>
             <div class="flash-face back">
+              ${flashSpeakHtml()}
               <div class="flash-chapter">${tb('meaning')}</div>
               <div class="flash-main">${v.zh}</div>
               ${v.tip ? `<div class="flash-tip">${v.tip}</div>` : ''}
@@ -2221,14 +2225,15 @@ async function startIeltsDay(dayNum) {
             <div class="progress-bar"><div class="progress-fill" style="width:${((idx + 1) / words.length) * 100}%"></div></div>
           </div>
           <div class="flash-card ielts-card ${flipped ? 'flipped' : ''}" id="flash">
-            ${flashSpeakHtml()}
             <div class="flash-inner">
               <div class="flash-face front">
+                ${flashSpeakHtml()}
                 <div class="flash-chapter">${w.pos} · ${w.phonetic || ''}</div>
                 <div class="flash-main">${w.word}</div>
                 <div class="flash-sub">${tb('tapFlip')}</div>
               </div>
               <div class="flash-face back">
+                ${flashSpeakHtml()}
                 <div class="flash-chapter">${tb('meaning')}</div>
                 <div class="flash-main">${w.zh}</div>
                 ${(() => { const tip = [w.enDef, w.example ? `${tb('example')}: ${w.example}` : '', w.exampleZh || ''].filter(Boolean).join(' · '); return tip ? `<div class="flash-tip">${tip}</div>` : ''; })()}
@@ -2651,14 +2656,15 @@ async function renderSubjectFlash(kind) {
           <div class="progress-bar"><div class="progress-fill" style="width:${((idx + 1) / list.length) * 100}%"></div></div>
         </div>
         <div class="flash-card ${flipped ? 'flipped' : ''}" id="flash">
-          ${flashSpeakHtml()}
           <div class="flash-inner">
             <div class="flash-face front">
+              ${flashSpeakHtml()}
               <div class="flash-chapter">${chapter || ''}</div>
               <div class="flash-main">${front}</div>
               <div class="flash-sub">${frontSub}</div>
             </div>
             <div class="flash-face back">
+              ${flashSpeakHtml()}
               <div class="flash-chapter">${tb('keyLines')}</div>
               <div class="flash-main flash-lines">${backMain}</div>
               ${tipRaw ? `<div class="flash-tip">${tipRaw}</div>` : ''}
