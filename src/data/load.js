@@ -1,0 +1,111 @@
+/**
+ * Cached dynamic loaders — first paint stays light; packs load on demand.
+ * Features are unchanged; data arrives when you enter that subject.
+ */
+
+const ready = {
+  science: null,
+  ielts: null,
+  chinese: null,
+  math: null,
+};
+
+/** @type {Record<string, any>} */
+export const packs = {
+  vocabulary: [],
+  subjects: {},
+  questions: [],
+  filterQuestions: () => [],
+  days: [],
+  getDay: () => null,
+  dayVocab: () => [],
+  dayQuestions: () => [],
+  subjectLabel: (id) => id,
+  elements: [],
+  coreElements: [],
+  compounds: [],
+  GROUP_LABELS: [],
+  buildPeriodicGrid: () => [],
+  ieltsWords: [],
+  ieltsDays: [],
+  getIeltsDay: () => null,
+  ieltsDayWords: () => [],
+  chineseVocab: [],
+  chineseQuestions: [],
+  mathVocab: [],
+  mathQuestions: [],
+};
+
+export function ensureScience() {
+  if (!ready.science) {
+    ready.science = Promise.all([
+      import('./vocabulary.js'),
+      import('./questions.js'),
+      import('./days.js'),
+      import('./elements.js'),
+    ]).then(([v, q, d, e]) => {
+      packs.vocabulary = v.vocabulary;
+      packs.subjects = v.subjects;
+      packs.questions = q.questions;
+      packs.filterQuestions = q.filterQuestions;
+      packs.days = d.days;
+      packs.getDay = d.getDay;
+      packs.dayVocab = d.dayVocab;
+      packs.dayQuestions = d.dayQuestions;
+      packs.subjectLabel = d.subjectLabel;
+      packs.elements = e.elements;
+      packs.coreElements = e.coreElements;
+      packs.compounds = e.compounds;
+      packs.GROUP_LABELS = e.GROUP_LABELS;
+      packs.buildPeriodicGrid = e.buildPeriodicGrid;
+    });
+  }
+  return ready.science;
+}
+
+export function ensureIelts() {
+  if (!ready.ielts) {
+    ready.ielts = import('./ielts.js').then((m) => {
+      packs.ieltsWords = m.ieltsWords;
+      packs.ieltsDays = m.ieltsDays;
+      packs.getIeltsDay = m.getIeltsDay;
+      packs.ieltsDayWords = m.ieltsDayWords;
+    });
+  }
+  return ready.ielts;
+}
+
+export function ensureChinese() {
+  if (!ready.chinese) {
+    ready.chinese = import('./chinese.js').then((m) => {
+      packs.chineseVocab = m.chineseVocab;
+      packs.chineseQuestions = m.chineseQuestions;
+    });
+  }
+  return ready.chinese;
+}
+
+export function ensureMath() {
+  if (!ready.math) {
+    ready.math = import('./math.js').then((m) => {
+      packs.mathVocab = m.mathVocab;
+      packs.mathQuestions = m.mathQuestions;
+    });
+  }
+  return ready.math;
+}
+
+/** Prefetch packs after home paints (idle) so later navigations feel instant */
+export function prefetchInBackground() {
+  const run = () => {
+    ensureScience().catch(() => {});
+    setTimeout(() => ensureIelts().catch(() => {}), 900);
+    setTimeout(() => ensureChinese().catch(() => {}), 1600);
+    setTimeout(() => ensureMath().catch(() => {}), 2200);
+  };
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(run, { timeout: 2800 });
+  } else {
+    setTimeout(run, 500);
+  }
+}

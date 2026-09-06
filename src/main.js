@@ -1,12 +1,19 @@
 import './style.css';
-import { vocabulary, subjects } from './data/vocabulary.js';
-import { questions, filterQuestions, shuffle } from './data/questions.js';
-import { elements, coreElements, compounds, GROUP_LABELS, buildPeriodicGrid } from './data/elements.js';
-import { days, getDay, dayVocab, dayQuestions, subjectLabel } from './data/days.js';
-import { ieltsWords, ieltsDays, getIeltsDay, ieltsDayWords } from './data/ielts.js';
-import { chineseVocab, chineseQuestions } from './data/chinese.js';
-import { mathVocab, mathQuestions } from './data/math.js';
 import { HUBS, getHub } from './data/hubs.js';
+import {
+  packs,
+  ensureScience,
+  ensureIelts,
+  ensureChinese,
+  ensureMath,
+  prefetchInBackground,
+} from './data/load.js';
+import {
+  ieltsDayMeta,
+  IELTS_WORD_TOTAL,
+  IELTS_DAY_TOTAL,
+} from './data/ielts-meta.js';
+import { shuffle } from './util/shuffle.js';
 import {
   unlockAudio,
   sfxClick,
@@ -33,6 +40,124 @@ import {
 
 const app = document.getElementById('app');
 const fx = document.getElementById('fx-layer');
+
+/* —— Live data bindings (filled by ensure* loaders) —— */
+let vocabulary = [];
+let subjects = {};
+let questions = [];
+let filterQuestions = () => [];
+let days = [];
+let getDay = () => null;
+let dayVocab = () => [];
+let dayQuestions = () => [];
+let subjectLabel = (id) => id;
+let elements = [];
+let coreElements = [];
+let compounds = [];
+let GROUP_LABELS = [];
+let buildPeriodicGrid = () => [];
+let ieltsWords = [];
+let ieltsDays = [];
+let getIeltsDay = () => null;
+let ieltsDayWords = () => [];
+let chineseVocab = [];
+let chineseQuestions = [];
+let mathVocab = [];
+let mathQuestions = [];
+
+function bindScience() {
+  vocabulary = packs.vocabulary;
+  subjects = packs.subjects;
+  questions = packs.questions;
+  filterQuestions = packs.filterQuestions;
+  days = packs.days;
+  getDay = packs.getDay;
+  dayVocab = packs.dayVocab;
+  dayQuestions = packs.dayQuestions;
+  subjectLabel = packs.subjectLabel;
+  elements = packs.elements;
+  coreElements = packs.coreElements;
+  compounds = packs.compounds;
+  GROUP_LABELS = packs.GROUP_LABELS;
+  buildPeriodicGrid = packs.buildPeriodicGrid;
+}
+
+function bindIelts() {
+  ieltsWords = packs.ieltsWords;
+  ieltsDays = packs.ieltsDays;
+  getIeltsDay = packs.getIeltsDay;
+  ieltsDayWords = packs.ieltsDayWords;
+}
+
+function bindChinese() {
+  chineseVocab = packs.chineseVocab;
+  chineseQuestions = packs.chineseQuestions;
+}
+
+function bindMath() {
+  mathVocab = packs.mathVocab;
+  mathQuestions = packs.mathQuestions;
+}
+
+let _packLoadingEl = null;
+function showPackLoading(msg) {
+  hidePackLoading();
+  if (!app) return;
+  const el = document.createElement('div');
+  el.className = 'pack-loading';
+  el.innerHTML = `<div class="pack-loading-card"><div class="pack-spinner" aria-hidden="true"></div><p>${msg}</p></div>`;
+  app.appendChild(el);
+  _packLoadingEl = el;
+}
+
+function hidePackLoading() {
+  if (_packLoadingEl) {
+    _packLoadingEl.remove();
+    _packLoadingEl = null;
+  }
+}
+
+async function needScience() {
+  showPackLoading('Loading science…');
+  try {
+    await ensureScience();
+    bindScience();
+  } finally {
+    hidePackLoading();
+  }
+}
+
+async function needIelts() {
+  showPackLoading('Loading IELTS…');
+  try {
+    await ensureIelts();
+    bindIelts();
+  } finally {
+    hidePackLoading();
+  }
+}
+
+async function needChinese() {
+  showPackLoading('Loading Chinese…');
+  try {
+    await ensureChinese();
+    bindChinese();
+  } finally {
+    hidePackLoading();
+  }
+}
+
+async function needMath() {
+  showPackLoading('Loading Math…');
+  try {
+    await ensureMath();
+    bindMath();
+  } finally {
+    hidePackLoading();
+  }
+}
+
+
 
 document.addEventListener(
   'pointerdown',
@@ -482,7 +607,11 @@ function markIeltsDayDone(n) {
 }
 
 function ieltsDoneCount() {
-  return ieltsDays.filter((d) => isIeltsDayDone(d.day)).length;
+  let n = 0;
+  for (let d = 1; d <= IELTS_DAY_TOTAL; d++) {
+    if (isIeltsDayDone(d)) n += 1;
+  }
+  return n;
 }
 
 function modeCard(nav, icon, title, desc, tag) {
@@ -496,7 +625,7 @@ function modeCard(nav, icon, title, desc, tag) {
 
 function renderHome() {
   currentRoute = 'home';
-  const nextIelts = ieltsDays.find((d) => !isIeltsDayDone(d.day)) || ieltsDays[0];
+  const nextIelts = ieltsDayMeta.find((d) => !isIeltsDayDone(d.day)) || ieltsDayMeta[0];
   app.innerHTML = `
     ${topbar()}
     <section class="hero hero-portal">
@@ -527,19 +656,23 @@ function renderHome() {
       ).join('')}
     </div>
   `;
+  prefetchInBackground();
 }
 
-function renderHub(hubId) {
+async function renderHub(hubId) {
   const h = getHub(hubId);
   if (!h) return renderHome();
   currentRoute = 'hub-' + hubId;
   store.activeHub = hubId;
   save();
+  if (hubId === 'chinese') await needChinese();
+  else if (hubId === 'math') await needMath();
+  else if (hubId !== 'english') await needScience();
   let modes = '';
   if (hubId === 'english') {
     modes = [
-      modeCard('ielts-days', '📅', tb('ieltsDays'), tb('band7'), `${ieltsDoneCount()}/${ieltsDays.length}`),
-      modeCard('ielts-go', '🃏', tb('ieltsMemorize'), tb('words25'), `${ieltsWords.length} ${tb('words')}`),
+      modeCard('ielts-days', '📅', tb('ieltsDays'), tb('band7'), `${ieltsDoneCount()}/${IELTS_DAY_TOTAL}`),
+      modeCard('ielts-go', '🃏', tb('ieltsMemorize'), tb('words25'), `${IELTS_WORD_TOTAL} ${tb('words')}`),
       modeCard('ielts-spot', '🎯', tb('ieltsSpot'), tb('spotHint'), tb('start')),
       modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
     ].join('');
@@ -581,8 +714,9 @@ function renderHub(hubId) {
 }
 
 /* —— DAILY DAYS —— */
-function renderDays() {
+async function renderDays() {
   currentRoute = 'days';
+  await needScience();
   const hubBack = ['physics','chemistry','biology'].includes(store.activeHub) ? ('hub-' + store.activeHub) : 'home';
   const list = ['physics','chemistry','biology'].includes(store.activeHub)
     ? days.filter((d) => d.subject === store.activeHub)
@@ -609,7 +743,8 @@ function renderDays() {
     </div>`;
 }
 
-function startDayPractice(dayNum) {
+async function startDayPractice(dayNum) {
+  await needScience();
   const plan = getDay(dayNum);
   if (!plan) {
     navigate('days');
@@ -932,8 +1067,9 @@ function startDayPractice(dayNum) {
 }
 
 /* —— FLASHCARDS —— */
-function renderFlash() {
+async function renderFlash() {
   currentRoute = 'flash';
+  await needScience();
   let subject = 'all';
   let list = shuffle(vocabulary.slice());
   let i = 0;
@@ -1025,8 +1161,9 @@ function renderFlash() {
 }
 
 /* —— MATCH —— */
-function renderMatch() {
+async function renderMatch() {
   currentRoute = 'match';
+  await needScience();
   let subject = 'all';
 
   function deal() {
@@ -1121,7 +1258,8 @@ function renderMatch() {
 }
 
 /* —— QUIZ (mcq / tf / mixed) —— */
-function renderQuiz(mode) {
+async function renderQuiz(mode) {
+  await needScience();
   currentRoute = mode === 'mcq' ? 'mcq' : mode === 'tf' ? 'tf' : 'mixed';
   let subject = ['physics', 'chemistry', 'biology'].includes(store.activeHub) ? store.activeHub : 'all';
   const type = mode === 'mcq' ? 'mcq' : mode === 'tf' ? 'tf' : 'all';
@@ -1278,8 +1416,9 @@ function renderQuiz(mode) {
 }
 
 /* —— PERIODIC —— */
-function renderPeriodic() {
+async function renderPeriodic() {
   currentRoute = 'periodic';
+  await needScience();
   let mode = 'browse'; // browse | quiz
   let quizIdx = 0;
   let quizList = [];
@@ -1500,7 +1639,8 @@ function renderPeriodic() {
 }
 
 /* —— MASS DRILL —— */
-function renderMass() {
+async function renderMass() {
+  await needScience();
   let tab = 'ar'; // ar | mr
 
   function paint() {
@@ -1730,8 +1870,9 @@ function renderWrong() {
 
 /* —— Tom's Ground · IELTS / Chinese / Math runners —— */
 
-function renderIeltsDays() {
+async function renderIeltsDays() {
   currentRoute = 'ielts-days';
+  await needIelts();
   app.innerHTML = `
     ${topbar()}
     <div class="screen">
@@ -1754,7 +1895,8 @@ function renderIeltsDays() {
     </div>`;
 }
 
-function startIeltsDay(dayNum) {
+async function startIeltsDay(dayNum) {
+  await needIelts();
   const plan = getIeltsDay(dayNum);
   if (!plan) return;
   const words = ieltsDayWords(plan);
@@ -1975,8 +2117,9 @@ function startIeltsDay(dayNum) {
   paint();
 }
 
-function renderIeltsFreeSpot() {
+async function renderIeltsFreeSpot() {
   currentRoute = 'ielts-spot';
+  await needIelts();
   const words = shuffle(ieltsWords.slice()).slice(0, 25);
   let spotIdx = 0;
   let spotCorrect = 0;
@@ -2077,7 +2220,9 @@ function renderIeltsFreeSpot() {
   paint();
 }
 
-function renderSubjectFlash(kind) {
+async function renderSubjectFlash(kind) {
+  if (kind === 'chinese') await needChinese();
+  else await needMath();
   currentRoute = kind === 'chinese' ? 'cn-flash' : 'math-flash';
   const list = shuffle((kind === 'chinese' ? chineseVocab : mathVocab).slice()).slice(0, 30);
   let idx = 0;
@@ -2145,7 +2290,9 @@ function renderSubjectFlash(kind) {
   paint();
 }
 
-function renderSubjectQuiz(kind) {
+async function renderSubjectQuiz(kind) {
+  if (kind === 'chinese') await needChinese();
+  else await needMath();
   currentRoute = kind === 'chinese' ? 'cn-quiz' : 'math-quiz';
   const bank = shuffle((kind === 'chinese' ? chineseQuestions : mathQuestions).slice()).slice(0, 20);
   let idx = 0;
@@ -2270,9 +2417,10 @@ const routes = {
   mass: renderMass,
   wrong: renderWrong,
   'ielts-days': renderIeltsDays,
-  'ielts-go': () => {
+  'ielts-go': async () => {
+    await needIelts();
     const n = (ieltsDays.find((d) => !isIeltsDayDone(d.day)) || ieltsDays[0]).day;
-    startIeltsDay(n);
+    await startIeltsDay(n);
   },
   'ielts-spot': renderIeltsFreeSpot,
   'cn-flash': () => renderSubjectFlash('chinese'),
@@ -2381,19 +2529,19 @@ app.addEventListener('click', (e) => {
   navigate(navEl.dataset.nav);
 });
 
-function go(fn) {
+async function go(fn) {
   if (!app) return;
   window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
   app.classList.remove('page-enter');
   void app.offsetWidth;
-  fn();
+  await fn();
   requestAnimationFrame(() => {
     app.classList.add('page-enter');
     bindMagneticCards();
   });
 }
 
-function navigate(name) {
+async function navigate(name) {
   try {
     unlockAudio();
   } catch (_) {
@@ -2406,7 +2554,7 @@ function navigate(name) {
   }
   clearSessionRepaint();
   const fn = routes[name] || renderHome;
-  go(fn);
+  await go(fn);
 }
 
 function scienceBackTarget() {
