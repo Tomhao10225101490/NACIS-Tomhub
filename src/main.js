@@ -42,18 +42,51 @@ document.addEventListener(
   { once: true }
 );
 
+function readJson(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw == null || raw === '') return fallback;
+    return JSON.parse(raw);
+  } catch (_) {
+    return fallback;
+  }
+}
+
+const _wrong = readJson('nacis_wrong', []);
+const _days = readJson('alex_days', {});
+const _ielts = readJson('toms_ielts', {});
+
 const store = {
   xp: Number(localStorage.getItem('nacis_xp') || 0),
   streak: Number(localStorage.getItem('nacis_streak') || 0),
   bestStreak: Number(localStorage.getItem('nacis_best') || 0),
-  wrong: JSON.parse(localStorage.getItem('nacis_wrong') || '[]'),
-  dayProgress: JSON.parse(localStorage.getItem('alex_days') || '{}'),
-  ieltsProgress: JSON.parse(localStorage.getItem('toms_ielts') || '{}'),
+  wrong: Array.isArray(_wrong) ? _wrong : [],
+  dayProgress: _days && typeof _days === 'object' && !Array.isArray(_days) ? _days : {},
+  ieltsProgress: _ielts && typeof _ielts === 'object' && !Array.isArray(_ielts) ? _ielts : {},
   activeHub: localStorage.getItem('toms_hub') || '',
 };
 
 let currentRoute = 'home';
 let quizLevel = localStorage.getItem('alex_qlevel') || 'core'; // core | all
+/** @type {null | (() => void)} */
+let sessionRepaint = null;
+
+function setSessionRepaint(fn) {
+  sessionRepaint = typeof fn === 'function' ? fn : null;
+}
+
+function clearSessionRepaint() {
+  sessionRepaint = null;
+}
+
+function softChromeRefresh() {
+  const bar = app.querySelector('.topbar');
+  if (bar) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = topbar();
+    bar.replaceWith(tmp.firstElementChild);
+  }
+}
 
 function save() {
   localStorage.setItem('nacis_xp', String(store.xp));
@@ -63,6 +96,7 @@ function save() {
   localStorage.setItem('alex_days', JSON.stringify(store.dayProgress));
   localStorage.setItem('toms_ielts', JSON.stringify(store.ieltsProgress || {}));
   localStorage.setItem('toms_hub', store.activeHub || '');
+  localStorage.setItem('alex_qlevel', quizLevel);
 }
 
 function markDayDone(dayNum) {
@@ -81,12 +115,14 @@ function doneDayCount() {
   return days.filter((d) => isDayDone(d.day)).length;
 }
 
-function addXp(n, correct) {
+function addXp(n, correct, { countStreak = true } = {}) {
   store.xp += n;
   if (correct) {
-    store.streak += 1;
-    store.bestStreak = Math.max(store.bestStreak, store.streak);
-  } else {
+    if (countStreak) {
+      store.streak += 1;
+      store.bestStreak = Math.max(store.bestStreak, store.streak);
+    }
+  } else if (countStreak) {
     store.streak = 0;
   }
   save();
@@ -212,12 +248,13 @@ function burst(x, y, color = '#4ade80', count = 34) {
     el.style.setProperty('--rot', `${rot}deg`);
     el.style.setProperty('--s', `${0.65 + Math.random() * 1.15}`);
     el.style.animationDelay = `${delay}ms`;
-    fx.appendChild(el);
+    fx?.appendChild(el);
     setTimeout(() => el.remove(), 1200 + delay);
   }
 }
 
 function shockwave(x, y, ok = true) {
+  if (!fx) return;
   const el = document.createElement('div');
   el.className = `shockwave ${ok ? 'ok' : 'no'}`;
   el.style.left = `${x}px`;
@@ -232,7 +269,7 @@ function streakBanner(n) {
   el.className = 'streak-banner';
   const label = getLang() === 'en' ? 'STREAK' : getLang() === 'zh' ? '连击' : 'STREAK 连击';
   el.innerHTML = `<span class="streak-flame">🔥</span><strong>×${n}</strong><em>${label}</em>`;
-  fx.appendChild(el);
+  fx?.appendChild(el);
   setTimeout(() => el.remove(), 1600);
 }
 
@@ -244,6 +281,7 @@ function screenFlash(ok) {
 }
 
 function floatText(x, y, text, color = '#86efac') {
+  if (!fx) return;
   const el = document.createElement('div');
   el.className = 'float-text premium';
   el.textContent = text;
@@ -291,7 +329,13 @@ function celebrate(correct) {
     floatText(
       x,
       y,
-      store.streak >= 3 ? `${store.streak} Streak!` : getLang() === 'en' ? 'Correct!' : '正确！',
+      store.streak >= 3
+        ? getLang() === 'en'
+          ? `${store.streak} Streak!`
+          : getLang() === 'zh'
+            ? `${store.streak} 连击！`
+            : `${store.streak} 连击! Streak!`
+        : tb('correctBanner'),
       '#86efac'
     );
   } else {
@@ -301,8 +345,28 @@ function celebrate(correct) {
       /* ignore */
     }
     burst(x, y, '#ef4444', 16);
-    floatText(x, y, getLang() === 'en' ? 'Try again' : '再想想', '#fca5a5');
+    floatText(
+      x,
+      y,
+      getLang() === 'en' ? 'Try again' : getLang() === 'zh' ? '再想想' : '再想想 / Try again',
+      '#fca5a5'
+    );
   }
+}
+
+function fanfare(message) {
+  const x = window.innerWidth / 2;
+  const y = window.innerHeight * 0.36;
+  screenFlash(true);
+  shockwave(x, y, true);
+  if (!prefersReducedMotion()) {
+    for (let k = 0; k < 3; k++) {
+      setTimeout(() => {
+        burst(x + (Math.random() - 0.5) * 140, y + (Math.random() - 0.5) * 40, CONFETTI[k % CONFETTI.length], 22);
+      }, k * 60);
+    }
+  }
+  floatText(x, y, message || tb('great'), '#fde68a');
 }
 
 function bilingualHtml(text) {
@@ -395,7 +459,8 @@ function wgPlayShell({ title, meta, progressLabel, rightLabel, pct, questionHtml
 function dayTitle(d) {
   if (getLang() === 'en') return d.title;
   if (getLang() === 'zh') return d.titleZh || d.title;
-  return `${d.titleZh || d.title}`;
+  if (d.titleZh && d.title && d.titleZh !== d.title) return `${d.titleZh} · ${d.title}`;
+  return d.titleZh || d.title;
 }
 
 function feedbackOk(body) {
@@ -442,10 +507,10 @@ function renderHome() {
 
     <div class="today-card panel ielts-spotlight">
       <div class="today-label">${tb('todayIelts')}</div>
-      <div class="today-title">${tb('dayOf', { n: nextIelts.day })} · ${getLang() === 'en' ? nextIelts.title : nextIelts.titleZh}</div>
+      <div class="today-title">${tb('dayOf', { n: nextIelts.day })} · ${dayTitle({ title: nextIelts.title, titleZh: nextIelts.titleZh })}</div>
       <div class="today-sub">${tb('band7')} · ${tb('words25')} · ${nextIelts.topic || ''}</div>
       <button class="btn btn-primary" data-ielts-day="${nextIelts.day}">${tb('startMemorize')}</button>
-      <button class="btn" data-hub="english" style="margin-left:8px">${tb('ieltsDays')}</button>
+      <button class="btn" data-nav="ielts-days" style="margin-left:8px">${tb('ieltsDays')}</button>
     </div>
 
     <h3 class="section-label">${tb('pickSubject')}</h3>
@@ -500,8 +565,8 @@ function renderHub(hubId) {
       modeCard('match', '🔗', tb('scienceMatch'), '', tb('start')),
       modeCard('mcq', '✅', tb('scienceMcq'), '', String(sciQ.filter((q) => q.type === 'mcq').length)),
       modeCard('tf', '⚖️', tb('scienceTf'), '', String(sciQ.filter((q) => q.type === 'tf').length)),
-      hubId === 'chemistry' ? modeCard('periodic', '⚗️', tb('periodic'), '', 'Table') : '',
-      hubId === 'chemistry' ? modeCard('mass', '🧮', tb('mass'), '', 'Drill') : '',
+      hubId === 'chemistry' ? modeCard('periodic', '⚗️', tb('periodic'), '', tb('table')) : '',
+      hubId === 'chemistry' ? modeCard('mass', '🧮', tb('mass'), '', tb('drill')) : '',
       modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
     ].join('');
   }
@@ -534,7 +599,7 @@ function renderDays() {
             return `<button class="day-card ${done ? 'done' : ''}" data-start-day="${d.day}">
               <div class="day-num">Day ${d.day}</div>
               <div class="day-name">${dayTitle(d)}</div>
-              <div class="day-zh">${getLang() === 'en' ? d.title : d.titleZh}</div>
+              <div class="day-zh">${dayTitle(d)}</div>
               <div class="day-meta">${subjectName(d.subject)} · ${d.vocabIds.length} ${tb('words')} · ${d.questionIds.length} ${tb('questions')}</div>
               <div class="day-status">${done ? '✓ ' + tb('done') : tb('start')}</div>
             </button>`;
@@ -550,6 +615,7 @@ function startDayPractice(dayNum) {
     navigate('days');
     return;
   }
+  currentRoute = 'days';
   const vocab = dayVocab(plan);
   const qs = shuffle(dayQuestions(plan).slice());
   let step = 0; // 0 intro, 1 words, 2 vocab quiz, 3 questions, 4 done
@@ -582,6 +648,7 @@ function startDayPractice(dayNum) {
   }
 
   function paint() {
+    setSessionRepaint(paint);
     if (step === 0) {
       app.innerHTML = `
         ${topbar()}
@@ -617,7 +684,7 @@ function startDayPractice(dayNum) {
         ${topbar()}
         <div class="screen">
           <div class="screen-header">${backBtn('days')}<h2 class="screen-title">Day ${plan.day} · Words</h2></div>
-          <div class="step-pills"><span class="on">1 Words</span><span>2 Quiz</span><span>3 Questions</span></div>
+          <div class="step-pills"><span class="on">1 ${tb('words')}</span><span>2 Quiz</span><span>3 ${tb('questions')}</span></div>
           <div class="progress-wrap">
             <div class="progress-meta"><span>${wordIndex + 1} / ${vocab.length}</span><span>${v.zh}</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:${((wordIndex + 1) / vocab.length) * 100}%"></div></div>
@@ -686,9 +753,9 @@ function startDayPractice(dayNum) {
         ${topbar()}
         <div class="screen">
           <div class="screen-header">${backBtn('days')}<h2 class="screen-title">Day ${plan.day} · Word Quiz</h2></div>
-          <div class="step-pills"><span>✓ Words</span><span class="on">2 Quiz</span><span>3 Questions</span></div>
+          <div class="step-pills"><span>✓ ${tb('words')}</span><span class="on">2 Quiz</span><span>3 ${tb('questions')}</span></div>
           <div class="progress-wrap">
-            <div class="progress-meta"><span>${vIdx + 1} / ${vQuiz.length}</span><span>正确 ${vCorrect}</span></div>
+            <div class="progress-meta"><span>${vIdx + 1} / ${vQuiz.length}</span><span>${tb('correctN')} ${vCorrect}</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:${(vIdx / vQuiz.length) * 100}%"></div></div>
           </div>
           <div class="wg-question">
@@ -756,7 +823,7 @@ function startDayPractice(dayNum) {
         ${topbar()}
         <div class="screen wg-play">
           <div class="screen-header">${backBtn('days')}<h2 class="screen-title">Day ${plan.day} · Questions</h2></div>
-          <div class="step-pills"><span>✓ Words</span><span>✓ Quiz</span><span class="on">3 Questions</span></div>
+          <div class="step-pills"><span>✓ ${tb('words')}</span><span>✓ Quiz</span><span class="on">3 ${tb('questions')}</span></div>
           <div class="wg-hud">
             <span class="pill">${qIdx + 1} / ${qs.length}</span>
             <span class="pill">🔥 ${store.streak}</span>
@@ -849,15 +916,16 @@ function startDayPractice(dayNum) {
           <div class="score-ring">${pct}%</div>
           <h3 style="font-family:var(--font-display);margin-bottom:8px">Day ${plan.day} · ${plan.title}</h3>
           <p style="color:#dff2f6;margin-bottom:8px">单词小测 ${vCorrect}/${vQuiz.length} · 题目 ${qCorrect}/${qs.length}</p>
-          <p style="color:var(--good);margin-bottom:18px">✓ 已记为完成</p>
+          <p class="result-note ok">✓ ${tb('done')}</p>
           <div class="flash-actions">
             ${next ? `<button class="btn btn-primary" data-start-day="${next.day}">Day ${next.day} →</button>` : ''}
-            <button class="btn" data-nav="days">全部天数</button>
-            <button class="btn" data-nav="home">Home</button>
+            <button class="btn" data-nav="days">${tb('allDays')}</button>
+            <button class="btn" data-nav="home">${tb('home')}</button>
           </div>
         </div>
       </div>`;
-    celebrate(true);
+    fanfare(tb('great'));
+    clearSessionRepaint();
   }
 
   paint();
@@ -865,6 +933,7 @@ function startDayPractice(dayNum) {
 
 /* —— FLASHCARDS —— */
 function renderFlash() {
+  currentRoute = 'flash';
   let subject = 'all';
   let list = shuffle(vocabulary.slice());
   let i = 0;
@@ -929,8 +998,8 @@ function renderFlash() {
       paint();
     };
     document.getElementById('know').onclick = (e) => {
-      addXp(5, true);
-      celebrate(true);
+      addXp(5, true, { countStreak: false });
+      fanfare(tb('correctBanner'));
       burst(e.clientX, e.clientY);
       i = (i + 1) % list.length;
       flipped = false;
@@ -957,6 +1026,7 @@ function renderFlash() {
 
 /* —— MATCH —— */
 function renderMatch() {
+  currentRoute = 'match';
   let subject = 'all';
 
   function deal() {
@@ -1052,9 +1122,11 @@ function renderMatch() {
 
 /* —— QUIZ (mcq / tf / mixed) —— */
 function renderQuiz(mode) {
-  let subject = 'all';
+  currentRoute = mode === 'mcq' ? 'mcq' : mode === 'tf' ? 'tf' : 'mixed';
+  let subject = ['physics', 'chemistry', 'biology'].includes(store.activeHub) ? store.activeHub : 'all';
   const type = mode === 'mcq' ? 'mcq' : mode === 'tf' ? 'tf' : 'all';
-  const title = mode === 'mcq' ? '选择题挑战' : mode === 'tf' ? '判断题冲刺' : '综合随机测';
+  const title =
+    mode === 'mcq' ? tb('mcq') : mode === 'tf' ? tb('tf') : tb('moreModes');
   let queue = [];
   let idx = 0;
   let correctCount = 0;
@@ -1066,6 +1138,7 @@ function renderQuiz(mode) {
       subject,
       type,
       limit: mode === 'mixed' ? 30 : 28,
+      level: quizLevel === 'core' ? 'core' : 'all',
     });
     idx = 0;
     correctCount = 0;
@@ -1075,20 +1148,23 @@ function renderQuiz(mode) {
   }
 
   function paint() {
+    setSessionRepaint(paint);
     if (idx >= queue.length) {
       const pct = Math.round((correctCount / queue.length) * 100);
+      clearSessionRepaint();
+      fanfare(pct >= 80 ? tb('great') : tb('results'));
       app.innerHTML = `
         ${topbar()}
         <div class="screen">
-          <div class="screen-header">${backBtn()}<h2 class="screen-title">${title} · 结果</h2></div>
+          <div class="screen-header">${backBtn(scienceBackTarget())}<h2 class="screen-title">${title} · ${tb('results')}</h2></div>
           <div class="panel results" style="--pct:${pct}">
             <div class="score-ring">${pct}%</div>
-            <h3 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:8px">${correctCount} / ${queue.length} 正确</h3>
-            <p style="color:var(--muted);margin-bottom:18px">${pct >= 80 ? '太棒了！继续保持。' : pct >= 60 ? '不错，错题再巩固一下。' : '加油，打开错题本复习！'}</p>
+            <h3 class="result-title">${correctCount} / ${queue.length} ${tb('correctN')}</h3>
+            <p class="section-hint" style="margin-bottom:18px">${pct >= 80 ? tb('great') : pct >= 60 ? tb('okish') : tb('keepGoing')}</p>
             <div class="flash-actions">
-              <button class="btn btn-primary" id="again">再来一轮</button>
-              <button class="btn" data-nav="wrong">去错题本</button>
-              <button class="btn" data-nav="home">回首页</button>
+              <button class="btn btn-primary" id="again">${tb('again')}</button>
+              <button class="btn" data-nav="wrong">${tb('wrongBook')}</button>
+              <button class="btn" data-nav="home">${tb('home')}</button>
             </div>
             ${
               wrongs.length
@@ -1191,7 +1267,7 @@ function renderQuiz(mode) {
               if (b === btn) b.classList.add('wrong');
             }
           });
-          finish(ok, q.answer ? '正确 True' : '错误 False');
+          finish(ok, q.answer ? tb('trueOpt') : tb('falseOpt'));
         }
       };
     });
@@ -1203,6 +1279,7 @@ function renderQuiz(mode) {
 
 /* —— PERIODIC —— */
 function renderPeriodic() {
+  currentRoute = 'periodic';
   let mode = 'browse'; // browse | quiz
   let quizIdx = 0;
   let quizList = [];
@@ -1249,7 +1326,7 @@ function renderPeriodic() {
         ${topbar()}
         <div class="screen">
           <div class="screen-header">${backBtn()}<h2 class="screen-title">元素周期表</h2>
-            <button class="btn btn-primary" id="startq">开始元素测验</button>
+            <button class="btn btn-primary" id="startq">开始${tb('periodic')}</button>
           </div>
           <p style="color:#dff2f6;margin-bottom:10px;font-size:0.92rem">标准 18 列长式周期表 · 上方为中国中学常用主族/副族标注 · 点击元素查看详情</p>
           <div class="pt-legend">
@@ -1309,13 +1386,13 @@ function renderPeriodic() {
       app.innerHTML = `
         ${topbar()}
         <div class="screen">
-          <div class="screen-header">${backBtn()}<h2 class="screen-title">元素测验结果</h2></div>
+          <div class="screen-header">${backBtn()}<h2 class="screen-title">${tb('periodic')} · ${tb('results')}</h2></div>
           <div class="panel results" style="--pct:${pct}">
             <div class="score-ring">${pct}%</div>
             <h3 style="font-family:var(--font-display);margin-bottom:12px">${quizCorrect}/${quizList.length}</h3>
             <div class="flash-actions">
-              <button class="btn btn-primary" id="again">再测</button>
-              <button class="btn" id="browse">返回浏览</button>
+              <button class="btn btn-primary" id="again">${tb('again')}</button>
+              <button class="btn" id="browse">${tb('back')}</button>
             </div>
           </div>
         </div>`;
@@ -1362,9 +1439,9 @@ function renderPeriodic() {
     app.innerHTML = `
       ${topbar()}
       <div class="screen">
-        <div class="screen-header">${backBtn()}<h2 class="screen-title">元素测验</h2></div>
+        <div class="screen-header">${backBtn()}<h2 class="screen-title">${tb('periodic')}</h2></div>
         <div class="progress-wrap">
-          <div class="progress-meta"><span>${quizIdx + 1} / ${quizList.length}</span><span>正确 ${quizCorrect}</span></div>
+          <div class="progress-meta"><span>${quizIdx + 1} / ${quizList.length}</span><span>${tb('correctN')} ${quizCorrect}</span></div>
           <div class="progress-bar"><div class="progress-fill" style="width:${(quizIdx / quizList.length) * 100}%"></div></div>
         </div>
         <div class="panel">
@@ -1374,7 +1451,7 @@ function renderPeriodic() {
           </div>
           <div id="fb"></div>
           <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
-            <button class="btn btn-primary" id="nx">下一题 →</button>
+            <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
           </div>
         </div>
       </div>`;
@@ -1395,11 +1472,11 @@ function renderPeriodic() {
           quizCorrect += 1;
           addXp(10, true);
           celebrate(true);
-          fb.innerHTML = `<div class="feedback ok"><strong>正确！</strong>${e.symbol} = ${e.zh} (${e.en})，Ar ≈ ${e.ar}</div>`;
+          fb.innerHTML = `<div class="feedback ok"><strong>${tb('correctBanner')}</strong>${e.symbol} = ${e.zh} (${e.en})，Ar ≈ ${e.ar}</div>`;
         } else {
           addXp(0, false);
           celebrate(false);
-          fb.innerHTML = `<div class="feedback no"><strong>不正确</strong>答案：${answer}<br>${e.symbol} · ${e.zh} · ${e.en} · Ar ≈ ${e.ar}</div>`;
+          fb.innerHTML = `<div class="feedback no"><strong>${tb('incorrectBanner')}</strong>${tb('answerLabel')}${answer}<br>${e.symbol} · ${e.zh} · ${e.en} · Ar ≈ ${e.ar}</div>`;
           recordWrong({
             id: `el-${e.symbol}-${kind}`,
             kind: 'element',
@@ -1525,13 +1602,13 @@ function renderMass() {
         app.innerHTML = `
           ${topbar()}
           <div class="screen">
-            <div class="screen-header">${backBtn()}<h2 class="screen-title">Ar / Mr 测验结果</h2></div>
+            <div class="screen-header">${backBtn()}<h2 class="screen-title">Ar / Mr · ${tb('results')}</h2></div>
             <div class="panel results" style="--pct:${pct}">
               <div class="score-ring">${pct}%</div>
-              <p style="margin-bottom:16px">${okCount}/${list.length} 正确</p>
+              <p style="margin-bottom:16px">${okCount}/${list.length} ${tb('correctN')}</p>
               <div class="flash-actions">
-                <button class="btn btn-primary" id="again">再测</button>
-                <button class="btn" id="backm">返回</button>
+                <button class="btn btn-primary" id="again">${tb('again')}</button>
+                <button class="btn" id="backm">${tb('back')}</button>
               </div>
             </div>
           </div>`;
@@ -1548,7 +1625,7 @@ function renderMass() {
         <div class="screen">
           <div class="screen-header">${backBtn()}<h2 class="screen-title">Ar / Mr 测验</h2></div>
           <div class="progress-wrap">
-            <div class="progress-meta"><span>${i + 1}/${list.length}</span><span>正确 ${okCount}</span></div>
+            <div class="progress-meta"><span>${i + 1}/${list.length}</span><span>${tb('correctN')} ${okCount}</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:${(i / list.length) * 100}%"></div></div>
           </div>
           <div class="panel">
@@ -1558,7 +1635,7 @@ function renderMass() {
             </div>
             <div id="fb"></div>
             <div class="flash-actions" style="display:none;margin-top:16px" id="nw">
-              <button class="btn btn-primary" id="nx">下一题 →</button>
+              <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
             </div>
           </div>
         </div>`;
@@ -1577,11 +1654,11 @@ function renderMass() {
             okCount += 1;
             addXp(10, true);
             celebrate(true);
-            document.getElementById('fb').innerHTML = `<div class="feedback ok"><strong>正确！</strong>${q.explain}</div>`;
+            document.getElementById('fb').innerHTML = `<div class="feedback ok"><strong>${tb('correctBanner')}</strong>${q.explain}</div>`;
           } else {
             addXp(0, false);
             celebrate(false);
-            document.getElementById('fb').innerHTML = `<div class="feedback no"><strong>不正确</strong>答案：${q.answer}<br>${q.explain}</div>`;
+            document.getElementById('fb').innerHTML = `<div class="feedback no"><strong>${tb('incorrectBanner')}</strong>${tb('answerLabel')}${q.answer}<br>${q.explain}</div>`;
             recordWrong({
               id: q.id,
               kind: 'mass',
@@ -1666,7 +1743,7 @@ function renderIeltsDays() {
             const done = isIeltsDayDone(d.day);
             return `<button class="day-card ${done ? 'done' : ''}" data-ielts-day="${d.day}">
               <div class="day-num">${tb('dayOf', { n: d.day })}</div>
-              <div class="day-name">${getLang() === 'en' ? d.title : d.titleZh}</div>
+              <div class="day-name">${dayTitle(d)}</div>
               <div class="day-zh">${d.topic || ''}</div>
               <div class="day-meta">25 ${tb('words')}</div>
               <div class="day-status">${done ? '✓ ' + tb('done') : tb('start')}</div>
@@ -1706,6 +1783,7 @@ function startIeltsDay(dayNum) {
   }
 
   function paint() {
+    setSessionRepaint(paint);
     if (step === 0) {
       app.innerHTML = `
         ${topbar()}
@@ -1713,7 +1791,7 @@ function startIeltsDay(dayNum) {
           <div class="screen-header">${backBtn('ielts-days')}<h2 class="screen-title">${tb('dayOf', { n: plan.day })}</h2></div>
           <div class="panel day-intro ielts-intro">
             <div class="flash-chapter">${tb('band7')} · ${plan.topic || ''}</div>
-            <h3>${getLang() === 'en' ? plan.title : plan.titleZh}</h3>
+            <h3 class="result-title">${dayTitle(plan)}</h3>
             <p>${tb('words25')}</p>
             <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
@@ -1854,7 +1932,7 @@ function startIeltsDay(dayNum) {
             celebrate(false);
             document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
             recordWrong({
-              id: `ielts-${item.id}-${Date.now()}`,
+              id: `ielts-${item.id}`,
               kind: 'ielts',
               prompt: item.prompt,
               correctText: item.answer,
@@ -1875,18 +1953,19 @@ function startIeltsDay(dayNum) {
     markIeltsDayDone(plan.day);
     const pct = Math.round((spotCorrect / Math.max(1, spotItems.length)) * 100);
     const next = getIeltsDay(plan.day + 1);
-    celebrate(true);
+    fanfare(tb('spotDone'));
+    clearSessionRepaint();
     app.innerHTML = `
       ${topbar()}
       <div class="screen">
-        <div class="screen-header">${backBtn('home')}<h2 class="screen-title">${tb('spotDone')}</h2></div>
+        <div class="screen-header">${backBtn('hub-english')}<h2 class="screen-title">${tb('spotDone')}</h2></div>
         <div class="panel results" style="--pct:${pct}">
           <div class="score-ring">${pct}%</div>
-          <h3>${spotCorrect} / ${spotItems.length} ${tb('correctN')}</h3>
+          <h3 class="result-title">${spotCorrect} / ${spotItems.length} ${tb('correctN')}</h3>
           <p>${pct >= 80 ? tb('great') : pct >= 60 ? tb('okish') : tb('keepGoing')}</p>
           <div class="flash-actions">
             ${next ? `<button class="btn btn-primary" data-ielts-day="${next.day}">${tb('nextDay')}</button>` : ''}
-            <button class="btn" data-hub="english">${tb('ieltsDays')}</button>
+            <button class="btn" data-nav="ielts-days">${tb('ieltsDays')}</button>
             <button class="btn" data-nav="home">${tb('home')}</button>
           </div>
         </div>
@@ -1928,7 +2007,7 @@ function renderIeltsFreeSpot() {
             <h3>${spotCorrect}/${spotItems.length}</h3>
             <div class="flash-actions">
               <button class="btn btn-primary" data-nav="ielts-spot">${tb('again')}</button>
-              <button class="btn" data-hub="english">${tb('home')}</button>
+              <button class="btn" data-nav="home">${tb('home')}</button>
             </div>
           </div>
         </div>`;
@@ -1977,6 +2056,14 @@ function renderIeltsFreeSpot() {
         } else {
           addXp(0, false);
           celebrate(false);
+          recordWrong({
+            id: `ielts-spot-${item.id}`,
+            kind: 'ielts',
+            prompt: item.prompt,
+            correctText: item.answer,
+            explain: item.tip || '',
+            subject: 'english',
+          });
           document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
         }
         document.getElementById('nw').style.display = 'flex';
@@ -2212,8 +2299,8 @@ app.addEventListener('click', (e) => {
     try {
       sfxClick();
     } catch (_) {}
-    const fn = routes[currentRoute] || renderHome;
-    fn();
+    if (sessionRepaint) sessionRepaint();
+    else softChromeRefresh();
     return;
   }
   const sfxBtn = e.target.closest('[data-sfx-toggle]');
@@ -2224,8 +2311,23 @@ app.addEventListener('click', (e) => {
       unlockAudio();
       sfxClick();
     } catch (_) {}
-    const fn = routes[currentRoute] || renderHome;
-    fn();
+    if (sessionRepaint) sessionRepaint();
+    else softChromeRefresh();
+    return;
+  }
+  const qlevelBtn = e.target.closest('[data-qlevel]');
+  if (qlevelBtn && app.contains(qlevelBtn)) {
+    e.preventDefault();
+    quizLevel = qlevelBtn.getAttribute('data-qlevel') === 'all' ? 'all' : 'core';
+    save();
+    try {
+      sfxClick();
+    } catch (_) {}
+    if (sessionRepaint) sessionRepaint();
+    else {
+      const fn = routes[currentRoute] || renderHome;
+      go(fn);
+    }
     return;
   }
   const hubBtn = e.target.closest('[data-hub]');
@@ -2238,7 +2340,7 @@ app.addEventListener('click', (e) => {
     try {
       sfxClick();
     } catch (_) {}
-    renderHub(hubBtn.getAttribute('data-hub'));
+    navigate('hub-' + hubBtn.getAttribute('data-hub'));
     return;
   }
   const ieltsBtn = e.target.closest('[data-ielts-day]');
@@ -2251,7 +2353,8 @@ app.addEventListener('click', (e) => {
     try {
       sfxClick();
     } catch (_) {}
-    startIeltsDay(Number(ieltsBtn.getAttribute('data-ielts-day')));
+    const n = Number(ieltsBtn.getAttribute('data-ielts-day'));
+    go(() => startIeltsDay(n));
     return;
   }
   const dayBtn = e.target.closest('[data-start-day]');
@@ -2269,7 +2372,7 @@ app.addEventListener('click', (e) => {
     } catch (_) {
       /* ignore */
     }
-    startDayPractice(n);
+    go(() => startDayPractice(n));
     return;
   }
   const navEl = e.target.closest('[data-nav]');
@@ -2277,6 +2380,18 @@ app.addEventListener('click', (e) => {
   e.preventDefault();
   navigate(navEl.dataset.nav);
 });
+
+function go(fn) {
+  if (!app) return;
+  window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+  app.classList.remove('page-enter');
+  void app.offsetWidth;
+  fn();
+  requestAnimationFrame(() => {
+    app.classList.add('page-enter');
+    bindMagneticCards();
+  });
+}
 
 function navigate(name) {
   try {
@@ -2289,15 +2404,15 @@ function navigate(name) {
   } catch (_) {
     /* ignore */
   }
+  clearSessionRepaint();
   const fn = routes[name] || renderHome;
-  window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
-  app.classList.remove('page-enter');
-  void app.offsetWidth;
-  fn();
-  requestAnimationFrame(() => {
-    app.classList.add('page-enter');
-    bindMagneticCards();
-  });
+  go(fn);
+}
+
+function scienceBackTarget() {
+  const hub = store.activeHub;
+  if (['physics', 'chemistry', 'biology'].includes(hub)) return 'hub-' + hub;
+  return 'home';
 }
 
 function bindMagneticCards() {

@@ -48,6 +48,12 @@ const dict = {
   periodic: { zh: '周期表', en: 'Periodic Table' },
   periodicDesc: { zh: '标准周期表 + 元素小测', en: 'Table + element quiz' },
   mass: { zh: '相对质量', en: 'Ar / Mr' },
+  table: { zh: '周期表', en: 'Table' },
+  drill: { zh: '专项练', en: 'Drill' },
+  wordsStep: { zh: '单词', en: 'Words' },
+  quizStep: { zh: '小测', en: 'Quiz' },
+  questionsStep: { zh: '题目', en: 'Questions' },
+
   massDesc: { zh: '相对原子 / 分子质量', en: 'Relative mass drill' },
   wrongBook: { zh: '错题本', en: 'Wrong Book' },
   wrongDesc: { zh: '错题本本地复习', en: 'Review mistakes' },
@@ -110,26 +116,6 @@ const dict = {
   spotDone: { zh: '抽查完成！', en: 'Spot check complete!' },
   memorizeDone: { zh: '背诵完成！', en: 'Memorize complete!' },
   emptyWrong: { zh: '暂无错题，继续保持！', en: 'No wrong answers yet!' },
-  // aliases used by existing main.js
-  correctBanner: { zh: '正确！', en: 'Correct!' },
-  incorrectBanner: { zh: '不正确', en: 'Incorrect' },
-  answerLabel: { zh: '答案：', en: 'Answer: ' },
-  soundOn: { zh: '音效开', en: 'SFX on' },
-  soundOff: { zh: '音效关', en: 'SFX off' },
-  lessonLoad: { zh: '本课约', en: 'This day ≈' },
-  plus: { zh: '+', en: '+' },
-  filterCore: { zh: '课标核心', en: 'Core only' },
-  filterAll: { zh: '含拔高', en: 'Include stretch' },
-  stretchTag: { zh: '拔高 · IGCSE', en: 'Stretch · IGCSE' },
-  wrongDesc: { zh: '错题本本地复习', en: 'Review mistakes' },
-  daysIntro: { zh: '对齐上海诺达八年级课标', en: 'Aligned to NACIS Grade 8' },
-  dailyDaysDesc: { zh: 'Day 1→{n} 拔尖一条龙', en: 'Day 1→{n} pipeline' },
-  periodicDesc: { zh: '标准周期表 + 元素小测', en: 'Table + element quiz' },
-  massDesc: { zh: '相对原子 / 分子质量', en: 'Relative mass drill' },
-  flashDesc: { zh: '专有名词英汉闪卡', en: 'Bilingual flashcards' },
-  matchDesc: { zh: '英汉配对', en: 'EN–ZH matching' },
-  mcqDesc: { zh: '中英双语选择题', en: 'Bilingual MCQ' },
-  tfDesc: { zh: '中英双语判断题', en: 'Bilingual T/F' },
 };
 
 export function t(key, vars = {}) {
@@ -206,13 +192,18 @@ export function hubTitle(hub) {
   if (!hub) return '';
   if (lang === 'en') return hub.en;
   if (lang === 'zh') return hub.zh;
-  return `${hub.zh}`;
+  if (hub.zh && hub.en && hub.zh !== hub.en) return `${hub.zh} · ${hub.en}`;
+  return hub.zh || hub.en || '';
 }
 
 export function hubBlurb(hub) {
   if (!hub) return '';
-  if (lang === 'en') return hub.blurbEn;
-  return hub.blurbZh;
+  if (lang === 'en') return hub.blurbEn || hub.en || '';
+  if (lang === 'zh') return hub.blurbZh || hub.zh || '';
+  const zh = hub.blurbZh || hub.zh || '';
+  const en = hub.blurbEn || hub.en || '';
+  if (zh && en && zh !== en) return `${zh} · ${en}`;
+  return zh || en;
 }
 
 export function langToggleHtml() {
