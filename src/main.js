@@ -1436,7 +1436,18 @@ async function renderPeriodic() {
 
   function paint() {
     if (mode === 'browse') {
-      const cells = buildPeriodicGrid();
+      const grid = buildPeriodicGrid();
+      const cells = grid.cells || grid;
+      const lanthanides = grid.lanthanides || [];
+      const actinides = grid.actinides || [];
+      const maxPeriod = grid.maxPeriod || 7;
+      const cellHtml = (e) =>
+        `<button class="el-cell ${e.category}" data-z="${e.z}" title="${e.en}">
+            <div class="el-z">${e.z}</div>
+            <div class="el-sym">${e.symbol}</div>
+            <div class="el-name">${e.zh}</div>
+            <div class="el-ar">${e.ar}</div>
+          </button>`;
       const headers = GROUP_LABELS.map(
         (g, i) =>
           `<div class="pt-group-h" style="grid-column:${i + 2};grid-row:1"><span class="cn">${g.cn}</span>${g.iupac}<span class="note">${g.note}</span></div>`
@@ -1457,9 +1468,16 @@ async function renderPeriodic() {
           </button>`;
         })
         .join('');
-      const periodHeads = [1, 2, 3, 4, 5, 6]
+      const periodHeads = Array.from({ length: maxPeriod }, (_, i) => i + 1)
         .map((p) => `<div class="pt-period-h" style="grid-column:1;grid-row:${p + 1}">${p}</div>`)
         .join('');
+      const fBlock = `
+            <div class="ptable-fblock">
+              <div class="pt-f-label">镧系</div>
+              <div class="pt-f-row">${lanthanides.map(cellHtml).join('')}</div>
+              <div class="pt-f-label">锕系</div>
+              <div class="pt-f-row">${actinides.map(cellHtml).join('')}</div>
+            </div>`;
 
       app.innerHTML = `
         ${topbar()}
@@ -1467,13 +1485,15 @@ async function renderPeriodic() {
           <div class="screen-header">${backBtn()}<h2 class="screen-title">元素周期表</h2>
             <button class="btn btn-primary" id="startq">开始${tb('periodic')}</button>
           </div>
-          <p style="color:#dff2f6;margin-bottom:10px;font-size:0.92rem">标准 18 列长式周期表 · 上方为中国中学常用主族/副族标注 · 点击元素查看详情</p>
+          <p style="color:#dff2f6;margin-bottom:10px;font-size:0.92rem">标准 18 列长式周期表（Z=1–118）· 上方为中国中学常用主族/副族标注 · 点击元素查看详情</p>
           <div class="pt-legend">
             <span><i style="background:rgba(255,184,107,0.7)"></i>金属</span>
             <span><i style="background:rgba(255,160,120,0.7)"></i>过渡/副族</span>
             <span><i style="background:rgba(94,231,231,0.7)"></i>非金属</span>
             <span><i style="background:rgba(125,255,176,0.7)"></i>类金属</span>
             <span><i style="background:rgba(180,160,255,0.7)"></i>稀有气体</span>
+            <span><i style="background:rgba(244,114,182,0.7)"></i>镧系</span>
+            <span><i style="background:rgba(167,139,250,0.7)"></i>锕系</span>
           </div>
           <div class="panel">
             <div class="ptable-scroll">
@@ -1483,6 +1503,7 @@ async function renderPeriodic() {
                 ${periodHeads}
                 ${body}
               </div>
+              ${fBlock}
             </div>
             <div class="el-detail" id="detail"></div>
           </div>
@@ -1492,28 +1513,40 @@ async function renderPeriodic() {
         sfxClick();
         startQuiz();
       };
-      app.querySelectorAll('.el-cell:not(.empty)').forEach((btn) => {
-        btn.onclick = () => {
-          sfxClick();
-          const e = elements.find((x) => x.z === Number(btn.dataset.z));
-          const d = document.getElementById('detail');
-          d.classList.add('show');
-          const catMap = {
-            metal: '金属 metal',
-            nonmetal: '非金属 non-metal',
-            metalloid: '类金属 metalloid',
-            noble: '稀有气体 noble gas',
-            transition: '过渡元素 / 副族 transition',
-          };
-          d.innerHTML = `
+      const showDetail = (btn) => {
+        sfxClick();
+        const e = elements.find((x) => x.z === Number(btn.dataset.z));
+        if (!e) return;
+        const d = document.getElementById('detail');
+        d.classList.add('show');
+        const catMap = {
+          metal: '金属 metal',
+          nonmetal: '非金属 non-metal',
+          metalloid: '类金属 metalloid',
+          noble: '稀有气体 noble gas',
+          transition: '过渡元素 / 副族 transition',
+          lanthanide: '镧系 lanthanide',
+          actinide: '锕系 actinide',
+        };
+        const family =
+          e.category === 'lanthanide' || e.category === 'actinide'
+            ? e.category === 'lanthanide'
+              ? '镧系'
+              : '锕系'
+            : e.group <= 2 || e.group >= 13
+              ? '主族'
+              : '副族';
+        d.innerHTML = `
             <div style="font-family:var(--font-display);font-size:1.6rem;margin-bottom:6px;color:#fff">${e.symbol} · ${e.zh} · ${e.en}</div>
             <div style="color:#e4f4f8;line-height:1.7">
               原子序数 Z = <strong style="color:#fff">${e.z}</strong><br>
               相对原子质量 Ar ≈ <strong style="color:var(--accent-2)">${e.ar}</strong><br>
-              周期 Period ${e.period} · IUPAC 族 Group ${e.group} · 中学标注 <strong style="color:var(--accent)">${e.groupCn}</strong>（${e.group <= 2 || e.group >= 13 ? '主族' : '副族'}）<br>
+              周期 Period ${e.period} · IUPAC 族 Group ${e.group} · 中学标注 <strong style="color:var(--accent)">${e.groupCn}</strong>（${family}）<br>
               类别：${catMap[e.category] || e.category}
             </div>`;
-        };
+      };
+      app.querySelectorAll('.el-cell:not(.empty)').forEach((btn) => {
+        btn.onclick = () => showDetail(btn);
       });
       bindNav();
       return;
@@ -1970,8 +2003,7 @@ async function startIeltsDay(dayNum) {
               <div class="flash-face back">
                 <div class="flash-chapter">${w.word}</div>
                 <div class="flash-main">${w.zh}</div>
-                <div class="flash-tip">${w.enDef}</div>
-                <div class="flash-example"><strong>${tb('example')}</strong> ${w.example || ''}<br>${w.exampleZh || ''}</div>
+                <div class="flash-tip">${[w.enDef, w.example ? `${tb('example')}: ${w.example}` : '', w.exampleZh || ''].filter(Boolean).join(' · ')}</div>
               </div>
             </div>
           </div>
@@ -1984,7 +2016,7 @@ async function startIeltsDay(dayNum) {
       const doFlip = () => {
         flipped = !flipped;
         sfxFlip();
-        paint();
+        document.getElementById('flash').classList.toggle('flipped', flipped);
       };
       document.getElementById('flash').onclick = doFlip;
       document.getElementById('flip').onclick = doFlip;
@@ -2233,7 +2265,7 @@ async function renderSubjectFlash(kind) {
     const w = list[idx];
     const front = kind === 'chinese' ? w.term : w.zh;
     const backMain = kind === 'chinese' ? w.zh : w.en;
-    const tip = kind === 'chinese' ? `${w.en || ''}\n${w.tip || ''}` : `${(w.detail || w.detail || '')}\n${w.tip || ''}`;
+    const tipRaw = kind === 'chinese' ? [w.en, w.tip].filter(Boolean).join(' · ') : [w.detail, w.tip].filter(Boolean).join(' · ');
     const chapter = kind === 'chinese' ? w.category : w.chapter;
     app.innerHTML = `
       ${topbar()}
@@ -2251,8 +2283,9 @@ async function renderSubjectFlash(kind) {
               <div class="flash-sub">${tb('tapFlip')}</div>
             </div>
             <div class="flash-face back">
+              <div class="flash-chapter">${chapter || ''}</div>
               <div class="flash-main">${backMain}</div>
-              <div class="flash-tip">${tip}</div>
+              <div class="flash-tip">${tipRaw}</div>
             </div>
           </div>
         </div>
@@ -2265,7 +2298,7 @@ async function renderSubjectFlash(kind) {
     const doFlip = () => {
       flipped = !flipped;
       sfxFlip();
-      paint();
+      document.getElementById('flash').classList.toggle('flipped', flipped);
     };
     document.getElementById('flash').onclick = doFlip;
     document.getElementById('flip').onclick = doFlip;

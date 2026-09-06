@@ -233,7 +233,7 @@ function startIeltsDay(dayNum) {
       const flip = () => {
         flipped = !flipped;
         sfxFlip();
-        paint();
+        document.getElementById('flash').classList.toggle('flipped', flipped);
       };
       document.getElementById('flash').onclick = flip;
       document.getElementById('flip').onclick = flip;

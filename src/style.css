@@ -789,35 +789,6 @@ body.hit-bad::after {
   padding: 16px;
 }
 
-.flash-card {
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.35s;
-  perspective: 800px;
-}
-
-.flash-card.flipped {
-  transform: rotateY(180deg);
-}
-
-.flash-card.flipped .flash-front {
-  display: none;
-}
-
-.flash-card.flipped .flash-back {
-  display: block;
-  transform: rotateY(180deg);
-}
-
-.flash-back {
-  display: none;
-}
-
 .flash-chapter {
   font-size: 0.78rem;
   font-weight: 800;
@@ -856,15 +827,25 @@ body.hit-bad::after {
 
 .match-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+  align-items: start;
 }
 
+.match-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.match-item,
 .match-tile {
+  width: 100%;
   min-height: 72px;
   border: none;
   border-radius: 12px;
-  padding: 12px;
+  padding: 12px 14px;
   font: inherit;
   font-weight: 800;
   color: #fff;
@@ -872,35 +853,62 @@ body.hit-bad::after {
   background: #1368ce;
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
   transition: 0.15s ease;
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
 }
 
-.match-tile:nth-child(4n + 1) {
+#left .match-item:nth-child(odd),
+.match-col:first-child .match-item:nth-child(odd) {
   background: #e21b3c;
 }
-.match-tile:nth-child(4n + 2) {
+#left .match-item:nth-child(even),
+.match-col:first-child .match-item:nth-child(even) {
   background: #1368ce;
 }
-.match-tile:nth-child(4n + 3) {
+#right .match-item:nth-child(odd),
+.match-col:last-child .match-item:nth-child(odd) {
   background: var(--wg-yellow);
   color: var(--ink);
 }
-.match-tile:nth-child(4n + 4) {
+#right .match-item:nth-child(even),
+.match-col:last-child .match-item:nth-child(even) {
   background: #26890c;
 }
 
+.match-item.selected,
 .match-tile.selected {
   outline: 3px solid #fff;
   transform: scale(1.03);
 }
 
+.match-item.matched,
 .match-tile.matched {
   opacity: 0.35;
   filter: grayscale(0.5);
   pointer-events: none;
 }
 
+.match-item.shake,
+.match-item.bad,
 .match-tile.shake {
   animation: wrongShake 0.35s ease;
+}
+
+.match-item.bad {
+  outline: 3px solid #ef4444;
+}
+
+@media (max-width: 640px) {
+  .match-grid {
+    gap: 8px 10px;
+  }
+  .match-item,
+  .match-tile {
+    min-height: 56px;
+    padding: 10px;
+    font-size: 0.95rem;
+  }
 }
 
 /* Periodic / mass / misc */
@@ -1135,10 +1143,23 @@ body.hit-bad::after {
   margin-bottom: 6px;
 }
 
+.flash-card {
+  background: transparent;
+  border: none;
+  min-height: 240px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.flash-card.flipped {
+  transform: none;
+}
+
 .flash-inner {
   position: relative;
   width: 100%;
-  min-height: 200px;
+  min-height: 240px;
+  height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -1154,8 +1175,11 @@ body.hit-bad::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  gap: 8px;
   backface-visibility: hidden;
-  padding: 20px;
+  -webkit-backface-visibility: hidden;
+  padding: 24px 20px;
   border-radius: 18px;
   background: #fff;
   color: #1f1235;
@@ -1167,29 +1191,45 @@ body.hit-bad::after {
   background: linear-gradient(145deg, #fff, #fce7f3);
 }
 
-.flash-main {
+.flash-face .flash-chapter {
+  margin: 0;
+  min-height: 1.35rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flash-face .flash-main {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 4vw, 2.3rem);
   font-weight: 800;
-  margin: 8px 0;
+  margin: 0;
+  line-height: 1.2;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
 }
 
-.flash-sub {
+.flash-face .flash-sub,
+.flash-face .flash-tip {
+  margin: 0;
+  min-height: 2.6rem;
+  max-width: 100%;
   color: #9d174d;
   font-weight: 700;
   font-size: 0.9rem;
+  line-height: 1.35;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
-.flash-card {
-  background: transparent;
-  border: none;
-  min-height: 220px;
-  cursor: pointer;
-  perspective: 1000px;
-}
-
-.flash-card.flipped {
-  transform: none;
+.flash-face .flash-example {
+  display: none;
 }
 
 .pt-legend {
@@ -1222,9 +1262,35 @@ body.hit-bad::after {
 .ptable-official {
   display: grid;
   grid-template-columns: 28px repeat(18, minmax(42px, 1fr));
-  grid-template-rows: 36px repeat(6, minmax(48px, auto));
+  grid-template-rows: 36px repeat(7, minmax(48px, auto));
   gap: 3px;
   min-width: 820px;
+}
+
+.ptable-fblock {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 8px 10px;
+  align-items: center;
+  min-width: 820px;
+}
+
+.pt-f-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #f9a8d4;
+  text-align: right;
+}
+
+.pt-f-row {
+  display: grid;
+  grid-template-columns: repeat(15, minmax(42px, 1fr));
+  gap: 3px;
+}
+
+.pt-f-row .el-cell {
+  width: 100%;
 }
 
 .pt-corner {
@@ -1291,6 +1357,8 @@ body.hit-bad::after {
 .el-cell.noble { background: rgba(180, 160, 255, 0.28); border-color: rgba(180, 160, 255, 0.6); }
 .el-cell.metalloid { background: rgba(125, 255, 176, 0.24); border-color: rgba(125, 255, 176, 0.6); }
 .el-cell.transition { background: rgba(255, 160, 120, 0.24); border-color: rgba(255, 160, 120, 0.6); }
+.el-cell.lanthanide { background: rgba(244, 114, 182, 0.28); border-color: rgba(244, 114, 182, 0.65); }
+.el-cell.actinide { background: rgba(167, 139, 250, 0.28); border-color: rgba(167, 139, 250, 0.65); }
 
 .el-z { font-size: 0.55rem; opacity: 0.85; }
 .el-sym { font-weight: 900; font-size: 0.85rem; line-height: 1.1; }
@@ -1954,9 +2022,7 @@ body.hit-bad::after {
   animation: pageRise 0.45s var(--ease-out-expo) both;
 }
 
-.flash-inner {
-  transition: transform 0.6s var(--ease-spring);
-}
+/* flash-inner transition owned by 3D flip block above — do not override */
 
 .day-card:nth-child(1) { animation-delay: 0.03s; }
 .day-card:nth-child(2) { animation-delay: 0.06s; }

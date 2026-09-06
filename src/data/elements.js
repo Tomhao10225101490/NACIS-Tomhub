@@ -1,12 +1,10 @@
 /**
- * 元素数据：IUPAC 1–18 族 + 中学常用相对原子质量（近似值）
+ * 元素数据：IUPAC 1–18 族标准长式周期表（Z=1–118）
  * groupCn：中国中学教材常用主族/副族标注
  */
 export const elements = [
-  // Period 1
   { z: 1, symbol: 'H', en: 'Hydrogen', zh: '氢', ar: 1, group: 1, period: 1, category: 'nonmetal', groupCn: 'IA' },
   { z: 2, symbol: 'He', en: 'Helium', zh: '氦', ar: 4, group: 18, period: 1, category: 'noble', groupCn: '0' },
-  // Period 2
   { z: 3, symbol: 'Li', en: 'Lithium', zh: '锂', ar: 7, group: 1, period: 2, category: 'metal', groupCn: 'IA' },
   { z: 4, symbol: 'Be', en: 'Beryllium', zh: '铍', ar: 9, group: 2, period: 2, category: 'metal', groupCn: 'IIA' },
   { z: 5, symbol: 'B', en: 'Boron', zh: '硼', ar: 11, group: 13, period: 2, category: 'metalloid', groupCn: 'IIIA' },
@@ -15,7 +13,6 @@ export const elements = [
   { z: 8, symbol: 'O', en: 'Oxygen', zh: '氧', ar: 16, group: 16, period: 2, category: 'nonmetal', groupCn: 'VIA' },
   { z: 9, symbol: 'F', en: 'Fluorine', zh: '氟', ar: 19, group: 17, period: 2, category: 'nonmetal', groupCn: 'VIIA' },
   { z: 10, symbol: 'Ne', en: 'Neon', zh: '氖', ar: 20, group: 18, period: 2, category: 'noble', groupCn: '0' },
-  // Period 3
   { z: 11, symbol: 'Na', en: 'Sodium', zh: '钠', ar: 23, group: 1, period: 3, category: 'metal', groupCn: 'IA' },
   { z: 12, symbol: 'Mg', en: 'Magnesium', zh: '镁', ar: 24, group: 2, period: 3, category: 'metal', groupCn: 'IIA' },
   { z: 13, symbol: 'Al', en: 'Aluminium', zh: '铝', ar: 27, group: 13, period: 3, category: 'metal', groupCn: 'IIIA' },
@@ -24,7 +21,6 @@ export const elements = [
   { z: 16, symbol: 'S', en: 'Sulfur', zh: '硫', ar: 32, group: 16, period: 3, category: 'nonmetal', groupCn: 'VIA' },
   { z: 17, symbol: 'Cl', en: 'Chlorine', zh: '氯', ar: 35.5, group: 17, period: 3, category: 'nonmetal', groupCn: 'VIIA' },
   { z: 18, symbol: 'Ar', en: 'Argon', zh: '氩', ar: 40, group: 18, period: 3, category: 'noble', groupCn: '0' },
-  // Period 4
   { z: 19, symbol: 'K', en: 'Potassium', zh: '钾', ar: 39, group: 1, period: 4, category: 'metal', groupCn: 'IA' },
   { z: 20, symbol: 'Ca', en: 'Calcium', zh: '钙', ar: 40, group: 2, period: 4, category: 'metal', groupCn: 'IIA' },
   { z: 21, symbol: 'Sc', en: 'Scandium', zh: '钪', ar: 45, group: 3, period: 4, category: 'transition', groupCn: 'IIIB' },
@@ -43,20 +39,88 @@ export const elements = [
   { z: 34, symbol: 'Se', en: 'Selenium', zh: '硒', ar: 79, group: 16, period: 4, category: 'nonmetal', groupCn: 'VIA' },
   { z: 35, symbol: 'Br', en: 'Bromine', zh: '溴', ar: 80, group: 17, period: 4, category: 'nonmetal', groupCn: 'VIIA' },
   { z: 36, symbol: 'Kr', en: 'Krypton', zh: '氪', ar: 84, group: 18, period: 4, category: 'noble', groupCn: '0' },
-  // Period 5（常用）
   { z: 37, symbol: 'Rb', en: 'Rubidium', zh: '铷', ar: 85, group: 1, period: 5, category: 'metal', groupCn: 'IA' },
   { z: 38, symbol: 'Sr', en: 'Strontium', zh: '锶', ar: 88, group: 2, period: 5, category: 'metal', groupCn: 'IIA' },
+  { z: 39, symbol: 'Y', en: 'Yttrium', zh: '钇', ar: 89, group: 3, period: 5, category: 'transition', groupCn: 'IIIB' },
+  { z: 40, symbol: 'Zr', en: 'Zirconium', zh: '锆', ar: 91, group: 4, period: 5, category: 'transition', groupCn: 'IVB' },
+  { z: 41, symbol: 'Nb', en: 'Niobium', zh: '铌', ar: 93, group: 5, period: 5, category: 'transition', groupCn: 'VB' },
+  { z: 42, symbol: 'Mo', en: 'Molybdenum', zh: '钼', ar: 96, group: 6, period: 5, category: 'transition', groupCn: 'VIB' },
+  { z: 43, symbol: 'Tc', en: 'Technetium', zh: '锝', ar: 98, group: 7, period: 5, category: 'transition', groupCn: 'VIIB' },
+  { z: 44, symbol: 'Ru', en: 'Ruthenium', zh: '钌', ar: 101, group: 8, period: 5, category: 'transition', groupCn: 'VIII' },
+  { z: 45, symbol: 'Rh', en: 'Rhodium', zh: '铑', ar: 103, group: 9, period: 5, category: 'transition', groupCn: 'VIII' },
+  { z: 46, symbol: 'Pd', en: 'Palladium', zh: '钯', ar: 106, group: 10, period: 5, category: 'transition', groupCn: 'VIII' },
   { z: 47, symbol: 'Ag', en: 'Silver', zh: '银', ar: 108, group: 11, period: 5, category: 'transition', groupCn: 'IB' },
   { z: 48, symbol: 'Cd', en: 'Cadmium', zh: '镉', ar: 112, group: 12, period: 5, category: 'transition', groupCn: 'IIB' },
+  { z: 49, symbol: 'In', en: 'Indium', zh: '铟', ar: 115, group: 13, period: 5, category: 'metal', groupCn: 'IIIA' },
   { z: 50, symbol: 'Sn', en: 'Tin', zh: '锡', ar: 119, group: 14, period: 5, category: 'metal', groupCn: 'IVA' },
+  { z: 51, symbol: 'Sb', en: 'Antimony', zh: '锑', ar: 122, group: 15, period: 5, category: 'metalloid', groupCn: 'VA' },
+  { z: 52, symbol: 'Te', en: 'Tellurium', zh: '碲', ar: 128, group: 16, period: 5, category: 'metalloid', groupCn: 'VIA' },
   { z: 53, symbol: 'I', en: 'Iodine', zh: '碘', ar: 127, group: 17, period: 5, category: 'nonmetal', groupCn: 'VIIA' },
   { z: 54, symbol: 'Xe', en: 'Xenon', zh: '氙', ar: 131, group: 18, period: 5, category: 'noble', groupCn: '0' },
-  // Period 6（常用）
   { z: 55, symbol: 'Cs', en: 'Caesium', zh: '铯', ar: 133, group: 1, period: 6, category: 'metal', groupCn: 'IA' },
   { z: 56, symbol: 'Ba', en: 'Barium', zh: '钡', ar: 137, group: 2, period: 6, category: 'metal', groupCn: 'IIA' },
+  { z: 57, symbol: 'La', en: 'Lanthanum', zh: '镧', ar: 139, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 58, symbol: 'Ce', en: 'Cerium', zh: '铈', ar: 140, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 59, symbol: 'Pr', en: 'Praseodymium', zh: '镨', ar: 141, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 60, symbol: 'Nd', en: 'Neodymium', zh: '钕', ar: 144, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 61, symbol: 'Pm', en: 'Promethium', zh: '钷', ar: 145, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 62, symbol: 'Sm', en: 'Samarium', zh: '钐', ar: 150, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 63, symbol: 'Eu', en: 'Europium', zh: '铕', ar: 152, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 64, symbol: 'Gd', en: 'Gadolinium', zh: '钆', ar: 157, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 65, symbol: 'Tb', en: 'Terbium', zh: '铽', ar: 159, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 66, symbol: 'Dy', en: 'Dysprosium', zh: '镝', ar: 163, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 67, symbol: 'Ho', en: 'Holmium', zh: '钬', ar: 165, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 68, symbol: 'Er', en: 'Erbium', zh: '铒', ar: 167, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 69, symbol: 'Tm', en: 'Thulium', zh: '铥', ar: 169, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 70, symbol: 'Yb', en: 'Ytterbium', zh: '镱', ar: 173, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 71, symbol: 'Lu', en: 'Lutetium', zh: '镥', ar: 175, group: 3, period: 6, category: 'lanthanide', groupCn: 'IIIB' },
+  { z: 72, symbol: 'Hf', en: 'Hafnium', zh: '铪', ar: 178, group: 4, period: 6, category: 'transition', groupCn: 'IVB' },
+  { z: 73, symbol: 'Ta', en: 'Tantalum', zh: '钽', ar: 181, group: 5, period: 6, category: 'transition', groupCn: 'VB' },
+  { z: 74, symbol: 'W', en: 'Tungsten', zh: '钨', ar: 184, group: 6, period: 6, category: 'transition', groupCn: 'VIB' },
+  { z: 75, symbol: 'Re', en: 'Rhenium', zh: '铼', ar: 186, group: 7, period: 6, category: 'transition', groupCn: 'VIIB' },
+  { z: 76, symbol: 'Os', en: 'Osmium', zh: '锇', ar: 190, group: 8, period: 6, category: 'transition', groupCn: 'VIII' },
+  { z: 77, symbol: 'Ir', en: 'Iridium', zh: '铱', ar: 192, group: 9, period: 6, category: 'transition', groupCn: 'VIII' },
+  { z: 78, symbol: 'Pt', en: 'Platinum', zh: '铂', ar: 195, group: 10, period: 6, category: 'transition', groupCn: 'VIII' },
   { z: 79, symbol: 'Au', en: 'Gold', zh: '金', ar: 197, group: 11, period: 6, category: 'transition', groupCn: 'IB' },
   { z: 80, symbol: 'Hg', en: 'Mercury', zh: '汞', ar: 201, group: 12, period: 6, category: 'transition', groupCn: 'IIB' },
+  { z: 81, symbol: 'Tl', en: 'Thallium', zh: '铊', ar: 204, group: 13, period: 6, category: 'metal', groupCn: 'IIIA' },
   { z: 82, symbol: 'Pb', en: 'Lead', zh: '铅', ar: 207, group: 14, period: 6, category: 'metal', groupCn: 'IVA' },
+  { z: 83, symbol: 'Bi', en: 'Bismuth', zh: '铋', ar: 209, group: 15, period: 6, category: 'metal', groupCn: 'VA' },
+  { z: 84, symbol: 'Po', en: 'Polonium', zh: '钋', ar: 209, group: 16, period: 6, category: 'metalloid', groupCn: 'VIA' },
+  { z: 85, symbol: 'At', en: 'Astatine', zh: '砹', ar: 210, group: 17, period: 6, category: 'metalloid', groupCn: 'VIIA' },
+  { z: 86, symbol: 'Rn', en: 'Radon', zh: '氡', ar: 222, group: 18, period: 6, category: 'noble', groupCn: '0' },
+  { z: 87, symbol: 'Fr', en: 'Francium', zh: '钫', ar: 223, group: 1, period: 7, category: 'metal', groupCn: 'IA' },
+  { z: 88, symbol: 'Ra', en: 'Radium', zh: '镭', ar: 226, group: 2, period: 7, category: 'metal', groupCn: 'IIA' },
+  { z: 89, symbol: 'Ac', en: 'Actinium', zh: '锕', ar: 227, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 90, symbol: 'Th', en: 'Thorium', zh: '钍', ar: 232, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 91, symbol: 'Pa', en: 'Protactinium', zh: '镤', ar: 231, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 92, symbol: 'U', en: 'Uranium', zh: '铀', ar: 238, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 93, symbol: 'Np', en: 'Neptunium', zh: '镎', ar: 237, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 94, symbol: 'Pu', en: 'Plutonium', zh: '钚', ar: 244, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 95, symbol: 'Am', en: 'Americium', zh: '镅', ar: 243, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 96, symbol: 'Cm', en: 'Curium', zh: '锔', ar: 247, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 97, symbol: 'Bk', en: 'Berkelium', zh: '锫', ar: 247, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 98, symbol: 'Cf', en: 'Californium', zh: '锎', ar: 251, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 99, symbol: 'Es', en: 'Einsteinium', zh: '锿', ar: 252, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 100, symbol: 'Fm', en: 'Fermium', zh: '镄', ar: 257, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 101, symbol: 'Md', en: 'Mendelevium', zh: '钔', ar: 258, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 102, symbol: 'No', en: 'Nobelium', zh: '锘', ar: 259, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 103, symbol: 'Lr', en: 'Lawrencium', zh: '铹', ar: 266, group: 3, period: 7, category: 'actinide', groupCn: 'IIIB' },
+  { z: 104, symbol: 'Rf', en: 'Rutherfordium', zh: '𬬻', ar: 267, group: 4, period: 7, category: 'transition', groupCn: 'IVB' },
+  { z: 105, symbol: 'Db', en: 'Dubnium', zh: '𬭊', ar: 268, group: 5, period: 7, category: 'transition', groupCn: 'VB' },
+  { z: 106, symbol: 'Sg', en: 'Seaborgium', zh: '𬭳', ar: 269, group: 6, period: 7, category: 'transition', groupCn: 'VIB' },
+  { z: 107, symbol: 'Bh', en: 'Bohrium', zh: ' Complementary', ar: 270, group: 7, period: 7, category: 'transition', groupCn: 'VIIB' },
+  { z: 108, symbol: 'Hs', en: 'Hassium', zh: '𬭶', ar: 269, group: 8, period: 7, category: 'transition', groupCn: 'VIII' },
+  { z: 109, symbol: 'Mt', en: 'Meitnerium', zh: '鿏', ar: 278, group: 9, period: 7, category: 'transition', groupCn: 'VIII' },
+  { z: 110, symbol: 'Ds', en: 'Darmstadtium', zh: '𫟼', ar: 281, group: 10, period: 7, category: 'transition', groupCn: 'VIII' },
+  { z: 111, symbol: 'Rg', en: 'Roentgenium', zh: '𬬭', ar: 282, group: 11, period: 7, category: 'transition', groupCn: 'IB' },
+  { z: 112, symbol: 'Cn', en: 'Copernicium', zh: '鿔', ar: 285, group: 12, period: 7, category: 'transition', groupCn: 'IIB' },
+  { z: 113, symbol: 'Nh', en: 'Nihonium', zh: '鿭', ar: 286, group: 13, period: 7, category: 'metal', groupCn: 'IIIA' },
+  { z: 114, symbol: 'Fl', en: 'Flerovium', zh: '𫓧', ar: 289, group: 14, period: 7, category: 'metal', groupCn: 'IVA' },
+  { z: 115, symbol: 'Mc', en: 'Moscovium', zh: '镆', ar: 290, group: 15, period: 7, category: 'metal', groupCn: 'VA' },
+  { z: 116, symbol: 'Lv', en: 'Livermorium', zh: '鉝', ar: 293, group: 16, period: 7, category: 'metal', groupCn: 'VIA' },
+  { z: 117, symbol: 'Ts', en: 'Tennessine', zh: '鿬', ar: 294, group: 17, period: 7, category: 'metalloid', groupCn: 'VIIA' },
+  { z: 118, symbol: 'Og', en: 'Oganesson', zh: '鿫', ar: 294, group: 18, period: 7, category: 'noble', groupCn: '0' },
 ];
 
 /** IUPAC 族号 → 中国中学主族/副族标注 */
@@ -108,17 +172,21 @@ export const compounds = [
   { formula: 'FeCl₃', en: 'iron(III) chloride', zh: '氯化铁', mr: 162.5 },
 ];
 
-/** 生成标准周期表格子（18 列 × 周期行，含族标题） */
+/** 标准长式：主表 18×7 + 镧系/锕系（f 区不占主表 3 族空位以外格子） */
 export function buildPeriodicGrid() {
-  const byKey = new Map(elements.map((e) => [`${e.period}-${e.group}`, e]));
-  const maxPeriod = 6;
+  const main = elements.filter(
+    (e) => !((e.z >= 58 && e.z <= 71) || (e.z >= 90 && e.z <= 103))
+  );
+  const byKey = new Map(main.map((e) => [`${e.period}-${e.group}`, e]));
+  const maxPeriod = 7;
   const cells = [];
   for (let p = 1; p <= maxPeriod; p++) {
     for (let g = 1; g <= 18; g++) {
-      // 第 6 周期中间大量镧系空位：仅显示有数据的格子，其余留空占位
       const el = byKey.get(`${p}-${g}`) || null;
       cells.push({ period: p, group: g, element: el });
     }
   }
-  return cells;
+  const lanthanides = elements.filter((e) => e.z >= 57 && e.z <= 71);
+  const actinides = elements.filter((e) => e.z >= 89 && e.z <= 103);
+  return { cells, lanthanides, actinides, maxPeriod };
 }

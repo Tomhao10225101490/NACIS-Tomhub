@@ -124,7 +124,7 @@ function startIeltsDay(dayNum) {
       const doFlip = () => {
         flipped = !flipped;
         sfxFlip();
-        paint();
+        document.getElementById('flash').classList.toggle('flipped', flipped);
       };
       document.getElementById('flash').onclick = doFlip;
       document.getElementById('flip').onclick = doFlip;
@@ -393,7 +393,7 @@ function renderSubjectFlash(kind) {
     const doFlip = () => {
       flipped = !flipped;
       sfxFlip();
-      paint();
+      document.getElementById('flash').classList.toggle('flipped', flipped);
     };
     document.getElementById('flash').onclick = doFlip;
     document.getElementById('flip').onclick = doFlip;
