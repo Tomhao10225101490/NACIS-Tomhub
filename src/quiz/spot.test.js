@@ -4,7 +4,7 @@ import { parseHash, toHash } from '../router.js';
 import { makeClozeItem } from './cloze.js';
 import { reviewCard, dueEntries, applyReview } from './srs.js';
 import { spellingOk } from './dictation.js';
-import { normalizeState, migrateFromLegacy, STORE_VERSION } from '../store.js';
+import { normalizeState, migrateFromLegacy, STORE_VERSION, recordWrong, noteWrongResult, store } from '../store.js';
 
 describe('promptContainsAnswer', () => {
   it('catches whole-word leaks', () => {
@@ -35,6 +35,7 @@ describe('hash router', () => {
     expect(parseHash('#/ielts/day/12')).toEqual({ name: 'ielts-day', params: { day: 12 } });
     expect(parseHash('#/hs/b1/u3')).toEqual({ name: 'hs-unit', params: { book: 'b1', unit: 'u3' } });
     expect(parseHash('#/wrong/quiz/english')).toEqual({ name: 'wrong-quiz', params: { subject: 'english' } });
+    expect(parseHash('#/science/day/4')).toEqual({ name: 'science-day', params: { day: 4 } });
   });
   it('round-trips names', () => {
     expect(parseHash(toHash('home')).name).toBe('home');
@@ -65,6 +66,12 @@ describe('srs', () => {
     expect(next.due).toBeGreaterThan(now);
     expect(next.interval).toBe(1);
   });
+  it('puts a miss due about one day later', () => {
+    const now = 1_700_000_000_000;
+    const next = reviewCard({ ease: 2.5, interval: 10, due: 0, reps: 4, lapses: 0 }, false, now);
+    expect(next.interval).toBe(1);
+    expect(next.due).toBe(now + 86400000);
+  });
   it('lists only due cards', () => {
     const now = 1000;
     const srs = applyReview({}, 'ielts:1', true, now);
@@ -77,6 +84,23 @@ describe('dictation', () => {
   it('ignores case and extra spaces', () => {
     expect(spellingOk('  Exchange ', 'exchange')).toBe(true);
     expect(spellingOk('exchage', 'exchange')).toBe(false);
+  });
+});
+
+describe('wrong retest', () => {
+  beforeEach(() => {
+    localStorage.clear();
+    store.wrong = [];
+  });
+  it('removes a card after two consecutive wins and resets on a miss', () => {
+    recordWrong({ id: 'x', prompt: 'p', correctText: 'a', subject: 'english' });
+    expect(noteWrongResult('x', true)).toBe(false);
+    expect(store.wrong[0].winStreak).toBe(1);
+    expect(noteWrongResult('x', false)).toBe(false);
+    expect(store.wrong[0].winStreak).toBe(0);
+    expect(noteWrongResult('x', true)).toBe(false);
+    expect(noteWrongResult('x', true)).toBe(true);
+    expect(store.wrong).toHaveLength(0);
   });
 });
 

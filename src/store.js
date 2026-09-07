@@ -111,6 +111,12 @@ export function migrateFromLegacy() {
 /** Mutable singleton used by the app. */
 export const store = migrateFromLegacy();
 
+try {
+  if (localStorage.getItem(KEY) == null) save();
+} catch (_) {
+  /* ignore */
+}
+
 export function save() {
   const payload = {
     version: STORE_VERSION,

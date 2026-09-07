@@ -1,11 +1,5 @@
 import './style.css';
 import { registerSW } from 'virtual:pwa-register';
-
-try {
-  registerSW({ immediate: true });
-} catch (_) {
-  /* dev without plugin */
-}
 import { HUBS, getHub } from './data/hubs.js';
 import {
   packs,
@@ -52,7 +46,6 @@ import {
   sfxFlip,
   sfxMatch,
   sfxStreak,
-  isSfxEnabled,
   toggleSfx,
   speakText,
   stopSpeak,
@@ -61,17 +54,23 @@ import {
   primeSpeech,
 } from './audio.js';
 import {
-  t,
   tb,
   getLang,
   setLang,
   localizeText,
   localizeHtml,
   subjectName,
-  langToggleHtml,
   hubTitle,
   hubBlurb,
 } from './i18n.js';
+import { topbar, backBtn, modeCard, hubProgressBar } from './ui.js';
+import { SCIENCE_DAY_META } from './data/days-meta.js';
+
+try {
+  registerSW({ immediate: true });
+} catch {
+  /* vite-plugin-pwa injects this virtual module in build / PWA-enabled serve */
+}
 
 const app = document.getElementById('app');
 const fx = document.getElementById('fx-layer');
@@ -705,33 +704,6 @@ function bilingualHtml(text) {
 }
 
 /* —— UI helpers —— */
-function topbar(extra = '') {
-  const sfxLabel = isSfxEnabled() ? tb('soundOn') : tb('soundOff');
-  return `
-    <header class="topbar">
-      <button type="button" class="brand brand-home" data-nav="home">
-        <div class="brand-kicker">${tb('gradeKicker')}</div>
-        <div class="brand-title">Tom's Ground</div>
-      </button>
-      <div class="topbar-right">
-        ${langToggleHtml()}
-        <button type="button" class="sfx-btn ${isSfxEnabled() ? 'on' : ''}" data-sfx-toggle title="${sfxLabel}">♪</button>
-        <button type="button" class="chrome-link" data-nav="wrong">${tb('wrongBook')} <em>${store.wrong.length}</em></button>
-        <button type="button" class="chrome-link" data-nav="progress">${tb('progress')}</button>
-        <div class="stats-pill">
-          <div class="stat">${tb('xp')} <em>${store.xp}</em></div>
-          <div class="stat streak-fire">🔥 <em>${store.streak}</em></div>
-          <div class="stat">${tb('days')} <em>${consecutiveStudyDays()}</em></div>
-          ${extra}
-        </div>
-      </div>
-    </header>`;
-}
-
-function backBtn(target = 'home') {
-  return `<button class="btn btn-ghost" data-nav="${target}">${tb('back')}</button>`;
-}
-
 function subjectChips(active, prefix = 'sub') {
   return Object.values(subjects)
     .map(
@@ -992,23 +964,118 @@ function hsUnitHeading(unit) {
   return `${num} · ${unit.en} · ${unit.zh}`;
 }
 
-function modeCard(nav, icon, title, desc, tag) {
-  return `<button class="mode-card" data-nav="${nav}">
-    <div class="mode-icon">${icon}</div>
-    <h3>${title}</h3>
-    <p>${desc || ''}</p>
-    <span class="mode-tag">${tag}</span>
-  </button>`;
+function nextScienceDay() {
+  return SCIENCE_DAY_META.find((d) => !isDayDone(d.day)) || SCIENCE_DAY_META[0] || null;
+}
+
+function hubCompletionPct(hubId) {
+  if (hubId === 'english') {
+    const hs = hsUnitsDoneTotal();
+    const den = IELTS_DAY_TOTAL + hs.t;
+    const num = ieltsDoneCount() + hs.u;
+    return den ? (num / den) * 100 : 0;
+  }
+  if (hubId === 'physics' || hubId === 'chemistry' || hubId === 'biology') {
+    const all = SCIENCE_DAY_META.filter((d) => d.subject === hubId);
+    const done = all.filter((d) => isDayDone(d.day)).length;
+    return all.length ? (done / all.length) * 100 : 0;
+  }
+  return 0;
+}
+
+function quizModeButtons() {
+  return `<p class="section-hint">${tb('quizMode')}</p>
+    <div class="flash-actions">
+      <button type="button" class="btn" data-qmode="spot">${tb('ieltsSpot')}</button>
+      <button type="button" class="btn" data-qmode="dictation">${tb('dictation')}</button>
+      <button type="button" class="btn" data-qmode="cloze">${tb('cloze')}</button>
+      <button type="button" class="btn" data-qmode="match">${tb('enMatch')}</button>
+    </div>`;
+}
+
+function bindQuizModeButtons(words, bank, opts) {
+  app.querySelectorAll('[data-qmode]').forEach((btn) => {
+    btn.onclick = () => {
+      sfxClick();
+      startEnglishWordMode(btn.getAttribute('data-qmode'), words, bank, opts);
+    };
+  });
+}
+
+function paintModeResults(pct, correct, total, words, bank, opts) {
+  clearSessionRepaint();
+  const back = opts.back || 'home';
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen">
+      <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${tb('results')}</h2></div>
+      <div class="panel results" style="--pct:${pct}">
+        <div class="score-ring">${pct}%</div>
+        <h3>${correct}/${total}</h3>
+        <div class="flash-actions">
+          <button class="btn" data-nav="${back}">${tb('back')}</button>
+          <button class="btn" data-nav="home">${tb('home')}</button>
+        </div>
+        ${quizModeButtons()}
+      </div>
+    </div>`;
+  bindQuizModeButtons(words, bank, opts);
+}
+
+function startEnglishWordMode(mode, words, bank, { back = 'home', srsKind = 'ielts' } = {}) {
+  const pool = (words || []).slice();
+  const kind = srsKind === 'hs' ? 'hs' : 'ielts';
+  if (mode === 'dictation') {
+    return runDictationDrill({
+      title: tb('dictation'),
+      back,
+      items: pool.map(makeDictationItem),
+      srsKind: kind,
+      words: pool,
+      bank,
+    });
+  }
+  if (mode === 'match') {
+    return renderEnglishMatch(pool, back, kind);
+  }
+  const preferEnDef = kind !== 'hs';
+  const items =
+    mode === 'cloze'
+      ? clozeItemsFromWords(pool, bank)
+      : shuffle(pool.slice()).map((w) => makeEnWordSpotItem(w, bank, { preferEnDef: preferEnDef && Math.random() > 0.4 }));
+  const fallback = pool.map((w) => makeEnWordSpotItem(w, bank, { preferEnDef: false }));
+  return runMcqDrill({
+    title: mode === 'cloze' ? tb('cloze') : tb('ieltsSpot'),
+    back,
+    items: items.length ? items : fallback,
+    onAnswer(item, ok) {
+      rememberSrs(kind, item.id, ok);
+      if (!ok) {
+        recordWrong({
+          id: `${kind}-${item.id}`,
+          kind: `${kind}-${mode === 'cloze' ? 'cloze' : 'spot'}`,
+          prompt: item.prompt,
+          correctText: item.answer,
+          answer: item.answer,
+          explain: item.tip,
+          subject: 'english',
+        });
+      }
+    },
+    onDone({ correct, total, pct }) {
+      paintModeResults(pct, correct, total, pool, bank, { back, srsKind: kind });
+    },
+  });
 }
 
 function renderHome() {
   currentRoute = 'home';
   const nextIelts = ieltsDayMeta.find((d) => !isIeltsDayDone(d.day)) || ieltsDayMeta[0];
   const hsNext = nextHsTarget();
+  const nextSci = nextScienceDay();
   const dueN = dueSrsCount();
   const flags = recentStudyFlags(7);
   const hsTot = hsUnitsDoneTotal();
-  const sciDone = Object.values(store.dayProgress || {}).filter((x) => x?.done).length;
   app.innerHTML = `
     ${topbar()}
     <section class="hero hero-portal">
@@ -1021,6 +1088,7 @@ function renderHome() {
       </div>
     </section>
 
+    <h3 class="section-label">${tb('todayPlan')}</h3>
     <div class="today-grid">
       <div class="today-card panel ielts-spotlight">
         <div class="today-label">${tb('todayIelts')}</div>
@@ -1041,6 +1109,13 @@ function renderHome() {
         <button class="btn" data-nav="hs-shelf">${tb('hsShelf')}</button>
       </div>
       <div class="today-card panel">
+        <div class="today-label">${tb('nextSci')}</div>
+        <div class="today-title">${nextSci ? `${tb('dayOf', { n: nextSci.day })} · ${dayTitle(nextSci)}` : ''}</div>
+        <div class="today-sub">${nextSci ? subjectName(nextSci.subject) : ''}</div>
+        ${nextSci ? `<button class="btn btn-primary" data-start-day="${nextSci.day}">${tb('startDay')} ${nextSci.day}</button>` : ''}
+        <button class="btn" data-nav="days">${tb('allDays')}</button>
+      </div>
+      <div class="today-card panel">
         <div class="today-label">${tb('todayReview')}</div>
         <div class="today-title">${dueN ? tb('dueWords', { n: dueN }) : tb('noDue')}</div>
         <div class="today-sub">${tb('wrongBook')} · ${store.wrong.length}</div>
@@ -1048,25 +1123,38 @@ function renderHome() {
         <button class="btn" data-nav="wrong">${tb('wrongBook')}</button>
       </div>
     </div>
+    <div class="flash-actions home-io">
+      <button class="btn" id="export-progress">${tb('exportProgress')}</button>
+      <button class="btn" id="import-progress">${tb('importProgress')}</button>
+      <button class="btn" data-nav="progress">${tb('progress')}</button>
+      <input type="file" id="import-file" accept="application/json,.json" hidden />
+    </div>
+    <p class="import-msg" id="import-msg"></p>
 
     <h3 class="section-label">${tb('pickSubject')}</h3>
     <p class="section-hint">${tb('pickSubjectSub')}</p>
     <div class="hub-grid">
       ${HUBS.map((h) => {
-        let tag = tb('start');
+        const pct = hubCompletionPct(h.id);
+        let tag = `${Math.round(pct)}%`;
         if (h.id === 'english') tag = `${ieltsDoneCount()}/${IELTS_DAY_TOTAL}`;
-        else if (h.id === 'chinese' || h.id === 'math') tag = tb('start');
-        else tag = `${sciDone} ${tb('done')}`;
+        else if (h.id === 'physics' || h.id === 'chemistry' || h.id === 'biology') {
+          const all = SCIENCE_DAY_META.filter((d) => d.subject === h.id);
+          const done = all.filter((d) => isDayDone(d.day)).length;
+          tag = `${done}/${all.length}`;
+        } else tag = tb('start');
         return `<button class="hub-card" data-hub="${h.id}" style="--hub-accent:${h.accent};--hub-glow:${h.glow}">
           <div class="hub-orb"></div>
           <div class="hub-icon">${h.icon}</div>
           <div class="hub-name">${hubTitle(h)}</div>
           <div class="hub-blurb">${hubBlurb(h)}</div>
-          <div class="hub-cta">${tag}</div>
+          ${hubProgressBar(pct)}
+          <div class="hub-cta">${tb('hubDone')} · ${tag}</div>
         </button>`;
       }).join('')}
     </div>
   `;
+  bindProgressIo();
   prefetchInBackground();
 }
 
@@ -1125,7 +1213,8 @@ function bindProgressIo() {
         importProgress(text);
         quizLevel = store.quizLevel === 'all' ? 'all' : 'core';
         if (msg) msg.textContent = tb('importOk');
-        renderProgress();
+        if (currentRoute === 'home') renderHome();
+        else renderProgress();
       } catch (_) {
         if (msg) msg.textContent = tb('importFail');
       }
@@ -2489,14 +2578,41 @@ function renderWrong(filter = 'all') {
   }
 }
 
+function extraWrongDistractors(w, answer) {
+  const out = [];
+  const sub = w.subject || '';
+  if (sub === 'english') {
+    for (const x of ieltsWords) {
+      if (x.word && x.word !== answer) out.push(x.word);
+    }
+    for (const bookWords of Object.values(packs.hsWords || {})) {
+      for (const x of bookWords || []) {
+        if (x.word && x.word !== answer) out.push(x.word);
+      }
+    }
+  } else if (['physics', 'chemistry', 'biology'].includes(sub)) {
+    for (const x of vocabulary) {
+      if (x.subject === sub && x.en && x.en !== answer) out.push(x.en);
+    }
+  }
+  return out;
+}
+
 function wrongQuizItems(filter = 'all') {
   const list = store.wrong.filter((w) => filter === 'all' || w.subject === filter);
   return shuffle(list).slice(0, 20).map((w) => {
     const answer = w.correctText || w.answer || '';
-    const others = store.wrong
-      .filter((x) => x.id !== w.id && (x.correctText || x.answer) && (x.correctText || x.answer) !== answer)
+    const sameSubject = store.wrong
+      .filter(
+        (x) =>
+          x.id !== w.id &&
+          (!w.subject || x.subject === w.subject) &&
+          (x.correctText || x.answer) &&
+          (x.correctText || x.answer) !== answer
+      )
       .map((x) => x.correctText || x.answer);
-    const distractors = shuffle(others).slice(0, 3);
+    const others = [...sameSubject, ...extraWrongDistractors(w, answer)];
+    const distractors = shuffle([...new Set(others)]).slice(0, 3);
     while (distractors.length < 3) distractors.push('—');
     let prompt = String(w.prompt || '');
     if (promptContainsAnswer(prompt, answer)) {
@@ -2625,60 +2741,50 @@ async function renderIeltsWordDrill(mode) {
   currentRoute = `ielts-${mode}`;
   const bank = ieltsWords;
   const sample = shuffle(bank.slice()).slice(0, 25);
-  if (mode === 'dictation') {
-    return runDictationDrill({
-      title: tb('dictation'),
-      back: 'hub-english',
-      items: sample.map(makeDictationItem),
-      srsKind: 'ielts',
-    });
-  }
-  if (mode === 'cloze') {
-    const items = clozeItemsFromWords(sample, bank).slice(0, 20);
-    return runMcqDrill({
-      title: tb('cloze'),
-      back: 'hub-english',
-      items: items.length ? items : sample.map((w) => makeEnWordSpotItem(w, bank, { preferEnDef: false })),
-      onAnswer(item, ok) {
-        rememberSrs('ielts', item.id, ok);
-        if (!ok) {
-          recordWrong({
-            id: `ielts-${item.id}`,
-            kind: 'ielts-cloze',
-            prompt: item.prompt,
-            correctText: item.answer,
-            answer: item.answer,
-            explain: item.tip,
-            subject: 'english',
-          });
-        }
-      },
-      onDone({ correct, total, pct }) {
-        paintSimpleResults(pct, correct, total, 'ielts-cloze', 'hub-english');
-      },
-    });
-  }
-  if (mode === 'match') {
-    return renderEnglishMatch(sample, 'hub-english');
-  }
+  return startEnglishWordMode(mode, sample, bank, { back: 'hub-english', srsKind: 'ielts' });
 }
 
 async function renderSrsReview() {
   currentRoute = 'srs';
-  await needIelts();
   const due = dueEntries(store.srs).slice(0, 25);
   if (!due.length) {
     renderHome();
     return;
   }
-  const byId = new Map(ieltsWords.map((w) => [w.id, w]));
+  const hsBookIds = new Set();
+  let needIeltsPack = false;
+  for (const [key] of due) {
+    if (key.startsWith('ielts:')) needIeltsPack = true;
+    if (key.startsWith('hs:')) {
+      const id = key.slice(3);
+      const bookId = String(id.split('-')[0] || '');
+      if (bookId) hsBookIds.add(bookId);
+    }
+  }
+  if (needIeltsPack) await needIelts();
+  await Promise.all([...hsBookIds].map((id) => needHsBook(id)));
+  const hsPool = [];
+  for (const id of hsBookIds) hsPool.push(...(packs.hsWords[id] || []));
+  const ieltsById = new Map(ieltsWords.map((w) => [w.id, w]));
+  const hsById = new Map(hsPool.map((w) => [w.id, w]));
   const items = [];
   for (const [key] of due) {
     const [kind, ...rest] = key.split(':');
     const id = rest.join(':');
     if (kind === 'ielts') {
-      const w = byId.get(id);
-      if (w) items.push(makeEnWordSpotItem(w, ieltsWords, { preferEnDef: false }));
+      const w = ieltsById.get(id);
+      if (w) {
+        const item = makeEnWordSpotItem(w, ieltsWords, { preferEnDef: false });
+        item.srsKind = 'ielts';
+        items.push(item);
+      }
+    } else if (kind === 'hs') {
+      const w = hsById.get(id);
+      if (w) {
+        const item = makeEnWordSpotItem(w, hsPool.length ? hsPool : [w], { preferEnDef: false });
+        item.srsKind = 'hs';
+        items.push(item);
+      }
     }
   }
   if (!items.length) {
@@ -2688,9 +2794,9 @@ async function renderSrsReview() {
   runMcqDrill({
     title: tb('todayReview'),
     back: 'home',
-    items,
+    items: items.slice(0, 25),
     onAnswer(item, ok) {
-      rememberSrs('ielts', item.id, ok);
+      rememberSrs(item.srsKind || 'ielts', item.id, ok);
     },
     onDone({ correct, total, pct }) {
       paintSimpleResults(pct, correct, total, 'srs', 'home');
@@ -2715,7 +2821,7 @@ function paintSimpleResults(pct, correct, total, againNav, backNav) {
     </div>`;
 }
 
-function runDictationDrill({ title, back, items, srsKind }) {
+function runDictationDrill({ title, back, items, srsKind, words, bank }) {
   let idx = 0;
   let correct = 0;
   let locked = false;
@@ -2724,7 +2830,8 @@ function runDictationDrill({ title, back, items, srsKind }) {
     setSessionRepaint(paint);
     if (idx >= items.length) {
       const pct = Math.round((correct / Math.max(1, items.length)) * 100);
-      paintSimpleResults(pct, correct, items.length, currentRoute, back);
+      if (words && bank) paintModeResults(pct, correct, items.length, words, bank, { back, srsKind });
+      else paintSimpleResults(pct, correct, items.length, currentRoute, back);
       return;
     }
     const item = items[idx];
@@ -2802,7 +2909,7 @@ function runDictationDrill({ title, back, items, srsKind }) {
   paint();
 }
 
-function renderEnglishMatch(words, back) {
+function renderEnglishMatch(words, back, srsKind = 'ielts') {
   function deal() {
     const { left, right, pool } = dealMatchPairs(words, Math.min(6, words.length));
     let selected = null;
@@ -2850,7 +2957,7 @@ function renderEnglishMatch(words, back) {
         a.classList.remove('selected');
         matched += 1;
         addXp(8, true);
-        rememberSrs('ielts', a.dataset.id, true);
+        rememberSrs(srsKind, a.dataset.id, true);
         celebrate(true);
         selected = null;
         if (matched === total) fanfare(tb('great'));
@@ -2933,6 +3040,7 @@ async function startIeltsDay(dayNum) {
             <p>${tb('words25')}</p>
             <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
+            ${quizModeButtons()}
           </div>
         </div>`;
       document.getElementById('go').onclick = () => {
@@ -2942,6 +3050,7 @@ async function startIeltsDay(dayNum) {
         flipped = false;
         paint();
       };
+      bindQuizModeButtons(words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
       return;
     }
 
@@ -3122,8 +3231,10 @@ async function startIeltsDay(dayNum) {
             <button class="btn" data-nav="ielts-days">${tb('ieltsDays')}</button>
             <button class="btn" data-nav="home">${tb('home')}</button>
           </div>
+          ${quizModeButtons()}
         </div>
       </div>`;
+    bindQuizModeButtons(words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
   }
 
   paint();
@@ -3677,6 +3788,7 @@ async function startHsUnit(bookId, unitId) {
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
             <button class="btn" id="hs-dictation">${tb('dictation')}</button>
             <button class="btn" id="hs-cloze">${tb('cloze')}</button>
+            <button class="btn" id="hs-match">${tb('enMatch')}</button>
           </div>
           <input class="hs-search" id="hs-search" type="search" placeholder="${tb('hsSearch')}" />
           <div class="hs-word-list">
@@ -3717,39 +3829,19 @@ async function startHsUnit(bookId, unitId) {
       };
       document.getElementById('hs-dictation').onclick = () => {
         sfxClick();
-        runDictationDrill({
-          title: tb('dictation'),
-          back: 'hs-book',
-          items: words.map(makeDictationItem),
-          srsKind: 'hs',
-        });
+        startEnglishWordMode('dictation', words, bank, { back: 'hs-book', srsKind: 'hs' });
       };
       document.getElementById('hs-cloze').onclick = () => {
         sfxClick();
-        const items = clozeItemsFromWords(words, bank);
-        runMcqDrill({
-          title: tb('cloze'),
-          back: 'hs-book',
-          items: items.length ? items : words.map((w) => makeEnWordSpotItem(w, bank, { preferEnDef: false })),
-          onAnswer(item, ok) {
-            rememberSrs('hs', item.id, ok);
-            if (!ok) {
-              recordWrong({
-                id: `hs-en-${item.id}`,
-                kind: 'hs-cloze',
-                prompt: item.prompt,
-                correctText: item.answer,
-                answer: item.answer,
-                explain: item.tip,
-                subject: 'english',
-              });
-            }
-          },
-          onDone({ correct, total, pct }) {
-            paintSimpleResults(pct, correct, total, 'hs-unit', 'hs-book');
-          },
-        });
+        startEnglishWordMode('cloze', words, bank, { back: 'hs-book', srsKind: 'hs' });
       };
+      const hsMatch = document.getElementById('hs-match');
+      if (hsMatch) {
+        hsMatch.onclick = () => {
+          sfxClick();
+          startEnglishWordMode('match', words, bank, { back: 'hs-book', srsKind: 'hs' });
+        };
+      }
       const search = document.getElementById('hs-search');
       if (search) {
         search.oninput = () => {
@@ -3953,8 +4045,10 @@ async function startHsUnit(bookId, unitId) {
             <button class="btn" data-hs-book="${book.id}">${escapeHtml(hsBookTitle(book))}</button>
             <button class="btn" data-nav="hs-shelf">${tb('hsToShelf')}</button>
           </div>
+          ${quizModeButtons()}
         </div>
       </div>`;
+    bindQuizModeButtons(words, bank, { back: 'hs-book', srsKind: 'hs' });
   }
 
   paint();
