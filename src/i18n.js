@@ -167,6 +167,8 @@ const dict = {
   hsNextBook: { zh: '下一册 →', en: 'Next book →' },
   hsWordList: { zh: '单词表', en: 'Word list' },
   hsSpeakWord: { zh: '读单词', en: 'Speak word' },
+  hsUsage: { zh: '用法要点', en: 'Usage' },
+  hsUsageHint: { zh: '点单词看用法，再点收回', en: 'Tap a word for usage · tap again to close' },
 };
 
 export function t(key, vars = {}) {

@@ -303,12 +303,12 @@ function bindFlashSpeak({ getFlipped, frontText, backText, frontLang = 'en-US', 
       e.preventDefault();
       e.stopPropagation();
       primeSpeech();
-      if (isSpeaking()) {
+      if (isSpeaking() && btn.classList.contains('is-speaking')) {
         stopSpeak();
         return;
       }
       const flipped = !!getFlipped();
-      speakText(flipped ? backText : frontText, flipped ? backLang : frontLang);
+      speakText(flipped ? backText : frontText, flipped ? backLang : frontLang, btn);
     };
   });
 }
@@ -855,12 +855,79 @@ function bindHsWordSpeak() {
       e.preventDefault();
       e.stopPropagation();
       primeSpeech();
-      if (isSpeaking()) {
+      if (isSpeaking() && btn.classList.contains('is-speaking')) {
         stopSpeak();
         return;
       }
       const word = btn.getAttribute('data-speak-word') || '';
-      if (word) speakText(word, 'en-GB');
+      if (word) speakText(word, 'en-GB', btn);
+    };
+  });
+}
+
+function hsUsageNote(w) {
+  const zh = String(w.zh || '')
+    .split(/[；;]/)[0]
+    .trim();
+  const pos = String(w.pos || '');
+  const pl = pos.toLowerCase();
+  let zhTip;
+  let enTip;
+  if (pos.includes('短语')) {
+    zhTip = `固定搭配，整组记：${w.word} ≈ ${zh}。`;
+    enTip = `Set phrase: ${w.word}.`;
+  } else if (pos.includes('专有')) {
+    zhTip = `专有名词，本课指「${zh}」。`;
+    enTip = `Proper name in this unit.`;
+  } else if (pl.includes('adj')) {
+    zhTip = `形容词，作定语或表语，表示「${zh}」。`;
+    enTip = `Adjective before a noun or after be.`;
+  } else if (pl.includes('adv')) {
+    zhTip = `副词，修饰动词或句子，表示「${zh}」。`;
+    enTip = `Adverb: modifies a verb or the whole clause.`;
+  } else if (/\bvt|\bvi|\bv\.|\bv /.test(pl) || pl.startsWith('v')) {
+    zhTip = `动词作谓语，核心意思「${zh}」。`;
+    enTip = `Verb used as the predicate.`;
+  } else if (pl.includes('prep')) {
+    zhTip = `介词，后面常接名词/代词，表示「${zh}」。`;
+    enTip = `Preposition: followed by a noun or pronoun.`;
+  } else {
+    zhTip = `${pos || 'n.'}，核心意思「${zh}」。`;
+    enTip = `${pos || 'n.'}: “${zh}”.`;
+  }
+  const L = getLang();
+  const body = L === 'en' ? enTip : L === 'zh' ? zhTip : `${zhTip} ${enTip}`;
+  const ex =
+    w.example && w.exampleZh
+      ? L === 'en'
+        ? w.example
+        : L === 'zh'
+          ? w.exampleZh
+          : `${w.example} · ${w.exampleZh}`
+      : w.example || w.exampleZh || '';
+  return { body, ex };
+}
+
+function bindHsWordList() {
+  bindHsWordSpeak();
+  const list = document.querySelector('.hs-word-list');
+  if (!list) return;
+  list.querySelectorAll('.hs-word-row').forEach((row) => {
+    const trigger = row.querySelector('.hs-word-copy');
+    if (!trigger) return;
+    trigger.onclick = () => {
+      const open = row.classList.contains('is-open');
+      list.querySelectorAll('.hs-word-row.is-open').forEach((r) => {
+        r.classList.remove('is-open');
+        r.querySelector('.hs-word-copy')?.setAttribute('aria-expanded', 'false');
+      });
+      if (!open) {
+        row.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+      try {
+        sfxClick();
+      } catch (_) {}
     };
   });
 }
@@ -2714,21 +2781,23 @@ async function renderChineseList() {
       };
       panel.querySelector('#wd-speak-keys')?.addEventListener('click', (e) => {
         e.stopPropagation();
+        const btn = e.currentTarget;
         primeSpeech();
-        if (isSpeaking()) {
+        if (isSpeaking() && btn.classList.contains('is-speaking')) {
           stopSpeak();
           return;
         }
-        speakText(keysText, 'zh-CN');
+        speakText(keysText, 'zh-CN', btn);
       });
       panel.querySelector('#wd-speak-full')?.addEventListener('click', (e) => {
         e.stopPropagation();
+        const btn = e.currentTarget;
         primeSpeech();
-        if (isSpeaking()) {
+        if (isSpeaking() && btn.classList.contains('is-speaking')) {
           stopSpeak();
           return;
         }
-        speakText(fullText, 'zh-CN');
+        speakText(fullText, 'zh-CN', btn);
       });
       panel.querySelectorAll('.work-keys .work-readable').forEach((el, i) => {
         bindClassicGloss(el, w.keyLines[i] || '', w.notes || []);
@@ -3078,25 +3147,36 @@ async function startHsUnit(bookId, unitId) {
             <div>
               <div class="flash-chapter">${escapeHtml(hsBookTitle(book))} · ${tb('pep2019')}</div>
               <h3 class="result-title">${escapeHtml(hsUnitHeading(unit))}</h3>
-              <p>${words.length} ${tb('words')}</p>
+              <p>${words.length} ${tb('words')} · ${tb('hsUsageHint')}</p>
             </div>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
           </div>
           <div class="hs-word-list">
             ${words
-              .map(
-                (w) => `<div class="hs-word-row">
-                  <div class="hs-word-copy">
-                    <div class="hs-word-enline">
-                      <span class="hs-word-en">${escapeHtml(w.word)}</span>
-                      ${w.phonetic ? `<span class="hs-word-ph">${escapeHtml(w.phonetic)}</span>` : ''}
-                      ${w.pos ? `<span class="hs-word-pos">${escapeHtml(w.pos)}</span>` : ''}
-                    </div>
-                    <div class="hs-word-zh">${escapeHtml(w.zh)}</div>
+              .map((w) => {
+                const note = hsUsageNote(w);
+                return `<div class="hs-word-row">
+                  <div class="hs-word-main">
+                    <button type="button" class="hs-word-copy" aria-expanded="false">
+                      <div class="hs-word-enline">
+                        <span class="hs-word-en">${escapeHtml(w.word)}</span>
+                        ${w.phonetic ? `<span class="hs-word-ph">${escapeHtml(w.phonetic)}</span>` : ''}
+                        ${w.pos ? `<span class="hs-word-pos">${escapeHtml(w.pos)}</span>` : ''}
+                        <span class="hs-word-caret" aria-hidden="true"></span>
+                      </div>
+                      <div class="hs-word-zh">${escapeHtml(w.zh)}</div>
+                    </button>
+                    ${hsWordSpeakBtn(w.word)}
                   </div>
-                  ${hsWordSpeakBtn(w.word)}
-                </div>`
-              )
+                  <div class="hs-word-usage">
+                    <div class="hs-word-usage-inner">
+                      <div class="hs-usage-kicker">${tb('hsUsage')}</div>
+                      <p class="hs-usage-body">${escapeHtml(note.body)}</p>
+                      ${note.ex ? `<p class="hs-usage-ex">${escapeHtml(note.ex)}</p>` : ''}
+                    </div>
+                  </div>
+                </div>`;
+              })
               .join('')}
           </div>
         </div>`;
@@ -3107,7 +3187,7 @@ async function startHsUnit(bookId, unitId) {
         flipped = false;
         paint();
       };
-      bindHsWordSpeak();
+      bindHsWordList();
       return;
     }
 

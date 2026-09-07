@@ -2931,12 +2931,100 @@ body.hit-bad::after {
 
 .hs-word-row {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  flex-direction: column;
+  gap: 0;
+  padding: 10px 12px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.25s ease;
+}
+
+.hs-word-row.is-open {
+  border-color: rgba(253, 230, 138, 0.45);
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.hs-word-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hs-word-copy {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 2px 0;
+}
+
+.hs-word-copy:hover .hs-word-en {
+  color: #fde68a;
+}
+
+.hs-word-caret {
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid rgba(253, 230, 138, 0.75);
+  border-bottom: 2px solid rgba(253, 230, 138, 0.75);
+  transform: rotate(45deg);
+  display: inline-block;
+  margin-left: 4px;
+  transition: transform 0.22s ease;
+  flex: 0 0 auto;
+}
+
+.hs-word-row.is-open .hs-word-caret {
+  transform: rotate(225deg);
+  margin-top: 4px;
+}
+
+.hs-word-usage {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+
+.hs-word-row.is-open .hs-word-usage {
+  grid-template-rows: 1fr;
+}
+
+.hs-word-usage-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.hs-word-row.is-open .hs-word-usage-inner {
+  padding: 8px 2px 2px;
+}
+
+.hs-usage-kicker {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fde68a;
+  margin-bottom: 4px;
+}
+
+.hs-usage-body {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.hs-usage-ex {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 .hs-word-copy {
@@ -3030,5 +3118,9 @@ body.hit-bad::after {
   .hs-book:hover .hs-card,
   .hs-book:focus-visible .hs-card {
     transform: none;
+  }
+  .hs-word-usage,
+  .hs-word-caret {
+    transition: none;
   }
 }

@@ -255,13 +255,31 @@ export function isSpeaking() {
   return speaking;
 }
 
+/** Button that started the current utterance — only this one shows speaking UI. */
+let speakSource = null;
+
+function resolveSpeakSource(source) {
+  if (!source || typeof source.closest !== 'function') return null;
+  return source.closest('.speak-fab') || source;
+}
+
+function clearSpeakUi() {
+  document.querySelectorAll('.speak-fab.is-speaking, .speak-fab[aria-pressed="true"]').forEach((el) => {
+    el.classList.remove('is-speaking');
+    el.setAttribute('aria-pressed', 'false');
+  });
+}
+
 function markSpeaking(on) {
   speaking = Boolean(on);
   try {
-    document.querySelectorAll('.speak-fab').forEach((el) => {
-      el.classList.toggle('is-speaking', speaking);
-      el.setAttribute('aria-pressed', speaking ? 'true' : 'false');
-    });
+    clearSpeakUi();
+    if (speaking && speakSource && document.contains(speakSource)) {
+      speakSource.classList.add('is-speaking');
+      speakSource.setAttribute('aria-pressed', 'true');
+    } else if (!speaking) {
+      speakSource = null;
+    }
   } catch (_) {
     /* ignore */
   }
@@ -368,20 +386,23 @@ export function stopSpeak() {
     /* ignore */
   }
   heldUtterance = null;
+  speakSource = null;
   markSpeaking(false);
 }
 
 /**
  * @param {string} text
  * @param {string} [lang='en-US']
+ * @param {Element | null} [source] speaker button that should show playing state
  */
-export function speakText(text, lang = 'en-US') {
+export function speakText(text, lang = 'en-US', source = null) {
   if (!canSpeak()) return false;
   const clean = String(text || '')
     .replace(/\s+/g, ' ')
     .trim();
   if (!clean) return false;
 
+  speakSource = resolveSpeakSource(source);
   primeSpeech();
   const synth = window.speechSynthesis;
   const busy = Boolean(synth.speaking || synth.pending);
@@ -408,22 +429,25 @@ export function speakText(text, lang = 'en-US') {
         }
       }
       u.onstart = () => {
+        if (heldUtterance !== u) return;
         markSpeaking(true);
         startWatchdog();
       };
       u.onend = () => {
-        if (heldUtterance === u) heldUtterance = null;
+        if (heldUtterance !== u) return;
+        heldUtterance = null;
         stopWatchdog();
         markSpeaking(false);
       };
       u.onerror = (ev) => {
         const err = ev && ev.error;
         if (err === 'interrupted' || err === 'canceled') return;
+        if (heldUtterance !== u) return;
         if (allowVoice) {
           run(false);
           return;
         }
-        if (heldUtterance === u) heldUtterance = null;
+        heldUtterance = null;
         stopWatchdog();
         markSpeaking(false);
       };
