@@ -201,12 +201,12 @@ const dict = {
   hubDone: { zh: '完成度', en: 'Progress' },
   clipVideo: { zh: '看例句视频', en: 'Example clip' },
   clipVideoFor: { zh: '看「{word}」的例句视频', en: 'See “{word}” in video' },
-  clipHint: { zh: '真人说话片段，点开后在本页播放', en: 'Real speech clip — plays on this page' },
+  clipHint: { zh: '点开后自动播放真人例句，不用再按播放', en: 'Tap once — it plays here, no extra Play tap' },
   clipMemorizeHint: { zh: '点「开始背词」后，每张卡都能看这个词的例句视频', en: 'After Start, each card has a clip for that word' },
   clipListHint: { zh: '点开任意单词，可看这个词的真人例句视频', en: 'Open any word to watch its real-speech clip' },
   clipReplay: { zh: '重播', en: 'Replay' },
   clipNext: { zh: '下一条', en: 'Next clip' },
-  clipUnavailable: { zh: '当前网络无法加载视频', en: 'Video isn’t available on this network' },
+  clipUnavailable: { zh: '当前网络无法加载视频，已为你朗读这个词', en: 'Video isn’t available; the word was spoken instead' },
 }
 
 export function t(key, vars = {}) {

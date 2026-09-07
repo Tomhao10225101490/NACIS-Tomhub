@@ -35,6 +35,7 @@ function mockWidget({ onFetch } = {}) {
         this.paused = 0;
         this.replayed = 0;
         this.nexted = 0;
+        this.played = 0;
       }
       fetch(q, lang, accent) {
         this.fetches.push({ q, lang, accent });
@@ -42,6 +43,9 @@ function mockWidget({ onFetch } = {}) {
       }
       pause() {
         this.paused += 1;
+      }
+      play() {
+        this.played += 1;
       }
       close() {}
       replay() {
@@ -66,6 +70,17 @@ describe('mountClipPlayer', () => {
     const unavailable = vi.fn();
     await mountClipPlayer(el, '欢迎', { onUnavailable: unavailable });
     expect(unavailable).toHaveBeenCalledTimes(1);
+  });
+
+  it('starts the widget in the same turn when the API is already loaded', () => {
+    mockWidget();
+    const el = document.createElement('div');
+    document.body.append(el);
+    const w = mountClipPlayer(el, 'fast');
+    expect(w).not.toBeNull();
+    expect(w.opts.autoStart).toBe(1);
+    expect(w.fetches[0]).toEqual({ q: 'fast', lang: 'english', accent: 'uk' });
+    el.remove();
   });
 
   it('falls back to all accents then fails when UK has no hits', async () => {
@@ -97,7 +112,7 @@ describe('mountClipPlayer', () => {
     const unavailable = vi.fn();
     await mountClipPlayer(el, 'broad', { onUnavailable: unavailable });
     expect(unavailable).not.toHaveBeenCalled();
-    await vi.advanceTimersByTimeAsync(12000);
+    await vi.advanceTimersByTimeAsync(25000);
     expect(unavailable).toHaveBeenCalledTimes(1);
     expect(document.querySelector('a[href*="youglish"]')).toBeNull();
     el.remove();
@@ -113,6 +128,8 @@ describe('mountClipPlayer', () => {
     const el = document.createElement('div');
     document.body.append(el);
     const w = await mountClipPlayer(el, 'courage');
+    expect(w.opts.autoStart).toBe(1);
+    expect(w.played).toBeGreaterThan(0);
     replayClip();
     nextClip();
     expect(w.replayed).toBe(1);

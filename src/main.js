@@ -38,7 +38,7 @@ import { applyReview, dueEntries, srsKey } from './quiz/srs.js';
 import { makeDictationItem, spellingOk } from './quiz/dictation.js';
 import { clozeItemsFromWords } from './quiz/cloze.js';
 import { dealMatchPairs } from './quiz/match.js';
-import { mountClipPlayer, unmountClipPlayer, stopClipPlayback, replayClip, nextClip } from './clip-player.js';
+import { mountClipPlayer, unmountClipPlayer, stopClipPlayback, replayClip, nextClip, prefetchYouGlish } from './clip-player.js';
 import {
   unlockAudio,
   sfxClick,
@@ -458,8 +458,13 @@ function buildClipDock(word, { autoOpen = false, showToggle = true } = {}) {
     fail.hidden = false;
     stage.hidden = true;
     bar.hidden = true;
+    if (canSpeak() && word) {
+      primeSpeech();
+      speakText(word, 'en-GB');
+    }
   };
   const openPanel = () => {
+    primeSpeech();
     fail.hidden = true;
     stage.hidden = false;
     bar.hidden = false;
@@ -475,9 +480,9 @@ function buildClipDock(word, { autoOpen = false, showToggle = true } = {}) {
   toggle.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    sfxClick();
     if (panel.hidden) openPanel();
     else closePanel();
+    sfxClick();
   });
   replay.addEventListener('click', (e) => {
     e.preventDefault();
@@ -494,6 +499,7 @@ function buildClipDock(word, { autoOpen = false, showToggle = true } = {}) {
 }
 
 function bindFlashClip(word) {
+  prefetchYouGlish();
   const screen = app.querySelector('.screen');
   if (!screen) return;
   const wrap = buildClipDock(word);
@@ -520,6 +526,7 @@ function mountClipHint(parent, key, before) {
 }
 
 function bindHsWordClips() {
+  prefetchYouGlish();
   app.querySelectorAll('.hs-word-row').forEach((row) => {
     const inner = row.querySelector('.hs-word-usage-inner');
     const word = row.querySelector('.hs-word-en')?.textContent?.trim() || '';
@@ -535,17 +542,18 @@ function bindHsWordClips() {
     btn.onclick = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      sfxClick();
       const open = !host.hidden && host.childNodes.length;
       unmountClipPlayer();
       closeHsWordClips(open ? null : host);
       if (open) {
         host.replaceChildren();
         host.hidden = true;
+        sfxClick();
         return;
       }
       host.hidden = false;
       host.replaceChildren(buildClipDock(word, { autoOpen: true, showToggle: false }));
+      sfxClick();
     };
   });
 }
@@ -3286,6 +3294,7 @@ async function startIeltsDay(dayNum) {
         flipped = false;
         paint();
       };
+      prefetchYouGlish();
       mountClipHint(panel, 'clipMemorizeHint', go);
       mountQuizModeButtons(panel, words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
       return;

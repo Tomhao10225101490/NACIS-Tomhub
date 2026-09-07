@@ -3,7 +3,7 @@
 const SCRIPT_SRC = 'https://youglish.com/public/emb/widget.js';
 const SLOT_ID = 'yg-clip-slot';
 const LOAD_MS = 8000;
-const PLAY_MS = 12000;
+const PLAY_MS = 25000;
 /** Caption only — player is always shown; hide search / accent / title. */
 const COMPONENTS_PLAYER_CAPTION = 8;
 
@@ -41,8 +41,13 @@ function blankIframes(root) {
   });
 }
 
+function getYouGlishSync() {
+  return typeof window !== 'undefined' && window.YG?.Widget ? window.YG : null;
+}
+
 function loadYouGlish() {
-  if (typeof window !== 'undefined' && window.YG?.Widget) return Promise.resolve(window.YG);
+  const ready = getYouGlishSync();
+  if (ready) return Promise.resolve(ready);
   if (scriptPromise) return scriptPromise;
   scriptPromise = new Promise((resolve, reject) => {
     const done = (ok, err) => {
@@ -62,6 +67,7 @@ function loadYouGlish() {
     };
     const s = document.createElement('script');
     s.async = true;
+    s.charset = 'utf-8';
     s.src = SCRIPT_SRC;
     s.dataset.ygWidget = '1';
     s.onerror = () => done(false, new Error('script'));
@@ -69,6 +75,18 @@ function loadYouGlish() {
     if (window.YG?.Widget) done(true);
   });
   return scriptPromise;
+}
+
+/** Start downloading the widget before the learner taps, so the tap can autoplay. */
+export function prefetchYouGlish() {
+  return loadYouGlish().catch(() => null);
+}
+
+function playerState(ev) {
+  if (ev == null) return null;
+  if (typeof ev === 'number') return ev;
+  const n = ev.state ?? ev.data ?? ev.playerState;
+  return n == null ? null : Number(n);
 }
 
 export function stopClipPlayback() {
@@ -99,7 +117,7 @@ function resultCount(ev) {
   return Number.isFinite(num) ? num : null;
 }
 
-export async function mountClipPlayer(container, word, { onUnavailable } = {}) {
+export function mountClipPlayer(container, word, { onUnavailable } = {}) {
   unmountClipPlayer();
   const q = sanitizeClipWord(word);
   if (!container) {
@@ -117,6 +135,7 @@ export async function mountClipPlayer(container, word, { onUnavailable } = {}) {
   container.replaceChildren(slot);
 
   let triedAll = false;
+  let kicked = false;
   const fail = () => {
     if (activeWord !== q) return;
     clearPlayTimer();
@@ -128,6 +147,14 @@ export async function mountClipPlayer(container, word, { onUnavailable } = {}) {
       playTimer = null;
       fail();
     }, PLAY_MS);
+  };
+  const kickPlay = () => {
+    if (activeWord !== q || !widget) return;
+    try {
+      widget.play?.();
+    } catch (_) {
+      /* ignore */
+    }
   };
   const fetchAll = () => {
     if (triedAll) {
@@ -142,8 +169,7 @@ export async function mountClipPlayer(container, word, { onUnavailable } = {}) {
     }
   };
 
-  try {
-    const YG = await loadYouGlish();
+  const start = (YG) => {
     if (activeWord !== q || !YG?.Widget) {
       fail();
       return null;
@@ -152,7 +178,7 @@ export async function mountClipPlayer(container, word, { onUnavailable } = {}) {
     widget = new YG.Widget(SLOT_ID, {
       width,
       components: COMPONENTS_PLAYER_CAPTION,
-      autoStart: 0,
+      autoStart: 1,
       lang: 'english',
       accent: 'uk',
       events: {
@@ -160,11 +186,26 @@ export async function mountClipPlayer(container, word, { onUnavailable } = {}) {
           if (activeWord !== q) return;
           const n = resultCount(ev);
           if (n === 0) fetchAll();
-          else armPlayTimer();
+          else {
+            armPlayTimer();
+            kickPlay();
+          }
         },
         onPlayerReady() {
           if (activeWord !== q) return;
           clearPlayTimer();
+          kickPlay();
+        },
+        onPlayerStateChange(ev) {
+          if (activeWord !== q) return;
+          const st = playerState(ev);
+          if (st === 1) {
+            kicked = true;
+            clearPlayTimer();
+            return;
+          }
+          // -1 unstarted, 5 cued: start from the opening tap. Do not fight a real pause (2).
+          if (!kicked && (st === 5 || st === -1)) kickPlay();
         },
         onError() {
           if (activeWord !== q) return;
@@ -172,19 +213,28 @@ export async function mountClipPlayer(container, word, { onUnavailable } = {}) {
         },
       },
     });
-    const created = widget;
     armPlayTimer();
-    created.fetch(q, 'english', 'uk');
-    return created;
-  } catch (_) {
-    fail();
-    return null;
-  }
+    widget.fetch(q, 'english', 'uk');
+    kickPlay();
+    return widget;
+  };
+
+  const ready = getYouGlishSync();
+  if (ready) return start(ready);
+
+  loadYouGlish()
+    .then((YG) => {
+      if (activeWord !== q) return;
+      start(YG);
+    })
+    .catch(() => fail());
+  return null;
 }
 
 export function replayClip() {
   try {
     widget?.replay?.();
+    widget?.play?.();
   } catch (_) {
     /* ignore */
   }
@@ -193,6 +243,7 @@ export function replayClip() {
 export function nextClip() {
   try {
     widget?.next?.();
+    widget?.play?.();
   } catch (_) {
     /* ignore */
   }
