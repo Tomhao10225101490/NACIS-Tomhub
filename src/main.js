@@ -338,6 +338,83 @@ function bindFlashSpeak({ getFlipped, frontText, backText, frontLang = 'en-US', 
   });
 }
 
+function textNode(tag, className, text) {
+  const n = document.createElement(tag);
+  if (className) n.className = className;
+  if (text != null) n.textContent = text;
+  return n;
+}
+
+function mountAppShell(backTarget, title) {
+  app.replaceChildren();
+  const chrome = document.createElement('div');
+  // chrome markup is owned by topbar()/backBtn(); no learner-provided strings.
+  chrome.insertAdjacentHTML('afterbegin', topbar());
+  app.append(...chrome.childNodes);
+  const screen = document.createElement('div');
+  screen.className = 'screen';
+  const header = document.createElement('div');
+  header.className = 'screen-header';
+  const backWrap = document.createElement('div');
+  backWrap.insertAdjacentHTML('afterbegin', backBtn(backTarget));
+  header.append(...backWrap.childNodes);
+  header.append(textNode('h2', 'screen-title', title));
+  screen.append(header);
+  app.append(screen);
+  return screen;
+}
+
+function buildHsWordRow(w) {
+  const note = hsUsageNote(w);
+  const row = document.createElement('div');
+  row.className = 'hs-word-row';
+  const main = document.createElement('div');
+  main.className = 'hs-word-main';
+  const copy = document.createElement('button');
+  copy.type = 'button';
+  copy.className = 'hs-word-copy';
+  copy.setAttribute('aria-expanded', 'false');
+  const enline = document.createElement('div');
+  enline.className = 'hs-word-enline';
+  enline.append(textNode('span', 'hs-word-en', w.word));
+  if (w.phonetic) enline.append(textNode('span', 'hs-word-ph', w.phonetic));
+  if (w.pos) enline.append(textNode('span', 'hs-word-pos', w.pos));
+  const caret = document.createElement('span');
+  caret.className = 'hs-word-caret';
+  caret.setAttribute('aria-hidden', 'true');
+  enline.append(caret);
+  copy.append(enline, textNode('div', 'hs-word-zh', w.zh));
+  main.append(copy);
+  if (canSpeak()) {
+    const speak = document.createElement('button');
+    speak.type = 'button';
+    speak.className = 'speak-fab hs-word-speak';
+    speak.setAttribute('data-speak-word', w.word);
+    speak.setAttribute('aria-label', tb('hsSpeakWord'));
+    speak.setAttribute('title', tb('hsSpeakWord'));
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'speak-svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('fill', 'currentColor');
+    path.setAttribute('d', 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z');
+    svg.append(path);
+    speak.append(svg);
+    main.append(speak);
+  }
+  const usage = document.createElement('div');
+  usage.className = 'hs-word-usage';
+  const inner = document.createElement('div');
+  inner.className = 'hs-word-usage-inner';
+  inner.append(textNode('div', 'hs-usage-kicker', tb('hsUsage')));
+  inner.append(textNode('p', 'hs-usage-body', note.body));
+  if (note.ex) inner.append(textNode('p', 'hs-usage-ex', note.ex));
+  usage.append(inner);
+  row.append(main, usage);
+  return row;
+}
+
 function buildClipDock(word, { autoOpen = false, showToggle = true } = {}) {
   const wrap = document.createElement('div');
   wrap.className = 'clip-wrap';
@@ -3185,27 +3262,32 @@ async function startIeltsDay(dayNum) {
     setSessionRepaint(paint);
     clearFlashKeys();
     if (step === 0) {
-      app.innerHTML = `
-        ${topbar()}
-        <div class="screen">
-          <div class="screen-header">${backBtn('ielts-days')}<h2 class="screen-title">${tb('dayOf', { n: plan.day })}</h2></div>
-          <div class="panel day-intro">
-            <div class="flash-chapter">${tb('band7')} · ${plan.topic || ''}</div>
-            <h3 class="result-title">${dayTitle(plan)}</h3>
-            <p>${tb('words25')}</p>
-            <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
-            <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
-          </div>
-        </div>`;
-      document.getElementById('go').onclick = () => {
+      const screen = mountAppShell('ielts-days', tb('dayOf', { n: plan.day }));
+      const panel = document.createElement('div');
+      panel.className = 'panel day-intro';
+      panel.append(textNode('div', 'flash-chapter', `${tb('band7')} · ${plan.topic || ''}`));
+      panel.append(textNode('h3', 'result-title', dayTitle(plan)));
+      panel.append(textNode('p', '', tb('words25')));
+      const pipe = document.createElement('div');
+      pipe.className = 'day-pipeline';
+      pipe.append(textNode('span', '', `1 ${tb('ieltsMemorize')}`));
+      pipe.append(textNode('span', '', `2 ${tb('ieltsSpot')}`));
+      const go = document.createElement('button');
+      go.type = 'button';
+      go.id = 'go';
+      go.className = 'btn btn-primary';
+      go.textContent = tb('startMemorize');
+      panel.append(pipe, go);
+      screen.append(panel);
+      go.onclick = () => {
         sfxClick();
         step = 1;
         idx = 0;
         flipped = false;
         paint();
       };
-      mountClipHint(app.querySelector('.day-intro'), 'clipMemorizeHint', document.getElementById('go'));
-      mountQuizModeButtons(app.querySelector('.day-intro'), words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
+      mountClipHint(panel, 'clipMemorizeHint', go);
+      mountQuizModeButtons(panel, words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
       return;
     }
 
@@ -3931,90 +4013,71 @@ async function startHsUnit(bookId, unitId) {
     setSessionRepaint(paint);
     clearFlashKeys();
     if (step === 0) {
-      app.innerHTML = `
-        ${topbar()}
-        <div class="screen">
-          <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${tb('hsWordList')}</h2></div>
-          <div class="hs-list-head">
-            <div>
-              <div class="flash-chapter">${escapeHtml(hsBookTitle(book))} · ${tb('pep2019')}</div>
-              <h3 class="result-title">${escapeHtml(hsUnitHeading(unit))}</h3>
-              <p>${words.length} ${tb('words')} · ${tb('hsUsageHint')}</p>
-            </div>
-            <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
-            <button class="btn" id="hs-dictation">${tb('dictation')}</button>
-            <button class="btn" id="hs-cloze">${tb('cloze')}</button>
-          </div>
-          <input class="hs-search" id="hs-search" type="search" placeholder="${tb('hsSearch')}" />
-          <div class="hs-word-list">
-            ${words
-              .map((w) => {
-                const note = hsUsageNote(w);
-                return `<div class="hs-word-row">
-                  <div class="hs-word-main">
-                    <button type="button" class="hs-word-copy" aria-expanded="false">
-                      <div class="hs-word-enline">
-                        <span class="hs-word-en">${escapeHtml(w.word)}</span>
-                        ${w.phonetic ? `<span class="hs-word-ph">${escapeHtml(w.phonetic)}</span>` : ''}
-                        ${w.pos ? `<span class="hs-word-pos">${escapeHtml(w.pos)}</span>` : ''}
-                        <span class="hs-word-caret" aria-hidden="true"></span>
-                      </div>
-                      <div class="hs-word-zh">${escapeHtml(w.zh)}</div>
-                    </button>
-                    ${hsWordSpeakBtn(w.word)}
-                  </div>
-                  <div class="hs-word-usage">
-                    <div class="hs-word-usage-inner">
-                      <div class="hs-usage-kicker">${tb('hsUsage')}</div>
-                      <p class="hs-usage-body">${escapeHtml(note.body)}</p>
-                      ${note.ex ? `<p class="hs-usage-ex">${escapeHtml(note.ex)}</p>` : ''}
-                    </div>
-                  </div>
-                </div>`;
-              })
-              .join('')}
-          </div>
-        </div>`;
-      document.getElementById('go').onclick = () => {
+      const screen = mountAppShell('hs-book', tb('hsWordList'));
+      const head = document.createElement('div');
+      head.className = 'hs-list-head';
+      const copy = document.createElement('div');
+      copy.append(textNode('div', 'flash-chapter', `${hsBookTitle(book)} · ${tb('pep2019')}`));
+      copy.append(textNode('h3', 'result-title', hsUnitHeading(unit)));
+      copy.append(textNode('p', '', `${words.length} ${tb('words')} · ${tb('hsUsageHint')}`));
+      const go = document.createElement('button');
+      go.type = 'button';
+      go.id = 'go';
+      go.className = 'btn btn-primary';
+      go.textContent = tb('startMemorize');
+      const dictation = document.createElement('button');
+      dictation.type = 'button';
+      dictation.id = 'hs-dictation';
+      dictation.className = 'btn';
+      dictation.textContent = tb('dictation');
+      const cloze = document.createElement('button');
+      cloze.type = 'button';
+      cloze.id = 'hs-cloze';
+      cloze.className = 'btn';
+      cloze.textContent = tb('cloze');
+      const matchBtn = document.createElement('button');
+      matchBtn.type = 'button';
+      matchBtn.className = 'btn';
+      matchBtn.id = 'hs-match';
+      matchBtn.textContent = tb('enMatch');
+      head.append(copy, go, dictation, cloze, matchBtn);
+      const search = document.createElement('input');
+      search.className = 'hs-search';
+      search.id = 'hs-search';
+      search.type = 'search';
+      search.placeholder = tb('hsSearch');
+      const list = document.createElement('div');
+      list.className = 'hs-word-list';
+      words.forEach((w) => list.append(buildHsWordRow(w)));
+      screen.append(head, search, list);
+      go.onclick = () => {
         sfxClick();
         step = 1;
         idx = 0;
         flipped = false;
         paint();
       };
-      document.getElementById('hs-dictation').onclick = () => {
+      dictation.onclick = () => {
         sfxClick();
         startEnglishWordMode('dictation', words, bank, { back: 'hs-book', srsKind: 'hs' });
       };
-      document.getElementById('hs-cloze').onclick = () => {
+      cloze.onclick = () => {
         sfxClick();
         startEnglishWordMode('cloze', words, bank, { back: 'hs-book', srsKind: 'hs' });
       };
-      const clozeBtn = document.getElementById('hs-cloze');
-      if (clozeBtn) {
-        const matchBtn = document.createElement('button');
-        matchBtn.type = 'button';
-        matchBtn.className = 'btn';
-        matchBtn.id = 'hs-match';
-        matchBtn.textContent = tb('enMatch');
-        clozeBtn.after(matchBtn);
-        matchBtn.onclick = () => {
-          sfxClick();
-          startEnglishWordMode('match', words, bank, { back: 'hs-book', srsKind: 'hs' });
-        };
-      }
-      const search = document.getElementById('hs-search');
-      if (search) {
-        search.oninput = () => {
-          const q = search.value.trim().toLowerCase();
-          app.querySelectorAll('.hs-word-row').forEach((row) => {
-            const hay = row.textContent.toLowerCase();
-            row.style.display = !q || hay.includes(q) ? '' : 'none';
-          });
-        };
-      }
+      matchBtn.onclick = () => {
+        sfxClick();
+        startEnglishWordMode('match', words, bank, { back: 'hs-book', srsKind: 'hs' });
+      };
+      search.oninput = () => {
+        const q = search.value.trim().toLowerCase();
+        list.querySelectorAll('.hs-word-row').forEach((row) => {
+          const hay = row.textContent.toLowerCase();
+          row.style.display = !q || hay.includes(q) ? '' : 'none';
+        });
+      };
       bindHsWordList();
-      mountClipHint(app.querySelector('.hs-list-head > div'), 'clipListHint');
+      mountClipHint(copy, 'clipListHint');
       return;
     }
 
