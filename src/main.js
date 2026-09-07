@@ -273,6 +273,34 @@ function bindFlashKeys({ onFlip, onNext }) {
   flashKeysCleanup = () => window.removeEventListener('keydown', onKey);
 }
 
+/** After answering a quiz item: keep the Next button, and let Enter advance too. */
+function bindEnterNext(onNext) {
+  clearFlashKeys();
+  const onKey = (e) => {
+    if (e.repeat) return;
+    const el = e.target;
+    const tag = el && el.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el?.isContentEditable) return;
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      onNext?.();
+    }
+  };
+  window.addEventListener('keydown', onKey);
+  flashKeysCleanup = () => window.removeEventListener('keydown', onKey);
+}
+
+function wireQuizNext(onNext) {
+  const btn = document.getElementById('nx') || document.getElementById('gonext');
+  if (!btn) return;
+  const go = () => {
+    clearFlashKeys();
+    onNext();
+  };
+  btn.onclick = go;
+  bindEnterNext(go);
+}
+
 
 function escapeHtml(s) {
   return String(s ?? '')
@@ -1347,10 +1375,10 @@ async function startDayPractice(dayNum) {
             });
           }
           document.getElementById('nw').style.display = 'flex';
-          document.getElementById('nx').onclick = () => {
+          wireQuizNext(() => {
             vIdx += 1;
             paint();
-          };
+          });
         };
       });
       return;
@@ -1409,10 +1437,10 @@ async function startDayPractice(dayNum) {
           });
         }
         document.getElementById('nw').style.display = 'flex';
-        document.getElementById('nx').onclick = () => {
+        wireQuizNext(() => {
           qIdx += 1;
           paint();
-        };
+        });
       }
 
       app.querySelectorAll('#opts .wg-opt').forEach((btn) => {
@@ -1743,6 +1771,7 @@ async function renderQuiz(mode) {
 
     const q = queue[idx];
     answered = false;
+    clearFlashKeys();
 
     app.innerHTML = wgPlayShell({
       title,
@@ -1793,10 +1822,10 @@ async function renderQuiz(mode) {
         });
       }
       document.getElementById('nextwrap').style.display = 'flex';
-      document.getElementById('gonext').onclick = () => {
+      wireQuizNext(() => {
         idx += 1;
         paint();
-      };
+      });
     }
 
     app.querySelectorAll('#opts .wg-opt').forEach((btn) => {
@@ -1998,6 +2027,8 @@ async function renderPeriodic() {
     }
 
     const e = quizList[quizIdx];
+    quizAnswered = false;
+    clearFlashKeys();
     const kind = quizIdx % 3; // 0 symbol->zh, 1 zh->symbol, 2 ar
     let prompt, answer, options;
 
@@ -2079,10 +2110,10 @@ async function renderPeriodic() {
           });
         }
         document.getElementById('nw').style.display = 'flex';
-        document.getElementById('nx').onclick = () => {
+        wireQuizNext(() => {
           quizIdx += 1;
           paint();
-        };
+        });
       };
     });
     bindNav();
@@ -2213,6 +2244,7 @@ async function renderMass() {
 
       const q = list[i];
       let locked = false;
+      clearFlashKeys();
       app.innerHTML = `
         ${topbar()}
         <div class="screen">
@@ -2262,10 +2294,10 @@ async function renderMass() {
             });
           }
           document.getElementById('nw').style.display = 'flex';
-          document.getElementById('nx').onclick = () => {
+          wireQuizNext(() => {
             i += 1;
             show();
-          };
+          });
         };
       });
       bindNav();
@@ -2550,10 +2582,10 @@ async function startIeltsDay(dayNum) {
             });
           }
           document.getElementById('nw').style.display = 'flex';
-          document.getElementById('nx').onclick = () => {
+          wireQuizNext(() => {
             spotIdx += 1;
             paint();
-          };
+          });
         };
       });
       return;
@@ -2625,6 +2657,7 @@ async function renderIeltsFreeSpot() {
     }
     const item = spotItems[spotIdx];
     locked = false;
+    clearFlashKeys();
     app.innerHTML = `
       ${topbar()}
       <div class="screen wg-play">
@@ -2677,10 +2710,10 @@ async function renderIeltsFreeSpot() {
           document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
         }
         document.getElementById('nw').style.display = 'flex';
-        document.getElementById('nx').onclick = () => {
+        wireQuizNext(() => {
           spotIdx += 1;
           paint();
-        };
+        });
       };
     });
   }
@@ -2954,6 +2987,7 @@ async function renderSubjectQuiz(kind) {
     }
     const q = bank[idx];
     locked = false;
+    clearFlashKeys();
     const opts =
       q.type === 'tf'
         ? `<div class="wg-options tf-row" id="opts">
@@ -3027,10 +3061,10 @@ async function renderSubjectQuiz(kind) {
           });
         }
         document.getElementById('nw').style.display = 'flex';
-        document.getElementById('nx').onclick = () => {
+        wireQuizNext(() => {
           idx += 1;
           paint();
-        };
+        });
       };
     });
   }
@@ -3347,10 +3381,10 @@ async function startHsUnit(bookId, unitId) {
             });
           }
           document.getElementById('nw').style.display = 'flex';
-          document.getElementById('nx').onclick = () => {
+          wireQuizNext(() => {
             spotIdx += 1;
             paint();
-          };
+          });
         };
       });
       return;

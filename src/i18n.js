@@ -65,7 +65,7 @@ const dict = {
   prev: { zh: '上一张', en: 'Prev' },
   flip: { zh: '翻转', en: 'Flip' },
   next: { zh: '下一张', en: 'Next' },
-  nextArrow: { zh: '下一题 →', en: 'Next →' },
+  nextArrow: { zh: '下一题 → · 回车', en: 'Next → · Enter' },
   nextDay: { zh: '下一天 →', en: 'Next day →' },
   toSpot: { zh: '去抽查 →', en: 'Spot check →' },
   tapFlip: { zh: '空格翻转 · 回车下一张', en: 'Space flip · Enter next' },
