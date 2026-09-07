@@ -325,6 +325,76 @@ function flashSpeakHtml() {
   return `<button type="button" class="speak-fab flash-speak" aria-label="${tb('speak')}" title="${tb('speak')}">${speakIconSvg()}</button>`;
 }
 
+function escapeRegExp(s) {
+  return String(s || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/** True if the quiz prompt already contains the answer word/phrase. */
+function promptContainsAnswer(prompt, answer) {
+  const a = String(answer || '').trim();
+  if (!a) return false;
+  const p = String(prompt || '');
+  if (/\s/.test(a) || /[^a-zA-Z0-9']/.test(a)) {
+    return p.toLowerCase().includes(a.toLowerCase());
+  }
+  return new RegExp(`\\b${escapeRegExp(a)}\\b`, 'i').test(p);
+}
+
+/** Strip Latin leftovers from Chinese glosses so prompts don't echo the answer. */
+function scrubGlossForSpot(text, answer) {
+  let t = String(text || '');
+  const a = String(answer || '').trim();
+  if (a) {
+    t = t.replace(new RegExp(escapeRegExp(a), 'ig'), '____');
+  }
+  // Drop remaining Latin letter runs (OCR / bilingual junk).
+  t = t.replace(/[A-Za-z][A-Za-z'.\/-]*/g, '').replace(/[()（）]+/g, ' ').replace(/\s+/g, ' ').trim();
+  t = t.replace(/^[；;，,\s]+|[；;，,\s]+$/g, '').replace(/\s*[；;]\s*/g, '；');
+  return t;
+}
+
+/**
+ * Spot check: pick the English word from a safe gloss.
+ * Never put the target English word into the prompt (no giveaways).
+ */
+function makeEnWordSpotItem(w, bank, { preferEnDef = false } = {}) {
+  const zhRaw = String(w.zh || '');
+  const zhHasChinese = /[\u4e00-\u9fff]/.test(zhRaw);
+  const enSafe = w.enDef && !promptContainsAnswer(w.enDef, w.word) ? String(w.enDef) : '';
+  let prompt = '';
+
+  // Prefer English gloss only when requested AND safe; otherwise Chinese (if real Chinese).
+  if (preferEnDef && enSafe) {
+    prompt = `${enSafe}\n(${w.pos || ''})`.trim();
+  } else if (zhHasChinese) {
+    prompt = scrubGlossForSpot(zhRaw, w.word);
+    if (w.pos) prompt = `${prompt}\n(${w.pos})`.trim();
+  } else if (enSafe) {
+    prompt = `${enSafe}\n(${w.pos || ''})`.trim();
+  }
+
+  if (!prompt || promptContainsAnswer(prompt, w.word)) {
+    prompt = zhHasChinese ? scrubGlossForSpot(zhRaw, w.word) : '';
+    if ((!prompt || promptContainsAnswer(prompt, w.word)) && enSafe) prompt = enSafe;
+    if (!prompt || promptContainsAnswer(prompt, w.word)) {
+      prompt = '（根据释义选择正确单词）';
+    }
+    if (w.pos) prompt = `${prompt}\n(${w.pos})`;
+  }
+
+  const distractors = shuffle(bank.filter((x) => x.id !== w.id && x.word !== w.word))
+    .slice(0, 3)
+    .map((x) => x.word);
+  while (distractors.length < 3) distractors.push('—');
+  return {
+    id: w.id,
+    prompt,
+    answer: w.word,
+    tip: `${w.word} ${w.phonetic || ''}\n${w.zh || ''} · ${w.enDef || ''}\n${w.example || ''}\n${w.exampleZh || ''}`.trim(),
+    options: shuffle([w.word, ...distractors.slice(0, 3)]),
+  };
+}
+
 function bindFlashSpeak({ getFlipped, frontText, backText, frontLang = 'en-US', backLang = 'zh-CN' }) {
   document.querySelectorAll('#flash .flash-speak').forEach((btn) => {
     btn.onclick = (e) => {
@@ -2394,19 +2464,9 @@ async function startIeltsDay(dayNum) {
   let spotItems = [];
 
   function buildSpot() {
-    spotItems = shuffle(words.slice()).map((w) => {
-      const askZh = Math.random() > 0.4;
-      const distractors = shuffle(ieltsWords.filter((x) => x.id !== w.id))
-        .slice(0, 3)
-        .map((x) => x.word);
-      return {
-        id: w.id,
-        prompt: askZh ? `${w.zh}\n(${w.pos})` : `${w.enDef}\n(${w.pos})`,
-        answer: w.word,
-        tip: `${w.word} ${w.phonetic || ''}\n${w.zh} · ${w.enDef}\n${w.example || ''}\n${w.exampleZh || ''}`,
-        options: shuffle([w.word, ...distractors]),
-      };
-    });
+    spotItems = shuffle(words.slice()).map((w) =>
+      makeEnWordSpotItem(w, ieltsWords, { preferEnDef: Math.random() > 0.4 })
+    );
   }
 
   function paint() {
@@ -2623,19 +2683,9 @@ async function renderIeltsFreeSpot() {
   let spotIdx = 0;
   let spotCorrect = 0;
   let locked = false;
-  const spotItems = words.map((w) => {
-    const askZh = Math.random() > 0.4;
-    const distractors = shuffle(ieltsWords.filter((x) => x.id !== w.id))
-      .slice(0, 3)
-      .map((x) => x.word);
-    return {
-      id: w.id,
-      prompt: askZh ? `${w.zh}\n(${w.pos})` : `${w.enDef}\n(${w.pos})`,
-      answer: w.word,
-      tip: `${w.word} · ${w.zh} · ${w.enDef}`,
-      options: shuffle([w.word, ...distractors]),
-    };
-  });
+  const spotItems = words.map((w) =>
+    makeEnWordSpotItem(w, ieltsWords, { preferEnDef: Math.random() > 0.4 })
+  );
 
   function paint() {
     if (spotIdx >= spotItems.length) {
@@ -3153,20 +3203,8 @@ async function startHsUnit(bookId, unitId) {
   let spotItems = [];
 
   function buildSpot() {
-    spotItems = shuffle(words.slice()).map((w) => {
-      const askZh = Math.random() > 0.4;
-      const distractors = shuffle(bank.filter((x) => x.id !== w.id && x.word !== w.word))
-        .slice(0, 3)
-        .map((x) => x.word);
-      while (distractors.length < 3) distractors.push('—');
-      return {
-        id: w.id,
-        prompt: askZh ? `${w.zh}\n(${w.pos})` : `${w.enDef}\n(${w.pos})`,
-        answer: w.word,
-        tip: `${w.word} ${w.phonetic || ''}\n${w.zh} · ${w.enDef}\n${w.example || ''}\n${w.exampleZh || ''}`,
-        options: shuffle([w.word, ...distractors.slice(0, 3)]),
-      };
-    });
+    // High-school spot: always Chinese gloss → pick English word (never leak the headword).
+    spotItems = shuffle(words.slice()).map((w) => makeEnWordSpotItem(w, bank, { preferEnDef: false }));
   }
 
   function paint() {

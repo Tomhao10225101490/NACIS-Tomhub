@@ -204,81 +204,244 @@ def lookup_ipa(word: str, table: dict[str, str], embedded: str) -> str:
     return ""
 
 
-def join_pos(meanings: list[dict]) -> str:
+# Hard fixes where the public vocab scrape is wrong / OCR-misaligned vs PEP 2019 lists.
+ZH_OVERRIDES: dict[tuple[str, str], str] = {
+    ("b2", "attack"): "攻击；抨击",
+    ("b2", "app"): "应用程序；应用软件",
+    ("b2", "paraphrase"): "释义；（用更容易理解的文字）解释",
+    ("b2", "ache"): "疼痛",
+    ("b2", "outline"): "概述；概要；轮廓",
+    ("x1", "swiss"): "瑞士的；瑞士人",
+    ("x2", "consist"): "由……组成",
+    ("x2", "dramatic"): "戏剧性的；急剧的；激动人心的",
+    ("x2", "tremendous"): "巨大的；极大的",
+    ("x2", "slap"): "打；拍",
+    ("x3", "broadcast"): "播送；广播；传播；广播节目；电视节目",
+    ("x3", "sympathetically"): "同情地；赞同地",
+    ("x3", "rhyme"): "押韵词；押韵的短诗；（使）押韵",
+    ("x3", "contest"): "比赛；竞赛；竞争；争取赢得",
+    ("x4", "salary"): "薪水；薪金（月薪）",
+    ("x4", "guilty"): "内疚的；有罪的；有过失的",
+    ("x4", "suspend"): "悬；挂；暂停；暂缓",
+}
+
+
+def is_derivative_junk(chinese: str, headword: str) -> bool:
+    """Skip senses that are clearly another word’s gloss glued onto this entry."""
+    z = (chinese or "").strip()
+    if not z:
+        return True
+    m = re.match(r"^([A-Za-z][A-Za-z'-]*)", z)
+    if not m:
+        return False
+    first = m.group(1).lower()
+    head = headword.lower().strip()
+    head0 = re.split(r"[\s/-]+", head)[0]
+    # e.g. mood ← "moody …", contest ← "contestant …", guilty ← "guilt …"
+    if first == head or first == head0:
+        return False
+    if first.startswith(head0) and len(first) > len(head0) + 1:
+        return True
+    # unrelated English lemma at start with some Chinese after
+    if re.search(r"[\u4e00-\u9fff]", z):
+        return True
+    return True
+
+
+def clean_zh_text(raw: str, headword: str = "") -> str:
+    """Normalize a Chinese gloss: drop POS tags, Latin leftovers, keep Chinese senses."""
+    t = (raw or "").replace(";", "；").replace(":", "；").strip()
+    t = re.sub(r"/[^/\n]{0,48}/", "", t)
+
+    def keep_paren(m: re.Match[str]) -> str:
+        inner = m.group(1)
+        has_zh = bool(re.search(r"[\u4e00-\u9fff]", inner))
+        has_en = bool(re.search(r"[A-Za-z]{2,}", inner))
+        if has_en and not has_zh:
+            return ""
+        if has_en and has_zh:
+            inner = re.sub(r"[A-Za-z][A-Za-z'./\s-]{0,40}", "", inner)
+            inner = inner.strip(" ；;，,")
+            return f"（{inner}）" if inner else ""
+        return f"（{inner}）"
+
+    t = re.sub(r"[（(]([^）)]*)[）)]", keep_paren, t)
+    t = re.sub(
+        r"(?:^|[；\s])(?:n|v|vi|vt|adj|adv|prep|conj|pron|num|art|int|aux|modal|pl)\.?\s*"
+        r"(?:&?\s*(?:n|v|vi|vt|adj|adv)\.?\s*)*",
+        "；",
+        t,
+        flags=re.I,
+    )
+    t = re.sub(
+        r"\b(?:n|v|vi|vt|adj|adv|prep|conj|pron|num|art|int|aux|modal|pl)\.\s*",
+        "",
+        t,
+        flags=re.I,
+    )
+    if headword:
+        t = re.sub(re.escape(headword), "", t, flags=re.I)
+    # Drop remaining Latin runs (OCR / bilingual leftovers).
+    t = re.sub(r"[A-Za-z][A-Za-z'./-]{0,40}(?:\s+[A-Za-z][A-Za-z'./-]{0,40})*", "", t)
+    # Drop leftover OCR punctuation (do NOT strip Chinese parentheses).
+    t = re.sub(r"[\]|,/\\]+", "；", t)
+    t = re.sub(r"\s+", "", t)
+    t = re.sub(r"[；]{2,}", "；", t).strip("；，,、.．")
+    t = t.replace("......", "……").replace("…", "……")
+    t = re.sub(r"……+", "……", t)
+    return t
+
+
+POS_OVERRIDES: dict[tuple[str, str], str] = {
+    ("b2", "attack"): "n. / vi. & vt.",
+    ("b2", "ache"): "vi. / n.",
+    ("b2", "outline"): "n. / vt.",
+    ("b2", "paraphrase"): "n. / vi. & vt.",
+    ("x2", "consist"): "vi.",
+    ("x2", "slap"): "vt. / n.",
+    ("x3", "broadcast"): "vt. & vi. / n.",
+    ("x3", "sympathetically"): "adv.",
+    ("x4", "salary"): "n.",
+}
+
+
+def join_pos(meanings: list[dict], headword: str = "") -> str:
     seen = []
     for m in meanings:
+        if is_derivative_junk(m.get("chinese") or "", headword):
+            continue
         p = (m.get("pos") or "").strip()
+        # Skip bogus POS when the chinese is clearly for another word class glued wrong.
         if p and p not in seen:
             seen.append(p)
     return " / ".join(seen) if seen else "n."
 
 
-def join_zh(meanings: list[dict]) -> str:
-    seen = []
+def join_zh(meanings: list[dict], headword: str = "") -> str:
+    seen: list[str] = []
     for m in meanings:
-        z = (m.get("chinese") or "").strip()
+        z_raw = (m.get("chinese") or "").strip()
+        if is_derivative_junk(z_raw, headword):
+            continue
+        z = clean_zh_text(z_raw, headword)
+        if not z:
+            continue
         for bit in re.split(r"[；;]", z):
-            bit = bit.strip()
+            bit = bit.strip(" ；;，,")
             if bit and bit not in seen:
                 seen.append(bit)
     return "；".join(seen)
 
 
+def zh_short(zh: str) -> str:
+    raw = (zh or "").split("；")[0].split("，")[0].strip()
+    if len(raw) > 18:
+        raw = raw[:18].rstrip("，,；、 ") + "…"
+    return raw or (zh or "").split("；")[0].strip() or "（释义）"
+
+
+def primary_pos_kind(pos: str) -> str:
+    first = (pos or "").split("/")[0].strip().lower()
+    if "短语" in (pos or ""):
+        return "phrase"
+    if "专有" in (pos or ""):
+        return "proper"
+    if first.startswith("adj"):
+        return "adj"
+    if first.startswith("adv"):
+        return "adv"
+    if first.startswith("prep"):
+        return "prep"
+    if first.startswith("conj"):
+        return "conj"
+    if first.startswith("v") or "vt" in first or "vi" in first:
+        return "verb"
+    if first.startswith("n"):
+        return "noun"
+    return "other"
+
+
+def scrub_answer(text: str, word: str) -> str:
+    if not text or not word:
+        return text
+    if " " in word:
+        return re.sub(re.escape(word), "…", text, flags=re.I)
+    return re.sub(rf"\b{re.escape(word)}\b", "…", text, flags=re.I)
+
+
 def en_def(word: str, pos: str, zh: str) -> str:
-    p = (pos or "").lower()
-    if "短语" in pos:
-        return f'an expression meaning “{zh}”'
-    if "专有" in pos:
-        return f"a proper name or term: {zh}"
-    if p.startswith("adj"):
-        return f'describing something as “{zh}”'
-    if p.startswith("adv"):
-        return f'in a way that is “{zh}”'
-    if p.startswith("prep"):
-        return f'a preposition meaning “{zh}”'
-    if p.startswith("conj"):
-        return f'a conjunction meaning “{zh}”'
-    if "vt" in p or "vi" in p or p.startswith("v"):
-        return f"to {word} — {zh}"
-    return f"{word} — {zh}"
+    """English gloss for flash tips — must NEVER include the headword (spot-check safe)."""
+    z = zh_short(zh)
+    kind = primary_pos_kind(pos)
+    if kind == "phrase":
+        out = f'a set phrase meaning “{z}”'
+    elif kind == "proper":
+        out = f'a proper name / term for “{z}”'
+    elif kind == "adj":
+        out = f'adjective meaning “{z}”'
+    elif kind == "adv":
+        out = f'adverb meaning “{z}”'
+    elif kind == "prep":
+        out = f'preposition meaning “{z}”'
+    elif kind == "conj":
+        out = f'conjunction meaning “{z}”'
+    elif kind == "verb":
+        out = f'verb meaning “{z}”'
+    elif kind == "noun":
+        out = f'noun meaning “{z}”'
+    else:
+        out = f'meaning “{z}”'
+    out = scrub_answer(out, word)
+    if not out or prompt_leaks(out, word):
+        return "see the Chinese gloss for meaning"
+    return out
+
+
+def prompt_leaks(text: str, word: str) -> bool:
+    if not text or not word:
+        return False
+    if " " in word or re.search(r"[^a-zA-Z0-9']", word):
+        return word.lower() in text.lower()
+    return bool(re.search(rf"\b{re.escape(word)}\b", text, flags=re.I))
 
 
 def example_pair(word: str, pos: str, zh: str) -> tuple[str, str]:
-    p = (pos or "").lower()
-    zh_short = zh.split("；")[0].split(";")[0].split("，")[0].strip()
-    if " " in word or "短语" in pos:
+    """Short practice examples. Flashcards already show the word on the front."""
+    kind = primary_pos_kind(pos)
+    z = zh_short(zh)
+    if kind == "phrase" or " " in word:
         return (
-            f'Students should remember the phrase “{word}”.',
-            f"同学们应记住短语「{word}」（{zh_short}）。",
+            f"We use this phrase when we mean “{z}”.",
+            f"这个短语表示「{z}」。",
         )
-    if "专有" in pos:
+    if kind == "proper":
         return (
-            f"{word} is introduced in this unit.",
-            f"本单元介绍了{word}（{zh_short}）。",
+            f"This name / term refers to “{z}”.",
+            f"这个专有名称指「{z}」。",
         )
-    if p.startswith("adj"):
+    if kind == "adj":
         return (
-            f"They described the idea as {word}.",
-            f"他们认为这个想法是{zh_short}的。",
+            f"That description sounds {word}.",
+            f"那种描述听起来很{z}。",
         )
-    if p.startswith("adv"):
+    if kind == "adv":
         return (
-            f"She answered {word}.",
-            f"她{zh_short}地回答。",
+            f"She answered the question {word}.",
+            f"她{z}地回答了这个问题。",
         )
-    if p.startswith("prep") or p.startswith("conj"):
+    if kind == "prep" or kind == "conj":
         return (
-            f"Pay attention to how we use “{word}”.",
-            f"注意「{word}」（{zh_short}）的用法。",
+            f"Notice how “{word}” connects the ideas ({z}).",
+            f"注意「{word}」如何连接语义（{z}）。",
         )
-    if "vt" in p or "vi" in p or p.startswith("v"):
+    if kind == "verb":
         return (
-            f"We {word} when we need to.",
-            f"需要时我们会{zh_short}。",
+            f"Can you {word} this carefully?",
+            f"你能仔细地{z}一下吗？",
         )
     return (
-        f"This {word} is useful in daily life.",
-        f"这个{zh_short}在日常生活中很有用。",
+        f"I need more information about {word}.",
+        f"我需要更多关于{z}的信息。",
     )
 
 
@@ -358,10 +521,15 @@ def main() -> None:
         if not word:
             continue
         meanings = item.get("meanings") or []
-        pos = join_pos(meanings)
-        zh = join_zh(meanings) or word
+        pos = POS_OVERRIDES.get((bid, word.lower())) or join_pos(meanings, word)
+        override = ZH_OVERRIDES.get((bid, word.lower()))
+        zh = override or join_zh(meanings, word) or word
+        zh = clean_zh_text(zh, word) or zh
+        if prompt_leaks(zh, word):
+            zh = scrub_answer(zh, word).replace("…", "").strip("；，, ") or zh_short(zh)
         seq[bid] += 1
         en_ex, zh_ex = example_pair(word, pos, zh)
+        zh_ex = scrub_answer(zh_ex, word) or zh_ex
         entry = {
             "id": f"{bid}-{seq[bid]:04d}",
             "bookId": bid,

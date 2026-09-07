@@ -10,9 +10,9 @@ export const words = [
     "phonetic": "/ˈfɪkʃən/",
     "pos": "n.",
     "zh": "小说；虚构的事",
-    "enDef": "fiction — 小说；虚构的事",
-    "example": "This fiction is useful in daily life.",
-    "exampleZh": "这个小说在日常生活中很有用。"
+    "enDef": "noun meaning “小说”",
+    "example": "I need more information about fiction.",
+    "exampleZh": "我需要更多关于小说的信息。"
   },
   {
     "id": "x4-0002",
@@ -22,10 +22,10 @@ export const words = [
     "word": "science fiction (informal sci-fi]",
     "phonetic": "/ˈsaɪəns ˈfɪkʃən ˌɪnˈfɔɹməɫ ˈɛsˈsiˈaɪ ˈfaɪ/",
     "pos": "短语",
-    "zh": "科幻小说(或影片等)",
-    "enDef": "an expression meaning “科幻小说(或影片等)”",
-    "example": "Students should remember the phrase “science fiction (informal sci-fi]”.",
-    "exampleZh": "同学们应记住短语「science fiction (informal sci-fi]」（科幻小说(或影片等)）。"
+    "zh": "科幻小说（或影片等）",
+    "enDef": "a set phrase meaning “科幻小说（或影片等）”",
+    "example": "We use this phrase when we mean “科幻小说（或影片等）”.",
+    "exampleZh": "这个短语表示「科幻小说（或影片等）」。"
   },
   {
     "id": "x4-0003",
@@ -36,9 +36,9 @@ export const words = [
     "phonetic": "/ˈtɛst ˈaʊt/",
     "pos": "短语",
     "zh": "检验；测试",
-    "enDef": "an expression meaning “检验；测试”",
-    "example": "Students should remember the phrase “test out”.",
-    "exampleZh": "同学们应记住短语「test out」（检验）。"
+    "enDef": "a set phrase meaning “检验”",
+    "example": "We use this phrase when we mean “检验”.",
+    "exampleZh": "这个短语表示「检验」。"
   },
   {
     "id": "x4-0004",
@@ -48,10 +48,10 @@ export const words = [
     "word": "bonus",
     "phonetic": "/ˈboʊnəs/",
     "pos": "n.",
-    "zh": "意外收获:奖金；红利",
-    "enDef": "bonus — 意外收获:奖金；红利",
-    "example": "This bonus is useful in daily life.",
-    "exampleZh": "这个意外收获:奖金在日常生活中很有用。"
+    "zh": "意外收获；奖金；红利",
+    "enDef": "noun meaning “意外收获”",
+    "example": "I need more information about bonus.",
+    "exampleZh": "我需要更多关于意外收获的信息。"
   },
   {
     "id": "x4-0005",
@@ -62,9 +62,9 @@ export const words = [
     "phonetic": "/ˈmɔɹ ˈɫaɪk/",
     "pos": "短语",
     "zh": "更像是；更接近",
-    "enDef": "an expression meaning “更像是；更接近”",
-    "example": "Students should remember the phrase “more like”.",
-    "exampleZh": "同学们应记住短语「more like」（更像是）。"
+    "enDef": "a set phrase meaning “更像是”",
+    "example": "We use this phrase when we mean “更像是”.",
+    "exampleZh": "这个短语表示「更像是」。"
   },
   {
     "id": "x4-0006",
@@ -74,10 +74,10 @@ export const words = [
     "word": "ridiculous",
     "phonetic": "/ɹɪˈdɪkjəɫəs/",
     "pos": "adj.",
-    "zh": "愚蠢的:荒谬的；荒唐的；（不具有娱乐性）",
-    "enDef": "describing something as “愚蠢的:荒谬的；荒唐的；（不具有娱乐性）”",
-    "example": "They described the idea as ridiculous.",
-    "exampleZh": "他们认为这个想法是愚蠢的:荒谬的的。"
+    "zh": "愚蠢的；荒谬的；荒唐的；（不具有娱乐性）",
+    "enDef": "adjective meaning “愚蠢的”",
+    "example": "That description sounds ridiculous.",
+    "exampleZh": "那种描述听起来很愚蠢的。"
   },
   {
     "id": "x4-0007",
@@ -87,10 +87,10 @@ export const words = [
     "word": "integrity",
     "phonetic": "/ˌɪnˈtɛɡɹəti/",
     "pos": "n.",
-    "zh": "诚实正直；完整；完好= honesty",
-    "enDef": "integrity — 诚实正直；完整；完好= honesty",
-    "example": "This integrity is useful in daily life.",
-    "exampleZh": "这个诚实正直在日常生活中很有用。"
+    "zh": "诚实正直；完整；完好=",
+    "enDef": "noun meaning “诚实正直”",
+    "example": "I need more information about integrity.",
+    "exampleZh": "我需要更多关于诚实正直的信息。"
   },
   {
     "id": "x4-0008",
@@ -100,10 +100,10 @@ export const words = [
     "word": "dignity",
     "phonetic": "/ˈdɪɡnəti/",
     "pos": "n.",
-    "zh": "庄重；庄严:尊严",
-    "enDef": "dignity — 庄重；庄严:尊严",
-    "example": "This dignity is useful in daily life.",
-    "exampleZh": "这个庄重在日常生活中很有用。"
+    "zh": "庄重；庄严；尊严",
+    "enDef": "noun meaning “庄重”",
+    "example": "I need more information about dignity.",
+    "exampleZh": "我需要更多关于庄重的信息。"
   },
   {
     "id": "x4-0009",
@@ -113,10 +113,10 @@ export const words = [
     "word": "salary",
     "phonetic": "/ˈsæɫɝi/",
     "pos": "n.",
-    "zh": "薪水；薪金（月薪）in a high / low salary family",
-    "enDef": "salary — 薪水；薪金（月薪）in a high / low salary family",
-    "example": "This salary is useful in daily life.",
-    "exampleZh": "这个薪水在日常生活中很有用。"
+    "zh": "薪水；薪金（月薪）",
+    "enDef": "noun meaning “薪水”",
+    "example": "I need more information about salary.",
+    "exampleZh": "我需要更多关于薪水的信息。"
   },
   {
     "id": "x4-0010",
@@ -126,10 +126,10 @@ export const words = [
     "word": "absurd",
     "phonetic": "/əbˈsɝd/",
     "pos": "adj.",
-    "zh": "荒谬的；荒唐的(= ridiculous )",
-    "enDef": "describing something as “荒谬的；荒唐的(= ridiculous )”",
-    "example": "They described the idea as absurd.",
-    "exampleZh": "他们认为这个想法是荒谬的的。"
+    "zh": "荒谬的；荒唐的",
+    "enDef": "adjective meaning “荒谬的”",
+    "example": "That description sounds absurd.",
+    "exampleZh": "那种描述听起来很荒谬的。"
   },
   {
     "id": "x4-0011",
@@ -140,9 +140,9 @@ export const words = [
     "phonetic": "/əˈpɔɪntmənt/",
     "pos": "n.",
     "zh": "预约；约会；委任",
-    "enDef": "appointment — 预约；约会；委任",
-    "example": "This appointment is useful in daily life.",
-    "exampleZh": "这个预约在日常生活中很有用。"
+    "enDef": "noun meaning “预约”",
+    "example": "I need more information about appointment.",
+    "exampleZh": "我需要更多关于预约的信息。"
   },
   {
     "id": "x4-0012",
@@ -152,10 +152,10 @@ export const words = [
     "word": "nail",
     "phonetic": "/ˈneɪɫ/",
     "pos": "n. / vt.",
-    "zh": "指甲；趾甲；钉子；(用钉子)钉牢；固定",
-    "enDef": "to nail — 指甲；趾甲；钉子；(用钉子)钉牢；固定",
-    "example": "We nail when we need to.",
-    "exampleZh": "需要时我们会指甲。"
+    "zh": "指甲；趾甲；钉子；（用钉子）钉牢；固定",
+    "enDef": "noun meaning “指甲”",
+    "example": "I need more information about nail.",
+    "exampleZh": "我需要更多关于指甲的信息。"
   },
   {
     "id": "x4-0013",
@@ -166,9 +166,9 @@ export const words = [
     "phonetic": "/ˈseɪɫzˌwʊmən/",
     "pos": "n.",
     "zh": "女售货员；女推销员",
-    "enDef": "saleswoman — 女售货员；女推销员",
-    "example": "This saleswoman is useful in daily life.",
-    "exampleZh": "这个女售货员在日常生活中很有用。"
+    "enDef": "noun meaning “女售货员”",
+    "example": "I need more information about saleswoman.",
+    "exampleZh": "我需要更多关于女售货员的信息。"
   },
   {
     "id": "x4-0014",
@@ -177,11 +177,11 @@ export const words = [
     "unitTitle": "Science fiction",
     "word": "guilty",
     "phonetic": "/ˈɡɪɫti/",
-    "pos": "adj. / n. / adv.",
-    "zh": "内疚的；有罪的:有过失的；guilt  内疚，有罪；guiltily",
-    "enDef": "describing something as “内疚的；有罪的:有过失的；guilt  内疚，有罪；guiltily”",
-    "example": "They described the idea as guilty.",
-    "exampleZh": "他们认为这个想法是内疚的的。"
+    "pos": "adj.",
+    "zh": "内疚的；有罪的；有过失的",
+    "enDef": "adjective meaning “内疚的”",
+    "example": "That description sounds guilty.",
+    "exampleZh": "那种描述听起来很内疚的。"
   },
   {
     "id": "x4-0015",
@@ -190,11 +190,11 @@ export const words = [
     "unitTitle": "Science fiction",
     "word": "suspend",
     "phonetic": "/səˈspɛnd/",
-    "pos": "vt. / n.",
-    "zh": "悬；挂；暂停:暂缓；suspense  悬念；焦虑不安(心理）；suspension 悬挂（物理层面，对应磁悬浮）",
-    "enDef": "to suspend — 悬；挂；暂停:暂缓；suspense  悬念；焦虑不安(心理）；suspension 悬挂（物理层面，对应磁悬浮）",
-    "example": "We suspend when we need to.",
-    "exampleZh": "需要时我们会悬。"
+    "pos": "vt.",
+    "zh": "悬；挂；暂停；暂缓",
+    "enDef": "verb meaning “悬”",
+    "example": "Can you suspend this carefully?",
+    "exampleZh": "你能仔细地悬一下吗？"
   },
   {
     "id": "x4-0016",
@@ -205,9 +205,9 @@ export const words = [
     "phonetic": "/ˈɫædɝ/",
     "pos": "n.",
     "zh": "梯子；阶梯",
-    "enDef": "ladder — 梯子；阶梯",
-    "example": "This ladder is useful in daily life.",
-    "exampleZh": "这个梯子在日常生活中很有用。"
+    "enDef": "noun meaning “梯子”",
+    "example": "I need more information about ladder.",
+    "exampleZh": "我需要更多关于梯子的信息。"
   },
   {
     "id": "x4-0017",
@@ -217,10 +217,10 @@ export const words = [
     "word": "dismiss",
     "phonetic": "/dɪsˈmɪs/",
     "pos": "vt.",
-    "zh": "让(某人)离开；解散；解雇；消除",
-    "enDef": "to dismiss — 让(某人)离开；解散；解雇；消除",
-    "example": "We dismiss when we need to.",
-    "exampleZh": "需要时我们会让(某人)离开。"
+    "zh": "让（某人）离开；解散；解雇；消除",
+    "enDef": "verb meaning “让（某人）离开”",
+    "example": "Can you dismiss this carefully?",
+    "exampleZh": "你能仔细地让（某人）离开一下吗？"
   },
   {
     "id": "x4-0018",
@@ -231,9 +231,9 @@ export const words = [
     "phonetic": "/dɪˈkɫɛɹ/",
     "pos": "vt.",
     "zh": "表明；宜称；公布",
-    "enDef": "to declare — 表明；宜称；公布",
-    "example": "We declare when we need to.",
-    "exampleZh": "需要时我们会表明。"
+    "enDef": "verb meaning “表明”",
+    "example": "Can you declare this carefully?",
+    "exampleZh": "你能仔细地表明一下吗？"
   },
   {
     "id": "x4-0019",
@@ -244,9 +244,9 @@ export const words = [
     "phonetic": "/hwɛˈɹæz/",
     "pos": "conj.",
     "zh": "然而；但是；尽管",
-    "enDef": "a conjunction meaning “然而；但是；尽管”",
-    "example": "Pay attention to how we use “whereas”.",
-    "exampleZh": "注意「whereas」（然而）的用法。"
+    "enDef": "conjunction meaning “然而”",
+    "example": "Notice how “whereas” connects the ideas (然而).",
+    "exampleZh": "注意「…」如何连接语义（然而）。"
   },
   {
     "id": "x4-0020",
@@ -257,9 +257,9 @@ export const words = [
     "phonetic": "/ˈɹumɝ/",
     "pos": "n.",
     "zh": "谣言；传闻",
-    "enDef": "rumour — 谣言；传闻",
-    "example": "This rumour is useful in daily life.",
-    "exampleZh": "这个谣言在日常生活中很有用。"
+    "enDef": "noun meaning “谣言”",
+    "example": "I need more information about rumour.",
+    "exampleZh": "我需要更多关于谣言的信息。"
   },
   {
     "id": "x4-0021",
@@ -269,10 +269,10 @@ export const words = [
     "word": "presume",
     "phonetic": "/pɹɪˈzum/",
     "pos": "vt. & vi.",
-    "zh": "假设:假定",
-    "enDef": "to presume — 假设:假定",
-    "example": "We presume when we need to.",
-    "exampleZh": "需要时我们会假设:假定。"
+    "zh": "假设；假定",
+    "enDef": "verb meaning “假设”",
+    "example": "Can you presume this carefully?",
+    "exampleZh": "你能仔细地假设一下吗？"
   },
   {
     "id": "x4-0022",
@@ -283,9 +283,9 @@ export const words = [
     "phonetic": "/ˈfɛɹ/",
     "pos": "n.",
     "zh": "车费；船费；飞机票价",
-    "enDef": "fare — 车费；船费；飞机票价",
-    "example": "This fare is useful in daily life.",
-    "exampleZh": "这个车费在日常生活中很有用。"
+    "enDef": "noun meaning “车费”",
+    "example": "I need more information about fare.",
+    "exampleZh": "我需要更多关于车费的信息。"
   },
   {
     "id": "x4-0023",
@@ -295,10 +295,10 @@ export const words = [
     "word": "weekly",
     "phonetic": "/ˈwikɫi/",
     "pos": "adj.",
-    "zh": "每周的n.周刊",
-    "enDef": "describing something as “每周的n.周刊”",
-    "example": "They described the idea as weekly.",
-    "exampleZh": "他们认为这个想法是每周的n.周刊的。"
+    "zh": "每周的周刊",
+    "enDef": "adjective meaning “每周的周刊”",
+    "example": "That description sounds weekly.",
+    "exampleZh": "那种描述听起来很每周的周刊。"
   },
   {
     "id": "x4-0024",
@@ -307,11 +307,11 @@ export const words = [
     "unitTitle": "Science fiction",
     "word": "calculate",
     "phonetic": "/ˈkæɫkjəˌɫeɪt/",
-    "pos": "v. / n.",
-    "zh": "计算；核算；预测；calculation 计算，估计，预测",
-    "enDef": "to calculate — 计算；核算；预测；calculation 计算，估计，预测",
-    "example": "We calculate when we need to.",
-    "exampleZh": "需要时我们会计算。"
+    "pos": "v.",
+    "zh": "计算；核算；预测",
+    "enDef": "verb meaning “计算”",
+    "example": "Can you calculate this carefully?",
+    "exampleZh": "你能仔细地计算一下吗？"
   },
   {
     "id": "x4-0025",
@@ -322,9 +322,9 @@ export const words = [
     "phonetic": "/ˈtʃɛɹˌwʊmən/",
     "pos": "n.",
     "zh": "女主席；女董事长；女委员长",
-    "enDef": "chairwoman — 女主席；女董事长；女委员长",
-    "example": "This chairwoman is useful in daily life.",
-    "exampleZh": "这个女主席在日常生活中很有用。"
+    "enDef": "noun meaning “女主席”",
+    "example": "I need more information about chairwoman.",
+    "exampleZh": "我需要更多关于女主席的信息。"
   },
   {
     "id": "x4-0026",
@@ -334,10 +334,10 @@ export const words = [
     "word": "gramme",
     "phonetic": "",
     "pos": "n.",
-    "zh": "克(重量单位)",
-    "enDef": "gramme — 克(重量单位)",
-    "example": "This gramme is useful in daily life.",
-    "exampleZh": "这个克(重量单位)在日常生活中很有用。"
+    "zh": "克（重量单位）",
+    "enDef": "noun meaning “克（重量单位）”",
+    "example": "I need more information about gramme.",
+    "exampleZh": "我需要更多关于克（重量单位）的信息。"
   },
   {
     "id": "x4-0027",
@@ -347,10 +347,10 @@ export const words = [
     "word": "flour",
     "phonetic": "/ˈfɫaʊɝ/",
     "pos": "n.",
-    "zh": "面粉；( 谷物磨成的)粉",
-    "enDef": "flour — 面粉；( 谷物磨成的)粉",
-    "example": "This flour is useful in daily life.",
-    "exampleZh": "这个面粉在日常生活中很有用。"
+    "zh": "面粉；（谷物磨成的）粉",
+    "enDef": "noun meaning “面粉”",
+    "example": "I need more information about flour.",
+    "exampleZh": "我需要更多关于面粉的信息。"
   },
   {
     "id": "x4-0028",
@@ -360,10 +360,10 @@ export const words = [
     "word": "venue",
     "phonetic": "/ˈvɛnju/",
     "pos": "n.",
-    "zh": "活动场地(如音乐厅、会场等)",
-    "enDef": "venue — 活动场地(如音乐厅、会场等)",
-    "example": "This venue is useful in daily life.",
-    "exampleZh": "这个活动场地(如音乐厅、会场等)在日常生活中很有用。"
+    "zh": "活动场地（如音乐厅、会场等）",
+    "enDef": "noun meaning “活动场地（如音乐厅、会场等）”",
+    "example": "I need more information about venue.",
+    "exampleZh": "我需要更多关于活动场地（如音乐厅、会场等）的信息。"
   },
   {
     "id": "x4-0029",
@@ -374,9 +374,9 @@ export const words = [
     "phonetic": "/ˈseɪɫzmən/",
     "pos": "n.",
     "zh": "售货员；推销员",
-    "enDef": "salesman — 售货员；推销员",
-    "example": "This salesman is useful in daily life.",
-    "exampleZh": "这个售货员在日常生活中很有用。"
+    "enDef": "noun meaning “售货员”",
+    "example": "I need more information about salesman.",
+    "exampleZh": "我需要更多关于售货员的信息。"
   },
   {
     "id": "x4-0030",
@@ -386,10 +386,10 @@ export const words = [
     "word": "alien",
     "phonetic": "/ˈeɪɫiən/",
     "pos": "n. / adj.",
-    "zh": "外星人(生物)；外国人；陌生的:外星的:外国的",
-    "enDef": "alien — 外星人(生物)；外国人；陌生的:外星的:外国的",
-    "example": "This alien is useful in daily life.",
-    "exampleZh": "这个外星人(生物)在日常生活中很有用。"
+    "zh": "外星人（生物）；外国人；陌生的；外星的；外国的",
+    "enDef": "noun meaning “外星人（生物）”",
+    "example": "I need more information about alien.",
+    "exampleZh": "我需要更多关于外星人（生物）的信息。"
   },
   {
     "id": "x4-0031",
@@ -400,9 +400,9 @@ export const words = [
     "phonetic": "/ˈpɹoʊz ˈkɑnz/",
     "pos": "短语",
     "zh": "事物的利与弊；支持与反对",
-    "enDef": "an expression meaning “事物的利与弊；支持与反对”",
-    "example": "Students should remember the phrase “pros and cons”.",
-    "exampleZh": "同学们应记住短语「pros and cons」（事物的利与弊）。"
+    "enDef": "a set phrase meaning “事物的利与弊”",
+    "example": "We use this phrase when we mean “事物的利与弊”.",
+    "exampleZh": "这个短语表示「事物的利与弊」。"
   },
   {
     "id": "x4-0032",
@@ -412,10 +412,10 @@ export const words = [
     "word": "blurred",
     "phonetic": "/ˈbɫɝd/",
     "pos": "adj.",
-    "zh": "模糊不清的:难以区分的",
-    "enDef": "describing something as “模糊不清的:难以区分的”",
-    "example": "They described the idea as blurred.",
-    "exampleZh": "他们认为这个想法是模糊不清的:难以区分的的。"
+    "zh": "模糊不清的；难以区分的",
+    "enDef": "adjective meaning “模糊不清的”",
+    "example": "That description sounds blurred.",
+    "exampleZh": "那种描述听起来很模糊不清的。"
   },
   {
     "id": "x4-0033",
@@ -425,10 +425,10 @@ export const words = [
     "word": "superior",
     "phonetic": "/suˈpɪɹiɝ/",
     "pos": "adj.",
-    "zh": "更好的；占优势的；( 在级别或重要性上)更高的",
-    "enDef": "describing something as “更好的；占优势的；( 在级别或重要性上)更高的”",
-    "example": "They described the idea as superior.",
-    "exampleZh": "他们认为这个想法是更好的的。"
+    "zh": "更好的；占优势的；（在级别或重要性上）更高的",
+    "enDef": "adjective meaning “更好的”",
+    "example": "That description sounds superior.",
+    "exampleZh": "那种描述听起来很更好的。"
   },
   {
     "id": "x4-0034",
@@ -438,10 +438,10 @@ export const words = [
     "word": "take over",
     "phonetic": "/ˈteɪk ˈoʊvɝ/",
     "pos": "短语",
-    "zh": "占上风；取而代之；接管:接手",
-    "enDef": "an expression meaning “占上风；取而代之；接管:接手”",
-    "example": "Students should remember the phrase “take over”.",
-    "exampleZh": "同学们应记住短语「take over」（占上风）。"
+    "zh": "占上风；取而代之；接管；接手",
+    "enDef": "a set phrase meaning “占上风”",
+    "example": "We use this phrase when we mean “占上风”.",
+    "exampleZh": "这个短语表示「占上风」。"
   },
   {
     "id": "x4-0035",
@@ -452,9 +452,9 @@ export const words = [
     "phonetic": "/ˌɪˈnækʃən/",
     "pos": "n.",
     "zh": "无行动；不采取措施",
-    "enDef": "inaction — 无行动；不采取措施",
-    "example": "This inaction is useful in daily life.",
-    "exampleZh": "这个无行动在日常生活中很有用。"
+    "enDef": "noun meaning “无行动”",
+    "example": "I need more information about inaction.",
+    "exampleZh": "我需要更多关于无行动的信息。"
   },
   {
     "id": "x4-0036",
@@ -465,9 +465,9 @@ export const words = [
     "phonetic": "/ˈkɑnfɫɪkt ˈwɪð/",
     "pos": "短语",
     "zh": "冲突或抵触",
-    "enDef": "an expression meaning “冲突或抵触”",
-    "example": "Students should remember the phrase “conflict with”.",
-    "exampleZh": "同学们应记住短语「conflict with」（冲突或抵触）。"
+    "enDef": "a set phrase meaning “冲突或抵触”",
+    "example": "We use this phrase when we mean “冲突或抵触”.",
+    "exampleZh": "这个短语表示「冲突或抵触」。"
   },
   {
     "id": "x4-0037",
@@ -477,10 +477,10 @@ export const words = [
     "word": "labour",
     "phonetic": "/ˈɫeɪbɝ/",
     "pos": "n.",
-    "zh": "劳动(者)；体力劳动vi.奋斗；努力工作",
-    "enDef": "labour — 劳动(者)；体力劳动vi.奋斗；努力工作",
-    "example": "This labour is useful in daily life.",
-    "exampleZh": "这个劳动(者)在日常生活中很有用。"
+    "zh": "劳动（者）；体力劳动奋斗；努力工作",
+    "enDef": "noun meaning “劳动（者）”",
+    "example": "I need more information about labour.",
+    "exampleZh": "我需要更多关于劳动（者）的信息。"
   },
   {
     "id": "x4-0038",
@@ -490,10 +490,10 @@ export const words = [
     "word": "leather",
     "phonetic": "/ˈɫɛðɝ/",
     "pos": "n.",
-    "zh": "皮革；[pl] 皮衣；皮外",
-    "enDef": "leather — 皮革；[pl] 皮衣；皮外",
-    "example": "This leather is useful in daily life.",
-    "exampleZh": "这个皮革在日常生活中很有用。"
+    "zh": "皮革；[；皮衣；皮外",
+    "enDef": "noun meaning “皮革”",
+    "example": "I need more information about leather.",
+    "exampleZh": "我需要更多关于皮革的信息。"
   },
   {
     "id": "x4-0039",
@@ -504,9 +504,9 @@ export const words = [
     "phonetic": "/ˈɫɛvɝ/",
     "pos": "n.",
     "zh": "操纵杆；杠杆",
-    "enDef": "lever — 操纵杆；杠杆",
-    "example": "This lever is useful in daily life.",
-    "exampleZh": "这个操纵杆在日常生活中很有用。"
+    "enDef": "noun meaning “操纵杆”",
+    "example": "I need more information about lever.",
+    "exampleZh": "我需要更多关于操纵杆的信息。"
   },
   {
     "id": "x4-0040",
@@ -517,9 +517,9 @@ export const words = [
     "phonetic": "/ˈpænəɫ/",
     "pos": "n.",
     "zh": "控制板；仪表盘；专家咨询组",
-    "enDef": "panel — 控制板；仪表盘；专家咨询组",
-    "example": "This panel is useful in daily life.",
-    "exampleZh": "这个控制板在日常生活中很有用。"
+    "enDef": "noun meaning “控制板”",
+    "example": "I need more information about panel.",
+    "exampleZh": "我需要更多关于控制板的信息。"
   },
   {
     "id": "x4-0041",
@@ -529,10 +529,10 @@ export const words = [
     "word": "inch",
     "phonetic": "/ˈɪntʃ/",
     "pos": "n.",
-    "zh": "英寸(长度单位，等于2.54 厘米):",
-    "enDef": "inch — 英寸(长度单位，等于2.54 厘米):",
-    "example": "This inch is useful in daily life.",
-    "exampleZh": "这个英寸(长度单位在日常生活中很有用。"
+    "zh": "英寸（长度单位，等于2.54厘米）",
+    "enDef": "noun meaning “英寸（长度单位”",
+    "example": "I need more information about inch.",
+    "exampleZh": "我需要更多关于英寸（长度单位的信息。"
   },
   {
     "id": "x4-0042",
@@ -543,9 +543,9 @@ export const words = [
     "phonetic": "/ˈbækwɝdz ˈneɪm ˈbækwɝd/",
     "pos": "adv.",
     "zh": "向后；倒着；往回",
-    "enDef": "in a way that is “向后；倒着；往回”",
-    "example": "Students should remember the phrase “backwards (NAmE backward]”.",
-    "exampleZh": "同学们应记住短语「backwards (NAmE backward]」（向后）。"
+    "enDef": "adverb meaning “向后”",
+    "example": "We use this phrase when we mean “向后”.",
+    "exampleZh": "这个短语表示「向后」。"
   },
   {
     "id": "x4-0043",
@@ -555,10 +555,10 @@ export const words = [
     "word": "grip",
     "phonetic": "/ˈɡɹɪp/",
     "pos": "vt. & vi.",
-    "zh": "紧握；抓紧 (gripped, gripped)",
-    "enDef": "to grip — 紧握；抓紧 (gripped, gripped)",
-    "example": "We grip when we need to.",
-    "exampleZh": "需要时我们会紧握。"
+    "zh": "紧握；抓紧",
+    "enDef": "verb meaning “紧握”",
+    "example": "Can you grip this carefully?",
+    "exampleZh": "你能仔细地紧握一下吗？"
   },
   {
     "id": "x4-0044",
@@ -569,9 +569,9 @@ export const words = [
     "phonetic": "/ˈheɪzi/",
     "pos": "adj.",
     "zh": "模糊的；朦胧的；困惑的",
-    "enDef": "describing something as “模糊的；朦胧的；困惑的”",
-    "example": "They described the idea as hazy.",
-    "exampleZh": "他们认为这个想法是模糊的的。"
+    "enDef": "adjective meaning “模糊的”",
+    "example": "That description sounds hazy.",
+    "exampleZh": "那种描述听起来很模糊的。"
   },
   {
     "id": "x4-0045",
@@ -581,10 +581,10 @@ export const words = [
     "word": "niece",
     "phonetic": "/ˈnis/",
     "pos": "n.",
-    "zh": "侄女:外甥女",
-    "enDef": "niece — 侄女:外甥女",
-    "example": "This niece is useful in daily life.",
-    "exampleZh": "这个侄女:外甥女在日常生活中很有用。"
+    "zh": "侄女；外甥女",
+    "enDef": "noun meaning “侄女”",
+    "example": "I need more information about niece.",
+    "exampleZh": "我需要更多关于侄女的信息。"
   },
   {
     "id": "x4-0046",
@@ -594,10 +594,10 @@ export const words = [
     "word": "fetch",
     "phonetic": "/ˈfɛtʃ/",
     "pos": "vt.",
-    "zh": "(去)拿过来；(去)请来",
-    "enDef": "to fetch — (去)拿过来；(去)请来",
-    "example": "We fetch when we need to.",
-    "exampleZh": "需要时我们会(去)拿过来。"
+    "zh": "（去）拿过来；（去）请来",
+    "enDef": "verb meaning “（去）拿过来”",
+    "example": "Can you fetch this carefully?",
+    "exampleZh": "你能仔细地（去）拿过来一下吗？"
   },
   {
     "id": "x4-0047",
@@ -607,10 +607,10 @@ export const words = [
     "word": "handkerchief",
     "phonetic": "/ˈhæŋkɝtʃif/",
     "pos": "n.",
-    "zh": "手帕；纸巾（-s/ -ves）",
-    "enDef": "handkerchief — 手帕；纸巾（-s/ -ves）",
-    "example": "This handkerchief is useful in daily life.",
-    "exampleZh": "这个手帕在日常生活中很有用。"
+    "zh": "手帕；纸巾",
+    "enDef": "noun meaning “手帕”",
+    "example": "I need more information about handkerchief.",
+    "exampleZh": "我需要更多关于手帕的信息。"
   },
   {
     "id": "x4-0048",
@@ -621,9 +621,9 @@ export const words = [
     "phonetic": "/ˈɫæmp/",
     "pos": "n.",
     "zh": "灯；台灯",
-    "enDef": "lamp — 灯；台灯",
-    "example": "This lamp is useful in daily life.",
-    "exampleZh": "这个灯在日常生活中很有用。"
+    "enDef": "noun meaning “灯”",
+    "example": "I need more information about lamp.",
+    "exampleZh": "我需要更多关于灯的信息。"
   },
   {
     "id": "x4-0049",
@@ -633,10 +633,10 @@ export const words = [
     "word": "turn out",
     "phonetic": "/ˈtɝn ˈaʊt/",
     "pos": "短语",
-    "zh": "关掉；熄灭；在场:使朝外；结果是",
-    "enDef": "an expression meaning “关掉；熄灭；在场:使朝外；结果是”",
-    "example": "Students should remember the phrase “turn out”.",
-    "exampleZh": "同学们应记住短语「turn out」（关掉）。"
+    "zh": "关掉；熄灭；在场；使朝外；结果是",
+    "enDef": "a set phrase meaning “关掉”",
+    "example": "We use this phrase when we mean “关掉”.",
+    "exampleZh": "这个短语表示「关掉」。"
   },
   {
     "id": "x4-0050",
@@ -646,10 +646,10 @@ export const words = [
     "word": "pace",
     "phonetic": "/ˈpeɪs/",
     "pos": "n. / vt. & vi.",
-    "zh": "速度；步伐:节奏；确定速度；调整节奏",
-    "enDef": "to pace — 速度；步伐:节奏；确定速度；调整节奏",
-    "example": "We pace when we need to.",
-    "exampleZh": "需要时我们会速度。"
+    "zh": "速度；步伐；节奏；确定速度；调整节奏",
+    "enDef": "noun meaning “速度”",
+    "example": "I need more information about pace.",
+    "exampleZh": "我需要更多关于速度的信息。"
   },
   {
     "id": "x4-0051",
@@ -659,10 +659,10 @@ export const words = [
     "word": "fall away",
     "phonetic": "/ˈfɑɫ əˈweɪ/",
     "pos": "短语",
-    "zh": "(逐渐)减少；消失",
-    "enDef": "an expression meaning “(逐渐)减少；消失”",
-    "example": "Students should remember the phrase “fall away”.",
-    "exampleZh": "同学们应记住短语「fall away」（(逐渐)减少）。"
+    "zh": "（逐渐）减少；消失",
+    "enDef": "a set phrase meaning “（逐渐）减少”",
+    "example": "We use this phrase when we mean “（逐渐）减少”.",
+    "exampleZh": "这个短语表示「（逐渐）减少」。"
   },
   {
     "id": "x4-0052",
@@ -672,10 +672,10 @@ export const words = [
     "word": "division",
     "phonetic": "/dɪˈvɪʒən/",
     "pos": "n.",
-    "zh": "分开；分隔；差异:除(法)",
-    "enDef": "division — 分开；分隔；差异:除(法)",
-    "example": "This division is useful in daily life.",
-    "exampleZh": "这个分开在日常生活中很有用。"
+    "zh": "分开；分隔；差异；除（法）",
+    "enDef": "noun meaning “分开”",
+    "example": "I need more information about division.",
+    "exampleZh": "我需要更多关于分开的信息。"
   },
   {
     "id": "x4-0053",
@@ -685,10 +685,10 @@ export const words = [
     "word": "puff",
     "phonetic": "/ˈpəf/",
     "pos": "n.",
-    "zh": "(烟、 气等的)一缕；少量；喘息",
-    "enDef": "puff — (烟、 气等的)一缕；少量；喘息",
-    "example": "This puff is useful in daily life.",
-    "exampleZh": "这个(烟、 气等的)一缕在日常生活中很有用。"
+    "zh": "（烟、气等的）一缕；少量；喘息",
+    "enDef": "noun meaning “（烟、气等的）一缕”",
+    "example": "I need more information about puff.",
+    "exampleZh": "我需要更多关于（烟、气等的）一缕的信息。"
   },
   {
     "id": "x4-0054",
@@ -698,10 +698,10 @@ export const words = [
     "word": "urge",
     "phonetic": "/ˈɝdʒ/",
     "pos": "n.",
-    "zh": "强烈的欲望；冲动v.催促；力劝；大力推荐",
-    "enDef": "urge — 强烈的欲望；冲动v.催促；力劝；大力推荐",
-    "example": "This urge is useful in daily life.",
-    "exampleZh": "这个强烈的欲望在日常生活中很有用。"
+    "zh": "强烈的欲望；冲动催促；力劝；大力推荐",
+    "enDef": "noun meaning “强烈的欲望”",
+    "example": "I need more information about urge.",
+    "exampleZh": "我需要更多关于强烈的欲望的信息。"
   },
   {
     "id": "x4-0055",
@@ -711,10 +711,10 @@ export const words = [
     "word": "have an urge to",
     "phonetic": "/ˈhæv ˈɝdʒ/",
     "pos": "短语",
-    "zh": "有强烈的欲望做某事 n. urgency紧迫，急迫",
-    "enDef": "an expression meaning “有强烈的欲望做某事 n. urgency紧迫，急迫”",
-    "example": "Students should remember the phrase “have an urge to”.",
-    "exampleZh": "同学们应记住短语「have an urge to」（有强烈的欲望做某事 n. urgency紧迫）。"
+    "zh": "有强烈的欲望做某事；紧迫，急迫",
+    "enDef": "a set phrase meaning “有强烈的欲望做某事”",
+    "example": "We use this phrase when we mean “有强烈的欲望做某事”.",
+    "exampleZh": "这个短语表示「有强烈的欲望做某事」。"
   },
   {
     "id": "x4-0056",
@@ -725,9 +725,9 @@ export const words = [
     "phonetic": "/ˈɹændəm/",
     "pos": "adj.",
     "zh": "随机的；不可思议的",
-    "enDef": "describing something as “随机的；不可思议的”",
-    "example": "They described the idea as random.",
-    "exampleZh": "他们认为这个想法是随机的的。"
+    "enDef": "adjective meaning “随机的”",
+    "example": "That description sounds random.",
+    "exampleZh": "那种描述听起来很随机的。"
   },
   {
     "id": "x4-0057",
@@ -738,9 +738,9 @@ export const words = [
     "phonetic": "/ˈmæksəməm/",
     "pos": "adj. / n.",
     "zh": "最大极限的；最大量；最大限度",
-    "enDef": "describing something as “最大极限的；最大量；最大限度”",
-    "example": "They described the idea as maximum.",
-    "exampleZh": "他们认为这个想法是最大极限的的。"
+    "enDef": "adjective meaning “最大极限的”",
+    "example": "That description sounds maximum.",
+    "exampleZh": "那种描述听起来很最大极限的。"
   },
   {
     "id": "x4-0058",
@@ -751,9 +751,9 @@ export const words = [
     "phonetic": "/ɪksˈpɫoʊd/",
     "pos": "vi. & vt.",
     "zh": "爆炸；爆破",
-    "enDef": "to explode — 爆炸；爆破",
-    "example": "We explode when we need to.",
-    "exampleZh": "需要时我们会爆炸。"
+    "enDef": "verb meaning “爆炸”",
+    "example": "Can you explode this carefully?",
+    "exampleZh": "你能仔细地爆炸一下吗？"
   },
   {
     "id": "x4-0059",
@@ -763,10 +763,10 @@ export const words = [
     "word": "jolt",
     "phonetic": "/ˈdʒoʊɫt/",
     "pos": "n. / vi.",
-    "zh": "震动；摇晃；颠簸vt.&；(使)震动:摇晃",
-    "enDef": "to jolt — 震动；摇晃；颠簸vt.&；(使)震动:摇晃",
-    "example": "We jolt when we need to.",
-    "exampleZh": "需要时我们会震动。"
+    "zh": "震动；摇晃；颠簸&；（使）震动",
+    "enDef": "noun meaning “震动”",
+    "example": "I need more information about jolt.",
+    "exampleZh": "我需要更多关于震动的信息。"
   },
   {
     "id": "x4-0060",
@@ -776,10 +776,10 @@ export const words = [
     "word": "flip",
     "phonetic": "/ˈfɫɪp/",
     "pos": "vt. & vi.",
-    "zh": "(使)快速翻转；(用手指 )轻抛",
-    "enDef": "to flip — (使)快速翻转；(用手指 )轻抛",
-    "example": "We flip when we need to.",
-    "exampleZh": "需要时我们会(使)快速翻转。"
+    "zh": "（使）快速翻转；（用手指）轻抛",
+    "enDef": "verb meaning “（使）快速翻转”",
+    "example": "Can you flip this carefully?",
+    "exampleZh": "你能仔细地（使）快速翻转一下吗？"
   },
   {
     "id": "x4-0061",
@@ -789,10 +789,10 @@ export const words = [
     "word": "stun",
     "phonetic": "/ˈstən/",
     "pos": "vt.",
-    "zh": "使震惊，使昏迷  (stunned-stunned)",
-    "enDef": "to stun — 使震惊，使昏迷  (stunned-stunned)",
-    "example": "We stun when we need to.",
-    "exampleZh": "需要时我们会使震惊。"
+    "zh": "使震惊，使昏迷",
+    "enDef": "verb meaning “使震惊”",
+    "example": "Can you stun this carefully?",
+    "exampleZh": "你能仔细地使震惊一下吗？"
   },
   {
     "id": "x4-0062",
@@ -802,10 +802,10 @@ export const words = [
     "word": "mud",
     "phonetic": "/ˈməd/",
     "pos": "n. / adj.",
-    "zh": "泥；泥浆  （muddy；泥泞的）",
-    "enDef": "mud — 泥；泥浆  （muddy；泥泞的）",
-    "example": "This mud is useful in daily life.",
-    "exampleZh": "这个泥在日常生活中很有用。"
+    "zh": "泥；泥浆（；泥泞的）",
+    "enDef": "noun meaning “泥”",
+    "example": "I need more information about mud.",
+    "exampleZh": "我需要更多关于泥的信息。"
   },
   {
     "id": "x4-0063",
@@ -815,10 +815,10 @@ export const words = [
     "word": "overstatement",
     "phonetic": "/ˈoʊvɝˌsteɪtmənt/",
     "pos": "n.",
-    "zh": "夸大:奇张",
-    "enDef": "overstatement — 夸大:奇张",
-    "example": "This overstatement is useful in daily life.",
-    "exampleZh": "这个夸大:奇张在日常生活中很有用。"
+    "zh": "夸大；奇张",
+    "enDef": "noun meaning “夸大”",
+    "example": "I need more information about overstatement.",
+    "exampleZh": "我需要更多关于夸大的信息。"
   },
   {
     "id": "x4-0064",
@@ -829,9 +829,9 @@ export const words = [
     "phonetic": "/ˈaɪzək ˈæsɪmɑv/",
     "pos": "专有名词",
     "zh": "艾萨克.阿西黄夫",
-    "enDef": "a proper name or term: 艾萨克.阿西黄夫",
-    "example": "Students should remember the phrase “Isaac Asimov”.",
-    "exampleZh": "同学们应记住短语「Isaac Asimov」（艾萨克.阿西黄夫）。"
+    "enDef": "a proper name / term for “艾萨克.阿西黄夫”",
+    "example": "We use this phrase when we mean “艾萨克.阿西黄夫”.",
+    "exampleZh": "这个短语表示「艾萨克.阿西黄夫」。"
   },
   {
     "id": "x4-0065",
@@ -842,9 +842,9 @@ export const words = [
     "phonetic": "/ˈɫɛɹi ˈdeɪɫmoʊnt/",
     "pos": "专有名词",
     "zh": "拉尘.贝尔象特",
-    "enDef": "a proper name or term: 拉尘.贝尔象特",
-    "example": "Students should remember the phrase “Larry Delmont”.",
-    "exampleZh": "同学们应记住短语「Larry Delmont」（拉尘.贝尔象特）。"
+    "enDef": "a proper name / term for “拉尘.贝尔象特”",
+    "example": "We use this phrase when we mean “拉尘.贝尔象特”.",
+    "exampleZh": "这个短语表示「拉尘.贝尔象特」。"
   },
   {
     "id": "x4-0066",
@@ -855,9 +855,9 @@ export const words = [
     "phonetic": "/ˈkɫɛɹ/",
     "pos": "专有名词",
     "zh": "克莱尔",
-    "enDef": "a proper name or term: 克莱尔",
-    "example": "Claire is introduced in this unit.",
-    "exampleZh": "本单元介绍了Claire（克莱尔）。"
+    "enDef": "a proper name / term for “克莱尔”",
+    "example": "This name / term refers to “克莱尔”.",
+    "exampleZh": "这个专有名称指「克莱尔」。"
   },
   {
     "id": "x4-0067",
@@ -867,10 +867,10 @@ export const words = [
     "word": "Gladys Claffern",
     "phonetic": "",
     "pos": "专有名词",
-    "zh": "格拉迪丝.克拉芬.",
-    "enDef": "a proper name or term: 格拉迪丝.克拉芬.",
-    "example": "Students should remember the phrase “Gladys Claffern”.",
-    "exampleZh": "同学们应记住短语「Gladys Claffern」（格拉迪丝.克拉芬.）。"
+    "zh": "格拉迪丝.克拉芬",
+    "enDef": "a proper name / term for “格拉迪丝.克拉芬”",
+    "example": "We use this phrase when we mean “格拉迪丝.克拉芬”.",
+    "exampleZh": "这个短语表示「格拉迪丝.克拉芬」。"
   },
   {
     "id": "x4-0068",
@@ -880,10 +880,10 @@ export const words = [
     "word": "Braille (also braille]",
     "phonetic": "/ˈbɹeɪɫ ˈɔɫsoʊ ˈbɹeɪɫ/",
     "pos": "专有名词",
-    "zh": "布拉耶盲文(凸点符号)",
-    "enDef": "a proper name or term: 布拉耶盲文(凸点符号)",
-    "example": "Students should remember the phrase “Braille (also braille]”.",
-    "exampleZh": "同学们应记住短语「Braille (also braille]」（布拉耶盲文(凸点符号)）。"
+    "zh": "布拉耶盲文（凸点符号）",
+    "enDef": "a proper name / term for “布拉耶盲文（凸点符号）”",
+    "example": "We use this phrase when we mean “布拉耶盲文（凸点符号）”.",
+    "exampleZh": "这个短语表示「布拉耶盲文（凸点符号）」。"
   },
   {
     "id": "x4-0069",
@@ -894,9 +894,9 @@ export const words = [
     "phonetic": "/ˈθɹi ˈbɑdi ˈpɹɑbɫəm/",
     "pos": "专有名词",
     "zh": "《三体》",
-    "enDef": "a proper name or term: 《三体》",
-    "example": "Students should remember the phrase “The Three- Body Problem”.",
-    "exampleZh": "同学们应记住短语「The Three- Body Problem」（《三体》）。"
+    "enDef": "a proper name / term for “《三体》”",
+    "example": "We use this phrase when we mean “《三体》”.",
+    "exampleZh": "这个短语表示「《三体》」。"
   },
   {
     "id": "x4-0070",
@@ -907,9 +907,9 @@ export const words = [
     "phonetic": "/ˈhjuɡoʊ əˈwɔɹd/",
     "pos": "专有名词",
     "zh": "雨果奖",
-    "enDef": "a proper name or term: 雨果奖",
-    "example": "Students should remember the phrase “Hugo Award”.",
-    "exampleZh": "同学们应记住短语「Hugo Award」（雨果奖）。"
+    "enDef": "a proper name / term for “雨果奖”",
+    "example": "We use this phrase when we mean “雨果奖”.",
+    "exampleZh": "这个短语表示「雨果奖」。"
   },
   {
     "id": "x4-0071",
@@ -920,9 +920,9 @@ export const words = [
     "phonetic": "/ˌaɪˈkɑnɪk/",
     "pos": "adj.",
     "zh": "符号的；图标的",
-    "enDef": "describing something as “符号的；图标的”",
-    "example": "They described the idea as iconic.",
-    "exampleZh": "他们认为这个想法是符号的的。"
+    "enDef": "adjective meaning “符号的”",
+    "example": "That description sounds iconic.",
+    "exampleZh": "那种描述听起来很符号的。"
   },
   {
     "id": "x4-0072",
@@ -933,9 +933,9 @@ export const words = [
     "phonetic": "/faʊnˈdeɪʃən/",
     "pos": "n.",
     "zh": "创建；基础；地基",
-    "enDef": "foundation — 创建；基础；地基",
-    "example": "This foundation is useful in daily life.",
-    "exampleZh": "这个创建在日常生活中很有用。"
+    "enDef": "noun meaning “创建”",
+    "example": "I need more information about foundation.",
+    "exampleZh": "我需要更多关于创建的信息。"
   },
   {
     "id": "x4-0073",
@@ -946,9 +946,9 @@ export const words = [
     "phonetic": "/pəˈɫɪtəkəɫ/",
     "pos": "adj.",
     "zh": "政治的",
-    "enDef": "describing something as “政治的”",
-    "example": "They described the idea as political.",
-    "exampleZh": "他们认为这个想法是政治的的。"
+    "enDef": "adjective meaning “政治的”",
+    "example": "That description sounds political.",
+    "exampleZh": "那种描述听起来很政治的。"
   },
   {
     "id": "x4-0074",
@@ -959,9 +959,9 @@ export const words = [
     "phonetic": "",
     "pos": "n.",
     "zh": "迪吉里杜管",
-    "enDef": "didgeridoo — 迪吉里杜管",
-    "example": "This didgeridoo is useful in daily life.",
-    "exampleZh": "这个迪吉里杜管在日常生活中很有用。"
+    "enDef": "noun meaning “迪吉里杜管”",
+    "example": "I need more information about didgeridoo.",
+    "exampleZh": "我需要更多关于迪吉里杜管的信息。"
   },
   {
     "id": "x4-0075",
@@ -972,9 +972,9 @@ export const words = [
     "phonetic": "/ˈɫoʊˌkeɪd/",
     "pos": "adj.",
     "zh": "位于",
-    "enDef": "describing something as “位于”",
-    "example": "They described the idea as located.",
-    "exampleZh": "他们认为这个想法是位于的。"
+    "enDef": "adjective meaning “位于”",
+    "example": "That description sounds located.",
+    "exampleZh": "那种描述听起来很位于。"
   },
   {
     "id": "x4-0076",
@@ -985,9 +985,9 @@ export const words = [
     "phonetic": "/ɪˈkweɪtɝ/",
     "pos": "n.",
     "zh": "赤道",
-    "enDef": "equator — 赤道",
-    "example": "This equator is useful in daily life.",
-    "exampleZh": "这个赤道在日常生活中很有用。"
+    "enDef": "noun meaning “赤道”",
+    "example": "I need more information about equator.",
+    "exampleZh": "我需要更多关于赤道的信息。"
   },
   {
     "id": "x4-0077",
@@ -997,10 +997,10 @@ export const words = [
     "word": "koala",
     "phonetic": "/koʊˈɑɫə/",
     "pos": "n.",
-    "zh": "考拉:树袋熊",
-    "enDef": "koala — 考拉:树袋熊",
-    "example": "This koala is useful in daily life.",
-    "exampleZh": "这个考拉:树袋熊在日常生活中很有用。"
+    "zh": "考拉；树袋熊",
+    "enDef": "noun meaning “考拉”",
+    "example": "I need more information about koala.",
+    "exampleZh": "我需要更多关于考拉的信息。"
   },
   {
     "id": "x4-0078",
@@ -1010,10 +1010,10 @@ export const words = [
     "word": "barbecue",
     "phonetic": "/ˈbɑɹbɪkˌju/",
     "pos": "n.",
-    "zh": "[abbr. BBQ]户外烧烤；烤架",
-    "enDef": "barbecue — [abbr. BBQ]户外烧烤；烤架",
-    "example": "This barbecue is useful in daily life.",
-    "exampleZh": "这个[abbr. BBQ]户外烧烤在日常生活中很有用。"
+    "zh": "[；户外烧烤；烤架",
+    "enDef": "noun meaning “[”",
+    "example": "I need more information about barbecue.",
+    "exampleZh": "我需要更多关于[的信息。"
   },
   {
     "id": "x4-0079",
@@ -1023,10 +1023,10 @@ export const words = [
     "word": "bakery",
     "phonetic": "/ˈbeɪkɝi/",
     "pos": "n.",
-    "zh": "面包(糕饼)店；面包厂",
-    "enDef": "bakery — 面包(糕饼)店；面包厂",
-    "example": "This bakery is useful in daily life.",
-    "exampleZh": "这个面包(糕饼)店在日常生活中很有用。"
+    "zh": "面包（糕饼）店；面包厂",
+    "enDef": "noun meaning “面包（糕饼）店”",
+    "example": "I need more information about bakery.",
+    "exampleZh": "我需要更多关于面包（糕饼）店的信息。"
   },
   {
     "id": "x4-0080",
@@ -1036,10 +1036,10 @@ export const words = [
     "word": "joint",
     "phonetic": "/ˈdʒɔɪnt/",
     "pos": "n.",
-    "zh": "公共场所(尤指价格低廉的饮食和娱乐场所)；关节adj.联合的；共同的",
-    "enDef": "joint — 公共场所(尤指价格低廉的饮食和娱乐场所)；关节adj.联合的；共同的",
-    "example": "This joint is useful in daily life.",
-    "exampleZh": "这个公共场所(尤指价格低廉的饮食和娱乐场所)在日常生活中很有用。"
+    "zh": "公共场所（尤指价格低廉的饮食和娱乐场所）；关节联合的；共同的",
+    "enDef": "noun meaning “公共场所（尤指价格低廉的饮食和娱乐场…”",
+    "example": "I need more information about joint.",
+    "exampleZh": "我需要更多关于公共场所（尤指价格低廉的饮食和娱乐场…的信息。"
   },
   {
     "id": "x4-0081",
@@ -1049,10 +1049,10 @@ export const words = [
     "word": "butcher",
     "phonetic": "/ˈbʊtʃɝ/",
     "pos": "n.",
-    "zh": "肉贩；屠夫:刽子手",
-    "enDef": "butcher — 肉贩；屠夫:刽子手",
-    "example": "This butcher is useful in daily life.",
-    "exampleZh": "这个肉贩在日常生活中很有用。"
+    "zh": "肉贩；屠夫；刽子手",
+    "enDef": "noun meaning “肉贩”",
+    "example": "I need more information about butcher.",
+    "exampleZh": "我需要更多关于肉贩的信息。"
   },
   {
     "id": "x4-0082",
@@ -1062,10 +1062,10 @@ export const words = [
     "word": "premier",
     "phonetic": "/pɹɛˈmɪɹ/",
     "pos": "adj.",
-    "zh": "最著名的:第一的:首要的n.总理；首相",
-    "enDef": "describing something as “最著名的:第一的:首要的n.总理；首相”",
-    "example": "They described the idea as premier.",
-    "exampleZh": "他们认为这个想法是最著名的:第一的:首要的n.总理的。"
+    "zh": "最著名的；第一的；首要的总理；首相",
+    "enDef": "adjective meaning “最著名的”",
+    "example": "That description sounds premier.",
+    "exampleZh": "那种描述听起来很最著名的。"
   },
   {
     "id": "x4-0083",
@@ -1076,9 +1076,9 @@ export const words = [
     "phonetic": "/ˈɝb/",
     "pos": "n.",
     "zh": "药草；香草；草本",
-    "enDef": "herb — 药草；香草；草本",
-    "example": "This herb is useful in daily life.",
-    "exampleZh": "这个药草在日常生活中很有用。"
+    "enDef": "noun meaning “药草”",
+    "example": "I need more information about herb.",
+    "exampleZh": "我需要更多关于药草的信息。"
   },
   {
     "id": "x4-0084",
@@ -1088,10 +1088,10 @@ export const words = [
     "word": "dim sim",
     "phonetic": "/ˈdɪm ˈsɪm/",
     "pos": "短语",
-    "zh": "(特指澳大利亚的)点心",
-    "enDef": "an expression meaning “(特指澳大利亚的)点心”",
-    "example": "Students should remember the phrase “dim sim”.",
-    "exampleZh": "同学们应记住短语「dim sim」（(特指澳大利亚的)点心）。"
+    "zh": "（特指澳大利亚的）点心",
+    "enDef": "a set phrase meaning “（特指澳大利亚的）点心”",
+    "example": "We use this phrase when we mean “（特指澳大利亚的）点心”.",
+    "exampleZh": "这个短语表示「（特指澳大利亚的）点心」。"
   },
   {
     "id": "x4-0085",
@@ -1102,9 +1102,9 @@ export const words = [
     "phonetic": "/ˈhɑɫoʊ/",
     "pos": "adj.",
     "zh": "中空的；空心的",
-    "enDef": "describing something as “中空的；空心的”",
-    "example": "They described the idea as hollow.",
-    "exampleZh": "他们认为这个想法是中空的的。"
+    "enDef": "adjective meaning “中空的”",
+    "example": "That description sounds hollow.",
+    "exampleZh": "那种描述听起来很中空的。"
   },
   {
     "id": "x4-0086",
@@ -1114,10 +1114,10 @@ export const words = [
     "word": "vibrate",
     "phonetic": "/ˈvaɪbɹeɪt/",
     "pos": "vt. & vi.",
-    "zh": "(使)振动",
-    "enDef": "to vibrate — (使)振动",
-    "example": "We vibrate when we need to.",
-    "exampleZh": "需要时我们会(使)振动。"
+    "zh": "（使）振动",
+    "enDef": "verb meaning “（使）振动”",
+    "example": "Can you vibrate this carefully?",
+    "exampleZh": "你能仔细地（使）振动一下吗？"
   },
   {
     "id": "x4-0087",
@@ -1127,10 +1127,10 @@ export const words = [
     "word": "horn",
     "phonetic": "/ˈhɔɹn/",
     "pos": "n.",
-    "zh": "(乐器)号",
-    "enDef": "horn — (乐器)号",
-    "example": "This horn is useful in daily life.",
-    "exampleZh": "这个(乐器)号在日常生活中很有用。"
+    "zh": "（乐器）号",
+    "enDef": "noun meaning “（乐器）号”",
+    "example": "I need more information about horn.",
+    "exampleZh": "我需要更多关于（乐器）号的信息。"
   },
   {
     "id": "x4-0088",
@@ -1141,9 +1141,9 @@ export const words = [
     "phonetic": "/ˈpɪtʃ/",
     "pos": "n.",
     "zh": "音高",
-    "enDef": "pitch — 音高",
-    "example": "This pitch is useful in daily life.",
-    "exampleZh": "这个音高在日常生活中很有用。"
+    "enDef": "noun meaning “音高”",
+    "example": "I need more information about pitch.",
+    "exampleZh": "我需要更多关于音高的信息。"
   },
   {
     "id": "x4-0089",
@@ -1153,10 +1153,10 @@ export const words = [
     "word": "straightforward",
     "phonetic": "/ˈstɹeɪtˈfɔɹwɝd/",
     "pos": "adj.",
-    "zh": "坦率的:简单的",
-    "enDef": "describing something as “坦率的:简单的”",
-    "example": "They described the idea as straightforward.",
-    "exampleZh": "他们认为这个想法是坦率的:简单的的。"
+    "zh": "坦率的；简单的",
+    "enDef": "adjective meaning “坦率的”",
+    "example": "That description sounds straightforward.",
+    "exampleZh": "那种描述听起来很坦率的。"
   },
   {
     "id": "x4-0090",
@@ -1167,9 +1167,9 @@ export const words = [
     "phonetic": "/ˈsɫoʊɡən/",
     "pos": "n.",
     "zh": "标语；口号",
-    "enDef": "slogan — 标语；口号",
-    "example": "This slogan is useful in daily life.",
-    "exampleZh": "这个标语在日常生活中很有用。"
+    "enDef": "noun meaning “标语”",
+    "example": "I need more information about slogan.",
+    "exampleZh": "我需要更多关于标语的信息。"
   },
   {
     "id": "x4-0091",
@@ -1179,10 +1179,10 @@ export const words = [
     "word": "Minister",
     "phonetic": "/ˈmɪnəstɝ/",
     "pos": "n.",
-    "zh": "部长:大臣；外交使节",
-    "enDef": "Minister — 部长:大臣；外交使节",
-    "example": "This Minister is useful in daily life.",
-    "exampleZh": "这个部长:大臣在日常生活中很有用。"
+    "zh": "部长；大臣；外交使节",
+    "enDef": "noun meaning “部长”",
+    "example": "I need more information about Minister.",
+    "exampleZh": "我需要更多关于部长的信息。"
   },
   {
     "id": "x4-0092",
@@ -1193,9 +1193,9 @@ export const words = [
     "phonetic": "/ˈpɹaɪm ˈmɪnəstɝ/",
     "pos": "短语",
     "zh": "首相；总理",
-    "enDef": "an expression meaning “首相；总理”",
-    "example": "Students should remember the phrase “prime minister”.",
-    "exampleZh": "同学们应记住短语「prime minister」（首相）。"
+    "enDef": "a set phrase meaning “首相”",
+    "example": "We use this phrase when we mean “首相”.",
+    "exampleZh": "这个短语表示「首相」。"
   },
   {
     "id": "x4-0093",
@@ -1206,9 +1206,9 @@ export const words = [
     "phonetic": "/ˈfɹɑɡ/",
     "pos": "n.",
     "zh": "蛙；青蛙",
-    "enDef": "frog — 蛙；青蛙",
-    "example": "This frog is useful in daily life.",
-    "exampleZh": "这个蛙在日常生活中很有用。"
+    "enDef": "noun meaning “蛙”",
+    "example": "I need more information about frog.",
+    "exampleZh": "我需要更多关于蛙的信息。"
   },
   {
     "id": "x4-0094",
@@ -1219,9 +1219,9 @@ export const words = [
     "phonetic": "/ˈæɹoʊ/",
     "pos": "n.",
     "zh": "箭；箭头",
-    "enDef": "arrow — 箭；箭头",
-    "example": "This arrow is useful in daily life.",
-    "exampleZh": "这个箭在日常生活中很有用。"
+    "enDef": "noun meaning “箭”",
+    "example": "I need more information about arrow.",
+    "exampleZh": "我需要更多关于箭的信息。"
   },
   {
     "id": "x4-0095",
@@ -1231,10 +1231,10 @@ export const words = [
     "word": "entitle",
     "phonetic": "/ɛnˈtaɪtəɫ/",
     "pos": "vt.",
-    "zh": "给--命名(或题名)；使享有权利",
-    "enDef": "to entitle — 给--命名(或题名)；使享有权利",
-    "example": "We entitle when we need to.",
-    "exampleZh": "需要时我们会给--命名(或题名)。"
+    "zh": "给--命名（或题名）；使享有权利",
+    "enDef": "verb meaning “给--命名（或题名）”",
+    "example": "Can you entitle this carefully?",
+    "exampleZh": "你能仔细地给--命名（或题名）一下吗？"
   },
   {
     "id": "x4-0096",
@@ -1245,9 +1245,9 @@ export const words = [
     "phonetic": "/ˈɡɛtəˌweɪ/",
     "pos": "n.",
     "zh": "适合度假的地方",
-    "enDef": "getaway — 适合度假的地方",
-    "example": "This getaway is useful in daily life.",
-    "exampleZh": "这个适合度假的地方在日常生活中很有用。"
+    "enDef": "noun meaning “适合度假的地方”",
+    "example": "I need more information about getaway.",
+    "exampleZh": "我需要更多关于适合度假的地方的信息。"
   },
   {
     "id": "x4-0097",
@@ -1258,9 +1258,9 @@ export const words = [
     "phonetic": "/ˈdaɪv/",
     "pos": "vi. & n.",
     "zh": "潜水；跳水；俯冲",
-    "enDef": "to dive — 潜水；跳水；俯冲",
-    "example": "We dive when we need to.",
-    "exampleZh": "需要时我们会潜水。"
+    "enDef": "verb meaning “潜水”",
+    "example": "Can you dive this carefully?",
+    "exampleZh": "你能仔细地潜水一下吗？"
   },
   {
     "id": "x4-0098",
@@ -1271,9 +1271,9 @@ export const words = [
     "phonetic": "/ˈkaɪˌækɪŋ/",
     "pos": "n.",
     "zh": "划皮艇",
-    "enDef": "kayaking — 划皮艇",
-    "example": "This kayaking is useful in daily life.",
-    "exampleZh": "这个划皮艇在日常生活中很有用。"
+    "enDef": "noun meaning “划皮艇”",
+    "example": "I need more information about kayaking.",
+    "exampleZh": "我需要更多关于划皮艇的信息。"
   },
   {
     "id": "x4-0099",
@@ -1284,9 +1284,9 @@ export const words = [
     "phonetic": "/ˈpik ˈsizən/",
     "pos": "短语",
     "zh": "高峰季节",
-    "enDef": "an expression meaning “高峰季节”",
-    "example": "Students should remember the phrase “peak season”.",
-    "exampleZh": "同学们应记住短语「peak season」（高峰季节）。"
+    "enDef": "a set phrase meaning “高峰季节”",
+    "example": "We use this phrase when we mean “高峰季节”.",
+    "exampleZh": "这个短语表示「高峰季节」。"
   },
   {
     "id": "x4-0100",
@@ -1296,10 +1296,10 @@ export const words = [
     "word": "freedom",
     "phonetic": "/ˈfɹidəm/",
     "pos": "n.",
-    "zh": "白由；不受......影响的状态",
-    "enDef": "freedom — 白由；不受......影响的状态",
-    "example": "This freedom is useful in daily life.",
-    "exampleZh": "这个白由在日常生活中很有用。"
+    "zh": "白由；不受……影响的状态",
+    "enDef": "noun meaning “白由”",
+    "example": "I need more information about freedom.",
+    "exampleZh": "我需要更多关于白由的信息。"
   },
   {
     "id": "x4-0101",
@@ -1310,9 +1310,9 @@ export const words = [
     "phonetic": "/doʊˈmeɪn/",
     "pos": "n.",
     "zh": "领域；领土；范围",
-    "enDef": "domain — 领域；领土；范围",
-    "example": "This domain is useful in daily life.",
-    "exampleZh": "这个领域在日常生活中很有用。"
+    "enDef": "noun meaning “领域”",
+    "example": "I need more information about domain.",
+    "exampleZh": "我需要更多关于领域的信息。"
   },
   {
     "id": "x4-0102",
@@ -1322,10 +1322,10 @@ export const words = [
     "word": "sponsor",
     "phonetic": "/ˈspɑnsɝ/",
     "pos": "vt.",
-    "zh": "倡议；赞助；主办n. (法案等的)倡议者；赞助者",
-    "enDef": "to sponsor — 倡议；赞助；主办n. (法案等的)倡议者；赞助者",
-    "example": "We sponsor when we need to.",
-    "exampleZh": "需要时我们会倡议。"
+    "zh": "倡议；赞助；主办（法案等的）倡议者；赞助者",
+    "enDef": "verb meaning “倡议”",
+    "example": "Can you sponsor this carefully?",
+    "exampleZh": "你能仔细地倡议一下吗？"
   },
   {
     "id": "x4-0103",
@@ -1336,9 +1336,9 @@ export const words = [
     "phonetic": "/ˈɫɪbɝˌti/",
     "pos": "n.",
     "zh": "自由",
-    "enDef": "liberty — 自由",
-    "example": "This liberty is useful in daily life.",
-    "exampleZh": "这个自由在日常生活中很有用。"
+    "enDef": "noun meaning “自由”",
+    "example": "I need more information about liberty.",
+    "exampleZh": "我需要更多关于自由的信息。"
   },
   {
     "id": "x4-0104",
@@ -1349,9 +1349,9 @@ export const words = [
     "phonetic": "/ˈɡɑɫf/",
     "pos": "n.",
     "zh": "高尔夫球运动",
-    "enDef": "golf — 高尔夫球运动",
-    "example": "This golf is useful in daily life.",
-    "exampleZh": "这个高尔夫球运动在日常生活中很有用。"
+    "enDef": "noun meaning “高尔夫球运动”",
+    "example": "I need more information about golf.",
+    "exampleZh": "我需要更多关于高尔夫球运动的信息。"
   },
   {
     "id": "x4-0105",
@@ -1362,9 +1362,9 @@ export const words = [
     "phonetic": "/ˈstɹeɪt/",
     "pos": "n.",
     "zh": "海峡",
-    "enDef": "strait — 海峡",
-    "example": "This strait is useful in daily life.",
-    "exampleZh": "这个海峡在日常生活中很有用。"
+    "enDef": "noun meaning “海峡”",
+    "example": "I need more information about strait.",
+    "exampleZh": "我需要更多关于海峡的信息。"
   },
   {
     "id": "x4-0106",
@@ -1375,9 +1375,9 @@ export const words = [
     "phonetic": "/ˈsæmpəɫ/",
     "pos": "n.",
     "zh": "样本；样品",
-    "enDef": "sample — 样本；样品",
-    "example": "This sample is useful in daily life.",
-    "exampleZh": "这个样本在日常生活中很有用。"
+    "enDef": "noun meaning “样本”",
+    "example": "I need more information about sample.",
+    "exampleZh": "我需要更多关于样本的信息。"
   },
   {
     "id": "x4-0107",
@@ -1387,10 +1387,10 @@ export const words = [
     "word": "monument",
     "phonetic": "/ˈmɑnjəmənt/",
     "pos": "n.",
-    "zh": "纪念碑(或馆、堂、像等)；历史遗迹",
-    "enDef": "monument — 纪念碑(或馆、堂、像等)；历史遗迹",
-    "example": "This monument is useful in daily life.",
-    "exampleZh": "这个纪念碑(或馆、堂、像等)在日常生活中很有用。"
+    "zh": "纪念碑（或馆、堂、像等）；历史遗迹",
+    "enDef": "noun meaning “纪念碑（或馆、堂、像等）”",
+    "example": "I need more information about monument.",
+    "exampleZh": "我需要更多关于纪念碑（或馆、堂、像等）的信息。"
   },
   {
     "id": "x4-0108",
@@ -1400,10 +1400,10 @@ export const words = [
     "word": "kiwi",
     "phonetic": "/ˈkiwi/",
     "pos": "n.",
-    "zh": "几维( 新西兰鸟)",
-    "enDef": "kiwi — 几维( 新西兰鸟)",
-    "example": "This kiwi is useful in daily life.",
-    "exampleZh": "这个几维( 新西兰鸟)在日常生活中很有用。"
+    "zh": "几维（新西兰鸟）",
+    "enDef": "noun meaning “几维（新西兰鸟）”",
+    "example": "I need more information about kiwi.",
+    "exampleZh": "我需要更多关于几维（新西兰鸟）的信息。"
   },
   {
     "id": "x4-0109",
@@ -1414,9 +1414,9 @@ export const words = [
     "phonetic": "/ˈɡaɪzɝ/",
     "pos": "n.",
     "zh": "间歇泉",
-    "enDef": "geyser — 间歇泉",
-    "example": "This geyser is useful in daily life.",
-    "exampleZh": "这个间歇泉在日常生活中很有用。"
+    "enDef": "noun meaning “间歇泉”",
+    "example": "I need more information about geyser.",
+    "exampleZh": "我需要更多关于间歇泉的信息。"
   },
   {
     "id": "x4-0110",
@@ -1427,9 +1427,9 @@ export const words = [
     "phonetic": "",
     "pos": "短语",
     "zh": "硫黄池",
-    "enDef": "an expression meaning “硫黄池”",
-    "example": "Students should remember the phrase “sulphuric pool”.",
-    "exampleZh": "同学们应记住短语「sulphuric pool」（硫黄池）。"
+    "enDef": "a set phrase meaning “硫黄池”",
+    "example": "We use this phrase when we mean “硫黄池”.",
+    "exampleZh": "这个短语表示「硫黄池」。"
   },
   {
     "id": "x4-0111",
@@ -1440,9 +1440,9 @@ export const words = [
     "phonetic": "",
     "pos": "短语",
     "zh": "麦卢卡蜂蜜",
-    "enDef": "an expression meaning “麦卢卡蜂蜜”",
-    "example": "Students should remember the phrase “manuka honey”.",
-    "exampleZh": "同学们应记住短语「manuka honey」（麦卢卡蜂蜜）。"
+    "enDef": "a set phrase meaning “麦卢卡蜂蜜”",
+    "example": "We use this phrase when we mean “麦卢卡蜂蜜”.",
+    "exampleZh": "这个短语表示「麦卢卡蜂蜜」。"
   },
   {
     "id": "x4-0112",
@@ -1453,9 +1453,9 @@ export const words = [
     "phonetic": "/ˈbəndʒi ˈdʒəmpɪŋ/",
     "pos": "短语",
     "zh": "蹦极跳",
-    "enDef": "an expression meaning “蹦极跳”",
-    "example": "Students should remember the phrase “bungee jumping”.",
-    "exampleZh": "同学们应记住短语「bungee jumping」（蹦极跳）。"
+    "enDef": "a set phrase meaning “蹦极跳”",
+    "example": "We use this phrase when we mean “蹦极跳”.",
+    "exampleZh": "这个短语表示「蹦极跳」。"
   },
   {
     "id": "x4-0113",
@@ -1465,10 +1465,10 @@ export const words = [
     "word": "a flock of",
     "phonetic": "/ˈfɫɑk/",
     "pos": "短语",
-    "zh": "一群(羊或鸟)",
-    "enDef": "an expression meaning “一群(羊或鸟)”",
-    "example": "Students should remember the phrase “a flock of”.",
-    "exampleZh": "同学们应记住短语「a flock of」（一群(羊或鸟)）。"
+    "zh": "一群（羊或鸟）",
+    "enDef": "a set phrase meaning “一群（羊或鸟）”",
+    "example": "We use this phrase when we mean “一群（羊或鸟）”.",
+    "exampleZh": "这个短语表示「一群（羊或鸟）」。"
   },
   {
     "id": "x4-0114",
@@ -1479,9 +1479,9 @@ export const words = [
     "phonetic": "/ˌdʒioʊˈθɝməɫ ˈpɑɹk/",
     "pos": "短语",
     "zh": "地热公园",
-    "enDef": "an expression meaning “地热公园”",
-    "example": "Students should remember the phrase “geothermal park”.",
-    "exampleZh": "同学们应记住短语「geothermal park」（地热公园）。"
+    "enDef": "a set phrase meaning “地热公园”",
+    "example": "We use this phrase when we mean “地热公园”.",
+    "exampleZh": "这个短语表示「地热公园」。"
   },
   {
     "id": "x4-0115",
@@ -1492,9 +1492,9 @@ export const words = [
     "phonetic": "/ˌdɪstɹəbˈjuʃən/",
     "pos": "n.",
     "zh": "分布；分配；分发",
-    "enDef": "distribution — 分布；分配；分发",
-    "example": "This distribution is useful in daily life.",
-    "exampleZh": "这个分布在日常生活中很有用。"
+    "enDef": "noun meaning “分布”",
+    "example": "I need more information about distribution.",
+    "exampleZh": "我需要更多关于分布的信息。"
   },
   {
     "id": "x4-0116",
@@ -1505,9 +1505,9 @@ export const words = [
     "phonetic": "/ˈpaʊtʃ/",
     "pos": "n.",
     "zh": "商儿袋；小袋子；荷包",
-    "enDef": "pouch — 商儿袋；小袋子；荷包",
-    "example": "This pouch is useful in daily life.",
-    "exampleZh": "这个商儿袋在日常生活中很有用。"
+    "enDef": "noun meaning “商儿袋”",
+    "example": "I need more information about pouch.",
+    "exampleZh": "我需要更多关于商儿袋的信息。"
   },
   {
     "id": "x4-0117",
@@ -1517,10 +1517,10 @@ export const words = [
     "word": "temporary",
     "phonetic": "/ˈtɛmpɝˌɛɹi/",
     "pos": "adj.",
-    "zh": "暂时的:短暂的",
-    "enDef": "describing something as “暂时的:短暂的”",
-    "example": "They described the idea as temporary.",
-    "exampleZh": "他们认为这个想法是暂时的:短暂的的。"
+    "zh": "暂时的；短暂的",
+    "enDef": "adjective meaning “暂时的”",
+    "example": "That description sounds temporary.",
+    "exampleZh": "那种描述听起来很暂时的。"
   },
   {
     "id": "x4-0118",
@@ -1531,9 +1531,9 @@ export const words = [
     "phonetic": "/ˈfeɪz/",
     "pos": "n.",
     "zh": "阶段；时期",
-    "enDef": "phase — 阶段；时期",
-    "example": "This phase is useful in daily life.",
-    "exampleZh": "这个阶段在日常生活中很有用。"
+    "enDef": "noun meaning “阶段”",
+    "example": "I need more information about phase.",
+    "exampleZh": "我需要更多关于阶段的信息。"
   },
   {
     "id": "x4-0119",
@@ -1544,9 +1544,9 @@ export const words = [
     "phonetic": "/ˈtɹəŋk/",
     "pos": "n.",
     "zh": "树干",
-    "enDef": "trunk — 树干",
-    "example": "This trunk is useful in daily life.",
-    "exampleZh": "这个树干在日常生活中很有用。"
+    "enDef": "noun meaning “树干”",
+    "example": "I need more information about trunk.",
+    "exampleZh": "我需要更多关于树干的信息。"
   },
   {
     "id": "x4-0120",
@@ -1557,9 +1557,9 @@ export const words = [
     "phonetic": "/ˈɫaɪsənst/",
     "pos": "adj.",
     "zh": "得到正式许可的",
-    "enDef": "describing something as “得到正式许可的”",
-    "example": "They described the idea as licensed.",
-    "exampleZh": "他们认为这个想法是得到正式许可的的。"
+    "enDef": "adjective meaning “得到正式许可的”",
+    "example": "That description sounds licensed.",
+    "exampleZh": "那种描述听起来很得到正式许可的。"
   },
   {
     "id": "x4-0121",
@@ -1569,10 +1569,10 @@ export const words = [
     "word": "license",
     "phonetic": "/ˈɫaɪsəns/",
     "pos": "vt.",
-    "zh": "批准；许可n.(= licence)许可证:执照",
-    "enDef": "to license — 批准；许可n.(= licence)许可证:执照",
-    "example": "We license when we need to.",
-    "exampleZh": "需要时我们会批准。"
+    "zh": "批准；许可许可证；执照",
+    "enDef": "verb meaning “批准”",
+    "example": "Can you license this carefully?",
+    "exampleZh": "你能仔细地批准一下吗？"
   },
   {
     "id": "x4-0122",
@@ -1582,10 +1582,10 @@ export const words = [
     "word": "session",
     "phonetic": "/ˈsɛʃən/",
     "pos": "n.",
-    "zh": "-场；- -段时间；会议",
-    "enDef": "session — -场；- -段时间；会议",
-    "example": "This session is useful in daily life.",
-    "exampleZh": "这个-场在日常生活中很有用。"
+    "zh": "-场；--段时间；会议",
+    "enDef": "noun meaning “-场”",
+    "example": "I need more information about session.",
+    "exampleZh": "我需要更多关于-场的信息。"
   },
   {
     "id": "x4-0123",
@@ -1595,10 +1595,10 @@ export const words = [
     "word": "frequency",
     "phonetic": "/ˈfɹikwənsi/",
     "pos": "n.",
-    "zh": "发生率；重复率；(声波或电磁波振动的)频率",
-    "enDef": "frequency — 发生率；重复率；(声波或电磁波振动的)频率",
-    "example": "This frequency is useful in daily life.",
-    "exampleZh": "这个发生率在日常生活中很有用。"
+    "zh": "发生率；重复率；（声波或电磁波振动的）频率",
+    "enDef": "noun meaning “发生率”",
+    "example": "I need more information about frequency.",
+    "exampleZh": "我需要更多关于发生率的信息。"
   },
   {
     "id": "x4-0124",
@@ -1609,9 +1609,9 @@ export const words = [
     "phonetic": "/ˈvaɪəɫənt/",
     "pos": "adj.",
     "zh": "暴力的；猛烈的",
-    "enDef": "describing something as “暴力的；猛烈的”",
-    "example": "They described the idea as violent.",
-    "exampleZh": "他们认为这个想法是暴力的的。"
+    "enDef": "adjective meaning “暴力的”",
+    "example": "That description sounds violent.",
+    "exampleZh": "那种描述听起来很暴力的。"
   },
   {
     "id": "x4-0125",
@@ -1622,9 +1622,9 @@ export const words = [
     "phonetic": "/ˈvaɪəɫəns/",
     "pos": "n.",
     "zh": "暴力；暴行",
-    "enDef": "violence — 暴力；暴行",
-    "example": "This violence is useful in daily life.",
-    "exampleZh": "这个暴力在日常生活中很有用。"
+    "enDef": "noun meaning “暴力”",
+    "example": "I need more information about violence.",
+    "exampleZh": "我需要更多关于暴力的信息。"
   },
   {
     "id": "x4-0126",
@@ -1635,9 +1635,9 @@ export const words = [
     "phonetic": "/ˈnɛst/",
     "pos": "n.",
     "zh": "巢穴；鸟窝；秘密窝点",
-    "enDef": "nest — 巢穴；鸟窝；秘密窝点",
-    "example": "This nest is useful in daily life.",
-    "exampleZh": "这个巢穴在日常生活中很有用。"
+    "enDef": "noun meaning “巢穴”",
+    "example": "I need more information about nest.",
+    "exampleZh": "我需要更多关于巢穴的信息。"
   },
   {
     "id": "x4-0127",
@@ -1648,9 +1648,9 @@ export const words = [
     "phonetic": "/ˈmæməɫ/",
     "pos": "n.",
     "zh": "哺乳动物",
-    "enDef": "mammal — 哺乳动物",
-    "example": "This mammal is useful in daily life.",
-    "exampleZh": "这个哺乳动物在日常生活中很有用。"
+    "enDef": "noun meaning “哺乳动物”",
+    "example": "I need more information about mammal.",
+    "exampleZh": "我需要更多关于哺乳动物的信息。"
   },
   {
     "id": "x4-0128",
@@ -1661,9 +1661,9 @@ export const words = [
     "phonetic": "/baɪˈɑɫədʒi/",
     "pos": "n.",
     "zh": "生理；生物学",
-    "enDef": "biology — 生理；生物学",
-    "example": "This biology is useful in daily life.",
-    "exampleZh": "这个生理在日常生活中很有用。"
+    "enDef": "noun meaning “生理”",
+    "example": "I need more information about biology.",
+    "exampleZh": "我需要更多关于生理的信息。"
   },
   {
     "id": "x4-0129",
@@ -1673,10 +1673,10 @@ export const words = [
     "word": "hatch",
     "phonetic": "/ˈhætʃ/",
     "pos": "vi.",
-    "zh": "孵出；破壳vt.使孵出；策划；(尤指) 密谋",
-    "enDef": "to hatch — 孵出；破壳vt.使孵出；策划；(尤指) 密谋",
-    "example": "We hatch when we need to.",
-    "exampleZh": "需要时我们会孵出。"
+    "zh": "孵出；破壳使孵出；策划；（尤指）密谋",
+    "enDef": "verb meaning “孵出”",
+    "example": "Can you hatch this carefully?",
+    "exampleZh": "你能仔细地孵出一下吗？"
   },
   {
     "id": "x4-0130",
@@ -1687,9 +1687,9 @@ export const words = [
     "phonetic": "/kəˈpæsəti/",
     "pos": "n.",
     "zh": "能力；容量",
-    "enDef": "capacity — 能力；容量",
-    "example": "This capacity is useful in daily life.",
-    "exampleZh": "这个能力在日常生活中很有用。"
+    "enDef": "noun meaning “能力”",
+    "example": "I need more information about capacity.",
+    "exampleZh": "我需要更多关于能力的信息。"
   },
   {
     "id": "x4-0131",
@@ -1699,10 +1699,10 @@ export const words = [
     "word": "a handful of",
     "phonetic": "/ˈhændˌfʊɫ/",
     "pos": "短语",
-    "zh": "少数人(或物)；一把(的量)",
-    "enDef": "an expression meaning “少数人(或物)；一把(的量)”",
-    "example": "Students should remember the phrase “a handful of”.",
-    "exampleZh": "同学们应记住短语「a handful of」（少数人(或物)）。"
+    "zh": "少数人（或物）；一把（的量）",
+    "enDef": "a set phrase meaning “少数人（或物）”",
+    "example": "We use this phrase when we mean “少数人（或物）”.",
+    "exampleZh": "这个短语表示「少数人（或物）」。"
   },
   {
     "id": "x4-0132",
@@ -1712,10 +1712,10 @@ export const words = [
     "word": "fence",
     "phonetic": "/ˈfɛns/",
     "pos": "n.",
-    "zh": "栅栏:围栏",
-    "enDef": "fence — 栅栏:围栏",
-    "example": "This fence is useful in daily life.",
-    "exampleZh": "这个栅栏:围栏在日常生活中很有用。"
+    "zh": "栅栏；围栏",
+    "enDef": "noun meaning “栅栏”",
+    "example": "I need more information about fence.",
+    "exampleZh": "我需要更多关于栅栏的信息。"
   },
   {
     "id": "x4-0133",
@@ -1726,9 +1726,9 @@ export const words = [
     "phonetic": "/ˈpɹɪzən/",
     "pos": "n.",
     "zh": "监狱；监禁",
-    "enDef": "prison — 监狱；监禁",
-    "example": "This prison is useful in daily life.",
-    "exampleZh": "这个监狱在日常生活中很有用。"
+    "enDef": "noun meaning “监狱”",
+    "example": "I need more information about prison.",
+    "exampleZh": "我需要更多关于监狱的信息。"
   },
   {
     "id": "x4-0134",
@@ -1739,9 +1739,9 @@ export const words = [
     "phonetic": "/ˈɡɹænd/",
     "pos": "adj.",
     "zh": "大；宏大的",
-    "enDef": "describing something as “大；宏大的”",
-    "example": "They described the idea as grand.",
-    "exampleZh": "他们认为这个想法是大的。"
+    "enDef": "adjective meaning “大”",
+    "example": "That description sounds grand.",
+    "exampleZh": "那种描述听起来很大。"
   },
   {
     "id": "x4-0135",
@@ -1752,9 +1752,9 @@ export const words = [
     "phonetic": "/ˌæbɝˈɪdʒəni/",
     "pos": "专有名词",
     "zh": "澳大利亚土著",
-    "enDef": "a proper name or term: 澳大利亚土著",
-    "example": "Aborigine is introduced in this unit.",
-    "exampleZh": "本单元介绍了Aborigine（澳大利亚土著）。"
+    "enDef": "a proper name / term for “澳大利亚土著”",
+    "example": "This name / term refers to “澳大利亚土著”.",
+    "exampleZh": "这个专有名称指「澳大利亚土著」。"
   },
   {
     "id": "x4-0136",
@@ -1764,10 +1764,10 @@ export const words = [
     "word": "Sydney",
     "phonetic": "/ˈsɪdni/",
     "pos": "专有名词",
-    "zh": "悉尼(澳大利亚城市)",
-    "enDef": "a proper name or term: 悉尼(澳大利亚城市)",
-    "example": "Sydney is introduced in this unit.",
-    "exampleZh": "本单元介绍了Sydney（悉尼(澳大利亚城市)）。"
+    "zh": "悉尼（澳大利亚城市）",
+    "enDef": "a proper name / term for “悉尼（澳大利亚城市）”",
+    "example": "This name / term refers to “悉尼（澳大利亚城市）”.",
+    "exampleZh": "这个专有名称指「悉尼（澳大利亚城市）」。"
   },
   {
     "id": "x4-0137",
@@ -1778,9 +1778,9 @@ export const words = [
     "phonetic": "/ˈbɑndi ˈbitʃ/",
     "pos": "专有名词",
     "zh": "邦迪海滩",
-    "enDef": "a proper name or term: 邦迪海滩",
-    "example": "Students should remember the phrase “Bondi Beach”.",
-    "exampleZh": "同学们应记住短语「Bondi Beach」（邦迪海滩）。"
+    "enDef": "a proper name / term for “邦迪海滩”",
+    "example": "We use this phrase when we mean “邦迪海滩”.",
+    "exampleZh": "这个短语表示「邦迪海滩」。"
   },
   {
     "id": "x4-0138",
@@ -1790,10 +1790,10 @@ export const words = [
     "word": "Chiang Mai",
     "phonetic": "/ˈtʃæŋ ˈmaɪ/",
     "pos": "专有名词",
-    "zh": "清迈l泰国城市)",
-    "enDef": "a proper name or term: 清迈l泰国城市)",
-    "example": "Students should remember the phrase “Chiang Mai”.",
-    "exampleZh": "同学们应记住短语「Chiang Mai」（清迈l泰国城市)）。"
+    "zh": "清迈泰国城市)",
+    "enDef": "a proper name / term for “清迈泰国城市)”",
+    "example": "We use this phrase when we mean “清迈泰国城市)”.",
+    "exampleZh": "这个短语表示「清迈泰国城市)」。"
   },
   {
     "id": "x4-0139",
@@ -1804,9 +1804,9 @@ export const words = [
     "phonetic": "/ˈbeɪ ˈaɪɫəndz/",
     "pos": "短语",
     "zh": "岛屿湾",
-    "enDef": "an expression meaning “岛屿湾”",
-    "example": "Students should remember the phrase “the Bay of Islands”.",
-    "exampleZh": "同学们应记住短语「the Bay of Islands」（岛屿湾）。"
+    "enDef": "a set phrase meaning “岛屿湾”",
+    "example": "We use this phrase when we mean “岛屿湾”.",
+    "exampleZh": "这个短语表示「岛屿湾」。"
   },
   {
     "id": "x4-0140",
@@ -1816,10 +1816,10 @@ export const words = [
     "word": "the haka",
     "phonetic": "",
     "pos": "短语",
-    "zh": "哈卡舞(传统毛利伴歌战舞)",
-    "enDef": "an expression meaning “哈卡舞(传统毛利伴歌战舞)”",
-    "example": "Students should remember the phrase “the haka”.",
-    "exampleZh": "同学们应记住短语「the haka」（哈卡舞(传统毛利伴歌战舞)）。"
+    "zh": "哈卡舞（传统毛利伴歌战舞）",
+    "enDef": "a set phrase meaning “哈卡舞（传统毛利伴歌战舞）”",
+    "example": "We use this phrase when we mean “哈卡舞（传统毛利伴歌战舞）”.",
+    "exampleZh": "这个短语表示「哈卡舞（传统毛利伴歌战舞）」。"
   },
   {
     "id": "x4-0141",
@@ -1830,9 +1830,9 @@ export const words = [
     "phonetic": "/ˈɛdməndz/",
     "pos": "专有名词",
     "zh": "埃德蒙兹",
-    "enDef": "a proper name or term: 埃德蒙兹",
-    "example": "Edmonds is introduced in this unit.",
-    "exampleZh": "本单元介绍了Edmonds（埃德蒙兹）。"
+    "enDef": "a proper name / term for “埃德蒙兹”",
+    "example": "This name / term refers to “埃德蒙兹”.",
+    "exampleZh": "这个专有名称指「埃德蒙兹」。"
   },
   {
     "id": "x4-0142",
@@ -1843,9 +1843,9 @@ export const words = [
     "phonetic": "/fɪˈɫɪsəti/",
     "pos": "专有名词",
     "zh": "费利西蒂",
-    "enDef": "a proper name or term: 费利西蒂",
-    "example": "Felicity is introduced in this unit.",
-    "exampleZh": "本单元介绍了Felicity（费利西蒂）。"
+    "enDef": "a proper name / term for “费利西蒂”",
+    "example": "This name / term refers to “费利西蒂”.",
+    "exampleZh": "这个专有名称指「费利西蒂」。"
   },
   {
     "id": "x4-0143",
@@ -1856,9 +1856,9 @@ export const words = [
     "phonetic": "/ˌtæzˈmeɪniən ˈdɛvəɫ/",
     "pos": "专有名词",
     "zh": "塔斯马尼亚恶魔；袋獾",
-    "enDef": "a proper name or term: 塔斯马尼亚恶魔；袋獾",
-    "example": "Students should remember the phrase “Tasmanian devil”.",
-    "exampleZh": "同学们应记住短语「Tasmanian devil」（塔斯马尼亚恶魔）。"
+    "enDef": "a proper name / term for “塔斯马尼亚恶魔”",
+    "example": "We use this phrase when we mean “塔斯马尼亚恶魔”.",
+    "exampleZh": "这个短语表示「塔斯马尼亚恶魔」。"
   },
   {
     "id": "x4-0144",
@@ -1868,10 +1868,10 @@ export const words = [
     "word": "Tasmania",
     "phonetic": "/ˌtæzˈmeɪniə/",
     "pos": "专有名词",
-    "zh": "塔斯马尼亚(澳大利亚州名)",
-    "enDef": "a proper name or term: 塔斯马尼亚(澳大利亚州名)",
-    "example": "Tasmania is introduced in this unit.",
-    "exampleZh": "本单元介绍了Tasmania（塔斯马尼亚(澳大利亚州名)）。"
+    "zh": "塔斯马尼亚（澳大利亚州名）",
+    "enDef": "a proper name / term for “塔斯马尼亚（澳大利亚州名）”",
+    "example": "This name / term refers to “塔斯马尼亚（澳大利亚州名）”.",
+    "exampleZh": "这个专有名称指「塔斯马尼亚（澳大利亚州名）」。"
   },
   {
     "id": "x4-0145",
@@ -1882,9 +1882,9 @@ export const words = [
     "phonetic": "/ˈdək ˈbɪɫd ˈpɫætəˌpʊs/",
     "pos": "短语",
     "zh": "鸭嘴兽",
-    "enDef": "an expression meaning “鸭嘴兽”",
-    "example": "Students should remember the phrase “duck-billed platypus”.",
-    "exampleZh": "同学们应记住短语「duck-billed platypus」（鸭嘴兽）。"
+    "enDef": "a set phrase meaning “鸭嘴兽”",
+    "example": "We use this phrase when we mean “鸭嘴兽”.",
+    "exampleZh": "这个短语表示「鸭嘴兽」。"
   },
   {
     "id": "x4-0146",
@@ -1895,9 +1895,9 @@ export const words = [
     "phonetic": "/ˈteɪɫ/",
     "pos": "n.",
     "zh": "故事；叙述",
-    "enDef": "tale — 故事；叙述",
-    "example": "This tale is useful in daily life.",
-    "exampleZh": "这个故事在日常生活中很有用。"
+    "enDef": "noun meaning “故事”",
+    "example": "I need more information about tale.",
+    "exampleZh": "我需要更多关于故事的信息。"
   },
   {
     "id": "x4-0147",
@@ -1907,10 +1907,10 @@ export const words = [
     "word": "merchant",
     "phonetic": "/ˈmɝtʃənt/",
     "pos": "n.",
-    "zh": "商人；批发商adj.海上货运的",
-    "enDef": "merchant — 商人；批发商adj.海上货运的",
-    "example": "This merchant is useful in daily life.",
-    "exampleZh": "这个商人在日常生活中很有用。"
+    "zh": "商人；批发商海上货运的",
+    "enDef": "noun meaning “商人”",
+    "example": "I need more information about merchant.",
+    "exampleZh": "我需要更多关于商人的信息。"
   },
   {
     "id": "x4-0148",
@@ -1921,9 +1921,9 @@ export const words = [
     "phonetic": "/ˈsɛt ˈseɪɫ/",
     "pos": "短语",
     "zh": "起航；开航",
-    "enDef": "an expression meaning “起航；开航”",
-    "example": "Students should remember the phrase “set sail”.",
-    "exampleZh": "同学们应记住短语「set sail」（起航）。"
+    "enDef": "a set phrase meaning “起航”",
+    "example": "We use this phrase when we mean “起航”.",
+    "exampleZh": "这个短语表示「起航」。"
   },
   {
     "id": "x4-0149",
@@ -1934,9 +1934,9 @@ export const words = [
     "phonetic": "/ɪkˈstɛnd/",
     "pos": "vt.",
     "zh": "扩展；使伸长；延长",
-    "enDef": "to extend — 扩展；使伸长；延长",
-    "example": "We extend when we need to.",
-    "exampleZh": "需要时我们会扩展。"
+    "enDef": "verb meaning “扩展”",
+    "example": "Can you extend this carefully?",
+    "exampleZh": "你能仔细地扩展一下吗？"
   },
   {
     "id": "x4-0150",
@@ -1946,10 +1946,10 @@ export const words = [
     "word": "negotiate",
     "phonetic": "/nəˈɡoʊʃiˌeɪt/",
     "pos": "vt. / vi.",
-    "zh": "商定；达成(协议)；谈判:磋商；协商",
-    "enDef": "to negotiate — 商定；达成(协议)；谈判:磋商；协商",
-    "example": "We negotiate when we need to.",
-    "exampleZh": "需要时我们会商定。"
+    "zh": "商定；达成（协议）；谈判；磋商；协商",
+    "enDef": "verb meaning “商定”",
+    "example": "Can you negotiate this carefully?",
+    "exampleZh": "你能仔细地商定一下吗？"
   },
   {
     "id": "x4-0151",
@@ -1960,9 +1960,9 @@ export const words = [
     "phonetic": "/ˈfɫit/",
     "pos": "n.",
     "zh": "舰队；机群；车队",
-    "enDef": "fleet — 舰队；机群；车队",
-    "example": "This fleet is useful in daily life.",
-    "exampleZh": "这个舰队在日常生活中很有用。"
+    "enDef": "noun meaning “舰队”",
+    "example": "I need more information about fleet.",
+    "exampleZh": "我需要更多关于舰队的信息。"
   },
   {
     "id": "x4-0152",
@@ -1973,9 +1973,9 @@ export const words = [
     "phonetic": "/bɪˈhoʊɫd/",
     "pos": "vt.",
     "zh": "看；看见",
-    "enDef": "to behold — 看；看见",
-    "example": "We behold when we need to.",
-    "exampleZh": "需要时我们会看。"
+    "enDef": "verb meaning “看”",
+    "example": "Can you behold this carefully?",
+    "exampleZh": "你能仔细地看一下吗？"
   },
   {
     "id": "x4-0153",
@@ -1986,9 +1986,9 @@ export const words = [
     "phonetic": "/ˈɫiɡ/",
     "pos": "n.",
     "zh": "等级；水平；联合会；联赛",
-    "enDef": "league — 等级；水平；联合会；联赛",
-    "example": "This league is useful in daily life.",
-    "exampleZh": "这个等级在日常生活中很有用。"
+    "enDef": "noun meaning “等级”",
+    "example": "I need more information about league.",
+    "exampleZh": "我需要更多关于等级的信息。"
   },
   {
     "id": "x4-0154",
@@ -1999,9 +1999,9 @@ export const words = [
     "phonetic": "/ˈɪn ˈɫiɡ ˈwənz ˈoʊn/",
     "pos": "短语",
     "zh": "独领风骚",
-    "enDef": "an expression meaning “独领风骚”",
-    "example": "Students should remember the phrase “in a league of one's own”.",
-    "exampleZh": "同学们应记住短语「in a league of one's own」（独领风骚）。"
+    "enDef": "a set phrase meaning “独领风骚”",
+    "example": "We use this phrase when we mean “独领风骚”.",
+    "exampleZh": "这个短语表示「独领风骚」。"
   },
   {
     "id": "x4-0155",
@@ -2012,9 +2012,9 @@ export const words = [
     "phonetic": "/ˈɹɔɪəɫ/",
     "pos": "adj.",
     "zh": "皇家的；王室的；高贵的",
-    "enDef": "describing something as “皇家的；王室的；高贵的”",
-    "example": "They described the idea as royal.",
-    "exampleZh": "他们认为这个想法是皇家的的。"
+    "enDef": "adjective meaning “皇家的”",
+    "example": "That description sounds royal.",
+    "exampleZh": "那种描述听起来很皇家的。"
   },
   {
     "id": "x4-0156",
@@ -2024,10 +2024,10 @@ export const words = [
     "word": "spice",
     "phonetic": "/ˈspaɪs/",
     "pos": "n.",
-    "zh": "(调味)香料",
-    "enDef": "spice — (调味)香料",
-    "example": "This spice is useful in daily life.",
-    "exampleZh": "这个(调味)香料在日常生活中很有用。"
+    "zh": "（调味）香料",
+    "enDef": "noun meaning “（调味）香料”",
+    "example": "I need more information about spice.",
+    "exampleZh": "我需要更多关于（调味）香料的信息。"
   },
   {
     "id": "x4-0157",
@@ -2037,10 +2037,10 @@ export const words = [
     "word": "withdraw",
     "phonetic": "/wɪðˈdɹɔ/",
     "pos": "vi. & vt.",
-    "zh": "(使)撤回；撤离",
-    "enDef": "to withdraw — (使)撤回；撤离",
-    "example": "We withdraw when we need to.",
-    "exampleZh": "需要时我们会(使)撤回。"
+    "zh": "（使）撤回；撤离",
+    "enDef": "verb meaning “（使）撤回”",
+    "example": "Can you withdraw this carefully?",
+    "exampleZh": "你能仔细地（使）撤回一下吗？"
   },
   {
     "id": "x4-0158",
@@ -2051,9 +2051,9 @@ export const words = [
     "phonetic": "/wɪðˈdɹɔ ˈfɹəm/",
     "pos": "短语",
     "zh": "退出；撤回",
-    "enDef": "an expression meaning “退出；撤回”",
-    "example": "Students should remember the phrase “withdraw from”.",
-    "exampleZh": "同学们应记住短语「withdraw from」（退出）。"
+    "enDef": "a set phrase meaning “退出”",
+    "example": "We use this phrase when we mean “退出”.",
+    "exampleZh": "这个短语表示「退出」。"
   },
   {
     "id": "x4-0159",
@@ -2064,9 +2064,9 @@ export const words = [
     "phonetic": "/ˈtʃænəɫ/",
     "pos": "n.",
     "zh": "航道；海峡；频道",
-    "enDef": "channel — 航道；海峡；频道",
-    "example": "This channel is useful in daily life.",
-    "exampleZh": "这个航道在日常生活中很有用。"
+    "enDef": "noun meaning “航道”",
+    "example": "I need more information about channel.",
+    "exampleZh": "我需要更多关于航道的信息。"
   },
   {
     "id": "x4-0160",
@@ -2076,10 +2076,10 @@ export const words = [
     "word": "maritime",
     "phonetic": "/ˈmɛɹəˌtaɪm/",
     "pos": "adj.",
-    "zh": "海的:海运的；海事的",
-    "enDef": "describing something as “海的:海运的；海事的”",
-    "example": "They described the idea as maritime.",
-    "exampleZh": "他们认为这个想法是海的:海运的的。"
+    "zh": "海的；海运的；海事的",
+    "enDef": "adjective meaning “海的”",
+    "example": "That description sounds maritime.",
+    "exampleZh": "那种描述听起来很海的。"
   },
   {
     "id": "x4-0161",
@@ -2089,10 +2089,10 @@ export const words = [
     "word": "bond",
     "phonetic": "/ˈbɑnd/",
     "pos": "n. / vi.",
-    "zh": "纽带；关系vt. &；增强信任关系:使牢固结合",
-    "enDef": "to bond — 纽带；关系vt. &；增强信任关系:使牢固结合",
-    "example": "We bond when we need to.",
-    "exampleZh": "需要时我们会纽带。"
+    "zh": "纽带；关系&；增强信任关系；使牢固结合",
+    "enDef": "noun meaning “纽带”",
+    "example": "I need more information about bond.",
+    "exampleZh": "我需要更多关于纽带的信息。"
   },
   {
     "id": "x4-0162",
@@ -2103,9 +2103,9 @@ export const words = [
     "phonetic": "/ˈɪn ˈhænd/",
     "pos": "短语",
     "zh": "在手头；可供使用",
-    "enDef": "an expression meaning “在手头；可供使用”",
-    "example": "Students should remember the phrase “in hand”.",
-    "exampleZh": "同学们应记住短语「in hand」（在手头）。"
+    "enDef": "a set phrase meaning “在手头”",
+    "example": "We use this phrase when we mean “在手头”.",
+    "exampleZh": "这个短语表示「在手头」。"
   },
   {
     "id": "x4-0163",
@@ -2116,9 +2116,9 @@ export const words = [
     "phonetic": "/ˈpɑɫəˌtɪks/",
     "pos": "n.",
     "zh": "政治；政治观点",
-    "enDef": "politics — 政治；政治观点",
-    "example": "This politics is useful in daily life.",
-    "exampleZh": "这个政治在日常生活中很有用。"
+    "enDef": "noun meaning “政治”",
+    "example": "I need more information about politics.",
+    "exampleZh": "我需要更多关于政治的信息。"
   },
   {
     "id": "x4-0164",
@@ -2129,9 +2129,9 @@ export const words = [
     "phonetic": "/pɹəˈfɛʃən/",
     "pos": "n.",
     "zh": "职业；行业",
-    "enDef": "profession — 职业；行业",
-    "example": "This profession is useful in daily life.",
-    "exampleZh": "这个职业在日常生活中很有用。"
+    "enDef": "noun meaning “职业”",
+    "example": "I need more information about profession.",
+    "exampleZh": "我需要更多关于职业的信息。"
   },
   {
     "id": "x4-0165",
@@ -2142,9 +2142,9 @@ export const words = [
     "phonetic": "/ˈtʊɹnəmənt/",
     "pos": "n.",
     "zh": "锦标赛；联赛",
-    "enDef": "tournament — 锦标赛；联赛",
-    "example": "This tournament is useful in daily life.",
-    "exampleZh": "这个锦标赛在日常生活中很有用。"
+    "enDef": "noun meaning “锦标赛”",
+    "example": "I need more information about tournament.",
+    "exampleZh": "我需要更多关于锦标赛的信息。"
   },
   {
     "id": "x4-0166",
@@ -2155,9 +2155,9 @@ export const words = [
     "phonetic": "/ˈmɪkstʃɝ/",
     "pos": "n.",
     "zh": "混合；结合体；混合物",
-    "enDef": "mixture — 混合；结合体；混合物",
-    "example": "This mixture is useful in daily life.",
-    "exampleZh": "这个混合在日常生活中很有用。"
+    "enDef": "noun meaning “混合”",
+    "example": "I need more information about mixture.",
+    "exampleZh": "我需要更多关于混合的信息。"
   },
   {
     "id": "x4-0167",
@@ -2168,9 +2168,9 @@ export const words = [
     "phonetic": "/ˈɫæpˌtɑp/",
     "pos": "n.",
     "zh": "笔记本电脑；便携式电脑",
-    "enDef": "laptop — 笔记本电脑；便携式电脑",
-    "example": "This laptop is useful in daily life.",
-    "exampleZh": "这个笔记本电脑在日常生活中很有用。"
+    "enDef": "noun meaning “笔记本电脑”",
+    "example": "I need more information about laptop.",
+    "exampleZh": "我需要更多关于笔记本电脑的信息。"
   },
   {
     "id": "x4-0168",
@@ -2181,9 +2181,9 @@ export const words = [
     "phonetic": "/'kvard3/",
     "pos": "n.",
     "zh": "新闻报道；覆盖范围",
-    "enDef": "coverage /'kvard3/ — 新闻报道；覆盖范围",
-    "example": "Students should remember the phrase “coverage /'kvard3/”.",
-    "exampleZh": "同学们应记住短语「coverage /'kvard3/」（新闻报道）。"
+    "enDef": "noun meaning “新闻报道”",
+    "example": "We use this phrase when we mean “新闻报道”.",
+    "exampleZh": "这个短语表示「新闻报道」。"
   },
   {
     "id": "x4-0169",
@@ -2194,9 +2194,9 @@ export const words = [
     "phonetic": "/ˈpɹɛs ˈkɑnfɝəns/",
     "pos": "短语",
     "zh": "记者招待会；新闻发布会",
-    "enDef": "an expression meaning “记者招待会；新闻发布会”",
-    "example": "Students should remember the phrase “press conference”.",
-    "exampleZh": "同学们应记住短语「press conference」（记者招待会）。"
+    "enDef": "a set phrase meaning “记者招待会”",
+    "example": "We use this phrase when we mean “记者招待会”.",
+    "exampleZh": "这个短语表示「记者招待会」。"
   },
   {
     "id": "x4-0170",
@@ -2207,9 +2207,9 @@ export const words = [
     "phonetic": "/əˈpɫɔd/",
     "pos": "vt. & vi. / vt.",
     "zh": "鼓掌；称赞；赞赏",
-    "enDef": "to applaud — 鼓掌；称赞；赞赏",
-    "example": "We applaud when we need to.",
-    "exampleZh": "需要时我们会鼓掌。"
+    "enDef": "verb meaning “鼓掌”",
+    "example": "Can you applaud this carefully?",
+    "exampleZh": "你能仔细地鼓掌一下吗？"
   },
   {
     "id": "x4-0171",
@@ -2219,10 +2219,10 @@ export const words = [
     "word": "tax",
     "phonetic": "/ˈtæks/",
     "pos": "vt.",
-    "zh": "-对---征税；使纳税n.税；税款",
-    "enDef": "to tax — -对---征税；使纳税n.税；税款",
-    "example": "We tax when we need to.",
-    "exampleZh": "需要时我们会-对---征税。"
+    "zh": "-对---征税；使纳税税；税款",
+    "enDef": "verb meaning “-对---征税”",
+    "example": "Can you tax this carefully?",
+    "exampleZh": "你能仔细地-对---征税一下吗？"
   },
   {
     "id": "x4-0172",
@@ -2233,9 +2233,9 @@ export const words = [
     "phonetic": "/ˈmænd/",
     "pos": "adj.",
     "zh": "有人控制的；需人操纵的",
-    "enDef": "describing something as “有人控制的；需人操纵的”",
-    "example": "They described the idea as manned.",
-    "exampleZh": "他们认为这个想法是有人控制的的。"
+    "enDef": "adjective meaning “有人控制的”",
+    "example": "That description sounds manned.",
+    "exampleZh": "那种描述听起来很有人控制的。"
   },
   {
     "id": "x4-0173",
@@ -2246,9 +2246,9 @@ export const words = [
     "phonetic": "/səbˈmɝsɪbəɫ/",
     "pos": "n.",
     "zh": "潜水器；可潜船",
-    "enDef": "submersible — 潜水器；可潜船",
-    "example": "This submersible is useful in daily life.",
-    "exampleZh": "这个潜水器在日常生活中很有用。"
+    "enDef": "noun meaning “潜水器”",
+    "example": "I need more information about submersible.",
+    "exampleZh": "我需要更多关于潜水器的信息。"
   },
   {
     "id": "x4-0174",
@@ -2258,10 +2258,10 @@ export const words = [
     "word": "underwater",
     "phonetic": "/ˈəndɝˌwɔtɝ/",
     "pos": "adv.",
-    "zh": "在水下adj.水下的",
-    "enDef": "in a way that is “在水下adj.水下的”",
-    "example": "She answered underwater.",
-    "exampleZh": "她在水下adj.水下的地回答。"
+    "zh": "在水下水下的",
+    "enDef": "adverb meaning “在水下水下的”",
+    "example": "She answered the question underwater.",
+    "exampleZh": "她在水下水下的地回答了这个问题。"
   },
   {
     "id": "x4-0175",
@@ -2272,9 +2272,9 @@ export const words = [
     "phonetic": "/ˈkɔɹəɫ/",
     "pos": "n.",
     "zh": "珊瑚",
-    "enDef": "coral — 珊瑚",
-    "example": "This coral is useful in daily life.",
-    "exampleZh": "这个珊瑚在日常生活中很有用。"
+    "enDef": "noun meaning “珊瑚”",
+    "example": "I need more information about coral.",
+    "exampleZh": "我需要更多关于珊瑚的信息。"
   },
   {
     "id": "x4-0176",
@@ -2285,9 +2285,9 @@ export const words = [
     "phonetic": "/maɪˈɡɹeɪʃən/",
     "pos": "n.",
     "zh": "迁移；迁徙；移居",
-    "enDef": "migration — 迁移；迁徙；移居",
-    "example": "This migration is useful in daily life.",
-    "exampleZh": "这个迁移在日常生活中很有用。"
+    "enDef": "noun meaning “迁移”",
+    "example": "I need more information about migration.",
+    "exampleZh": "我需要更多关于迁移的信息。"
   },
   {
     "id": "x4-0177",
@@ -2297,10 +2297,10 @@ export const words = [
     "word": "directory",
     "phonetic": "/daɪˈɹɛktɝi/",
     "pos": "n.",
-    "zh": "名录；电话号码簿；(计算机文件或程序的目录)",
-    "enDef": "directory — 名录；电话号码簿；(计算机文件或程序的目录)",
-    "example": "This directory is useful in daily life.",
-    "exampleZh": "这个名录在日常生活中很有用。"
+    "zh": "名录；电话号码簿；（计算机文件或程序的目录）",
+    "enDef": "noun meaning “名录”",
+    "example": "I need more information about directory.",
+    "exampleZh": "我需要更多关于名录的信息。"
   },
   {
     "id": "x4-0178",
@@ -2310,10 +2310,10 @@ export const words = [
     "word": "meanwhile",
     "phonetic": "/ˈminˌwaɪɫ/",
     "pos": "adv.",
-    "zh": "与此同时；( 比较两方面)对比之下",
-    "enDef": "in a way that is “与此同时；( 比较两方面)对比之下”",
-    "example": "She answered meanwhile.",
-    "exampleZh": "她与此同时地回答。"
+    "zh": "与此同时；（比较两方面）对比之下",
+    "enDef": "adverb meaning “与此同时”",
+    "example": "She answered the question meanwhile.",
+    "exampleZh": "她与此同时地回答了这个问题。"
   },
   {
     "id": "x4-0179",
@@ -2324,9 +2324,9 @@ export const words = [
     "phonetic": "/ˈɛksˌpɫɔɪt/",
     "pos": "vt.",
     "zh": "以.开发；利用；剥削",
-    "enDef": "to exploit — 以.开发；利用；剥削",
-    "example": "We exploit when we need to.",
-    "exampleZh": "需要时我们会以.开发。"
+    "enDef": "verb meaning “以.开发”",
+    "example": "Can you exploit this carefully?",
+    "exampleZh": "你能仔细地以.开发一下吗？"
   },
   {
     "id": "x4-0180",
@@ -2336,10 +2336,10 @@ export const words = [
     "word": "gallon",
     "phonetic": "/ˈɡæɫən/",
     "pos": "n.",
-    "zh": "加仑(容积单位，1英制加仑约等于4.5升)",
-    "enDef": "gallon — 加仑(容积单位，1英制加仑约等于4.5升)",
-    "example": "This gallon is useful in daily life.",
-    "exampleZh": "这个加仑(容积单位在日常生活中很有用。"
+    "zh": "加仑（容积单位，1英制加仑约等于4.5升）",
+    "enDef": "noun meaning “加仑（容积单位”",
+    "example": "I need more information about gallon.",
+    "exampleZh": "我需要更多关于加仑（容积单位的信息。"
   },
   {
     "id": "x4-0181",
@@ -2349,10 +2349,10 @@ export const words = [
     "word": "murder",
     "phonetic": "/ˈmɝdɝ/",
     "pos": "vt.",
-    "zh": "谋杀；凶杀；毁坏n.谋杀",
-    "enDef": "to murder — 谋杀；凶杀；毁坏n.谋杀",
-    "example": "We murder when we need to.",
-    "exampleZh": "需要时我们会谋杀。"
+    "zh": "谋杀；凶杀；毁坏谋杀",
+    "enDef": "verb meaning “谋杀”",
+    "example": "Can you murder this carefully?",
+    "exampleZh": "你能仔细地谋杀一下吗？"
   },
   {
     "id": "x4-0182",
@@ -2363,9 +2363,9 @@ export const words = [
     "phonetic": "/ˈmɝsi/",
     "pos": "n.",
     "zh": "仁慈；宽恕；恩惠",
-    "enDef": "mercy — 仁慈；宽恕；恩惠",
-    "example": "This mercy is useful in daily life.",
-    "exampleZh": "这个仁慈在日常生活中很有用。"
+    "enDef": "noun meaning “仁慈”",
+    "example": "I need more information about mercy.",
+    "exampleZh": "我需要更多关于仁慈的信息。"
   },
   {
     "id": "x4-0183",
@@ -2375,10 +2375,10 @@ export const words = [
     "word": "possession",
     "phonetic": "/pəˈzɛʃən/",
     "pos": "n.",
-    "zh": "(usually pl]个人财产；拥有:控制",
-    "enDef": "possession — (usually pl]个人财产；拥有:控制",
-    "example": "This possession is useful in daily life.",
-    "exampleZh": "这个(usually pl]个人财产在日常生活中很有用。"
+    "zh": "(；个人财产；拥有；控制",
+    "enDef": "noun meaning “(”",
+    "example": "I need more information about possession.",
+    "exampleZh": "我需要更多关于(的信息。"
   },
   {
     "id": "x4-0184",
@@ -2389,9 +2389,9 @@ export const words = [
     "phonetic": "/əˈpoʊnənt/",
     "pos": "n.",
     "zh": "反对者；对手；竞争者",
-    "enDef": "opponent — 反对者；对手；竞争者",
-    "example": "This opponent is useful in daily life.",
-    "exampleZh": "这个反对者在日常生活中很有用。"
+    "enDef": "noun meaning “反对者”",
+    "example": "I need more information about opponent.",
+    "exampleZh": "我需要更多关于反对者的信息。"
   },
   {
     "id": "x4-0185",
@@ -2401,10 +2401,10 @@ export const words = [
     "word": "log",
     "phonetic": "/ˈɫɔɡ/",
     "pos": "vt.",
-    "zh": "...载入正式记录；记录n.正式记录；日志；原木",
-    "enDef": "to log — ...载入正式记录；记录n.正式记录；日志；原木",
-    "example": "We log when we need to.",
-    "exampleZh": "需要时我们会...载入正式记录。"
+    "zh": "载入正式记录；记录正式记录；日志；原木",
+    "enDef": "verb meaning “载入正式记录”",
+    "example": "Can you log this carefully?",
+    "exampleZh": "你能仔细地载入正式记录一下吗？"
   },
   {
     "id": "x4-0186",
@@ -2415,9 +2415,9 @@ export const words = [
     "phonetic": "/mɝˈin/",
     "pos": "adj.",
     "zh": "海的；海产的；海生的",
-    "enDef": "describing something as “海的；海产的；海生的”",
-    "example": "They described the idea as marine.",
-    "exampleZh": "他们认为这个想法是海的的。"
+    "enDef": "adjective meaning “海的”",
+    "example": "That description sounds marine.",
+    "exampleZh": "那种描述听起来很海的。"
   },
   {
     "id": "x4-0187",
@@ -2427,10 +2427,10 @@ export const words = [
     "word": "arrest",
     "phonetic": "/ɝˈɛst/",
     "pos": "n.",
-    "zh": "逮捕；拘留；中止vt.逮捕；阻止",
-    "enDef": "arrest — 逮捕；拘留；中止vt.逮捕；阻止",
-    "example": "This arrest is useful in daily life.",
-    "exampleZh": "这个逮捕在日常生活中很有用。"
+    "zh": "逮捕；拘留；中止逮捕；阻止",
+    "enDef": "noun meaning “逮捕”",
+    "example": "I need more information about arrest.",
+    "exampleZh": "我需要更多关于逮捕的信息。"
   },
   {
     "id": "x4-0188",
@@ -2441,9 +2441,9 @@ export const words = [
     "phonetic": "/ˈmɑɹkoʊ ˈpoʊɫoʊ/",
     "pos": "专有名词",
     "zh": "马可●波罗",
-    "enDef": "a proper name or term: 马可●波罗",
-    "example": "Students should remember the phrase “Marco Polo”.",
-    "exampleZh": "同学们应记住短语「Marco Polo」（马可●波罗）。"
+    "enDef": "a proper name / term for “马可●波罗”",
+    "example": "We use this phrase when we mean “马可●波罗”.",
+    "exampleZh": "这个短语表示「马可●波罗」。"
   },
   {
     "id": "x4-0189",
@@ -2454,9 +2454,9 @@ export const words = [
     "phonetic": "/kəˈɫəmbəs/",
     "pos": "专有名词",
     "zh": "哥伦布",
-    "enDef": "a proper name or term: 哥伦布",
-    "example": "Columbus is introduced in this unit.",
-    "exampleZh": "本单元介绍了Columbus（哥伦布）。"
+    "enDef": "a proper name / term for “哥伦布”",
+    "example": "This name / term refers to “哥伦布”.",
+    "exampleZh": "这个专有名称指「哥伦布」。"
   },
   {
     "id": "x4-0190",
@@ -2466,10 +2466,10 @@ export const words = [
     "word": "Ceylon",
     "phonetic": "/siˈɫɑn/",
     "pos": "专有名词",
-    "zh": "锡兰(斯里兰卡的旧称)",
-    "enDef": "a proper name or term: 锡兰(斯里兰卡的旧称)",
-    "example": "Ceylon is introduced in this unit.",
-    "exampleZh": "本单元介绍了Ceylon（锡兰(斯里兰卡的旧称)）。"
+    "zh": "锡兰（斯里兰卡的旧称）",
+    "enDef": "a proper name / term for “锡兰（斯里兰卡的旧称）”",
+    "example": "This name / term refers to “锡兰（斯里兰卡的旧称）”.",
+    "exampleZh": "这个专有名称指「锡兰（斯里兰卡的旧称）」。"
   },
   {
     "id": "x4-0191",
@@ -2480,9 +2480,9 @@ export const words = [
     "phonetic": "/ˈtʃɝtʃhɪɫ/",
     "pos": "专有名词",
     "zh": "丘吉尔",
-    "enDef": "a proper name or term: 丘吉尔",
-    "example": "Churchill is introduced in this unit.",
-    "exampleZh": "本单元介绍了Churchill（丘吉尔）。"
+    "enDef": "a proper name / term for “丘吉尔”",
+    "example": "This name / term refers to “丘吉尔”.",
+    "exampleZh": "这个专有名称指「丘吉尔」。"
   },
   {
     "id": "x4-0192",
@@ -2493,9 +2493,9 @@ export const words = [
     "phonetic": "/ˈfɝdɪˌnæn məˈdʒɛɫən/",
     "pos": "专有名词",
     "zh": "费迪南德●麦哲伦",
-    "enDef": "a proper name or term: 费迪南德●麦哲伦",
-    "example": "Students should remember the phrase “Ferdinand Magellan”.",
-    "exampleZh": "同学们应记住短语「Ferdinand Magellan」（费迪南德●麦哲伦）。"
+    "enDef": "a proper name / term for “费迪南德●麦哲伦”",
+    "example": "We use this phrase when we mean “费迪南德●麦哲伦”.",
+    "exampleZh": "这个短语表示「费迪南德●麦哲伦」。"
   },
   {
     "id": "x4-0193",
@@ -2506,9 +2506,9 @@ export const words = [
     "phonetic": "",
     "pos": "专有名词",
     "zh": "扎克.桑德兰",
-    "enDef": "a proper name or term: 扎克.桑德兰",
-    "example": "Students should remember the phrase “Zac Sunderland”.",
-    "exampleZh": "同学们应记住短语「Zac Sunderland」（扎克.桑德兰）。"
+    "enDef": "a proper name / term for “扎克.桑德兰”",
+    "example": "We use this phrase when we mean “扎克.桑德兰”.",
+    "exampleZh": "这个短语表示「扎克.桑德兰」。"
   },
   {
     "id": "x4-0194",
@@ -2519,9 +2519,9 @@ export const words = [
     "phonetic": "/ˈɹɑbən ˈɫi ˈɡɹæm/",
     "pos": "专有名词",
     "zh": "罗宾.李.格雷厄姆",
-    "enDef": "a proper name or term: 罗宾.李.格雷厄姆",
-    "example": "Students should remember the phrase “Robin Lee Graham”.",
-    "exampleZh": "同学们应记住短语「Robin Lee Graham」（罗宾.李.格雷厄姆）。"
+    "enDef": "a proper name / term for “罗宾.李.格雷厄姆”",
+    "example": "We use this phrase when we mean “罗宾.李.格雷厄姆”.",
+    "exampleZh": "这个短语表示「罗宾.李.格雷厄姆」。"
   },
   {
     "id": "x4-0195",
@@ -2531,10 +2531,10 @@ export const words = [
     "word": "parcel",
     "phonetic": "/ˈpɑɹsəɫ/",
     "pos": "n.",
-    "zh": "包裹vt.裹好:打包",
-    "enDef": "parcel — 包裹vt.裹好:打包",
-    "example": "This parcel is useful in daily life.",
-    "exampleZh": "这个包裹vt.裹好:打包在日常生活中很有用。"
+    "zh": "包裹裹好；打包",
+    "enDef": "noun meaning “包裹裹好”",
+    "example": "I need more information about parcel.",
+    "exampleZh": "我需要更多关于包裹裹好的信息。"
   },
   {
     "id": "x4-0196",
@@ -2544,10 +2544,10 @@ export const words = [
     "word": "jam",
     "phonetic": "/ˈdʒæm/",
     "pos": "n.",
-    "zh": "果酱:堵塞",
-    "enDef": "jam — 果酱:堵塞",
-    "example": "This jam is useful in daily life.",
-    "exampleZh": "这个果酱:堵塞在日常生活中很有用。"
+    "zh": "果酱；堵塞",
+    "enDef": "noun meaning “果酱”",
+    "example": "I need more information about jam.",
+    "exampleZh": "我需要更多关于果酱的信息。"
   },
   {
     "id": "x4-0197",
@@ -2557,10 +2557,10 @@ export const words = [
     "word": "mail",
     "phonetic": "/ˈmeɪɫ/",
     "pos": "n.",
-    "zh": "邮件；信件；邮政vt.邮寄:发电邮给",
-    "enDef": "mail — 邮件；信件；邮政vt.邮寄:发电邮给",
-    "example": "This mail is useful in daily life.",
-    "exampleZh": "这个邮件在日常生活中很有用。"
+    "zh": "邮件；信件；邮政邮寄；发电邮给",
+    "enDef": "noun meaning “邮件”",
+    "example": "I need more information about mail.",
+    "exampleZh": "我需要更多关于邮件的信息。"
   },
   {
     "id": "x4-0198",
@@ -2571,9 +2571,9 @@ export const words = [
     "phonetic": "/ˈsɛkənˌdɛɹi/",
     "pos": "adj.",
     "zh": "中学的；次要的",
-    "enDef": "describing something as “中学的；次要的”",
-    "example": "They described the idea as secondary.",
-    "exampleZh": "他们认为这个想法是中学的的。"
+    "enDef": "adjective meaning “中学的”",
+    "example": "That description sounds secondary.",
+    "exampleZh": "那种描述听起来很中学的。"
   },
   {
     "id": "x4-0199",
@@ -2584,9 +2584,9 @@ export const words = [
     "phonetic": "/ˈkɫeɪ/",
     "pos": "n.",
     "zh": "黏土；陶土",
-    "enDef": "clay — 黏土；陶土",
-    "example": "This clay is useful in daily life.",
-    "exampleZh": "这个黏土在日常生活中很有用。"
+    "enDef": "noun meaning “黏土”",
+    "example": "I need more information about clay.",
+    "exampleZh": "我需要更多关于黏土的信息。"
   },
   {
     "id": "x4-0200",
@@ -2596,10 +2596,10 @@ export const words = [
     "word": "dust",
     "phonetic": "/ˈdəst/",
     "pos": "n. / vt.",
-    "zh": "沙土；灰尘vi. &；擦灰",
-    "enDef": "to dust — 沙土；灰尘vi. &；擦灰",
-    "example": "We dust when we need to.",
-    "exampleZh": "需要时我们会沙土。"
+    "zh": "沙土；灰尘&；擦灰",
+    "enDef": "noun meaning “沙土”",
+    "example": "I need more information about dust.",
+    "exampleZh": "我需要更多关于沙土的信息。"
   },
   {
     "id": "x4-0201",
@@ -2610,9 +2610,9 @@ export const words = [
     "phonetic": "/ˈdəsti/",
     "pos": "adj.",
     "zh": "布满灰尘的",
-    "enDef": "describing something as “布满灰尘的”",
-    "example": "They described the idea as dusty.",
-    "exampleZh": "他们认为这个想法是布满灰尘的的。"
+    "enDef": "adjective meaning “布满灰尘的”",
+    "example": "That description sounds dusty.",
+    "exampleZh": "那种描述听起来很布满灰尘的。"
   },
   {
     "id": "x4-0202",
@@ -2622,10 +2622,10 @@ export const words = [
     "word": "weed",
     "phonetic": "/ˈwid/",
     "pos": "n. / vi.",
-    "zh": "杂草；野草vt. &；除杂草",
-    "enDef": "to weed — 杂草；野草vt. &；除杂草",
-    "example": "We weed when we need to.",
-    "exampleZh": "需要时我们会杂草。"
+    "zh": "杂草；野草&；除杂草",
+    "enDef": "noun meaning “杂草”",
+    "example": "I need more information about weed.",
+    "exampleZh": "我需要更多关于杂草的信息。"
   },
   {
     "id": "x4-0203",
@@ -2635,10 +2635,10 @@ export const words = [
     "word": "chorus",
     "phonetic": "/ˈkɔɹəs/",
     "pos": "n.",
-    "zh": "合唱曲；合唱团vt.合唱；齐声说",
-    "enDef": "chorus — 合唱曲；合唱团vt.合唱；齐声说",
-    "example": "This chorus is useful in daily life.",
-    "exampleZh": "这个合唱曲在日常生活中很有用。"
+    "zh": "合唱曲；合唱团合唱；齐声说",
+    "enDef": "noun meaning “合唱曲”",
+    "example": "I need more information about chorus.",
+    "exampleZh": "我需要更多关于合唱曲的信息。"
   },
   {
     "id": "x4-0204",
@@ -2649,9 +2649,9 @@ export const words = [
     "phonetic": "/ˈkɔɹəs/",
     "pos": "短语",
     "zh": "齐声；异口同声",
-    "enDef": "an expression meaning “齐声；异口同声”",
-    "example": "Students should remember the phrase “a chorus of”.",
-    "exampleZh": "同学们应记住短语「a chorus of」（齐声）。"
+    "enDef": "a set phrase meaning “齐声”",
+    "example": "We use this phrase when we mean “齐声”.",
+    "exampleZh": "这个短语表示「齐声」。"
   },
   {
     "id": "x4-0205",
@@ -2662,9 +2662,9 @@ export const words = [
     "phonetic": "/ˈkɑtən/",
     "pos": "n.",
     "zh": "棉布；棉花",
-    "enDef": "cotton — 棉布；棉花",
-    "example": "This cotton is useful in daily life.",
-    "exampleZh": "这个棉布在日常生活中很有用。"
+    "enDef": "noun meaning “棉布”",
+    "example": "I need more information about cotton.",
+    "exampleZh": "我需要更多关于棉布的信息。"
   },
   {
     "id": "x4-0206",
@@ -2674,10 +2674,10 @@ export const words = [
     "word": "uniform",
     "phonetic": "/ˈjunəˌfɔɹm/",
     "pos": "n.",
-    "zh": "校服；制服adj.一致的:统- -的",
-    "enDef": "uniform — 校服；制服adj.一致的:统- -的",
-    "example": "This uniform is useful in daily life.",
-    "exampleZh": "这个校服在日常生活中很有用。"
+    "zh": "校服；制服一致的；统--的",
+    "enDef": "noun meaning “校服”",
+    "example": "I need more information about uniform.",
+    "exampleZh": "我需要更多关于校服的信息。"
   },
   {
     "id": "x4-0207",
@@ -2688,9 +2688,9 @@ export const words = [
     "phonetic": "/ˈnɑt ˈmɛnʃən/",
     "pos": "短语",
     "zh": "更不用说；且不说",
-    "enDef": "an expression meaning “更不用说；且不说”",
-    "example": "Students should remember the phrase “not to mention”.",
-    "exampleZh": "同学们应记住短语「not to mention」（更不用说）。"
+    "enDef": "a set phrase meaning “更不用说”",
+    "example": "We use this phrase when we mean “更不用说”.",
+    "exampleZh": "这个短语表示「更不用说」。"
   },
   {
     "id": "x4-0208",
@@ -2700,10 +2700,10 @@ export const words = [
     "word": "tablet",
     "phonetic": "/ˈtæbɫət/",
     "pos": "n.",
-    "zh": "平板电脑:便笺本；药片",
-    "enDef": "tablet — 平板电脑:便笺本；药片",
-    "example": "This tablet is useful in daily life.",
-    "exampleZh": "这个平板电脑:便笺本在日常生活中很有用。"
+    "zh": "平板电脑；便笺本；药片",
+    "enDef": "noun meaning “平板电脑”",
+    "example": "I need more information about tablet.",
+    "exampleZh": "我需要更多关于平板电脑的信息。"
   },
   {
     "id": "x4-0209",
@@ -2714,9 +2714,9 @@ export const words = [
     "phonetic": "/ˈɹəbɝ/",
     "pos": "n.",
     "zh": "橡皮；黑板擦；橡胶",
-    "enDef": "rubber — 橡皮；黑板擦；橡胶",
-    "example": "This rubber is useful in daily life.",
-    "exampleZh": "这个橡皮在日常生活中很有用。"
+    "enDef": "noun meaning “橡皮”",
+    "example": "I need more information about rubber.",
+    "exampleZh": "我需要更多关于橡皮的信息。"
   },
   {
     "id": "x4-0210",
@@ -2727,9 +2727,9 @@ export const words = [
     "phonetic": "/ˈwɑʃˌɹum/",
     "pos": "n.",
     "zh": "洗手间；厕所",
-    "enDef": "washroom — 洗手间；厕所",
-    "example": "This washroom is useful in daily life.",
-    "exampleZh": "这个洗手间在日常生活中很有用。"
+    "enDef": "noun meaning “洗手间”",
+    "example": "I need more information about washroom.",
+    "exampleZh": "我需要更多关于洗手间的信息。"
   },
   {
     "id": "x4-0211",
@@ -2739,10 +2739,10 @@ export const words = [
     "word": "rigid /'rd3yd/",
     "phonetic": "/'rd3yd/",
     "pos": "adj.",
-    "zh": "死板的:圖执的",
-    "enDef": "describing something as “死板的:圖执的”",
-    "example": "Students should remember the phrase “rigid /'rd3yd/”.",
-    "exampleZh": "同学们应记住短语「rigid /'rd3yd/」（死板的:圖执的）。"
+    "zh": "死板的；圖执的",
+    "enDef": "adjective meaning “死板的”",
+    "example": "We use this phrase when we mean “死板的”.",
+    "exampleZh": "这个短语表示「死板的」。"
   },
   {
     "id": "x4-0212",
@@ -2753,9 +2753,9 @@ export const words = [
     "phonetic": "/ˈbəbəɫ/",
     "pos": "vi.",
     "zh": "起泡；沸腾",
-    "enDef": "to bubble — 起泡；沸腾",
-    "example": "We bubble when we need to.",
-    "exampleZh": "需要时我们会起泡。"
+    "enDef": "verb meaning “起泡”",
+    "example": "Can you bubble this carefully?",
+    "exampleZh": "你能仔细地起泡一下吗？"
   },
   {
     "id": "x4-0213",
@@ -2765,10 +2765,10 @@ export const words = [
     "word": "tube",
     "phonetic": "/ˈtjub/",
     "pos": "n.",
-    "zh": "管子:管状物!",
-    "enDef": "tube — 管子:管状物!",
-    "example": "This tube is useful in daily life.",
-    "exampleZh": "这个管子:管状物!在日常生活中很有用。"
+    "zh": "管子；管状物!",
+    "enDef": "noun meaning “管子”",
+    "example": "I need more information about tube.",
+    "exampleZh": "我需要更多关于管子的信息。"
   },
   {
     "id": "x4-0214",
@@ -2779,9 +2779,9 @@ export const words = [
     "phonetic": "/ˈsɝkəs/",
     "pos": "n.",
     "zh": "马戏团",
-    "enDef": "circus — 马戏团",
-    "example": "This circus is useful in daily life.",
-    "exampleZh": "这个马戏团在日常生活中很有用。"
+    "enDef": "noun meaning “马戏团”",
+    "example": "I need more information about circus.",
+    "exampleZh": "我需要更多关于马戏团的信息。"
   },
   {
     "id": "x4-0215",
@@ -2792,9 +2792,9 @@ export const words = [
     "phonetic": "/ˈkɛmɪst/",
     "pos": "n.",
     "zh": "化学家；药剂师；药房",
-    "enDef": "chemist — 化学家；药剂师；药房",
-    "example": "This chemist is useful in daily life.",
-    "exampleZh": "这个化学家在日常生活中很有用。"
+    "enDef": "noun meaning “化学家”",
+    "example": "I need more information about chemist.",
+    "exampleZh": "我需要更多关于化学家的信息。"
   },
   {
     "id": "x4-0216",
@@ -2804,10 +2804,10 @@ export const words = [
     "word": "shade",
     "phonetic": "/ˈʃeɪd/",
     "pos": "vt.",
-    "zh": "给......遮挡(光线)；加灯罩；把--涂暗n.阴凉处；灯罩；阴影部分",
-    "enDef": "to shade — 给......遮挡(光线)；加灯罩；把--涂暗n.阴凉处；灯罩；阴影部分",
-    "example": "We shade when we need to.",
-    "exampleZh": "需要时我们会给......遮挡(光线)。"
+    "zh": "给……遮挡（光线）；加灯罩；把--涂暗阴凉处；灯罩；阴影部分",
+    "enDef": "verb meaning “给……遮挡（光线）”",
+    "example": "Can you shade this carefully?",
+    "exampleZh": "你能仔细地给……遮挡（光线）一下吗？"
   },
   {
     "id": "x4-0217",
@@ -2818,9 +2818,9 @@ export const words = [
     "phonetic": "/ˈdʒɔ/",
     "pos": "n.",
     "zh": "頜；下巴",
-    "enDef": "jaw — 頜；下巴",
-    "example": "This jaw is useful in daily life.",
-    "exampleZh": "这个頜在日常生活中很有用。"
+    "enDef": "noun meaning “頜”",
+    "example": "I need more information about jaw.",
+    "exampleZh": "我需要更多关于頜的信息。"
   },
   {
     "id": "x4-0218",
@@ -2830,10 +2830,10 @@ export const words = [
     "word": "wrinkle",
     "phonetic": "/ˈɹɪŋkəɫ/",
     "pos": "vt. & vi.",
-    "zh": "(使脸上)起皱纹；皱起n.皱纹",
-    "enDef": "to wrinkle — (使脸上)起皱纹；皱起n.皱纹",
-    "example": "We wrinkle when we need to.",
-    "exampleZh": "需要时我们会(使脸上)起皱纹。"
+    "zh": "（使脸上）起皱纹；皱起皱纹",
+    "enDef": "verb meaning “（使脸上）起皱纹”",
+    "example": "Can you wrinkle this carefully?",
+    "exampleZh": "你能仔细地（使脸上）起皱纹一下吗？"
   },
   {
     "id": "x4-0219",
@@ -2844,9 +2844,9 @@ export const words = [
     "phonetic": "/ˈfɔɹhɛd/",
     "pos": "n.",
     "zh": "额；前额",
-    "enDef": "forehead — 额；前额",
-    "example": "This forehead is useful in daily life.",
-    "exampleZh": "这个额在日常生活中很有用。"
+    "enDef": "noun meaning “额”",
+    "example": "I need more information about forehead.",
+    "exampleZh": "我需要更多关于额的信息。"
   },
   {
     "id": "x4-0220",
@@ -2856,10 +2856,10 @@ export const words = [
     "word": "hut",
     "phonetic": "/ˈhət/",
     "pos": "n.",
-    "zh": "简陋的小房子(或棚、合)",
-    "enDef": "hut — 简陋的小房子(或棚、合)",
-    "example": "This hut is useful in daily life.",
-    "exampleZh": "这个简陋的小房子(或棚、合)在日常生活中很有用。"
+    "zh": "简陋的小房子（或棚、合）",
+    "enDef": "noun meaning “简陋的小房子（或棚、合）”",
+    "example": "I need more information about hut.",
+    "exampleZh": "我需要更多关于简陋的小房子（或棚、合）的信息。"
   },
   {
     "id": "x4-0221",
@@ -2870,9 +2870,9 @@ export const words = [
     "phonetic": "/ˈhaʊzɪŋ/",
     "pos": "n.",
     "zh": "住房；住宅",
-    "enDef": "housing — 住房；住宅",
-    "example": "This housing is useful in daily life.",
-    "exampleZh": "这个住房在日常生活中很有用。"
+    "enDef": "noun meaning “住房”",
+    "example": "I need more information about housing.",
+    "exampleZh": "我需要更多关于住房的信息。"
   },
   {
     "id": "x4-0222",
@@ -2883,9 +2883,9 @@ export const words = [
     "phonetic": "/ˈpɫætˌfɔɹm/",
     "pos": "n.",
     "zh": "平台；站台；舞台",
-    "enDef": "platform — 平台；站台；舞台",
-    "example": "This platform is useful in daily life.",
-    "exampleZh": "这个平台在日常生活中很有用。"
+    "enDef": "noun meaning “平台”",
+    "example": "I need more information about platform.",
+    "exampleZh": "我需要更多关于平台的信息。"
   },
   {
     "id": "x4-0223",
@@ -2896,9 +2896,9 @@ export const words = [
     "phonetic": "/ˈfaɪɝˌpɫeɪs/",
     "pos": "n.",
     "zh": "壁炉",
-    "enDef": "fireplace — 壁炉",
-    "example": "This fireplace is useful in daily life.",
-    "exampleZh": "这个壁炉在日常生活中很有用。"
+    "enDef": "noun meaning “壁炉”",
+    "example": "I need more information about fireplace.",
+    "exampleZh": "我需要更多关于壁炉的信息。"
   },
   {
     "id": "x4-0224",
@@ -2909,9 +2909,9 @@ export const words = [
     "phonetic": "/ˈsɔsɝ/",
     "pos": "n.",
     "zh": "茶碟；杯托",
-    "enDef": "saucer — 茶碟；杯托",
-    "example": "This saucer is useful in daily life.",
-    "exampleZh": "这个茶碟在日常生活中很有用。"
+    "enDef": "noun meaning “茶碟”",
+    "example": "I need more information about saucer.",
+    "exampleZh": "我需要更多关于茶碟的信息。"
   },
   {
     "id": "x4-0225",
@@ -2921,10 +2921,10 @@ export const words = [
     "word": "kettle",
     "phonetic": "/ˈkɛtəɫ/",
     "pos": "n.",
-    "zh": "(烧水用的)壶；水壶",
-    "enDef": "kettle — (烧水用的)壶；水壶",
-    "example": "This kettle is useful in daily life.",
-    "exampleZh": "这个(烧水用的)壶在日常生活中很有用。"
+    "zh": "（烧水用的）壶；水壶",
+    "enDef": "noun meaning “（烧水用的）壶”",
+    "example": "I need more information about kettle.",
+    "exampleZh": "我需要更多关于（烧水用的）壶的信息。"
   },
   {
     "id": "x4-0226",
@@ -2935,9 +2935,9 @@ export const words = [
     "phonetic": "/ˈpæn/",
     "pos": "n.",
     "zh": "平底锅；烤盘",
-    "enDef": "pan — 平底锅；烤盘",
-    "example": "This pan is useful in daily life.",
-    "exampleZh": "这个平底锅在日常生活中很有用。"
+    "enDef": "noun meaning “平底锅”",
+    "example": "I need more information about pan.",
+    "exampleZh": "我需要更多关于平底锅的信息。"
   },
   {
     "id": "x4-0227",
@@ -2947,10 +2947,10 @@ export const words = [
     "word": "jar",
     "phonetic": "/ˈdʒɑɹ/",
     "pos": "n.",
-    "zh": "罐子:坛子",
-    "enDef": "jar — 罐子:坛子",
-    "example": "This jar is useful in daily life.",
-    "exampleZh": "这个罐子:坛子在日常生活中很有用。"
+    "zh": "罐子；坛子",
+    "enDef": "noun meaning “罐子”",
+    "example": "I need more information about jar.",
+    "exampleZh": "我需要更多关于罐子的信息。"
   },
   {
     "id": "x4-0228",
@@ -2961,9 +2961,9 @@ export const words = [
     "phonetic": "/ˈɹaɪp/",
     "pos": "adj.",
     "zh": "成熟的；时机成熟的",
-    "enDef": "describing something as “成熟的；时机成熟的”",
-    "example": "They described the idea as ripe.",
-    "exampleZh": "他们认为这个想法是成熟的的。"
+    "enDef": "adjective meaning “成熟的”",
+    "example": "That description sounds ripe.",
+    "exampleZh": "那种描述听起来很成熟的。"
   },
   {
     "id": "x4-0229",
@@ -2974,9 +2974,9 @@ export const words = [
     "phonetic": "/ˈɡɹɪɫ/",
     "pos": "n.",
     "zh": "烤架；烤肉餐馆",
-    "enDef": "grill — 烤架；烤肉餐馆",
-    "example": "This grill is useful in daily life.",
-    "exampleZh": "这个烤架在日常生活中很有用。"
+    "enDef": "noun meaning “烤架”",
+    "example": "I need more information about grill.",
+    "exampleZh": "我需要更多关于烤架的信息。"
   },
   {
     "id": "x4-0230",
@@ -2987,9 +2987,9 @@ export const words = [
     "phonetic": "/ˈdɔɹˌweɪ/",
     "pos": "n.",
     "zh": "门口；出入口；门道",
-    "enDef": "doorway — 门口；出入口；门道",
-    "example": "This doorway is useful in daily life.",
-    "exampleZh": "这个门口在日常生活中很有用。"
+    "enDef": "noun meaning “门口”",
+    "example": "I need more information about doorway.",
+    "exampleZh": "我需要更多关于门口的信息。"
   },
   {
     "id": "x4-0231",
@@ -2999,10 +2999,10 @@ export const words = [
     "word": "leftover",
     "phonetic": "/ˈɫɛfˌtoʊvɝ/",
     "pos": "adj.",
-    "zh": "吃剩的；残留的n.吃剩的食物；遗留物",
-    "enDef": "describing something as “吃剩的；残留的n.吃剩的食物；遗留物”",
-    "example": "They described the idea as leftover.",
-    "exampleZh": "他们认为这个想法是吃剩的的。"
+    "zh": "吃剩的；残留的吃剩的食物；遗留物",
+    "enDef": "adjective meaning “吃剩的”",
+    "example": "That description sounds leftover.",
+    "exampleZh": "那种描述听起来很吃剩的。"
   },
   {
     "id": "x4-0232",
@@ -3013,9 +3013,9 @@ export const words = [
     "phonetic": "/ˈhændˌʃeɪk/",
     "pos": "n.",
     "zh": "握手",
-    "enDef": "handshake — 握手",
-    "example": "This handshake is useful in daily life.",
-    "exampleZh": "这个握手在日常生活中很有用。"
+    "enDef": "noun meaning “握手”",
+    "example": "I need more information about handshake.",
+    "exampleZh": "我需要更多关于握手的信息。"
   },
   {
     "id": "x4-0233",
@@ -3025,10 +3025,10 @@ export const words = [
     "word": "drag",
     "phonetic": "/ˈdɹæɡ/",
     "pos": "vt. / vi.",
-    "zh": "拖；拽vt. &；缓慢而费力地移动",
-    "enDef": "to drag — 拖；拽vt. &；缓慢而费力地移动",
-    "example": "We drag when we need to.",
-    "exampleZh": "需要时我们会拖。"
+    "zh": "拖；拽&；缓慢而费力地移动",
+    "enDef": "verb meaning “拖”",
+    "example": "Can you drag this carefully?",
+    "exampleZh": "你能仔细地拖一下吗？"
   },
   {
     "id": "x4-0234",
@@ -3039,9 +3039,9 @@ export const words = [
     "phonetic": "/ˈpɹɪvɪɫədʒ/",
     "pos": "n.",
     "zh": "优惠待遇；特权",
-    "enDef": "privilege — 优惠待遇；特权",
-    "example": "This privilege is useful in daily life.",
-    "exampleZh": "这个优惠待遇在日常生活中很有用。"
+    "enDef": "noun meaning “优惠待遇”",
+    "example": "I need more information about privilege.",
+    "exampleZh": "我需要更多关于优惠待遇的信息。"
   },
   {
     "id": "x4-0235",
@@ -3051,10 +3051,10 @@ export const words = [
     "word": "plug",
     "phonetic": "/ˈpɫəɡ/",
     "pos": "v.",
-    "zh": "封堵；补足n.堵塞物；插头；插座",
-    "enDef": "to plug — 封堵；补足n.堵塞物；插头；插座",
-    "example": "We plug when we need to.",
-    "exampleZh": "需要时我们会封堵。"
+    "zh": "封堵；补足堵塞物；插头；插座",
+    "enDef": "verb meaning “封堵”",
+    "example": "Can you plug this carefully?",
+    "exampleZh": "你能仔细地封堵一下吗？"
   },
   {
     "id": "x4-0236",
@@ -3065,9 +3065,9 @@ export const words = [
     "phonetic": "/dɪˈseɪbəɫd/",
     "pos": "adj.",
     "zh": "有残疾的；丧失能力的",
-    "enDef": "describing something as “有残疾的；丧失能力的”",
-    "example": "They described the idea as disabled.",
-    "exampleZh": "他们认为这个想法是有残疾的的。"
+    "enDef": "adjective meaning “有残疾的”",
+    "example": "That description sounds disabled.",
+    "exampleZh": "那种描述听起来很有残疾的。"
   },
   {
     "id": "x4-0237",
@@ -3078,9 +3078,9 @@ export const words = [
     "phonetic": "/ɹiˈsaɪn/",
     "pos": "vi. & vt.",
     "zh": "辞职；辞去",
-    "enDef": "to resign — 辞职；辞去",
-    "example": "We resign when we need to.",
-    "exampleZh": "需要时我们会辞职。"
+    "enDef": "verb meaning “辞职”",
+    "example": "Can you resign this carefully?",
+    "exampleZh": "你能仔细地辞职一下吗？"
   },
   {
     "id": "x4-0238",
@@ -3090,10 +3090,10 @@ export const words = [
     "word": "deserve",
     "phonetic": "/dɪˈzɝv/",
     "pos": "vt.",
-    "zh": "值得:应得:应受",
-    "enDef": "to deserve — 值得:应得:应受",
-    "example": "We deserve when we need to.",
-    "exampleZh": "需要时我们会值得:应得:应受。"
+    "zh": "值得；应得；应受",
+    "enDef": "verb meaning “值得”",
+    "example": "Can you deserve this carefully?",
+    "exampleZh": "你能仔细地值得一下吗？"
   },
   {
     "id": "x4-0239",
@@ -3104,9 +3104,9 @@ export const words = [
     "phonetic": "/ˈɫeɪtɫi/",
     "pos": "adv.",
     "zh": "最近；不久前；近来",
-    "enDef": "in a way that is “最近；不久前；近来”",
-    "example": "She answered lately.",
-    "exampleZh": "她最近地回答。"
+    "enDef": "adverb meaning “最近”",
+    "example": "She answered the question lately.",
+    "exampleZh": "她最近地回答了这个问题。"
   },
   {
     "id": "x4-0240",
@@ -3116,10 +3116,10 @@ export const words = [
     "word": "input",
     "phonetic": "/ˈɪnˌpʊt/",
     "pos": "n.",
-    "zh": "情况；信息；投入；输入vt.输入",
-    "enDef": "input — 情况；信息；投入；输入vt.输入",
-    "example": "This input is useful in daily life.",
-    "exampleZh": "这个情况在日常生活中很有用。"
+    "zh": "情况；信息；投入；输入输入",
+    "enDef": "noun meaning “情况”",
+    "example": "I need more information about input.",
+    "exampleZh": "我需要更多关于情况的信息。"
   },
   {
     "id": "x4-0241",
@@ -3129,10 +3129,10 @@ export const words = [
     "word": "tune",
     "phonetic": "/ˈtun/",
     "pos": "n.",
-    "zh": "曲调；曲子vt.调音；调节；调频道",
-    "enDef": "tune — 曲调；曲子vt.调音；调节；调频道",
-    "example": "This tune is useful in daily life.",
-    "exampleZh": "这个曲调在日常生活中很有用。"
+    "zh": "曲调；曲子调音；调节；调频道",
+    "enDef": "noun meaning “曲调”",
+    "example": "I need more information about tune.",
+    "exampleZh": "我需要更多关于曲调的信息。"
   },
   {
     "id": "x4-0242",
@@ -3142,10 +3142,10 @@ export const words = [
     "word": "contract",
     "phonetic": "/ˈkɑnˌtɹækt/",
     "pos": "vt. / n.",
-    "zh": ",感染(疾病)；订立合同(或契约)；合同；契约",
-    "enDef": "to contract — ,感染(疾病)；订立合同(或契约)；合同；契约",
-    "example": "We contract when we need to.",
-    "exampleZh": "需要时我们会,感染(疾病)。"
+    "zh": "感染（疾病）；订立合同（或契约）；合同；契约",
+    "enDef": "verb meaning “感染（疾病）”",
+    "example": "Can you contract this carefully?",
+    "exampleZh": "你能仔细地感染（疾病）一下吗？"
   },
   {
     "id": "x4-0243",
@@ -3155,10 +3155,10 @@ export const words = [
     "word": "grant",
     "phonetic": "/ˈɡɹænt/",
     "pos": "vt.",
-    "zh": "同意；准许n.拨款",
-    "enDef": "to grant — 同意；准许n.拨款",
-    "example": "We grant when we need to.",
-    "exampleZh": "需要时我们会同意。"
+    "zh": "同意；准许拨款",
+    "enDef": "verb meaning “同意”",
+    "example": "Can you grant this carefully?",
+    "exampleZh": "你能仔细地同意一下吗？"
   },
   {
     "id": "x4-0244",
@@ -3169,9 +3169,9 @@ export const words = [
     "phonetic": "/ˈteɪk ˈfɔɹ ˈɡɹænəd/",
     "pos": "短语",
     "zh": "认为...是理所当然；.对.-.不予重视",
-    "enDef": "an expression meaning “认为...是理所当然；.对.-.不予重视”",
-    "example": "Students should remember the phrase “take for granted”.",
-    "exampleZh": "同学们应记住短语「take for granted」（认为...是理所当然）。"
+    "enDef": "a set phrase meaning “认为...是理所当然”",
+    "example": "We use this phrase when we mean “认为...是理所当然”.",
+    "exampleZh": "这个短语表示「认为...是理所当然」。"
   },
   {
     "id": "x4-0245",
@@ -3181,10 +3181,10 @@ export const words = [
     "word": "cardiac",
     "phonetic": "/ˈkɑɹdiˌæk/",
     "pos": "adj.",
-    "zh": "心脏病的:心脏的",
-    "enDef": "describing something as “心脏病的:心脏的”",
-    "example": "They described the idea as cardiac.",
-    "exampleZh": "他们认为这个想法是心脏病的:心脏的的。"
+    "zh": "心脏病的；心脏的",
+    "enDef": "adjective meaning “心脏病的”",
+    "example": "That description sounds cardiac.",
+    "exampleZh": "那种描述听起来很心脏病的。"
   },
   {
     "id": "x4-0246",
@@ -3195,9 +3195,9 @@ export const words = [
     "phonetic": "/ˈsɝkət/",
     "pos": "n.",
     "zh": "巡回；环形线路",
-    "enDef": "circuit — 巡回；环形线路",
-    "example": "This circuit is useful in daily life.",
-    "exampleZh": "这个巡回在日常生活中很有用。"
+    "enDef": "noun meaning “巡回”",
+    "example": "I need more information about circuit.",
+    "exampleZh": "我需要更多关于巡回的信息。"
   },
   {
     "id": "x4-0247",
@@ -3208,9 +3208,9 @@ export const words = [
     "phonetic": "/ˌdɪsəˈbɪɫɪti/",
     "pos": "n.",
     "zh": "缺陷；障碍",
-    "enDef": "disability — 缺陷；障碍",
-    "example": "This disability is useful in daily life.",
-    "exampleZh": "这个缺陷在日常生活中很有用。"
+    "enDef": "noun meaning “缺陷”",
+    "example": "I need more information about disability.",
+    "exampleZh": "我需要更多关于缺陷的信息。"
   },
   {
     "id": "x4-0248",
@@ -3221,9 +3221,9 @@ export const words = [
     "phonetic": "/ˌkɑnsəɫˈteɪʃən/",
     "pos": "n.",
     "zh": "咨询；咨询会",
-    "enDef": "consultation — 咨询；咨询会",
-    "example": "This consultation is useful in daily life.",
-    "exampleZh": "这个咨询在日常生活中很有用。"
+    "enDef": "noun meaning “咨询”",
+    "example": "I need more information about consultation.",
+    "exampleZh": "我需要更多关于咨询的信息。"
   },
   {
     "id": "x4-0249",
@@ -3234,9 +3234,9 @@ export const words = [
     "phonetic": "/ˈkæpsəɫ/",
     "pos": "n.",
     "zh": "胶囊；太空舱",
-    "enDef": "capsule — 胶囊；太空舱",
-    "example": "This capsule is useful in daily life.",
-    "exampleZh": "这个胶囊在日常生活中很有用。"
+    "enDef": "noun meaning “胶囊”",
+    "example": "I need more information about capsule.",
+    "exampleZh": "我需要更多关于胶囊的信息。"
   },
   {
     "id": "x4-0250",
@@ -3246,10 +3246,10 @@ export const words = [
     "word": "relay",
     "phonetic": "/ˈɹiˌɫeɪ/",
     "pos": "vt.",
-    "zh": "转发；转播n.接力赛；接班的人",
-    "enDef": "to relay — 转发；转播n.接力赛；接班的人",
-    "example": "We relay when we need to.",
-    "exampleZh": "需要时我们会转发。"
+    "zh": "转发；转播接力赛；接班的人",
+    "enDef": "verb meaning “转发”",
+    "example": "Can you relay this carefully?",
+    "exampleZh": "你能仔细地转发一下吗？"
   },
   {
     "id": "x4-0251",
@@ -3259,10 +3259,10 @@ export const words = [
     "word": "relay to",
     "phonetic": "/ˈɹiˌɫeɪ/",
     "pos": "短语",
-    "zh": "转达--转发给....",
-    "enDef": "an expression meaning “转达--转发给....”",
-    "example": "Students should remember the phrase “relay to”.",
-    "exampleZh": "同学们应记住短语「relay to」（转达--转发给....）。"
+    "zh": "转达--转发给",
+    "enDef": "a set phrase meaning “转达--转发给”",
+    "example": "We use this phrase when we mean “转达--转发给”.",
+    "exampleZh": "这个短语表示「转达--转发给」。"
   },
   {
     "id": "x4-0252",
@@ -3273,9 +3273,9 @@ export const words = [
     "phonetic": "/kɹaɪˈtɪɹiən/",
     "pos": "n.",
     "zh": "标准；准则；原则",
-    "enDef": "criterion — 标准；准则；原则",
-    "example": "This criterion is useful in daily life.",
-    "exampleZh": "这个标准在日常生活中很有用。"
+    "enDef": "noun meaning “标准”",
+    "example": "I need more information about criterion.",
+    "exampleZh": "我需要更多关于标准的信息。"
   },
   {
     "id": "x4-0253",
@@ -3285,10 +3285,10 @@ export const words = [
     "word": "stability",
     "phonetic": "/stəˈbɪɫɪti/",
     "pos": "n.",
-    "zh": "稳定(性)；稳固(性)",
-    "enDef": "stability — 稳定(性)；稳固(性)",
-    "example": "This stability is useful in daily life.",
-    "exampleZh": "这个稳定(性)在日常生活中很有用。"
+    "zh": "稳定（性）；稳固（性）",
+    "enDef": "noun meaning “稳定（性）”",
+    "example": "I need more information about stability.",
+    "exampleZh": "我需要更多关于稳定（性）的信息。"
   },
   {
     "id": "x4-0254",
@@ -3298,10 +3298,10 @@ export const words = [
     "word": "pray",
     "phonetic": "/ˈpɹeɪ/",
     "pos": "vi.",
-    "zh": "& vr.企盼；祈祷",
-    "enDef": "to pray — & vr.企盼；祈祷",
-    "example": "We pray when we need to.",
-    "exampleZh": "需要时我们会& vr.企盼。"
+    "zh": "&；企盼；祈祷",
+    "enDef": "verb meaning “&”",
+    "example": "Can you pray this carefully?",
+    "exampleZh": "你能仔细地&一下吗？"
   },
   {
     "id": "x4-0255",
@@ -3312,9 +3312,9 @@ export const words = [
     "phonetic": "/ˈpɹeɪ ˈðæt/",
     "pos": "短语",
     "zh": "但愿",
-    "enDef": "an expression meaning “但愿”",
-    "example": "Students should remember the phrase “pray that”.",
-    "exampleZh": "同学们应记住短语「pray that」（但愿）。"
+    "enDef": "a set phrase meaning “但愿”",
+    "example": "We use this phrase when we mean “但愿”.",
+    "exampleZh": "这个短语表示「但愿」。"
   },
   {
     "id": "x4-0256",
@@ -3325,9 +3325,9 @@ export const words = [
     "phonetic": "/ˌhaɪpəˈθɛtəkəɫ/",
     "pos": "adj.",
     "zh": "假设的；假定的",
-    "enDef": "describing something as “假设的；假定的”",
-    "example": "They described the idea as hypothetical.",
-    "exampleZh": "他们认为这个想法是假设的的。"
+    "enDef": "adjective meaning “假设的”",
+    "example": "That description sounds hypothetical.",
+    "exampleZh": "那种描述听起来很假设的。"
   },
   {
     "id": "x4-0257",
@@ -3337,10 +3337,10 @@ export const words = [
     "word": "Papua New Guinea",
     "phonetic": "/ˈpæpjuə ˈnju ˈɡɪni/",
     "pos": "专有名词",
-    "zh": "巴布亚新几内亚(国家名)",
-    "enDef": "a proper name or term: 巴布亚新几内亚(国家名)",
-    "example": "Students should remember the phrase “Papua New Guinea”.",
-    "exampleZh": "同学们应记住短语「Papua New Guinea」（巴布亚新几内亚(国家名)）。"
+    "zh": "巴布亚新几内亚（国家名）",
+    "enDef": "a proper name / term for “巴布亚新几内亚（国家名）”",
+    "example": "We use this phrase when we mean “巴布亚新几内亚（国家名）”.",
+    "exampleZh": "这个短语表示「巴布亚新几内亚（国家名）」。"
   },
   {
     "id": "x4-0258",
@@ -3350,10 +3350,10 @@ export const words = [
     "word": "Ghana",
     "phonetic": "/ˈɡænə/",
     "pos": "专有名词",
-    "zh": "加纳(国家名)",
-    "enDef": "a proper name or term: 加纳(国家名)",
-    "example": "Ghana is introduced in this unit.",
-    "exampleZh": "本单元介绍了Ghana（加纳(国家名)）。"
+    "zh": "加纳（国家名）",
+    "enDef": "a proper name / term for “加纳（国家名）”",
+    "example": "This name / term refers to “加纳（国家名）”.",
+    "exampleZh": "这个专有名称指「加纳（国家名）」。"
   },
   {
     "id": "x4-0259",
@@ -3363,10 +3363,10 @@ export const words = [
     "word": "Congo",
     "phonetic": "/ˈkɑŋɡoʊ/",
     "pos": "专有名词",
-    "zh": "刚果(国家名)",
-    "enDef": "a proper name or term: 刚果(国家名)",
-    "example": "Congo is introduced in this unit.",
-    "exampleZh": "本单元介绍了Congo（刚果(国家名)）。"
+    "zh": "刚果（国家名）",
+    "enDef": "a proper name / term for “刚果（国家名）”",
+    "example": "This name / term refers to “刚果（国家名）”.",
+    "exampleZh": "这个专有名称指「刚果（国家名）」。"
   },
   {
     "id": "x4-0260",
@@ -3376,10 +3376,10 @@ export const words = [
     "word": "Panama",
     "phonetic": "/ˈpænəˌmɑ/",
     "pos": "专有名词",
-    "zh": "巴拿马(国家名)",
-    "enDef": "a proper name or term: 巴拿马(国家名)",
-    "example": "Panama is introduced in this unit.",
-    "exampleZh": "本单元介绍了Panama（巴拿马(国家名)）。"
+    "zh": "巴拿马（国家名）",
+    "enDef": "a proper name / term for “巴拿马（国家名）”",
+    "example": "This name / term refers to “巴拿马（国家名）”.",
+    "exampleZh": "这个专有名称指「巴拿马（国家名）」。"
   },
   {
     "id": "x4-0261",
@@ -3389,10 +3389,10 @@ export const words = [
     "word": "bounce",
     "phonetic": "/ˈbaʊns/",
     "pos": "vi. & vt.",
-    "zh": "(使)弹起；上下晃动n.弹性；弹跳；活力",
-    "enDef": "to bounce — (使)弹起；上下晃动n.弹性；弹跳；活力",
-    "example": "We bounce when we need to.",
-    "exampleZh": "需要时我们会(使)弹起。"
+    "zh": "（使）弹起；上下晃动弹性；弹跳；活力",
+    "enDef": "verb meaning “（使）弹起”",
+    "example": "Can you bounce this carefully?",
+    "exampleZh": "你能仔细地（使）弹起一下吗？"
   },
   {
     "id": "x4-0262",
@@ -3402,10 +3402,10 @@ export const words = [
     "word": "bounce around",
     "phonetic": "/ˈbaʊns ɝˈaʊn/",
     "pos": "短语",
-    "zh": "蹦来蹦去:弹来弹去",
-    "enDef": "an expression meaning “蹦来蹦去:弹来弹去”",
-    "example": "Students should remember the phrase “bounce around”.",
-    "exampleZh": "同学们应记住短语「bounce around」（蹦来蹦去:弹来弹去）。"
+    "zh": "蹦来蹦去；弹来弹去",
+    "enDef": "a set phrase meaning “蹦来蹦去”",
+    "example": "We use this phrase when we mean “蹦来蹦去”.",
+    "exampleZh": "这个短语表示「蹦来蹦去」。"
   },
   {
     "id": "x4-0263",
@@ -3416,9 +3416,9 @@ export const words = [
     "phonetic": "/ˈæptəˌtud/",
     "pos": "n.",
     "zh": "天资；天赋",
-    "enDef": "aptitude — 天资；天赋",
-    "example": "This aptitude is useful in daily life.",
-    "exampleZh": "这个天资在日常生活中很有用。"
+    "enDef": "noun meaning “天资”",
+    "example": "I need more information about aptitude.",
+    "exampleZh": "我需要更多关于天资的信息。"
   },
   {
     "id": "x4-0264",
@@ -3429,9 +3429,9 @@ export const words = [
     "phonetic": "/ˈhɛd ˈstɑɹt/",
     "pos": "短语",
     "zh": "起步前的优势",
-    "enDef": "an expression meaning “起步前的优势”",
-    "example": "Students should remember the phrase “head start”.",
-    "exampleZh": "同学们应记住短语「head start」（起步前的优势）。"
+    "enDef": "a set phrase meaning “起步前的优势”",
+    "example": "We use this phrase when we mean “起步前的优势”.",
+    "exampleZh": "这个短语表示「起步前的优势」。"
   },
   {
     "id": "x4-0265",
@@ -3442,9 +3442,9 @@ export const words = [
     "phonetic": "/sɪˈnɛɹioʊ/",
     "pos": "n.",
     "zh": "设想；方案；预测",
-    "enDef": "scenario — 设想；方案；预测",
-    "example": "This scenario is useful in daily life.",
-    "exampleZh": "这个设想在日常生活中很有用。"
+    "enDef": "noun meaning “设想”",
+    "example": "I need more information about scenario.",
+    "exampleZh": "我需要更多关于设想的信息。"
   },
   {
     "id": "x4-0266",
@@ -3455,9 +3455,9 @@ export const words = [
     "phonetic": "/ˈɫɔɪɝ/",
     "pos": "n.",
     "zh": "律师",
-    "enDef": "lawyer — 律师",
-    "example": "This lawyer is useful in daily life.",
-    "exampleZh": "这个律师在日常生活中很有用。"
+    "enDef": "noun meaning “律师”",
+    "example": "I need more information about lawyer.",
+    "exampleZh": "我需要更多关于律师的信息。"
   },
   {
     "id": "x4-0267",
@@ -3467,10 +3467,10 @@ export const words = [
     "word": "assemble",
     "phonetic": "/əˈsɛmbəɫ/",
     "pos": "vt.",
-    "zh": "组装；装配vi.&；收集；聚集；集合",
-    "enDef": "to assemble — 组装；装配vi.&；收集；聚集；集合",
-    "example": "We assemble when we need to.",
-    "exampleZh": "需要时我们会组装。"
+    "zh": "组装；装配&；收集；聚集；集合",
+    "enDef": "verb meaning “组装”",
+    "example": "Can you assemble this carefully?",
+    "exampleZh": "你能仔细地组装一下吗？"
   },
   {
     "id": "x4-0268",
@@ -3481,9 +3481,9 @@ export const words = [
     "phonetic": "/ˈdɹɔɹ/",
     "pos": "n.",
     "zh": "抽屉",
-    "enDef": "drawer — 抽屉",
-    "example": "This drawer is useful in daily life.",
-    "exampleZh": "这个抽屉在日常生活中很有用。"
+    "enDef": "noun meaning “抽屉”",
+    "example": "I need more information about drawer.",
+    "exampleZh": "我需要更多关于抽屉的信息。"
   },
   {
     "id": "x4-0269",
@@ -3494,9 +3494,9 @@ export const words = [
     "phonetic": "/ˈtʃɛst ˈdɹɔɹz/",
     "pos": "短语",
     "zh": "抽屉柜",
-    "enDef": "an expression meaning “抽屉柜”",
-    "example": "Students should remember the phrase “a chest of drawers”.",
-    "exampleZh": "同学们应记住短语「a chest of drawers」（抽屉柜）。"
+    "enDef": "a set phrase meaning “抽屉柜”",
+    "example": "We use this phrase when we mean “抽屉柜”.",
+    "exampleZh": "这个短语表示「抽屉柜」。"
   },
   {
     "id": "x4-0270",
@@ -3507,9 +3507,9 @@ export const words = [
     "phonetic": "/ˈbɹɛst/",
     "pos": "n.",
     "zh": "乳房；胸部",
-    "enDef": "breast — 乳房；胸部",
-    "example": "This breast is useful in daily life.",
-    "exampleZh": "这个乳房在日常生活中很有用。"
+    "enDef": "noun meaning “乳房”",
+    "example": "I need more information about breast.",
+    "exampleZh": "我需要更多关于乳房的信息。"
   },
   {
     "id": "x4-0271",
@@ -3520,9 +3520,9 @@ export const words = [
     "phonetic": "/ˈhaɪdɹədʒən/",
     "pos": "n.",
     "zh": "氢；氢气",
-    "enDef": "hydrogen — 氢；氢气",
-    "example": "This hydrogen is useful in daily life.",
-    "exampleZh": "这个氢在日常生活中很有用。"
+    "enDef": "noun meaning “氢”",
+    "example": "I need more information about hydrogen.",
+    "exampleZh": "我需要更多关于氢的信息。"
   },
   {
     "id": "x4-0272",
@@ -3533,9 +3533,9 @@ export const words = [
     "phonetic": "/ˈɹeɪdiəm/",
     "pos": "n.",
     "zh": "镭",
-    "enDef": "radium — 镭",
-    "example": "This radium is useful in daily life.",
-    "exampleZh": "这个镭在日常生活中很有用。"
+    "enDef": "noun meaning “镭”",
+    "example": "I need more information about radium.",
+    "exampleZh": "我需要更多关于镭的信息。"
   },
   {
     "id": "x4-0273",
@@ -3546,9 +3546,9 @@ export const words = [
     "phonetic": "/ˈɹɪst/",
     "pos": "n.",
     "zh": "手腕；腕关节",
-    "enDef": "wrist — 手腕；腕关节",
-    "example": "This wrist is useful in daily life.",
-    "exampleZh": "这个手腕在日常生活中很有用。"
+    "enDef": "noun meaning “手腕”",
+    "example": "I need more information about wrist.",
+    "exampleZh": "我需要更多关于手腕的信息。"
   },
   {
     "id": "x4-0274",
@@ -3559,9 +3559,9 @@ export const words = [
     "phonetic": "/ˈbɹaɪdˌɡɹum/",
     "pos": "n.",
     "zh": "新邮",
-    "enDef": "bridegroom — 新邮",
-    "example": "This bridegroom is useful in daily life.",
-    "exampleZh": "这个新邮在日常生活中很有用。"
+    "enDef": "noun meaning “新邮”",
+    "example": "I need more information about bridegroom.",
+    "exampleZh": "我需要更多关于新邮的信息。"
   },
   {
     "id": "x4-0275",
@@ -3572,9 +3572,9 @@ export const words = [
     "phonetic": "/dʒiˈɑmətɹi/",
     "pos": "n.",
     "zh": "几何学；几何图形",
-    "enDef": "geometry — 几何学；几何图形",
-    "example": "This geometry is useful in daily life.",
-    "exampleZh": "这个几何学在日常生活中很有用。"
+    "enDef": "noun meaning “几何学”",
+    "example": "I need more information about geometry.",
+    "exampleZh": "我需要更多关于几何学的信息。"
   },
   {
     "id": "x4-0276",
@@ -3585,9 +3585,9 @@ export const words = [
     "phonetic": "/ˈdɛt/",
     "pos": "n.",
     "zh": "债务；欠款",
-    "enDef": "debt — 债务；欠款",
-    "example": "This debt is useful in daily life.",
-    "exampleZh": "这个债务在日常生活中很有用。"
+    "enDef": "noun meaning “债务”",
+    "example": "I need more information about debt.",
+    "exampleZh": "我需要更多关于债务的信息。"
   },
   {
     "id": "x4-0277",
@@ -3597,10 +3597,10 @@ export const words = [
     "word": "categorise",
     "phonetic": "",
     "pos": "vt.",
-    "zh": "....分类(加以归类)",
-    "enDef": "to categorise — ....分类(加以归类)",
-    "example": "We categorise when we need to.",
-    "exampleZh": "需要时我们会....分类(加以归类)。"
+    "zh": "分类（加以归类）",
+    "enDef": "verb meaning “分类（加以归类）”",
+    "example": "Can you categorise this carefully?",
+    "exampleZh": "你能仔细地分类（加以归类）一下吗？"
   },
   {
     "id": "x4-0278",
@@ -3610,10 +3610,10 @@ export const words = [
     "word": "profile",
     "phonetic": "/ˈpɹoʊˌfaɪɫ/",
     "pos": "n.",
-    "zh": "简介；概述；侧面轮廓vt.扼要介绍:概述；写简介",
-    "enDef": "profile — 简介；概述；侧面轮廓vt.扼要介绍:概述；写简介",
-    "example": "This profile is useful in daily life.",
-    "exampleZh": "这个简介在日常生活中很有用。"
+    "zh": "简介；概述；侧面轮廓扼要介绍；写简介",
+    "enDef": "noun meaning “简介”",
+    "example": "I need more information about profile.",
+    "exampleZh": "我需要更多关于简介的信息。"
   },
   {
     "id": "x4-0279",
@@ -3624,9 +3624,9 @@ export const words = [
     "phonetic": "/pɑɹˈtɪsəpənt/",
     "pos": "n.",
     "zh": "参与者；参加者",
-    "enDef": "participant — 参与者；参加者",
-    "example": "This participant is useful in daily life.",
-    "exampleZh": "这个参与者在日常生活中很有用。"
+    "enDef": "noun meaning “参与者”",
+    "example": "I need more information about participant.",
+    "exampleZh": "我需要更多关于参与者的信息。"
   },
   {
     "id": "x4-0280",
@@ -3636,10 +3636,10 @@ export const words = [
     "word": "code",
     "phonetic": "/ˈkoʊd/",
     "pos": "n.",
-    "zh": "代码；密码vt.编码；把...译成密码",
-    "enDef": "code — 代码；密码vt.编码；把...译成密码",
-    "example": "This code is useful in daily life.",
-    "exampleZh": "这个代码在日常生活中很有用。"
+    "zh": "代码；密码编码；把...译成密码",
+    "enDef": "noun meaning “代码”",
+    "example": "I need more information about code.",
+    "exampleZh": "我需要更多关于代码的信息。"
   },
   {
     "id": "x4-0281",
@@ -3649,10 +3649,10 @@ export const words = [
     "word": "orient",
     "phonetic": "/ˈɔɹiˌɛnt/",
     "pos": "vt.",
-    "zh": "使适应；使面对:确定方向",
-    "enDef": "to orient — 使适应；使面对:确定方向",
-    "example": "We orient when we need to.",
-    "exampleZh": "需要时我们会使适应。"
+    "zh": "使适应；使面对；确定方向",
+    "enDef": "verb meaning “使适应”",
+    "example": "Can you orient this carefully?",
+    "exampleZh": "你能仔细地使适应一下吗？"
   },
   {
     "id": "x4-0282",
@@ -3663,9 +3663,9 @@ export const words = [
     "phonetic": "/dɪˈtɛktɪv/",
     "pos": "n.",
     "zh": "侦探；警探",
-    "enDef": "detective — 侦探；警探",
-    "example": "This detective is useful in daily life.",
-    "exampleZh": "这个侦探在日常生活中很有用。"
+    "enDef": "noun meaning “侦探”",
+    "example": "I need more information about detective.",
+    "exampleZh": "我需要更多关于侦探的信息。"
   },
   {
     "id": "x4-0283",
@@ -3675,10 +3675,10 @@ export const words = [
     "word": "graphic",
     "phonetic": "/ˈɡɹæfɪk/",
     "pos": "n.",
-    "zh": "图表；图形；图画adj.绘画的；图案的",
-    "enDef": "graphic — 图表；图形；图画adj.绘画的；图案的",
-    "example": "This graphic is useful in daily life.",
-    "exampleZh": "这个图表在日常生活中很有用。"
+    "zh": "图表；图形；图画绘画的；图案的",
+    "enDef": "noun meaning “图表”",
+    "example": "I need more information about graphic.",
+    "exampleZh": "我需要更多关于图表的信息。"
   },
   {
     "id": "x4-0284",
@@ -3688,10 +3688,10 @@ export const words = [
     "word": "estate",
     "phonetic": "/ɪˈsteɪt/",
     "pos": "n.",
-    "zh": "庄园；住宅区:工业区",
-    "enDef": "estate — 庄园；住宅区:工业区",
-    "example": "This estate is useful in daily life.",
-    "exampleZh": "这个庄园在日常生活中很有用。"
+    "zh": "庄园；住宅区；工业区",
+    "enDef": "noun meaning “庄园”",
+    "example": "I need more information about estate.",
+    "exampleZh": "我需要更多关于庄园的信息。"
   },
   {
     "id": "x4-0285",
@@ -3702,9 +3702,9 @@ export const words = [
     "phonetic": "/ɪˈsteɪt ˈeɪdʒənt/",
     "pos": "短语",
     "zh": "房地产经纪人",
-    "enDef": "an expression meaning “房地产经纪人”",
-    "example": "Students should remember the phrase “estate agent”.",
-    "exampleZh": "同学们应记住短语「estate agent」（房地产经纪人）。"
+    "enDef": "a set phrase meaning “房地产经纪人”",
+    "example": "We use this phrase when we mean “房地产经纪人”.",
+    "exampleZh": "这个短语表示「房地产经纪人」。"
   },
   {
     "id": "x4-0286",
@@ -3714,10 +3714,10 @@ export const words = [
     "word": "accountant",
     "phonetic": "/əˈkaʊntənt/",
     "pos": "n.",
-    "zh": "会计:会计师",
-    "enDef": "accountant — 会计:会计师",
-    "example": "This accountant is useful in daily life.",
-    "exampleZh": "这个会计:会计师在日常生活中很有用。"
+    "zh": "会计；会计师",
+    "enDef": "noun meaning “会计”",
+    "example": "I need more information about accountant.",
+    "exampleZh": "我需要更多关于会计的信息。"
   },
   {
     "id": "x4-0287",
@@ -3727,10 +3727,10 @@ export const words = [
     "word": "spy",
     "phonetic": "/ˈspaɪ/",
     "pos": "n.",
-    "zh": "密探；间谍vi.从事间谋活动vt,突然看见；发现",
-    "enDef": "spy — 密探；间谍vi.从事间谋活动vt,突然看见；发现",
-    "example": "This spy is useful in daily life.",
-    "exampleZh": "这个密探在日常生活中很有用。"
+    "zh": "密探；间谍从事间谋活动；突然看见；发现",
+    "enDef": "noun meaning “密探”",
+    "example": "I need more information about spy.",
+    "exampleZh": "我需要更多关于密探的信息。"
   },
   {
     "id": "x4-0288",
@@ -3741,9 +3741,9 @@ export const words = [
     "phonetic": "/ˈdʒəstəs/",
     "pos": "n.",
     "zh": "公平；公正；合理",
-    "enDef": "justice — 公平；公正；合理",
-    "example": "This justice is useful in daily life.",
-    "exampleZh": "这个公平在日常生活中很有用。"
+    "enDef": "noun meaning “公平”",
+    "example": "I need more information about justice.",
+    "exampleZh": "我需要更多关于公平的信息。"
   },
   {
     "id": "x4-0289",
@@ -3754,9 +3754,9 @@ export const words = [
     "phonetic": "/əkˈjuz/",
     "pos": "vt.",
     "zh": "控告；控诉；谴责",
-    "enDef": "to accuse — 控告；控诉；谴责",
-    "example": "We accuse when we need to.",
-    "exampleZh": "需要时我们会控告。"
+    "enDef": "verb meaning “控告”",
+    "example": "Can you accuse this carefully?",
+    "exampleZh": "你能仔细地控告一下吗？"
   },
   {
     "id": "x4-0290",
@@ -3767,9 +3767,9 @@ export const words = [
     "phonetic": "/ˈkəm kənˈkɫuʒən/",
     "pos": "短语",
     "zh": "得出结论",
-    "enDef": "an expression meaning “得出结论”",
-    "example": "Students should remember the phrase “come to a conclusion”.",
-    "exampleZh": "同学们应记住短语「come to a conclusion」（得出结论）。"
+    "enDef": "a set phrase meaning “得出结论”",
+    "example": "We use this phrase when we mean “得出结论”.",
+    "exampleZh": "这个短语表示「得出结论」。"
   },
   {
     "id": "x4-0291",
@@ -3780,9 +3780,9 @@ export const words = [
     "phonetic": "/ˈɡɹidi/",
     "pos": "adj.",
     "zh": "贪婪的；贪心的",
-    "enDef": "describing something as “贪婪的；贪心的”",
-    "example": "They described the idea as greedy.",
-    "exampleZh": "他们认为这个想法是贪婪的的。"
+    "enDef": "adjective meaning “贪婪的”",
+    "example": "That description sounds greedy.",
+    "exampleZh": "那种描述听起来很贪婪的。"
   },
   {
     "id": "x4-0292",
@@ -3793,9 +3793,9 @@ export const words = [
     "phonetic": "/ˌɑntɹəpɹəˈnɝ/",
     "pos": "n.",
     "zh": "创业者；企业家",
-    "enDef": "entrepreneur — 创业者；企业家",
-    "example": "This entrepreneur is useful in daily life.",
-    "exampleZh": "这个创业者在日常生活中很有用。"
+    "enDef": "noun meaning “创业者”",
+    "example": "I need more information about entrepreneur.",
+    "exampleZh": "我需要更多关于创业者的信息。"
   },
   {
     "id": "x4-0293",
@@ -3806,9 +3806,9 @@ export const words = [
     "phonetic": "/ɹiˈsɛpʃənɪst/",
     "pos": "n.",
     "zh": "接待员",
-    "enDef": "receptionist — 接待员",
-    "example": "This receptionist is useful in daily life.",
-    "exampleZh": "这个接待员在日常生活中很有用。"
+    "enDef": "noun meaning “接待员”",
+    "example": "I need more information about receptionist.",
+    "exampleZh": "我需要更多关于接待员的信息。"
   },
   {
     "id": "x4-0294",
@@ -3818,10 +3818,10 @@ export const words = [
     "word": "resume",
     "phonetic": "/ˈɹɛzəˌmeɪ/",
     "pos": "n.",
-    "zh": "(求职用的)覆历；简历",
-    "enDef": "resume — (求职用的)覆历；简历",
-    "example": "This resume is useful in daily life.",
-    "exampleZh": "这个(求职用的)覆历在日常生活中很有用。"
+    "zh": "（求职用的）覆历；简历",
+    "enDef": "noun meaning “（求职用的）覆历”",
+    "example": "I need more information about resume.",
+    "exampleZh": "我需要更多关于（求职用的）覆历的信息。"
   },
   {
     "id": "x4-0295",
@@ -3831,10 +3831,10 @@ export const words = [
     "word": "socialist",
     "phonetic": "/ˈsoʊʃəɫəst/",
     "pos": "adj.",
-    "zh": "社会主义的n.社会主义者",
-    "enDef": "describing something as “社会主义的n.社会主义者”",
-    "example": "They described the idea as socialist.",
-    "exampleZh": "他们认为这个想法是社会主义的n.社会主义者的。"
+    "zh": "社会主义的社会主义者",
+    "enDef": "adjective meaning “社会主义的社会主义者”",
+    "example": "That description sounds socialist.",
+    "exampleZh": "那种描述听起来很社会主义的社会主义者。"
   },
   {
     "id": "x4-0296",
@@ -3844,10 +3844,10 @@ export const words = [
     "word": "communist",
     "phonetic": "/ˈkɑmjənəst/",
     "pos": "adj.",
-    "zh": "共产主义的n.共产主义者",
-    "enDef": "describing something as “共产主义的n.共产主义者”",
-    "example": "They described the idea as communist.",
-    "exampleZh": "他们认为这个想法是共产主义的n.共产主义者的。"
+    "zh": "共产主义的共产主义者",
+    "enDef": "adjective meaning “共产主义的共产主义者”",
+    "example": "That description sounds communist.",
+    "exampleZh": "那种描述听起来很共产主义的共产主义者。"
   },
   {
     "id": "x4-0297",
@@ -3857,10 +3857,10 @@ export const words = [
     "word": "dedicate",
     "phonetic": "/ˈdɛdəˌkeɪt/",
     "pos": "vt.",
-    "zh": "....献给",
-    "enDef": "to dedicate — ....献给",
-    "example": "We dedicate when we need to.",
-    "exampleZh": "需要时我们会....献给。"
+    "zh": "献给",
+    "enDef": "verb meaning “献给”",
+    "example": "Can you dedicate this carefully?",
+    "exampleZh": "你能仔细地献给一下吗？"
   },
   {
     "id": "x4-0298",
@@ -3871,9 +3871,9 @@ export const words = [
     "phonetic": "/ˈfɑks/",
     "pos": "n.",
     "zh": "狐狸；狡猾的人",
-    "enDef": "fox — 狐狸；狡猾的人",
-    "example": "This fox is useful in daily life.",
-    "exampleZh": "这个狐狸在日常生活中很有用。"
+    "enDef": "noun meaning “狐狸”",
+    "example": "I need more information about fox.",
+    "exampleZh": "我需要更多关于狐狸的信息。"
   },
   {
     "id": "x4-0299",
@@ -3883,10 +3883,10 @@ export const words = [
     "word": "council",
     "phonetic": "/ˈkaʊnsəɫ/",
     "pos": "n.",
-    "zh": "委员会:市政服务机构",
-    "enDef": "council — 委员会:市政服务机构",
-    "example": "This council is useful in daily life.",
-    "exampleZh": "这个委员会:市政服务机构在日常生活中很有用。"
+    "zh": "委员会；市政服务机构",
+    "enDef": "noun meaning “委员会”",
+    "example": "I need more information about council.",
+    "exampleZh": "我需要更多关于委员会的信息。"
   },
   {
     "id": "x4-0300",
@@ -3897,9 +3897,9 @@ export const words = [
     "phonetic": "/kəˈnæɫ/",
     "pos": "n.",
     "zh": "运河；灌溉渠",
-    "enDef": "canal — 运河；灌溉渠",
-    "example": "This canal is useful in daily life.",
-    "exampleZh": "这个运河在日常生活中很有用。"
+    "enDef": "noun meaning “运河”",
+    "example": "I need more information about canal.",
+    "exampleZh": "我需要更多关于运河的信息。"
   },
   {
     "id": "x4-0301",
@@ -3910,9 +3910,9 @@ export const words = [
     "phonetic": "/əˈtɛnd/",
     "pos": "短语",
     "zh": "关怀；照料；处理",
-    "enDef": "an expression meaning “关怀；照料；处理”",
-    "example": "Students should remember the phrase “attend to”.",
-    "exampleZh": "同学们应记住短语「attend to」（关怀）。"
+    "enDef": "a set phrase meaning “关怀”",
+    "example": "We use this phrase when we mean “关怀”.",
+    "exampleZh": "这个短语表示「关怀」。"
   },
   {
     "id": "x4-0302",
@@ -3922,10 +3922,10 @@ export const words = [
     "word": "supervise",
     "phonetic": "/ˈsupɝˌvaɪz/",
     "pos": "vt. & vi.",
-    "zh": "主管:指导；监督",
-    "enDef": "to supervise — 主管:指导；监督",
-    "example": "We supervise when we need to.",
-    "exampleZh": "需要时我们会主管:指导。"
+    "zh": "主管；指导；监督",
+    "enDef": "verb meaning “主管”",
+    "example": "Can you supervise this carefully?",
+    "exampleZh": "你能仔细地主管一下吗？"
   },
   {
     "id": "x4-0303",
@@ -3936,9 +3936,9 @@ export const words = [
     "phonetic": "/ˈhænˌdɹaɪtɪŋ/",
     "pos": "n.",
     "zh": "书法；书写；笔迹",
-    "enDef": "handwriting — 书法；书写；笔迹",
-    "example": "This handwriting is useful in daily life.",
-    "exampleZh": "这个书法在日常生活中很有用。"
+    "enDef": "noun meaning “书法”",
+    "example": "I need more information about handwriting.",
+    "exampleZh": "我需要更多关于书法的信息。"
   },
   {
     "id": "x4-0304",
@@ -3949,9 +3949,9 @@ export const words = [
     "phonetic": "/ˈdɪsk/",
     "pos": "n.",
     "zh": "磁盘；盘",
-    "enDef": "disk — 磁盘；盘",
-    "example": "This disk is useful in daily life.",
-    "exampleZh": "这个磁盘在日常生活中很有用。"
+    "enDef": "noun meaning “磁盘”",
+    "example": "I need more information about disk.",
+    "exampleZh": "我需要更多关于磁盘的信息。"
   },
   {
     "id": "x4-0305",
@@ -3961,10 +3961,10 @@ export const words = [
     "word": "parking",
     "phonetic": "/ˈpɑɹkɪŋ/",
     "pos": "n.",
-    "zh": "停车位:停车",
-    "enDef": "parking — 停车位:停车",
-    "example": "This parking is useful in daily life.",
-    "exampleZh": "这个停车位:停车在日常生活中很有用。"
+    "zh": "停车位；停车",
+    "enDef": "noun meaning “停车位”",
+    "example": "I need more information about parking.",
+    "exampleZh": "我需要更多关于停车位的信息。"
   },
   {
     "id": "x4-0306",
@@ -3975,9 +3975,9 @@ export const words = [
     "phonetic": "/ˈkæməɫ/",
     "pos": "n.",
     "zh": "骆驼",
-    "enDef": "camel — 骆驼",
-    "example": "This camel is useful in daily life.",
-    "exampleZh": "这个骆驼在日常生活中很有用。"
+    "enDef": "noun meaning “骆驼”",
+    "example": "I need more information about camel.",
+    "exampleZh": "我需要更多关于骆驼的信息。"
   },
   {
     "id": "x4-0307",
@@ -3987,10 +3987,10 @@ export const words = [
     "word": "fry",
     "phonetic": "/ˈfɹaɪ/",
     "pos": "n. / vi.",
-    "zh": "油煎的食物vt. &；油炸；油炒；油煎",
-    "enDef": "to fry — 油煎的食物vt. &；油炸；油炒；油煎",
-    "example": "We fry when we need to.",
-    "exampleZh": "需要时我们会油煎的食物vt. &。"
+    "zh": "油煎的食物&；油炸；油炒；油煎",
+    "enDef": "noun meaning “油煎的食物&”",
+    "example": "I need more information about fry.",
+    "exampleZh": "我需要更多关于油煎的食物&的信息。"
   },
   {
     "id": "x4-0308",
@@ -4000,10 +4000,10 @@ export const words = [
     "word": "purse",
     "phonetic": "/ˈpɝs/",
     "pos": "n.",
-    "zh": "钱包；皮夹子(尤指女用)",
-    "enDef": "purse — 钱包；皮夹子(尤指女用)",
-    "example": "This purse is useful in daily life.",
-    "exampleZh": "这个钱包在日常生活中很有用。"
+    "zh": "钱包；皮夹子（尤指女用）",
+    "enDef": "noun meaning “钱包”",
+    "example": "I need more information about purse.",
+    "exampleZh": "我需要更多关于钱包的信息。"
   },
   {
     "id": "x4-0309",
@@ -4014,9 +4014,9 @@ export const words = [
     "phonetic": "/ˈsoʊ/",
     "pos": "vi. & vt.",
     "zh": "缝制；缝；做针线活",
-    "enDef": "to sew — 缝制；缝；做针线活",
-    "example": "We sew when we need to.",
-    "exampleZh": "需要时我们会缝制。"
+    "enDef": "verb meaning “缝制”",
+    "example": "Can you sew this carefully?",
+    "exampleZh": "你能仔细地缝制一下吗？"
   },
   {
     "id": "x4-0310",
@@ -4026,10 +4026,10 @@ export const words = [
     "word": "knit",
     "phonetic": "/ˈnɪt/",
     "pos": "vt. & vi.",
-    "zh": "编织；针织；(使)紧密结合n.編织的衣服；针织衫",
-    "enDef": "to knit — 编织；针织；(使)紧密结合n.編织的衣服；针织衫",
-    "example": "We knit when we need to.",
-    "exampleZh": "需要时我们会编织。"
+    "zh": "编织；针织；（使）紧密结合編织的衣服；针织衫",
+    "enDef": "verb meaning “编织”",
+    "example": "Can you knit this carefully?",
+    "exampleZh": "你能仔细地编织一下吗？"
   },
   {
     "id": "x4-0311",
@@ -4040,9 +4040,9 @@ export const words = [
     "phonetic": "/ˈwʊɫ/",
     "pos": "n.",
     "zh": "毛；毛线；毛料",
-    "enDef": "wool — 毛；毛线；毛料",
-    "example": "This wool is useful in daily life.",
-    "exampleZh": "这个毛在日常生活中很有用。"
+    "enDef": "noun meaning “毛”",
+    "example": "I need more information about wool.",
+    "exampleZh": "我需要更多关于毛的信息。"
   },
   {
     "id": "x4-0312",
@@ -4053,9 +4053,9 @@ export const words = [
     "phonetic": "/ˌɪnɝˈmidiɪt/",
     "pos": "adj.",
     "zh": "中级的；中等的；中间的",
-    "enDef": "describing something as “中级的；中等的；中间的”",
-    "example": "They described the idea as intermediate.",
-    "exampleZh": "他们认为这个想法是中级的的。"
+    "enDef": "adjective meaning “中级的”",
+    "example": "That description sounds intermediate.",
+    "exampleZh": "那种描述听起来很中级的。"
   },
   {
     "id": "x4-0313",
@@ -4066,9 +4066,9 @@ export const words = [
     "phonetic": "/pɹaɪˈɔɹəti/",
     "pos": "n.",
     "zh": "优先事项；首要的事；优先",
-    "enDef": "priority — 优先事项；首要的事；优先",
-    "example": "This priority is useful in daily life.",
-    "exampleZh": "这个优先事项在日常生活中很有用。"
+    "enDef": "noun meaning “优先事项”",
+    "example": "I need more information about priority.",
+    "exampleZh": "我需要更多关于优先事项的信息。"
   },
   {
     "id": "x4-0314",
@@ -4079,9 +4079,9 @@ export const words = [
     "phonetic": "/pɹəˈfɪʃənsi/",
     "pos": "n.",
     "zh": "熟练；娴熟；精通",
-    "enDef": "proficiency — 熟练；娴熟；精通",
-    "example": "This proficiency is useful in daily life.",
-    "exampleZh": "这个熟练在日常生活中很有用。"
+    "enDef": "noun meaning “熟练”",
+    "example": "I need more information about proficiency.",
+    "exampleZh": "我需要更多关于熟练的信息。"
   },
   {
     "id": "x4-0315",
@@ -4091,10 +4091,10 @@ export const words = [
     "word": "cage",
     "phonetic": "/ˈkeɪdʒ/",
     "pos": "n.",
-    "zh": "笼子vt,关布签子甲",
-    "enDef": "cage — 笼子vt,关布签子甲",
-    "example": "This cage is useful in daily life.",
-    "exampleZh": "这个笼子vt,关布签子甲在日常生活中很有用。"
+    "zh": "笼子；关布签子甲",
+    "enDef": "noun meaning “笼子”",
+    "example": "I need more information about cage.",
+    "exampleZh": "我需要更多关于笼子的信息。"
   },
   {
     "id": "x4-0316",
@@ -4104,10 +4104,10 @@ export const words = [
     "word": "collar",
     "phonetic": "/ˈkɑɫɝ/",
     "pos": "n.",
-    "zh": "(动物)颈圈；衣领",
-    "enDef": "collar — (动物)颈圈；衣领",
-    "example": "This collar is useful in daily life.",
-    "exampleZh": "这个(动物)颈圈在日常生活中很有用。"
+    "zh": "（动物）颈圈；衣领",
+    "enDef": "noun meaning “（动物）颈圈”",
+    "example": "I need more information about collar.",
+    "exampleZh": "我需要更多关于（动物）颈圈的信息。"
   },
   {
     "id": "x4-0317",
@@ -4118,9 +4118,9 @@ export const words = [
     "phonetic": "/ˈfɫi ˈkɑɫɝ/",
     "pos": "短语",
     "zh": "灭蚤颈圈",
-    "enDef": "an expression meaning “灭蚤颈圈”",
-    "example": "Students should remember the phrase “flea collar”.",
-    "exampleZh": "同学们应记住短语「flea collar」（灭蚤颈圈）。"
+    "enDef": "a set phrase meaning “灭蚤颈圈”",
+    "example": "We use this phrase when we mean “灭蚤颈圈”.",
+    "exampleZh": "这个短语表示「灭蚤颈圈」。"
   },
   {
     "id": "x4-0318",
@@ -4130,10 +4130,10 @@ export const words = [
     "word": "finance",
     "phonetic": "/ˈfaɪˌnæns/",
     "pos": "n.",
-    "zh": "资金；财政；金融vt.提供资金",
-    "enDef": "finance — 资金；财政；金融vt.提供资金",
-    "example": "This finance is useful in daily life.",
-    "exampleZh": "这个资金在日常生活中很有用。"
+    "zh": "资金；财政；金融提供资金",
+    "enDef": "noun meaning “资金”",
+    "example": "I need more information about finance.",
+    "exampleZh": "我需要更多关于资金的信息。"
   },
   {
     "id": "x4-0319",
@@ -4144,9 +4144,9 @@ export const words = [
     "phonetic": "/ɹiˈsit/",
     "pos": "n.",
     "zh": "收据；接收",
-    "enDef": "receipt — 收据；接收",
-    "example": "This receipt is useful in daily life.",
-    "exampleZh": "这个收据在日常生活中很有用。"
+    "enDef": "noun meaning “收据”",
+    "example": "I need more information about receipt.",
+    "exampleZh": "我需要更多关于收据的信息。"
   },
   {
     "id": "x4-0320",
@@ -4157,9 +4157,9 @@ export const words = [
     "phonetic": "/sɝˈtɪfɪkət/",
     "pos": "n.",
     "zh": "合格证书；证明",
-    "enDef": "certificate — 合格证书；证明",
-    "example": "This certificate is useful in daily life.",
-    "exampleZh": "这个合格证书在日常生活中很有用。"
+    "enDef": "noun meaning “合格证书”",
+    "example": "I need more information about certificate.",
+    "exampleZh": "我需要更多关于合格证书的信息。"
   },
   {
     "id": "x4-0321",
@@ -4170,9 +4170,9 @@ export const words = [
     "phonetic": "/ɛmˈpɫɔɪɝ/",
     "pos": "n.",
     "zh": "雇主；老板",
-    "enDef": "employer — 雇主；老板",
-    "example": "This employer is useful in daily life.",
-    "exampleZh": "这个雇主在日常生活中很有用。"
+    "enDef": "noun meaning “雇主”",
+    "example": "I need more information about employer.",
+    "exampleZh": "我需要更多关于雇主的信息。"
   },
   {
     "id": "x4-0322",
@@ -4183,9 +4183,9 @@ export const words = [
     "phonetic": "/ˈdɛzɝt/",
     "pos": "n.",
     "zh": "沙漠；荒漠",
-    "enDef": "desert — 沙漠；荒漠",
-    "example": "This desert is useful in daily life.",
-    "exampleZh": "这个沙漠在日常生活中很有用。"
+    "enDef": "noun meaning “沙漠”",
+    "example": "I need more information about desert.",
+    "exampleZh": "我需要更多关于沙漠的信息。"
   },
   {
     "id": "x4-0323",
@@ -4196,9 +4196,9 @@ export const words = [
     "phonetic": "/əˈkwaɪɝ/",
     "pos": "vt.",
     "zh": "获得；购得",
-    "enDef": "to acquire — 获得；购得",
-    "example": "We acquire when we need to.",
-    "exampleZh": "需要时我们会获得。"
+    "enDef": "verb meaning “获得”",
+    "example": "Can you acquire this carefully?",
+    "exampleZh": "你能仔细地获得一下吗？"
   },
   {
     "id": "x4-0324",
@@ -4208,10 +4208,10 @@ export const words = [
     "word": "Marie Curie",
     "phonetic": "/mɝˈi ˈkjʊɹi/",
     "pos": "专有名词",
-    "zh": "玛丽.居里(居里夫人)",
-    "enDef": "a proper name or term: 玛丽.居里(居里夫人)",
-    "example": "Students should remember the phrase “Marie Curie”.",
-    "exampleZh": "同学们应记住短语「Marie Curie」（玛丽.居里(居里夫人)）。"
+    "zh": "玛丽.居里（居里夫人）",
+    "enDef": "a proper name / term for “玛丽.居里（居里夫人）”",
+    "example": "We use this phrase when we mean “玛丽.居里（居里夫人）”.",
+    "exampleZh": "这个短语表示「玛丽.居里（居里夫人）」。"
   },
   {
     "id": "x4-0325",
@@ -4222,9 +4222,9 @@ export const words = [
     "phonetic": "/ˈkɑmjənəst ˌmænəˈfɛsˌtoʊ/",
     "pos": "专有名词",
     "zh": "《共产党宣言》",
-    "enDef": "a proper name or term: 《共产党宣言》",
-    "example": "Students should remember the phrase “The Communist Manifesto”.",
-    "exampleZh": "同学们应记住短语「The Communist Manifesto」（《共产党宣言》）。"
+    "enDef": "a proper name / term for “《共产党宣言》”",
+    "example": "We use this phrase when we mean “《共产党宣言》”.",
+    "exampleZh": "这个短语表示「《共产党宣言》」。"
   },
   {
     "id": "x4-0326",
@@ -4235,9 +4235,9 @@ export const words = [
     "phonetic": "/oʊˈɫɪviə/",
     "pos": "专有名词",
     "zh": "奧利综娅",
-    "enDef": "a proper name or term: 奧利综娅",
-    "example": "Olivia is introduced in this unit.",
-    "exampleZh": "本单元介绍了Olivia（奧利综娅）。"
+    "enDef": "a proper name / term for “奧利综娅”",
+    "example": "This name / term refers to “奧利综娅”.",
+    "exampleZh": "这个专有名称指「奧利综娅」。"
   },
   {
     "id": "x4-0327",
@@ -4248,9 +4248,9 @@ export const words = [
     "phonetic": "/ˈpɛts/",
     "pos": "专有名词",
     "zh": "全国英语等级考试",
-    "enDef": "a proper name or term: 全国英语等级考试",
-    "example": "PETS is introduced in this unit.",
-    "exampleZh": "本单元介绍了PETS（全国英语等级考试）。"
+    "enDef": "a proper name / term for “全国英语等级考试”",
+    "example": "This name / term refers to “全国英语等级考试”.",
+    "exampleZh": "这个专有名称指「全国英语等级考试」。"
   },
   {
     "id": "x4-0328",
@@ -4261,8 +4261,8 @@ export const words = [
     "phonetic": "/ˌsiˈvi/",
     "pos": "n.",
     "zh": "简历；履历",
-    "enDef": "CV — 简历；履历",
-    "example": "This CV is useful in daily life.",
-    "exampleZh": "这个简历在日常生活中很有用。"
+    "enDef": "noun meaning “简历”",
+    "example": "I need more information about CV.",
+    "exampleZh": "我需要更多关于简历的信息。"
   }
 ];
