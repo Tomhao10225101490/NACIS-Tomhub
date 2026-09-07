@@ -785,6 +785,69 @@ body.hit-bad::after {
   margin-top: 12px;
 }
 
+.clip-wrap {
+  margin-top: 12px;
+}
+
+.clip-panel {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.clip-stage {
+  width: 100%;
+  min-height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.clip-stage iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  background: #000;
+}
+
+.clip-stage .ygContainer,
+.clip-stage .ygFrame,
+.clip-stage .ygPanel {
+  max-width: 100%;
+  background: transparent !important;
+}
+
+.clip-stage .ygSearch,
+.clip-stage .ygSearchBox,
+.clip-stage .ygAccent,
+.clip-stage .ygQuery,
+.clip-stage input[type='search'] {
+  display: none !important;
+}
+
+.clip-stage .ygProgress {
+  color: var(--muted);
+  border: none !important;
+  background: transparent !important;
+  font-style: normal !important;
+}
+
+.clip-fail {
+  margin: 0;
+  padding: 28px 8px;
+  text-align: center;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.clip-bar {
+  margin-top: 8px;
+}
+
 /* Flashcards / match keep readable on purple */
 .flash-card,
 .match-board,

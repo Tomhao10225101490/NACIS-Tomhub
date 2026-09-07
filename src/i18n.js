@@ -199,6 +199,10 @@ const dict = {
   winNeed: { zh: '再对 {n} 次可移除', en: '{n} more correct to remove' },
   quizMode: { zh: '练习方式', en: 'Mode' },
   hubDone: { zh: '完成度', en: 'Progress' },
+  clipVideo: { zh: '视频', en: 'Video' },
+  clipReplay: { zh: '重播', en: 'Replay' },
+  clipNext: { zh: '下一条', en: 'Next clip' },
+  clipUnavailable: { zh: '当前网络无法加载视频', en: 'Video isn’t available on this network' },
 }
 
 export function t(key, vars = {}) {

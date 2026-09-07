@@ -38,6 +38,7 @@ import { applyReview, dueEntries, srsKey } from './quiz/srs.js';
 import { makeDictationItem, spellingOk } from './quiz/dictation.js';
 import { clozeItemsFromWords } from './quiz/cloze.js';
 import { dealMatchPairs } from './quiz/match.js';
+import { mountClipPlayer, unmountClipPlayer, replayClip, nextClip } from './clip-player.js';
 import {
   unlockAudio,
   sfxClick,
@@ -243,6 +244,7 @@ function setSessionRepaint(fn) {
 function clearSessionRepaint() {
   sessionRepaint = null;
   clearFlashKeys();
+  unmountClipPlayer();
 }
 
 /** Wayground-style: Space flips, Enter goes next. */
@@ -333,6 +335,76 @@ function bindFlashSpeak({ getFlipped, frontText, backText, frontLang = 'en-US', 
       const flipped = !!getFlipped();
       speakText(flipped ? backText : frontText, flipped ? backLang : frontLang, btn);
     };
+  });
+}
+
+function bindFlashClip(word) {
+  const screen = app.querySelector('.screen');
+  if (!screen) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'clip-wrap';
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'btn';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.textContent = tb('clipVideo');
+  const panel = document.createElement('div');
+  panel.className = 'clip-panel';
+  panel.hidden = true;
+  const stage = document.createElement('div');
+  stage.className = 'clip-stage';
+  const fail = document.createElement('p');
+  fail.className = 'clip-fail';
+  fail.hidden = true;
+  fail.textContent = tb('clipUnavailable');
+  const bar = document.createElement('div');
+  bar.className = 'flash-actions clip-bar';
+  const replay = document.createElement('button');
+  replay.type = 'button';
+  replay.className = 'btn';
+  replay.textContent = tb('clipReplay');
+  const next = document.createElement('button');
+  next.type = 'button';
+  next.className = 'btn';
+  next.textContent = tb('clipNext');
+  bar.append(replay, next);
+  panel.append(stage, fail, bar);
+  wrap.append(toggle, panel);
+  const actions = screen.querySelector('.flash-actions');
+  if (actions) actions.after(wrap);
+  else screen.append(wrap);
+
+  const showFail = () => {
+    unmountClipPlayer();
+    fail.hidden = false;
+    stage.hidden = true;
+    bar.hidden = true;
+  };
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    sfxClick();
+    const open = panel.hidden;
+    panel.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      fail.hidden = true;
+      stage.hidden = false;
+      bar.hidden = false;
+      mountClipPlayer(stage, word, { onUnavailable: showFail });
+    } else {
+      unmountClipPlayer();
+    }
+  });
+  replay.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    replayClip();
+  });
+  next.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    nextClip();
   });
 }
 
@@ -3037,6 +3109,7 @@ async function startIeltsDay(dayNum) {
   }
 
   function paint() {
+    unmountClipPlayer();
     setSessionRepaint(paint);
     clearFlashKeys();
     if (step === 0) {
@@ -3136,6 +3209,7 @@ async function startIeltsDay(dayNum) {
         frontLang: 'en-GB',
         backLang: 'zh-CN',
       });
+      bindFlashClip(w.word);
       bindFlashKeys({ onFlip: doFlip, onNext: goNext });
       return;
     }
@@ -3780,6 +3854,7 @@ async function startHsUnit(bookId, unitId) {
   }
 
   function paint() {
+    unmountClipPlayer();
     setSessionRepaint(paint);
     clearFlashKeys();
     if (step === 0) {
@@ -3951,6 +4026,7 @@ async function startHsUnit(bookId, unitId) {
         frontLang: 'en-GB',
         backLang: 'zh-CN',
       });
+      bindFlashClip(w.word);
       bindFlashKeys({ onFlip: doFlip, onNext: goNext });
       return;
     }
