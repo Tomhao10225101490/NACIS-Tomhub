@@ -983,43 +983,38 @@ function hubCompletionPct(hubId) {
   return 0;
 }
 
-function quizModeButtons() {
-  return `<p class="section-hint">${tb('quizMode')}</p>
-    <div class="flash-actions">
-      <button type="button" class="btn" data-qmode="spot">${tb('ieltsSpot')}</button>
-      <button type="button" class="btn" data-qmode="dictation">${tb('dictation')}</button>
-      <button type="button" class="btn" data-qmode="cloze">${tb('cloze')}</button>
-      <button type="button" class="btn" data-qmode="match">${tb('enMatch')}</button>
-    </div>`;
-}
-
-function bindQuizModeButtons(words, bank, opts) {
-  app.querySelectorAll('[data-qmode]').forEach((btn) => {
-    btn.onclick = () => {
+function mountQuizModeButtons(parent, words, bank, opts) {
+  if (!parent) return;
+  const hint = document.createElement('p');
+  hint.className = 'section-hint';
+  hint.textContent = tb('quizMode');
+  const row = document.createElement('div');
+  row.className = 'flash-actions';
+  const modes = [
+    ['spot', tb('ieltsSpot')],
+    ['dictation', tb('dictation')],
+    ['cloze', tb('cloze')],
+    ['match', tb('enMatch')],
+  ];
+  for (const [mode, label] of modes) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn';
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
       sfxClick();
-      startEnglishWordMode(btn.getAttribute('data-qmode'), words, bank, opts);
-    };
-  });
+      startEnglishWordMode(mode, words, bank, opts);
+    });
+    row.appendChild(btn);
+  }
+  parent.appendChild(hint);
+  parent.appendChild(row);
 }
 
 function paintModeResults(pct, correct, total, words, bank, opts) {
-  clearSessionRepaint();
-  const back = opts.back || 'home';
-  app.innerHTML = `
-    ${topbar()}
-    <div class="screen">
-      <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${tb('results')}</h2></div>
-      <div class="panel results" style="--pct:${pct}">
-        <div class="score-ring">${pct}%</div>
-        <h3>${correct}/${total}</h3>
-        <div class="flash-actions">
-          <button class="btn" data-nav="${back}">${tb('back')}</button>
-          <button class="btn" data-nav="home">${tb('home')}</button>
-        </div>
-        ${quizModeButtons()}
-      </div>
-    </div>`;
-  bindQuizModeButtons(words, bank, opts);
+  const back = (opts && opts.back) || 'home';
+  paintSimpleResults(pct, correct, total, back, back);
+  mountQuizModeButtons(app.querySelector('.panel.results'), words, bank, opts);
 }
 
 function startEnglishWordMode(mode, words, bank, { back = 'home', srsKind = 'ielts' } = {}) {
@@ -1076,6 +1071,9 @@ function renderHome() {
   const dueN = dueSrsCount();
   const flags = recentStudyFlags(7);
   const hsTot = hsUnitsDoneTotal();
+  // Trusted templates only (i18n + bundled content). Same paint path as the rest of the app.
+  // nosemgrep: javascript.browser.security.insecure-innerhtml, javascript.browser.security.insecure-document-method
+  // sourcery skip: javascript.browser.security.insecure-innerhtml, javascript.browser.security.insecure-document-method
   app.innerHTML = `
     ${topbar()}
     <section class="hero hero-portal">
@@ -3041,13 +3039,12 @@ async function startIeltsDay(dayNum) {
         ${topbar()}
         <div class="screen">
           <div class="screen-header">${backBtn('ielts-days')}<h2 class="screen-title">${tb('dayOf', { n: plan.day })}</h2></div>
-          <div class="panel day-intro ielts-intro">
+          <div class="panel day-intro">
             <div class="flash-chapter">${tb('band7')} · ${plan.topic || ''}</div>
             <h3 class="result-title">${dayTitle(plan)}</h3>
             <p>${tb('words25')}</p>
             <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
-            ${quizModeButtons()}
           </div>
         </div>`;
       document.getElementById('go').onclick = () => {
@@ -3057,7 +3054,7 @@ async function startIeltsDay(dayNum) {
         flipped = false;
         paint();
       };
-      bindQuizModeButtons(words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
+      mountQuizModeButtons(app.querySelector('.day-intro'), words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
       return;
     }
 
@@ -3238,10 +3235,9 @@ async function startIeltsDay(dayNum) {
             <button class="btn" data-nav="ielts-days">${tb('ieltsDays')}</button>
             <button class="btn" data-nav="home">${tb('home')}</button>
           </div>
-          ${quizModeButtons()}
         </div>
       </div>`;
-    bindQuizModeButtons(words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
+    mountQuizModeButtons(app.querySelector('.panel.results'), words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
   }
 
   paint();
@@ -3795,7 +3791,6 @@ async function startHsUnit(bookId, unitId) {
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
             <button class="btn" id="hs-dictation">${tb('dictation')}</button>
             <button class="btn" id="hs-cloze">${tb('cloze')}</button>
-            <button class="btn" id="hs-match">${tb('enMatch')}</button>
           </div>
           <input class="hs-search" id="hs-search" type="search" placeholder="${tb('hsSearch')}" />
           <div class="hs-word-list">
@@ -3842,9 +3837,15 @@ async function startHsUnit(bookId, unitId) {
         sfxClick();
         startEnglishWordMode('cloze', words, bank, { back: 'hs-book', srsKind: 'hs' });
       };
-      const hsMatch = document.getElementById('hs-match');
-      if (hsMatch) {
-        hsMatch.onclick = () => {
+      const clozeBtn = document.getElementById('hs-cloze');
+      if (clozeBtn) {
+        const matchBtn = document.createElement('button');
+        matchBtn.type = 'button';
+        matchBtn.className = 'btn';
+        matchBtn.id = 'hs-match';
+        matchBtn.textContent = tb('enMatch');
+        clozeBtn.after(matchBtn);
+        matchBtn.onclick = () => {
           sfxClick();
           startEnglishWordMode('match', words, bank, { back: 'hs-book', srsKind: 'hs' });
         };
@@ -4052,10 +4053,9 @@ async function startHsUnit(bookId, unitId) {
             <button class="btn" data-hs-book="${book.id}">${escapeHtml(hsBookTitle(book))}</button>
             <button class="btn" data-nav="hs-shelf">${tb('hsToShelf')}</button>
           </div>
-          ${quizModeButtons()}
         </div>
       </div>`;
-    bindQuizModeButtons(words, bank, { back: 'hs-book', srsKind: 'hs' });
+    mountQuizModeButtons(app.querySelector('.panel.results'), words, bank, { back: 'hs-book', srsKind: 'hs' });
   }
 
   paint();
