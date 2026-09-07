@@ -2,11 +2,17 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import {
   sanitizeClipWord,
   parsePipedVideoId,
+  parseBiliVideoIds,
+  parseJinaPayload,
+  clipsFromMap,
+  setClipMap,
+  biliPlayerUrl,
   mountClipPlayer,
   unmountClipPlayer,
   stopClipPlayback,
   replayClip,
   nextClip,
+  resetClipCaches,
 } from './clip-player.js';
 
 describe('sanitizeClipWord', () => {
@@ -75,9 +81,44 @@ function stubFetchReject() {
   );
 }
 
+describe('parseBiliVideoIds', () => {
+  it('reads bvid fields from a type-search payload', () => {
+    expect(
+      parseBiliVideoIds({
+        data: {
+          result: [{ bvid: 'BV1xx411c7mD', type: 'video' }, { bvid: 'BV1xx411c7mD' }, { bvid: 'BV1yy411c7mE' }],
+        },
+      })
+    ).toEqual(['BV1xx411c7mD', 'BV1yy411c7mE']);
+  });
+});
+
+describe('parseJinaPayload', () => {
+  it('extracts JSON after the markdown wrapper', () => {
+    const payload = parseJinaPayload('Title:\n\nMarkdown Content:\n{"code":0,"data":{"result":[{"bvid":"BV1aa411c7mD"}]}}');
+    expect(parseBiliVideoIds(payload)).toEqual(['BV1aa411c7mD']);
+  });
+});
+
+describe('clipsFromMap', () => {
+  afterEach(() => setClipMap({}));
+
+  it('returns hidden Bilibili tracks for a headword', () => {
+    setClipMap({ hello: ['BV1xx411c7mD', 'BV1yy411c7mE'] });
+    expect(clipsFromMap('Hello')).toEqual([
+      { kind: 'bili', id: 'BV1xx411c7mD' },
+      { kind: 'bili', id: 'BV1yy411c7mE' },
+    ]);
+    expect(biliPlayerUrl('BV1xx411c7mD')).toContain('player.bilibili.com');
+    expect(biliPlayerUrl('BV1xx411c7mD')).toContain('bvid=BV1xx411c7mD');
+  });
+});
+
 describe('mountClipPlayer', () => {
   afterEach(() => {
     unmountClipPlayer();
+    resetClipCaches();
+    setClipMap({});
     delete window.YG;
     vi.unstubAllGlobals();
     vi.useRealTimers();
@@ -179,6 +220,32 @@ describe('mountClipPlayer', () => {
     expect(fail.textContent).toBe('当前网络无法加载视频');
     expect(wrap.contains(fail)).toBe(true);
     wrap.remove();
+  });
+
+  it('uses a hidden domestic embed from the local map when YouTube cannot play', async () => {
+    setClipMap({ hello: ['BV1xx411c7mD'] });
+    vi.stubGlobal(
+      'Image',
+      class {
+        set src(_v) {
+          queueMicrotask(() => this.onerror?.());
+        }
+      }
+    );
+    stubFetchReject();
+    const el = document.createElement('div');
+    document.body.append(el);
+    mountClipPlayer(el, 'hello');
+    await vi.waitFor(() => {
+      const src = el.querySelector('iframe')?.getAttribute('src') || '';
+      expect(src).toContain('player.bilibili.com');
+      expect(src).toContain('bvid=BV1xx411c7mD');
+      expect(src).toContain('autoplay=1');
+    });
+    nextClip();
+    replayClip();
+    expect(el.querySelector('iframe')?.getAttribute('src') || '').toContain('player.bilibili.com');
+    el.remove();
   });
 
   it('uses a hidden in-page embed when YouTube cannot play', async () => {

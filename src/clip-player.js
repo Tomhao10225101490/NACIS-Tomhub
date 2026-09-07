@@ -5,20 +5,27 @@ const SLOT_ID = 'yg-clip-slot';
 const LOAD_MS = 8000;
 const YG_GIVEUP_MS = 4500;
 const YT_PROBE_MS = 1600;
+const SEARCH_MS = 5500;
 /** Caption only — player is always shown; hide search / accent / title. */
 const COMPONENTS_PLAYER_CAPTION = 8;
 
-const SEARCH_APIS = [
+const YT_SEARCH = [
   'https://api.piped.private.coffee/search?q=QUERY&filter=videos',
   'https://pipedapi.ducks.party/search?q=QUERY&filter=videos',
+  'https://pipedapi.kavin.rocks/search?q=QUERY&filter=videos',
+  'https://inv.nadeko.net/api/v1/search?q=QUERY&type=video',
+  'https://invidious.flokinet.to/api/v1/search?q=QUERY&type=video',
 ];
 
-const EMBED_TEMPLATES = [
+const YT_EMBED = [
   'https://piped.private.coffee/embed/ID?autoplay=1',
   'https://piped.ducks.party/embed/ID?autoplay=1',
+  'https://inv.nadeko.net/embed/ID?autoplay=1',
   'https://www.youtube-nocookie.com/embed/ID?autoplay=1&playsinline=1&rel=0',
   'https://www.youtube.com/embed/ID?autoplay=1&playsinline=1&rel=0',
 ];
+
+const BILI_PLAYER = 'https://player.bilibili.com/player.html?bvid=ID&page=1&high_quality=1&danmaku=0&autoplay=1&as_wide=1';
 
 let scriptPromise = null;
 let widget = null;
@@ -30,6 +37,9 @@ let tracks = [];
 let trackIndex = 0;
 let embedIndex = 0;
 let ytBlockedPromise = null;
+let ytBlockedCached = null;
+let localMap = {};
+const searchCache = new Map();
 
 /** Keep only a single English headword for the widget query. */
 export function sanitizeClipWord(word) {
@@ -41,10 +51,99 @@ export function sanitizeClipWord(word) {
   return m ? m[0].replace(/^'+|'+$/g, '') : '';
 }
 
+export function clipLookupKey(word) {
+  return String(word || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[’`]/g, "'");
+}
+
+export function setClipMap(map) {
+  localMap = map && typeof map === 'object' ? map : {};
+}
+
 export function parsePipedVideoId(item) {
-  const u = String(item?.url || item?.videoId || item || '');
-  const m = u.match(/[?&]v=([\w-]{11})/) || u.match(/embed\/([\w-]{11})/) || u.match(/^([\w-]{11})$/);
+  const u = String(item?.videoId || item?.url || item?.id || item || '');
+  const m = u.match(/[?&]v=([\w-]{11})/) || u.match(/embed\/([\w-]{11})/) || u.match(/(?:^|\/)([\w-]{11})$/);
   return m ? m[1] : '';
+}
+
+export function parseBiliVideoIds(data) {
+  const root = data?.data?.result ?? data?.result ?? data;
+  const bags = Array.isArray(root) ? root : [];
+  const items = [];
+  for (const it of bags) {
+    if (!it || typeof it !== 'object') continue;
+    if (Array.isArray(it.data) && (it.result_type === 'video' || it.resultType === 'video')) {
+      items.push(...it.data);
+    } else {
+      items.push(it);
+    }
+  }
+  const ids = [];
+  const seen = new Set();
+  for (const it of items) {
+    const id = String(it?.bvid || '').trim();
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    ids.push(id);
+  }
+  return ids;
+}
+
+export function parseJinaPayload(text) {
+  const raw = String(text || '');
+  const start = raw.indexOf('{');
+  if (start < 0) return null;
+  try {
+    return JSON.parse(raw.slice(start));
+  } catch {
+    return null;
+  }
+}
+
+export function biliPlayerUrl(bvid) {
+  return BILI_PLAYER.replace('ID', encodeURIComponent(String(bvid || '').trim()));
+}
+
+export function youtubeEmbedUrl(videoId, which = 0) {
+  const tpl = YT_EMBED[((which % YT_EMBED.length) + YT_EMBED.length) % YT_EMBED.length];
+  return tpl.replace('ID', videoId);
+}
+
+export function clipsFromMap(word) {
+  const keys = [clipLookupKey(word), sanitizeClipWord(word)].filter(Boolean);
+  for (const key of keys) {
+    const ids = localMap[key];
+    if (Array.isArray(ids) && ids.length) {
+      return ids.filter(Boolean).map((id) => ({ kind: 'bili', id: String(id) }));
+    }
+  }
+  return [];
+}
+
+function clipKey(clip) {
+  return `${clip.kind}:${clip.id}`;
+}
+
+function mergeClips(...lists) {
+  const out = [];
+  const seen = new Set();
+  for (const list of lists) {
+    for (const clip of list || []) {
+      if (!clip?.kind || !clip?.id) continue;
+      const k = clipKey(clip);
+      if (seen.has(k)) continue;
+      seen.add(k);
+      out.push(clip);
+    }
+  }
+  return out;
+}
+
+function rankClips(list, preferDomestic) {
+  if (!preferDomestic) return list;
+  return [...list].sort((a, b) => Number(b.kind === 'bili') - Number(a.kind === 'bili'));
 }
 
 function clearPlayTimer() {
@@ -105,6 +204,7 @@ function youtubeLikelyBlocked() {
   if (ytBlockedPromise) return ytBlockedPromise;
   ytBlockedPromise = new Promise((resolve) => {
     if (typeof Image === 'undefined') {
+      ytBlockedCached = false;
       resolve(false);
       return;
     }
@@ -112,6 +212,7 @@ function youtubeLikelyBlocked() {
     const done = (blocked) => {
       clearTimeout(timer);
       img.onload = img.onerror = null;
+      ytBlockedCached = blocked;
       resolve(blocked);
     };
     const timer = setTimeout(() => done(true), YT_PROBE_MS);
@@ -122,10 +223,127 @@ function youtubeLikelyBlocked() {
   return ytBlockedPromise;
 }
 
+function biliSearchUrls(word) {
+  const q = encodeURIComponent(`${word} 英语`);
+  const inner = `https://api.bilibili.com/x/web-interface/search/type?search_type=video&keyword=${q}&page=1&order=totalrank`;
+  return [
+    `https://r.jina.ai/${inner}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(inner)}`,
+  ];
+}
+
+async function fetchJson(url, timeout = SEARCH_MS) {
+  const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const timer = setTimeout(() => ctrl?.abort(), timeout);
+  try {
+    const res = await fetch(url, {
+      headers: { Accept: 'application/json, text/plain;q=0.9,*/*;q=0.8' },
+      signal: ctrl?.signal,
+      referrerPolicy: 'no-referrer',
+    });
+    if (!res.ok) throw new Error('search');
+    const ct = res.headers?.get?.('content-type') || '';
+    if (typeof res.json === 'function' && (!ct || ct.includes('json'))) {
+      try {
+        return await res.json();
+      } catch (_) {
+        /* not JSON — try text */
+      }
+    }
+    const text = typeof res.text === 'function' ? await res.text() : '';
+    const parsed = parseJinaPayload(text);
+    if (parsed) return parsed;
+    return JSON.parse(text);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function youtubeClipsFromPayload(data) {
+  const items = Array.isArray(data) ? data : data.items || data.results || data.videos || [];
+  const clips = [];
+  const seen = new Set();
+  for (const it of items) {
+    if (it && it.type && it.type !== 'stream' && it.type !== 'video') continue;
+    const id = parsePipedVideoId(it);
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    clips.push({ kind: 'yt', id });
+  }
+  return clips;
+}
+
+async function fetchYoutubeClips(apiUrl) {
+  const clips = youtubeClipsFromPayload(await fetchJson(apiUrl));
+  if (!clips.length) throw new Error('empty');
+  return clips;
+}
+
+async function fetchBiliClips(apiUrl) {
+  const ids = parseBiliVideoIds(await fetchJson(apiUrl));
+  if (!ids.length) throw new Error('empty');
+  return ids.map((id) => ({ kind: 'bili', id }));
+}
+
+export function searchClipTracks(word, { preferDomestic = false } = {}) {
+  const q = clipLookupKey(word) || sanitizeClipWord(word);
+  if (!q) return Promise.reject(new Error('empty'));
+  const cacheKey = `${preferDomestic ? 'd' : 'a'}:${q}`;
+  if (searchCache.has(cacheKey)) return searchCache.get(cacheKey);
+
+  const ytQuery = encodeURIComponent(`${sanitizeClipWord(q) || q} english`);
+  const tasks = [
+    ...YT_SEARCH.map((u) => fetchYoutubeClips(u.replace('QUERY', ytQuery))),
+    ...biliSearchUrls(q).map((u) => fetchBiliClips(u)),
+  ];
+
+  const pending = new Promise((resolve, reject) => {
+    let left = tasks.length;
+    let merged = [];
+    let done = false;
+    if (!left) {
+      reject(new Error('empty'));
+      return;
+    }
+    for (const task of tasks) {
+      task
+        .then((clips) => {
+          merged = rankClips(mergeClips(merged, clips), preferDomestic);
+          if (!done && merged.length) {
+            done = true;
+            resolve(merged);
+          }
+        })
+        .catch(() => {})
+        .finally(() => {
+          left -= 1;
+          if (!done && left === 0) {
+            done = true;
+            if (merged.length) resolve(merged);
+            else reject(new Error('empty'));
+          }
+        });
+    }
+  });
+  searchCache.set(cacheKey, pending);
+  pending.catch(() => {
+    searchCache.delete(cacheKey);
+  });
+  return pending;
+}
+
 /** Warm routes before the learner taps. */
 export function prefetchYouGlish() {
   youtubeLikelyBlocked();
   return loadYouGlish().catch(() => null);
+}
+
+export function prefetchClipTracks(word) {
+  youtubeLikelyBlocked();
+  const q = clipLookupKey(word) || sanitizeClipWord(word);
+  if (!q) return;
+  if (clipsFromMap(q).length) return;
+  searchClipTracks(q, { preferDomestic: ytBlockedCached !== false }).catch(() => []);
 }
 
 function playerState(ev) {
@@ -164,6 +382,14 @@ export function unmountClipPlayer() {
   host = null;
 }
 
+/** Test hook — production never needs this. */
+export function resetClipCaches() {
+  ytBlockedPromise = null;
+  ytBlockedCached = null;
+  searchCache.clear();
+  scriptPromise = null;
+}
+
 function resultCount(ev) {
   const n = ev?.totalResult ?? ev?.n ?? ev?.total ?? ev?.hits ?? ev?.count;
   if (n == null || n === '') return null;
@@ -171,13 +397,14 @@ function resultCount(ev) {
   return Number.isFinite(num) ? num : null;
 }
 
-function embedUrl(videoId, which = embedIndex) {
-  const tpl = EMBED_TEMPLATES[which % EMBED_TEMPLATES.length];
-  return tpl.replace('ID', videoId);
+function embedSrc(clip, which = embedIndex) {
+  if (!clip) return '';
+  if (clip.kind === 'bili') return biliPlayerUrl(clip.id);
+  return youtubeEmbedUrl(clip.id, which);
 }
 
-function mountIframe(videoId) {
-  if (!host || !videoId) return;
+function mountIframe(src) {
+  if (!host || !src) return;
   stopWidget();
   blankIframes(host);
   host.replaceChildren();
@@ -186,45 +413,33 @@ function mountIframe(videoId) {
   frame.setAttribute('allowfullscreen', 'true');
   frame.setAttribute('title', 'clip');
   frame.referrerPolicy = 'no-referrer';
-  frame.src = embedUrl(videoId);
+  frame.src = src;
   host.append(frame);
   route = 'iframe';
 }
 
-async function fetchTracksFrom(apiUrl) {
-  const res = await fetch(apiUrl, { headers: { Accept: 'application/json' } });
-  if (!res.ok) throw new Error('search');
-  const data = await res.json();
-  const items = Array.isArray(data) ? data : data.items || data.results || [];
-  const ids = [];
-  const seen = new Set();
-  for (const it of items) {
-    if (it && it.type && it.type !== 'stream' && it.type !== 'video') continue;
-    const id = parsePipedVideoId(it);
-    if (!id || seen.has(id)) continue;
-    seen.add(id);
-    ids.push(id);
-  }
-  if (!ids.length) throw new Error('empty');
-  return ids;
-}
-
-export function searchClipTracks(word) {
-  const q = encodeURIComponent(`${word} english`);
-  const urls = SEARCH_APIS.map((u) => u.replace('QUERY', q));
-  return Promise.any(urls.map((u) => fetchTracksFrom(u)));
-}
-
 function playCurrentTrack() {
-  const id = tracks[trackIndex];
-  if (!id) return false;
-  mountIframe(id);
+  const clip = tracks[trackIndex];
+  if (!clip) return false;
+  const src = embedSrc(clip);
+  if (!src) return false;
+  mountIframe(src);
   return true;
+}
+
+function enrichTracks(word, preferDomestic) {
+  searchClipTracks(word, { preferDomestic })
+    .then((extra) => {
+      if (activeWord !== word) return;
+      tracks = rankClips(mergeClips(tracks, extra), preferDomestic);
+    })
+    .catch(() => {});
 }
 
 export function mountClipPlayer(container, word, { onUnavailable } = {}) {
   unmountClipPlayer();
   const q = sanitizeClipWord(word);
+  const full = clipLookupKey(word);
   if (!container) {
     onUnavailable?.();
     return null;
@@ -255,7 +470,17 @@ export function mountClipPlayer(container, word, { onUnavailable } = {}) {
     handedOff = true;
     clearPlayTimer();
     stopWidget();
-    searchClipTracks(q)
+    const preferDomestic = ytBlockedCached !== false;
+    const local = clipsFromMap(full || q);
+    if (local.length) {
+      tracks = rankClips(local, true);
+      trackIndex = 0;
+      embedIndex = 0;
+      if (!playCurrentTrack()) fail();
+      else enrichTracks(full || q, preferDomestic);
+      return;
+    }
+    searchClipTracks(full || q, { preferDomestic })
       .then((ids) => {
         if (activeWord !== q) return;
         tracks = ids;
@@ -342,13 +567,23 @@ export function mountClipPlayer(container, word, { onUnavailable } = {}) {
     return created;
   };
 
+  if (ytBlockedCached === true) {
+    useFallback();
+    return null;
+  }
+
   const readyNow = getYouGlishSync();
   if (readyNow) return startYg(readyNow);
 
   youtubeLikelyBlocked().then((blocked) => {
-    if (activeWord !== q) return;
+    if (activeWord !== q || handedOff) return;
     if (blocked) {
       useFallback();
+      return;
+    }
+    const yg = getYouGlishSync();
+    if (yg) {
+      startYg(yg);
       return;
     }
     loadYouGlish()
@@ -380,7 +615,7 @@ export function nextClip() {
     if (route === 'iframe') {
       if (!tracks.length) return;
       trackIndex = (trackIndex + 1) % tracks.length;
-      if (trackIndex === 0) embedIndex = (embedIndex + 1) % EMBED_TEMPLATES.length;
+      if (trackIndex === 0) embedIndex += 1;
       playCurrentTrack();
       return;
     }

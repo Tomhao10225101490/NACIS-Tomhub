@@ -38,7 +38,17 @@ import { applyReview, dueEntries, srsKey } from './quiz/srs.js';
 import { makeDictationItem, spellingOk } from './quiz/dictation.js';
 import { clozeItemsFromWords } from './quiz/cloze.js';
 import { dealMatchPairs } from './quiz/match.js';
-import { mountClipPlayer, unmountClipPlayer, stopClipPlayback, replayClip, nextClip, prefetchYouGlish } from './clip-player.js';
+import {
+  mountClipPlayer,
+  unmountClipPlayer,
+  stopClipPlayback,
+  replayClip,
+  nextClip,
+  prefetchYouGlish,
+  prefetchClipTracks,
+  setClipMap,
+} from './clip-player.js';
+import clipMap from './data/clip-map.json';
 import {
   unlockAudio,
   sfxClick,
@@ -67,6 +77,8 @@ import {
 } from './i18n.js';
 import { topbar, backBtn, modeCard, hubProgressBar } from './ui.js';
 import { SCIENCE_DAY_META } from './data/days-meta.js';
+
+setClipMap(clipMap);
 
 try {
   registerSW({ immediate: true });
@@ -500,6 +512,7 @@ function buildClipDock(word, { autoOpen = false, showToggle = true } = {}) {
 
 function bindFlashClip(word) {
   prefetchYouGlish();
+  prefetchClipTracks(word);
   const screen = app.querySelector('.screen');
   if (!screen) return;
   const wrap = buildClipDock(word);

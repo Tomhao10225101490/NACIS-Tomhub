@@ -828,7 +828,8 @@ body.hit-bad::after {
   background: rgba(0, 0, 0, 0.35);
 }
 
-.clip-stage iframe {
+.clip-stage iframe,
+.clip-stage video {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
