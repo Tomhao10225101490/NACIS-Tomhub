@@ -1075,7 +1075,7 @@ function renderHome() {
   const nextSci = nextScienceDay();
   const dueN = dueSrsCount();
   const flags = recentStudyFlags(7);
-  const ieltsTitle = `${t('dayOf', { n: nextIelts.day })} · ${compactLine(nextIelts.titleZh, nextIelts.title)}`;
+  const ieltsTitle = compactLine(nextIelts.titleZh, nextIelts.title);
   const hsTitle = [compactLine(hsNext.book?.zh, hsNext.book?.en), compactLine(hsNext.unit?.zh, hsNext.unit?.en)]
     .filter(Boolean)
     .join(' · ');
