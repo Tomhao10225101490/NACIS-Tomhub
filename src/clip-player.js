@@ -71,7 +71,7 @@ function loadYouGlish() {
   return scriptPromise;
 }
 
-export function unmountClipPlayer() {
+export function stopClipPlayback() {
   activeWord = '';
   clearPlayTimer();
   try {
@@ -84,8 +84,12 @@ export function unmountClipPlayer() {
   if (host) {
     blankIframes(host);
     host.replaceChildren();
-    host = null;
   }
+}
+
+export function unmountClipPlayer() {
+  stopClipPlayback();
+  host = null;
 }
 
 function resultCount(ev) {

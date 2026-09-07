@@ -38,7 +38,7 @@ import { applyReview, dueEntries, srsKey } from './quiz/srs.js';
 import { makeDictationItem, spellingOk } from './quiz/dictation.js';
 import { clozeItemsFromWords } from './quiz/cloze.js';
 import { dealMatchPairs } from './quiz/match.js';
-import { mountClipPlayer, unmountClipPlayer, replayClip, nextClip } from './clip-player.js';
+import { mountClipPlayer, unmountClipPlayer, stopClipPlayback, replayClip, nextClip } from './clip-player.js';
 import {
   unlockAudio,
   sfxClick,
@@ -377,7 +377,7 @@ function buildClipDock(word, { autoOpen = false, showToggle = true } = {}) {
   }
 
   const showFail = () => {
-    unmountClipPlayer();
+    stopClipPlayback();
     fail.hidden = false;
     stage.hidden = true;
     bar.hidden = true;
@@ -433,14 +433,31 @@ function closeHsWordClips(exceptHost) {
   });
 }
 
+function mountClipHint(parent, key, before) {
+  if (!parent) return;
+  const hint = document.createElement('p');
+  hint.className = 'clip-kicker';
+  hint.textContent = tb(key);
+  if (before) before.before(hint);
+  else parent.append(hint);
+}
+
 function bindHsWordClips() {
-  app.querySelectorAll('.clip-word-btn').forEach((btn) => {
+  app.querySelectorAll('.hs-word-row').forEach((row) => {
+    const inner = row.querySelector('.hs-word-usage-inner');
+    const word = row.querySelector('.hs-word-en')?.textContent?.trim() || '';
+    if (!inner || !word) return;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn clip-word-btn';
+    btn.textContent = tb('clipVideoFor', { word });
+    const host = document.createElement('div');
+    host.className = 'clip-row-host';
+    host.hidden = true;
+    inner.append(btn, host);
     btn.onclick = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const word = btn.getAttribute('data-clip-word') || '';
-      const host = btn.parentElement?.querySelector('.clip-row-host');
-      if (!host || !word) return;
       sfxClick();
       const open = !host.hidden && host.childNodes.length;
       unmountClipPlayer();
@@ -3177,7 +3194,6 @@ async function startIeltsDay(dayNum) {
             <h3 class="result-title">${dayTitle(plan)}</h3>
             <p>${tb('words25')}</p>
             <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
-            <p class="clip-kicker">${tb('clipMemorizeHint')}</p>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
           </div>
         </div>`;
@@ -3188,6 +3204,7 @@ async function startIeltsDay(dayNum) {
         flipped = false;
         paint();
       };
+      mountClipHint(app.querySelector('.day-intro'), 'clipMemorizeHint', document.getElementById('go'));
       mountQuizModeButtons(app.querySelector('.day-intro'), words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
       return;
     }
@@ -3923,7 +3940,6 @@ async function startHsUnit(bookId, unitId) {
               <div class="flash-chapter">${escapeHtml(hsBookTitle(book))} · ${tb('pep2019')}</div>
               <h3 class="result-title">${escapeHtml(hsUnitHeading(unit))}</h3>
               <p>${words.length} ${tb('words')} · ${tb('hsUsageHint')}</p>
-              <p class="clip-kicker">${tb('clipListHint')}</p>
             </div>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
             <button class="btn" id="hs-dictation">${tb('dictation')}</button>
@@ -3952,8 +3968,6 @@ async function startHsUnit(bookId, unitId) {
                       <div class="hs-usage-kicker">${tb('hsUsage')}</div>
                       <p class="hs-usage-body">${escapeHtml(note.body)}</p>
                       ${note.ex ? `<p class="hs-usage-ex">${escapeHtml(note.ex)}</p>` : ''}
-                      <button type="button" class="btn clip-word-btn" data-clip-word="${escapeHtml(w.word)}">${tb('clipVideoFor', { word: escapeHtml(w.word) })}</button>
-                      <div class="clip-row-host" hidden></div>
                     </div>
                   </div>
                 </div>`;
@@ -4000,6 +4014,7 @@ async function startHsUnit(bookId, unitId) {
         };
       }
       bindHsWordList();
+      mountClipHint(app.querySelector('.hs-list-head > div'), 'clipListHint');
       return;
     }
 

@@ -3,6 +3,7 @@ import {
   sanitizeClipWord,
   mountClipPlayer,
   unmountClipPlayer,
+  stopClipPlayback,
   replayClip,
   nextClip,
 } from './clip-player.js';
@@ -119,5 +120,26 @@ describe('mountClipPlayer', () => {
     unmountClipPlayer();
     expect(el.childNodes.length).toBe(0);
     el.remove();
+  });
+
+  it('stopClipPlayback clears the stage but keeps sibling fail copy', async () => {
+    mockWidget({
+      onFetch(widget) {
+        widget.opts.events.onFetchDone({ totalResult: 2 });
+        widget.opts.events.onPlayerReady();
+      },
+    });
+    const wrap = document.createElement('div');
+    const stage = document.createElement('div');
+    const fail = document.createElement('p');
+    fail.textContent = '当前网络无法加载视频';
+    wrap.append(stage, fail);
+    document.body.append(wrap);
+    await mountClipPlayer(stage, 'courage');
+    stopClipPlayback();
+    expect(fail.isConnected).toBe(true);
+    expect(fail.textContent).toBe('当前网络无法加载视频');
+    expect(wrap.contains(fail)).toBe(true);
+    wrap.remove();
   });
 });
