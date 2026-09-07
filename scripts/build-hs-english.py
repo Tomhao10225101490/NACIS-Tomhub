@@ -316,7 +316,6 @@ def write_meta(counts: dict[str, dict[str, int]], total: int) -> None:
                 "n": info["n"],
                 "zh": info["zh"],
                 "en": info["en"],
-                "cover": f"covers/hs-{bid}.jpg",
                 "accent": info["accent"],
                 "spine": info["spine"],
                 "wordCount": sum(counts.get(bid, {}).values()),

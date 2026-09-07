@@ -146,13 +146,13 @@ const dict = {
   ieltsTrackModes: { zh: '雅思练习', en: 'IELTS practice' },
   hsTrack: { zh: '高中教材', en: 'High school books' },
   hsTrackBlurb: {
-    zh: '人教版 2019 · 7 册封面选书 · 按 Unit 背词',
-    en: 'PEP 2019 · 7 covers · memorize by unit',
+    zh: '人教版 2019 · 7 册选书 · 单词表 + 闪卡背词',
+    en: 'PEP 2019 · 7 books · word list + flashcards',
   },
   hsShelf: { zh: '高中英语书架', en: 'High-school bookshelf' },
   hsShelfHint: {
-    zh: '点封面选书，按课本 Unit 背课后单词',
-    en: 'Pick a cover, then memorize each textbook unit',
+    zh: '点书卡选书，按课本 Unit 看单词表再背诵',
+    en: 'Pick a book, open the unit list, then memorize',
   },
   pep2019: { zh: '人教版 2019', en: 'PEP 2019' },
   hsCompulsory: { zh: '必修', en: 'Compulsory' },
@@ -165,6 +165,8 @@ const dict = {
   hsToShelf: { zh: '回书架', en: 'Bookshelf' },
   hsNextUnit: { zh: '下一单元 →', en: 'Next unit →' },
   hsNextBook: { zh: '下一册 →', en: 'Next book →' },
+  hsWordList: { zh: '单词表', en: 'Word list' },
+  hsSpeakWord: { zh: '读单词', en: 'Speak word' },
 };
 
 export function t(key, vars = {}) {

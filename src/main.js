@@ -830,9 +830,39 @@ function hsBookDoneCount(book) {
   return (book?.units || []).filter((u) => isHsUnitDone(book.id, u.id)).length;
 }
 
-function publicUrl(rel) {
-  const base = import.meta.env.BASE_URL || '/';
-  return `${base.replace(/\/?$/, '/')}${String(rel || '').replace(/^\//, '')}`;
+function hsBookCardHtml(book, { large = false } = {}) {
+  const badge = `${book.series === 'compulsory' ? tb('hsCompulsory') : tb('hsSelective')} ${book.n}`;
+  const done = hsBookDoneCount(book);
+  return `<div class="hs-card ${large ? 'hs-card-lg' : ''}">
+    <div class="hs-card-stripe" aria-hidden="true"></div>
+    <div class="hs-card-body">
+      <span class="hs-badge">${badge}</span>
+      <div class="hs-card-zh">${escapeHtml(book.zh)}</div>
+      <div class="hs-card-en">${escapeHtml(book.en)}</div>
+      <div class="hs-card-meta">${book.wordCount} ${tb('words')} · ${tb('hsLearned', { n: done, t: book.units.length })}</div>
+    </div>
+  </div>`;
+}
+
+function hsWordSpeakBtn(word) {
+  if (!canSpeak()) return '';
+  return `<button type="button" class="speak-fab hs-word-speak" data-speak-word="${escapeHtml(word)}" aria-label="${tb('hsSpeakWord')}" title="${tb('hsSpeakWord')}">${speakIconSvg()}</button>`;
+}
+
+function bindHsWordSpeak() {
+  document.querySelectorAll('.hs-word-speak').forEach((btn) => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      primeSpeech();
+      if (isSpeaking()) {
+        stopSpeak();
+        return;
+      }
+      const word = btn.getAttribute('data-speak-word') || '';
+      if (word) speakText(word, 'en-GB');
+    };
+  });
 }
 
 function hsBookTitle(book) {
@@ -935,7 +965,10 @@ async function renderHub(hubId) {
             <h3>${tb('hsTrack')}</h3>
             <p>${tb('hsTrackBlurb')}</p>
             <div class="en-track-covers" aria-hidden="true">
-              ${HS_BOOKS.map((b) => `<img src="${publicUrl(b.cover)}" alt="" />`).join('')}
+              ${HS_BOOKS.map(
+                (b) =>
+                  `<span class="en-mini-spine" style="--book-accent:${b.accent};--book-spine:${b.spine}"></span>`
+              ).join('')}
             </div>
             <span class="mode-tag">${tb('pep2019')} · ${HS_WORD_TOTAL} ${tb('words')}</span>
           </button>
@@ -2949,23 +2982,12 @@ function renderHsShelf() {
       <div class="screen-header">${backBtn('hub-english')}<h2 class="screen-title">${tb('hsShelf')}</h2></div>
       <p class="days-intro">${tb('hsShelfHint')}</p>
       <div class="hs-shelf">
-        ${HS_BOOKS.map((book) => {
-          const done = hsBookDoneCount(book);
-          const badge = book.series === 'compulsory' ? tb('hsCompulsory') : tb('hsSelective');
-          return `<button class="hs-book" data-hs-book="${book.id}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
-            <div class="hs-book-3d">
-              <div class="hs-spine" aria-hidden="true"></div>
-              <div class="hs-cover">
-                <img src="${publicUrl(book.cover)}" alt="${escapeHtml(hsBookTitle(book))}" />
-                <span class="hs-badge">${badge} ${book.n}</span>
-              </div>
-            </div>
-            <div class="hs-book-info">
-              <div class="hs-book-name">${escapeHtml(hsBookTitle(book))}</div>
-              <div class="hs-book-meta">${book.wordCount} ${tb('words')} · ${tb('hsLearned', { n: done, t: book.units.length })}</div>
-            </div>
-          </button>`;
-        }).join('')}
+        ${HS_BOOKS.map(
+          (book) =>
+            `<button class="hs-book" data-hs-book="${book.id}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
+            ${hsBookCardHtml(book)}
+          </button>`
+        ).join('')}
       </div>
     </div>`;
 }
@@ -2983,16 +3005,8 @@ function renderHsBook(bookId) {
     <div class="screen hs-book-screen">
       <div class="screen-header">${backBtn('hs-shelf')}<h2 class="screen-title">${escapeHtml(hsBookTitle(book))}</h2></div>
       <div class="hs-book-hero" style="--book-accent:${book.accent};--book-spine:${book.spine}">
-        <div class="hs-book-3d hs-book-3d-lg">
-          <div class="hs-spine" aria-hidden="true"></div>
-          <div class="hs-cover">
-            <img src="${publicUrl(book.cover)}" alt="${escapeHtml(hsBookTitle(book))}" />
-            <span class="hs-badge">${book.series === 'compulsory' ? tb('hsCompulsory') : tb('hsSelective')} ${book.n}</span>
-          </div>
-        </div>
-        <div>
-          <p class="days-intro">${tb('pep2019')} · ${book.wordCount} ${tb('words')} · ${tb('hsLearned', { n: hsBookDoneCount(book), t: book.units.length })}</p>
-        </div>
+        ${hsBookCardHtml(book, { large: true })}
+        <p class="days-intro">${tb('pep2019')} · ${book.wordCount} ${tb('words')} · ${tb('hsLearned', { n: hsBookDoneCount(book), t: book.units.length })}</p>
       </div>
       <div class="hs-unit-list">
         ${book.units
@@ -3059,13 +3073,31 @@ async function startHsUnit(bookId, unitId) {
       app.innerHTML = `
         ${topbar()}
         <div class="screen">
-          <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${escapeHtml(hsUnitHeading(unit))}</h2></div>
-          <div class="panel day-intro ielts-intro">
-            <div class="flash-chapter">${escapeHtml(hsBookTitle(book))} · ${tb('pep2019')}</div>
-            <h3 class="result-title">${escapeHtml(hsUnitHeading(unit))}</h3>
-            <p>${unit.wordCount} ${tb('words')}</p>
-            <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
+          <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${tb('hsWordList')}</h2></div>
+          <div class="hs-list-head">
+            <div>
+              <div class="flash-chapter">${escapeHtml(hsBookTitle(book))} · ${tb('pep2019')}</div>
+              <h3 class="result-title">${escapeHtml(hsUnitHeading(unit))}</h3>
+              <p>${words.length} ${tb('words')}</p>
+            </div>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
+          </div>
+          <div class="hs-word-list">
+            ${words
+              .map(
+                (w) => `<div class="hs-word-row">
+                  <div class="hs-word-copy">
+                    <div class="hs-word-enline">
+                      <span class="hs-word-en">${escapeHtml(w.word)}</span>
+                      ${w.phonetic ? `<span class="hs-word-ph">${escapeHtml(w.phonetic)}</span>` : ''}
+                      ${w.pos ? `<span class="hs-word-pos">${escapeHtml(w.pos)}</span>` : ''}
+                    </div>
+                    <div class="hs-word-zh">${escapeHtml(w.zh)}</div>
+                  </div>
+                  ${hsWordSpeakBtn(w.word)}
+                </div>`
+              )
+              .join('')}
           </div>
         </div>`;
       document.getElementById('go').onclick = () => {
@@ -3075,6 +3107,7 @@ async function startHsUnit(bookId, unitId) {
         flipped = false;
         paint();
       };
+      bindHsWordSpeak();
       return;
     }
 
@@ -3083,7 +3116,7 @@ async function startHsUnit(bookId, unitId) {
       app.innerHTML = `
         ${topbar()}
         <div class="screen">
-          <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${tb('ieltsMemorize')}</h2></div>
+          <div class="screen-header"><button class="btn btn-ghost" id="hs-back-list">${tb('back')}</button><h2 class="screen-title">${tb('ieltsMemorize')}</h2></div>
           <div class="step-pills"><span class="on">1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
           <div class="progress-wrap">
             <div class="progress-meta"><span>${idx + 1} / ${words.length}</span><span>${escapeHtml(w.unitTitle || '')}</span></div>
@@ -3144,6 +3177,15 @@ async function startHsUnit(bookId, unitId) {
         }
       };
       document.getElementById('nx').onclick = goNext;
+      const backList = document.getElementById('hs-back-list');
+      if (backList) {
+        backList.onclick = () => {
+          stopSpeak();
+          sfxClick();
+          step = 0;
+          paint();
+        };
+      }
       bindFlashSpeak({
         getFlipped: () => flipped,
         frontText: w.word,
