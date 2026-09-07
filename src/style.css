@@ -845,7 +845,17 @@ body.hit-bad::after {
 }
 
 .clip-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
   margin-top: 8px;
+}
+
+.clip-panel[hidden],
+.clip-stage[hidden],
+.clip-fail[hidden],
+.clip-bar[hidden] {
+  display: none !important;
 }
 
 /* Flashcards / match keep readable on purple */

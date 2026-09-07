@@ -358,7 +358,7 @@ function bindFlashClip(word) {
   fail.hidden = true;
   fail.textContent = tb('clipUnavailable');
   const bar = document.createElement('div');
-  bar.className = 'flash-actions clip-bar';
+  bar.className = 'clip-bar';
   const replay = document.createElement('button');
   replay.type = 'button';
   replay.className = 'btn';
