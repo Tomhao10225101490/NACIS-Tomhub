@@ -214,6 +214,9 @@ export function isAudioUnlocked() {
  * - cancel() then speak() in the same turn is dropped
  * - synth can start / become paused; resume() watchdog needed
  * - getVoices() is often empty until voiceschanged
+ * - First speak() is slow: Chrome starts the speech process lazily, and
+ *   remote "Google" voices wait on the network. Warm on first gesture and
+ *   prefer local macOS voices (Samantha / Ting-Ting) so later clicks are instant.
  */
 
 let voicesCache = [];
@@ -223,6 +226,10 @@ let speakTimer = 0;
 let watchdogTimer = 0;
 let speaking = false;
 let primed = false;
+let engineReady = false;
+let warmupHeld = null;
+/** @type {null | { text: string, lang: string, source: Element | null }} */
+let pendingSpeak = null;
 
 function refreshVoices() {
   try {
@@ -309,16 +316,51 @@ function stopWatchdog() {
   }
 }
 
-/** Warm voices / resume on a user gesture so later clicks work on Mac Chrome. */
+function markEngineReady() {
+  engineReady = true;
+  const job = pendingSpeak;
+  pendingSpeak = null;
+  if (job?.text) speakText(job.text, job.lang, job.source);
+}
+
+/** Warm the speech process on a user gesture so the first word is not a long wait. */
 export function primeSpeech() {
   if (!canSpeak()) return;
   try {
     refreshVoices();
     const synth = window.speechSynthesis;
     if (synth.paused) synth.resume();
-    primed = true;
   } catch (_) {
     /* ignore */
+  }
+  if (primed) return;
+  primed = true;
+  try {
+    const synth = window.speechSynthesis;
+    const u = new SpeechSynthesisUtterance(' ');
+    warmupHeld = u;
+    u.volume = 0.01;
+    u.rate = 1.15;
+    u.pitch = 1;
+    u.lang = 'en-US';
+    const local = pickVoice('en-US');
+    if (local?.localService) {
+      u.voice = local;
+      if (local.lang) u.lang = local.lang;
+    }
+    const done = () => {
+      if (heldUtterance && heldUtterance !== u) return;
+      markEngineReady();
+    };
+    u.onstart = done;
+    u.onend = done;
+    u.onerror = done;
+    synth.speak(u);
+    window.setTimeout(() => {
+      if (!engineReady) markEngineReady();
+    }, 1800);
+  } catch (_) {
+    engineReady = true;
   }
 }
 
@@ -351,7 +393,8 @@ function scoreVoice(voice, lang) {
   for (const p of preferred) {
     if (name.includes(p)) score += 12;
   }
-  if (voice.localService) score += 3;
+  if (voice.localService) score += 32;
+  if (/google/.test(name) && !voice.localService) score -= 10;
   if (/compact|eloquence|novelty/.test(name)) score -= 8;
   return score;
 }
@@ -359,16 +402,30 @@ function scoreVoice(voice, lang) {
 export function pickVoice(lang = 'en-US') {
   const voices = refreshVoices();
   if (!voices.length) return null;
-  let best = null;
-  let bestScore = -1;
-  for (const v of voices) {
-    const s = scoreVoice(v, lang);
-    if (s > bestScore) {
-      bestScore = s;
-      best = v;
+
+  const bestFor = (want) => {
+    let best = null;
+    let bestScore = -1;
+    for (const v of voices) {
+      const s = scoreVoice(v, want);
+      if (s > bestScore) {
+        bestScore = s;
+        best = v;
+      }
     }
+    return { best, bestScore };
+  };
+
+  const primary = bestFor(lang);
+  if (String(lang).toLowerCase().startsWith('en') && primary.best && !primary.best.localService) {
+    const localEn = bestFor('en-US');
+    if (localEn.best?.localService) return localEn.best;
   }
-  return bestScore >= 0 ? best : null;
+  if (String(lang).toLowerCase().startsWith('zh') && primary.best && !primary.best.localService) {
+    const localZh = bestFor('zh-CN');
+    if (localZh.best?.localService) return localZh.best;
+  }
+  return primary.bestScore >= 0 ? primary.best : null;
 }
 
 export function stopSpeak() {
@@ -387,6 +444,7 @@ export function stopSpeak() {
   }
   heldUtterance = null;
   speakSource = null;
+  pendingSpeak = null;
   markSpeaking(false);
 }
 
@@ -405,6 +463,11 @@ export function speakText(text, lang = 'en-US', source = null) {
   speakSource = resolveSpeakSource(source);
   primeSpeech();
   const synth = window.speechSynthesis;
+  if (!engineReady) {
+    pendingSpeak = { text: clean, lang, source: speakSource };
+    markSpeaking(true);
+    return true;
+  }
   const busy = Boolean(synth.speaking || synth.pending);
   try {
     if (busy) synth.cancel();
