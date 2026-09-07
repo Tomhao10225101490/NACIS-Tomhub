@@ -81,7 +81,12 @@ import { SCIENCE_DAY_META } from './data/days-meta.js';
 setClipMap(clipMap);
 
 try {
-  registerSW({ immediate: true });
+  const updateSW = registerSW({
+    immediate: true,
+    onNeedRefresh() {
+      updateSW(true);
+    },
+  });
 } catch {
   /* vite-plugin-pwa injects this virtual module in build / PWA-enabled serve */
 }

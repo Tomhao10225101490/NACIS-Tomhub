@@ -15,15 +15,19 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'manifest.webmanifest'],
       manifest: false,
       workbox: {
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
         globPatterns: ['**/*.{js,css,html,svg,webmanifest}'],
         navigateFallback: null,
         runtimeCaching: [
           {
             urlPattern: /assets\/.+\.js$/i,
-            handler: 'CacheFirst',
+            handler: 'NetworkFirst',
             options: {
-              cacheName: 'toms-chunks',
-              expiration: { maxEntries: 48, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheName: 'toms-js-v3',
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 48, maxAgeSeconds: 60 * 60 * 6 },
             },
           },
         ],

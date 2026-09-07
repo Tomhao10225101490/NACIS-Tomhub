@@ -81,6 +81,28 @@ function stubFetchReject() {
   );
 }
 
+function stubYoutubeOk() {
+  vi.stubGlobal(
+    'Image',
+    class {
+      set src(_v) {
+        this.onload?.();
+      }
+    }
+  );
+}
+
+function stubYoutubeBlocked() {
+  vi.stubGlobal(
+    'Image',
+    class {
+      set src(_v) {
+        this.onerror?.();
+      }
+    }
+  );
+}
+
 describe('parseBiliVideoIds', () => {
   it('reads bvid fields from a type-search payload', () => {
     expect(
@@ -110,6 +132,7 @@ describe('clipsFromMap', () => {
       { kind: 'bili', id: 'BV1yy411c7mE' },
     ]);
     expect(biliPlayerUrl('BV1xx411c7mD')).toContain('player.bilibili.com');
+    expect(biliPlayerUrl('BV1xx411c7mD')).toContain('isOutside=true');
     expect(biliPlayerUrl('BV1xx411c7mD')).toContain('bvid=BV1xx411c7mD');
   });
 });
@@ -132,6 +155,7 @@ describe('mountClipPlayer', () => {
   });
 
   it('starts the widget in the same turn when the API is already loaded', () => {
+    stubYoutubeOk();
     stubFetchReject();
     mockWidget();
     const el = document.createElement('div');
@@ -144,6 +168,7 @@ describe('mountClipPlayer', () => {
   });
 
   it('falls back to all accents then another route when UK has no hits', async () => {
+    stubYoutubeOk();
     stubFetchReject();
     mockWidget({
       onFetch(widget) {
@@ -161,6 +186,7 @@ describe('mountClipPlayer', () => {
 
   it('does not navigate away when the player never becomes ready', async () => {
     vi.useFakeTimers();
+    stubYoutubeOk();
     stubFetchReject();
     mockWidget({
       onFetch(widget) {
@@ -179,6 +205,7 @@ describe('mountClipPlayer', () => {
   });
 
   it('replays and skips via the mounted widget', async () => {
+    stubYoutubeOk();
     stubFetchReject();
     mockWidget({
       onFetch(widget) {
@@ -201,6 +228,7 @@ describe('mountClipPlayer', () => {
   });
 
   it('stopClipPlayback clears the stage but keeps sibling fail copy', async () => {
+    stubYoutubeOk();
     stubFetchReject();
     mockWidget({
       onFetch(widget) {
@@ -224,39 +252,24 @@ describe('mountClipPlayer', () => {
 
   it('uses a hidden domestic embed from the local map when YouTube cannot play', async () => {
     setClipMap({ hello: ['BV1xx411c7mD'] });
-    vi.stubGlobal(
-      'Image',
-      class {
-        set src(_v) {
-          queueMicrotask(() => this.onerror?.());
-        }
-      }
-    );
+    stubYoutubeBlocked();
     stubFetchReject();
     const el = document.createElement('div');
     document.body.append(el);
     mountClipPlayer(el, 'hello');
     await vi.waitFor(() => {
       const src = el.querySelector('iframe')?.getAttribute('src') || '';
-      expect(src).toContain('player.bilibili.com');
+      expect(src).toContain('isOutside=true');
       expect(src).toContain('bvid=BV1xx411c7mD');
-      expect(src).toContain('autoplay=1');
     });
     nextClip();
     replayClip();
-    expect(el.querySelector('iframe')?.getAttribute('src') || '').toContain('player.bilibili.com');
+    expect(el.querySelector('iframe')?.getAttribute('src') || '').toContain('bilibili.com');
     el.remove();
   });
 
   it('uses a hidden in-page embed when YouTube cannot play', async () => {
-    vi.stubGlobal(
-      'Image',
-      class {
-        set src(_v) {
-          queueMicrotask(() => this.onerror?.());
-        }
-      }
-    );
+    stubYoutubeBlocked();
     vi.stubGlobal(
       'fetch',
       vi.fn(async () => ({

@@ -25,7 +25,11 @@ const YT_EMBED = [
   'https://www.youtube.com/embed/ID?autoplay=1&playsinline=1&rel=0',
 ];
 
-const BILI_PLAYER = 'https://player.bilibili.com/player.html?bvid=ID&page=1&high_quality=1&danmaku=0&autoplay=1&as_wide=1';
+const BILI_EMBED = [
+  'https://player.bilibili.com/player.html?isOutside=true&bvid=ID&p=1&autoplay=1&high_quality=1&danmaku=0&as_wide=1',
+  'https://www.bilibili.com/blackboard/html5mobileplayer.html?isOutside=true&bvid=ID&p=1&autoplay=1&danmaku=0&high_quality=1',
+  'https://player.bilibili.com/player.html?bvid=ID&page=1&autoplay=1&high_quality=1&danmaku=0&as_wide=1',
+];
 
 let scriptPromise = null;
 let widget = null;
@@ -102,8 +106,10 @@ export function parseJinaPayload(text) {
   }
 }
 
-export function biliPlayerUrl(bvid) {
-  return BILI_PLAYER.replace('ID', encodeURIComponent(String(bvid || '').trim()));
+export function biliPlayerUrl(bvid, which = 0) {
+  const id = encodeURIComponent(String(bvid || '').trim());
+  const tpl = BILI_EMBED[((which % BILI_EMBED.length) + BILI_EMBED.length) % BILI_EMBED.length];
+  return tpl.replace('ID', id);
 }
 
 export function youtubeEmbedUrl(videoId, which = 0) {
@@ -332,10 +338,12 @@ export function searchClipTracks(word, { preferDomestic = false } = {}) {
   return pending;
 }
 
-/** Warm routes before the learner taps. */
+/** Warm routes before the learner taps. Do not load YouTube-backed widgets in China. */
 export function prefetchYouGlish() {
-  youtubeLikelyBlocked();
-  return loadYouGlish().catch(() => null);
+  return youtubeLikelyBlocked().then((blocked) => {
+    if (blocked) return null;
+    return loadYouGlish().catch(() => null);
+  });
 }
 
 export function prefetchClipTracks(word) {
@@ -399,11 +407,11 @@ function resultCount(ev) {
 
 function embedSrc(clip, which = embedIndex) {
   if (!clip) return '';
-  if (clip.kind === 'bili') return biliPlayerUrl(clip.id);
+  if (clip.kind === 'bili') return biliPlayerUrl(clip.id, which);
   return youtubeEmbedUrl(clip.id, which);
 }
 
-function mountIframe(src) {
+function mountIframe(src, clip) {
   if (!host || !src) return;
   stopWidget();
   blankIframes(host);
@@ -411,8 +419,11 @@ function mountIframe(src) {
   const frame = document.createElement('iframe');
   frame.setAttribute('allow', 'autoplay; encrypted-media; fullscreen; picture-in-picture');
   frame.setAttribute('allowfullscreen', 'true');
+  frame.setAttribute('scrolling', 'no');
+  frame.setAttribute('border', '0');
+  frame.setAttribute('framespacing', '0');
   frame.setAttribute('title', 'clip');
-  frame.referrerPolicy = 'no-referrer';
+  frame.referrerPolicy = clip?.kind === 'bili' ? 'strict-origin-when-cross-origin' : 'no-referrer';
   frame.src = src;
   host.append(frame);
   route = 'iframe';
@@ -423,7 +434,7 @@ function playCurrentTrack() {
   if (!clip) return false;
   const src = embedSrc(clip);
   if (!src) return false;
-  mountIframe(src);
+  mountIframe(src, clip);
   return true;
 }
 
@@ -451,6 +462,7 @@ export function mountClipPlayer(container, word, { onUnavailable } = {}) {
   }
   activeWord = q;
   route = 'none';
+  youtubeLikelyBlocked();
   const slot = document.createElement('div');
   slot.id = SLOT_ID;
   container.replaceChildren(slot);
@@ -573,7 +585,7 @@ export function mountClipPlayer(container, word, { onUnavailable } = {}) {
   }
 
   const readyNow = getYouGlishSync();
-  if (readyNow) return startYg(readyNow);
+  if (ytBlockedCached === false && readyNow) return startYg(readyNow);
 
   youtubeLikelyBlocked().then((blocked) => {
     if (activeWord !== q || handedOff) return;
