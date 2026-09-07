@@ -789,6 +789,29 @@ body.hit-bad::after {
   margin-top: 12px;
 }
 
+.clip-kicker {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.clip-open {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.clip-word-btn {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.clip-row-host {
+  margin-top: 10px;
+}
+
 .clip-panel {
   margin-top: 10px;
   padding: 10px;
@@ -854,7 +877,10 @@ body.hit-bad::after {
 .clip-panel[hidden],
 .clip-stage[hidden],
 .clip-fail[hidden],
-.clip-bar[hidden] {
+.clip-bar[hidden],
+.clip-open[hidden],
+.clip-kicker[hidden],
+.clip-row-host[hidden] {
   display: none !important;
 }
 

@@ -338,16 +338,17 @@ function bindFlashSpeak({ getFlipped, frontText, backText, frontLang = 'en-US', 
   });
 }
 
-function bindFlashClip(word) {
-  const screen = app.querySelector('.screen');
-  if (!screen) return;
+function buildClipDock(word, { autoOpen = false, showToggle = true } = {}) {
   const wrap = document.createElement('div');
   wrap.className = 'clip-wrap';
+  const kicker = document.createElement('p');
+  kicker.className = 'clip-kicker';
+  kicker.textContent = tb('clipHint');
   const toggle = document.createElement('button');
   toggle.type = 'button';
-  toggle.className = 'btn';
+  toggle.className = 'btn btn-primary clip-open';
   toggle.setAttribute('aria-expanded', 'false');
-  toggle.textContent = tb('clipVideo');
+  toggle.textContent = tb('clipVideoFor', { word });
   const panel = document.createElement('div');
   panel.className = 'clip-panel';
   panel.hidden = true;
@@ -369,10 +370,11 @@ function bindFlashClip(word) {
   next.textContent = tb('clipNext');
   bar.append(replay, next);
   panel.append(stage, fail, bar);
-  wrap.append(toggle, panel);
-  const actions = screen.querySelector('.flash-actions');
-  if (actions) actions.after(wrap);
-  else screen.append(wrap);
+  wrap.append(kicker, toggle, panel);
+  if (!showToggle) {
+    kicker.hidden = true;
+    toggle.hidden = true;
+  }
 
   const showFail = () => {
     unmountClipPlayer();
@@ -380,21 +382,25 @@ function bindFlashClip(word) {
     stage.hidden = true;
     bar.hidden = true;
   };
+  const openPanel = () => {
+    fail.hidden = true;
+    stage.hidden = false;
+    bar.hidden = false;
+    panel.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    mountClipPlayer(stage, word, { onUnavailable: showFail });
+  };
+  const closePanel = () => {
+    panel.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    unmountClipPlayer();
+  };
   toggle.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
     sfxClick();
-    const open = panel.hidden;
-    panel.hidden = !open;
-    toggle.setAttribute('aria-expanded', String(open));
-    if (open) {
-      fail.hidden = true;
-      stage.hidden = false;
-      bar.hidden = false;
-      mountClipPlayer(stage, word, { onUnavailable: showFail });
-    } else {
-      unmountClipPlayer();
-    }
+    if (panel.hidden) openPanel();
+    else closePanel();
   });
   replay.addEventListener('click', (e) => {
     e.preventDefault();
@@ -405,6 +411,48 @@ function bindFlashClip(word) {
     e.preventDefault();
     e.stopPropagation();
     nextClip();
+  });
+  if (autoOpen) openPanel();
+  return wrap;
+}
+
+function bindFlashClip(word) {
+  const screen = app.querySelector('.screen');
+  if (!screen) return;
+  const wrap = buildClipDock(word);
+  const actions = screen.querySelector('.flash-actions');
+  if (actions) actions.before(wrap);
+  else screen.append(wrap);
+}
+
+function closeHsWordClips(exceptHost) {
+  app.querySelectorAll('.clip-row-host').forEach((host) => {
+    if (host === exceptHost) return;
+    host.replaceChildren();
+    host.hidden = true;
+  });
+}
+
+function bindHsWordClips() {
+  app.querySelectorAll('.clip-word-btn').forEach((btn) => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const word = btn.getAttribute('data-clip-word') || '';
+      const host = btn.parentElement?.querySelector('.clip-row-host');
+      if (!host || !word) return;
+      sfxClick();
+      const open = !host.hidden && host.childNodes.length;
+      unmountClipPlayer();
+      closeHsWordClips(open ? null : host);
+      if (open) {
+        host.replaceChildren();
+        host.hidden = true;
+        return;
+      }
+      host.hidden = false;
+      host.replaceChildren(buildClipDock(word, { autoOpen: true, showToggle: false }));
+    };
   });
 }
 
@@ -992,6 +1040,7 @@ function hsUsageNote(w) {
 
 function bindHsWordList() {
   bindHsWordSpeak();
+  bindHsWordClips();
   const list = document.querySelector('.hs-word-list');
   if (!list) return;
   list.querySelectorAll('.hs-word-row').forEach((row) => {
@@ -999,9 +1048,15 @@ function bindHsWordList() {
     if (!trigger) return;
     trigger.onclick = () => {
       const open = row.classList.contains('is-open');
+      unmountClipPlayer();
       list.querySelectorAll('.hs-word-row.is-open').forEach((r) => {
         r.classList.remove('is-open');
         r.querySelector('.hs-word-copy')?.setAttribute('aria-expanded', 'false');
+        const host = r.querySelector('.clip-row-host');
+        if (host) {
+          host.replaceChildren();
+          host.hidden = true;
+        }
       });
       if (!open) {
         row.classList.add('is-open');
@@ -3122,6 +3177,7 @@ async function startIeltsDay(dayNum) {
             <h3 class="result-title">${dayTitle(plan)}</h3>
             <p>${tb('words25')}</p>
             <div class="day-pipeline"><span>1 ${tb('ieltsMemorize')}</span><span>2 ${tb('ieltsSpot')}</span></div>
+            <p class="clip-kicker">${tb('clipMemorizeHint')}</p>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
           </div>
         </div>`;
@@ -3867,6 +3923,7 @@ async function startHsUnit(bookId, unitId) {
               <div class="flash-chapter">${escapeHtml(hsBookTitle(book))} · ${tb('pep2019')}</div>
               <h3 class="result-title">${escapeHtml(hsUnitHeading(unit))}</h3>
               <p>${words.length} ${tb('words')} · ${tb('hsUsageHint')}</p>
+              <p class="clip-kicker">${tb('clipListHint')}</p>
             </div>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
             <button class="btn" id="hs-dictation">${tb('dictation')}</button>
@@ -3895,6 +3952,8 @@ async function startHsUnit(bookId, unitId) {
                       <div class="hs-usage-kicker">${tb('hsUsage')}</div>
                       <p class="hs-usage-body">${escapeHtml(note.body)}</p>
                       ${note.ex ? `<p class="hs-usage-ex">${escapeHtml(note.ex)}</p>` : ''}
+                      <button type="button" class="btn clip-word-btn" data-clip-word="${escapeHtml(w.word)}">${tb('clipVideoFor', { word: escapeHtml(w.word) })}</button>
+                      <div class="clip-row-host" hidden></div>
                     </div>
                   </div>
                 </div>`;
