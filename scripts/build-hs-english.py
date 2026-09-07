@@ -405,43 +405,63 @@ def prompt_leaks(text: str, word: str) -> bool:
     return bool(re.search(rf"\b{re.escape(word)}\b", text, flags=re.I))
 
 
-def example_pair(word: str, pos: str, zh: str) -> tuple[str, str]:
+EXAMPLE_OVERRIDES: dict[tuple[str, str], tuple[str, str]] = {
+    ("b1", "exchange"): ("They exchange ideas after class.", "课后他们互相交流想法。"),
+    ("b1", "lecture"): ("We listened to a lecture on history.", "我们听了一场历史讲座。"),
+    ("b1", "registration"): ("Complete the registration on the first day.", "第一天请完成登记。"),
+    ("b1", "register"): ("Please register at the front desk.", "请到前台登记。"),
+    ("b1", "campus"): ("The new library stands in the centre of campus.", "新图书馆位于校园中心。"),
+    ("b1", "anxious"): ("She felt anxious before the exam.", "考试前她感到焦虑。"),
+    ("b1", "annoyed"): ("He was annoyed by the noise.", "噪音让他很恼火。"),
+    ("b1", "design"): ("They design a poster for the club.", "他们为社团设计海报。"),
+    ("b1", "female"): ("The female students sat in the front row.", "女生坐在前排。"),
+    ("b1", "male"): ("The male lead in the play is my classmate.", "这部戏的男主角是我同学。"),
+    ("b1", "nationality"): ("Please write your nationality on the form.", "请在表格上填写国籍。"),
+    ("b1", "formal"): ("Wear formal clothes to the ceremony.", "典礼上要穿正装。"),
+    ("b1", "revise"): ("I will revise my essay tonight.", "今晚我会修改作文。"),
+}
+
+
+def example_pair(word: str, pos: str, zh: str, book_id: str = "") -> tuple[str, str]:
     """Short practice examples. Flashcards already show the word on the front."""
+    ov = EXAMPLE_OVERRIDES.get((book_id, word.lower()))
+    if ov:
+        return ov
     kind = primary_pos_kind(pos)
     z = zh_short(zh)
     if kind == "phrase" or " " in word:
         return (
-            f"We use this phrase when we mean “{z}”.",
-            f"这个短语表示「{z}」。",
+            f"This phrase means “{z}” in the unit.",
+            f"这个短语在本单元表示「{z}」。",
         )
     if kind == "proper":
         return (
-            f"This name / term refers to “{z}”.",
-            f"这个专有名称指「{z}」。",
+            f"This name refers to “{z}”.",
+            f"这个名称指「{z}」。",
         )
     if kind == "adj":
         return (
-            f"That description sounds {word}.",
-            f"那种描述听起来很{z}。",
+            f"The result looks {word} to everyone.",
+            f"这个结果在大家看来很{z}。",
         )
     if kind == "adv":
         return (
-            f"She answered the question {word}.",
-            f"她{z}地回答了这个问题。",
+            f"She spoke {word} in the meeting.",
+            f"她在会上{z}地发言。",
         )
     if kind == "prep" or kind == "conj":
         return (
-            f"Notice how “{word}” connects the ideas ({z}).",
-            f"注意「{word}」如何连接语义（{z}）。",
+            f"This small word ({z}) links two ideas.",
+            f"这个词用来连接两个意思（{z}）。",
         )
     if kind == "verb":
         return (
-            f"Can you {word} this carefully?",
-            f"你能仔细地{z}一下吗？",
+            f"Many students {word} after school.",
+            f"许多学生放学后会{z}。",
         )
     return (
-        f"I need more information about {word}.",
-        f"我需要更多关于{z}的信息。",
+        f"We learned a new {word} in this lesson.",
+        f"这节课我们学了一个表示「{z}」的词。",
     )
 
 
@@ -528,7 +548,7 @@ def main() -> None:
         if prompt_leaks(zh, word):
             zh = scrub_answer(zh, word).replace("…", "").strip("；，, ") or zh_short(zh)
         seq[bid] += 1
-        en_ex, zh_ex = example_pair(word, pos, zh)
+        en_ex, zh_ex = example_pair(word, pos, zh, bid)
         zh_ex = scrub_answer(zh_ex, word) or zh_ex
         entry = {
             "id": f"{bid}-{seq[bid]:04d}",

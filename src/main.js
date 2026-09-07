@@ -1,4 +1,11 @@
 import './style.css';
+import { registerSW } from 'virtual:pwa-register';
+
+try {
+  registerSW({ immediate: true });
+} catch (_) {
+  /* dev without plugin */
+}
 import { HUBS, getHub } from './data/hubs.js';
 import {
   packs,
@@ -16,6 +23,27 @@ import {
 } from './data/ielts-meta.js';
 import { HS_BOOKS, HS_WORD_TOTAL, getHsBook, getHsUnit } from './data/hs-english/meta.js';
 import { shuffle } from './util/shuffle.js';
+import { escapeHtml, escapeRegExp } from './util/escape.js';
+import {
+  store,
+  save as writeStore,
+  recordWrong,
+  clearWrong,
+  clearAllWrong,
+  noteWrongResult,
+  markStudyToday,
+  recentStudyFlags,
+  consecutiveStudyDays,
+  exportProgress,
+  importProgress,
+  hsProgressKey,
+} from './store.js';
+import { startRouter } from './router.js';
+import { makeEnWordSpotItem, promptContainsAnswer } from './quiz/spot.js';
+import { applyReview, dueEntries, srsKey } from './quiz/srs.js';
+import { makeDictationItem, spellingOk } from './quiz/dictation.js';
+import { clozeItemsFromWords } from './quiz/cloze.js';
+import { dealMatchPairs } from './quiz/match.js';
 import {
   unlockAudio,
   sfxClick,
@@ -202,34 +230,9 @@ document.addEventListener(
   { once: true }
 );
 
-function readJson(key, fallback) {
-  try {
-    const raw = localStorage.getItem(key);
-    if (raw == null || raw === '') return fallback;
-    return JSON.parse(raw);
-  } catch (_) {
-    return fallback;
-  }
-}
-
-const _wrong = readJson('nacis_wrong', []);
-const _days = readJson('alex_days', {});
-const _ielts = readJson('toms_ielts', {});
-const _hs = readJson('toms_hs_en', {});
-
-const store = {
-  xp: Number(localStorage.getItem('nacis_xp') || 0),
-  streak: Number(localStorage.getItem('nacis_streak') || 0),
-  bestStreak: Number(localStorage.getItem('nacis_best') || 0),
-  wrong: Array.isArray(_wrong) ? _wrong : [],
-  dayProgress: _days && typeof _days === 'object' && !Array.isArray(_days) ? _days : {},
-  ieltsProgress: _ielts && typeof _ielts === 'object' && !Array.isArray(_ielts) ? _ielts : {},
-  hsProgress: _hs && typeof _hs === 'object' && !Array.isArray(_hs) ? _hs : {},
-  activeHub: localStorage.getItem('toms_hub') || '',
-};
-
 let currentRoute = 'home';
-let quizLevel = localStorage.getItem('alex_qlevel') || 'core'; // core | all
+let quizLevel = store.quizLevel === 'all' ? 'all' : 'core';
+let router = null;
 /** @type {null | (() => void)} */
 let sessionRepaint = null;
 
@@ -302,14 +305,6 @@ function wireQuizNext(onNext) {
 }
 
 
-function escapeHtml(s) {
-  return String(s ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
 function speakIconSvg() {
   return `<svg class="speak-svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>`;
 }
@@ -323,76 +318,6 @@ function speakIconBtn(id, titleKey = 'speak') {
 function flashSpeakHtml() {
   if (!canSpeak()) return '';
   return `<button type="button" class="speak-fab flash-speak" aria-label="${tb('speak')}" title="${tb('speak')}">${speakIconSvg()}</button>`;
-}
-
-function escapeRegExp(s) {
-  return String(s || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-/** True if the quiz prompt already contains the answer word/phrase. */
-function promptContainsAnswer(prompt, answer) {
-  const a = String(answer || '').trim();
-  if (!a) return false;
-  const p = String(prompt || '');
-  if (/\s/.test(a) || /[^a-zA-Z0-9']/.test(a)) {
-    return p.toLowerCase().includes(a.toLowerCase());
-  }
-  return new RegExp(`\\b${escapeRegExp(a)}\\b`, 'i').test(p);
-}
-
-/** Strip Latin leftovers from Chinese glosses so prompts don't echo the answer. */
-function scrubGlossForSpot(text, answer) {
-  let t = String(text || '');
-  const a = String(answer || '').trim();
-  if (a) {
-    t = t.replace(new RegExp(escapeRegExp(a), 'ig'), '____');
-  }
-  // Drop remaining Latin letter runs (OCR / bilingual junk).
-  t = t.replace(/[A-Za-z][A-Za-z'.\/-]*/g, '').replace(/[()（）]+/g, ' ').replace(/\s+/g, ' ').trim();
-  t = t.replace(/^[；;，,\s]+|[；;，,\s]+$/g, '').replace(/\s*[；;]\s*/g, '；');
-  return t;
-}
-
-/**
- * Spot check: pick the English word from a safe gloss.
- * Never put the target English word into the prompt (no giveaways).
- */
-function makeEnWordSpotItem(w, bank, { preferEnDef = false } = {}) {
-  const zhRaw = String(w.zh || '');
-  const zhHasChinese = /[\u4e00-\u9fff]/.test(zhRaw);
-  const enSafe = w.enDef && !promptContainsAnswer(w.enDef, w.word) ? String(w.enDef) : '';
-  let prompt = '';
-
-  // Prefer English gloss only when requested AND safe; otherwise Chinese (if real Chinese).
-  if (preferEnDef && enSafe) {
-    prompt = `${enSafe}\n(${w.pos || ''})`.trim();
-  } else if (zhHasChinese) {
-    prompt = scrubGlossForSpot(zhRaw, w.word);
-    if (w.pos) prompt = `${prompt}\n(${w.pos})`.trim();
-  } else if (enSafe) {
-    prompt = `${enSafe}\n(${w.pos || ''})`.trim();
-  }
-
-  if (!prompt || promptContainsAnswer(prompt, w.word)) {
-    prompt = zhHasChinese ? scrubGlossForSpot(zhRaw, w.word) : '';
-    if ((!prompt || promptContainsAnswer(prompt, w.word)) && enSafe) prompt = enSafe;
-    if (!prompt || promptContainsAnswer(prompt, w.word)) {
-      prompt = '（根据释义选择正确单词）';
-    }
-    if (w.pos) prompt = `${prompt}\n(${w.pos})`;
-  }
-
-  const distractors = shuffle(bank.filter((x) => x.id !== w.id && x.word !== w.word))
-    .slice(0, 3)
-    .map((x) => x.word);
-  while (distractors.length < 3) distractors.push('—');
-  return {
-    id: w.id,
-    prompt,
-    answer: w.word,
-    tip: `${w.word} ${w.phonetic || ''}\n${w.zh || ''} · ${w.enDef || ''}\n${w.example || ''}\n${w.exampleZh || ''}`.trim(),
-    options: shuffle([w.word, ...distractors.slice(0, 3)]),
-  };
 }
 
 function bindFlashSpeak({ getFlipped, frontText, backText, frontLang = 'en-US', backLang = 'zh-CN' }) {
@@ -510,15 +435,8 @@ function softChromeRefresh() {
 }
 
 function save() {
-  localStorage.setItem('nacis_xp', String(store.xp));
-  localStorage.setItem('nacis_streak', String(store.streak));
-  localStorage.setItem('nacis_best', String(store.bestStreak));
-  localStorage.setItem('nacis_wrong', JSON.stringify(store.wrong.slice(-80)));
-  localStorage.setItem('alex_days', JSON.stringify(store.dayProgress));
-  localStorage.setItem('toms_ielts', JSON.stringify(store.ieltsProgress || {}));
-  localStorage.setItem('toms_hs_en', JSON.stringify(store.hsProgress || {}));
-  localStorage.setItem('toms_hub', store.activeHub || '');
-  localStorage.setItem('alex_qlevel', quizLevel);
+  store.quizLevel = quizLevel === 'all' ? 'all' : 'core';
+  writeStore();
 }
 
 function markDayDone(dayNum) {
@@ -526,6 +444,7 @@ function markDayDone(dayNum) {
     done: true,
     at: Date.now(),
   };
+  markStudyToday();
   save();
 }
 
@@ -544,20 +463,10 @@ function addXp(n, correct, { countStreak = true } = {}) {
       store.streak += 1;
       store.bestStreak = Math.max(store.bestStreak, store.streak);
     }
+    markStudyToday();
   } else if (countStreak) {
     store.streak = 0;
   }
-  save();
-}
-
-function recordWrong(item) {
-  store.wrong = store.wrong.filter((w) => w.id !== item.id);
-  store.wrong.unshift({ ...item, at: Date.now() });
-  save();
-}
-
-function clearWrong(id) {
-  store.wrong = store.wrong.filter((w) => w.id !== id);
   save();
 }
 
@@ -800,17 +709,19 @@ function topbar(extra = '') {
   const sfxLabel = isSfxEnabled() ? tb('soundOn') : tb('soundOff');
   return `
     <header class="topbar">
-      <div class="brand">
+      <button type="button" class="brand brand-home" data-nav="home">
         <div class="brand-kicker">${tb('gradeKicker')}</div>
         <div class="brand-title">Tom's Ground</div>
-      </div>
+      </button>
       <div class="topbar-right">
         ${langToggleHtml()}
         <button type="button" class="sfx-btn ${isSfxEnabled() ? 'on' : ''}" data-sfx-toggle title="${sfxLabel}">♪</button>
+        <button type="button" class="chrome-link" data-nav="wrong">${tb('wrongBook')} <em>${store.wrong.length}</em></button>
+        <button type="button" class="chrome-link" data-nav="progress">${tb('progress')}</button>
         <div class="stats-pill">
           <div class="stat">${tb('xp')} <em>${store.xp}</em></div>
           <div class="stat streak-fire">🔥 <em>${store.streak}</em></div>
-          <div class="stat">${tb('days')} <em>${doneDayCount()}/${days.length}</em></div>
+          <div class="stat">${tb('days')} <em>${consecutiveStudyDays()}</em></div>
           ${extra}
         </div>
       </div>
@@ -900,6 +811,7 @@ function isIeltsDayDone(n) {
 
 function markIeltsDayDone(n) {
   store.ieltsProgress[String(n)] = { done: true, at: Date.now() };
+  markStudyToday();
   save();
 }
 
@@ -911,21 +823,48 @@ function ieltsDoneCount() {
   return n;
 }
 
-function hsProgressKey(bookId, unitId) {
-  return `${bookId}:${unitId}`;
-}
-
 function isHsUnitDone(bookId, unitId) {
   return Boolean(store.hsProgress[hsProgressKey(bookId, unitId)]?.done);
 }
 
 function markHsUnitDone(bookId, unitId) {
   store.hsProgress[hsProgressKey(bookId, unitId)] = { done: true, at: Date.now() };
+  markStudyToday();
   save();
 }
 
 function hsBookDoneCount(book) {
   return (book?.units || []).filter((u) => isHsUnitDone(book.id, u.id)).length;
+}
+
+function rememberSrs(kind, id, correct) {
+  if (!id) return;
+  store.srs = applyReview(store.srs, srsKey(kind, id), !!correct);
+  save();
+}
+
+function nextHsTarget() {
+  for (const book of HS_BOOKS) {
+    for (const unit of book.units || []) {
+      if (!isHsUnitDone(book.id, unit.id)) return { book, unit };
+    }
+  }
+  const book = HS_BOOKS[0];
+  return { book, unit: book?.units?.[0] || null };
+}
+
+function dueSrsCount() {
+  return dueEntries(store.srs).length;
+}
+
+function hsUnitsDoneTotal() {
+  let u = 0;
+  let t = 0;
+  HS_BOOKS.forEach((b) => {
+    t += (b.units || []).length;
+    u += hsBookDoneCount(b);
+  });
+  return { u, t };
 }
 
 function hsBookCardHtml(book, { large = false } = {}) {
@@ -1065,37 +1004,137 @@ function modeCard(nav, icon, title, desc, tag) {
 function renderHome() {
   currentRoute = 'home';
   const nextIelts = ieltsDayMeta.find((d) => !isIeltsDayDone(d.day)) || ieltsDayMeta[0];
+  const hsNext = nextHsTarget();
+  const dueN = dueSrsCount();
+  const flags = recentStudyFlags(7);
+  const hsTot = hsUnitsDoneTotal();
+  const sciDone = Object.values(store.dayProgress || {}).filter((x) => x?.done).length;
   app.innerHTML = `
     ${topbar()}
     <section class="hero hero-portal">
       <div class="hero-kicker">${tb('portalKicker')}</div>
       <h1>Tom's <span>Ground</span></h1>
       <p>${tb('heroSub')}</p>
+      <p class="study-streak-line">${tb('studyStreak', { n: consecutiveStudyDays() })}</p>
+      <div class="week-dots" aria-hidden="true">
+        ${flags.map((f) => `<span class="week-dot ${f.done ? 'on' : ''}" title="${f.date}"></span>`).join('')}
+      </div>
     </section>
 
-    <div class="today-card panel ielts-spotlight">
-      <div class="today-label">${tb('todayIelts')}</div>
-      <div class="today-title">${tb('dayOf', { n: nextIelts.day })} · ${dayTitle({ title: nextIelts.title, titleZh: nextIelts.titleZh })}</div>
-      <div class="today-sub">${tb('band7')} · ${tb('words25')} · ${nextIelts.topic || ''}</div>
-      <button class="btn btn-primary" data-ielts-day="${nextIelts.day}">${tb('startMemorize')}</button>
-      <button class="btn" data-nav="ielts-days" style="margin-left:8px">${tb('ieltsDays')}</button>
+    <div class="today-grid">
+      <div class="today-card panel ielts-spotlight">
+        <div class="today-label">${tb('todayIelts')}</div>
+        <div class="today-title">${tb('dayOf', { n: nextIelts.day })} · ${dayTitle({ title: nextIelts.title, titleZh: nextIelts.titleZh })}</div>
+        <div class="today-sub">${tb('band7')} · ${nextIelts.topic || ''}</div>
+        <button class="btn btn-primary" data-ielts-day="${nextIelts.day}">${tb('startMemorize')}</button>
+        <button class="btn" data-nav="ielts-days">${tb('ieltsDays')}</button>
+      </div>
+      <div class="today-card panel">
+        <div class="today-label">${tb('nextHs')}</div>
+        <div class="today-title">${hsNext.book ? escapeHtml(hsBookTitle(hsNext.book)) : ''} · ${hsNext.unit ? escapeHtml(hsUnitHeading(hsNext.unit)) : ''}</div>
+        <div class="today-sub">${tb('hsLearned', { n: hsTot.u, t: hsTot.t })}</div>
+        ${
+          hsNext.book && hsNext.unit
+            ? `<button class="btn btn-primary" data-hs-unit="${hsNext.book.id}:${hsNext.unit.id}">${tb('start')}</button>`
+            : ''
+        }
+        <button class="btn" data-nav="hs-shelf">${tb('hsShelf')}</button>
+      </div>
+      <div class="today-card panel">
+        <div class="today-label">${tb('todayReview')}</div>
+        <div class="today-title">${dueN ? tb('dueWords', { n: dueN }) : tb('noDue')}</div>
+        <div class="today-sub">${tb('wrongBook')} · ${store.wrong.length}</div>
+        <button class="btn btn-primary" data-nav="srs" ${dueN ? '' : 'disabled'}>${tb('startReview')}</button>
+        <button class="btn" data-nav="wrong">${tb('wrongBook')}</button>
+      </div>
     </div>
 
     <h3 class="section-label">${tb('pickSubject')}</h3>
     <p class="section-hint">${tb('pickSubjectSub')}</p>
     <div class="hub-grid">
-      ${HUBS.map(
-        (h) => `<button class="hub-card" data-hub="${h.id}" style="--hub-accent:${h.accent};--hub-glow:${h.glow}">
+      ${HUBS.map((h) => {
+        let tag = tb('start');
+        if (h.id === 'english') tag = `${ieltsDoneCount()}/${IELTS_DAY_TOTAL}`;
+        else if (h.id === 'chinese' || h.id === 'math') tag = tb('start');
+        else tag = `${sciDone} ${tb('done')}`;
+        return `<button class="hub-card" data-hub="${h.id}" style="--hub-accent:${h.accent};--hub-glow:${h.glow}">
           <div class="hub-orb"></div>
           <div class="hub-icon">${h.icon}</div>
           <div class="hub-name">${hubTitle(h)}</div>
           <div class="hub-blurb">${hubBlurb(h)}</div>
-          <div class="hub-cta">${tb('start')}</div>
-        </button>`
-      ).join('')}
+          <div class="hub-cta">${tag}</div>
+        </button>`;
+      }).join('')}
     </div>
   `;
   prefetchInBackground();
+}
+
+function renderProgress() {
+  currentRoute = 'progress';
+  const flags = recentStudyFlags(14);
+  const hsTot = hsUnitsDoneTotal();
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen">
+      <div class="screen-header">${backBtn('home')}<h2 class="screen-title">${tb('progress')}</h2></div>
+      <div class="panel progress-panel">
+        <p>${tb('studyStreak', { n: consecutiveStudyDays() })} · XP ${store.xp}</p>
+        <div class="week-dots week-dots-lg">
+          ${flags.map((f) => `<span class="week-dot ${f.done ? 'on' : ''}" title="${f.date}"></span>`).join('')}
+        </div>
+        <ul class="progress-stats">
+          <li>${tb('ieltsTrack')} · ${ieltsDoneCount()}/${IELTS_DAY_TOTAL}</li>
+          <li>${tb('hsTrack')} · ${tb('hsLearned', { n: hsTot.u, t: hsTot.t })}</li>
+          <li>${tb('wrongBook')} · ${store.wrong.length}</li>
+          <li>${tb('todayReview')} · ${dueSrsCount()}</li>
+        </ul>
+        <div class="flash-actions">
+          <button class="btn btn-primary" id="export-progress">${tb('exportProgress')}</button>
+          <button class="btn" id="import-progress">${tb('importProgress')}</button>
+          <input type="file" id="import-file" accept="application/json,.json" hidden />
+        </div>
+        <p class="import-msg" id="import-msg"></p>
+      </div>
+    </div>`;
+  bindProgressIo();
+}
+
+function bindProgressIo() {
+  const exp = document.getElementById('export-progress');
+  const imp = document.getElementById('import-progress');
+  const file = document.getElementById('import-file');
+  const msg = document.getElementById('import-msg');
+  if (exp) {
+    exp.onclick = () => {
+      const blob = new Blob([exportProgress()], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `toms-ground-progress-${todayStamp()}.json`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+  }
+  if (imp && file) {
+    imp.onclick = () => file.click();
+    file.onchange = async () => {
+      const f = file.files && file.files[0];
+      if (!f) return;
+      try {
+        const text = await f.text();
+        importProgress(text);
+        quizLevel = store.quizLevel === 'all' ? 'all' : 'core';
+        if (msg) msg.textContent = tb('importOk');
+        renderProgress();
+      } catch (_) {
+        if (msg) msg.textContent = tb('importFail');
+      }
+    };
+  }
+}
+
+function todayStamp() {
+  return new Date().toISOString().slice(0, 10);
 }
 
 async function renderHub(hubId) {
@@ -1122,6 +1161,9 @@ async function renderHub(hubId) {
             ${modeCard('ielts-days', '📅', tb('ieltsDays'), tb('band7'), `${ieltsDoneCount()}/${IELTS_DAY_TOTAL}`)}
             ${modeCard('ielts-go', '🃏', tb('ieltsMemorize'), tb('words25'), `${IELTS_WORD_TOTAL} ${tb('words')}`)}
             ${modeCard('ielts-spot', '🎯', tb('ieltsSpot'), tb('spotHint'), tb('start'))}
+            ${modeCard('ielts-dictation', '✍', tb('dictation'), tb('dictationHint'), tb('start'))}
+            ${modeCard('ielts-cloze', '▢', tb('cloze'), tb('clozeHint'), tb('start'))}
+            ${modeCard('ielts-match', '🔗', tb('enMatch'), tb('matchDesc'), tb('start'))}
           </div>
         </div>
         <div class="en-col">
@@ -2380,47 +2422,455 @@ async function renderMass() {
 }
 
 /* —— WRONG BOOK —— */
-function renderWrong() {
+function renderWrong(filter = 'all') {
+  currentRoute = 'wrong';
+  const subjects = ['all', 'english', 'chinese', 'math', 'physics', 'chemistry', 'biology'];
+  const list = store.wrong.filter((w) => filter === 'all' || w.subject === filter);
   app.innerHTML = `
     ${topbar()}
     <div class="screen">
-      <div class="screen-header">${backBtn()}<h2 class="screen-title">错题本</h2>
-        ${store.wrong.length ? `<button class="btn" id="clearall">清空</button>` : ''}
+      <div class="screen-header">${backBtn('home')}<h2 class="screen-title">${tb('wrongBook')}</h2>
+        ${store.wrong.length ? `<button class="btn" id="clearall">${tb('clearWrong')}</button>` : ''}
       </div>
+      <p class="days-intro">${tb('retestHint')}</p>
+      <div class="chip-row" id="wrong-filters">
+        ${subjects
+          .map(
+            (s) =>
+              `<button class="chip ${filter === s ? 'active' : ''}" data-wrong-filter="${s}">${s === 'all' ? tb('all') : subjectName(s)}</button>`
+          )
+          .join('')}
+      </div>
+      ${
+        list.length
+          ? `<div class="flash-actions" style="margin-bottom:12px">
+              <button class="btn btn-primary" data-nav="wrong-quiz" data-wrong-sub="${filter}">${tb('retest')}</button>
+            </div>`
+          : ''
+      }
       <div class="panel">
         ${
-          store.wrong.length === 0
-            ? `<div class="empty">暂无错题，去挑战几轮测验吧！🎉</div>`
-            : `<div class="wrong-list">${store.wrong
-                .map(
-                  (w) => `<div class="wrong-item">
-                    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:4px">${w.subject || ''} · ${w.kind || ''}</div>
-                    <div>${w.prompt}</div>
-                    <div class="ans">✓ ${w.correctText}</div>
-                    ${w.explain ? `<div style="color:var(--muted);margin-top:4px;font-size:0.85rem">${w.explain}</div>` : ''}
-                    <button class="btn" style="margin-top:8px" data-rm="${w.id}">已掌握，移除</button>
-                  </div>`
-                )
+          list.length === 0
+            ? `<div class="empty">${tb('emptyWrong')}</div>`
+            : `<div class="wrong-list">${list
+                .map((w) => {
+                  const need = Math.max(0, 2 - (Number(w.winStreak) || 0));
+                  return `<div class="wrong-item">
+                    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:4px">${escapeHtml(w.subject || '')} · ${escapeHtml(w.kind || '')}</div>
+                    <div>${escapeHtml(String(w.prompt || '').replace(/\n/g, ' '))}</div>
+                    <div class="ans">✓ ${escapeHtml(w.correctText || w.answer || '')}</div>
+                    <div style="color:var(--muted);margin-top:4px;font-size:0.85rem">${tb('winNeed', { n: need })}</div>
+                    <button class="btn" style="margin-top:8px" data-rm="${escapeHtml(w.id)}">${tb('masteredRemove')}</button>
+                  </div>`;
+                })
                 .join('')}</div>`
         }
       </div>
     </div>`;
 
+  app.querySelectorAll('[data-wrong-filter]').forEach((btn) => {
+    btn.onclick = () => {
+      sfxClick();
+      renderWrong(btn.getAttribute('data-wrong-filter') || 'all');
+    };
+  });
   app.querySelectorAll('[data-rm]').forEach((btn) => {
     btn.onclick = () => {
       clearWrong(btn.dataset.rm);
-      renderWrong();
+      renderWrong(filter);
     };
   });
   const clear = document.getElementById('clearall');
   if (clear) {
     clear.onclick = () => {
-      store.wrong = [];
-      save();
-      renderWrong();
+      clearAllWrong();
+      renderWrong(filter);
     };
   }
-  bindNav();
+}
+
+function wrongQuizItems(filter = 'all') {
+  const list = store.wrong.filter((w) => filter === 'all' || w.subject === filter);
+  return shuffle(list).slice(0, 20).map((w) => {
+    const answer = w.correctText || w.answer || '';
+    const others = store.wrong
+      .filter((x) => x.id !== w.id && (x.correctText || x.answer) && (x.correctText || x.answer) !== answer)
+      .map((x) => x.correctText || x.answer);
+    const distractors = shuffle(others).slice(0, 3);
+    while (distractors.length < 3) distractors.push('—');
+    let prompt = String(w.prompt || '');
+    if (promptContainsAnswer(prompt, answer)) {
+      prompt = prompt.replace(new RegExp(escapeRegExp(answer), 'ig'), '____');
+    }
+    return {
+      id: w.id,
+      prompt: prompt || tb('spotHint'),
+      answer,
+      options: shuffle([answer, ...distractors]),
+      tip: w.explain || '',
+      wrongId: w.id,
+    };
+  });
+}
+
+function runMcqDrill({ title, back, items, onDone, onAnswer }) {
+  let idx = 0;
+  let correct = 0;
+  let locked = false;
+
+  function paint() {
+    setSessionRepaint(paint);
+    if (idx >= items.length) {
+      const pct = Math.round((correct / Math.max(1, items.length)) * 100);
+      onDone?.({ correct, total: items.length, pct });
+      return;
+    }
+    const item = items[idx];
+    locked = false;
+    clearFlashKeys();
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen wg-play">
+        <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${title}</h2></div>
+        <div class="wg-hud">
+          <span class="pill">${idx + 1}/${items.length}</span>
+          <span class="pill">✓ ${correct}</span>
+        </div>
+        <div class="wg-question">
+          <div class="wg-q-meta">${tb('spotHint')}</div>
+          <div class="wg-q-text">${localizeHtml(item.prompt)}</div>
+        </div>
+        <div class="wg-options">
+          ${(item.options || [])
+            .map((o, i) => `<button class="wg-opt" data-v="${escapeHtml(o)}"><span class="shape">${'ABCD'[i]}</span><span>${escapeHtml(o)}</span></button>`)
+            .join('')}
+        </div>
+        <div id="fb"></div>
+        <div class="flash-actions" style="margin-top:14px;display:none" id="nw">
+          <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
+        </div>
+      </div>`;
+    app.querySelectorAll('.wg-opt').forEach((btn) => {
+      btn.onclick = () => {
+        if (locked) return;
+        locked = true;
+        const ok = btn.dataset.v === item.answer;
+        app.querySelectorAll('.wg-opt').forEach((b) => {
+          b.disabled = true;
+          if (b.dataset.v === item.answer) b.classList.add('correct');
+          else {
+            b.classList.add('dim');
+            if (b === btn && !ok) b.classList.add('wrong');
+          }
+        });
+        onAnswer?.(item, ok);
+        if (ok) {
+          correct += 1;
+          addXp(8, true);
+          celebrate(true);
+          document.getElementById('fb').innerHTML = feedbackOk(item.tip || '');
+        } else {
+          addXp(0, false);
+          celebrate(false);
+          document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip || '');
+        }
+        document.getElementById('nw').style.display = 'flex';
+        wireQuizNext(() => {
+          idx += 1;
+          paint();
+        });
+      };
+    });
+  }
+
+  paint();
+}
+
+function renderWrongQuiz(subject = 'all') {
+  currentRoute = 'wrong-quiz';
+  const items = wrongQuizItems(subject);
+  if (!items.length) {
+    renderWrong(subject);
+    return;
+  }
+  runMcqDrill({
+    title: tb('retest'),
+    back: 'wrong',
+    items,
+    onAnswer(item, ok) {
+      noteWrongResult(item.wrongId, ok);
+    },
+    onDone({ correct, total, pct }) {
+      clearSessionRepaint();
+      app.innerHTML = `
+        ${topbar()}
+        <div class="screen">
+          <div class="screen-header">${backBtn('wrong')}<h2 class="screen-title">${tb('results')}</h2></div>
+          <div class="panel results" style="--pct:${pct}">
+            <div class="score-ring">${pct}%</div>
+            <h3>${correct}/${total}</h3>
+            <p>${tb('retestHint')}</p>
+            <div class="flash-actions">
+              <button class="btn btn-primary" data-nav="wrong">${tb('wrongBook')}</button>
+              <button class="btn" data-nav="home">${tb('home')}</button>
+            </div>
+          </div>
+        </div>`;
+    },
+  });
+}
+
+async function renderIeltsWordDrill(mode) {
+  await needIelts();
+  currentRoute = `ielts-${mode}`;
+  const bank = ieltsWords;
+  const sample = shuffle(bank.slice()).slice(0, 25);
+  if (mode === 'dictation') {
+    return runDictationDrill({
+      title: tb('dictation'),
+      back: 'hub-english',
+      items: sample.map(makeDictationItem),
+      srsKind: 'ielts',
+    });
+  }
+  if (mode === 'cloze') {
+    const items = clozeItemsFromWords(sample, bank).slice(0, 20);
+    return runMcqDrill({
+      title: tb('cloze'),
+      back: 'hub-english',
+      items: items.length ? items : sample.map((w) => makeEnWordSpotItem(w, bank, { preferEnDef: false })),
+      onAnswer(item, ok) {
+        rememberSrs('ielts', item.id, ok);
+        if (!ok) {
+          recordWrong({
+            id: `ielts-${item.id}`,
+            kind: 'ielts-cloze',
+            prompt: item.prompt,
+            correctText: item.answer,
+            answer: item.answer,
+            explain: item.tip,
+            subject: 'english',
+          });
+        }
+      },
+      onDone({ correct, total, pct }) {
+        paintSimpleResults(pct, correct, total, 'ielts-cloze', 'hub-english');
+      },
+    });
+  }
+  if (mode === 'match') {
+    return renderEnglishMatch(sample, 'hub-english');
+  }
+}
+
+async function renderSrsReview() {
+  currentRoute = 'srs';
+  await needIelts();
+  const due = dueEntries(store.srs).slice(0, 25);
+  if (!due.length) {
+    renderHome();
+    return;
+  }
+  const byId = new Map(ieltsWords.map((w) => [w.id, w]));
+  const items = [];
+  for (const [key] of due) {
+    const [kind, ...rest] = key.split(':');
+    const id = rest.join(':');
+    if (kind === 'ielts') {
+      const w = byId.get(id);
+      if (w) items.push(makeEnWordSpotItem(w, ieltsWords, { preferEnDef: false }));
+    }
+  }
+  if (!items.length) {
+    renderHome();
+    return;
+  }
+  runMcqDrill({
+    title: tb('todayReview'),
+    back: 'home',
+    items,
+    onAnswer(item, ok) {
+      rememberSrs('ielts', item.id, ok);
+    },
+    onDone({ correct, total, pct }) {
+      paintSimpleResults(pct, correct, total, 'srs', 'home');
+    },
+  });
+}
+
+function paintSimpleResults(pct, correct, total, againNav, backNav) {
+  clearSessionRepaint();
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen">
+      <div class="screen-header">${backBtn(backNav)}<h2 class="screen-title">${tb('results')}</h2></div>
+      <div class="panel results" style="--pct:${pct}">
+        <div class="score-ring">${pct}%</div>
+        <h3>${correct}/${total}</h3>
+        <div class="flash-actions">
+          <button class="btn btn-primary" data-nav="${againNav}">${tb('again')}</button>
+          <button class="btn" data-nav="${backNav}">${tb('home')}</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function runDictationDrill({ title, back, items, srsKind }) {
+  let idx = 0;
+  let correct = 0;
+  let locked = false;
+
+  function paint() {
+    setSessionRepaint(paint);
+    if (idx >= items.length) {
+      const pct = Math.round((correct / Math.max(1, items.length)) * 100);
+      paintSimpleResults(pct, correct, items.length, currentRoute, back);
+      return;
+    }
+    const item = items[idx];
+    locked = false;
+    clearFlashKeys();
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen wg-play">
+        <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${title}</h2></div>
+        <div class="wg-hud">
+          <span class="pill">${idx + 1}/${items.length}</span>
+          <span class="pill">✓ ${correct}</span>
+        </div>
+        <div class="wg-question">
+          <div class="wg-q-meta">${tb('dictationHint')}</div>
+          <div class="wg-q-text">${escapeHtml(item.hint || '')}${item.pos ? `<div class="q-en">${escapeHtml(item.pos)}</div>` : ''}</div>
+        </div>
+        <div class="dictation-row">
+          <button type="button" class="btn" id="hear">${tb('hearAgain')}</button>
+          <input class="dictation-input" id="spell" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${tb('typeAnswer')}" />
+          <button type="button" class="btn btn-primary" id="check">${tb('check')}</button>
+        </div>
+        <div id="fb"></div>
+        <div class="flash-actions" style="margin-top:14px;display:none" id="nw">
+          <button class="btn btn-primary" id="nx">${tb('nextArrow')}</button>
+        </div>
+      </div>`;
+    const hear = () => {
+      primeSpeech();
+      speakText(item.answer, 'en-GB');
+    };
+    document.getElementById('hear').onclick = hear;
+    setTimeout(hear, 250);
+    const input = document.getElementById('spell');
+    input?.focus();
+    const submit = () => {
+      if (locked) return;
+      locked = true;
+      const ok = spellingOk(input.value, item.answer);
+      rememberSrs(srsKind, item.id, ok);
+      if (ok) {
+        correct += 1;
+        addXp(10, true);
+        celebrate(true);
+        document.getElementById('fb').innerHTML = feedbackOk(item.tip);
+      } else {
+        addXp(0, false);
+        celebrate(false);
+        document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
+        recordWrong({
+          id: `${srsKind}-${item.id}`,
+          kind: `${srsKind}-dictation`,
+          prompt: item.hint,
+          correctText: item.answer,
+          answer: item.answer,
+          explain: item.tip,
+          subject: 'english',
+        });
+      }
+      document.getElementById('nw').style.display = 'flex';
+      wireQuizNext(() => {
+        idx += 1;
+        paint();
+      });
+    };
+    document.getElementById('check').onclick = submit;
+    input.onkeydown = (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        submit();
+      }
+    };
+  }
+
+  paint();
+}
+
+function renderEnglishMatch(words, back) {
+  function deal() {
+    const { left, right, pool } = dealMatchPairs(words, Math.min(6, words.length));
+    let selected = null;
+    let matched = 0;
+    const total = pool.length;
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen">
+        <div class="screen-header">${backBtn(back)}<h2 class="screen-title">${tb('enMatch')}</h2>
+          <button class="btn" id="redeal">${tb('again')}</button>
+        </div>
+        <div class="panel">
+          <div class="progress-meta" style="margin-bottom:14px"><span>${matched} / ${total}</span></div>
+          <div class="match-grid">
+            <div class="match-col">${left.map((x) => `<button class="match-item" data-id="${x.id}" data-side="en">${escapeHtml(x.text)}</button>`).join('')}</div>
+            <div class="match-col">${right.map((x) => `<button class="match-item" data-id="${x.id}" data-side="zh">${escapeHtml(x.text)}</button>`).join('')}</div>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('redeal').onclick = deal;
+    function onPick(btn) {
+      if (btn.classList.contains('matched')) return;
+      if (!selected) {
+        app.querySelectorAll('.match-item.selected').forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selected = btn;
+        return;
+      }
+      if (selected === btn) {
+        btn.classList.remove('selected');
+        selected = null;
+        return;
+      }
+      if (selected.dataset.side === btn.dataset.side) {
+        selected.classList.remove('selected');
+        btn.classList.add('selected');
+        selected = btn;
+        return;
+      }
+      const a = selected;
+      const b = btn;
+      if (a.dataset.id === b.dataset.id) {
+        a.classList.add('matched');
+        b.classList.add('matched');
+        a.classList.remove('selected');
+        matched += 1;
+        addXp(8, true);
+        rememberSrs('ielts', a.dataset.id, true);
+        celebrate(true);
+        selected = null;
+        if (matched === total) fanfare(tb('great'));
+      } else {
+        a.classList.add('bad');
+        b.classList.add('bad');
+        addXp(0, false);
+        celebrate(false);
+        setTimeout(() => {
+          a.classList.remove('bad', 'selected');
+          b.classList.remove('bad');
+        }, 400);
+        selected = null;
+      }
+    }
+    app.querySelectorAll('.match-item').forEach((btn) => {
+      btn.onclick = () => onPick(btn);
+    });
+  }
+  deal();
 }
 
 /* —— Tom's Ground · IELTS / Chinese / Math runners —— */
@@ -2626,10 +3076,12 @@ async function startIeltsDay(dayNum) {
           if (ok) {
             spotCorrect += 1;
             addXp(10, true);
+            rememberSrs('ielts', item.id, true);
             celebrate(true);
             document.getElementById('fb').innerHTML = feedbackOk(item.tip);
           } else {
             addXp(0, false);
+            rememberSrs('ielts', item.id, false);
             celebrate(false);
             document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
             recordWrong({
@@ -2637,6 +3089,7 @@ async function startIeltsDay(dayNum) {
               kind: 'ielts',
               prompt: item.prompt,
               correctText: item.answer,
+              answer: item.answer,
               explain: item.tip,
               subject: 'english',
             });
@@ -3222,7 +3675,10 @@ async function startHsUnit(bookId, unitId) {
               <p>${words.length} ${tb('words')} · ${tb('hsUsageHint')}</p>
             </div>
             <button class="btn btn-primary" id="go">${tb('startMemorize')}</button>
+            <button class="btn" id="hs-dictation">${tb('dictation')}</button>
+            <button class="btn" id="hs-cloze">${tb('cloze')}</button>
           </div>
+          <input class="hs-search" id="hs-search" type="search" placeholder="${tb('hsSearch')}" />
           <div class="hs-word-list">
             ${words
               .map((w) => {
@@ -3259,6 +3715,51 @@ async function startHsUnit(bookId, unitId) {
         flipped = false;
         paint();
       };
+      document.getElementById('hs-dictation').onclick = () => {
+        sfxClick();
+        runDictationDrill({
+          title: tb('dictation'),
+          back: 'hs-book',
+          items: words.map(makeDictationItem),
+          srsKind: 'hs',
+        });
+      };
+      document.getElementById('hs-cloze').onclick = () => {
+        sfxClick();
+        const items = clozeItemsFromWords(words, bank);
+        runMcqDrill({
+          title: tb('cloze'),
+          back: 'hs-book',
+          items: items.length ? items : words.map((w) => makeEnWordSpotItem(w, bank, { preferEnDef: false })),
+          onAnswer(item, ok) {
+            rememberSrs('hs', item.id, ok);
+            if (!ok) {
+              recordWrong({
+                id: `hs-en-${item.id}`,
+                kind: 'hs-cloze',
+                prompt: item.prompt,
+                correctText: item.answer,
+                answer: item.answer,
+                explain: item.tip,
+                subject: 'english',
+              });
+            }
+          },
+          onDone({ correct, total, pct }) {
+            paintSimpleResults(pct, correct, total, 'hs-unit', 'hs-book');
+          },
+        });
+      };
+      const search = document.getElementById('hs-search');
+      if (search) {
+        search.oninput = () => {
+          const q = search.value.trim().toLowerCase();
+          app.querySelectorAll('.hs-word-row').forEach((row) => {
+            const hay = row.textContent.toLowerCase();
+            row.style.display = !q || hay.includes(q) ? '' : 'none';
+          });
+        };
+      }
       bindHsWordList();
       return;
     }
@@ -3403,10 +3904,12 @@ async function startHsUnit(bookId, unitId) {
           if (ok) {
             spotCorrect += 1;
             addXp(10, true);
+            rememberSrs('hs', item.id, true);
             celebrate(true);
             document.getElementById('fb').innerHTML = feedbackOk(item.tip);
           } else {
             addXp(0, false);
+            rememberSrs('hs', item.id, false);
             celebrate(false);
             document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
             recordWrong({
@@ -3414,6 +3917,7 @@ async function startHsUnit(bookId, unitId) {
               kind: 'hs-en',
               prompt: item.prompt,
               correctText: item.answer,
+              answer: item.answer,
               explain: item.tip,
               subject: 'english',
             });
@@ -3468,16 +3972,24 @@ const routes = {
   periodic: renderPeriodic,
   mass: renderMass,
   wrong: renderWrong,
+  progress: renderProgress,
+  srs: renderSrsReview,
+  'wrong-quiz': () => renderWrongQuiz('all'),
   'ielts-days': renderIeltsDays,
   'ielts-go': async () => {
     await needIelts();
     const n = (ieltsDays.find((d) => !isIeltsDayDone(d.day)) || ieltsDays[0]).day;
     await startIeltsDay(n);
   },
+  'ielts-day': async () => {},
   'ielts-spot': renderIeltsFreeSpot,
+  'ielts-dictation': () => renderIeltsWordDrill('dictation'),
+  'ielts-cloze': () => renderIeltsWordDrill('cloze'),
+  'ielts-match': () => renderIeltsWordDrill('match'),
   'hs-shelf': renderHsShelf,
   'hs-book': () => renderHsBook(hsActiveBook),
   'hs-unit': () => startHsUnit(hsActiveBook, hsActiveUnit),
+  'science-day': async () => {},
   'cn-list': renderChineseList,
   'cn-flash': () => renderSubjectFlash('chinese'),
   'cn-quiz': () => renderSubjectQuiz('chinese'),
@@ -3490,6 +4002,36 @@ const routes = {
   'hub-chemistry': () => renderHub('chemistry'),
   'hub-biology': () => renderHub('biology'),
 };
+
+async function dispatchRoute(route) {
+  const { name, params } = route || { name: 'home', params: {} };
+  currentRoute = name;
+  if (name === 'ielts-day') {
+    await startIeltsDay(Number(params.day) || 1);
+    return;
+  }
+  if (name === 'science-day') {
+    await startDayPractice(Number(params.day) || 1);
+    return;
+  }
+  if (name === 'hs-book') {
+    hsActiveBook = params.book || hsActiveBook;
+    await renderHsBook(hsActiveBook);
+    return;
+  }
+  if (name === 'hs-unit') {
+    hsActiveBook = params.book || hsActiveBook;
+    hsActiveUnit = params.unit || hsActiveUnit;
+    await startHsUnit(hsActiveBook, hsActiveUnit);
+    return;
+  }
+  if (name === 'wrong-quiz') {
+    renderWrongQuiz(params.subject || 'all');
+    return;
+  }
+  const fn = routes[name] || renderHome;
+  await fn();
+}
 
 function bindNav() {
   // 事件委托已接管
@@ -3528,10 +4070,7 @@ app.addEventListener('click', (e) => {
       sfxClick();
     } catch (_) {}
     if (sessionRepaint) sessionRepaint();
-    else {
-      const fn = routes[currentRoute] || renderHome;
-      go(fn);
-    }
+    else navigate(currentRoute);
     return;
   }
   const hubBtn = e.target.closest('[data-hub]');
@@ -3558,7 +4097,7 @@ app.addEventListener('click', (e) => {
       sfxClick();
     } catch (_) {}
     const n = Number(ieltsBtn.getAttribute('data-ielts-day'));
-    go(() => startIeltsDay(n));
+    navigate('ielts-day', { day: n });
     return;
   }
   const hsBookBtn = e.target.closest('[data-hs-book]');
@@ -3572,7 +4111,7 @@ app.addEventListener('click', (e) => {
       sfxClick();
     } catch (_) {}
     hsActiveBook = hsBookBtn.getAttribute('data-hs-book') || '';
-    go(() => renderHsBook(hsActiveBook));
+    navigate('hs-book', { book: hsActiveBook });
     return;
   }
   const hsUnitBtn = e.target.closest('[data-hs-unit]');
@@ -3589,7 +4128,7 @@ app.addEventListener('click', (e) => {
     const [bookId, unitId] = raw.split(':');
     hsActiveBook = bookId || '';
     hsActiveUnit = unitId || '';
-    go(() => startHsUnit(hsActiveBook, hsActiveUnit));
+    navigate('hs-unit', { book: hsActiveBook, unit: hsActiveUnit });
     return;
   }
   const dayBtn = e.target.closest('[data-start-day]');
@@ -3607,13 +4146,15 @@ app.addEventListener('click', (e) => {
     } catch (_) {
       /* ignore */
     }
-    go(() => startDayPractice(n));
+    navigate('science-day', { day: n });
     return;
   }
   const navEl = e.target.closest('[data-nav]');
   if (!navEl || !app.contains(navEl)) return;
   e.preventDefault();
-  navigate(navEl.dataset.nav);
+  const extra = {};
+  if (navEl.dataset.wrongSub) extra.subject = navEl.dataset.wrongSub;
+  navigate(navEl.dataset.nav, extra);
 });
 
 async function go(fn) {
@@ -3628,7 +4169,7 @@ async function go(fn) {
   });
 }
 
-async function navigate(name) {
+async function navigate(name, params = {}) {
   try {
     unlockAudio();
   } catch (_) {
@@ -3640,8 +4181,11 @@ async function navigate(name) {
     /* ignore */
   }
   clearSessionRepaint();
-  const fn = routes[name] || renderHome;
-  await go(fn);
+  if (router) {
+    await router.go(name, params);
+    return;
+  }
+  await go(() => dispatchRoute({ name, params }));
 }
 
 function scienceBackTarget() {
@@ -3652,6 +4196,7 @@ function scienceBackTarget() {
 
 function bindMagneticCards() {
   if (prefersReducedMotion()) return;
+  if (window.matchMedia && window.matchMedia('(max-width: 720px)').matches) return;
   const cards = app.querySelectorAll('.hub-card, .mode-card, .day-card, .en-track, .hs-unit-row');
   cards.forEach((card) => {
     if (card.dataset.magnetic === '1') return;
@@ -3680,8 +4225,6 @@ function bindMagneticCards() {
   });
 }
 
-
-
 app.addEventListener(
   'click',
   (e) => {
@@ -3703,4 +4246,8 @@ _mo.observe(app, { childList: true, subtree: false });
 
 initCanvas();
 document.documentElement.classList.add('motion-ready');
-navigate('home');
+router = startRouter(async (route) => {
+  clearSessionRepaint();
+  await go(() => dispatchRoute(route));
+});
+router.start();

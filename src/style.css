@@ -22,8 +22,8 @@
   --biology: #4ade80;
   --chemistry: #fbbf24;
   --radius: 22px;
-  --font-display: 'Fredoka', 'Noto Sans SC', sans-serif;
-  --font-body: 'Nunito Sans', 'Noto Sans SC', sans-serif;
+  --font-display: "Trebuchet MS", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-body: system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --bg-deep: var(--wg-purple-deep);
   --bg-panel: rgba(255, 255, 255, 0.12);
   --bg-panel-solid: #5b2360;
@@ -3124,3 +3124,114 @@ body.hit-bad::after {
     transition: none;
   }
 }
+
+.brand-home {
+  appearance: none;
+  background: none;
+  border: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.chrome-link {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.chrome-link em {
+  font-style: normal;
+  color: #fde68a;
+}
+
+.today-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.week-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.week-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.week-dot.on {
+  background: #4ade80;
+}
+
+.week-dots-lg .week-dot {
+  width: 14px;
+  height: 14px;
+}
+
+.study-streak-line {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.dictation-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.dictation-input {
+  flex: 1 1 180px;
+  min-width: 160px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  font: inherit;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.hs-search {
+  width: 100%;
+  margin: 10px 0 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  font: inherit;
+}
+
+.progress-stats {
+  margin: 16px 0;
+  padding-left: 18px;
+  line-height: 1.8;
+}
+
+.import-msg {
+  margin-top: 10px;
+  color: #fde68a;
+}
+
+@media (max-width: 900px) {
+  .today-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

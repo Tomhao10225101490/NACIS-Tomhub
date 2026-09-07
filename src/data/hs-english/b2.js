@@ -11,8 +11,8 @@ export const words = [
     "pos": "n.",
     "zh": "遗产（指国家或社会长期形成的历史、传统和特色）",
     "enDef": "noun meaning “遗产（指国家或社会长期形成的历史、传…”",
-    "example": "I need more information about heritage.",
-    "exampleZh": "我需要更多关于遗产（指国家或社会长期形成的历史、传…的信息。"
+    "example": "We learned a new heritage in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「遗产（指国家或社会长期形成的历史、传…」的词。"
   },
   {
     "id": "b2-0002",
@@ -24,8 +24,8 @@ export const words = [
     "pos": "adv.",
     "zh": "创造性地；有创造力地",
     "enDef": "adverb meaning “创造性地”",
-    "example": "She answered the question creatively.",
-    "exampleZh": "她创造性地地回答了这个问题。"
+    "example": "She spoke creatively in the meeting.",
+    "exampleZh": "她在会上创造性地地发言。"
   },
   {
     "id": "b2-0003",
@@ -37,8 +37,8 @@ export const words = [
     "pos": "adj.",
     "zh": "创造性的；有创造力的；有创意的",
     "enDef": "adjective meaning “创造性的”",
-    "example": "That description sounds creative.",
-    "exampleZh": "那种描述听起来很创造性的。"
+    "example": "The result looks creative to everyone.",
+    "exampleZh": "这个结果在大家看来很创造性的。"
   },
   {
     "id": "b2-0004",
@@ -50,8 +50,8 @@ export const words = [
     "pos": "n.",
     "zh": "庙；寺",
     "enDef": "noun meaning “庙”",
-    "example": "I need more information about temple.",
-    "exampleZh": "我需要更多关于庙的信息。"
+    "example": "We learned a new temple in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「庙」的词。"
   },
   {
     "id": "b2-0005",
@@ -63,8 +63,8 @@ export const words = [
     "pos": "n.",
     "zh": "遗物；遗迹",
     "enDef": "noun meaning “遗物”",
-    "example": "I need more information about relic.",
-    "exampleZh": "我需要更多关于遗物的信息。"
+    "example": "We learned a new relic in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「遗物」的词。"
   },
   {
     "id": "b2-0006",
@@ -76,8 +76,8 @@ export const words = [
     "pos": "n. / vt. / vi.",
     "zh": "山峰；爬上；骑上；爬；登上",
     "enDef": "noun meaning “山峰”",
-    "example": "I need more information about mount.",
-    "exampleZh": "我需要更多关于山峰的信息。"
+    "example": "We learned a new mount in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「山峰」的词。"
   },
   {
     "id": "b2-0007",
@@ -89,8 +89,8 @@ export const words = [
     "pos": "adj.",
     "zh": "以前的；（两者中）前者的",
     "enDef": "adjective meaning “以前的”",
-    "example": "That description sounds former.",
-    "exampleZh": "那种描述听起来很以前的。"
+    "example": "The result looks former to everyone.",
+    "exampleZh": "这个结果在大家看来很以前的。"
   },
   {
     "id": "b2-0008",
@@ -102,8 +102,8 @@ export const words = [
     "pos": "n.",
     "zh": "线索；提示",
     "enDef": "noun meaning “线索”",
-    "example": "I need more information about clue.",
-    "exampleZh": "我需要更多关于线索的信息。"
+    "example": "We learned a new clue in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「线索」的词。"
   },
   {
     "id": "b2-0009",
@@ -115,8 +115,8 @@ export const words = [
     "pos": "vt. / n.",
     "zh": "保存；保护；维持；保护区",
     "enDef": "verb meaning “保存”",
-    "example": "Can you preserve this carefully?",
-    "exampleZh": "你能仔细地保存一下吗？"
+    "example": "Many students preserve after school.",
+    "exampleZh": "许多学生放学后会保存。"
   },
   {
     "id": "b2-0010",
@@ -128,8 +128,8 @@ export const words = [
     "pos": "vt.",
     "zh": "促进；提升；推销；晋级",
     "enDef": "verb meaning “促进”",
-    "example": "Can you promote this carefully?",
-    "exampleZh": "你能仔细地促进一下吗？"
+    "example": "Many students promote after school.",
+    "exampleZh": "许多学生放学后会促进。"
   },
   {
     "id": "b2-0011",
@@ -141,8 +141,8 @@ export const words = [
     "pos": "n.",
     "zh": "柏树",
     "enDef": "noun meaning “柏树”",
-    "example": "I need more information about cypress.",
-    "exampleZh": "我需要更多关于柏树的信息。"
+    "example": "We learned a new cypress in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「柏树」的词。"
   },
   {
     "id": "b2-0012",
@@ -154,8 +154,8 @@ export const words = [
     "pos": "n.",
     "zh": "应用程序；应用软件",
     "enDef": "noun meaning “应用程序”",
-    "example": "I need more information about app.",
-    "exampleZh": "我需要更多关于应用程序的信息。"
+    "example": "We learned a new app in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「应用程序」的词。"
   },
   {
     "id": "b2-0013",
@@ -167,8 +167,8 @@ export const words = [
     "pos": "n.",
     "zh": "申请（表）；用途；运用；应用（程序）",
     "enDef": "noun meaning “申请（表）”",
-    "example": "I need more information about application.",
-    "exampleZh": "我需要更多关于申请（表）的信息。"
+    "example": "We learned a new application in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「申请（表）」的词。"
   },
   {
     "id": "b2-0014",
@@ -180,8 +180,8 @@ export const words = [
     "pos": "短语",
     "zh": "参与（某事）；参加（某活动）",
     "enDef": "a set phrase meaning “参与（某事）”",
-    "example": "We use this phrase when we mean “参与（某事）”.",
-    "exampleZh": "这个短语表示「参与（某事）」。"
+    "example": "This phrase means “参与（某事）” in the unit.",
+    "exampleZh": "这个短语在本单元表示「参与（某事）」。"
   },
   {
     "id": "b2-0015",
@@ -193,8 +193,8 @@ export const words = [
     "pos": "短语",
     "zh": "让步；屈服",
     "enDef": "a set phrase meaning “让步”",
-    "example": "We use this phrase when we mean “让步”.",
-    "exampleZh": "这个短语表示「让步」。"
+    "example": "This phrase means “让步” in the unit.",
+    "exampleZh": "这个短语在本单元表示「让步」。"
   },
   {
     "id": "b2-0016",
@@ -206,8 +206,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "平衡；均匀；使平衡",
     "enDef": "noun meaning “平衡”",
-    "example": "I need more information about balance.",
-    "exampleZh": "我需要更多关于平衡的信息。"
+    "example": "We learned a new balance in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「平衡」的词。"
   },
   {
     "id": "b2-0017",
@@ -219,8 +219,8 @@ export const words = [
     "pos": "短语",
     "zh": "保持平衡",
     "enDef": "a set phrase meaning “保持平衡”",
-    "example": "We use this phrase when we mean “保持平衡”.",
-    "exampleZh": "这个短语表示「保持平衡」。"
+    "example": "This phrase means “保持平衡” in the unit.",
+    "exampleZh": "这个短语在本单元表示「保持平衡」。"
   },
   {
     "id": "b2-0018",
@@ -232,8 +232,8 @@ export const words = [
     "pos": "短语",
     "zh": "导致",
     "enDef": "a set phrase meaning “导致”",
-    "example": "We use this phrase when we mean “导致”.",
-    "exampleZh": "这个短语表示「导致」。"
+    "example": "This phrase means “导致” in the unit.",
+    "exampleZh": "这个短语在本单元表示「导致」。"
   },
   {
     "id": "b2-0019",
@@ -245,8 +245,8 @@ export const words = [
     "pos": "n.",
     "zh": "水坝；拦河坝",
     "enDef": "noun meaning “水坝”",
-    "example": "I need more information about dam.",
-    "exampleZh": "我需要更多关于水坝的信息。"
+    "example": "We learned a new dam in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「水坝」的词。"
   },
   {
     "id": "b2-0020",
@@ -258,8 +258,8 @@ export const words = [
     "pos": "n.",
     "zh": "提议；建议",
     "enDef": "noun meaning “提议”",
-    "example": "I need more information about proposal.",
-    "exampleZh": "我需要更多关于提议的信息。"
+    "example": "We learned a new proposal in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「提议」的词。"
   },
   {
     "id": "b2-0021",
@@ -271,8 +271,8 @@ export const words = [
     "pos": "短语",
     "zh": "提出建议",
     "enDef": "a set phrase meaning “提出建议”",
-    "example": "We use this phrase when we mean “提出建议”.",
-    "exampleZh": "这个短语表示「提出建议」。"
+    "example": "This phrase means “提出建议” in the unit.",
+    "exampleZh": "这个短语在本单元表示「提出建议」。"
   },
   {
     "id": "b2-0022",
@@ -284,8 +284,8 @@ export const words = [
     "pos": "n. / vi. & vt.",
     "zh": "抗议；（公开）反对",
     "enDef": "noun meaning “抗议”",
-    "example": "I need more information about protest.",
-    "exampleZh": "我需要更多关于抗议的信息。"
+    "example": "We learned a new protest in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「抗议」的词。"
   },
   {
     "id": "b2-0023",
@@ -297,8 +297,8 @@ export const words = [
     "pos": "adj. / adv.",
     "zh": "可能的；可能地",
     "enDef": "adjective meaning “可能的”",
-    "example": "That description sounds likely.",
-    "exampleZh": "那种描述听起来很可能的。"
+    "example": "The result looks likely to everyone.",
+    "exampleZh": "这个结果在大家看来很可能的。"
   },
   {
     "id": "b2-0024",
@@ -310,8 +310,8 @@ export const words = [
     "pos": "短语",
     "zh": "向……求助",
     "enDef": "a set phrase meaning “向……求助”",
-    "example": "We use this phrase when we mean “向……求助”.",
-    "exampleZh": "这个短语表示「向……求助」。"
+    "example": "This phrase means “向……求助” in the unit.",
+    "exampleZh": "这个短语在本单元表示「向……求助」。"
   },
   {
     "id": "b2-0025",
@@ -323,8 +323,8 @@ export const words = [
     "pos": "n.",
     "zh": "委员会",
     "enDef": "noun meaning “委员会”",
-    "example": "I need more information about committee.",
-    "exampleZh": "我需要更多关于委员会的信息。"
+    "example": "We learned a new committee in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「委员会」的词。"
   },
   {
     "id": "b2-0026",
@@ -336,8 +336,8 @@ export const words = [
     "pos": "vt.",
     "zh": "建立；创立",
     "enDef": "verb meaning “建立”",
-    "example": "Can you establish this carefully?",
-    "exampleZh": "你能仔细地建立一下吗？"
+    "example": "Many students establish after school.",
+    "exampleZh": "许多学生放学后会建立。"
   },
   {
     "id": "b2-0027",
@@ -349,8 +349,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "限度；限制；限定",
     "enDef": "noun meaning “限度”",
-    "example": "I need more information about limit.",
-    "exampleZh": "我需要更多关于限度的信息。"
+    "example": "We learned a new limit in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「限度」的词。"
   },
   {
     "id": "b2-0028",
@@ -362,8 +362,8 @@ export const words = [
     "pos": "vt.",
     "zh": "阻止；阻碍；阻挠",
     "enDef": "verb meaning “阻止”",
-    "example": "Can you prevent this carefully?",
-    "exampleZh": "你能仔细地阻止一下吗？"
+    "example": "Many students prevent after school.",
+    "exampleZh": "许多学生放学后会阻止。"
   },
   {
     "id": "b2-0029",
@@ -375,8 +375,8 @@ export const words = [
     "pos": "n.",
     "zh": "阻止；不准",
     "enDef": "noun meaning “阻止”",
-    "example": "I need more information about prevent...from.",
-    "exampleZh": "我需要更多关于阻止的信息。"
+    "example": "We learned a new prevent...from in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「阻止」的词。"
   },
   {
     "id": "b2-0030",
@@ -388,8 +388,8 @@ export const words = [
     "pos": "n.",
     "zh": "丧失；损失",
     "enDef": "noun meaning “丧失”",
-    "example": "I need more information about loss.",
-    "exampleZh": "我需要更多关于丧失的信息。"
+    "example": "We learned a new loss in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「丧失」的词。"
   },
   {
     "id": "b2-0031",
@@ -401,8 +401,8 @@ export const words = [
     "pos": "n.",
     "zh": "捐献；贡献；捐赠",
     "enDef": "noun meaning “捐献”",
-    "example": "I need more information about contribution.",
-    "exampleZh": "我需要更多关于捐献的信息。"
+    "example": "We learned a new contribution in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「捐献」的词。"
   },
   {
     "id": "b2-0032",
@@ -414,8 +414,8 @@ export const words = [
     "pos": "vi. & vt.",
     "zh": "捐献；捐助",
     "enDef": "verb meaning “捐献”",
-    "example": "Can you contribute this carefully?",
-    "exampleZh": "你能仔细地捐献一下吗？"
+    "example": "Many students contribute after school.",
+    "exampleZh": "许多学生放学后会捐献。"
   },
   {
     "id": "b2-0033",
@@ -427,8 +427,8 @@ export const words = [
     "pos": "n.",
     "zh": "部；司；科",
     "enDef": "noun meaning “部”",
-    "example": "I need more information about department.",
-    "exampleZh": "我需要更多关于部的信息。"
+    "example": "We learned a new department in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「部」的词。"
   },
   {
     "id": "b2-0034",
@@ -440,8 +440,8 @@ export const words = [
     "pos": "n.",
     "zh": "基金；专款",
     "enDef": "noun meaning “基金”",
-    "example": "I need more information about fund.",
-    "exampleZh": "我需要更多关于基金的信息。"
+    "example": "We learned a new fund in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「基金」的词。"
   },
   {
     "id": "b2-0035",
@@ -453,8 +453,8 @@ export const words = [
     "pos": "prep. & adv.",
     "zh": "在（某段时间、距离或范围）之内",
     "enDef": "preposition meaning “在（某段时间、距离或范围）之内”",
-    "example": "Notice how “within” connects the ideas (在（某段时间、距离或范围）之内).",
-    "exampleZh": "注意「…」如何连接语义（在（某段时间、距离或范围）之内）。"
+    "example": "This small word (在（某段时间、距离或范围）之内) links two ideas.",
+    "exampleZh": "这个词用来连接两个意思（在（某段时间、距离或范围）之内）。"
   },
   {
     "id": "b2-0036",
@@ -466,8 +466,8 @@ export const words = [
     "pos": "vi. & vt.",
     "zh": "调查；研究",
     "enDef": "verb meaning “调查”",
-    "example": "Can you investigate this carefully?",
-    "exampleZh": "你能仔细地调查一下吗？"
+    "example": "Many students investigate after school.",
+    "exampleZh": "许多学生放学后会调查。"
   },
   {
     "id": "b2-0037",
@@ -479,8 +479,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "重要议题；争论的问题；宣布；公布",
     "enDef": "noun meaning “重要议题”",
-    "example": "I need more information about issue.",
-    "exampleZh": "我需要更多关于重要议题的信息。"
+    "example": "We learned a new issue in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「重要议题」的词。"
   },
   {
     "id": "b2-0038",
@@ -492,8 +492,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "行为；举止；管理方法；组织；安排；带领",
     "enDef": "noun meaning “行为”",
-    "example": "I need more information about conduct.",
-    "exampleZh": "我需要更多关于行为的信息。"
+    "example": "We learned a new conduct in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「行为」的词。"
   },
   {
     "id": "b2-0039",
@@ -505,8 +505,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "文件；公文；（计算机）文档；记录；记载（详情）",
     "enDef": "noun meaning “文件”",
-    "example": "I need more information about document.",
-    "exampleZh": "我需要更多关于文件的信息。"
+    "example": "We learned a new document in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「文件」的词。"
   },
   {
     "id": "b2-0040",
@@ -518,8 +518,8 @@ export const words = [
     "pos": "vt.",
     "zh": "（尤指向慈善机构）捐赠；赠送；献（血）",
     "enDef": "verb meaning “（尤指向慈善机构）捐赠”",
-    "example": "Can you donate this carefully?",
-    "exampleZh": "你能仔细地（尤指向慈善机构）捐赠一下吗？"
+    "example": "Many students donate after school.",
+    "exampleZh": "许多学生放学后会（尤指向慈善机构）捐赠。"
   },
   {
     "id": "b2-0041",
@@ -531,8 +531,8 @@ export const words = [
     "pos": "n.",
     "zh": "向……捐赠……",
     "enDef": "noun meaning “向……捐赠……”",
-    "example": "I need more information about donate...to.",
-    "exampleZh": "我需要更多关于向……捐赠……的信息。"
+    "example": "We learned a new donate...to in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「向……捐赠……」的词。"
   },
   {
     "id": "b2-0042",
@@ -544,8 +544,8 @@ export const words = [
     "pos": "vi.",
     "zh": "消失；灭绝；消亡",
     "enDef": "verb meaning “消失”",
-    "example": "Can you disappear this carefully?",
-    "exampleZh": "你能仔细地消失一下吗？"
+    "example": "Many students disappear after school.",
+    "exampleZh": "许多学生放学后会消失。"
   },
   {
     "id": "b2-0043",
@@ -557,8 +557,8 @@ export const words = [
     "pos": "n. & vt.",
     "zh": "企图；试图；尝试",
     "enDef": "verb meaning “企图”",
-    "example": "Can you attempt this carefully?",
-    "exampleZh": "你能仔细地企图一下吗？"
+    "example": "Many students attempt after school.",
+    "exampleZh": "许多学生放学后会企图。"
   },
   {
     "id": "b2-0044",
@@ -570,8 +570,8 @@ export const words = [
     "pos": "短语",
     "zh": "确保；设法保证",
     "enDef": "a set phrase meaning “确保”",
-    "example": "We use this phrase when we mean “确保”.",
-    "exampleZh": "这个短语表示「确保」。"
+    "example": "This phrase means “确保” in the unit.",
+    "exampleZh": "这个短语在本单元表示「确保」。"
   },
   {
     "id": "b2-0045",
@@ -583,8 +583,8 @@ export const words = [
     "pos": "adj.",
     "zh": "值得做的；值得花时间的",
     "enDef": "adjective meaning “值得做的”",
-    "example": "That description sounds worthwhile.",
-    "exampleZh": "那种描述听起来很值得做的。"
+    "example": "The result looks worthwhile to everyone.",
+    "exampleZh": "这个结果在大家看来很值得做的。"
   },
   {
     "id": "b2-0046",
@@ -596,8 +596,8 @@ export const words = [
     "pos": "vt. / n.",
     "zh": "下载；已下载的数据资料",
     "enDef": "verb meaning “下载”",
-    "example": "Can you download this carefully?",
-    "exampleZh": "你能仔细地下载一下吗？"
+    "example": "Many students download after school.",
+    "exampleZh": "许多学生放学后会下载。"
   },
   {
     "id": "b2-0047",
@@ -609,8 +609,8 @@ export const words = [
     "pos": "n.",
     "zh": "共和国",
     "enDef": "noun meaning “共和国”",
-    "example": "I need more information about republic.",
-    "exampleZh": "我需要更多关于共和国的信息。"
+    "example": "We learned a new republic in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「共和国」的词。"
   },
   {
     "id": "b2-0048",
@@ -622,8 +622,8 @@ export const words = [
     "pos": "adj. / n.",
     "zh": "专业的；职业的；专业人员；职业选手",
     "enDef": "adjective meaning “专业的”",
-    "example": "That description sounds professional.",
-    "exampleZh": "那种描述听起来很专业的。"
+    "example": "The result looks professional to everyone.",
+    "exampleZh": "这个结果在大家看来很专业的。"
   },
   {
     "id": "b2-0049",
@@ -635,8 +635,8 @@ export const words = [
     "pos": "n.",
     "zh": "考古学家",
     "enDef": "noun meaning “考古学家”",
-    "example": "I need more information about archaeologist.",
-    "exampleZh": "我需要更多关于考古学家的信息。"
+    "example": "We learned a new archaeologist in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「考古学家」的词。"
   },
   {
     "id": "b2-0050",
@@ -648,8 +648,8 @@ export const words = [
     "pos": "n.",
     "zh": "入口；进口",
     "enDef": "noun meaning “入口”",
-    "example": "I need more information about entrance.",
-    "exampleZh": "我需要更多关于入口的信息。"
+    "example": "We learned a new entrance in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「入口」的词。"
   },
   {
     "id": "b2-0051",
@@ -661,8 +661,8 @@ export const words = [
     "pos": "n.",
     "zh": "（古埃及的）金字塔；棱锥体",
     "enDef": "noun meaning “（古埃及的）金字塔”",
-    "example": "I need more information about pyramid.",
-    "exampleZh": "我需要更多关于（古埃及的）金字塔的信息。"
+    "example": "We learned a new pyramid in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（古埃及的）金字塔」的词。"
   },
   {
     "id": "b2-0052",
@@ -674,8 +674,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "过程；进程；步骤；处理；加工",
     "enDef": "noun meaning “过程”",
-    "example": "I need more information about process.",
-    "exampleZh": "我需要更多关于过程的信息。"
+    "example": "We learned a new process in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「过程」的词。"
   },
   {
     "id": "b2-0053",
@@ -687,8 +687,8 @@ export const words = [
     "pos": "adj. / adv.",
     "zh": "海外的；在海外",
     "enDef": "adjective meaning “海外的”",
-    "example": "That description sounds overseas.",
-    "exampleZh": "那种描述听起来很海外的。"
+    "example": "The result looks overseas to everyone.",
+    "exampleZh": "这个结果在大家看来很海外的。"
   },
   {
     "id": "b2-0054",
@@ -700,8 +700,8 @@ export const words = [
     "pos": "n. / vi. & vt.",
     "zh": "出口；通道；出去；离去",
     "enDef": "noun meaning “出口”",
-    "example": "I need more information about exit.",
-    "exampleZh": "我需要更多关于出口的信息。"
+    "example": "We learned a new exit in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「出口」的词。"
   },
   {
     "id": "b2-0055",
@@ -713,8 +713,8 @@ export const words = [
     "pos": "n.",
     "zh": "一张（纸）；床单；被单",
     "enDef": "noun meaning “一张（纸）”",
-    "example": "I need more information about sheet.",
-    "exampleZh": "我需要更多关于一张（纸）的信息。"
+    "example": "We learned a new sheet in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「一张（纸）」的词。"
   },
   {
     "id": "b2-0056",
@@ -726,8 +726,8 @@ export const words = [
     "pos": "n. / vi.",
     "zh": "游行；检阅；游行庆祝；游行示威",
     "enDef": "noun meaning “游行”",
-    "example": "I need more information about parade.",
-    "exampleZh": "我需要更多关于游行的信息。"
+    "example": "We learned a new parade in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「游行」的词。"
   },
   {
     "id": "b2-0057",
@@ -739,8 +739,8 @@ export const words = [
     "pos": "n.",
     "zh": "镜子",
     "enDef": "noun meaning “镜子”",
-    "example": "I need more information about mirror.",
-    "exampleZh": "我需要更多关于镜子的信息。"
+    "example": "We learned a new mirror in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「镜子」的词。"
   },
   {
     "id": "b2-0058",
@@ -752,8 +752,8 @@ export const words = [
     "pos": "n.",
     "zh": "顶部；屋顶",
     "enDef": "noun meaning “顶部”",
-    "example": "I need more information about roof.",
-    "exampleZh": "我需要更多关于顶部的信息。"
+    "example": "We learned a new roof in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「顶部」的词。"
   },
   {
     "id": "b2-0059",
@@ -765,8 +765,8 @@ export const words = [
     "pos": "n.",
     "zh": "鸱吻",
     "enDef": "noun meaning “鸱吻”",
-    "example": "I need more information about chiwen.",
-    "exampleZh": "我需要更多关于鸱吻的信息。"
+    "example": "We learned a new chiwen in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「鸱吻」的词。"
   },
   {
     "id": "b2-0060",
@@ -778,8 +778,8 @@ export const words = [
     "pos": "n.",
     "zh": "龙",
     "enDef": "noun meaning “龙”",
-    "example": "I need more information about dragon.",
-    "exampleZh": "我需要更多关于龙的信息。"
+    "example": "We learned a new dragon in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「龙」的词。"
   },
   {
     "id": "b2-0061",
@@ -791,8 +791,8 @@ export const words = [
     "pos": "vt. & vi. / vt.",
     "zh": "原谅；宽恕；对不起；请原谅",
     "enDef": "verb meaning “原谅”",
-    "example": "Can you forgive this carefully?",
-    "exampleZh": "你能仔细地原谅一下吗？"
+    "example": "Many students forgive after school.",
+    "exampleZh": "许多学生放学后会原谅。"
   },
   {
     "id": "b2-0062",
@@ -804,8 +804,8 @@ export const words = [
     "pos": "adj.",
     "zh": "数码的；数字显示的",
     "enDef": "adjective meaning “数码的”",
-    "example": "That description sounds digital.",
-    "exampleZh": "那种描述听起来很数码的。"
+    "example": "The result looks digital to everyone.",
+    "exampleZh": "这个结果在大家看来很数码的。"
   },
   {
     "id": "b2-0063",
@@ -817,8 +817,8 @@ export const words = [
     "pos": "n.",
     "zh": "形象；印象",
     "enDef": "noun meaning “形象”",
-    "example": "I need more information about image.",
-    "exampleZh": "我需要更多关于形象的信息。"
+    "example": "We learned a new image in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「形象」的词。"
   },
   {
     "id": "b2-0064",
@@ -830,8 +830,8 @@ export const words = [
     "pos": "n.",
     "zh": "山洞；洞穴",
     "enDef": "noun meaning “山洞”",
-    "example": "I need more information about cave.",
-    "exampleZh": "我需要更多关于山洞的信息。"
+    "example": "We learned a new cave in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「山洞」的词。"
   },
   {
     "id": "b2-0065",
@@ -843,8 +843,8 @@ export const words = [
     "pos": "prep.",
     "zh": "各处；遍及；自始至终",
     "enDef": "preposition meaning “各处”",
-    "example": "Notice how “throughout” connects the ideas (各处).",
-    "exampleZh": "注意「…」如何连接语义（各处）。"
+    "example": "This small word (各处) links two ideas.",
+    "exampleZh": "这个词用来连接两个意思（各处）。"
   },
   {
     "id": "b2-0066",
@@ -856,8 +856,8 @@ export const words = [
     "pos": "n. / adj.",
     "zh": "质量；品质；素质；特征；优质的；高质量的",
     "enDef": "noun meaning “质量”",
-    "example": "I need more information about quality.",
-    "exampleZh": "我需要更多关于质量的信息。"
+    "example": "We learned a new quality in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「质量」的词。"
   },
   {
     "id": "b2-0067",
@@ -869,8 +869,8 @@ export const words = [
     "pos": "短语",
     "zh": "在世界各地",
     "enDef": "a set phrase meaning “在世界各地”",
-    "example": "We use this phrase when we mean “在世界各地”.",
-    "exampleZh": "这个短语表示「在世界各地」。"
+    "example": "This phrase means “在世界各地” in the unit.",
+    "exampleZh": "这个短语在本单元表示「在世界各地」。"
   },
   {
     "id": "b2-0068",
@@ -882,8 +882,8 @@ export const words = [
     "pos": "n.",
     "zh": "传统；传统的信仰或风俗",
     "enDef": "noun meaning “传统”",
-    "example": "I need more information about tradition.",
-    "exampleZh": "我需要更多关于传统的信息。"
+    "example": "We learned a new tradition in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「传统」的词。"
   },
   {
     "id": "b2-0069",
@@ -895,8 +895,8 @@ export const words = [
     "pos": "adv.",
     "zh": "更远；进一步",
     "enDef": "adverb meaning “更远”",
-    "example": "She answered the question further.",
-    "exampleZh": "她更远地回答了这个问题。"
+    "example": "She spoke further in the meeting.",
+    "exampleZh": "她在会上更远地发言。"
   },
   {
     "id": "b2-0070",
@@ -908,8 +908,8 @@ export const words = [
     "pos": "adj.",
     "zh": "历史上著名（或重要）的；有史时期的",
     "enDef": "adjective meaning “历史上著名（或重要）的”",
-    "example": "That description sounds historic.",
-    "exampleZh": "那种描述听起来很历史上著名（或重要）的。"
+    "example": "The result looks historic to everyone.",
+    "exampleZh": "这个结果在大家看来很历史上著名（或重要）的。"
   },
   {
     "id": "b2-0071",
@@ -921,8 +921,8 @@ export const words = [
     "pos": "n.",
     "zh": "意见；想法；看法",
     "enDef": "noun meaning “意见”",
-    "example": "I need more information about opinion.",
-    "exampleZh": "我需要更多关于意见的信息。"
+    "example": "We learned a new opinion in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「意见」的词。"
   },
   {
     "id": "b2-0072",
@@ -934,8 +934,8 @@ export const words = [
     "pos": "vt.",
     "zh": "引用",
     "enDef": "verb meaning “引用”",
-    "example": "Can you quote this carefully?",
-    "exampleZh": "你能仔细地引用一下吗？"
+    "example": "Many students quote after school.",
+    "exampleZh": "许多学生放学后会引用。"
   },
   {
     "id": "b2-0073",
@@ -947,8 +947,8 @@ export const words = [
     "pos": "n. / vi. & vt.",
     "zh": "释义；（用更容易理解的文字）解释",
     "enDef": "noun meaning “释义”",
-    "example": "I need more information about paraphrase.",
-    "exampleZh": "我需要更多关于释义的信息。"
+    "example": "We learned a new paraphrase in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「释义」的词。"
   },
   {
     "id": "b2-0074",
@@ -960,8 +960,8 @@ export const words = [
     "pos": "n.",
     "zh": "比较；相比",
     "enDef": "noun meaning “比较”",
-    "example": "I need more information about comparison.",
-    "exampleZh": "我需要更多关于比较的信息。"
+    "example": "We learned a new comparison in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「比较」的词。"
   },
   {
     "id": "b2-0075",
@@ -973,8 +973,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "对比；对照",
     "enDef": "noun meaning “对比”",
-    "example": "I need more information about contrast.",
-    "exampleZh": "我需要更多关于对比的信息。"
+    "example": "We learned a new contrast in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「对比」的词。"
   },
   {
     "id": "b2-0076",
@@ -986,8 +986,8 @@ export const words = [
     "pos": "vt.",
     "zh": "确认；认出；找到",
     "enDef": "verb meaning “确认”",
-    "example": "Can you identify this carefully?",
-    "exampleZh": "你能仔细地确认一下吗？"
+    "example": "Many students identify after school.",
+    "exampleZh": "许多学生放学后会确认。"
   },
   {
     "id": "b2-0077",
@@ -999,8 +999,8 @@ export const words = [
     "pos": "adv.",
     "zh": "永远；长久地",
     "enDef": "adverb meaning “永远”",
-    "example": "She answered the question forever.",
-    "exampleZh": "她永远地回答了这个问题。"
+    "example": "She spoke forever in the meeting.",
+    "exampleZh": "她在会上永远地发言。"
   },
   {
     "id": "b2-0078",
@@ -1012,8 +1012,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "阿斯旺大坝",
     "enDef": "a proper name / term for “阿斯旺大坝”",
-    "example": "We use this phrase when we mean “阿斯旺大坝”.",
-    "exampleZh": "这个短语表示「阿斯旺大坝」。"
+    "example": "This phrase means “阿斯旺大坝” in the unit.",
+    "exampleZh": "这个短语在本单元表示「阿斯旺大坝」。"
   },
   {
     "id": "b2-0079",
@@ -1025,8 +1025,8 @@ export const words = [
     "pos": "短语",
     "zh": "尼罗河",
     "enDef": "a set phrase meaning “尼罗河”",
-    "example": "We use this phrase when we mean “尼罗河”.",
-    "exampleZh": "这个短语表示「尼罗河」。"
+    "example": "This phrase means “尼罗河” in the unit.",
+    "exampleZh": "这个短语在本单元表示「尼罗河」。"
   },
   {
     "id": "b2-0080",
@@ -1038,8 +1038,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "埃及",
     "enDef": "a proper name / term for “埃及”",
-    "example": "This name / term refers to “埃及”.",
-    "exampleZh": "这个专有名称指「埃及」。"
+    "example": "This name refers to “埃及”.",
+    "exampleZh": "这个名称指「埃及」。"
   },
   {
     "id": "b2-0081",
@@ -1051,8 +1051,8 @@ export const words = [
     "pos": "adj.",
     "zh": "埃及的",
     "enDef": "adjective meaning “埃及的”",
-    "example": "That description sounds Egyptian.",
-    "exampleZh": "那种描述听起来很埃及的。"
+    "example": "The result looks Egyptian to everyone.",
+    "exampleZh": "这个结果在大家看来很埃及的。"
   },
   {
     "id": "b2-0082",
@@ -1064,8 +1064,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "联合国教科文组织",
     "enDef": "a proper name / term for “联合国教科文组织”",
-    "example": "This name / term refers to “联合国教科文组织”.",
-    "exampleZh": "这个专有名称指「联合国教科文组织」。"
+    "example": "This name refers to “联合国教科文组织”.",
+    "exampleZh": "这个名称指「联合国教科文组织」。"
   },
   {
     "id": "b2-0083",
@@ -1077,8 +1077,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "开罗",
     "enDef": "a proper name / term for “开罗”",
-    "example": "This name / term refers to “开罗”.",
-    "exampleZh": "这个专有名称指「开罗」。"
+    "example": "This name refers to “开罗”.",
+    "exampleZh": "这个名称指「开罗」。"
   },
   {
     "id": "b2-0084",
@@ -1090,8 +1090,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "坦桑尼亚",
     "enDef": "a proper name / term for “坦桑尼亚”",
-    "example": "This name / term refers to “坦桑尼亚”.",
-    "exampleZh": "这个专有名称指「坦桑尼亚」。"
+    "example": "This name refers to “坦桑尼亚”.",
+    "exampleZh": "这个名称指「坦桑尼亚」。"
   },
   {
     "id": "b2-0085",
@@ -1103,8 +1103,8 @@ export const words = [
     "pos": "短语",
     "zh": "克里姆林（宫）",
     "enDef": "a set phrase meaning “克里姆林（宫）”",
-    "example": "We use this phrase when we mean “克里姆林（宫）”.",
-    "exampleZh": "这个短语表示「克里姆林（宫）」。"
+    "example": "This phrase means “克里姆林（宫）” in the unit.",
+    "exampleZh": "这个短语在本单元表示「克里姆林（宫）」。"
   },
   {
     "id": "b2-0086",
@@ -1116,8 +1116,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "莫斯科",
     "enDef": "a proper name / term for “莫斯科”",
-    "example": "This name / term refers to “莫斯科”.",
-    "exampleZh": "这个专有名称指「莫斯科」。"
+    "example": "This name refers to “莫斯科”.",
+    "exampleZh": "这个名称指「莫斯科」。"
   },
   {
     "id": "b2-0087",
@@ -1129,8 +1129,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "圣瓦希里大教堂",
     "enDef": "a proper name / term for “圣瓦希里大教堂”",
-    "example": "We use this phrase when we mean “圣瓦希里大教堂”.",
-    "exampleZh": "这个短语表示「圣瓦希里大教堂」。"
+    "example": "This phrase means “圣瓦希里大教堂” in the unit.",
+    "exampleZh": "这个短语在本单元表示「圣瓦希里大教堂」。"
   },
   {
     "id": "b2-0088",
@@ -1142,8 +1142,8 @@ export const words = [
     "pos": "短语",
     "zh": "紫禁城",
     "enDef": "a set phrase meaning “紫禁城”",
-    "example": "We use this phrase when we mean “紫禁城”.",
-    "exampleZh": "这个短语表示「紫禁城」。"
+    "example": "This phrase means “紫禁城” in the unit.",
+    "exampleZh": "这个短语在本单元表示「紫禁城」。"
   },
   {
     "id": "b2-0089",
@@ -1155,8 +1155,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "洛杉矶",
     "enDef": "a proper name / term for “洛杉矶”",
-    "example": "We use this phrase when we mean “洛杉矶”.",
-    "exampleZh": "这个短语表示「洛杉矶」。"
+    "example": "This phrase means “洛杉矶” in the unit.",
+    "exampleZh": "这个短语在本单元表示「洛杉矶」。"
   },
   {
     "id": "b2-0090",
@@ -1168,8 +1168,8 @@ export const words = [
     "pos": "n.",
     "zh": "海报",
     "enDef": "noun meaning “海报”",
-    "example": "I need more information about poster.",
-    "exampleZh": "我需要更多关于海报的信息。"
+    "example": "We learned a new poster in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「海报」的词。"
   },
   {
     "id": "b2-0091",
@@ -1181,8 +1181,8 @@ export const words = [
     "pos": "adj.",
     "zh": "不合法的；非法的",
     "enDef": "adjective meaning “不合法的”",
-    "example": "That description sounds illegal.",
-    "exampleZh": "那种描述听起来很不合法的。"
+    "example": "The result looks illegal to everyone.",
+    "exampleZh": "这个结果在大家看来很不合法的。"
   },
   {
     "id": "b2-0092",
@@ -1194,8 +1194,8 @@ export const words = [
     "pos": "adv.",
     "zh": "不合法地；非法的",
     "enDef": "adverb meaning “不合法地”",
-    "example": "She answered the question illegally.",
-    "exampleZh": "她不合法地地回答了这个问题。"
+    "example": "She spoke illegally in the meeting.",
+    "exampleZh": "她在会上不合法地地发言。"
   },
   {
     "id": "b2-0093",
@@ -1207,8 +1207,8 @@ export const words = [
     "pos": "vt. & vi.",
     "zh": "打猎；搜索；追捕",
     "enDef": "verb meaning “打猎”",
-    "example": "Can you hunt this carefully?",
-    "exampleZh": "你能仔细地打猎一下吗？"
+    "example": "Many students hunt after school.",
+    "exampleZh": "许多学生放学后会打猎。"
   },
   {
     "id": "b2-0094",
@@ -1220,8 +1220,8 @@ export const words = [
     "pos": "n.",
     "zh": "猎人",
     "enDef": "noun meaning “猎人”",
-    "example": "I need more information about hunter.",
-    "exampleZh": "我需要更多关于猎人的信息。"
+    "example": "We learned a new hunter in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「猎人」的词。"
   },
   {
     "id": "b2-0095",
@@ -1233,8 +1233,8 @@ export const words = [
     "pos": "adv.",
     "zh": "立刻",
     "enDef": "adverb meaning “立刻”",
-    "example": "She answered the question immediately.",
-    "exampleZh": "她立刻地回答了这个问题。"
+    "example": "She spoke immediately in the meeting.",
+    "exampleZh": "她在会上立刻地发言。"
   },
   {
     "id": "b2-0096",
@@ -1246,8 +1246,8 @@ export const words = [
     "pos": "n.",
     "zh": "物种",
     "enDef": "noun meaning “物种”",
-    "example": "I need more information about species.",
-    "exampleZh": "我需要更多关于物种的信息。"
+    "example": "We learned a new species in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「物种」的词。"
   },
   {
     "id": "b2-0097",
@@ -1259,8 +1259,8 @@ export const words = [
     "pos": "n.",
     "zh": "鲨鱼",
     "enDef": "noun meaning “鲨鱼”",
-    "example": "I need more information about shark.",
-    "exampleZh": "我需要更多关于鲨鱼的信息。"
+    "example": "We learned a new shark in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「鲨鱼」的词。"
   },
   {
     "id": "b2-0098",
@@ -1272,8 +1272,8 @@ export const words = [
     "pos": "n.",
     "zh": "（鱼的）鳍",
     "enDef": "noun meaning “（鱼的）鳍”",
-    "example": "I need more information about fin.",
-    "exampleZh": "我需要更多关于（鱼的）鳍的信息。"
+    "example": "We learned a new fin in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（鱼的）鳍」的词。"
   },
   {
     "id": "b2-0099",
@@ -1285,8 +1285,8 @@ export const words = [
     "pos": "短语",
     "zh": "究竟；到底",
     "enDef": "a set phrase meaning “究竟”",
-    "example": "We use this phrase when we mean “究竟”.",
-    "exampleZh": "这个短语表示「究竟」。"
+    "example": "This phrase means “究竟” in the unit.",
+    "exampleZh": "这个短语在本单元表示「究竟」。"
   },
   {
     "id": "b2-0100",
@@ -1298,8 +1298,8 @@ export const words = [
     "pos": "短语",
     "zh": "灭亡；逐渐消失",
     "enDef": "a set phrase meaning “灭亡”",
-    "example": "We use this phrase when we mean “灭亡”.",
-    "exampleZh": "这个短语表示「灭亡」。"
+    "example": "This phrase means “灭亡” in the unit.",
+    "exampleZh": "这个短语在本单元表示「灭亡」。"
   },
   {
     "id": "b2-0101",
@@ -1311,8 +1311,8 @@ export const words = [
     "pos": "adj.",
     "zh": "惊人的；使人惊恐的",
     "enDef": "adjective meaning “惊人的”",
-    "example": "That description sounds alarming.",
-    "exampleZh": "那种描述听起来很惊人的。"
+    "example": "The result looks alarming to everyone.",
+    "exampleZh": "这个结果在大家看来很惊人的。"
   },
   {
     "id": "b2-0102",
@@ -1324,8 +1324,8 @@ export const words = [
     "pos": "vt. / n.",
     "zh": "使惊恐；使害怕；使担心；恐慌；警报；警报器",
     "enDef": "verb meaning “使惊恐”",
-    "example": "Can you alarm this carefully?",
-    "exampleZh": "你能仔细地使惊恐一下吗？"
+    "example": "Many students alarm after school.",
+    "exampleZh": "许多学生放学后会使惊恐。"
   },
   {
     "id": "b2-0103",
@@ -1337,8 +1337,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "速度；（比）率；划分等级",
     "enDef": "noun meaning “速度”",
-    "example": "I need more information about rate.",
-    "exampleZh": "我需要更多关于速度的信息。"
+    "example": "We learned a new rate in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「速度」的词。"
   },
   {
     "id": "b2-0104",
@@ -1350,8 +1350,8 @@ export const words = [
     "pos": "n.",
     "zh": "等级；级别",
     "enDef": "noun meaning “等级”",
-    "example": "I need more information about rating.",
-    "exampleZh": "我需要更多关于等级的信息。"
+    "example": "We learned a new rating in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「等级」的词。"
   },
   {
     "id": "b2-0105",
@@ -1363,8 +1363,8 @@ export const words = [
     "pos": "adj.",
     "zh": "已灭绝的",
     "enDef": "adjective meaning “已灭绝的”",
-    "example": "That description sounds extinct.",
-    "exampleZh": "那种描述听起来很已灭绝的。"
+    "example": "The result looks extinct to everyone.",
+    "exampleZh": "这个结果在大家看来很已灭绝的。"
   },
   {
     "id": "b2-0106",
@@ -1376,8 +1376,8 @@ export const words = [
     "pos": "n.",
     "zh": "灭绝",
     "enDef": "noun meaning “灭绝”",
-    "example": "I need more information about extinction.",
-    "exampleZh": "我需要更多关于灭绝的信息。"
+    "example": "We learned a new extinction in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「灭绝」的词。"
   },
   {
     "id": "b2-0107",
@@ -1389,8 +1389,8 @@ export const words = [
     "pos": "adj. / n.",
     "zh": "大量的；广泛的；大量；堆；群",
     "enDef": "adjective meaning “大量的”",
-    "example": "That description sounds mass.",
-    "exampleZh": "那种描述听起来很大量的。"
+    "example": "The result looks mass to everyone.",
+    "exampleZh": "这个结果在大家看来很大量的。"
   },
   {
     "id": "b2-0108",
@@ -1402,8 +1402,8 @@ export const words = [
     "pos": "n.",
     "zh": "（动植物的）生活环境；栖息地",
     "enDef": "noun meaning “（动植物的）生活环境”",
-    "example": "I need more information about habitat.",
-    "exampleZh": "我需要更多关于（动植物的）生活环境的信息。"
+    "example": "We learned a new habitat in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（动植物的）生活环境」的词。"
   },
   {
     "id": "b2-0109",
@@ -1415,8 +1415,8 @@ export const words = [
     "pos": "adj.",
     "zh": "知道；发觉；有……意识",
     "enDef": "adjective meaning “知道”",
-    "example": "That description sounds aware.",
-    "exampleZh": "那种描述听起来很知道。"
+    "example": "The result looks aware to everyone.",
+    "exampleZh": "这个结果在大家看来很知道。"
   },
   {
     "id": "b2-0110",
@@ -1428,8 +1428,8 @@ export const words = [
     "pos": "短语",
     "zh": "意识到；知道",
     "enDef": "a set phrase meaning “意识到”",
-    "example": "We use this phrase when we mean “意识到”.",
-    "exampleZh": "这个短语表示「意识到」。"
+    "example": "This phrase means “意识到” in the unit.",
+    "exampleZh": "这个短语在本单元表示「意识到」。"
   },
   {
     "id": "b2-0111",
@@ -1441,8 +1441,8 @@ export const words = [
     "pos": "vt.",
     "zh": "使遭受危险；危害",
     "enDef": "verb meaning “使遭受危险”",
-    "example": "Can you endanger this carefully?",
-    "exampleZh": "你能仔细地使遭受危险一下吗？"
+    "example": "Many students endanger after school.",
+    "exampleZh": "许多学生放学后会使遭受危险。"
   },
   {
     "id": "b2-0112",
@@ -1454,8 +1454,8 @@ export const words = [
     "pos": "n. / adj.",
     "zh": "平均数；平均水平；平均的；正常的；普通的",
     "enDef": "noun meaning “平均数”",
-    "example": "I need more information about average.",
-    "exampleZh": "我需要更多关于平均数的信息。"
+    "example": "We learned a new average in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「平均数」的词。"
   },
   {
     "id": "b2-0113",
@@ -1467,8 +1467,8 @@ export const words = [
     "pos": "短语",
     "zh": "平均",
     "enDef": "a set phrase meaning “平均”",
-    "example": "We use this phrase when we mean “平均”.",
-    "exampleZh": "这个短语表示「平均」。"
+    "example": "This phrase means “平均” in the unit.",
+    "exampleZh": "这个短语在本单元表示「平均」。"
   },
   {
     "id": "b2-0114",
@@ -1480,8 +1480,8 @@ export const words = [
     "pos": "n.",
     "zh": "王子；王孙；亲王",
     "enDef": "noun meaning “王子”",
-    "example": "I need more information about prince.",
-    "exampleZh": "我需要更多关于王子的信息。"
+    "example": "We learned a new prince in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「王子」的词。"
   },
   {
     "id": "b2-0115",
@@ -1493,8 +1493,8 @@ export const words = [
     "pos": "短语",
     "zh": "取得进步",
     "enDef": "a set phrase meaning “取得进步”",
-    "example": "We use this phrase when we mean “取得进步”.",
-    "exampleZh": "这个短语表示「取得进步」。"
+    "example": "This phrase means “取得进步” in the unit.",
+    "exampleZh": "这个短语在本单元表示「取得进步」。"
   },
   {
     "id": "b2-0116",
@@ -1506,8 +1506,8 @@ export const words = [
     "pos": "vt.",
     "zh": "涉及；让……担忧",
     "enDef": "verb meaning “涉及”",
-    "example": "Can you concern this carefully?",
-    "exampleZh": "你能仔细地涉及一下吗？"
+    "example": "Many students concern after school.",
+    "exampleZh": "许多学生放学后会涉及。"
   },
   {
     "id": "b2-0117",
@@ -1519,8 +1519,8 @@ export const words = [
     "pos": "adj.",
     "zh": "担心的；关切的",
     "enDef": "adjective meaning “担心的”",
-    "example": "That description sounds concerned.",
-    "exampleZh": "那种描述听起来很担心的。"
+    "example": "The result looks concerned to everyone.",
+    "exampleZh": "这个结果在大家看来很担心的。"
   },
   {
     "id": "b2-0118",
@@ -1532,8 +1532,8 @@ export const words = [
     "pos": "短语",
     "zh": "对……关切的；为……担忧的",
     "enDef": "a set phrase meaning “对……关切的”",
-    "example": "We use this phrase when we mean “对……关切的”.",
-    "exampleZh": "这个短语表示「对……关切的」。"
+    "example": "This phrase means “对……关切的” in the unit.",
+    "exampleZh": "这个短语在本单元表示「对……关切的」。"
   },
   {
     "id": "b2-0119",
@@ -1545,8 +1545,8 @@ export const words = [
     "pos": "adj. / n.",
     "zh": "居住的；活的；在用的；生活；生计",
     "enDef": "adjective meaning “居住的”",
-    "example": "That description sounds living.",
-    "exampleZh": "那种描述听起来很居住的。"
+    "example": "The result looks living to everyone.",
+    "exampleZh": "这个结果在大家看来很居住的。"
   },
   {
     "id": "b2-0120",
@@ -1558,8 +1558,8 @@ export const words = [
     "pos": "vi. / vt.",
     "zh": "适应；使适应；使适合",
     "enDef": "verb meaning “适应”",
-    "example": "Can you adapt this carefully?",
-    "exampleZh": "你能仔细地适应一下吗？"
+    "example": "Many students adapt after school.",
+    "exampleZh": "许多学生放学后会适应。"
   },
   {
     "id": "b2-0121",
@@ -1571,8 +1571,8 @@ export const words = [
     "pos": "短语",
     "zh": "适应",
     "enDef": "a set phrase meaning “适应”",
-    "example": "We use this phrase when we mean “适应”.",
-    "exampleZh": "这个短语表示「适应」。"
+    "example": "This phrase means “适应” in the unit.",
+    "exampleZh": "这个短语在本单元表示「适应」。"
   },
   {
     "id": "b2-0122",
@@ -1584,8 +1584,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "措施；方法；测量；度量；估量",
     "enDef": "noun meaning “措施”",
-    "example": "I need more information about measure.",
-    "exampleZh": "我需要更多关于措施的信息。"
+    "example": "We learned a new measure in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「措施」的词。"
   },
   {
     "id": "b2-0123",
@@ -1597,8 +1597,8 @@ export const words = [
     "pos": "n.",
     "zh": "官方；当权；权威",
     "enDef": "noun meaning “官方”",
-    "example": "I need more information about authority.",
-    "exampleZh": "我需要更多关于官方的信息。"
+    "example": "We learned a new authority in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「官方」的词。"
   },
   {
     "id": "b2-0124",
@@ -1610,8 +1610,8 @@ export const words = [
     "pos": "n.",
     "zh": "压力；要求",
     "enDef": "noun meaning “压力”",
-    "example": "I need more information about pressure.",
-    "exampleZh": "我需要更多关于压力的信息。"
+    "example": "We learned a new pressure in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「压力」的词。"
   },
   {
     "id": "b2-0125",
@@ -1623,8 +1623,8 @@ export const words = [
     "pos": "短语",
     "zh": "在压力下；承受压力",
     "enDef": "a set phrase meaning “在压力下”",
-    "example": "We use this phrase when we mean “在压力下”.",
-    "exampleZh": "这个短语表示「在压力下」。"
+    "example": "This phrase means “在压力下” in the unit.",
+    "exampleZh": "这个短语在本单元表示「在压力下」。"
   },
   {
     "id": "b2-0126",
@@ -1636,8 +1636,8 @@ export const words = [
     "pos": "n.",
     "zh": "鲸",
     "enDef": "noun meaning “鲸”",
-    "example": "I need more information about whale.",
-    "exampleZh": "我需要更多关于鲸的信息。"
+    "example": "We learned a new whale in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「鲸」的词。"
   },
   {
     "id": "b2-0127",
@@ -1649,8 +1649,8 @@ export const words = [
     "pos": "n.",
     "zh": "羚；羚类动物",
     "enDef": "noun meaning “羚”",
-    "example": "I need more information about antelope.",
-    "exampleZh": "我需要更多关于羚的信息。"
+    "example": "We learned a new antelope in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「羚」的词。"
   },
   {
     "id": "b2-0128",
@@ -1662,8 +1662,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "藏羚羊",
     "enDef": "a proper name / term for “藏羚羊”",
-    "example": "We use this phrase when we mean “藏羚羊”.",
-    "exampleZh": "这个短语表示「藏羚羊」。"
+    "example": "This phrase means “藏羚羊” in the unit.",
+    "exampleZh": "这个短语在本单元表示「藏羚羊」。"
   },
   {
     "id": "b2-0129",
@@ -1675,8 +1675,8 @@ export const words = [
     "pos": "n.",
     "zh": "（动植物）保护区；储藏（量）；预订；预留；保留",
     "enDef": "noun meaning “（动植物）保护区”",
-    "example": "I need more information about reserve.",
-    "exampleZh": "我需要更多关于（动植物）保护区的信息。"
+    "example": "We learned a new reserve in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（动植物）保护区」的词。"
   },
   {
     "id": "b2-0130",
@@ -1688,8 +1688,8 @@ export const words = [
     "pos": "n. / adj.",
     "zh": "平原；简单明了的；直率的；平凡的",
     "enDef": "noun meaning “平原”",
-    "example": "I need more information about plain.",
-    "exampleZh": "我需要更多关于平原的信息。"
+    "example": "We learned a new plain in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「平原」的词。"
   },
   {
     "id": "b2-0131",
@@ -1701,8 +1701,8 @@ export const words = [
     "pos": "短语",
     "zh": "看清；听清；分清",
     "enDef": "a set phrase meaning “看清”",
-    "example": "We use this phrase when we mean “看清”.",
-    "exampleZh": "这个短语表示「看清」。"
+    "example": "This phrase means “看清” in the unit.",
+    "exampleZh": "这个短语在本单元表示「看清」。"
   },
   {
     "id": "b2-0132",
@@ -1714,8 +1714,8 @@ export const words = [
     "pos": "n.",
     "zh": "牧群；兽群",
     "enDef": "noun meaning “牧群”",
-    "example": "I need more information about herd.",
-    "exampleZh": "我需要更多关于牧群的信息。"
+    "example": "We learned a new herd in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「牧群」的词。"
   },
   {
     "id": "b2-0133",
@@ -1727,8 +1727,8 @@ export const words = [
     "pos": "vt.",
     "zh": "观察（到）；注视；遵守",
     "enDef": "verb meaning “观察（到）”",
-    "example": "Can you observe this carefully?",
-    "exampleZh": "你能仔细地观察（到）一下吗？"
+    "example": "Many students observe after school.",
+    "exampleZh": "许多学生放学后会观察（到）。"
   },
   {
     "id": "b2-0134",
@@ -1740,8 +1740,8 @@ export const words = [
     "pos": "n.",
     "zh": "美；美人；美好的东西",
     "enDef": "noun meaning “美”",
-    "example": "I need more information about beauty.",
-    "exampleZh": "我需要更多关于美的信息。"
+    "example": "We learned a new beauty in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「美」的词。"
   },
   {
     "id": "b2-0135",
@@ -1753,8 +1753,8 @@ export const words = [
     "pos": "vt.",
     "zh": "提醒；使想起",
     "enDef": "verb meaning “提醒”",
-    "example": "Can you remind this carefully?",
-    "exampleZh": "你能仔细地提醒一下吗？"
+    "example": "Many students remind after school.",
+    "exampleZh": "许多学生放学后会提醒。"
   },
   {
     "id": "b2-0136",
@@ -1766,8 +1766,8 @@ export const words = [
     "pos": "短语",
     "zh": "使某人想起（类似的人或物）",
     "enDef": "a set phrase meaning “使某人想起（类似的人或物）”",
-    "example": "We use this phrase when we mean “使某人想起（类似的人或物）”.",
-    "exampleZh": "这个短语表示「使某人想起（类似的人或物）」。"
+    "example": "This phrase means “使某人想起（类似的人或物）” in the unit.",
+    "exampleZh": "这个短语在本单元表示「使某人想起（类似的人或物）」。"
   },
   {
     "id": "b2-0137",
@@ -1779,8 +1779,8 @@ export const words = [
     "pos": "n.",
     "zh": "毛（皮）；毛皮衣服",
     "enDef": "noun meaning “毛（皮）”",
-    "example": "I need more information about fur.",
-    "exampleZh": "我需要更多关于毛（皮）的信息。"
+    "example": "We learned a new fur in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「毛（皮）」的词。"
   },
   {
     "id": "b2-0138",
@@ -1792,8 +1792,8 @@ export const words = [
     "pos": "adj.",
     "zh": "神圣的；受尊敬的",
     "enDef": "adjective meaning “神圣的”",
-    "example": "That description sounds sacred.",
-    "exampleZh": "那种描述听起来很神圣的。"
+    "example": "The result looks sacred to everyone.",
+    "exampleZh": "这个结果在大家看来很神圣的。"
   },
   {
     "id": "b2-0139",
@@ -1805,8 +1805,8 @@ export const words = [
     "pos": "vt. & vi.",
     "zh": "射杀；射伤；发射",
     "enDef": "verb meaning “射杀”",
-    "example": "Can you shoot this carefully?",
-    "exampleZh": "你能仔细地射杀一下吗？"
+    "example": "Many students shoot after school.",
+    "exampleZh": "许多学生放学后会射杀。"
   },
   {
     "id": "b2-0140",
@@ -1818,8 +1818,8 @@ export const words = [
     "pos": "n.",
     "zh": "利润；利益",
     "enDef": "noun meaning “利润”",
-    "example": "I need more information about profit.",
-    "exampleZh": "我需要更多关于利润的信息。"
+    "example": "We learned a new profit in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「利润」的词。"
   },
   {
     "id": "b2-0141",
@@ -1831,8 +1831,8 @@ export const words = [
     "pos": "短语",
     "zh": "保护；照管；监督",
     "enDef": "a set phrase meaning “保护”",
-    "example": "We use this phrase when we mean “保护”.",
-    "exampleZh": "这个短语表示「保护」。"
+    "example": "This phrase means “保护” in the unit.",
+    "exampleZh": "这个短语在本单元表示「保护」。"
   },
   {
     "id": "b2-0142",
@@ -1844,8 +1844,8 @@ export const words = [
     "pos": "短语",
     "zh": "日日夜夜；夜以继日",
     "enDef": "a set phrase meaning “日日夜夜”",
-    "example": "We use this phrase when we mean “日日夜夜”.",
-    "exampleZh": "这个短语表示「日日夜夜」。"
+    "example": "This phrase means “日日夜夜” in the unit.",
+    "exampleZh": "这个短语在本单元表示「日日夜夜」。"
   },
   {
     "id": "b2-0143",
@@ -1857,8 +1857,8 @@ export const words = [
     "pos": "n. / vi. & vt.",
     "zh": "攻击；抨击",
     "enDef": "noun meaning “攻击”",
-    "example": "I need more information about attack.",
-    "exampleZh": "我需要更多关于攻击的信息。"
+    "example": "We learned a new attack in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「攻击」的词。"
   },
   {
     "id": "b2-0144",
@@ -1870,8 +1870,8 @@ export const words = [
     "pos": "adj.",
     "zh": "有效的；生效的",
     "enDef": "adjective meaning “有效的”",
-    "example": "That description sounds effective.",
-    "exampleZh": "那种描述听起来很有效的。"
+    "example": "The result looks effective to everyone.",
+    "exampleZh": "这个结果在大家看来很有效的。"
   },
   {
     "id": "b2-0145",
@@ -1883,8 +1883,8 @@ export const words = [
     "pos": "vi. / vt.",
     "zh": "恢复；康复；找回；寻回",
     "enDef": "verb meaning “恢复”",
-    "example": "Can you recover this carefully?",
-    "exampleZh": "你能仔细地恢复一下吗？"
+    "example": "Many students recover after school.",
+    "exampleZh": "许多学生放学后会恢复。"
   },
   {
     "id": "b2-0146",
@@ -1896,8 +1896,8 @@ export const words = [
     "pos": "vt.",
     "zh": "去除；移开；脱去",
     "enDef": "verb meaning “去除”",
-    "example": "Can you remove this carefully?",
-    "exampleZh": "你能仔细地去除一下吗？"
+    "example": "Many students remove after school.",
+    "exampleZh": "许多学生放学后会去除。"
   },
   {
     "id": "b2-0147",
@@ -1909,8 +1909,8 @@ export const words = [
     "pos": "vi. & vt.",
     "zh": "打算；计划；想要",
     "enDef": "verb meaning “打算”",
-    "example": "Can you intend this carefully?",
-    "exampleZh": "你能仔细地打算一下吗？"
+    "example": "Many students intend after school.",
+    "exampleZh": "许多学生放学后会打算。"
   },
   {
     "id": "b2-0148",
@@ -1922,8 +1922,8 @@ export const words = [
     "pos": "n.",
     "zh": "威胁",
     "enDef": "noun meaning “威胁”",
-    "example": "I need more information about threat.",
-    "exampleZh": "我需要更多关于威胁的信息。"
+    "example": "We learned a new threat in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「威胁」的词。"
   },
   {
     "id": "b2-0149",
@@ -1935,8 +1935,8 @@ export const words = [
     "pos": "vt.",
     "zh": "威胁；危及",
     "enDef": "verb meaning “威胁”",
-    "example": "Can you threaten this carefully?",
-    "exampleZh": "你能仔细地威胁一下吗？"
+    "example": "Many students threaten after school.",
+    "exampleZh": "许多学生放学后会威胁。"
   },
   {
     "id": "b2-0150",
@@ -1948,8 +1948,8 @@ export const words = [
     "pos": "vi.",
     "zh": "存在；生存",
     "enDef": "verb meaning “存在”",
-    "example": "Can you exist this carefully?",
-    "exampleZh": "你能仔细地存在一下吗？"
+    "example": "Many students exist after school.",
+    "exampleZh": "许多学生放学后会存在。"
   },
   {
     "id": "b2-0151",
@@ -1961,8 +1961,8 @@ export const words = [
     "pos": "n.",
     "zh": "和谐；融洽",
     "enDef": "noun meaning “和谐”",
-    "example": "I need more information about harmony.",
-    "exampleZh": "我需要更多关于和谐的信息。"
+    "example": "We learned a new harmony in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「和谐」的词。"
   },
   {
     "id": "b2-0152",
@@ -1974,8 +1974,8 @@ export const words = [
     "pos": "n.",
     "zh": "商品；货物",
     "enDef": "noun meaning “商品”",
-    "example": "I need more information about goods.",
-    "exampleZh": "我需要更多关于商品的信息。"
+    "example": "We learned a new goods in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「商品」的词。"
   },
   {
     "id": "b2-0153",
@@ -1987,8 +1987,8 @@ export const words = [
     "pos": "n.",
     "zh": "生物；动物",
     "enDef": "noun meaning “生物”",
-    "example": "I need more information about creature.",
-    "exampleZh": "我需要更多关于生物的信息。"
+    "example": "We learned a new creature in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「生物」的词。"
   },
   {
     "id": "b2-0154",
@@ -2000,8 +2000,8 @@ export const words = [
     "pos": "n.",
     "zh": "鹿",
     "enDef": "noun meaning “鹿”",
-    "example": "I need more information about deer.",
-    "exampleZh": "我需要更多关于鹿的信息。"
+    "example": "We learned a new deer in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「鹿」的词。"
   },
   {
     "id": "b2-0155",
@@ -2013,8 +2013,8 @@ export const words = [
     "pos": "n.",
     "zh": "袋鼠",
     "enDef": "noun meaning “袋鼠”",
-    "example": "I need more information about kangaroo.",
-    "exampleZh": "我需要更多关于袋鼠的信息。"
+    "example": "We learned a new kangaroo in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「袋鼠」的词。"
   },
   {
     "id": "b2-0156",
@@ -2026,8 +2026,8 @@ export const words = [
     "pos": "vt.",
     "zh": "减少",
     "enDef": "verb meaning “减少”",
-    "example": "Can you reduce this carefully?",
-    "exampleZh": "你能仔细地减少一下吗？"
+    "example": "Many students reduce after school.",
+    "exampleZh": "许多学生放学后会减少。"
   },
   {
     "id": "b2-0157",
@@ -2039,8 +2039,8 @@ export const words = [
     "pos": "adj.",
     "zh": "由于；因为",
     "enDef": "adjective meaning “由于”",
-    "example": "That description sounds due.",
-    "exampleZh": "那种描述听起来很由于。"
+    "example": "The result looks due to everyone.",
+    "exampleZh": "这个结果在大家看来很由于。"
   },
   {
     "id": "b2-0158",
@@ -2052,8 +2052,8 @@ export const words = [
     "pos": "短语",
     "zh": "由于；因为",
     "enDef": "a set phrase meaning “由于”",
-    "example": "We use this phrase when we mean “由于”.",
-    "exampleZh": "这个短语表示「由于」。"
+    "example": "This phrase means “由于” in the unit.",
+    "exampleZh": "这个短语在本单元表示「由于」。"
   },
   {
     "id": "b2-0159",
@@ -2065,8 +2065,8 @@ export const words = [
     "pos": "n.",
     "zh": "昆虫",
     "enDef": "noun meaning “昆虫”",
-    "example": "I need more information about insect.",
-    "exampleZh": "我需要更多关于昆虫的信息。"
+    "example": "We learned a new insect in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「昆虫」的词。"
   },
   {
     "id": "b2-0160",
@@ -2078,8 +2078,8 @@ export const words = [
     "pos": "n. / adj.",
     "zh": "=；网；净得的；纯的",
     "enDef": "noun meaning “=”",
-    "example": "I need more information about net.",
-    "exampleZh": "我需要更多关于=的信息。"
+    "example": "We learned a new net in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「=」的词。"
   },
   {
     "id": "b2-0161",
@@ -2091,8 +2091,8 @@ export const words = [
     "pos": "n.",
     "zh": "临近的地方；街区",
     "enDef": "noun meaning “临近的地方”",
-    "example": "I need more information about neighbourhood.",
-    "exampleZh": "我需要更多关于临近的地方的信息。"
+    "example": "We learned a new neighbourhood in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「临近的地方」的词。"
   },
   {
     "id": "b2-0162",
@@ -2104,8 +2104,8 @@ export const words = [
     "pos": "n.",
     "zh": "双筒望远镜",
     "enDef": "noun meaning “双筒望远镜”",
-    "example": "I need more information about binoculars.",
-    "exampleZh": "我需要更多关于双筒望远镜的信息。"
+    "example": "We learned a new binoculars in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「双筒望远镜」的词。"
   },
   {
     "id": "b2-0163",
@@ -2117,8 +2117,8 @@ export const words = [
     "pos": "短语",
     "zh": "鸟类图鉴",
     "enDef": "a set phrase meaning “鸟类图鉴”",
-    "example": "We use this phrase when we mean “鸟类图鉴”.",
-    "exampleZh": "这个短语表示「鸟类图鉴」。"
+    "example": "This phrase means “鸟类图鉴” in the unit.",
+    "exampleZh": "这个短语在本单元表示「鸟类图鉴」。"
   },
   {
     "id": "b2-0164",
@@ -2130,8 +2130,8 @@ export const words = [
     "pos": "短语",
     "zh": "搜索；查找",
     "enDef": "a set phrase meaning “搜索”",
-    "example": "We use this phrase when we mean “搜索”.",
-    "exampleZh": "这个短语表示「搜索」。"
+    "example": "This phrase means “搜索” in the unit.",
+    "exampleZh": "这个短语在本单元表示「搜索」。"
   },
   {
     "id": "b2-0165",
@@ -2143,8 +2143,8 @@ export const words = [
     "pos": "n.",
     "zh": "海豚",
     "enDef": "noun meaning “海豚”",
-    "example": "I need more information about dolphin.",
-    "exampleZh": "我需要更多关于海豚的信息。"
+    "example": "We learned a new dolphin in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「海豚」的词。"
   },
   {
     "id": "b2-0166",
@@ -2156,8 +2156,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "白鳍豚",
     "enDef": "a proper name / term for “白鳍豚”",
-    "example": "We use this phrase when we mean “白鳍豚”.",
-    "exampleZh": "这个短语表示「白鳍豚」。"
+    "example": "This phrase means “白鳍豚” in the unit.",
+    "exampleZh": "这个短语在本单元表示「白鳍豚」。"
   },
   {
     "id": "b2-0167",
@@ -2169,8 +2169,8 @@ export const words = [
     "pos": "n.",
     "zh": "树袋熊；考拉",
     "enDef": "noun meaning “树袋熊”",
-    "example": "I need more information about koala.",
-    "exampleZh": "我需要更多关于树袋熊的信息。"
+    "example": "We learned a new koala in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「树袋熊」的词。"
   },
   {
     "id": "b2-0168",
@@ -2182,8 +2182,8 @@ export const words = [
     "pos": "vt.",
     "zh": "激发；搅动",
     "enDef": "verb meaning “激发”",
-    "example": "Can you stir this carefully?",
-    "exampleZh": "你能仔细地激发一下吗？"
+    "example": "Many students stir after school.",
+    "exampleZh": "许多学生放学后会激发。"
   },
   {
     "id": "b2-0169",
@@ -2195,8 +2195,8 @@ export const words = [
     "pos": "短语",
     "zh": "激起",
     "enDef": "a set phrase meaning “激起”",
-    "example": "We use this phrase when we mean “激起”.",
-    "exampleZh": "这个短语表示「激起」。"
+    "example": "This phrase means “激起” in the unit.",
+    "exampleZh": "这个短语在本单元表示「激起」。"
   },
   {
     "id": "b2-0170",
@@ -2208,8 +2208,8 @@ export const words = [
     "pos": "n.",
     "zh": "感情；情感；情绪",
     "enDef": "noun meaning “感情”",
-    "example": "I need more information about emotion.",
-    "exampleZh": "我需要更多关于感情的信息。"
+    "example": "We learned a new emotion in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「感情」的词。"
   },
   {
     "id": "b2-0171",
@@ -2221,8 +2221,8 @@ export const words = [
     "pos": "n.",
     "zh": "皮；皮肤",
     "enDef": "noun meaning “皮”",
-    "example": "I need more information about skin.",
-    "exampleZh": "我需要更多关于皮的信息。"
+    "example": "We learned a new skin in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「皮」的词。"
   },
   {
     "id": "b2-0172",
@@ -2234,8 +2234,8 @@ export const words = [
     "pos": "adj.",
     "zh": "特别的；不寻常的",
     "enDef": "adjective meaning “特别的”",
-    "example": "That description sounds unusual.",
-    "exampleZh": "那种描述听起来很特别的。"
+    "example": "The result looks unusual to everyone.",
+    "exampleZh": "这个结果在大家看来很特别的。"
   },
   {
     "id": "b2-0173",
@@ -2247,8 +2247,8 @@ export const words = [
     "pos": "adj. / n.",
     "zh": "西藏的；藏语的；藏族（人）的；西藏人；藏族人；藏语",
     "enDef": "adjective meaning “西藏的”",
-    "example": "That description sounds Tibetan.",
-    "exampleZh": "那种描述听起来很西藏的。"
+    "example": "The result looks Tibetan to everyone.",
+    "exampleZh": "这个结果在大家看来很西藏的。"
   },
   {
     "id": "b2-0174",
@@ -2260,8 +2260,8 @@ export const words = [
     "pos": "n.",
     "zh": "西藏",
     "enDef": "noun meaning “西藏”",
-    "example": "I need more information about Tibet.",
-    "exampleZh": "我需要更多关于西藏的信息。"
+    "example": "We learned a new Tibet in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「西藏」的词。"
   },
   {
     "id": "b2-0175",
@@ -2273,8 +2273,8 @@ export const words = [
     "pos": "n. / vi.",
     "zh": "博客；写博客",
     "enDef": "noun meaning “博客”",
-    "example": "I need more information about blog.",
-    "exampleZh": "我需要更多关于博客的信息。"
+    "example": "We learned a new blog in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「博客」的词。"
   },
   {
     "id": "b2-0176",
@@ -2286,8 +2286,8 @@ export const words = [
     "pos": "短语",
     "zh": "博文；博客帖子",
     "enDef": "a set phrase meaning “博文”",
-    "example": "We use this phrase when we mean “博文”.",
-    "exampleZh": "这个短语表示「博文」。"
+    "example": "This phrase means “博文” in the unit.",
+    "exampleZh": "这个短语在本单元表示「博文」。"
   },
   {
     "id": "b2-0177",
@@ -2299,8 +2299,8 @@ export const words = [
     "pos": "n.",
     "zh": "博客作者；博主",
     "enDef": "noun meaning “博客作者”",
-    "example": "I need more information about blogger.",
-    "exampleZh": "我需要更多关于博客作者的信息。"
+    "example": "We learned a new blogger in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「博客作者」的词。"
   },
   {
     "id": "b2-0178",
@@ -2312,8 +2312,8 @@ export const words = [
     "pos": "n.",
     "zh": "引擎；发动机；火车头",
     "enDef": "noun meaning “引擎”",
-    "example": "I need more information about engine.",
-    "exampleZh": "我需要更多关于引擎的信息。"
+    "example": "We learned a new engine in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「引擎」的词。"
   },
   {
     "id": "b2-0179",
@@ -2325,8 +2325,8 @@ export const words = [
     "pos": "短语",
     "zh": "（互联网上的）搜说引擎",
     "enDef": "a set phrase meaning “（互联网上的）搜说引擎”",
-    "example": "We use this phrase when we mean “（互联网上的）搜说引擎”.",
-    "exampleZh": "这个短语表示「（互联网上的）搜说引擎」。"
+    "example": "This phrase means “（互联网上的）搜说引擎” in the unit.",
+    "exampleZh": "这个短语在本单元表示「（互联网上的）搜说引擎」。"
   },
   {
     "id": "b2-0180",
@@ -2338,8 +2338,8 @@ export const words = [
     "pos": "vi.",
     "zh": "聊天；闲聊",
     "enDef": "verb meaning “聊天”",
-    "example": "Can you chat this carefully?",
-    "exampleZh": "你能仔细地聊天一下吗？"
+    "example": "Many students chat after school.",
+    "exampleZh": "许多学生放学后会聊天。"
   },
   {
     "id": "b2-0181",
@@ -2351,8 +2351,8 @@ export const words = [
     "pos": "vt. / vi. / n.",
     "zh": "流播（不用下载直接在互联网上播放音视频）；流出；流动；小河；溪流",
     "enDef": "verb meaning “流播（不用下载直接在互联网上播放音视…”",
-    "example": "Can you stream this carefully?",
-    "exampleZh": "你能仔细地流播（不用下载直接在互联网上播放音视…一下吗？"
+    "example": "Many students stream after school.",
+    "exampleZh": "许多学生放学后会流播（不用下载直接在互联网上播放音视…。"
   },
   {
     "id": "b2-0182",
@@ -2364,8 +2364,8 @@ export const words = [
     "pos": "n.",
     "zh": "身份；个性",
     "enDef": "noun meaning “身份”",
-    "example": "I need more information about identity.",
-    "exampleZh": "我需要更多关于身份的信息。"
+    "example": "We learned a new identity in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「身份」的词。"
   },
   {
     "id": "b2-0183",
@@ -2377,8 +2377,8 @@ export const words = [
     "pos": "短语",
     "zh": "身份证",
     "enDef": "a set phrase meaning “身份证”",
-    "example": "We use this phrase when we mean “身份证”.",
-    "exampleZh": "这个短语表示「身份证」。"
+    "example": "This phrase means “身份证” in the unit.",
+    "exampleZh": "这个短语在本单元表示「身份证」。"
   },
   {
     "id": "b2-0184",
@@ -2390,8 +2390,8 @@ export const words = [
     "pos": "adj.",
     "zh": "方便的；近便的",
     "enDef": "adjective meaning “方便的”",
-    "example": "That description sounds convenient.",
-    "exampleZh": "那种描述听起来很方便的。"
+    "example": "The result looks convenient to everyone.",
+    "exampleZh": "这个结果在大家看来很方便的。"
   },
   {
     "id": "b2-0185",
@@ -2403,8 +2403,8 @@ export const words = [
     "pos": "n.",
     "zh": "现金；金钱",
     "enDef": "noun meaning “现金”",
-    "example": "I need more information about cash.",
-    "exampleZh": "我需要更多关于现金的信息。"
+    "example": "We learned a new cash in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「现金」的词。"
   },
   {
     "id": "b2-0186",
@@ -2416,8 +2416,8 @@ export const words = [
     "pos": "vt. / n.",
     "zh": "更新；向……提供最新信息；最新消息",
     "enDef": "verb meaning “更新”",
-    "example": "Can you update this carefully?",
-    "exampleZh": "你能仔细地更新一下吗？"
+    "example": "Many students update after school.",
+    "exampleZh": "许多学生放学后会更新。"
   },
   {
     "id": "b2-0187",
@@ -2429,8 +2429,8 @@ export const words = [
     "pos": "n.",
     "zh": "数据库",
     "enDef": "noun meaning “数据库”",
-    "example": "I need more information about database.",
-    "exampleZh": "我需要更多关于数据库的信息。"
+    "example": "We learned a new database in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「数据库」的词。"
   },
   {
     "id": "b2-0188",
@@ -2442,8 +2442,8 @@ export const words = [
     "pos": "n.",
     "zh": "软件",
     "enDef": "noun meaning “软件”",
-    "example": "I need more information about software.",
-    "exampleZh": "我需要更多关于软件的信息。"
+    "example": "We learned a new software in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「软件」的词。"
   },
   {
     "id": "b2-0189",
@@ -2455,8 +2455,8 @@ export const words = [
     "pos": "n. / vt. / vi.",
     "zh": "（互联）网络；网状系统；人际网；将……连接成网络；联播；建立工作关系",
     "enDef": "noun meaning “（互联）网络”",
-    "example": "I need more information about network.",
-    "exampleZh": "我需要更多关于（互联）网络的信息。"
+    "example": "We learned a new network in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（互联）网络」的词。"
   },
   {
     "id": "b2-0190",
@@ -2468,8 +2468,8 @@ export const words = [
     "pos": "adj.",
     "zh": "卡住；陷（入）；困（于）",
     "enDef": "adjective meaning “卡住”",
-    "example": "That description sounds stuck.",
-    "exampleZh": "那种描述听起来很卡住。"
+    "example": "The result looks stuck to everyone.",
+    "exampleZh": "这个结果在大家看来很卡住。"
   },
   {
     "id": "b2-0191",
@@ -2481,8 +2481,8 @@ export const words = [
     "pos": "短语",
     "zh": "陪伴某人",
     "enDef": "a set phrase meaning “陪伴某人”",
-    "example": "We use this phrase when we mean “陪伴某人”.",
-    "exampleZh": "这个短语表示「陪伴某人」。"
+    "example": "This phrase means “陪伴某人” in the unit.",
+    "exampleZh": "这个短语在本单元表示「陪伴某人」。"
   },
   {
     "id": "b2-0192",
@@ -2494,8 +2494,8 @@ export const words = [
     "pos": "vt. & vi.",
     "zh": "浏览；冲浪",
     "enDef": "verb meaning “浏览”",
-    "example": "Can you surf this carefully?",
-    "exampleZh": "你能仔细地浏览一下吗？"
+    "example": "Many students surf after school.",
+    "exampleZh": "许多学生放学后会浏览。"
   },
   {
     "id": "b2-0193",
@@ -2507,8 +2507,8 @@ export const words = [
     "pos": "n. / vt. / vi.",
     "zh": "益处；使受益；得益于",
     "enDef": "noun meaning “益处”",
-    "example": "I need more information about benefit.",
-    "exampleZh": "我需要更多关于益处的信息。"
+    "example": "We learned a new benefit in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「益处」的词。"
   },
   {
     "id": "b2-0194",
@@ -2520,8 +2520,8 @@ export const words = [
     "pos": "n.",
     "zh": "距离",
     "enDef": "noun meaning “距离”",
-    "example": "I need more information about distance.",
-    "exampleZh": "我需要更多关于距离的信息。"
+    "example": "We learned a new distance in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「距离」的词。"
   },
   {
     "id": "b2-0195",
@@ -2533,8 +2533,8 @@ export const words = [
     "pos": "vt.",
     "zh": "鼓舞；激励；启发思考",
     "enDef": "verb meaning “鼓舞”",
-    "example": "Can you inspire this carefully?",
-    "exampleZh": "你能仔细地鼓舞一下吗？"
+    "example": "Many students inspire after school.",
+    "exampleZh": "许多学生放学后会鼓舞。"
   },
   {
     "id": "b2-0196",
@@ -2546,8 +2546,8 @@ export const words = [
     "pos": "短语",
     "zh": "既然；由于",
     "enDef": "a set phrase meaning “既然”",
-    "example": "We use this phrase when we mean “既然”.",
-    "exampleZh": "这个短语表示「既然」。"
+    "example": "This phrase means “既然” in the unit.",
+    "exampleZh": "这个短语在本单元表示「既然」。"
   },
   {
     "id": "b2-0197",
@@ -2559,8 +2559,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "通道；（使用、查阅、接近或见面的）机会；进入；使用；获取",
     "enDef": "noun meaning “通道”",
-    "example": "I need more information about access.",
-    "exampleZh": "我需要更多关于通道的信息。"
+    "example": "We learned a new access in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「通道」的词。"
   },
   {
     "id": "b2-0198",
@@ -2572,8 +2572,8 @@ export const words = [
     "pos": "n.",
     "zh": "慈善；慈善机构（或组织）",
     "enDef": "noun meaning “慈善”",
-    "example": "I need more information about charity.",
-    "exampleZh": "我需要更多关于慈善的信息。"
+    "example": "We learned a new charity in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「慈善」的词。"
   },
   {
     "id": "b2-0199",
@@ -2585,8 +2585,8 @@ export const words = [
     "pos": "短语",
     "zh": "经历；度过；通读",
     "enDef": "a set phrase meaning “经历”",
-    "example": "We use this phrase when we mean “经历”.",
-    "exampleZh": "这个短语表示「经历」。"
+    "example": "This phrase means “经历” in the unit.",
+    "exampleZh": "这个短语在本单元表示「经历」。"
   },
   {
     "id": "b2-0200",
@@ -2598,8 +2598,8 @@ export const words = [
     "pos": "adj.",
     "zh": "艰难的；严厉的",
     "enDef": "adjective meaning “艰难的”",
-    "example": "That description sounds tough.",
-    "exampleZh": "那种描述听起来很艰难的。"
+    "example": "The result looks tough to everyone.",
+    "exampleZh": "这个结果在大家看来很艰难的。"
   },
   {
     "id": "b2-0201",
@@ -2611,8 +2611,8 @@ export const words = [
     "pos": "n.",
     "zh": "省",
     "enDef": "noun meaning “省”",
-    "example": "I need more information about province.",
-    "exampleZh": "我需要更多关于省的信息。"
+    "example": "We learned a new province in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「省」的词。"
   },
   {
     "id": "b2-0202",
@@ -2624,8 +2624,8 @@ export const words = [
     "pos": "n.",
     "zh": "会议；研讨会；正式会谈",
     "enDef": "noun meaning “会议”",
-    "example": "I need more information about conference.",
-    "exampleZh": "我需要更多关于会议的信息。"
+    "example": "We learned a new conference in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「会议」的词。"
   },
   {
     "id": "b2-0203",
@@ -2637,8 +2637,8 @@ export const words = [
     "pos": "n. / adj.",
     "zh": "居民；（美国的）住院医生；（在某地）居住的",
     "enDef": "noun meaning “居民”",
-    "example": "I need more information about resident.",
-    "exampleZh": "我需要更多关于居民的信息。"
+    "example": "We learned a new resident in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「居民」的词。"
   },
   {
     "id": "b2-0204",
@@ -2650,8 +2650,8 @@ export const words = [
     "pos": "conj. / n. / prep.",
     "zh": "而且；此外；加号；优势；加；另加",
     "enDef": "conjunction meaning “而且”",
-    "example": "Notice how “plus” connects the ideas (而且).",
-    "exampleZh": "注意「…」如何连接语义（而且）。"
+    "example": "This small word (而且) links two ideas.",
+    "exampleZh": "这个词用来连接两个意思（而且）。"
   },
   {
     "id": "b2-0205",
@@ -2663,8 +2663,8 @@ export const words = [
     "pos": "n. / vi.",
     "zh": "功能；作用；机能；起作用；正常工作；运转",
     "enDef": "noun meaning “功能”",
-    "example": "I need more information about function.",
-    "exampleZh": "我需要更多关于功能的信息。"
+    "example": "We learned a new function in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「功能」的词。"
   },
   {
     "id": "b2-0206",
@@ -2676,8 +2676,8 @@ export const words = [
     "pos": "n.",
     "zh": "电池",
     "enDef": "noun meaning “电池”",
-    "example": "I need more information about battery.",
-    "exampleZh": "我需要更多关于电池的信息。"
+    "example": "We learned a new battery in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「电池」的词。"
   },
   {
     "id": "b2-0207",
@@ -2689,8 +2689,8 @@ export const words = [
     "pos": "vt.",
     "zh": "确认；使确信",
     "enDef": "verb meaning “确认”",
-    "example": "Can you confirm this carefully?",
-    "exampleZh": "你能仔细地确认一下吗？"
+    "example": "Many students confirm after school.",
+    "exampleZh": "许多学生放学后会确认。"
   },
   {
     "id": "b2-0208",
@@ -2702,8 +2702,8 @@ export const words = [
     "pos": "n.",
     "zh": "无线保真（用无线电波而非网线在计算机网络传输数据的系统）",
     "enDef": "noun meaning “无线保真（用无线电波而非网线在计算机…”",
-    "example": "I need more information about Wi-Fi.",
-    "exampleZh": "我需要更多关于无线保真（用无线电波而非网线在计算机…的信息。"
+    "example": "We learned a new Wi-Fi in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「无线保真（用无线电波而非网线在计算机…」的词。"
   },
   {
     "id": "b2-0209",
@@ -2715,8 +2715,8 @@ export const words = [
     "pos": "vt.",
     "zh": "按，压；敦促",
     "enDef": "verb meaning “按”",
-    "example": "Can you press this carefully?",
-    "exampleZh": "你能仔细地按一下吗？"
+    "example": "Many students press after school.",
+    "exampleZh": "许多学生放学后会按。"
   },
   {
     "id": "b2-0210",
@@ -2728,8 +2728,8 @@ export const words = [
     "pos": "n.",
     "zh": "按钮；纽扣",
     "enDef": "noun meaning “按钮”",
-    "example": "I need more information about button.",
-    "exampleZh": "我需要更多关于按钮的信息。"
+    "example": "We learned a new button in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「按钮」的词。"
   },
   {
     "id": "b2-0211",
@@ -2741,8 +2741,8 @@ export const words = [
     "pos": "n.",
     "zh": "文件；文件夹；档案",
     "enDef": "noun meaning “文件”",
-    "example": "I need more information about file.",
-    "exampleZh": "我需要更多关于文件的信息。"
+    "example": "We learned a new file in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「文件」的词。"
   },
   {
     "id": "b2-0212",
@@ -2754,8 +2754,8 @@ export const words = [
     "pos": "短语",
     "zh": "状况良好",
     "enDef": "a set phrase meaning “状况良好”",
-    "example": "We use this phrase when we mean “状况良好”.",
-    "exampleZh": "这个短语表示「状况良好」。"
+    "example": "This phrase means “状况良好” in the unit.",
+    "exampleZh": "这个短语在本单元表示「状况良好」。"
   },
   {
     "id": "b2-0213",
@@ -2767,8 +2767,8 @@ export const words = [
     "pos": "短语",
     "zh": "掌握……的最新消息",
     "enDef": "a set phrase meaning “掌握……的最新消息”",
-    "example": "We use this phrase when we mean “掌握……的最新消息”.",
-    "exampleZh": "这个短语表示「掌握……的最新消息」。"
+    "example": "This phrase means “掌握……的最新消息” in the unit.",
+    "exampleZh": "这个短语在本单元表示「掌握……的最新消息」。"
   },
   {
     "id": "b2-0214",
@@ -2780,8 +2780,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "折扣；打折",
     "enDef": "noun meaning “折扣”",
-    "example": "I need more information about discount.",
-    "exampleZh": "我需要更多关于折扣的信息。"
+    "example": "We learned a new discount in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「折扣」的词。"
   },
   {
     "id": "b2-0215",
@@ -2793,8 +2793,8 @@ export const words = [
     "pos": "n.",
     "zh": "账户；描述",
     "enDef": "noun meaning “账户”",
-    "example": "I need more information about account.",
-    "exampleZh": "我需要更多关于账户的信息。"
+    "example": "We learned a new account in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「账户」的词。"
   },
   {
     "id": "b2-0216",
@@ -2806,8 +2806,8 @@ export const words = [
     "pos": "vt. & vi.",
     "zh": "点击",
     "enDef": "verb meaning “点击”",
-    "example": "Can you click this carefully?",
-    "exampleZh": "你能仔细地点击一下吗？"
+    "example": "Many students click after school.",
+    "exampleZh": "许多学生放学后会点击。"
   },
   {
     "id": "b2-0217",
@@ -2819,8 +2819,8 @@ export const words = [
     "pos": "n.",
     "zh": "隐私；私密",
     "enDef": "noun meaning “隐私”",
-    "example": "I need more information about privacy.",
-    "exampleZh": "我需要更多关于隐私的信息。"
+    "example": "We learned a new privacy in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「隐私」的词。"
   },
   {
     "id": "b2-0218",
@@ -2832,8 +2832,8 @@ export const words = [
     "pos": "n.",
     "zh": "偷（窃）；盗窃罪",
     "enDef": "noun meaning “偷（窃）”",
-    "example": "I need more information about theft.",
-    "exampleZh": "我需要更多关于偷（窃）的信息。"
+    "example": "We learned a new theft in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「偷（窃）」的词。"
   },
   {
     "id": "b2-0219",
@@ -2845,8 +2845,8 @@ export const words = [
     "pos": "adj.",
     "zh": "粗鲁的；无礼的",
     "enDef": "adjective meaning “粗鲁的”",
-    "example": "That description sounds rude.",
-    "exampleZh": "那种描述听起来很粗鲁的。"
+    "example": "The result looks rude to everyone.",
+    "exampleZh": "这个结果在大家看来很粗鲁的。"
   },
   {
     "id": "b2-0220",
@@ -2858,8 +2858,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "目标；对象；靶子；把……作为攻击目标",
     "enDef": "noun meaning “目标”",
-    "example": "I need more information about target.",
-    "exampleZh": "我需要更多关于目标的信息。"
+    "example": "We learned a new target in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「目标」的词。"
   },
   {
     "id": "b2-0221",
@@ -2871,8 +2871,8 @@ export const words = [
     "pos": "n.",
     "zh": "发挑衅帖子的人；恶意挑衅的帖子",
     "enDef": "noun meaning “发挑衅帖子的人”",
-    "example": "I need more information about troll.",
-    "exampleZh": "我需要更多关于发挑衅帖子的人的信息。"
+    "example": "We learned a new troll in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「发挑衅帖子的人」的词。"
   },
   {
     "id": "b2-0222",
@@ -2884,8 +2884,8 @@ export const words = [
     "pos": "n. / vi.",
     "zh": "网霸；网络欺凌",
     "enDef": "noun meaning “网霸”",
-    "example": "I need more information about cyberbully.",
-    "exampleZh": "我需要更多关于网霸的信息。"
+    "example": "We learned a new cyberbully in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「网霸」的词。"
   },
   {
     "id": "b2-0223",
@@ -2897,8 +2897,8 @@ export const words = [
     "pos": "adj.",
     "zh": "假的；错误的",
     "enDef": "adjective meaning “假的”",
-    "example": "That description sounds false.",
-    "exampleZh": "那种描述听起来很假的。"
+    "example": "The result looks false to everyone.",
+    "exampleZh": "这个结果在大家看来很假的。"
   },
   {
     "id": "b2-0224",
@@ -2910,8 +2910,8 @@ export const words = [
     "pos": "adj.",
     "zh": "特定的；特别的；讲究的",
     "enDef": "adjective meaning “特定的”",
-    "example": "That description sounds particular.",
-    "exampleZh": "那种描述听起来很特定的。"
+    "example": "The result looks particular to everyone.",
+    "exampleZh": "这个结果在大家看来很特定的。"
   },
   {
     "id": "b2-0225",
@@ -2923,8 +2923,8 @@ export const words = [
     "pos": "adj.",
     "zh": "让人难堪（尴尬；害羞）的",
     "enDef": "adjective meaning “让人难堪（尴尬”",
-    "example": "That description sounds embarrassing.",
-    "exampleZh": "那种描述听起来很让人难堪（尴尬。"
+    "example": "The result looks embarrassing to everyone.",
+    "exampleZh": "这个结果在大家看来很让人难堪（尴尬。"
   },
   {
     "id": "b2-0226",
@@ -2936,8 +2936,8 @@ export const words = [
     "pos": "短语",
     "zh": "取笑；戏弄",
     "enDef": "a set phrase meaning “取笑”",
-    "example": "We use this phrase when we mean “取笑”.",
-    "exampleZh": "这个短语表示「取笑」。"
+    "example": "This phrase means “取笑” in the unit.",
+    "exampleZh": "这个短语在本单元表示「取笑」。"
   },
   {
     "id": "b2-0227",
@@ -2949,8 +2949,8 @@ export const words = [
     "pos": "adj. / vt.",
     "zh": "心烦的；苦恼的；沮丧的；使烦恼；使生气；搅乱",
     "enDef": "adjective meaning “心烦的”",
-    "example": "That description sounds upset.",
-    "exampleZh": "那种描述听起来很心烦的。"
+    "example": "The result looks upset to everyone.",
+    "exampleZh": "这个结果在大家看来很心烦的。"
   },
   {
     "id": "b2-0228",
@@ -2962,8 +2962,8 @@ export const words = [
     "pos": "n.",
     "zh": "准则；指导原则",
     "enDef": "noun meaning “准则”",
-    "example": "I need more information about guideline.",
-    "exampleZh": "我需要更多关于准则的信息。"
+    "example": "We learned a new guideline in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「准则」的词。"
   },
   {
     "id": "b2-0229",
@@ -2975,8 +2975,8 @@ export const words = [
     "pos": "n.",
     "zh": "作者；作家",
     "enDef": "noun meaning “作者”",
-    "example": "I need more information about author.",
-    "exampleZh": "我需要更多关于作者的信息。"
+    "example": "We learned a new author in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「作者」的词。"
   },
   {
     "id": "b2-0230",
@@ -2988,8 +2988,8 @@ export const words = [
     "pos": "n.",
     "zh": "忠告；诀窍；实用的提示",
     "enDef": "noun meaning “忠告”",
-    "example": "I need more information about tip.",
-    "exampleZh": "我需要更多关于忠告的信息。"
+    "example": "We learned a new tip in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「忠告」的词。"
   },
   {
     "id": "b2-0231",
@@ -3001,8 +3001,8 @@ export const words = [
     "pos": "adj.",
     "zh": "熟悉；熟知",
     "enDef": "adjective meaning “熟悉”",
-    "example": "That description sounds familiar.",
-    "exampleZh": "那种描述听起来很熟悉。"
+    "example": "The result looks familiar to everyone.",
+    "exampleZh": "这个结果在大家看来很熟悉。"
   },
   {
     "id": "b2-0232",
@@ -3014,8 +3014,8 @@ export const words = [
     "pos": "短语",
     "zh": "牢记",
     "enDef": "a set phrase meaning “牢记”",
-    "example": "We use this phrase when we mean “牢记”.",
-    "exampleZh": "这个短语表示「牢记」。"
+    "example": "This phrase means “牢记” in the unit.",
+    "exampleZh": "这个短语在本单元表示「牢记」。"
   },
   {
     "id": "b2-0233",
@@ -3027,8 +3027,8 @@ export const words = [
     "pos": "vt.",
     "zh": "给……下定义；界定；解释",
     "enDef": "verb meaning “给……下定义”",
-    "example": "Can you define this carefully?",
-    "exampleZh": "你能仔细地给……下定义一下吗？"
+    "example": "Many students define after school.",
+    "exampleZh": "许多学生放学后会给……下定义。"
   },
   {
     "id": "b2-0234",
@@ -3040,8 +3040,8 @@ export const words = [
     "pos": "n.",
     "zh": "盒；箱；情况；案件",
     "enDef": "noun meaning “盒”",
-    "example": "I need more information about case.",
-    "exampleZh": "我需要更多关于盒的信息。"
+    "example": "We learned a new case in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「盒」的词。"
   },
   {
     "id": "b2-0235",
@@ -3053,8 +3053,8 @@ export const words = [
     "pos": "短语",
     "zh": "万维网；环球信息网",
     "enDef": "a set phrase meaning “万维网”",
-    "example": "We use this phrase when we mean “万维网”.",
-    "exampleZh": "这个短语表示「万维网」。"
+    "example": "This phrase means “万维网” in the unit.",
+    "exampleZh": "这个短语在本单元表示「万维网」。"
   },
   {
     "id": "b2-0236",
@@ -3066,8 +3066,8 @@ export const words = [
     "pos": "n.",
     "zh": "孔子",
     "enDef": "noun meaning “孔子”",
-    "example": "I need more information about Confucius.",
-    "exampleZh": "我需要更多关于孔子的信息。"
+    "example": "We learned a new Confucius in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「孔子」的词。"
   },
   {
     "id": "b2-0237",
@@ -3079,8 +3079,8 @@ export const words = [
     "pos": "n.",
     "zh": "公馆；宅地",
     "enDef": "noun meaning “公馆”",
-    "example": "I need more information about mansion.",
-    "exampleZh": "我需要更多关于公馆的信息。"
+    "example": "We learned a new mansion in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「公馆」的词。"
   },
   {
     "id": "b2-0238",
@@ -3092,8 +3092,8 @@ export const words = [
     "pos": "n.",
     "zh": "墓地；公墓",
     "enDef": "noun meaning “墓地”",
-    "example": "I need more information about cemetery.",
-    "exampleZh": "我需要更多关于墓地的信息。"
+    "example": "We learned a new cemetery in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「墓地」的词。"
   },
   {
     "id": "b2-0239",
@@ -3105,8 +3105,8 @@ export const words = [
     "pos": "n.",
     "zh": "哲学",
     "enDef": "noun meaning “哲学”",
-    "example": "I need more information about philosophy.",
-    "exampleZh": "我需要更多关于哲学的信息。"
+    "example": "We learned a new philosophy in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「哲学」的词。"
   },
   {
     "id": "b2-0240",
@@ -3118,8 +3118,8 @@ export const words = [
     "pos": "n.",
     "zh": "后裔；后代；子孙",
     "enDef": "noun meaning “后裔”",
-    "example": "I need more information about descendant.",
-    "exampleZh": "我需要更多关于后裔的信息。"
+    "example": "We learned a new descendant in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「后裔」的词。"
   },
   {
     "id": "b2-0241",
@@ -3131,8 +3131,8 @@ export const words = [
     "pos": "adj. / n.",
     "zh": "单独的；个别的；个人",
     "enDef": "adjective meaning “单独的”",
-    "example": "That description sounds individual.",
-    "exampleZh": "那种描述听起来很单独的。"
+    "example": "The result looks individual to everyone.",
+    "exampleZh": "这个结果在大家看来很单独的。"
   },
   {
     "id": "b2-0242",
@@ -3144,8 +3144,8 @@ export const words = [
     "pos": "n.",
     "zh": "足跟；（脚、袜子、鞋等的）后跟",
     "enDef": "noun meaning “足跟”",
-    "example": "I need more information about heel.",
-    "exampleZh": "我需要更多关于足跟的信息。"
+    "example": "We learned a new heel in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「足跟」的词。"
   },
   {
     "id": "b2-0243",
@@ -3157,8 +3157,8 @@ export const words = [
     "pos": "专有名词",
     "zh": "（喻）（希腊神话）阿克琉斯的脚跟，致命的弱点",
     "enDef": "a proper name / term for “（喻）（希腊神话）阿克琉斯的脚跟”",
-    "example": "We use this phrase when we mean “（喻）（希腊神话）阿克琉斯的脚跟”.",
-    "exampleZh": "这个短语表示「（喻）（希腊神话）阿克琉斯的脚跟」。"
+    "example": "This phrase means “（喻）（希腊神话）阿克琉斯的脚跟” in the unit.",
+    "exampleZh": "这个短语在本单元表示「（喻）（希腊神话）阿克琉斯的脚跟」。"
   },
   {
     "id": "b2-0244",
@@ -3170,8 +3170,8 @@ export const words = [
     "pos": "n.",
     "zh": "王国；领域",
     "enDef": "noun meaning “王国”",
-    "example": "I need more information about kingdom.",
-    "exampleZh": "我需要更多关于王国的信息。"
+    "example": "We learned a new kingdom in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「王国」的词。"
   },
   {
     "id": "b2-0245",
@@ -3183,8 +3183,8 @@ export const words = [
     "pos": "adj. / n.",
     "zh": "最重要的；最高级别的；（公司或机构的）首领；酋长",
     "enDef": "adjective meaning “最重要的”",
-    "example": "That description sounds chief.",
-    "exampleZh": "那种描述听起来很最重要的。"
+    "example": "The result looks chief to everyone.",
+    "exampleZh": "这个结果在大家看来很最重要的。"
   },
   {
     "id": "b2-0246",
@@ -3196,8 +3196,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "谜；智力游戏；疑问；迷惑；使困惑",
     "enDef": "noun meaning “谜”",
-    "example": "I need more information about puzzle.",
-    "exampleZh": "我需要更多关于谜的信息。"
+    "example": "We learned a new puzzle in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「谜」的词。"
   },
   {
     "id": "b2-0247",
@@ -3209,8 +3209,8 @@ export const words = [
     "pos": "adj. / adv.",
     "zh": "附近的；临近的；在附近",
     "enDef": "adjective meaning “附近的”",
-    "example": "That description sounds nearby.",
-    "exampleZh": "那种描述听起来很附近的。"
+    "example": "The result looks nearby to everyone.",
+    "exampleZh": "这个结果在大家看来很附近的。"
   },
   {
     "id": "b2-0248",
@@ -3222,8 +3222,8 @@ export const words = [
     "pos": "n.",
     "zh": "把……和……连接或联结起来",
     "enDef": "noun meaning “把……和……连接或联结起来”",
-    "example": "I need more information about join...to.",
-    "exampleZh": "我需要更多关于把……和……连接或联结起来的信息。"
+    "example": "We learned a new join...to in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「把……和……连接或联结起来」的词。"
   },
   {
     "id": "b2-0249",
@@ -3235,8 +3235,8 @@ export const words = [
     "pos": "短语",
     "zh": "脱离；背叛；逃脱",
     "enDef": "a set phrase meaning “脱离”",
-    "example": "We use this phrase when we mean “脱离”.",
-    "exampleZh": "这个短语表示「脱离」。"
+    "example": "This phrase means “脱离” in the unit.",
+    "exampleZh": "这个短语在本单元表示「脱离」。"
   },
   {
     "id": "b2-0250",
@@ -3248,8 +3248,8 @@ export const words = [
     "pos": "vi.",
     "zh": "应在（某处）；适应",
     "enDef": "verb meaning “应在（某处）”",
-    "example": "Can you belong this carefully?",
-    "exampleZh": "你能仔细地应在（某处）一下吗？"
+    "example": "Many students belong after school.",
+    "exampleZh": "许多学生放学后会应在（某处）。"
   },
   {
     "id": "b2-0251",
@@ -3261,8 +3261,8 @@ export const words = [
     "pos": "短语",
     "zh": "属于",
     "enDef": "a set phrase meaning “属于”",
-    "example": "We use this phrase when we mean “属于”.",
-    "exampleZh": "这个短语表示「属于」。"
+    "example": "This phrase means “属于” in the unit.",
+    "exampleZh": "这个短语在本单元表示「属于」。"
   },
   {
     "id": "b2-0252",
@@ -3274,8 +3274,8 @@ export const words = [
     "pos": "短语",
     "zh": "同（一样也）；和；还",
     "enDef": "a set phrase meaning “同（一样也）”",
-    "example": "We use this phrase when we mean “同（一样也）”.",
-    "exampleZh": "这个短语表示「同（一样也）」。"
+    "example": "This phrase means “同（一样也）” in the unit.",
+    "exampleZh": "这个短语在本单元表示「同（一样也）」。"
   },
   {
     "id": "b2-0253",
@@ -3287,8 +3287,8 @@ export const words = [
     "pos": "n.",
     "zh": "通货；货币",
     "enDef": "noun meaning “通货”",
-    "example": "I need more information about currency.",
-    "exampleZh": "我需要更多关于通货的信息。"
+    "example": "We learned a new currency in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「通货」的词。"
   },
   {
     "id": "b2-0254",
@@ -3300,8 +3300,8 @@ export const words = [
     "pos": "adj.",
     "zh": "军事的；军用的",
     "enDef": "adjective meaning “军事的”",
-    "example": "That description sounds military.",
-    "exampleZh": "那种描述听起来很军事的。"
+    "example": "The result looks military to everyone.",
+    "exampleZh": "这个结果在大家看来很军事的。"
   },
   {
     "id": "b2-0255",
@@ -3313,8 +3313,8 @@ export const words = [
     "pos": "n.",
     "zh": "防御；保卫",
     "enDef": "noun meaning “防御”",
-    "example": "I need more information about defence.",
-    "exampleZh": "我需要更多关于防御的信息。"
+    "example": "We learned a new defence in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「防御」的词。"
   },
   {
     "id": "b2-0256",
@@ -3326,8 +3326,8 @@ export const words = [
     "pos": "adj.",
     "zh": "法律的；合法的",
     "enDef": "adjective meaning “法律的”",
-    "example": "That description sounds legal.",
-    "exampleZh": "那种描述听起来很法律的。"
+    "example": "The result looks legal to everyone.",
+    "exampleZh": "这个结果在大家看来很法律的。"
   },
   {
     "id": "b2-0257",
@@ -3339,8 +3339,8 @@ export const words = [
     "pos": "vt.",
     "zh": "围绕；包围",
     "enDef": "verb meaning “围绕”",
-    "example": "Can you surround this carefully?",
-    "exampleZh": "你能仔细地围绕一下吗？"
+    "example": "Many students surround after school.",
+    "exampleZh": "许多学生放学后会围绕。"
   },
   {
     "id": "b2-0258",
@@ -3352,8 +3352,8 @@ export const words = [
     "pos": "n.",
     "zh": "证据；证明",
     "enDef": "noun meaning “证据”",
-    "example": "I need more information about evidence.",
-    "exampleZh": "我需要更多关于证据的信息。"
+    "example": "We learned a new evidence in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「证据」的词。"
   },
   {
     "id": "b2-0259",
@@ -3365,8 +3365,8 @@ export const words = [
     "pos": "n.",
     "zh": "成就；成绩；达到",
     "enDef": "noun meaning “成就”",
-    "example": "I need more information about achievement.",
-    "exampleZh": "我需要更多关于成就的信息。"
+    "example": "We learned a new achievement in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「成就」的词。"
   },
   {
     "id": "b2-0260",
@@ -3378,8 +3378,8 @@ export const words = [
     "pos": "n.",
     "zh": "地方；地点；位置",
     "enDef": "noun meaning “地方”",
-    "example": "I need more information about location.",
-    "exampleZh": "我需要更多关于地方的信息。"
+    "example": "We learned a new location in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「地方」的词。"
   },
   {
     "id": "b2-0261",
@@ -3391,8 +3391,8 @@ export const words = [
     "pos": "vt.",
     "zh": "占领；征服；控制",
     "enDef": "verb meaning “占领”",
-    "example": "Can you conquer this carefully?",
-    "exampleZh": "你能仔细地占领一下吗？"
+    "example": "Many students conquer after school.",
+    "exampleZh": "许多学生放学后会占领。"
   },
   {
     "id": "b2-0262",
@@ -3404,8 +3404,8 @@ export const words = [
     "pos": "n. / vi. & vt.",
     "zh": "战役；搏斗；奋斗",
     "enDef": "noun meaning “战役”",
-    "example": "I need more information about battle.",
-    "exampleZh": "我需要更多关于战役的信息。"
+    "example": "We learned a new battle in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「战役」的词。"
   },
   {
     "id": "b2-0263",
@@ -3417,8 +3417,8 @@ export const words = [
     "pos": "n.",
     "zh": "港口（城市）",
     "enDef": "noun meaning “港口（城市）”",
-    "example": "I need more information about port.",
-    "exampleZh": "我需要更多关于港口（城市）的信息。"
+    "example": "We learned a new port in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「港口（城市）」的词。"
   },
   {
     "id": "b2-0264",
@@ -3430,8 +3430,8 @@ export const words = [
     "pos": "adj.",
     "zh": "极有吸引力的；迷人的",
     "enDef": "adjective meaning “极有吸引力的”",
-    "example": "That description sounds fascinating.",
-    "exampleZh": "那种描述听起来很极有吸引力的。"
+    "example": "The result looks fascinating to everyone.",
+    "exampleZh": "这个结果在大家看来很极有吸引力的。"
   },
   {
     "id": "b2-0265",
@@ -3443,8 +3443,8 @@ export const words = [
     "pos": "短语",
     "zh": "留心；留意",
     "enDef": "a set phrase meaning “留心”",
-    "example": "We use this phrase when we mean “留心”.",
-    "exampleZh": "这个短语表示「留心」。"
+    "example": "This phrase means “留心” in the unit.",
+    "exampleZh": "这个短语在本单元表示「留心」。"
   },
   {
     "id": "b2-0266",
@@ -3456,8 +3456,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "收费；指控；主管；控告；充电",
     "enDef": "noun meaning “收费”",
-    "example": "I need more information about charge.",
-    "exampleZh": "我需要更多关于收费的信息。"
+    "example": "We learned a new charge in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「收费」的词。"
   },
   {
     "id": "b2-0267",
@@ -3469,8 +3469,8 @@ export const words = [
     "pos": "vt.",
     "zh": "宣布；通知；声称",
     "enDef": "verb meaning “宣布”",
-    "example": "Can you announce this carefully?",
-    "exampleZh": "你能仔细地宣布一下吗？"
+    "example": "Many students announce after school.",
+    "exampleZh": "许多学生放学后会宣布。"
   },
   {
     "id": "b2-0268",
@@ -3482,8 +3482,8 @@ export const words = [
     "pos": "n.",
     "zh": "金额；数量",
     "enDef": "noun meaning “金额”",
-    "example": "I need more information about amount.",
-    "exampleZh": "我需要更多关于金额的信息。"
+    "example": "We learned a new amount in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「金额」的词。"
   },
   {
     "id": "b2-0269",
@@ -3495,8 +3495,8 @@ export const words = [
     "pos": "n.",
     "zh": "（艺术作品的）展览馆；画廊",
     "enDef": "noun meaning “（艺术作品的）展览馆”",
-    "example": "I need more information about gallery.",
-    "exampleZh": "我需要更多关于（艺术作品的）展览馆的信息。"
+    "example": "We learned a new gallery in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（艺术作品的）展览馆」的词。"
   },
   {
     "id": "b2-0270",
@@ -3508,8 +3508,8 @@ export const words = [
     "pos": "n. / vt. / vi.",
     "zh": "方法；途径；接近；接洽；着手处理；靠近",
     "enDef": "noun meaning “方法”",
-    "example": "I need more information about approach.",
-    "exampleZh": "我需要更多关于方法的信息。"
+    "example": "We learned a new approach in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「方法」的词。"
   },
   {
     "id": "b2-0271",
@@ -3521,8 +3521,8 @@ export const words = [
     "pos": "vt.",
     "zh": "保证；确保；担保",
     "enDef": "verb meaning “保证”",
-    "example": "Can you ensure this carefully?",
-    "exampleZh": "你能仔细地保证一下吗？"
+    "example": "Many students ensure after school.",
+    "exampleZh": "许多学生放学后会保证。"
   },
   {
     "id": "b2-0272",
@@ -3534,8 +3534,8 @@ export const words = [
     "pos": "n.",
     "zh": "（陆上，尤指乡村的）风景",
     "enDef": "noun meaning “（陆上”",
-    "example": "I need more information about landscape.",
-    "exampleZh": "我需要更多关于（陆上的信息。"
+    "example": "We learned a new landscape in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（陆上」的词。"
   },
   {
     "id": "b2-0273",
@@ -3547,8 +3547,8 @@ export const words = [
     "pos": "adj.",
     "zh": "慷慨的；大方的；丰富的",
     "enDef": "adjective meaning “慷慨的”",
-    "example": "That description sounds generous.",
-    "exampleZh": "那种描述听起来很慷慨的。"
+    "example": "The result looks generous to everyone.",
+    "exampleZh": "这个结果在大家看来很慷慨的。"
   },
   {
     "id": "b2-0274",
@@ -3560,8 +3560,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "黄油；奶油；涂黄油于",
     "enDef": "noun meaning “黄油”",
-    "example": "I need more information about butter.",
-    "exampleZh": "我需要更多关于黄油的信息。"
+    "example": "We learned a new butter in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「黄油」的词。"
   },
   {
     "id": "b2-0275",
@@ -3573,8 +3573,8 @@ export const words = [
     "pos": "n.",
     "zh": "蜂蜜",
     "enDef": "noun meaning “蜂蜜”",
-    "example": "I need more information about honey.",
-    "exampleZh": "我需要更多关于蜂蜜的信息。"
+    "example": "We learned a new honey in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「蜂蜜」的词。"
   },
   {
     "id": "b2-0276",
@@ -3586,8 +3586,8 @@ export const words = [
     "pos": "n.",
     "zh": "祖宗；祖先",
     "enDef": "noun meaning “祖宗”",
-    "example": "I need more information about ancestor.",
-    "exampleZh": "我需要更多关于祖宗的信息。"
+    "example": "We learned a new ancestor in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「祖宗」的词。"
   },
   {
     "id": "b2-0277",
@@ -3599,8 +3599,8 @@ export const words = [
     "pos": "n.",
     "zh": "位置；姿态；职位",
     "enDef": "noun meaning “位置”",
-    "example": "I need more information about position.",
-    "exampleZh": "我需要更多关于位置的信息。"
+    "example": "We learned a new position in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「位置」的词。"
   },
   {
     "id": "b2-0278",
@@ -3612,8 +3612,8 @@ export const words = [
     "pos": "n.",
     "zh": "庭院；院子",
     "enDef": "noun meaning “庭院”",
-    "example": "I need more information about courtyard.",
-    "exampleZh": "我需要更多关于庭院的信息。"
+    "example": "We learned a new courtyard in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「庭院」的词。"
   },
   {
     "id": "b2-0279",
@@ -3625,8 +3625,8 @@ export const words = [
     "pos": "n.",
     "zh": "点心；小吃",
     "enDef": "noun meaning “点心”",
-    "example": "I need more information about snack.",
-    "exampleZh": "我需要更多关于点心的信息。"
+    "example": "We learned a new snack in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「点心」的词。"
   },
   {
     "id": "b2-0280",
@@ -3638,8 +3638,8 @@ export const words = [
     "pos": "adj.",
     "zh": "热切的；渴望的",
     "enDef": "adjective meaning “热切的”",
-    "example": "That description sounds eager.",
-    "exampleZh": "那种描述听起来很热切的。"
+    "example": "The result looks eager to everyone.",
+    "exampleZh": "这个结果在大家看来很热切的。"
   },
   {
     "id": "b2-0281",
@@ -3651,8 +3651,8 @@ export const words = [
     "pos": "n.",
     "zh": "诗人",
     "enDef": "noun meaning “诗人”",
-    "example": "I need more information about poet.",
-    "exampleZh": "我需要更多关于诗人的信息。"
+    "example": "We learned a new poet in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「诗人」的词。"
   },
   {
     "id": "b2-0282",
@@ -3664,8 +3664,8 @@ export const words = [
     "pos": "n.",
     "zh": "（英国、爱尔兰的）郡；（美国的）县",
     "enDef": "noun meaning “（英国、爱尔兰的）郡”",
-    "example": "I need more information about county.",
-    "exampleZh": "我需要更多关于（英国、爱尔兰的）郡的信息。"
+    "example": "We learned a new county in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（英国、爱尔兰的）郡」的词。"
   },
   {
     "id": "b2-0283",
@@ -3677,8 +3677,8 @@ export const words = [
     "pos": "n.",
     "zh": "盛宴；宴会；节日",
     "enDef": "noun meaning “盛宴”",
-    "example": "I need more information about feast.",
-    "exampleZh": "我需要更多关于盛宴的信息。"
+    "example": "We learned a new feast in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「盛宴」的词。"
   },
   {
     "id": "b2-0284",
@@ -3690,8 +3690,8 @@ export const words = [
     "pos": "vi. & vt. / n.",
     "zh": "（使）翻滚；（使）滚动；卷（轴）；翻滚",
     "enDef": "verb meaning “（使）翻滚”",
-    "example": "Can you roll this carefully?",
-    "exampleZh": "你能仔细地（使）翻滚一下吗？"
+    "example": "Many students roll after school.",
+    "exampleZh": "许多学生放学后会（使）翻滚。"
   },
   {
     "id": "b2-0285",
@@ -3703,8 +3703,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "点；小（圆）点；加点；遍布",
     "enDef": "noun meaning “点”",
-    "example": "I need more information about dot.",
-    "exampleZh": "我需要更多关于点的信息。"
+    "example": "We learned a new dot in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「点」的词。"
   },
   {
     "id": "b2-0286",
@@ -3716,8 +3716,8 @@ export const words = [
     "pos": "n.",
     "zh": "牛",
     "enDef": "noun meaning “牛”",
-    "example": "I need more information about cattle.",
-    "exampleZh": "我需要更多关于牛的信息。"
+    "example": "We learned a new cattle in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「牛」的词。"
   },
   {
     "id": "b2-0287",
@@ -3729,8 +3729,8 @@ export const words = [
     "pos": "vi. & n.",
     "zh": "吼叫；咆哮",
     "enDef": "verb meaning “吼叫”",
-    "example": "Can you roar this carefully?",
-    "exampleZh": "你能仔细地吼叫一下吗？"
+    "example": "Many students roar after school.",
+    "exampleZh": "许多学生放学后会吼叫。"
   },
   {
     "id": "b2-0288",
@@ -3742,8 +3742,8 @@ export const words = [
     "pos": "n.",
     "zh": "大海；海洋",
     "enDef": "noun meaning “大海”",
-    "example": "I need more information about ocean.",
-    "exampleZh": "我需要更多关于大海的信息。"
+    "example": "We learned a new ocean in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「大海」的词。"
   },
   {
     "id": "b2-0289",
@@ -3755,8 +3755,8 @@ export const words = [
     "pos": "n.",
     "zh": "气味；气息",
     "enDef": "noun meaning “气味”",
-    "example": "I need more information about scent.",
-    "exampleZh": "我需要更多关于气味的信息。"
+    "example": "We learned a new scent in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「气味」的词。"
   },
   {
     "id": "b2-0290",
@@ -3768,8 +3768,8 @@ export const words = [
     "pos": "vt.",
     "zh": "问候；迎接",
     "enDef": "verb meaning “问候”",
-    "example": "Can you greet this carefully?",
-    "exampleZh": "你能仔细地问候一下吗？"
+    "example": "Many students greet after school.",
+    "exampleZh": "许多学生放学后会问候。"
   },
   {
     "id": "b2-0291",
@@ -3781,8 +3781,8 @@ export const words = [
     "pos": "n.",
     "zh": "酒吧；酒馆",
     "enDef": "noun meaning “酒吧”",
-    "example": "I need more information about pub.",
-    "exampleZh": "我需要更多关于酒吧的信息。"
+    "example": "We learned a new pub in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「酒吧」的词。"
   },
   {
     "id": "b2-0292",
@@ -3794,8 +3794,8 @@ export const words = [
     "pos": "n.",
     "zh": "葡萄酒；果酒",
     "enDef": "noun meaning “葡萄酒”",
-    "example": "I need more information about wine.",
-    "exampleZh": "我需要更多关于葡萄酒的信息。"
+    "example": "We learned a new wine in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「葡萄酒」的词。"
   },
   {
     "id": "b2-0293",
@@ -3807,8 +3807,8 @@ export const words = [
     "pos": "n.",
     "zh": "（一杯）啤酒",
     "enDef": "noun meaning “（一杯）啤酒”",
-    "example": "I need more information about beer.",
-    "exampleZh": "我需要更多关于（一杯）啤酒的信息。"
+    "example": "We learned a new beer in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（一杯）啤酒」的词。"
   },
   {
     "id": "b2-0294",
@@ -3820,8 +3820,8 @@ export const words = [
     "pos": "n. / vt. & vi.",
     "zh": "炖菜（有肉和蔬菜）；炖；煨",
     "enDef": "noun meaning “炖菜（有肉和蔬菜）”",
-    "example": "I need more information about stew.",
-    "exampleZh": "我需要更多关于炖菜（有肉和蔬菜）的信息。"
+    "example": "We learned a new stew in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「炖菜（有肉和蔬菜）」的词。"
   },
   {
     "id": "b2-0295",
@@ -3833,8 +3833,8 @@ export const words = [
     "pos": "n.",
     "zh": "习俗；风俗；习惯",
     "enDef": "noun meaning “习俗”",
-    "example": "I need more information about custom.",
-    "exampleZh": "我需要更多关于习俗的信息。"
+    "example": "We learned a new custom in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「习俗」的词。"
   },
   {
     "id": "b2-0296",
@@ -3846,8 +3846,8 @@ export const words = [
     "pos": "adj.",
     "zh": "感觉的；感官的",
     "enDef": "adjective meaning “感觉的”",
-    "example": "That description sounds sensory.",
-    "exampleZh": "那种描述听起来很感觉的。"
+    "example": "The result looks sensory to everyone.",
+    "exampleZh": "这个结果在大家看来很感觉的。"
   },
   {
     "id": "b2-0297",
@@ -3859,8 +3859,8 @@ export const words = [
     "pos": "adj.",
     "zh": "引人注目的；显著的",
     "enDef": "adjective meaning “引人注目的”",
-    "example": "That description sounds striking.",
-    "exampleZh": "那种描述听起来很引人注目的。"
+    "example": "The result looks striking to everyone.",
+    "exampleZh": "这个结果在大家看来很引人注目的。"
   },
   {
     "id": "b2-0298",
@@ -3872,8 +3872,8 @@ export const words = [
     "pos": "n.",
     "zh": "过渡；转变；变迁",
     "enDef": "noun meaning “过渡”",
-    "example": "I need more information about transition.",
-    "exampleZh": "我需要更多关于过渡的信息。"
+    "example": "We learned a new transition in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「过渡」的词。"
   },
   {
     "id": "b2-0299",
@@ -3885,8 +3885,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "人群；一群人；民众；挤满；使……拥挤",
     "enDef": "noun meaning “人群”",
-    "example": "I need more information about crowd.",
-    "exampleZh": "我需要更多关于人群的信息。"
+    "example": "We learned a new crowd in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「人群」的词。"
   },
   {
     "id": "b2-0300",
@@ -3898,8 +3898,8 @@ export const words = [
     "pos": "adj.",
     "zh": "古典的；经典的",
     "enDef": "adjective meaning “古典的”",
-    "example": "That description sounds classical.",
-    "exampleZh": "那种描述听起来很古典的。"
+    "example": "The result looks classical to everyone.",
+    "exampleZh": "这个结果在大家看来很古典的。"
   },
   {
     "id": "b2-0301",
@@ -3911,8 +3911,8 @@ export const words = [
     "pos": "n.",
     "zh": "嘻哈音乐；嘻哈文化",
     "enDef": "noun meaning “嘻哈音乐”",
-    "example": "I need more information about hip-hop.",
-    "exampleZh": "我需要更多关于嘻哈音乐的信息。"
+    "example": "We learned a new hip-hop in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「嘻哈音乐」的词。"
   },
   {
     "id": "b2-0302",
@@ -3924,8 +3924,8 @@ export const words = [
     "pos": "n.",
     "zh": "泰克诺音乐（一种节奏快、通常无歌声相伴的音乐）",
     "enDef": "noun meaning “泰克诺音乐（一种节奏快、通常无歌声相…”",
-    "example": "I need more information about techno.",
-    "exampleZh": "我需要更多关于泰克诺音乐（一种节奏快、通常无歌声相…的信息。"
+    "example": "We learned a new techno in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「泰克诺音乐（一种节奏快、通常无歌声相…」的词。"
   },
   {
     "id": "b2-0303",
@@ -3937,8 +3937,8 @@ export const words = [
     "pos": "n.",
     "zh": "能源；能量；精力",
     "enDef": "noun meaning “能源”",
-    "example": "I need more information about energy.",
-    "exampleZh": "我需要更多关于能源的信息。"
+    "example": "We learned a new energy in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「能源」的词。"
   },
   {
     "id": "b2-0304",
@@ -3950,8 +3950,8 @@ export const words = [
     "pos": "n.",
     "zh": "灵魂；心灵",
     "enDef": "noun meaning “灵魂”",
-    "example": "I need more information about soul.",
-    "exampleZh": "我需要更多关于灵魂的信息。"
+    "example": "We learned a new soul in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「灵魂」的词。"
   },
   {
     "id": "b2-0305",
@@ -3963,8 +3963,8 @@ export const words = [
     "pos": "n.",
     "zh": "风笛",
     "enDef": "noun meaning “风笛”",
-    "example": "I need more information about bagpipes.",
-    "exampleZh": "我需要更多关于风笛的信息。"
+    "example": "We learned a new bagpipes in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「风笛」的词。"
   },
   {
     "id": "b2-0306",
@@ -3976,8 +3976,8 @@ export const words = [
     "pos": "adj.",
     "zh": "有弦的",
     "enDef": "adjective meaning “有弦的”",
-    "example": "That description sounds stringed.",
-    "exampleZh": "那种描述听起来很有弦的。"
+    "example": "The result looks stringed to everyone.",
+    "exampleZh": "这个结果在大家看来很有弦的。"
   },
   {
     "id": "b2-0307",
@@ -3989,8 +3989,8 @@ export const words = [
     "pos": "短语",
     "zh": "弦乐器",
     "enDef": "a set phrase meaning “弦乐器”",
-    "example": "We use this phrase when we mean “弦乐器”.",
-    "exampleZh": "这个短语表示「弦乐器」。"
+    "example": "This phrase means “弦乐器” in the unit.",
+    "exampleZh": "这个短语在本单元表示「弦乐器」。"
   },
   {
     "id": "b2-0308",
@@ -4002,8 +4002,8 @@ export const words = [
     "pos": "adj.",
     "zh": "很接近的；事实上的；虚拟的",
     "enDef": "adjective meaning “很接近的”",
-    "example": "That description sounds virtual.",
-    "exampleZh": "那种描述听起来很很接近的。"
+    "example": "The result looks virtual to everyone.",
+    "exampleZh": "这个结果在大家看来很很接近的。"
   },
   {
     "id": "b2-0309",
@@ -4015,8 +4015,8 @@ export const words = [
     "pos": "短语",
     "zh": "虚拟合唱团",
     "enDef": "a set phrase meaning “虚拟合唱团”",
-    "example": "We use this phrase when we mean “虚拟合唱团”.",
-    "exampleZh": "这个短语表示「虚拟合唱团」。"
+    "example": "This phrase means “虚拟合唱团” in the unit.",
+    "exampleZh": "这个短语在本单元表示「虚拟合唱团」。"
   },
   {
     "id": "b2-0310",
@@ -4028,8 +4028,8 @@ export const words = [
     "pos": "n.",
     "zh": "成分；（音乐、艺术、诗歌的）作品",
     "enDef": "noun meaning “成分”",
-    "example": "I need more information about composition.",
-    "exampleZh": "我需要更多关于成分的信息。"
+    "example": "We learned a new composition in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「成分」的词。"
   },
   {
     "id": "b2-0311",
@@ -4041,8 +4041,8 @@ export const words = [
     "pos": "n.",
     "zh": "机会，时机",
     "enDef": "noun meaning “机会”",
-    "example": "I need more information about opportunity.",
-    "exampleZh": "我需要更多关于机会的信息。"
+    "example": "We learned a new opportunity in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「机会」的词。"
   },
   {
     "id": "b2-0312",
@@ -4054,8 +4054,8 @@ export const words = [
     "pos": "vi. & vt.",
     "zh": "表演；履行；执行",
     "enDef": "verb meaning “表演”",
-    "example": "Can you perform this carefully?",
-    "exampleZh": "你能仔细地表演一下吗？"
+    "example": "Many students perform after school.",
+    "exampleZh": "许多学生放学后会表演。"
   },
   {
     "id": "b2-0313",
@@ -4067,8 +4067,8 @@ export const words = [
     "pos": "n.",
     "zh": "表演；演技；表现",
     "enDef": "noun meaning “表演”",
-    "example": "I need more information about performance.",
-    "exampleZh": "我需要更多关于表演的信息。"
+    "example": "We learned a new performance in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「表演」的词。"
   },
   {
     "id": "b2-0314",
@@ -4080,8 +4080,8 @@ export const words = [
     "pos": "n.",
     "zh": "表演者；演员",
     "enDef": "noun meaning “表演者”",
-    "example": "I need more information about performer.",
-    "exampleZh": "我需要更多关于表演者的信息。"
+    "example": "We learned a new performer in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「表演者」的词。"
   },
   {
     "id": "b2-0315",
@@ -4093,8 +4093,8 @@ export const words = [
     "pos": "prep.",
     "zh": "（朝）向",
     "enDef": "preposition meaning “（朝）向”",
-    "example": "Notice how “onto” connects the ideas (（朝）向).",
-    "exampleZh": "注意「…」如何连接语义（（朝）向）。"
+    "example": "This small word (（朝）向) links two ideas.",
+    "exampleZh": "这个词用来连接两个意思（（朝）向）。"
   },
   {
     "id": "b2-0316",
@@ -4106,8 +4106,8 @@ export const words = [
     "pos": "n.",
     "zh": "演播室；（音乐的）录音棚；工作室",
     "enDef": "noun meaning “演播室”",
-    "example": "I need more information about studio.",
-    "exampleZh": "我需要更多关于演播室的信息。"
+    "example": "We learned a new studio in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「演播室」的词。"
   },
   {
     "id": "b2-0317",
@@ -4119,8 +4119,8 @@ export const words = [
     "pos": "adj.",
     "zh": "普通的；平凡的",
     "enDef": "adjective meaning “普通的”",
-    "example": "That description sounds ordinary.",
-    "exampleZh": "那种描述听起来很普通的。"
+    "example": "The result looks ordinary to everyone.",
+    "exampleZh": "这个结果在大家看来很普通的。"
   },
   {
     "id": "b2-0318",
@@ -4132,8 +4132,8 @@ export const words = [
     "pos": "v.",
     "zh": "使能够；使可能",
     "enDef": "verb meaning “使能够”",
-    "example": "Can you enable this carefully?",
-    "exampleZh": "你能仔细地使能够一下吗？"
+    "example": "Many students enable after school.",
+    "exampleZh": "许多学生放学后会使能够。"
   },
   {
     "id": "b2-0319",
@@ -4145,8 +4145,8 @@ export const words = [
     "pos": "v.",
     "zh": "证明；展现",
     "enDef": "verb meaning “证明”",
-    "example": "Can you prove this carefully?",
-    "exampleZh": "你能仔细地证明一下吗？"
+    "example": "Many students prove after school.",
+    "exampleZh": "许多学生放学后会证明。"
   },
   {
     "id": "b2-0320",
@@ -4158,8 +4158,8 @@ export const words = [
     "pos": "v. / n.",
     "zh": "授予；奖品",
     "enDef": "verb meaning “授予”",
-    "example": "Can you award this carefully?",
-    "exampleZh": "你能仔细地授予一下吗？"
+    "example": "Many students award after school.",
+    "exampleZh": "许多学生放学后会授予。"
   },
   {
     "id": "b2-0321",
@@ -4171,8 +4171,8 @@ export const words = [
     "pos": "n.",
     "zh": "作曲者；作曲家",
     "enDef": "noun meaning “作曲者”",
-    "example": "I need more information about composer.",
-    "exampleZh": "我需要更多关于作曲者的信息。"
+    "example": "We learned a new composer in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「作曲者」的词。"
   },
   {
     "id": "b2-0322",
@@ -4184,8 +4184,8 @@ export const words = [
     "pos": "n.",
     "zh": "（乐队、合唱团等的）指挥；（公共汽车的）售票员",
     "enDef": "noun meaning “（乐队、合唱团等的）指挥”",
-    "example": "I need more information about conductor.",
-    "exampleZh": "我需要更多关于（乐队、合唱团等的）指挥的信息。"
+    "example": "We learned a new conductor in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（乐队、合唱团等的）指挥」的词。"
   },
   {
     "id": "b2-0323",
@@ -4197,8 +4197,8 @@ export const words = [
     "pos": "短语",
     "zh": "爱上",
     "enDef": "a set phrase meaning “爱上”",
-    "example": "We use this phrase when we mean “爱上”.",
-    "exampleZh": "这个短语表示「爱上」。"
+    "example": "This phrase means “爱上” in the unit.",
+    "exampleZh": "这个短语在本单元表示「爱上」。"
   },
   {
     "id": "b2-0324",
@@ -4210,8 +4210,8 @@ export const words = [
     "pos": "adj. / n.",
     "zh": "原来的；独创的；原作的；原件；原作",
     "enDef": "adjective meaning “原来的”",
-    "example": "That description sounds original.",
-    "exampleZh": "那种描述听起来很原来的。"
+    "example": "The result looks original to everyone.",
+    "exampleZh": "这个结果在大家看来很原来的。"
   },
   {
     "id": "b2-0325",
@@ -4223,8 +4223,8 @@ export const words = [
     "pos": "n.",
     "zh": "现象",
     "enDef": "noun meaning “现象”",
-    "example": "I need more information about phenomenon.",
-    "exampleZh": "我需要更多关于现象的信息。"
+    "example": "We learned a new phenomenon in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「现象」的词。"
   },
   {
     "id": "b2-0326",
@@ -4236,8 +4236,8 @@ export const words = [
     "pos": "n.",
     "zh": "（发展或进展的）时期；阶段",
     "enDef": "noun meaning “（发展或进展的）时期”",
-    "example": "I need more information about stage.",
-    "exampleZh": "我需要更多关于（发展或进展的）时期的信息。"
+    "example": "We learned a new stage in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（发展或进展的）时期」的词。"
   },
   {
     "id": "b2-0327",
@@ -4249,8 +4249,8 @@ export const words = [
     "pos": "adv.",
     "zh": "（用以强调）全部；总共",
     "enDef": "adverb meaning “（用以强调）全部”",
-    "example": "She answered the question altogether.",
-    "exampleZh": "她（用以强调）全部地回答了这个问题。"
+    "example": "She spoke altogether in the meeting.",
+    "exampleZh": "她在会上（用以强调）全部地发言。"
   },
   {
     "id": "b2-0328",
@@ -4262,8 +4262,8 @@ export const words = [
     "pos": "adv.",
     "zh": "如此；因此",
     "enDef": "adverb meaning “如此”",
-    "example": "She answered the question thus.",
-    "exampleZh": "她如此地回答了这个问题。"
+    "example": "She spoke thus in the meeting.",
+    "exampleZh": "她在会上如此地发言。"
   },
   {
     "id": "b2-0329",
@@ -4275,8 +4275,8 @@ export const words = [
     "pos": "n.",
     "zh": "乐队；带子",
     "enDef": "noun meaning “乐队”",
-    "example": "I need more information about band.",
-    "exampleZh": "我需要更多关于乐队的信息。"
+    "example": "We learned a new band in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「乐队」的词。"
   },
   {
     "id": "b2-0330",
@@ -4288,8 +4288,8 @@ export const words = [
     "pos": "n. / vi. & vt.",
     "zh": "快速敲击；说唱音乐；敲击；（说唱歌中的）念白",
     "enDef": "noun meaning “快速敲击”",
-    "example": "I need more information about rap.",
-    "exampleZh": "我需要更多关于快速敲击的信息。"
+    "example": "We learned a new rap in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「快速敲击」的词。"
   },
   {
     "id": "b2-0331",
@@ -4301,8 +4301,8 @@ export const words = [
     "pos": "adv.",
     "zh": "现在；目前",
     "enDef": "adverb meaning “现在”",
-    "example": "She answered the question nowadays.",
-    "exampleZh": "她现在地回答了这个问题。"
+    "example": "She spoke nowadays in the meeting.",
+    "exampleZh": "她在会上现在地发言。"
   },
   {
     "id": "b2-0332",
@@ -4314,8 +4314,8 @@ export const words = [
     "pos": "adj.",
     "zh": "逐渐的；渐进的",
     "enDef": "adjective meaning “逐渐的”",
-    "example": "That description sounds gradual.",
-    "exampleZh": "那种描述听起来很逐渐的。"
+    "example": "The result looks gradual to everyone.",
+    "exampleZh": "这个结果在大家看来很逐渐的。"
   },
   {
     "id": "b2-0333",
@@ -4327,8 +4327,8 @@ export const words = [
     "pos": "adj.",
     "zh": "有能力的；有才能的",
     "enDef": "adjective meaning “有能力的”",
-    "example": "That description sounds capable.",
-    "exampleZh": "那种描述听起来很有能力的。"
+    "example": "The result looks capable to everyone.",
+    "exampleZh": "这个结果在大家看来很有能力的。"
   },
   {
     "id": "b2-0334",
@@ -4340,8 +4340,8 @@ export const words = [
     "pos": "n.",
     "zh": "（焦虑、痛苦的）减轻或消除",
     "enDef": "noun meaning “（焦虑、痛苦的）减轻或消除”",
-    "example": "I need more information about relief.",
-    "exampleZh": "我需要更多关于（焦虑、痛苦的）减轻或消除的信息。"
+    "example": "We learned a new relief in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（焦虑、痛苦的）减轻或消除」的词。"
   },
   {
     "id": "b2-0335",
@@ -4353,8 +4353,8 @@ export const words = [
     "pos": "vt. / n.",
     "zh": "治愈；治好（疾病）；解决（问题）；药物；治疗；（解决问题、改善糟糕情况的）措施",
     "enDef": "verb meaning “治愈”",
-    "example": "Can you cure this carefully?",
-    "exampleZh": "你能仔细地治愈一下吗？"
+    "example": "Many students cure after school.",
+    "exampleZh": "许多学生放学后会治愈。"
   },
   {
     "id": "b2-0336",
@@ -4366,8 +4366,8 @@ export const words = [
     "pos": "短语",
     "zh": "被……吸引住；专心致志",
     "enDef": "a set phrase meaning “被……吸引住”",
-    "example": "We use this phrase when we mean “被……吸引住”.",
-    "exampleZh": "这个短语表示「被……吸引住」。"
+    "example": "This phrase means “被……吸引住” in the unit.",
+    "exampleZh": "这个短语在本单元表示「被……吸引住」。"
   },
   {
     "id": "b2-0337",
@@ -4379,8 +4379,8 @@ export const words = [
     "pos": "adj.",
     "zh": "先前的；以往的",
     "enDef": "adjective meaning “先前的”",
-    "example": "That description sounds previous.",
-    "exampleZh": "那种描述听起来很先前的。"
+    "example": "The result looks previous to everyone.",
+    "exampleZh": "这个结果在大家看来很先前的。"
   },
   {
     "id": "b2-0338",
@@ -4392,8 +4392,8 @@ export const words = [
     "pos": "adj.",
     "zh": "失业的；待业的",
     "enDef": "adjective meaning “失业的”",
-    "example": "That description sounds unemployed.",
-    "exampleZh": "那种描述听起来很失业的。"
+    "example": "The result looks unemployed to everyone.",
+    "exampleZh": "这个结果在大家看来很失业的。"
   },
   {
     "id": "b2-0339",
@@ -4405,8 +4405,8 @@ export const words = [
     "pos": "adj. / n.",
     "zh": "浪漫的；浪漫的人",
     "enDef": "adjective meaning “浪漫的”",
-    "example": "That description sounds romantic.",
-    "exampleZh": "那种描述听起来很浪漫的。"
+    "example": "The result looks romantic to everyone.",
+    "exampleZh": "这个结果在大家看来很浪漫的。"
   },
   {
     "id": "b2-0340",
@@ -4418,8 +4418,8 @@ export const words = [
     "pos": "n.",
     "zh": "相册；集邮簿；音乐专辑",
     "enDef": "noun meaning “相册”",
-    "example": "I need more information about album.",
-    "exampleZh": "我需要更多关于相册的信息。"
+    "example": "We learned a new album in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「相册」的词。"
   },
   {
     "id": "b2-0341",
@@ -4431,8 +4431,8 @@ export const words = [
     "pos": "n.",
     "zh": "巨大影响；强大作用；冲击力",
     "enDef": "noun meaning “巨大影响”",
-    "example": "I need more information about impact.",
-    "exampleZh": "我需要更多关于巨大影响的信息。"
+    "example": "We learned a new impact in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「巨大影响」的词。"
   },
   {
     "id": "b2-0342",
@@ -4444,8 +4444,8 @@ export const words = [
     "pos": "n. / vi. / vt.",
     "zh": "目的；目标；力求达到；力争做到；瞄准；目的是；旨在",
     "enDef": "noun meaning “目的”",
-    "example": "I need more information about aim.",
-    "exampleZh": "我需要更多关于目的的信息。"
+    "example": "We learned a new aim in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「目的」的词。"
   },
   {
     "id": "b2-0343",
@@ -4457,8 +4457,8 @@ export const words = [
     "pos": "短语",
     "zh": "安装好（设备或机器）",
     "enDef": "a set phrase meaning “安装好（设备或机器）”",
-    "example": "We use this phrase when we mean “安装好（设备或机器）”.",
-    "exampleZh": "这个短语表示「安装好（设备或机器）」。"
+    "example": "This phrase means “安装好（设备或机器）” in the unit.",
+    "exampleZh": "这个短语在本单元表示「安装好（设备或机器）」。"
   },
   {
     "id": "b2-0344",
@@ -4470,8 +4470,8 @@ export const words = [
     "pos": "n.",
     "zh": "设备；装备",
     "enDef": "noun meaning “设备”",
-    "example": "I need more information about equipment.",
-    "exampleZh": "我需要更多关于设备的信息。"
+    "example": "We learned a new equipment in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「设备」的词。"
   },
   {
     "id": "b2-0345",
@@ -4483,8 +4483,8 @@ export const words = [
     "pos": "短语",
     "zh": "参加……选拔（或试演）",
     "enDef": "a set phrase meaning “参加……选拔（或试演）”",
-    "example": "We use this phrase when we mean “参加……选拔（或试演）”.",
-    "exampleZh": "这个短语表示「参加……选拔（或试演）」。"
+    "example": "This phrase means “参加……选拔（或试演）” in the unit.",
+    "exampleZh": "这个短语在本单元表示「参加……选拔（或试演）」。"
   },
   {
     "id": "b2-0346",
@@ -4496,8 +4496,8 @@ export const words = [
     "pos": "n.",
     "zh": "天才；天资；天赋",
     "enDef": "noun meaning “天才”",
-    "example": "I need more information about talent.",
-    "exampleZh": "我需要更多关于天才的信息。"
+    "example": "We learned a new talent in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「天才」的词。"
   },
   {
     "id": "b2-0347",
@@ -4509,8 +4509,8 @@ export const words = [
     "pos": "n.",
     "zh": "钢琴",
     "enDef": "noun meaning “钢琴”",
-    "example": "I need more information about piano.",
-    "exampleZh": "我需要更多关于钢琴的信息。"
+    "example": "We learned a new piano in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「钢琴」的词。"
   },
   {
     "id": "b2-0348",
@@ -4522,8 +4522,8 @@ export const words = [
     "pos": "vt.",
     "zh": "以为；假设",
     "enDef": "verb meaning “以为”",
-    "example": "Can you assume this carefully?",
-    "exampleZh": "你能仔细地以为一下吗？"
+    "example": "Many students assume after school.",
+    "exampleZh": "许多学生放学后会以为。"
   },
   {
     "id": "b2-0349",
@@ -4535,8 +4535,8 @@ export const words = [
     "pos": "n.",
     "zh": "添加；加法；增加物",
     "enDef": "noun meaning “添加”",
-    "example": "I need more information about addition.",
-    "exampleZh": "我需要更多关于添加的信息。"
+    "example": "We learned a new addition in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「添加」的词。"
   },
   {
     "id": "b2-0350",
@@ -4548,8 +4548,8 @@ export const words = [
     "pos": "短语",
     "zh": "除……以外（还）",
     "enDef": "a set phrase meaning “除……以外（还）”",
-    "example": "We use this phrase when we mean “除……以外（还）”.",
-    "exampleZh": "这个短语表示「除……以外（还）」。"
+    "example": "This phrase means “除……以外（还）” in the unit.",
+    "exampleZh": "这个短语在本单元表示「除……以外（还）」。"
   },
   {
     "id": "b2-0351",
@@ -4561,8 +4561,8 @@ export const words = [
     "pos": "n.",
     "zh": "（疾）病",
     "enDef": "noun meaning “（疾）病”",
-    "example": "I need more information about disease.",
-    "exampleZh": "我需要更多关于（疾）病的信息。"
+    "example": "We learned a new disease in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「（疾）病」的词。"
   },
   {
     "id": "b2-0352",
@@ -4574,8 +4574,8 @@ export const words = [
     "pos": "vi. / n.",
     "zh": "疼痛",
     "enDef": "verb meaning “疼痛”",
-    "example": "Can you ache this carefully?",
-    "exampleZh": "你能仔细地疼痛一下吗？"
+    "example": "Many students ache after school.",
+    "exampleZh": "许多学生放学后会疼痛。"
   },
   {
     "id": "b2-0353",
@@ -4587,8 +4587,8 @@ export const words = [
     "pos": "n.",
     "zh": "治疗；对待；处理",
     "enDef": "noun meaning “治疗”",
-    "example": "I need more information about treatment.",
-    "exampleZh": "我需要更多关于治疗的信息。"
+    "example": "We learned a new treatment in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「治疗」的词。"
   },
   {
     "id": "b2-0354",
@@ -4600,8 +4600,8 @@ export const words = [
     "pos": "短语",
     "zh": "从（那）时起",
     "enDef": "a set phrase meaning “从（那）时起”",
-    "example": "We use this phrase when we mean “从（那）时起”.",
-    "exampleZh": "这个短语表示「从（那）时起」。"
+    "example": "This phrase means “从（那）时起” in the unit.",
+    "exampleZh": "这个短语在本单元表示「从（那）时起」。"
   },
   {
     "id": "b2-0355",
@@ -4613,8 +4613,8 @@ export const words = [
     "pos": "vt.",
     "zh": "依靠；倾斜",
     "enDef": "verb meaning “依靠”",
-    "example": "Can you lean this carefully?",
-    "exampleZh": "你能仔细地依靠一下吗？"
+    "example": "Many students lean after school.",
+    "exampleZh": "许多学生放学后会依靠。"
   },
   {
     "id": "b2-0356",
@@ -4626,8 +4626,8 @@ export const words = [
     "pos": "短语",
     "zh": "（设法）处理；完成",
     "enDef": "a set phrase meaning “（设法）处理”",
-    "example": "We use this phrase when we mean “（设法）处理”.",
-    "exampleZh": "这个短语表示「（设法）处理」。"
+    "example": "This phrase means “（设法）处理” in the unit.",
+    "exampleZh": "这个短语在本单元表示「（设法）处理」。"
   },
   {
     "id": "b2-0357",
@@ -4639,8 +4639,8 @@ export const words = [
     "pos": "adv.",
     "zh": "而且；此外",
     "enDef": "adverb meaning “而且”",
-    "example": "She answered the question moreover.",
-    "exampleZh": "她而且地回答了这个问题。"
+    "example": "She spoke moreover in the meeting.",
+    "exampleZh": "她在会上而且地发言。"
   },
   {
     "id": "b2-0358",
@@ -4652,8 +4652,8 @@ export const words = [
     "pos": "n.",
     "zh": "满足；满意；欣慰",
     "enDef": "noun meaning “满足”",
-    "example": "I need more information about satisfaction.",
-    "exampleZh": "我需要更多关于满足的信息。"
+    "example": "We learned a new satisfaction in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「满足」的词。"
   },
   {
     "id": "b2-0359",
@@ -4665,8 +4665,8 @@ export const words = [
     "pos": "n.",
     "zh": "身心；存在；生物",
     "enDef": "noun meaning “身心”",
-    "example": "I need more information about being.",
-    "exampleZh": "我需要更多关于身心的信息。"
+    "example": "We learned a new being in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「身心」的词。"
   },
   {
     "id": "b2-0360",
@@ -4678,8 +4678,8 @@ export const words = [
     "pos": "adj.",
     "zh": "各种不同的；各种各样的",
     "enDef": "adjective meaning “各种不同的”",
-    "example": "That description sounds various.",
-    "exampleZh": "那种描述听起来很各种不同的。"
+    "example": "The result looks various to everyone.",
+    "exampleZh": "这个结果在大家看来很各种不同的。"
   },
   {
     "id": "b2-0361",
@@ -4691,8 +4691,8 @@ export const words = [
     "pos": "adv.",
     "zh": "以某种方式（或方法）；不知怎么地",
     "enDef": "adverb meaning “以某种方式（或方法）”",
-    "example": "She answered the question somehow.",
-    "exampleZh": "她以某种方式（或方法）地回答了这个问题。"
+    "example": "She spoke somehow in the meeting.",
+    "exampleZh": "她在会上以某种方式（或方法）地发言。"
   },
   {
     "id": "b2-0362",
@@ -4704,8 +4704,8 @@ export const words = [
     "pos": "adj.",
     "zh": "修辞的",
     "enDef": "adjective meaning “修辞的”",
-    "example": "That description sounds rhetorical.",
-    "exampleZh": "那种描述听起来很修辞的。"
+    "example": "The result looks rhetorical to everyone.",
+    "exampleZh": "这个结果在大家看来很修辞的。"
   },
   {
     "id": "b2-0363",
@@ -4717,8 +4717,8 @@ export const words = [
     "pos": "n.",
     "zh": "暗喻；隐喻",
     "enDef": "noun meaning “暗喻”",
-    "example": "I need more information about metaphor.",
-    "exampleZh": "我需要更多关于暗喻的信息。"
+    "example": "We learned a new metaphor in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「暗喻」的词。"
   },
   {
     "id": "b2-0364",
@@ -4730,8 +4730,8 @@ export const words = [
     "pos": "n.",
     "zh": "拟人；人格化；化身",
     "enDef": "noun meaning “拟人”",
-    "example": "I need more information about personification.",
-    "exampleZh": "我需要更多关于拟人的信息。"
+    "example": "We learned a new personification in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「拟人」的词。"
   },
   {
     "id": "b2-0365",
@@ -4743,8 +4743,8 @@ export const words = [
     "pos": "n.",
     "zh": "重复；重做",
     "enDef": "noun meaning “重复”",
-    "example": "I need more information about repetition.",
-    "exampleZh": "我需要更多关于重复的信息。"
+    "example": "We learned a new repetition in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「重复」的词。"
   },
   {
     "id": "b2-0366",
@@ -4756,8 +4756,8 @@ export const words = [
     "pos": "n.",
     "zh": "明喻",
     "enDef": "noun meaning “明喻”",
-    "example": "I need more information about simile.",
-    "exampleZh": "我需要更多关于明喻的信息。"
+    "example": "We learned a new simile in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「明喻」的词。"
   },
   {
     "id": "b2-0367",
@@ -4769,8 +4769,8 @@ export const words = [
     "pos": "n. / vt.",
     "zh": "概述；概要；轮廓",
     "enDef": "noun meaning “概述”",
-    "example": "I need more information about outline.",
-    "exampleZh": "我需要更多关于概述的信息。"
+    "example": "We learned a new outline in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「概述」的词。"
   },
   {
     "id": "b2-0368",
@@ -4782,7 +4782,7 @@ export const words = [
     "pos": "n.",
     "zh": "反应；回应",
     "enDef": "noun meaning “反应”",
-    "example": "I need more information about reaction.",
-    "exampleZh": "我需要更多关于反应的信息。"
+    "example": "We learned a new reaction in this lesson.",
+    "exampleZh": "这节课我们学了一个表示「反应」的词。"
   }
 ];
