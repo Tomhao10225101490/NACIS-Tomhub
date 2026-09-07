@@ -2960,7 +2960,14 @@ function renderEnglishMatch(words, back, srsKind = 'ielts') {
         rememberSrs(srsKind, a.dataset.id, true);
         celebrate(true);
         selected = null;
-        if (matched === total) fanfare(tb('great'));
+        const meta = app.querySelector('.progress-meta span');
+        if (meta) meta.textContent = `${matched} / ${total}`;
+        if (matched === total) {
+          fanfare(tb('great'));
+          setTimeout(() => {
+            paintModeResults(100, total, total, words, words, { back, srsKind });
+          }, 500);
+        }
       } else {
         a.classList.add('bad');
         b.classList.add('bad');
