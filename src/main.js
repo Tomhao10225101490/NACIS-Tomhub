@@ -54,6 +54,7 @@ import {
   primeSpeech,
 } from './audio.js';
 import {
+  t,
   tb,
   getLang,
   setLang,
@@ -1063,6 +1064,10 @@ function startEnglishWordMode(mode, words, bank, { back = 'home', srsKind = 'iel
   });
 }
 
+function compactLine(zh, en) {
+  return getLang() === 'en' ? String(en || zh || '') : String(zh || en || '');
+}
+
 function renderHome() {
   currentRoute = 'home';
   const nextIelts = ieltsDayMeta.find((d) => !isIeltsDayDone(d.day)) || ieltsDayMeta[0];
@@ -1070,67 +1075,68 @@ function renderHome() {
   const nextSci = nextScienceDay();
   const dueN = dueSrsCount();
   const flags = recentStudyFlags(7);
-  const hsTot = hsUnitsDoneTotal();
+  const ieltsTitle = `${t('dayOf', { n: nextIelts.day })} · ${compactLine(nextIelts.titleZh, nextIelts.title)}`;
+  const hsTitle = [compactLine(hsNext.book?.zh, hsNext.book?.en), compactLine(hsNext.unit?.zh, hsNext.unit?.en)]
+    .filter(Boolean)
+    .join(' · ');
+  const sciTitle = nextSci ? `${t('dayOf', { n: nextSci.day })} · ${compactLine(nextSci.titleZh, nextSci.title)}` : '';
   // Trusted templates only (i18n + bundled content). Same paint path as the rest of the app.
   // nosemgrep: javascript.browser.security.insecure-innerhtml, javascript.browser.security.insecure-document-method
   // sourcery skip: javascript.browser.security.insecure-innerhtml, javascript.browser.security.insecure-document-method
   app.innerHTML = `
     ${topbar()}
     <section class="hero hero-portal">
-      <div class="hero-kicker">${tb('portalKicker')}</div>
       <h1>Tom's <span>Ground</span></h1>
-      <p>${tb('heroSub')}</p>
-      <p class="study-streak-line">${tb('studyStreak', { n: consecutiveStudyDays() })}</p>
+      <p class="study-streak-line">${t('studyStreak', { n: consecutiveStudyDays() })}</p>
       <div class="week-dots" aria-hidden="true">
         ${flags.map((f) => `<span class="week-dot ${f.done ? 'on' : ''}" title="${f.date}"></span>`).join('')}
       </div>
     </section>
 
-    <h3 class="section-label">${tb('todayPlan')}</h3>
+    <h3 class="section-label">${t('todayPlan')}</h3>
     <div class="today-grid">
       <div class="today-card panel ielts-spotlight">
-        <div class="today-label">${tb('todayIelts')}</div>
-        <div class="today-title">${tb('dayOf', { n: nextIelts.day })} · ${dayTitle({ title: nextIelts.title, titleZh: nextIelts.titleZh })}</div>
-        <div class="today-sub">${tb('band7')} · ${nextIelts.topic || ''}</div>
-        <button class="btn btn-primary" data-ielts-day="${nextIelts.day}">${tb('startMemorize')}</button>
-        <button class="btn" data-nav="ielts-days">${tb('ieltsDays')}</button>
+        <div class="today-title">${escapeHtml(ieltsTitle)}</div>
+        <div class="today-actions">
+          <button class="btn btn-primary" data-ielts-day="${nextIelts.day}">${t('startMemorize')}</button>
+          <button class="btn" data-nav="ielts-days">${t('ieltsDays')}</button>
+        </div>
       </div>
       <div class="today-card panel">
-        <div class="today-label">${tb('nextHs')}</div>
-        <div class="today-title">${hsNext.book ? escapeHtml(hsBookTitle(hsNext.book)) : ''} · ${hsNext.unit ? escapeHtml(hsUnitHeading(hsNext.unit)) : ''}</div>
-        <div class="today-sub">${tb('hsLearned', { n: hsTot.u, t: hsTot.t })}</div>
-        ${
-          hsNext.book && hsNext.unit
-            ? `<button class="btn btn-primary" data-hs-unit="${hsNext.book.id}:${hsNext.unit.id}">${tb('start')}</button>`
-            : ''
-        }
-        <button class="btn" data-nav="hs-shelf">${tb('hsShelf')}</button>
+        <div class="today-title">${escapeHtml(hsTitle)}</div>
+        <div class="today-actions">
+          ${
+            hsNext.book && hsNext.unit
+              ? `<button class="btn btn-primary" data-hs-unit="${hsNext.book.id}:${hsNext.unit.id}">${t('start')}</button>`
+              : ''
+          }
+          <button class="btn" data-nav="hs-shelf">${t('hsShelf')}</button>
+        </div>
       </div>
       <div class="today-card panel">
-        <div class="today-label">${tb('nextSci')}</div>
-        <div class="today-title">${nextSci ? `${tb('dayOf', { n: nextSci.day })} · ${dayTitle(nextSci)}` : ''}</div>
-        <div class="today-sub">${nextSci ? subjectName(nextSci.subject) : ''}</div>
-        ${nextSci ? `<button class="btn btn-primary" data-start-day="${nextSci.day}">${tb('startDay')} ${nextSci.day}</button>` : ''}
-        <button class="btn" data-nav="days">${tb('allDays')}</button>
+        <div class="today-title">${escapeHtml(sciTitle)}</div>
+        <div class="today-actions">
+          ${nextSci ? `<button class="btn btn-primary" data-start-day="${nextSci.day}">${t('startDay')} ${nextSci.day}</button>` : ''}
+          <button class="btn" data-nav="days">${t('allDays')}</button>
+        </div>
       </div>
       <div class="today-card panel">
-        <div class="today-label">${tb('todayReview')}</div>
-        <div class="today-title">${dueN ? tb('dueWords', { n: dueN }) : tb('noDue')}</div>
-        <div class="today-sub">${tb('wrongBook')} · ${store.wrong.length}</div>
-        <button class="btn btn-primary" data-nav="srs" ${dueN ? '' : 'disabled'}>${tb('startReview')}</button>
-        <button class="btn" data-nav="wrong">${tb('wrongBook')}</button>
+        <div class="today-title">${escapeHtml(dueN ? t('dueWords', { n: dueN }) : t('noDue'))}</div>
+        <div class="today-actions">
+          <button class="btn btn-primary" data-nav="srs" ${dueN ? '' : 'disabled'}>${t('startReview')}</button>
+          <button class="btn" data-nav="wrong">${t('wrongBook')}</button>
+        </div>
       </div>
     </div>
     <div class="flash-actions home-io">
-      <button class="btn" id="export-progress">${tb('exportProgress')}</button>
-      <button class="btn" id="import-progress">${tb('importProgress')}</button>
-      <button class="btn" data-nav="progress">${tb('progress')}</button>
+      <button class="btn" id="export-progress">${t('exportProgress')}</button>
+      <button class="btn" id="import-progress">${t('importProgress')}</button>
+      <button class="btn" data-nav="progress">${t('progress')}</button>
       <input type="file" id="import-file" accept="application/json,.json" hidden />
     </div>
     <p class="import-msg" id="import-msg"></p>
 
-    <h3 class="section-label">${tb('pickSubject')}</h3>
-    <p class="section-hint">${tb('pickSubjectSub')}</p>
+    <h3 class="section-label">${t('pickSubject')}</h3>
     <div class="hub-grid">
       ${HUBS.map((h) => {
         const pct = hubCompletionPct(h.id);
@@ -1140,14 +1146,13 @@ function renderHome() {
           const all = SCIENCE_DAY_META.filter((d) => d.subject === h.id);
           const done = all.filter((d) => isDayDone(d.day)).length;
           tag = `${done}/${all.length}`;
-        } else tag = tb('start');
+        } else tag = t('start');
         return `<button class="hub-card" data-hub="${h.id}" style="--hub-accent:${h.accent};--hub-glow:${h.glow}">
           <div class="hub-orb"></div>
           <div class="hub-icon">${h.icon}</div>
-          <div class="hub-name">${hubTitle(h)}</div>
-          <div class="hub-blurb">${hubBlurb(h)}</div>
+          <div class="hub-name">${escapeHtml(compactLine(h.zh, h.en))}</div>
           ${hubProgressBar(pct)}
-          <div class="hub-cta">${tb('hubDone')} · ${tag}</div>
+          <div class="hub-cta">${escapeHtml(tag)}</div>
         </button>`;
       }).join('')}
     </div>
