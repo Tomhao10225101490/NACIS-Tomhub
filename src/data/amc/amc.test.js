@@ -178,9 +178,9 @@ describe('AMC papers', () => {
 
   it('matches integer answers exactly', () => {
     const q = mock1.questions.find((x) => x.n === 26);
-    expect(answersMatch(q, 12)).toBe(true);
-    expect(answersMatch(q, '12')).toBe(true);
-    expect(answersMatch(q, 13)).toBe(false);
+    expect(answersMatch(q, 78)).toBe(true);
+    expect(answersMatch(q, '78')).toBe(true);
+    expect(answersMatch(q, 79)).toBe(false);
   });
 
   it('lazy-loads papers by id', async () => {

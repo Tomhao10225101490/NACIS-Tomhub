@@ -261,8 +261,8 @@ const dict = {
   amcMins: { zh: '75 分钟', en: '75 min' },
   amcPractice: { zh: '原创整卷模考', en: 'Original mock papers' },
   amcPracticeHint: {
-    zh: '题目为 Tom’s Ground 原创，风格对齐 C/Junior：有图用矢量图，交卷后每题都有英文解析与中文提示。共 10 套完整 30 题卷 + 几何 / 整数冲刺，题量与历年真题相当。',
-    en: 'Original Tom’s Ground items in C/Junior style. Diagrams are vector-sharp. Every question has an English solution plus a Chinese hint. 10 full 30-question papers plus geometry / integer sprints — on par with the past papers.',
+    zh: '题目为 Tom’s Ground 原创，难度对齐 C/Junior 真题：Q1–10 读题思考，Q11–20 多步推理，Q21–30 硬核。有图用矢量图，交卷后每题都有英文解析与中文提示。共 10 套完整 30 题卷 + 几何 / 整数冲刺。',
+    en: 'Original Tom’s Ground items at real C/Junior difficulty: Q1–10 need thought, Q11–20 multi-step, Q21–30 hard. Diagrams are vector-sharp. Every question has an English solution plus a Chinese hint. 10 full 30-question papers plus geometry / integer sprints.',
   },
   amcContest: { zh: '整卷模考', en: 'Exam mode' },
   amcPracticeMode: { zh: '逐题讲评', en: 'Practice mode' },
