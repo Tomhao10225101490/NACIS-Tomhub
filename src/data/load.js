@@ -10,6 +10,7 @@ const ready = {
   math: null,
   amc: null,
   hs: {},
+  textbooks: {},
 };
 
 /** @type {Record<string, any>} */
@@ -45,6 +46,7 @@ export const packs = {
   mathVocab: [],
   mathQuestions: [],
   amc: null,
+  textbookWords: {},
 };
 
 export function ensureScience() {
@@ -140,6 +142,27 @@ export function ensureAmc() {
     });
   }
   return ready.amc;
+}
+
+const TEXTBOOK_LOADERS = {
+  'pri-g1': (bookId) => import(`./textbooks/pri-g1/${bookId}.js`),
+  'pri-g3': (bookId) => import(`./textbooks/pri-g3/${bookId}.js`),
+  mid: (bookId) => import(`./textbooks/mid/${bookId}.js`),
+};
+
+export function ensureTextbookBook(shelfId, bookId) {
+  if (!shelfId || !bookId) return Promise.resolve();
+  if (shelfId === 'hs') return ensureHsEnglish(bookId);
+  const loader = TEXTBOOK_LOADERS[shelfId];
+  if (!loader) return Promise.resolve();
+  if (!ready.textbooks[shelfId]) ready.textbooks[shelfId] = {};
+  if (!ready.textbooks[shelfId][bookId]) {
+    ready.textbooks[shelfId][bookId] = loader(bookId).then((m) => {
+      if (!packs.textbookWords[shelfId]) packs.textbookWords[shelfId] = {};
+      packs.textbookWords[shelfId][bookId] = m.words || [];
+    });
+  }
+  return ready.textbooks[shelfId][bookId];
 }
 
 /** Prefetch packs after home paints (idle) so later navigations feel instant */

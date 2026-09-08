@@ -154,6 +154,17 @@ const dict = {
     zh: '点书卡选书，按课本 Unit 看单词表再背诵',
     en: 'Pick a book, open the unit list, then memorize',
   },
+  tbTrack: { zh: '人教版教材书架', en: 'PEP textbook shelf' },
+  tbTrackBlurb: {
+    zh: '小学一年级 / 三年级起点 · 初中新目标 · 高中 · 单词表 + 闪卡背词',
+    en: 'Primary (G1/G3 start) · Junior · Senior · word lists + flashcards',
+  },
+  tbTrackTag: { zh: '人教版 · 小学/初中/高中', en: 'PEP · primary/junior/senior' },
+  tbShelf: { zh: '人教版英语书架', en: 'PEP English shelf' },
+  tbShelfHint: {
+    zh: '切换层级，点书卡选书，按课本 Unit 看单词表再背诵',
+    en: 'Switch level, pick a book, open the unit list, then memorize',
+  },
   pep2019: { zh: '人教版 2019', en: 'PEP 2019' },
   hsCompulsory: { zh: '必修', en: 'Compulsory' },
   hsSelective: { zh: '选必', en: 'Selective' },

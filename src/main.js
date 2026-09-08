@@ -9,6 +9,7 @@ import {
   ensureMath,
   ensureAmc,
   ensureHsEnglish,
+  ensureTextbookBook,
   prefetchInBackground,
 } from './data/load.js';
 import {
@@ -17,6 +18,7 @@ import {
   IELTS_DAY_TOTAL,
 } from './data/ielts-meta.js';
 import { HS_BOOKS, HS_WORD_TOTAL, getHsBook, getHsUnit } from './data/hs-english/meta.js';
+import { TEXTBOOK_SHELVES, getShelf, getBook as getTbBook, getUnit as getTbUnit, textbookTotalWords } from './data/textbooks/meta.js';
 import { shuffle } from './util/shuffle.js';
 import { escapeHtml, escapeRegExp } from './util/escape.js';
 import {
@@ -32,6 +34,7 @@ import {
   exportProgress,
   importProgress,
   hsProgressKey,
+  tbProgressKey,
 } from './store.js';
 import { startRouter } from './router.js';
 import { makeEnWordSpotItem, promptContainsAnswer } from './quiz/spot.js';
@@ -130,6 +133,9 @@ let mathVocab = [];
 let mathQuestions = [];
 let hsActiveBook = '';
 let hsActiveUnit = '';
+let tbActiveShelf = 'hs';
+let tbActiveBook = '';
+let tbActiveUnit = '';
 
 function bindScience() {
   vocabulary = packs.vocabulary;
@@ -252,6 +258,16 @@ async function needHsBook(bookId) {
   showPackLoading(tb('hsOpenBook'));
   try {
     await ensureHsEnglish(bookId);
+  } finally {
+    hidePackLoading();
+  }
+}
+
+async function needTbBook(shelfId, bookId) {
+  if (!bookId) return;
+  showPackLoading(tb('hsOpenBook'));
+  try {
+    await ensureTextbookBook(shelfId, bookId);
   } finally {
     hidePackLoading();
   }
@@ -1168,6 +1184,51 @@ function hsBookDoneCount(book) {
   return (book?.units || []).filter((u) => isHsUnitDone(book.id, u.id)).length;
 }
 
+function tbWordsFor(shelfId, bookId) {
+  if (shelfId === 'hs') return packs.hsWords[bookId] || [];
+  return (packs.textbookWords[shelfId] || {})[bookId] || [];
+}
+function isTbUnitDone(shelfId, bookId, unitId) {
+  if (shelfId === 'hs') return isHsUnitDone(bookId, unitId);
+  return Boolean(store.tbProgress[tbProgressKey(shelfId, bookId, unitId)]?.done);
+}
+function markTbUnitDone(shelfId, bookId, unitId) {
+  if (shelfId === 'hs') return markHsUnitDone(bookId, unitId);
+  store.tbProgress[tbProgressKey(shelfId, bookId, unitId)] = { done: true, at: Date.now() };
+  markStudyToday();
+  save();
+}
+function tbBookDoneCount(shelfId, book) {
+  return (book?.units || []).filter((u) => isTbUnitDone(shelfId, book.id, u.id)).length;
+}
+function tbShelfBooks(shelfId) {
+  const s = getShelf(shelfId);
+  return s ? s.books : [];
+}
+function tbBookRoute(shelfId) {
+  return shelfId === 'hs' ? 'hs-book' : 'tb-book';
+}
+function tbShelfRoute(shelfId) {
+  return shelfId === 'hs' ? 'hs-shelf' : 'tb-shelf';
+}
+function tbSrsKind(shelfId) {
+  return shelfId === 'hs' ? 'hs' : `tb-${shelfId}`;
+}
+function tbUnitAttr(shelfId) {
+  return shelfId === 'hs' ? 'data-hs-unit' : 'data-tb-unit';
+}
+function tbBookAttr(shelfId) {
+  return shelfId === 'hs' ? 'data-hs-book' : 'data-tb-book';
+}
+function tbShelfAttr(shelfId) {
+  return shelfId === 'hs' ? 'data-nav' : 'data-tb-shelf';
+}
+function tbLabel(shelfId) {
+  if (shelfId === 'hs') return tb('pep2019');
+  const s = getShelf(shelfId);
+  return s ? (getLang() === 'en' ? s.titleEn : s.titleZh) : '';
+}
+
 function rememberSrs(kind, id, correct) {
   if (!id) return;
   store.srs = applyReview(store.srs, srsKey(kind, id), !!correct);
@@ -1386,7 +1447,7 @@ function paintModeResults(pct, correct, total, words, bank, opts) {
 
 function startEnglishWordMode(mode, words, bank, { back = 'home', srsKind = 'ielts' } = {}) {
   const pool = (words || []).slice();
-  const kind = srsKind === 'hs' ? 'hs' : 'ielts';
+  const kind = srsKind === 'hs' || (typeof srsKind === 'string' && srsKind.startsWith('tb-')) ? 'hs' : 'ielts';
   if (mode === 'dictation') {
     return runDictationDrill({
       title: tb('dictation'),
@@ -1625,17 +1686,17 @@ async function renderHub(hubId) {
           </div>
         </div>
         <div class="en-col">
-          <button class="en-track en-track-hs" data-nav="hs-shelf" style="--hub-accent:#f59e0b">
+          <button class="en-track en-track-hs" data-nav="tb-shelf" style="--hub-accent:#f59e0b">
             <div class="en-track-kicker">Track B</div>
-            <h3>${tb('hsTrack')}</h3>
-            <p>${tb('hsTrackBlurb')}</p>
+            <h3>${tb('tbTrack')}</h3>
+            <p>${tb('tbTrackBlurb')}</p>
             <div class="en-track-covers" aria-hidden="true">
-              ${HS_BOOKS.map(
+              ${TEXTBOOK_SHELVES.flatMap((s) => s.books.slice(0, 2)).map(
                 (b) =>
                   `<span class="en-mini-spine" style="--book-accent:${b.accent};--book-spine:${b.spine}"></span>`
               ).join('')}
             </div>
-            <span class="mode-tag">${tb('pep2019')} · ${HS_WORD_TOTAL} ${tb('words')}</span>
+            <span class="mode-tag">${tb('tbTrackTag')}</span>
           </button>
         </div>
       </div>
@@ -4095,55 +4156,80 @@ async function renderSubjectQuiz(kind) {
 
 /* —— High-school PEP 2019 bookshelf / units / flash+spot —— */
 
-function renderHsShelf() {
-  currentRoute = 'hs-shelf';
-  setSessionRepaint(renderHsShelf);
+function renderTbShelf(shelfId) {
+  const shelf = getShelf(shelfId) || getShelf('hs');
+  shelfId = shelf.id;
+  currentRoute = tbShelfRoute(shelfId);
+  setSessionRepaint(() => renderTbShelf(shelfId));
   store.activeHub = 'english';
   save();
+  const L = getLang();
+  const tabs = TEXTBOOK_SHELVES.map(
+    (s) =>
+      `<button class="chip ${s.id === shelfId ? 'active' : ''}" data-tb-shelf="${s.id}">${L === 'en' ? s.titleEn : s.titleZh}</button>`
+  ).join('');
+  const bookAttr = tbBookAttr(shelfId);
   app.innerHTML = `
     ${topbar()}
     <div class="screen hs-shelf-screen">
-      <div class="screen-header">${backBtn('hub-english')}<h2 class="screen-title">${tb('hsShelf')}</h2></div>
-      <p class="days-intro">${tb('hsShelfHint')}</p>
+      <div class="screen-header">${backBtn('hub-english')}<h2 class="screen-title">${tb('tbShelf')}</h2></div>
+      <div class="chip-row" style="margin:6px 0 14px">${tabs}</div>
+      <p class="days-intro">${tb('tbShelfHint')}</p>
       <div class="hs-shelf">
-        ${HS_BOOKS.map(
-          (book) =>
-            `<button class="hs-book" data-hs-book="${book.id}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
-            ${hsBookCardHtml(book)}
-          </button>`
-        ).join('')}
+        ${shelf.books
+          .map(
+            (book) =>
+              `<button class="hs-book" ${bookAttr}="${shelfId}:${book.id}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
+              ${hsBookCardHtml(book)}
+            </button>`
+          )
+          .join('')}
       </div>
     </div>`;
 }
 
-function renderHsBook(bookId) {
-  const book = getHsBook(bookId || hsActiveBook);
-  if (!book) return renderHsShelf();
-  hsActiveBook = book.id;
-  currentRoute = 'hs-book';
-  setSessionRepaint(() => renderHsBook(hsActiveBook));
+function renderHsShelf() {
+  return renderTbShelf('hs');
+}
+
+async function renderTbBook(shelfId, bookId) {
+  const shelf = getShelf(shelfId) || getShelf('hs');
+  shelfId = shelf.id;
+  const book = getTbBook(shelfId, bookId);
+  if (!book) return renderTbShelf(shelfId);
+  currentRoute = tbBookRoute(shelfId);
+  setSessionRepaint(() => renderTbBook(shelfId, book.id));
   store.activeHub = 'english';
   save();
+  await needTbBook(shelfId, book.id);
+  const bank = tbWordsFor(shelfId, book.id);
+  const unitCount = (uid) => bank.filter((w) => w.unit === uid).length;
+  const backHtml =
+    shelfId === 'hs'
+      ? backBtn('hs-shelf')
+      : `<button class="btn btn-ghost" data-tb-shelf="${shelfId}">${tb('back')}</button>`;
+  const unitAttr = tbUnitAttr(shelfId);
   app.innerHTML = `
     ${topbar()}
     <div class="screen hs-book-screen">
-      <div class="screen-header">${backBtn('hs-shelf')}<h2 class="screen-title">${escapeHtml(hsBookTitle(book))}</h2></div>
+      <div class="screen-header">${backHtml}<h2 class="screen-title">${escapeHtml(hsBookTitle(book))}</h2></div>
       <div class="hs-book-hero" style="--book-accent:${book.accent};--book-spine:${book.spine}">
         ${hsBookCardHtml(book, { large: true })}
-        <p class="days-intro">${tb('pep2019')} · ${book.wordCount} ${tb('words')} · ${tb('hsLearned', { n: hsBookDoneCount(book), t: book.units.length })}</p>
+        <p class="days-intro">${escapeHtml(tbLabel(shelfId))} · ${bank.length} ${tb('words')} · ${tb('hsLearned', { n: tbBookDoneCount(shelfId, book), t: book.units.length })}</p>
       </div>
       <div class="hs-unit-list">
         ${book.units
           .map((unit) => {
-            const done = isHsUnitDone(book.id, unit.id);
-            return `<button class="hs-unit-row ${done ? 'done' : ''}" data-hs-unit="${book.id}:${unit.id}">
+            const done = isTbUnitDone(shelfId, book.id, unit.id);
+            const wc = unitCount(unit.id);
+            return `<button class="hs-unit-row ${done ? 'done' : ''}" ${unitAttr}="${shelfId}:${book.id}:${unit.id}">
               <div class="hs-unit-num">${escapeHtml(hsUnitNumLabel(unit))}</div>
               <div class="hs-unit-titles">
                 <div class="hs-unit-en">${escapeHtml(unit.en)}</div>
                 <div class="hs-unit-zh">${escapeHtml(unit.zh)}</div>
               </div>
               <div class="hs-unit-side">
-                <span>${unit.wordCount} ${tb('words')}</span>
+                <span>${wc} ${tb('words')}</span>
                 <span class="day-status">${done ? '✓ ' + tb('done') : tb('start')}</span>
               </div>
             </button>`;
@@ -4153,17 +4239,24 @@ function renderHsBook(bookId) {
     </div>`;
 }
 
-async function startHsUnit(bookId, unitId) {
-  const book = getHsBook(bookId);
-  const unit = getHsUnit(book, unitId);
-  if (!book || !unit) return renderHsShelf();
-  hsActiveBook = book.id;
-  hsActiveUnit = unit.id;
-  currentRoute = 'hs-unit';
-  await needHsBook(book.id);
-  const bank = packs.hsWords[book.id] || [];
+function renderHsBook(bookId) {
+  return renderTbBook('hs', bookId);
+}
+
+async function startHsUnit(bookId, unitId, shelfId = 'hs') {
+  const book = getTbBook(shelfId, bookId);
+  const unit = getTbUnit(shelfId, book && book.id, unitId);
+  if (!book || !unit) return renderTbShelf(shelfId);
+  if (shelfId === 'hs') hsActiveBook = book.id;
+  tbActiveShelf = shelfId;
+  tbActiveBook = book.id;
+  tbActiveUnit = unit.id;
+  hsActiveUnit = shelfId === 'hs' ? unit.id : hsActiveUnit;
+  currentRoute = shelfId === 'hs' ? 'hs-unit' : 'tb-unit';
+  await needTbBook(shelfId, book.id);
+  const bank = tbWordsFor(shelfId, book.id);
   const words = bank.filter((w) => w.unit === unit.id);
-  if (!words.length) return renderHsBook(book.id);
+  if (!words.length) return renderTbBook(shelfId, book.id);
 
   let step = 0;
   let idx = 0;
@@ -4184,11 +4277,17 @@ async function startHsUnit(bookId, unitId) {
     setSessionRepaint(paint);
     clearFlashKeys();
     if (step === 0) {
-      const screen = mountAppShell('hs-book', tb('hsWordList'));
+      const screen = mountAppShell(tbBookRoute(shelfId), tb('hsWordList'));
+      if (shelfId !== 'hs') {
+        const header = screen.querySelector('.screen-header');
+        header.replaceChildren();
+        header.insertAdjacentHTML('afterbegin', `<button class="btn btn-ghost" data-tb-book="${shelfId}:${book.id}">${tb('back')}</button>`);
+        header.append(textNode('h2', 'screen-title', tb('hsWordList')));
+      }
       const head = document.createElement('div');
       head.className = 'hs-list-head';
       const copy = document.createElement('div');
-      copy.append(textNode('div', 'flash-chapter', `${hsBookTitle(book)} · ${tb('pep2019')}`));
+      copy.append(textNode('div', 'flash-chapter', `${hsBookTitle(book)} · ${tbLabel(shelfId)}`));
       copy.append(textNode('h3', 'result-title', hsUnitHeading(unit)));
       copy.append(textNode('p', '', `${words.length} ${tb('words')} · ${tb('hsUsageHint')}`));
       const go = document.createElement('button');
@@ -4230,15 +4329,15 @@ async function startHsUnit(bookId, unitId) {
       };
       dictation.onclick = () => {
         sfxClick();
-        startEnglishWordMode('dictation', words, bank, { back: 'hs-book', srsKind: 'hs' });
+        startEnglishWordMode('dictation', words, bank, { back: tbBookRoute(shelfId), srsKind: tbSrsKind(shelfId) });
       };
       cloze.onclick = () => {
         sfxClick();
-        startEnglishWordMode('cloze', words, bank, { back: 'hs-book', srsKind: 'hs' });
+        startEnglishWordMode('cloze', words, bank, { back: tbBookRoute(shelfId), srsKind: tbSrsKind(shelfId) });
       };
       matchBtn.onclick = () => {
         sfxClick();
-        startEnglishWordMode('match', words, bank, { back: 'hs-book', srsKind: 'hs' });
+        startEnglishWordMode('match', words, bank, { back: tbBookRoute(shelfId), srsKind: tbSrsKind(shelfId) });
       };
       search.oninput = () => {
         const q = search.value.trim().toLowerCase();
@@ -4352,7 +4451,7 @@ async function startHsUnit(bookId, unitId) {
       app.innerHTML = `
         ${topbar()}
         <div class="screen wg-play">
-          <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${tb('ieltsSpot')}</h2></div>
+          <div class="screen-header">${shelfId === 'hs' ? backBtn('hs-book') : `<button class="btn btn-ghost" data-tb-book="${shelfId}:${book.id}">${tb('back')}</button>`}<h2 class="screen-title">${tb('ieltsSpot')}</h2></div>
           <div class="step-pills"><span>✓ ${tb('ieltsMemorize')}</span><span class="on">2 ${tb('ieltsSpot')}</span></div>
           <div class="wg-hud">
             <span class="pill">${spotIdx + 1} / ${spotItems.length}</span>
@@ -4395,17 +4494,17 @@ async function startHsUnit(bookId, unitId) {
           if (ok) {
             spotCorrect += 1;
             addXp(10, true);
-            rememberSrs('hs', item.id, true);
+            rememberSrs(tbSrsKind(shelfId), item.id, true);
             celebrate(true);
             document.getElementById('fb').innerHTML = feedbackOk(item.tip);
           } else {
             addXp(0, false);
-            rememberSrs('hs', item.id, false);
+            rememberSrs(tbSrsKind(shelfId), item.id, false);
             celebrate(false);
             document.getElementById('fb').innerHTML = feedbackNo(item.answer, item.tip);
             recordWrong({
-              id: `hs-en-${item.id}`,
-              kind: 'hs-en',
+              id: `tb-en-${shelfId}-${item.id}`,
+              kind: 'tb-en',
               prompt: item.prompt,
               correctText: item.answer,
               answer: item.answer,
@@ -4423,30 +4522,34 @@ async function startHsUnit(bookId, unitId) {
       return;
     }
 
-    markHsUnitDone(book.id, unit.id);
+    markTbUnitDone(shelfId, book.id, unit.id);
     const pct = Math.round((spotCorrect / Math.max(1, spotItems.length)) * 100);
     const uIdx = book.units.findIndex((u) => u.id === unit.id);
     const nextUnit = book.units[uIdx + 1];
-    const nextBook = !nextUnit ? HS_BOOKS[HS_BOOKS.findIndex((b) => b.id === book.id) + 1] : null;
+    const shelfBooks = tbShelfBooks(shelfId);
+    const nextBook = !nextUnit ? shelfBooks[shelfBooks.findIndex((b) => b.id === book.id) + 1] : null;
     fanfare(tb('spotDone'));
     clearSessionRepaint();
+    const unitAttr = tbUnitAttr(shelfId);
+    const bookAttr = tbBookAttr(shelfId);
+    const shelfBack = shelfId === 'hs' ? `<button class="btn" data-nav="hs-shelf">${tb('hsToShelf')}</button>` : `<button class="btn" data-tb-shelf="${shelfId}">${tb('hsToShelf')}</button>`;
     app.innerHTML = `
       ${topbar()}
       <div class="screen">
-        <div class="screen-header">${backBtn('hs-book')}<h2 class="screen-title">${tb('spotDone')}</h2></div>
+        <div class="screen-header">${shelfId === 'hs' ? backBtn('hs-book') : `<button class="btn btn-ghost" data-tb-book="${shelfId}:${book.id}">${tb('back')}</button>`}<h2 class="screen-title">${tb('spotDone')}</h2></div>
         <div class="panel results" style="--pct:${pct}">
           <div class="score-ring">${pct}%</div>
           <h3 class="result-title">${spotCorrect} / ${spotItems.length} ${tb('correctN')}</h3>
           <p>${pct >= 80 ? tb('great') : pct >= 60 ? tb('okish') : tb('keepGoing')}</p>
           <div class="flash-actions">
-            ${nextUnit ? `<button class="btn btn-primary" data-hs-unit="${book.id}:${nextUnit.id}">${tb('hsNextUnit')}</button>` : ''}
-            ${nextBook ? `<button class="btn btn-primary" data-hs-book="${nextBook.id}">${tb('hsNextBook')}</button>` : ''}
-            <button class="btn" data-hs-book="${book.id}">${escapeHtml(hsBookTitle(book))}</button>
-            <button class="btn" data-nav="hs-shelf">${tb('hsToShelf')}</button>
+            ${nextUnit ? `<button class="btn btn-primary" ${unitAttr}="${shelfId}:${book.id}:${nextUnit.id}">${tb('hsNextUnit')}</button>` : ''}
+            ${nextBook ? `<button class="btn btn-primary" ${bookAttr}="${shelfId}:${nextBook.id}">${tb('hsNextBook')}</button>` : ''}
+            <button class="btn" ${bookAttr}="${shelfId}:${book.id}">${escapeHtml(hsBookTitle(book))}</button>
+            ${shelfBack}
           </div>
         </div>
       </div>`;
-    mountQuizModeButtons(app.querySelector('.panel.results'), words, bank, { back: 'hs-book', srsKind: 'hs' });
+    mountQuizModeButtons(app.querySelector('.panel.results'), words, bank, { back: tbBookRoute(shelfId), srsKind: tbSrsKind(shelfId) });
   }
 
   paint();
@@ -4928,6 +5031,9 @@ const routes = {
   'hs-shelf': renderHsShelf,
   'hs-book': () => renderHsBook(hsActiveBook),
   'hs-unit': () => startHsUnit(hsActiveBook, hsActiveUnit),
+  'tb-shelf': () => renderTbShelf(tbActiveShelf),
+  'tb-book': () => renderTbBook(tbActiveShelf, tbActiveBook),
+  'tb-unit': () => startHsUnit(tbActiveBook, tbActiveUnit, tbActiveShelf),
   'science-day': async () => {},
   'cn-list': renderChineseList,
   'cn-flash': () => renderSubjectFlash('chinese'),
@@ -4963,6 +5069,24 @@ async function dispatchRoute(route) {
     hsActiveBook = params.book || hsActiveBook;
     hsActiveUnit = params.unit || hsActiveUnit;
     await startHsUnit(hsActiveBook, hsActiveUnit);
+    return;
+  }
+  if (name === 'tb-shelf') {
+    tbActiveShelf = params.shelf || tbActiveShelf;
+    await renderTbShelf(tbActiveShelf);
+    return;
+  }
+  if (name === 'tb-book') {
+    tbActiveShelf = params.shelf || tbActiveShelf;
+    tbActiveBook = params.book || tbActiveBook;
+    await renderTbBook(tbActiveShelf, tbActiveBook);
+    return;
+  }
+  if (name === 'tb-unit') {
+    tbActiveShelf = params.shelf || tbActiveShelf;
+    tbActiveBook = params.book || tbActiveBook;
+    tbActiveUnit = params.unit || tbActiveUnit;
+    await startHsUnit(tbActiveBook, tbActiveUnit, tbActiveShelf);
     return;
   }
   if (name === 'wrong-quiz') {
@@ -5058,6 +5182,29 @@ app.addEventListener('click', (e) => {
     navigate('hs-book', { book: hsActiveBook });
     return;
   }
+  const tbShelfBtn = e.target.closest('[data-tb-shelf]');
+  if (tbShelfBtn && app.contains(tbShelfBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    try { unlockAudio(); } catch (_) {}
+    try { sfxClick(); } catch (_) {}
+    tbActiveShelf = tbShelfBtn.getAttribute('data-tb-shelf') || 'hs';
+    navigate('tb-shelf', { shelf: tbActiveShelf });
+    return;
+  }
+  const tbBookBtn = e.target.closest('[data-tb-book]');
+  if (tbBookBtn && app.contains(tbBookBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    try { unlockAudio(); } catch (_) {}
+    try { sfxClick(); } catch (_) {}
+    const raw = tbBookBtn.getAttribute('data-tb-book') || '';
+    const [shelfId, bookId] = raw.split(':');
+    tbActiveShelf = shelfId || 'hs';
+    tbActiveBook = bookId || '';
+    navigate('tb-book', { shelf: tbActiveShelf, book: tbActiveBook });
+    return;
+  }
   const hsUnitBtn = e.target.closest('[data-hs-unit]');
   if (hsUnitBtn && app.contains(hsUnitBtn)) {
     e.preventDefault();
@@ -5073,6 +5220,20 @@ app.addEventListener('click', (e) => {
     hsActiveBook = bookId || '';
     hsActiveUnit = unitId || '';
     navigate('hs-unit', { book: hsActiveBook, unit: hsActiveUnit });
+    return;
+  }
+  const tbUnitBtn = e.target.closest('[data-tb-unit]');
+  if (tbUnitBtn && app.contains(tbUnitBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    try { unlockAudio(); } catch (_) {}
+    try { sfxClick(); } catch (_) {}
+    const raw = tbUnitBtn.getAttribute('data-tb-unit') || '';
+    const [shelfId, bookId, unitId] = raw.split(':');
+    tbActiveShelf = shelfId || 'hs';
+    tbActiveBook = bookId || '';
+    tbActiveUnit = unitId || '';
+    navigate('tb-unit', { shelf: tbActiveShelf, book: tbActiveBook, unit: tbActiveUnit });
     return;
   }
   const dayBtn = e.target.closest('[data-start-day]');
@@ -5141,6 +5302,8 @@ async function navigate(name, params = {}) {
     /* ignore */
   }
   clearSessionRepaint();
+  if (name === 'tb-book' && !params.shelf) params = { shelf: tbActiveShelf, book: params.book || tbActiveBook };
+  if (name === 'tb-unit' && !params.shelf) params = { shelf: tbActiveShelf, book: params.book || tbActiveBook, unit: params.unit || tbActiveUnit };
   if (router) {
     await router.go(name, params);
     return;

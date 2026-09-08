@@ -45,6 +45,12 @@ export function parseHash(hash) {
     if (parts[1] && !parts[2]) return { name: 'hs-book', params: { book: parts[1] } };
     return { name: 'hs-unit', params: { book: parts[1], unit: parts[2] } };
   }
+  if (parts[0] === 'books') {
+    if (!parts[1]) return { name: 'tb-shelf', params: { shelf: 'hs' } };
+    if (parts[1] && !parts[2]) return { name: 'tb-shelf', params: { shelf: parts[1] } };
+    if (parts[2] && !parts[3]) return { name: 'tb-book', params: { shelf: parts[1], book: parts[2] } };
+    return { name: 'tb-unit', params: { shelf: parts[1], book: parts[2], unit: parts[3] } };
+  }
   if (parts[0] === 'wrong') {
     if (parts[1] === 'quiz') {
       return { name: 'wrong-quiz', params: { subject: parts[2] || 'all' } };
@@ -92,6 +98,7 @@ export function toHash(name, params = {}) {
     'ielts-cloze': '#/ielts/cloze',
     'ielts-match': '#/ielts/match',
     'hs-shelf': '#/hs',
+    'tb-shelf': '#/books',
     wrong: '#/wrong',
     srs: '#/srs',
     progress: '#/progress',
@@ -114,6 +121,8 @@ export function toHash(name, params = {}) {
   if (name === 'ielts-day') return `#/ielts/day/${params.day || 1}`;
   if (name === 'hs-book') return `#/hs/${params.book || ''}`;
   if (name === 'hs-unit') return `#/hs/${params.book || ''}/${params.unit || ''}`;
+  if (name === 'tb-book') return `#/books/${params.shelf || 'hs'}/${params.book || ''}`;
+  if (name === 'tb-unit') return `#/books/${params.shelf || 'hs'}/${params.book || ''}/${params.unit || ''}`;
   if (name === 'wrong-quiz') {
     const sub = params.subject && params.subject !== 'all' ? `/${params.subject}` : '';
     return `#/wrong/quiz${sub}`;

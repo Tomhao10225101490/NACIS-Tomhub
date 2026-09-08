@@ -34,6 +34,7 @@ function emptyState() {
     dayProgress: {},
     ieltsProgress: {},
     hsProgress: {},
+    tbProgress: {},
     srs: {},
     studyDays: [],
     activeHub: '',
@@ -83,6 +84,7 @@ export function normalizeState(raw) {
     dayProgress: asObject(raw.dayProgress),
     ieltsProgress: asObject(raw.ieltsProgress),
     hsProgress: asObject(raw.hsProgress),
+    tbProgress: asObject(raw.tbProgress),
     srs: asObject(raw.srs),
     studyDays,
     activeHub: String(raw.activeHub || ''),
@@ -127,6 +129,7 @@ export function save() {
     dayProgress: store.dayProgress,
     ieltsProgress: store.ieltsProgress,
     hsProgress: store.hsProgress,
+    tbProgress: store.tbProgress,
     srs: store.srs,
     studyDays: store.studyDays,
     activeHub: store.activeHub || '',
@@ -247,4 +250,8 @@ export function noteWrongResult(id, correct) {
 
 export function hsProgressKey(bookId, unitId) {
   return `${bookId}:${unitId}`;
+}
+
+export function tbProgressKey(shelfId, bookId, unitId) {
+  return `${shelfId}:${bookId}:${unitId}`;
 }
