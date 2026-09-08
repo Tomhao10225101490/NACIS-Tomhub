@@ -14,6 +14,14 @@ import { paper as mock2 } from './mock2.js';
 import { paper as warmup } from './warmup.js';
 import { paper as geo } from './geo.js';
 import { paper as intPaper } from './int.js';
+import { paper as mock3 } from './mock3.js';
+import { paper as mock4 } from './mock4.js';
+import { paper as mock5 } from './mock5.js';
+import { paper as mock6 } from './mock6.js';
+import { paper as mock7 } from './mock7.js';
+import { paper as mock8 } from './mock8.js';
+import { paper as mock9 } from './mock9.js';
+import { paper as mock10 } from './mock10.js';
 
 describe('AMC scoring', () => {
   it('matches official secondary marks', () => {
@@ -55,14 +63,23 @@ describe('AMC scoring', () => {
 describe('AMC papers', () => {
   const all = [warmup, mock1, mock2, geo, intPaper];
 
-  it('exposes five practice sets', () => {
+  it('exposes thirteen practice sets (10 full mocks + 3 sprints)', () => {
     expect(AMC_PAPERS_META.map((p) => p.id)).toEqual([
       'warmup',
       'mock-1',
       'mock-2',
+      'mock-3',
+      'mock-4',
+      'mock-5',
+      'mock-6',
+      'mock-7',
+      'mock-8',
+      'mock-9',
+      'mock-10',
       'geo',
       'int',
     ]);
+    expect(AMC_PAPERS_META.filter((p) => p.kind === 'full')).toHaveLength(10);
   });
 
   it('keeps a 2016–2025 C-paper archive', () => {
@@ -73,7 +90,8 @@ describe('AMC papers', () => {
   });
 
   it('gives every MCQ five options and a letter key', () => {
-    for (const paper of all) {
+    const every = [warmup, mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8, mock9, mock10, geo, intPaper];
+    for (const paper of every) {
       for (const q of paper.questions) {
         if (q.type === 'mcq') {
           expect(q.options).toHaveLength(5);
@@ -90,7 +108,8 @@ describe('AMC papers', () => {
   });
 
   it('numbers full mocks 1–30 with 25 MCQ then 5 integers', () => {
-    for (const paper of [mock1, mock2]) {
+    const fulls = [mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8, mock9, mock10];
+    for (const paper of fulls) {
       expect(paper.questions.map((q) => q.n)).toEqual([...Array(30)].map((_, i) => i + 1));
       expect(paper.questions.filter((q) => q.type === 'mcq')).toHaveLength(25);
       expect(paper.questions.filter((q) => q.type === 'int')).toHaveLength(5);
@@ -98,9 +117,31 @@ describe('AMC papers', () => {
     }
   });
 
+  it('every full mock scores to 135', () => {
+    const fulls = [mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8, mock9, mock10];
+    for (const paper of fulls) {
+      expect(amcMaxScore(paper.questions, paper)).toBe(135);
+      const perfect = Object.fromEntries(paper.questions.map((q) => [q.n, q.answer]));
+      const r = scoreAmc(paper.questions, perfect, paper);
+      expect(r.points).toBe(135);
+    }
+  });
+
   it('ships SVG figures that include a viewBox', () => {
-    const figured = [...mock1.questions, ...mock2.questions, ...geo.questions].filter((q) => q.figure);
-    expect(figured.length).toBeGreaterThan(8);
+    const figured = [
+      ...mock1.questions,
+      ...mock2.questions,
+      ...mock3.questions,
+      ...mock4.questions,
+      ...mock5.questions,
+      ...mock6.questions,
+      ...mock7.questions,
+      ...mock8.questions,
+      ...mock9.questions,
+      ...mock10.questions,
+      ...geo.questions,
+    ].filter((q) => q.figure);
+    expect(figured.length).toBeGreaterThan(20);
     for (const q of figured) {
       expect(q.figure).toContain('<svg');
       expect(q.figure).toContain('viewBox');

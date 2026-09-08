@@ -236,4 +236,204 @@ export const figures = {
      <text x="22" y="258" ${FONT} font-size="12">O</text>`,
     'Right triangle on axes with legs 6 and 8'
   ),
+
+  circleSector: fig(
+    300,
+    300,
+    `<circle cx="150" cy="150" r="110" fill="#eff6ff" stroke="#1d4ed8" stroke-width="3"/>
+     <path d="M 150 150 L 260 150 A 110 110 0 0 0 150 40 Z" fill="#fca5a5" fill-opacity="0.8" stroke="#be123c" stroke-width="2.5"/>
+     <circle cx="150" cy="150" r="3" fill="#111827"/>
+     <text x="186" y="108" ${FONT} font-size="14" fill="#9f1239">90°</text>
+     <text x="150" y="282" ${FONT} font-size="14">r = 6</text>`,
+    'Circle radius 6 with a 90 degree sector shaded'
+  ),
+
+  rectFoldDiag: fig(
+    340,
+    240,
+    `<rect x="40" y="40" width="260" height="160" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+     <line x1="40" y1="40" x2="300" y2="200" stroke="#be123c" stroke-width="2.5" stroke-dasharray="6 5"/>
+     <polygon points="40,40 300,40 300,200" fill="#fca5a5" fill-opacity="0.7"/>
+     <text x="150" y="30" ${FONT} font-size="15">13</text>
+     <text x="18" y="130" ${FONT} font-size="15">8</text>`,
+    '13 by 8 rectangle folded along a diagonal, triangle shaded'
+  ),
+
+  star5: fig(
+    300,
+    300,
+    `<polygon points="150,30 180,120 270,120 198,174 222,264 150,210 78,264 102,174 30,120 120,120" fill="#fca5a5" stroke="#be123c" stroke-width="2.5"/>`,
+    'A five-pointed star'
+  ),
+
+  stackedCubes: fig(
+    300,
+    260,
+    `<rect x="60" y="150" width="80" height="80" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+     <rect x="140" y="150" width="80" height="80" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+     <rect x="100" y="70" width="80" height="80" fill="#93c5fd" stroke="#1d4ed8" stroke-width="3"/>
+     <line x1="60" y1="150" x2="100" y2="70" stroke="#1e40af" stroke-width="1.5"/>
+     <line x1="140" y1="150" x2="180" y2="70" stroke="#1e40af" stroke-width="1.5"/>
+     <line x1="220" y1="150" x2="260" y2="70" stroke="#1e40af" stroke-width="1.5"/>`,
+    'Three stacked cubes: two on the bottom, one on top'
+  ),
+
+  numberLine: fig(
+    340,
+    140,
+    `<line x1="30" y1="70" x2="320" y2="70" stroke="#111827" stroke-width="2"/>
+     <polygon points="320,70 312,66 312,74" fill="#111827"/>
+     ${[60, 110, 160, 210, 260]
+       .map(
+         (x, i) =>
+           `<line x1="${x}" y1="62" x2="${x}" y2="78" stroke="#111827" stroke-width="2"/><text x="${x - 6}" y="98" ${FONT} font-size="13">${i * 2}</text>`
+       )
+       .join('')}
+     <circle cx="160" cy="70" r="6" fill="#be123c"/>
+     <text x="150" y="40" ${FONT} font-size="13" fill="#9f1239">P</text>`,
+    'Number line with point P marked at 4'
+  ),
+
+  barChart: fig(
+    340,
+    260,
+    `<line x1="40" y1="220" x2="320" y2="220" stroke="#111827" stroke-width="2"/>
+     <line x1="40" y1="40" x2="40" y2="220" stroke="#111827" stroke-width="2"/>
+     <rect x="70" y="120" width="40" height="100" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+     <rect x="130" y="80" width="40" height="140" fill="#fca5a5" stroke="#be123c" stroke-width="2"/>
+     <rect x="190" y="160" width="40" height="60" fill="#bef264" stroke="#65a30d" stroke-width="2"/>
+     <rect x="250" y="100" width="40" height="120" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+     <text x="78" y="240" ${FONT} font-size="12">A</text>
+     <text x="138" y="240" ${FONT} font-size="12">B</text>
+     <text x="198" y="240" ${FONT} font-size="12">C</text>
+     <text x="258" y="240" ${FONT} font-size="12">D</text>`,
+    'Bar chart with four bars A B C D'
+  ),
+
+  venn2: fig(
+    320,
+    240,
+    `<circle cx="130" cy="120" r="80" fill="#fca5a5" fill-opacity="0.45" stroke="#be123c" stroke-width="2.5"/>
+     <circle cx="210" cy="120" r="80" fill="#93c5fd" fill-opacity="0.45" stroke="#1d4ed8" stroke-width="2.5"/>
+     <text x="100" y="125" ${FONT} font-size="14">12</text>
+     <text x="170" y="125" ${FONT} font-size="14">5</text>
+     <text x="220" y="125" ${FONT} font-size="14">9</text>`,
+    'Two overlapping circles labelled 12, 5 and 9'
+  ),
+
+  clockFace: fig(
+    300,
+    300,
+    `<circle cx="150" cy="150" r="110" fill="#eff6ff" stroke="#111827" stroke-width="3"/>
+     ${[...Array(12)]
+       .map((_, i) => {
+         const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
+         const x1 = 150 + Math.cos(a) * 96;
+         const y1 = 150 + Math.sin(a) * 96;
+         const x2 = 150 + Math.cos(a) * 104;
+         const y2 = 150 + Math.sin(a) * 104;
+         return `<line x1="${x1.toFixed(0)}" y1="${y1.toFixed(0)}" x2="${x2.toFixed(0)}" y2="${y2.toFixed(0)}" stroke="#111827" stroke-width="2"/>`;
+       })
+       .join('')}
+     <line x1="150" y1="150" x2="150" y2="70" stroke="#111827" stroke-width="4"/>
+     <line x1="150" y1="150" x2="210" y2="150" stroke="#be123c" stroke-width="3"/>
+     <circle cx="150" cy="150" r="5" fill="#111827"/>`,
+    'Clock face showing 12:00'
+  ),
+
+  coins: fig(
+    340,
+    160,
+    `${[60, 110, 160, 210, 260]
+      .map(
+        (x) =>
+          `<circle cx="${x}" cy="80" r="34" fill="#fde68a" stroke="#b45309" stroke-width="2.5"/><text x="${x - 6}" y="88" ${FONT} font-size="16">$</text>`
+      )
+      .join('')}`,
+    'Five coins in a row'
+  ),
+
+  tree: fig(
+    300,
+    240,
+    `<rect x="130" y="150" width="40" height="60" fill="#a16207" stroke="#713f12" stroke-width="2.5"/>
+     <circle cx="150" cy="110" r="60" fill="#86efac" stroke="#15803d" stroke-width="2.5"/>
+     ${[100, 150, 200]
+       .map((x) => `<circle cx="${x}" cy="80" r="14" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>`)
+       .join('')}`,
+    'A tree with three apples'
+  ),
+
+  angleAtPoint: fig(
+    320,
+    260,
+    `<polygon points="60,220 60,40 280,220" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+     <path d="M 84 220 A 28 28 0 0 0 60 196" fill="none" stroke="#be123c" stroke-width="2.5"/>
+     <text x="92" y="212" ${FONT} font-size="15" fill="#9f1239">38°</text>
+     <text x="20" y="240" ${FONT} font-size="13">A</text>
+     <text x="52" y="36" ${FONT} font-size="13">B</text>
+     <text x="286" y="232" ${FONT} font-size="13">C</text>`,
+    'Triangle ABC with angle at A equal to 38 degrees'
+  ),
+
+  rectSplit: fig(
+    340,
+    220,
+    `<rect x="40" y="40" width="260" height="140" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+     <line x1="170" y1="40" x2="170" y2="180" stroke="#111827" stroke-width="2.5"/>
+     <text x="90" y="120" ${FONT} font-size="15">5</text>
+     <text x="200" y="120" ${FONT} font-size="15">8</text>
+     <text x="150" y="206" ${FONT} font-size="14">13</text>`,
+    'A 13 by rectangle split into two parts 5 and 8'
+  ),
+
+  squareInSquare: fig(
+    300,
+    300,
+    `<rect x="40" y="40" width="220" height="220" fill="#eff6ff" stroke="#1d4ed8" stroke-width="3"/>
+     <rect x="90" y="90" width="120" height="120" fill="#fca5a5" fill-opacity="0.8" stroke="#be123c" stroke-width="2.5" transform="rotate(45 150 150)"/>
+     <text x="150" y="282" ${FONT} font-size="14">10</text>`,
+    'A square of side 10 with a tilted square shaded inside'
+  ),
+
+  circleInSquare: fig(
+    300,
+    300,
+    `<rect x="40" y="40" width="220" height="220" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+     <circle cx="150" cy="150" r="110" fill="#fca5a5" fill-opacity="0.5" stroke="#be123c" stroke-width="2.5"/>
+     <text x="150" y="282" ${FONT} font-size="14">10</text>`,
+    'A circle inscribed in a square of side 10'
+  ),
+
+  staircase: fig(
+    320,
+    260,
+    `${[0, 1, 2, 3, 4]
+      .map(
+        (i) =>
+          `<rect x="${50 + i * 50}" y="${210 - i * 40}" width="50" height="${40 + i * 40}" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5"/>`
+      )
+      .join('')}`,
+    'A staircase of five steps'
+  ),
+
+  dots3x3: fig(
+    300,
+    300,
+    `${[0, 1, 2]
+      .flatMap((c) =>
+        [0, 1, 2].map((r) => `<circle cx="${60 + c * 90}" cy="${60 + r * 90}" r="6" fill="#111827"/>`)
+      )
+      .join('')}`,
+    'A 3 by 3 array of dots'
+  ),
+
+  triangleCount: fig(
+    320,
+    280,
+    `<polygon points="160,30 30,250 290,250" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+     <line x1="95" y1="140" x2="225" y2="140" stroke="#111827" stroke-width="2"/>
+     <line x1="160" y1="30" x2="160" y2="250" stroke="#111827" stroke-width="2"/>`,
+    'A large triangle with two cevians drawn'
+  ),
 };
