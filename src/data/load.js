@@ -8,6 +8,7 @@ const ready = {
   ielts: null,
   chinese: null,
   math: null,
+  amc: null,
   hs: {},
 };
 
@@ -43,6 +44,7 @@ export const packs = {
   gradeLabel: (g) => `${g}`,
   mathVocab: [],
   mathQuestions: [],
+  amc: null,
 };
 
 export function ensureScience() {
@@ -131,6 +133,15 @@ export function ensureMath() {
   return ready.math;
 }
 
+export function ensureAmc() {
+  if (!ready.amc) {
+    ready.amc = import('./amc/index.js').then((m) => {
+      packs.amc = m;
+    });
+  }
+  return ready.amc;
+}
+
 /** Prefetch packs after home paints (idle) so later navigations feel instant */
 export function prefetchInBackground() {
   const run = () => {
@@ -138,6 +149,7 @@ export function prefetchInBackground() {
     setTimeout(() => ensureIelts().catch(() => {}), 900);
     setTimeout(() => ensureChinese().catch(() => {}), 1600);
     setTimeout(() => ensureMath().catch(() => {}), 2200);
+    setTimeout(() => ensureAmc().catch(() => {}), 2800);
   };
   if (typeof requestIdleCallback === 'function') {
     requestIdleCallback(run, { timeout: 2800 });

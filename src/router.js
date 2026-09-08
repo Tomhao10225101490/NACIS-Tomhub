@@ -1,6 +1,6 @@
 /**
  * Hash router for GitHub Pages (no server routes).
- * Examples: #/  #/hub/english  #/ielts/day/12  #/hs/b1/u3  #/wrong/quiz
+ * Examples: #/  #/hub/english  #/ielts/day/12  #/hs/b1/u3  #/amc  #/amc/paper/mock-1
  */
 
 const SIMPLE = new Set([
@@ -64,6 +64,14 @@ export function parseHash(hash) {
     if (parts[1] === 'flash') return { name: 'math-flash', params: {} };
     if (parts[1] === 'quiz') return { name: 'math-quiz', params: {} };
   }
+  if (parts[0] === 'amc') {
+    if (!parts[1]) return { name: 'amc', params: {} };
+    if (parts[1] === 'paper' && parts[2]) {
+      const mode = parts[3] === 'practice' ? 'practice' : 'contest';
+      return { name: 'amc-paper', params: { paper: parts[2], mode } };
+    }
+    return { name: 'amc', params: {} };
+  }
   if (parts[0] === 'srs') return { name: 'srs', params: {} };
   if (parts[0] === 'progress') return { name: 'progress', params: {} };
 
@@ -92,6 +100,7 @@ export function toHash(name, params = {}) {
     'cn-quiz': '#/cn/quiz',
     'math-flash': '#/math/flash',
     'math-quiz': '#/math/quiz',
+    amc: '#/amc',
     days: '#/days',
     flash: '#/flash',
     match: '#/match',
@@ -110,6 +119,10 @@ export function toHash(name, params = {}) {
     return `#/wrong/quiz${sub}`;
   }
   if (name === 'science-day') return `#/science/day/${params.day || 1}`;
+  if (name === 'amc-paper') {
+    const mode = params.mode === 'practice' ? '/practice' : '';
+    return `#/amc/paper/${params.paper || 'mock-1'}${mode}`;
+  }
   return '#/';
 }
 

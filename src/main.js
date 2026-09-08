@@ -7,6 +7,7 @@ import {
   ensureIelts,
   ensureChinese,
   ensureMath,
+  ensureAmc,
   ensureHsEnglish,
   prefetchInBackground,
 } from './data/load.js';
@@ -229,6 +230,23 @@ async function needMath() {
   }
 }
 
+async function needAmc() {
+  showPackLoading(tb('amcTitle'));
+  try {
+    await ensureAmc();
+  } finally {
+    hidePackLoading();
+  }
+}
+
+let amcTimerId = null;
+function clearAmcTimer() {
+  if (amcTimerId != null) {
+    clearInterval(amcTimerId);
+    amcTimerId = null;
+  }
+}
+
 async function needHsBook(bookId) {
   if (!bookId) return;
   showPackLoading(tb('hsOpenBook'));
@@ -264,6 +282,7 @@ function clearSessionRepaint() {
   clearFlashKeys();
   unmountClipPlayer();
   stopListening();
+  clearAmcTimer();
 }
 
 /** Wayground-style: Space flips, Enter goes next. */
@@ -1633,11 +1652,32 @@ async function renderHub(hubId) {
       modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
     ].join('');
   } else if (hubId === 'math') {
-    modes = [
-      modeCard('math-flash', '🃏', tb('mathFlash'), '', `${mathVocab.length} ${tb('words')}`),
-      modeCard('math-quiz', '✅', tb('mathQuiz'), '', `${mathQuestions.length} ${tb('questions')}`),
-      modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length)),
-    ].join('');
+    modes = `
+      <div class="en-dual">
+        <div class="en-col">
+          <button class="en-track" data-nav="math-quiz" style="--hub-accent:#3b82f6">
+            <div class="en-track-kicker">Track A</div>
+            <h3>${tb('amcClassTrack')}</h3>
+            <p>${tb('amcClassBlurb')}</p>
+            <span class="mode-tag">${mathQuestions.length} ${tb('questions')}</span>
+          </button>
+          <div class="mode-grid">
+            ${modeCard('math-flash', '🃏', tb('mathFlash'), '', `${mathVocab.length} ${tb('words')}`)}
+            ${modeCard('math-quiz', '✅', tb('mathQuiz'), '', `${mathQuestions.length} ${tb('questions')}`)}
+          </div>
+        </div>
+        <div class="en-col">
+          <button class="en-track" data-nav="amc" style="--hub-accent:#f59e0b">
+            <div class="en-track-kicker">Track B</div>
+            <h3>${tb('amcTrack')}</h3>
+            <p>${tb('amcTrackBlurb')}</p>
+            <span class="mode-tag">C · Junior</span>
+          </button>
+        </div>
+      </div>
+      <div class="mode-grid" style="margin-top:16px">
+        ${modeCard('wrong', '📘', tb('wrongBook'), '', String(store.wrong.length))}
+      </div>`;
   } else {
     const sciDays = days.filter((d) => d.subject === hubId);
     const sciV = vocabulary.filter((v) => v.subject === hubId);
@@ -1669,7 +1709,7 @@ async function renderHub(hubId) {
           : ''
       }
       ${
-        hubId === 'english'
+        hubId === 'english' || hubId === 'math'
           ? modes
           : `<h3 class="section-label">${tb('hubModes')}</h3>
       <div class="mode-grid">${modes}</div>`
@@ -4412,6 +4452,439 @@ async function startHsUnit(bookId, unitId) {
   paint();
 }
 
+function formatAmcClock(sec) {
+  const s = Math.max(0, Number(sec) || 0);
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return `${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}`;
+}
+
+function amcBi(zh, en) {
+  const L = getLang();
+  const z = escapeHtml(zh || '');
+  const e = escapeHtml(en || '');
+  if (L === 'zh') return z || e;
+  if (L === 'en') return e || z;
+  if (zh && en && zh !== en) return `<span class="q-zh">${z}</span>\n<span class="q-en">${e}</span>`;
+  return z || e;
+}
+
+function amcSolLabel(kind) {
+  if (kind === 'C') return tb('amcHasSol');
+  if (kind === 'all') return tb('amcAllDivSol');
+  if (kind === 'key') return tb('amcHasKey');
+  return tb('amcNoSol');
+}
+
+async function renderAmcHub() {
+  currentRoute = 'amc';
+  store.activeHub = 'math';
+  save();
+  await needAmc();
+  const {
+    AMC_ARCHIVE,
+    AMC_LINKS,
+    AMC_DATES_2026,
+    AMC_PAPERS_META,
+    paperTitle,
+    paperBlurb,
+  } = packs.amc;
+  const L = getLang();
+  setSessionRepaint(renderAmcHub);
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen">
+      <div class="screen-header">${backBtn('hub-math')}<h2 class="screen-title">${tb('amcTitle')}</h2></div>
+      <div class="amc-hero">
+        <div class="amc-kicker">Paper C · Junior · Grade 8</div>
+        <h3>AMC-C</h3>
+        <p>${tb('amcLead')}</p>
+      </div>
+      <div class="amc-grid-2">
+        <div class="panel">
+          <h3 class="section-label">${tb('amcFormat')}</h3>
+          <p>${tb('amcFormatBody')}</p>
+          <p class="amc-note" style="margin-top:10px">${tb('amcAward')}</p>
+        </div>
+        <div class="panel">
+          <h3 class="section-label">${tb('amcDates')}</h3>
+          <dl class="amc-dl">
+            ${AMC_DATES_2026.map((row) => {
+              const k = L === 'en' ? row.en : L === 'zh' ? row.zh : `${row.zh} / ${row.en}`;
+              const v = L === 'en' ? row.valueEn : L === 'zh' ? row.valueZh : `${row.valueZh} / ${row.valueEn}`;
+              return `<div><dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd></div>`;
+            }).join('')}
+          </dl>
+        </div>
+      </div>
+      <h3 class="section-label">${tb('amcOfficial')}</h3>
+      <div class="amc-links">
+        ${AMC_LINKS.map((link) => {
+          const label = L === 'en' ? link.en : L === 'zh' ? link.zh : `${link.zh} · ${link.en}`;
+          return `<a class="amc-ext" href="${link.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)} ↗</a>`;
+        }).join('')}
+      </div>
+      <h3 class="section-label" style="margin-top:22px">${tb('amcArchive')}</h3>
+      <p class="amc-note">${tb('amcArchiveHint')}</p>
+      <div class="amc-year-grid">
+        ${AMC_ARCHIVE.map((y) => {
+          const sol = y.solutions || '';
+          const dim = y.solutionsKind === 'none' ? ' dim' : '';
+          return `<article class="amc-year">
+            <strong>${y.year} C</strong>
+            <div class="amc-file">${escapeHtml(y.file)}${sol ? `<br>${escapeHtml(sol)}` : ''}</div>
+            <div class="amc-pills">
+              <span class="amc-pill">${tb('amcQs')}</span>
+              <span class="amc-pill">${tb('amcMins')}</span>
+              <span class="amc-pill${dim}">${escapeHtml(amcSolLabel(y.solutionsKind))}</span>
+            </div>
+          </article>`;
+        }).join('')}
+      </div>
+      <h3 class="section-label" style="margin-top:22px">${tb('amcPractice')}</h3>
+      <p class="amc-note">${tb('amcPracticeHint')}</p>
+      <div class="amc-paper-grid">
+        ${AMC_PAPERS_META.map((p) => {
+          return `<article class="amc-paper-card">
+            <div class="mode-icon">${p.icon}</div>
+            <h3>${escapeHtml(paperTitle(p, L === 'both' ? 'zh' : L))}${L === 'both' && p.titleZh !== p.titleEn ? `<br><span style="font-size:0.85rem;font-weight:700;opacity:.8">${escapeHtml(p.titleEn)}</span>` : ''}</h3>
+            <p>${escapeHtml(paperBlurb(p, L === 'both' ? 'zh' : L))}${L === 'both' && p.blurbZh !== p.blurbEn ? `<br>${escapeHtml(p.blurbEn)}` : ''}</p>
+            <div class="amc-pills">
+              <span class="amc-pill">${p.count} ${tb('questions')}</span>
+              <span class="amc-pill">${p.minutes} min</span>
+            </div>
+            <div class="amc-paper-actions">
+              <button class="btn btn-primary" data-amc-paper="${p.id}" data-amc-mode="contest">${tb('amcContest')}</button>
+              <button class="btn" data-amc-paper="${p.id}" data-amc-mode="practice">${tb('amcPracticeMode')}</button>
+            </div>
+          </article>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+async function renderAmcPaper(paperId, mode = 'contest') {
+  await needAmc();
+  const { getAmcPaper, getAmcPaperMeta, scoreAmc, formatAmcAnswer, paperTitle, optText, amcQuestionPoints } =
+    packs.amc;
+  const paper = await getAmcPaper(paperId);
+  if (!paper) return renderAmcHub();
+  const meta = getAmcPaperMeta(paperId) || paper;
+  const practice = mode === 'practice';
+  currentRoute = 'amc-paper';
+  store.activeHub = 'math';
+  save();
+
+  const answers = {};
+  const revealed = {};
+  let idx = 0;
+  let phase = 'play';
+  let result = null;
+  let confirmOpen = false;
+  let remain = (paper.minutes || 75) * 60;
+  const langNow = () => getLang();
+
+  clearAmcTimer();
+  amcTimerId = setInterval(() => {
+    remain -= 1;
+    const el = document.getElementById('amc-clock');
+    if (el) {
+      el.textContent = formatAmcClock(remain);
+      el.classList.toggle('warn', remain <= 120);
+    }
+    if (remain <= 0) {
+      confirmOpen = false;
+      finish(true);
+    }
+  }, 1000);
+
+  function readIntField() {
+    const inp = document.getElementById('amc-int');
+    if (!inp) return;
+    const q = paper.questions[idx];
+    if (!q || q.type !== 'int') return;
+    const v = String(inp.value || '').trim();
+    if (v === '') delete answers[q.n];
+    else answers[q.n] = Number(v);
+  }
+
+  function finish(force) {
+    readIntField();
+    const unanswered = paper.questions.filter((q) => {
+      const g = answers[q.n];
+      return g === undefined || g === null || String(g).trim() === '';
+    }).length;
+    if (!force && unanswered) {
+      confirmOpen = true;
+      paintAmc();
+      return;
+    }
+    confirmOpen = false;
+    clearAmcTimer();
+    result = scoreAmc(paper.questions, answers, paper);
+    result.rows.forEach((row, i) => {
+      if (row.ok) return;
+      if (practice && !row.blank) return;
+      const q = paper.questions[i];
+      recordWrong({
+        id: `amc:${paper.id}:${q.n}`,
+        kind: 'amc',
+        prompt: `${q.stemZh} / ${q.stemEn}`,
+        correctText: formatAmcAnswer(q),
+        explain: `${q.explainZh} / ${q.explainEn}`,
+        subject: 'math',
+      });
+    });
+    addXp(Math.max(5, Math.round(result.points / 2)), result.correct > 0);
+    if (result.points >= result.max * 0.75) fanfare(tb('great'));
+    phase = 'results';
+    paintAmc();
+  }
+
+  function markPractice(q, ok) {
+    revealed[q.n] = true;
+    if (ok) {
+      addXp(10, true);
+      celebrate(true);
+    } else {
+      addXp(0, false);
+      celebrate(false);
+      recordWrong({
+        id: `amc:${paper.id}:${q.n}`,
+        kind: 'amc',
+        prompt: `${q.stemZh} / ${q.stemEn}`,
+        correctText: formatAmcAnswer(q),
+        explain: `${q.explainZh} / ${q.explainEn}`,
+        subject: 'math',
+      });
+    }
+  }
+
+  function paintResults() {
+    const pct = Math.round((result.points / Math.max(1, result.max)) * 100);
+    const title = paperTitle(meta, langNow() === 'both' ? 'zh' : langNow());
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen">
+        <div class="screen-header">${backBtn('amc')}<h2 class="screen-title">${tb('results')}</h2></div>
+        <div class="panel results" style="--pct:${pct}">
+          <div class="score-ring">${pct}%</div>
+          <h3>${escapeHtml(title)}</h3>
+          <p>${tb('amcScore')} ${result.points} / ${result.max} ${tb('amcOf')} · ${result.correct}/${result.total}</p>
+          <div class="flash-actions">
+            <button class="btn btn-primary" data-amc-paper="${paper.id}" data-amc-mode="${practice ? 'practice' : 'contest'}">${tb('again')}</button>
+            <button class="btn" data-nav="amc">${tb('amcTitle')}</button>
+          </div>
+        </div>
+        <h3 class="section-label" style="margin-top:18px">${tb('amcReview')}</h3>
+        <div class="amc-nav">
+          ${result.rows
+            .map(
+              (row) =>
+                `<button type="button" class="amc-qdot ${row.ok ? 'ok' : 'bad'}" data-amc-review="${row.n}">${row.n}</button>`
+            )
+            .join('')}
+        </div>
+        <div class="amc-review">
+          ${paper.questions
+            .map((q, i) => {
+              const row = result.rows[i];
+              const pts = amcQuestionPoints(q, paper);
+              const yours = row.blank ? tb('amcBlank') : String(row.given);
+              return `<article class="amc-review-item ${row.ok ? 'ok' : 'bad'}" id="amc-r-${q.n}">
+                <h4>Q${q.n} · ${pts} ${tb('amcOf')}</h4>
+                <div class="wg-q-text">${amcBi(q.stemZh, q.stemEn)}</div>
+                ${q.figure ? `<div class="amc-fig-wrap">${q.figure}</div>` : ''}
+                ${
+                  q.type === 'mcq'
+                    ? `<div class="wg-options amc-options" style="margin-top:10px">${q.options
+                        .map((o, oi) => {
+                          const letter = 'ABCDE'[oi];
+                          const cls =
+                            letter === q.answer ? 'correct' : letter === String(row.given).toUpperCase() && !row.ok ? 'wrong' : 'dim';
+                          return `<div class="wg-opt ${cls}"><span class="shape">${letter}</span><span>${escapeHtml(optText(o, langNow())).replace(/\n/g, '<br>')}</span></div>`;
+                        })
+                        .join('')}</div>`
+                    : ''
+                }
+                <p><strong>${tb('amcYour')}</strong> ${escapeHtml(yours)} · <strong>${tb('answerLabel')}</strong> ${escapeHtml(String(q.answer))}</p>
+                <div class="amc-explain">${amcBi(q.explainZh, q.explainEn)}</div>
+              </article>`;
+            })
+            .join('')}
+        </div>
+      </div>`;
+    app.querySelectorAll('[data-amc-review]').forEach((btn) => {
+      btn.onclick = () => {
+        const el = document.getElementById(`amc-r-${btn.getAttribute('data-amc-review')}`);
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+    });
+  }
+
+  function paintAmc() {
+    setSessionRepaint(paintAmc);
+    if (phase === 'results') {
+      paintResults();
+      return;
+    }
+    const q = paper.questions[idx];
+    const title = paperTitle(meta, langNow() === 'both' ? 'zh' : langNow());
+    const selected = answers[q.n];
+    const shown = practice && revealed[q.n];
+    const pts = amcQuestionPoints(q, paper);
+    const unanswered = paper.questions.filter((item) => {
+      const g = answers[item.n];
+      return g === undefined || g === null || String(g).trim() === '';
+    }).length;
+
+    const opts =
+      q.type === 'mcq'
+        ? `<div class="wg-options amc-options" id="opts">${q.options
+            .map((o, i) => {
+              const letter = 'ABCDE'[i];
+              const sel = String(selected || '').toUpperCase() === letter ? ' selected' : '';
+              let extra = '';
+              if (shown) {
+                if (letter === q.answer) extra += ' correct';
+                else extra += ' dim';
+                if (letter === String(selected || '').toUpperCase() && letter !== q.answer) extra += ' wrong';
+              }
+              return `<button type="button" class="wg-opt${sel}${extra}" data-letter="${letter}" ${shown ? 'disabled' : ''}><span class="shape">${letter}</span><span>${escapeHtml(optText(o, langNow())).replace(/\n/g, '<br>')}</span></button>`;
+            })
+            .join('')}</div>`
+        : `<div class="amc-int">
+            <label>${tb('amcIntHint')}</label>
+            <input id="amc-int" type="number" min="0" max="999" inputmode="numeric" value="${selected ?? ''}" ${shown ? 'disabled' : ''} />
+            ${practice && !shown ? `<button class="btn btn-primary" id="amc-check">${tb('check')}</button>` : ''}
+          </div>`;
+
+    const fb = shown
+      ? String(selected).toUpperCase() === String(q.answer).toUpperCase() || Number(selected) === Number(q.answer)
+        ? `<div class="wg-feedback ok"><strong>${tb('correctBanner')}</strong><div class="amc-explain">${amcBi(q.explainZh, q.explainEn)}</div></div>`
+        : `<div class="wg-feedback no"><strong>${tb('incorrectBanner')}</strong>${tb('answerLabel')}${escapeHtml(String(q.answer))}<div class="amc-explain">${amcBi(q.explainZh, q.explainEn)}</div></div>`
+      : '';
+
+    app.innerHTML = `
+      ${topbar()}
+      <div class="screen wg-play amc-play">
+        <div class="screen-header">${backBtn('amc')}<h2 class="screen-title">${escapeHtml(title)}</h2></div>
+        <div class="wg-hud amc-hud">
+          <span class="pill">Q${q.n}/${paper.questions.length}</span>
+          <span class="pill">${pts} ${tb('amcOf')}</span>
+          <span class="pill ${remain <= 120 ? 'amc-timer warn' : 'amc-timer'}" id="amc-clock">${formatAmcClock(remain)}</span>
+          <span class="pill">${practice ? tb('amcPracticeMode') : tb('amcContest')}</span>
+        </div>
+        <div class="amc-nav" aria-label="${tb('amcJump')}">
+          ${paper.questions
+            .map((item, i) => {
+              const filled = answers[item.n] !== undefined && String(answers[item.n]).trim() !== '';
+              return `<button type="button" class="amc-qdot${filled ? ' on' : ''}${i === idx ? ' current' : ''}" data-amc-jump="${i}">${item.n}</button>`;
+            })
+            .join('')}
+        </div>
+        <div class="wg-question">
+          <div class="wg-q-meta">${escapeHtml(q.topic || '')}</div>
+          <div class="wg-q-text">${amcBi(q.stemZh, q.stemEn)}</div>
+          ${q.figure ? `<div class="amc-fig-wrap">${q.figure}</div>` : ''}
+        </div>
+        ${opts}
+        <div id="fb">${fb}</div>
+        <div class="flash-actions" style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" id="amc-prev" ${idx === 0 ? 'disabled' : ''}>${tb('amcPrevQ')}</button>
+          <button class="btn btn-primary" id="amc-next">${idx === paper.questions.length - 1 ? tb('amcSubmit') : tb('amcNextQ')}</button>
+          <button class="btn" id="amc-submit">${tb('amcSubmit')}</button>
+        </div>
+      </div>
+      ${
+        confirmOpen
+          ? `<div class="amc-mask" id="amc-mask"><div class="panel">
+              <p>${unanswered ? tb('amcSubmitHint', { n: unanswered }) : tb('amcSubmitEmpty')}</p>
+              <div class="flash-actions" style="margin-top:12px">
+                <button class="btn btn-primary" id="amc-confirm-yes">${tb('amcYes')}</button>
+                <button class="btn" id="amc-confirm-no">${tb('amcNo')}</button>
+              </div>
+            </div></div>`
+          : ''
+      }`;
+
+    app.querySelectorAll('[data-amc-jump]').forEach((btn) => {
+      btn.onclick = () => {
+        readIntField();
+        idx = Number(btn.getAttribute('data-amc-jump')) || 0;
+        paintAmc();
+      };
+    });
+    app.querySelectorAll('.wg-opt[data-letter]').forEach((btn) => {
+      btn.onclick = () => {
+        if (shown) return;
+        const letter = btn.getAttribute('data-letter');
+        answers[q.n] = letter;
+        if (practice) markPractice(q, letter === q.answer);
+        paintAmc();
+      };
+    });
+    const checkBtn = document.getElementById('amc-check');
+    if (checkBtn) {
+      checkBtn.onclick = () => {
+        readIntField();
+        if (answers[q.n] === undefined || String(answers[q.n]).trim() === '') return;
+        markPractice(q, Number(answers[q.n]) === Number(q.answer));
+        paintAmc();
+      };
+    }
+    const intInp = document.getElementById('amc-int');
+    if (intInp) {
+      intInp.addEventListener('change', readIntField);
+      intInp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          readIntField();
+          if (practice && !shown) {
+            if (answers[q.n] !== undefined && String(answers[q.n]).trim() !== '') {
+              markPractice(q, Number(answers[q.n]) === Number(q.answer));
+            }
+          }
+          paintAmc();
+        }
+      });
+    }
+    const prev = document.getElementById('amc-prev');
+    if (prev) {
+      prev.onclick = () => {
+        readIntField();
+        idx = Math.max(0, idx - 1);
+        paintAmc();
+      };
+    }
+    const next = document.getElementById('amc-next');
+    if (next) {
+      next.onclick = () => {
+        readIntField();
+        if (idx >= paper.questions.length - 1) {
+          finish(false);
+          return;
+        }
+        idx += 1;
+        paintAmc();
+      };
+    }
+    const sub = document.getElementById('amc-submit');
+    if (sub) sub.onclick = () => finish(false);
+    const yes = document.getElementById('amc-confirm-yes');
+    if (yes) yes.onclick = () => finish(true);
+    const no = document.getElementById('amc-confirm-no');
+    if (no) {
+      no.onclick = () => {
+        confirmOpen = false;
+        paintAmc();
+      };
+    }
+  }
+
+  paintAmc();
+}
+
 /* —— Router —— */
 const routes = {
   home: renderHome,
@@ -4447,6 +4920,7 @@ const routes = {
   'cn-quiz': () => renderSubjectQuiz('chinese'),
   'math-flash': () => renderSubjectFlash('math'),
   'math-quiz': () => renderSubjectQuiz('math'),
+  amc: renderAmcHub,
   'hub-chinese': () => renderHub('chinese'),
   'hub-math': () => renderHub('math'),
   'hub-english': () => renderHub('english'),
@@ -4479,6 +4953,10 @@ async function dispatchRoute(route) {
   }
   if (name === 'wrong-quiz') {
     renderWrongQuiz(params.subject || 'all');
+    return;
+  }
+  if (name === 'amc-paper') {
+    await renderAmcPaper(params.paper, params.mode === 'practice' ? 'practice' : 'contest');
     return;
   }
   const fn = routes[name] || renderHome;
@@ -4599,6 +5077,22 @@ app.addEventListener('click', (e) => {
       /* ignore */
     }
     navigate('science-day', { day: n });
+    return;
+  }
+  const amcPaperBtn = e.target.closest('[data-amc-paper]');
+  if (amcPaperBtn && app.contains(amcPaperBtn)) {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      unlockAudio();
+    } catch (_) {}
+    try {
+      sfxClick();
+    } catch (_) {}
+    navigate('amc-paper', {
+      paper: amcPaperBtn.getAttribute('data-amc-paper'),
+      mode: amcPaperBtn.getAttribute('data-amc-mode') || 'contest',
+    });
     return;
   }
   const navEl = e.target.closest('[data-nav]');
