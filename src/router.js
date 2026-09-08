@@ -98,7 +98,6 @@ export function toHash(name, params = {}) {
     'ielts-cloze': '#/ielts/cloze',
     'ielts-match': '#/ielts/match',
     'hs-shelf': '#/hs',
-    'tb-shelf': '#/books',
     wrong: '#/wrong',
     srs: '#/srs',
     progress: '#/progress',
@@ -121,8 +120,8 @@ export function toHash(name, params = {}) {
   if (name === 'ielts-day') return `#/ielts/day/${params.day || 1}`;
   if (name === 'hs-book') return `#/hs/${params.book || ''}`;
   if (name === 'hs-unit') return `#/hs/${params.book || ''}/${params.unit || ''}`;
+  if (name === 'tb-shelf') return `#/books/${params.shelf || 'hs'}`;
   if (name === 'tb-book') return `#/books/${params.shelf || 'hs'}/${params.book || ''}`;
-  if (name === 'tb-unit') return `#/books/${params.shelf || 'hs'}/${params.book || ''}/${params.unit || ''}`;
   if (name === 'wrong-quiz') {
     const sub = params.subject && params.subject !== 'all' ? `/${params.subject}` : '';
     return `#/wrong/quiz${sub}`;
