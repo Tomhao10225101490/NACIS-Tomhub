@@ -4515,6 +4515,7 @@ async function renderAmcHub() {
               return `<div><dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd></div>`;
             }).join('')}
           </dl>
+          <p class="amc-note" style="margin-top:10px">${tb('amcDatesNote')}</p>
         </div>
       </div>
       <h3 class="section-label">${tb('amcOfficial')}</h3>

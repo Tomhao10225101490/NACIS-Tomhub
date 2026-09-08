@@ -233,6 +233,10 @@ const dict = {
   },
   amcOfficial: { zh: '官方入口', en: 'Official links' },
   amcDates: { zh: '2026 赛程（AMT）', en: '2026 dates (AMT)' },
+  amcDatesNote: {
+    zh: '以上为 AMT 公布的 2026 年窗口。2027 年日期以官网为准；学校实际考试日可能在窗口内自选。',
+    en: 'These are AMT’s published 2026 windows. Check amt.edu.au for 2027; schools pick a sitting inside the window.',
+  },
   amcFormat: { zh: 'C 卷赛制', en: 'Paper C format' },
   amcFormatBody: {
     zh: '中学卷 75 分钟 · 30 题（25 道 A–E 选择题 + 5 道 0–999 整数题）· 禁止计算器 · 答错不扣分。分值：1–10 题各 3 分，11–20 各 4 分，21–25 各 5 分，26–30 依次 6、7、8、9、10 分，满分 135。',
