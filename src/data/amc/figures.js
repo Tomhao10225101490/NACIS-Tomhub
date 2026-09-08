@@ -436,4 +436,56 @@ export const figures = {
      <line x1="160" y1="30" x2="160" y2="250" stroke="#111827" stroke-width="2"/>`,
     'A large triangle with two cevians drawn'
   ),
+
+  paintedCube: fig(
+    320,
+    300,
+    `<g transform="translate(40,40)">
+       <polygon points="0,160 120,200 240,160 120,120" fill="#eff6ff" stroke="#1d4ed8" stroke-width="3"/>
+       <polygon points="0,160 0,40 120,0 120,120" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+       <polygon points="120,120 120,0 240,-40 240,80" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="3"/>
+       <g fill="#fca5a5" stroke="#be123c" stroke-width="2.5">
+         <rect x="0" y="40" width="40" height="40"/>
+         <rect x="40" y="40" width="40" height="40"/>
+         <rect x="80" y="40" width="40" height="40"/>
+         <rect x="120" y="80" width="40" height="40"/>
+         <rect x="160" y="80" width="40" height="40"/>
+         <rect x="200" y="80" width="40" height="40"/>
+         <rect x="40" y="120" width="40" height="40"/>
+         <rect x="80" y="120" width="40" height="40"/>
+       </g>
+       <text x="100" y="244" ${FONT} font-size="14">edge cubes have exactly two painted faces</text>
+     </g>`,
+    'A painted cube with edge cubes (exactly two painted faces) highlighted'
+  ),
+
+  clockAngle: fig(
+    300,
+    300,
+    `<circle cx="150" cy="150" r="110" fill="#eff6ff" stroke="#111827" stroke-width="3"/>
+     <line x1="150" y1="150" x2="150" y2="60" stroke="#111827" stroke-width="4"/>
+     <line x1="150" y1="150" x2="230" y2="200" stroke="#be123c" stroke-width="3"/>
+     <path d="M 150 90 A 60 60 0 0 1 210 175" fill="none" stroke="#be123c" stroke-width="2.5"/>
+     <text x="186" y="120" ${FONT} font-size="15" fill="#9f1239">angle</text>
+     <circle cx="150" cy="150" r="5" fill="#111827"/>`,
+    'A clock face with the angle between the hands marked'
+  ),
+
+  numberLineFrac: fig(
+    340,
+    140,
+    `<line x1="30" y1="70" x2="320" y2="70" stroke="#111827" stroke-width="2"/>
+     <polygon points="320,70 312,66 312,74" fill="#111827"/>
+     ${[30, 115, 200, 285]
+       .map((x, i) => `<line x1="${x}" y1="62" x2="${x}" y2="78" stroke="#111827" stroke-width="2"/>`)
+       .join('')}
+     <text x="22" y="98" ${FONT} font-size="13">0</text>
+     <text x="108" y="98" ${FONT} font-size="13">1</text>
+     <text x="193" y="98" ${FONT} font-size="13">2</text>
+     <circle cx="78" cy="70" r="6" fill="#1d4ed8"/>
+     <text x="70" y="40" ${FONT} font-size="13" fill="#1d4ed8">X</text>
+     <circle cx="245" cy="70" r="6" fill="#be123c"/>
+     <text x="238" y="40" ${FONT} font-size="13" fill="#9f1239">Y</text>`,
+    'A number line with two fractions X and Y marked'
+  ),
 };
