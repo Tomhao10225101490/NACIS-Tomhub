@@ -1,8 +1,8 @@
-import { AMC_ARCHIVE, AMC_LINKS, AMC_FORMAT, AMC_DATES_2026 } from './catalog.js';
+import { AMC_ARCHIVE, AMC_LINKS, AMC_FORMAT, AMC_DATES_2026, AMC_AMT_WINDOW, AMC_PROMO } from './catalog.js';
 import { amcQuestionPoints, amcMaxScore, answersMatch, formatAmcAnswer, scoreAmc } from './score.js';
 import { optText } from './helpers.js';
 
-export { AMC_ARCHIVE, AMC_LINKS, AMC_FORMAT, AMC_DATES_2026 };
+export { AMC_ARCHIVE, AMC_LINKS, AMC_FORMAT, AMC_DATES_2026, AMC_AMT_WINDOW, AMC_PROMO };
 export { amcQuestionPoints, amcMaxScore, answersMatch, formatAmcAnswer, scoreAmc, optText };
 
 export const AMC_PAPERS_META = [

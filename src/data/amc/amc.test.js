@@ -7,6 +7,10 @@ import {
   answersMatch,
   AMC_PAPERS_META,
   AMC_ARCHIVE,
+  AMC_DATES_2026,
+  AMC_AMT_WINDOW,
+  AMC_PROMO,
+  AMC_LINKS,
   getAmcPaper,
 } from './index.js';
 import { paper as mock1 } from './mock1.js';
@@ -87,6 +91,30 @@ describe('AMC papers', () => {
       2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016,
     ]);
     expect(AMC_ARCHIVE.every((y) => y.paper === 'C')).toBe(true);
+  });
+
+  it('lists the school October sitting with deadline and exam date', () => {
+    const keys = AMC_DATES_2026.map((r) => r.en);
+    expect(keys).toContain('Registration closes');
+    expect(keys).toContain('Competition date');
+    expect(keys).toContain('Levels C / D / E time');
+    const close = AMC_DATES_2026.find((r) => r.en === 'Registration closes');
+    expect(close.valueEn).toContain('September');
+    expect(close.valueEn).toContain('28');
+    const exam = AMC_DATES_2026.find((r) => r.en === 'Competition date');
+    expect(exam.valueEn).toContain('October');
+    expect(exam.valueEn).toContain('11');
+    const cTime = AMC_DATES_2026.find((r) => r.en === 'Levels C / D / E time');
+    expect(cTime.valueEn).toContain('75 min');
+  });
+
+  it('keeps the AMT Australian window and promo facts for reference', () => {
+    expect(AMC_AMT_WINDOW.length).toBeGreaterThan(0);
+    expect(AMC_PROMO.historyYears).toBe(49);
+    expect(AMC_PROMO.countries).toBe(32);
+    expect(AMC_PROMO.studentsMillions).toBe(16);
+    const schoolLink = AMC_LINKS.find((l) => l.id === 'schoolReg');
+    expect(schoolLink.href).toContain('qr61.cn');
   });
 
   it('gives every MCQ five options and a letter key', () => {

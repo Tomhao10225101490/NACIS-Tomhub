@@ -4485,12 +4485,21 @@ async function renderAmcHub() {
     AMC_ARCHIVE,
     AMC_LINKS,
     AMC_DATES_2026,
+    AMC_AMT_WINDOW,
+    AMC_PROMO,
     AMC_PAPERS_META,
     paperTitle,
     paperBlurb,
   } = packs.amc;
   const L = getLang();
   setSessionRepaint(renderAmcHub);
+  const deadline = AMC_DATES_2026.find((r) => r.en === 'Registration closes') || {};
+  const exam = AMC_DATES_2026.find((r) => r.en === 'Competition date') || {};
+  const dl = (row) => {
+    const k = L === 'en' ? row.en : L === 'zh' ? row.zh : `${row.zh} / ${row.en}`;
+    const v = L === 'en' ? row.valueEn : L === 'zh' ? row.valueZh : `${row.valueZh} / ${row.valueEn}`;
+    return `<div><dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd></div>`;
+  };
   app.innerHTML = `
     ${topbar()}
     <div class="screen">
@@ -4499,23 +4508,27 @@ async function renderAmcHub() {
         <div class="amc-kicker">Paper C · Junior · Grade 8</div>
         <h3>AMC-C</h3>
         <p>${tb('amcLead')}</p>
+        <p class="amc-note" style="margin-top:10px">${tb('amcPromo')}</p>
       </div>
       <div class="amc-grid-2">
+        <div class="panel amc-reg-card">
+          <h3 class="section-label">${tb('amcDates')}</h3>
+          <div class="amc-reg-headline">
+            <span class="amc-reg-pill">${tb('amcDeadline')} · ${escapeHtml(L === 'en' ? deadline.valueEn : deadline.valueZh)}</span>
+            <span class="amc-reg-pill">${tb('amcExamDate')} · ${escapeHtml(L === 'en' ? exam.valueEn : exam.valueZh)}</span>
+          </div>
+          <dl class="amc-dl">
+            ${AMC_DATES_2026.map(dl).join('')}
+          </dl>
+          <p class="amc-note" style="margin-top:10px">${tb('amcDatesNote')}</p>
+        </div>
         <div class="panel">
           <h3 class="section-label">${tb('amcFormat')}</h3>
           <p>${tb('amcFormatBody')}</p>
           <p class="amc-note" style="margin-top:10px">${tb('amcAward')}</p>
-        </div>
-        <div class="panel">
-          <h3 class="section-label">${tb('amcDates')}</h3>
-          <dl class="amc-dl">
-            ${AMC_DATES_2026.map((row) => {
-              const k = L === 'en' ? row.en : L === 'zh' ? row.zh : `${row.zh} / ${row.en}`;
-              const v = L === 'en' ? row.valueEn : L === 'zh' ? row.valueZh : `${row.valueZh} / ${row.valueEn}`;
-              return `<div><dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd></div>`;
-            }).join('')}
+          <dl class="amc-dl" style="margin-top:10px">
+            ${AMC_AMT_WINDOW.map(dl).join('')}
           </dl>
-          <p class="amc-note" style="margin-top:10px">${tb('amcDatesNote')}</p>
         </div>
       </div>
       <h3 class="section-label">${tb('amcOfficial')}</h3>

@@ -232,10 +232,16 @@ const dict = {
     en: 'Australian Mathematics Competition. Grade 8 maps to Paper C / Junior (AU Years 7–8). Year 9 can still train on C, then Intermediate.',
   },
   amcOfficial: { zh: '官方入口', en: 'Official links' },
-  amcDates: { zh: '2026 赛程（AMT）', en: '2026 dates (AMT)' },
+  amcDates: { zh: '本校报名信息（2026）', en: 'School registration (2026)' },
   amcDatesNote: {
-    zh: '以上为 AMT 公布的 2026 年窗口。2027 年日期以官网为准；学校实际考试日可能在窗口内自选。',
-    en: 'These are AMT’s published 2026 windows. Check amt.edu.au for 2027; schools pick a sitting inside the window.',
+    zh: '以上为本校所在赛区（中国 / 香港）的 2026 年 10 月场报名信息。AMT 官方澳洲场为 8 月，仅供参考。',
+    en: 'These are the 2026 October sitting details for this school’s region (China / HK). The AMT official Australian August window is for reference only.',
+  },
+  amcDeadline: { zh: '报名截止', en: 'Closes' },
+  amcExamDate: { zh: '考试日期', en: 'Exam' },
+  amcPromo: {
+    zh: 'AMC 已举办 49 年，覆盖 32 个国家和地区、超 1600 万名学生，是全球规模最大的校际数学测评之一。',
+    en: '49 years running, across 32 countries and regions, with over 16 million students — one of the world’s largest inter-school maths competitions.',
   },
   amcFormat: { zh: 'C 卷赛制', en: 'Paper C format' },
   amcFormatBody: {

@@ -13,6 +13,12 @@ export const AMC_FORMAT = {
 
 export const AMC_LINKS = [
   {
+    id: 'schoolReg',
+    zh: '本校报名资料合集（海报 / 真题 / 考纲 / 学生用书）',
+    en: 'School registration pack (poster / past papers / scope / student book)',
+    href: 'https://qr61.cn/oZsFH7/qT8TIMr',
+  },
+  {
     id: 'home',
     zh: 'AMT 官方 AMC 主页',
     en: 'AMT AMC home',
@@ -20,15 +26,9 @@ export const AMC_LINKS = [
   },
   {
     id: 'register',
-    zh: '学校报名入口',
-    en: 'School registration',
+    zh: 'AMT 学校报名入口',
+    en: 'AMT school registration',
     href: 'https://www.amt.edu.au/competitions',
-  },
-  {
-    id: 'datesPdf',
-    zh: '2026 关键日期表（PDF）',
-    en: '2026 key dates (PDF)',
-    href: 'https://amt.edu.au/wp-content/uploads/2025/2026-Competitions-and-Programs-Key-Dates-Calendar.pdf',
   },
   {
     id: 'handbook',
@@ -43,12 +43,6 @@ export const AMC_LINKS = [
     href: 'https://shop.amt.edu.au/collections/amc-resources',
   },
   {
-    id: 'twoYear',
-    zh: '近两年真题 PDF 包',
-    en: '2-year past-paper PDF pack',
-    href: 'https://shop.amt.edu.au/products/amc-past-papers-2-year-pack',
-  },
-  {
     id: 'juniorSample',
     zh: '官方 Junior 样题 + 解答（PDF）',
     en: 'Official Junior sample + solutions (PDF)',
@@ -56,12 +50,29 @@ export const AMC_LINKS = [
   },
 ];
 
+/** School (China / HK region) sitting for 2026 — the registration the user joins. */
 export const AMC_DATES_2026 = [
-  { zh: '比赛窗口', en: 'Competition window', valueZh: '2026 年 8 月 4–6 日（周二至周四）', valueEn: 'Tue 4 – Thu 6 August 2026' },
-  { zh: '国际纸质报名截止', en: 'International paper entries close', valueZh: '2026 年 6 月 26 日', valueEn: 'Friday 26 June 2026' },
-  { zh: '线上报名截止', en: 'Online entries close', valueZh: '2026 年 7 月 31 日', valueEn: 'Friday 31 July 2026' },
-  { zh: '纸质答题卡提交', en: 'Paper answer sheets due', valueZh: '2026 年 8 月 7 日', valueEn: 'Friday 7 August 2026' },
+  { zh: '报名截止', en: 'Registration closes', valueZh: '2026 年 9 月 28 日', valueEn: '28 September 2026' },
+  { zh: '考试日期', en: 'Competition date', valueZh: '2026 年 10 月 11 日（周日）', valueEn: 'Sunday 11 October 2026' },
+  { zh: 'C / D / E 等级时间', en: 'Levels C / D / E time', valueZh: '14:00 – 15:15（75 分钟）', valueEn: '14:00 – 15:15 (75 min)' },
+  { zh: 'A / B 等级时间', en: 'Levels A / B time', valueZh: '10:00 – 11:00（60 分钟）', valueEn: '10:00 – 11:00 (60 min)' },
+  { zh: 'Pre-A 等级时间', en: 'Level Pre-A time', valueZh: '10:00 – 10:50（50 分钟）', valueEn: '10:00 – 10:50 (50 min)' },
+  { zh: '地点', en: 'Location', valueZh: '学校考试 / 居家在线', valueEn: 'School exam / online at home' },
+  { zh: '费用', en: 'Fee', valueZh: '每人 322 港币 / 280 元人民币', valueEn: '322 HKD / 280 RMB per student' },
+  { zh: '资格', en: 'Eligibility', valueZh: '1–12 年级，分 6 个难度等级', valueEn: 'Grades 1–12, 6 difficulty levels' },
+  { zh: '形式', en: 'Format', valueZh: '个人 · 选择题 + 填空题', valueEn: 'Individual · MCQ + fill-in' },
 ];
+
+/** AMT official Australian sitting window — for reference only. */
+export const AMC_AMT_WINDOW = [
+  { zh: 'AMT 官方比赛窗口（澳洲）', en: 'AMT official window (Australia)', valueZh: '2026 年 8 月 4–6 日', valueEn: 'Tue 4 – Thu 6 August 2026' },
+];
+
+export const AMC_PROMO = {
+  historyYears: 49,
+  studentsMillions: 16,
+  countries: 32,
+};
 
 /** School-pack archive: C paper = Junior (AU Y7–8). Metadata only. */
 export const AMC_ARCHIVE = [
