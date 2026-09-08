@@ -3576,6 +3576,19 @@ body.hit-bad::after {
   white-space: pre-line;
 }
 
+.amc-options {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .amc-options {
+    grid-template-columns: 1fr 1fr;
+  }
+  .amc-options .wg-opt:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+}
+
 .amc-fig-wrap {
   margin: 12px 0 4px;
   display: flex;
