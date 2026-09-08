@@ -207,6 +207,15 @@ const dict = {
   clipReplay: { zh: '重播', en: 'Replay' },
   clipNext: { zh: '下一条', en: 'Next clip' },
   clipUnavailable: { zh: '当前网络无法加载视频，已为你朗读这个词', en: 'Video isn’t available; the word was spoken instead' },
+  speakCheckFor: { zh: '读「{word}」', en: 'Say “{word}”' },
+  speakCheckHint: { zh: '对着麦克风读这个词，看能不能听清', en: 'Say the word into the mic to check your pronunciation' },
+  speakCheckListening: { zh: '正在听…', en: 'Listening…' },
+  speakCheckPass: { zh: '读对了', en: 'That’s it' },
+  speakCheckRetry: { zh: '听到的是「{heard}」，再试一次', en: 'Heard “{heard}”. Try again' },
+  speakCheckMiss: { zh: '没听清，再试一次', en: 'Didn’t catch that. Try again' },
+  speakCheckUnavailable: { zh: '这次没法听写，先听正确发音', en: 'Listening isn’t available; here’s the model pronunciation' },
+  speakCheckMemorizeHint: { zh: '点「开始背词」后，每张卡都能跟读这个词', en: 'After Start, each card lets you say the word aloud' },
+  speakCheckListHint: { zh: '点开任意单词，可跟读检查发音', en: 'Open any word to check your pronunciation' },
 }
 
 export function t(key, vars = {}) {

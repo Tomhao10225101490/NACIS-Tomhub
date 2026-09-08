@@ -881,8 +881,53 @@ body.hit-bad::after {
 .clip-bar[hidden],
 .clip-open[hidden],
 .clip-kicker[hidden],
-.clip-row-host[hidden] {
+.clip-row-host[hidden],
+.speak-status[hidden] {
   display: none !important;
+}
+
+.speak-wrap {
+  margin-top: 12px;
+}
+
+.speak-open,
+.speak-word-btn {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.speak-word-btn {
+  margin-top: 10px;
+}
+
+.speak-open.is-listening,
+.speak-word-btn.is-listening {
+  opacity: 0.92;
+}
+
+.speak-status {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.speak-status-ok {
+  background: #bbf7d0;
+  color: #14532d;
+}
+
+.speak-status-no {
+  background: #fecaca;
+  color: #7f1d1d;
+}
+
+.speak-status-fail {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--muted);
 }
 
 /* Flashcards / match keep readable on purple */

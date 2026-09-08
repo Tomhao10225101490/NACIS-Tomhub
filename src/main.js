@@ -48,6 +48,7 @@ import {
   prefetchClipTracks,
   setClipMap,
 } from './clip-player.js';
+import { canListen, listenForWord, stopListening, isListening } from './speech-check.js';
 import clipMap from './data/clip-map.json';
 import {
   unlockAudio,
@@ -262,6 +263,7 @@ function clearSessionRepaint() {
   sessionRepaint = null;
   clearFlashKeys();
   unmountClipPlayer();
+  stopListening();
 }
 
 /** Wayground-style: Space flips, Enter goes next. */
@@ -481,6 +483,7 @@ function buildClipDock(word, { autoOpen = false, showToggle = true } = {}) {
     }
   };
   const openPanel = () => {
+    stopListening();
     primeSpeech();
     fail.hidden = true;
     stage.hidden = false;
@@ -526,6 +529,101 @@ function bindFlashClip(word) {
   else screen.append(wrap);
 }
 
+function demoSpeakWord(word) {
+  if (canSpeak() && word) {
+    primeSpeech();
+    speakText(word, 'en-GB');
+  }
+}
+
+function buildSpeakDock(word, { compact = false } = {}) {
+  const wrap = document.createElement('div');
+  wrap.className = 'speak-wrap';
+  const kicker = document.createElement('p');
+  kicker.className = 'clip-kicker';
+  kicker.textContent = tb('speakCheckHint');
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = compact ? 'btn speak-word-btn' : 'btn btn-primary speak-open';
+  btn.setAttribute('aria-pressed', 'false');
+  btn.textContent = tb('speakCheckFor', { word });
+  const status = document.createElement('p');
+  status.className = 'speak-status';
+  status.hidden = true;
+  wrap.append(kicker, btn, status);
+  if (compact) kicker.hidden = true;
+
+  const idleLabel = tb('speakCheckFor', { word });
+  const setIdle = () => {
+    btn.textContent = idleLabel;
+    btn.classList.remove('is-listening');
+    btn.setAttribute('aria-pressed', 'false');
+  };
+  const showStatus = (kind, text) => {
+    status.hidden = false;
+    status.className = `speak-status speak-status-${kind}`;
+    status.textContent = text;
+  };
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    sfxClick();
+    stopSpeak();
+    stopClipPlayback();
+    if (isListening()) {
+      stopListening();
+      setIdle();
+      return;
+    }
+    status.hidden = true;
+    if (!canListen()) {
+      showStatus('fail', tb('speakCheckUnavailable'));
+      demoSpeakWord(word);
+      return;
+    }
+    btn.textContent = tb('speakCheckListening');
+    btn.classList.add('is-listening');
+    btn.setAttribute('aria-pressed', 'true');
+    const started = listenForWord(word, {
+      onResult(result) {
+        setIdle();
+        if (result?.ok) {
+          sfxCorrect();
+          showStatus('ok', tb('speakCheckPass'));
+          return;
+        }
+        sfxWrong();
+        const heard = String(result?.heard || '').trim();
+        showStatus('no', heard ? tb('speakCheckRetry', { heard }) : tb('speakCheckMiss'));
+      },
+      onError() {
+        setIdle();
+        showStatus('fail', tb('speakCheckUnavailable'));
+        demoSpeakWord(word);
+      },
+    });
+    if (!started) {
+      setIdle();
+      showStatus('fail', tb('speakCheckUnavailable'));
+      demoSpeakWord(word);
+    }
+  });
+  return wrap;
+}
+
+function bindFlashSpeakCheck(word) {
+  stopListening();
+  const screen = app.querySelector('.screen');
+  if (!screen) return;
+  const wrap = buildSpeakDock(word);
+  const clip = screen.querySelector('.clip-wrap');
+  const actions = screen.querySelector('.flash-actions');
+  if (clip) clip.after(wrap);
+  else if (actions) actions.before(wrap);
+  else screen.append(wrap);
+}
+
 function closeHsWordClips(exceptHost) {
   app.querySelectorAll('.clip-row-host').forEach((host) => {
     if (host === exceptHost) return;
@@ -557,6 +655,7 @@ function bindHsWordClips() {
     host.className = 'clip-row-host';
     host.hidden = true;
     inner.append(btn, host);
+    inner.append(buildSpeakDock(word, { compact: true }));
     btn.onclick = (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -1169,6 +1268,7 @@ function bindHsWordList() {
     trigger.onclick = () => {
       const open = row.classList.contains('is-open');
       unmountClipPlayer();
+      stopListening();
       list.querySelectorAll('.hs-word-row.is-open').forEach((r) => {
         r.classList.remove('is-open');
         r.querySelector('.hs-word-copy')?.setAttribute('aria-expanded', 'false');
@@ -3285,6 +3385,7 @@ async function startIeltsDay(dayNum) {
 
   function paint() {
     unmountClipPlayer();
+    stopListening();
     setSessionRepaint(paint);
     clearFlashKeys();
     if (step === 0) {
@@ -3314,6 +3415,7 @@ async function startIeltsDay(dayNum) {
       };
       prefetchYouGlish();
       mountClipHint(panel, 'clipMemorizeHint', go);
+      mountClipHint(panel, 'speakCheckMemorizeHint', go);
       mountQuizModeButtons(panel, words, ieltsWords, { back: 'ielts-days', srsKind: 'ielts' });
       return;
     }
@@ -3392,6 +3494,7 @@ async function startIeltsDay(dayNum) {
         backLang: 'zh-CN',
       });
       bindFlashClip(w.word);
+      bindFlashSpeakCheck(w.word);
       bindFlashKeys({ onFlip: doFlip, onNext: goNext });
       return;
     }
@@ -4037,6 +4140,7 @@ async function startHsUnit(bookId, unitId) {
 
   function paint() {
     unmountClipPlayer();
+    stopListening();
     setSessionRepaint(paint);
     clearFlashKeys();
     if (step === 0) {
@@ -4105,6 +4209,7 @@ async function startHsUnit(bookId, unitId) {
       };
       bindHsWordList();
       mountClipHint(copy, 'clipListHint');
+      mountClipHint(copy, 'speakCheckListHint');
       return;
     }
 
@@ -4191,6 +4296,7 @@ async function startHsUnit(bookId, unitId) {
         backLang: 'zh-CN',
       });
       bindFlashClip(w.word);
+      bindFlashSpeakCheck(w.word);
       bindFlashKeys({ onFlip: doFlip, onNext: goNext });
       return;
     }
