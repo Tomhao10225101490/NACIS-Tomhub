@@ -488,6 +488,18 @@ body.hit-bad::after {
   background: transparent;
 }
 
+a.btn,
+a.chip,
+a.hs-book,
+a.hs-unit-row,
+a.en-track {
+  text-decoration: none;
+}
+
+a.btn {
+  display: inline-block;
+}
+
 .chip-row {
   display: flex;
   flex-wrap: wrap;

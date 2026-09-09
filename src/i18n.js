@@ -173,6 +173,8 @@ const dict = {
   unitOf: { zh: 'Unit {n}', en: 'Unit {n}' },
   welcomeUnit: { zh: 'Welcome Unit', en: 'Welcome Unit' },
   hsOpenBook: { zh: '打开这本书', en: 'Open this book' },
+  tbBookMissing: { zh: '书架上没有这本书。', en: 'That book is not on this shelf.' },
+  tbBookLoadFail: { zh: '这本书加载失败，请再点一次。', en: 'Could not load this book. Try again.' },
   hsToShelf: { zh: '回书架', en: 'Bookshelf' },
   hsNextUnit: { zh: '下一单元 →', en: 'Next unit →' },
   hsNextBook: { zh: '下一册 →', en: 'Next book →' },

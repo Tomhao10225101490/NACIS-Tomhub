@@ -36,7 +36,7 @@ import {
   hsProgressKey,
   tbProgressKey,
 } from './store.js';
-import { startRouter } from './router.js';
+import { startRouter, toHash } from './router.js';
 import { makeEnWordSpotItem, promptContainsAnswer } from './quiz/spot.js';
 import { applyReview, dueEntries, srsKey } from './quiz/srs.js';
 import { makeDictationItem, spellingOk } from './quiz/dictation.js';
@@ -1214,20 +1214,17 @@ function tbShelfRoute(shelfId) {
 function tbSrsKind(shelfId) {
   return shelfId === 'hs' ? 'hs' : `tb-${shelfId}`;
 }
-function tbUnitAttr(shelfId) {
-  return shelfId === 'hs' ? 'data-hs-unit' : 'data-tb-unit';
+function tbShelfHref(shelfId = 'hs') {
+  return toHash('tb-shelf', { shelf: shelfId || 'hs' });
 }
-function tbBookAttr(shelfId) {
-  return shelfId === 'hs' ? 'data-hs-book' : 'data-tb-book';
+function tbBookHref(shelfId, bookId) {
+  return toHash('tb-book', { shelf: shelfId, book: bookId });
 }
-function tbShelfAttr(shelfId) {
-  return shelfId === 'hs' ? 'data-nav' : 'data-tb-shelf';
+function tbUnitHref(shelfId, bookId, unitId) {
+  return toHash('tb-unit', { shelf: shelfId, book: bookId, unit: unitId });
 }
-function tbBookVal(shelfId, bookId) {
-  return shelfId === 'hs' ? bookId : `${shelfId}:${bookId}`;
-}
-function tbUnitVal(shelfId, bookId, unitId) {
-  return shelfId === 'hs' ? `${bookId}:${unitId}` : `${shelfId}:${bookId}:${unitId}`;
+function tbBackLink(href, label) {
+  return `<a class="btn btn-ghost" href="${href}">${label || tb('back')}</a>`;
 }
 function tbLabel(shelfId) {
   if (shelfId === 'hs') return tb('pep2019');
@@ -1540,7 +1537,7 @@ function renderHome() {
         <div class="today-actions">
           ${
             hsNext.book && hsNext.unit
-              ? `<button class="btn btn-primary" data-hs-unit="${hsNext.book.id}:${hsNext.unit.id}">${t('start')}</button>`
+              ? `<a class="btn btn-primary" href="${tbUnitHref('hs', hsNext.book.id, hsNext.unit.id)}">${t('start')}</a>`
               : ''
           }
           <button class="btn" data-nav="hs-shelf">${t('hsShelf')}</button>
@@ -1692,7 +1689,7 @@ async function renderHub(hubId) {
           </div>
         </div>
         <div class="en-col">
-          <button class="en-track en-track-hs" data-nav="tb-shelf" style="--hub-accent:#f59e0b">
+          <a class="en-track en-track-hs" href="${tbShelfHref('hs')}" style="--hub-accent:#f59e0b">
             <div class="en-track-kicker">Track B</div>
             <h3>${tb('tbTrack')}</h3>
             <p>${tb('tbTrackBlurb')}</p>
@@ -1703,7 +1700,7 @@ async function renderHub(hubId) {
               ).join('')}
             </div>
             <span class="mode-tag">${tb('tbTrackTag')}</span>
-          </button>
+          </a>
         </div>
       </div>
       <div class="mode-grid" style="margin-top:16px">
@@ -4172,9 +4169,8 @@ function renderTbShelf(shelfId) {
   const L = getLang();
   const tabs = TEXTBOOK_SHELVES.map(
     (s) =>
-      `<button class="chip ${s.id === shelfId ? 'active' : ''}" data-tb-shelf="${s.id}">${L === 'en' ? s.titleEn : s.titleZh}</button>`
+      `<a class="chip ${s.id === shelfId ? 'active' : ''}" href="${tbShelfHref(s.id)}">${L === 'en' ? s.titleEn : s.titleZh}</a>`
   ).join('');
-  const bookAttr = tbBookAttr(shelfId);
   app.innerHTML = `
     ${topbar()}
     <div class="screen hs-shelf-screen">
@@ -4185,9 +4181,9 @@ function renderTbShelf(shelfId) {
         ${shelf.books
           .map(
             (book) =>
-              `<button class="hs-book" ${bookAttr}="${tbBookVal(shelfId, book.id)}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
+              `<a class="hs-book" href="${tbBookHref(shelfId, book.id)}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
               ${hsBookCardHtml(book)}
-            </button>`
+            </a>`
           )
           .join('')}
       </div>
@@ -4198,27 +4194,42 @@ function renderHsShelf() {
   return renderTbShelf('hs');
 }
 
+function renderTbBookError(shelfId, bookId, messageKey) {
+  currentRoute = tbShelfRoute(shelfId);
+  setSessionRepaint(() => renderTbShelf(shelfId));
+  app.innerHTML = `
+    ${topbar()}
+    <div class="screen">
+      <div class="screen-header">${tbBackLink(tbShelfHref(shelfId))}<h2 class="screen-title">${tb('tbShelf')}</h2></div>
+      <p class="days-intro">${tb(messageKey)}</p>
+      ${bookId ? `<p style="margin-top:12px"><a class="btn btn-primary" href="${tbBookHref(shelfId, bookId)}">${tb('hsOpenBook')}</a></p>` : ''}
+    </div>`;
+}
+
 async function renderTbBook(shelfId, bookId) {
   const shelf = getShelf(shelfId) || getShelf('hs');
   shelfId = shelf.id;
   const book = getTbBook(shelfId, bookId);
-  if (!book) return renderTbShelf(shelfId);
+  if (!book) {
+    renderTbBookError(shelfId, bookId, 'tbBookMissing');
+    return;
+  }
   currentRoute = tbBookRoute(shelfId);
   setSessionRepaint(() => renderTbBook(shelfId, book.id));
   store.activeHub = 'english';
   save();
-  await needTbBook(shelfId, book.id);
+  try {
+    await needTbBook(shelfId, book.id);
+  } catch {
+    renderTbBookError(shelfId, book.id, 'tbBookLoadFail');
+    return;
+  }
   const bank = tbWordsFor(shelfId, book.id);
   const unitCount = (uid) => bank.filter((w) => w.unit === uid).length;
-  const backHtml =
-    shelfId === 'hs'
-      ? backBtn('hs-shelf')
-      : `<button class="btn btn-ghost" data-tb-shelf="${shelfId}">${tb('back')}</button>`;
-  const unitAttr = tbUnitAttr(shelfId);
   app.innerHTML = `
     ${topbar()}
     <div class="screen hs-book-screen">
-      <div class="screen-header">${backHtml}<h2 class="screen-title">${escapeHtml(hsBookTitle(book))}</h2></div>
+      <div class="screen-header">${tbBackLink(tbShelfHref(shelfId))}<h2 class="screen-title">${escapeHtml(hsBookTitle(book))}</h2></div>
       <div class="hs-book-hero" style="--book-accent:${book.accent};--book-spine:${book.spine}">
         ${hsBookCardHtml(book, { large: true })}
         <p class="days-intro">${escapeHtml(tbLabel(shelfId))} · ${bank.length} ${tb('words')} · ${tb('hsLearned', { n: tbBookDoneCount(shelfId, book), t: book.units.length })}</p>
@@ -4228,7 +4239,7 @@ async function renderTbBook(shelfId, bookId) {
           .map((unit) => {
             const done = isTbUnitDone(shelfId, book.id, unit.id);
             const wc = unitCount(unit.id);
-            return `<button class="hs-unit-row ${done ? 'done' : ''}" ${unitAttr}="${tbUnitVal(shelfId, book.id, unit.id)}">
+            return `<a class="hs-unit-row ${done ? 'done' : ''}" href="${tbUnitHref(shelfId, book.id, unit.id)}">
               <div class="hs-unit-num">${escapeHtml(hsUnitNumLabel(unit))}</div>
               <div class="hs-unit-titles">
                 <div class="hs-unit-en">${escapeHtml(unit.en)}</div>
@@ -4238,7 +4249,7 @@ async function renderTbBook(shelfId, bookId) {
                 <span>${wc} ${tb('words')}</span>
                 <span class="day-status">${done ? '✓ ' + tb('done') : tb('start')}</span>
               </div>
-            </button>`;
+            </a>`;
           })
           .join('')}
       </div>
@@ -4252,7 +4263,8 @@ function renderHsBook(bookId) {
 async function startHsUnit(bookId, unitId, shelfId = 'hs') {
   const book = getTbBook(shelfId, bookId);
   const unit = getTbUnit(shelfId, book && book.id, unitId);
-  if (!book || !unit) return renderTbShelf(shelfId);
+  if (!book) return renderTbBookError(shelfId, bookId, 'tbBookMissing');
+  if (!unit) return renderTbBook(shelfId, book.id);
   if (shelfId === 'hs') hsActiveBook = book.id;
   tbActiveShelf = shelfId;
   tbActiveBook = book.id;
@@ -4284,12 +4296,10 @@ async function startHsUnit(bookId, unitId, shelfId = 'hs') {
     clearFlashKeys();
     if (step === 0) {
       const screen = mountAppShell(tbBookRoute(shelfId), tb('hsWordList'));
-      if (shelfId !== 'hs') {
-        const header = screen.querySelector('.screen-header');
-        header.replaceChildren();
-        header.insertAdjacentHTML('afterbegin', `<button class="btn btn-ghost" data-tb-book="${shelfId}:${book.id}">${tb('back')}</button>`);
-        header.append(textNode('h2', 'screen-title', tb('hsWordList')));
-      }
+      const header = screen.querySelector('.screen-header');
+      header.replaceChildren();
+      header.insertAdjacentHTML('afterbegin', tbBackLink(tbBookHref(shelfId, book.id)));
+      header.append(textNode('h2', 'screen-title', tb('hsWordList')));
       const head = document.createElement('div');
       head.className = 'hs-list-head';
       const copy = document.createElement('div');
@@ -4457,7 +4467,7 @@ async function startHsUnit(bookId, unitId, shelfId = 'hs') {
       app.innerHTML = `
         ${topbar()}
         <div class="screen wg-play">
-          <div class="screen-header">${shelfId === 'hs' ? backBtn('hs-book') : `<button class="btn btn-ghost" data-tb-book="${shelfId}:${book.id}">${tb('back')}</button>`}<h2 class="screen-title">${tb('ieltsSpot')}</h2></div>
+          <div class="screen-header">${tbBackLink(tbBookHref(shelfId, book.id))}<h2 class="screen-title">${tb('ieltsSpot')}</h2></div>
           <div class="step-pills"><span>✓ ${tb('ieltsMemorize')}</span><span class="on">2 ${tb('ieltsSpot')}</span></div>
           <div class="wg-hud">
             <span class="pill">${spotIdx + 1} / ${spotItems.length}</span>
@@ -4536,21 +4546,19 @@ async function startHsUnit(bookId, unitId, shelfId = 'hs') {
     const nextBook = !nextUnit ? shelfBooks[shelfBooks.findIndex((b) => b.id === book.id) + 1] : null;
     fanfare(tb('spotDone'));
     clearSessionRepaint();
-    const unitAttr = tbUnitAttr(shelfId);
-    const bookAttr = tbBookAttr(shelfId);
-    const shelfBack = shelfId === 'hs' ? `<button class="btn" data-nav="hs-shelf">${tb('hsToShelf')}</button>` : `<button class="btn" data-tb-shelf="${shelfId}">${tb('hsToShelf')}</button>`;
+    const shelfBack = `<a class="btn" href="${tbShelfHref(shelfId)}">${tb('hsToShelf')}</a>`;
     app.innerHTML = `
       ${topbar()}
       <div class="screen">
-        <div class="screen-header">${shelfId === 'hs' ? backBtn('hs-book') : `<button class="btn btn-ghost" data-tb-book="${shelfId}:${book.id}">${tb('back')}</button>`}<h2 class="screen-title">${tb('spotDone')}</h2></div>
+        <div class="screen-header">${tbBackLink(tbBookHref(shelfId, book.id))}<h2 class="screen-title">${tb('spotDone')}</h2></div>
         <div class="panel results" style="--pct:${pct}">
           <div class="score-ring">${pct}%</div>
           <h3 class="result-title">${spotCorrect} / ${spotItems.length} ${tb('correctN')}</h3>
           <p>${pct >= 80 ? tb('great') : pct >= 60 ? tb('okish') : tb('keepGoing')}</p>
           <div class="flash-actions">
-            ${nextUnit ? `<button class="btn btn-primary" ${unitAttr}="${tbUnitVal(shelfId, book.id, nextUnit.id)}">${tb('hsNextUnit')}</button>` : ''}
-            ${nextBook ? `<button class="btn btn-primary" ${bookAttr}="${tbBookVal(shelfId, nextBook.id)}">${tb('hsNextBook')}</button>` : ''}
-            <button class="btn" ${bookAttr}="${tbBookVal(shelfId, book.id)}">${escapeHtml(hsBookTitle(book))}</button>
+            ${nextUnit ? `<a class="btn btn-primary" href="${tbUnitHref(shelfId, book.id, nextUnit.id)}">${tb('hsNextUnit')}</a>` : ''}
+            ${nextBook ? `<a class="btn btn-primary" href="${tbBookHref(shelfId, nextBook.id)}">${tb('hsNextBook')}</a>` : ''}
+            <a class="btn" href="${tbBookHref(shelfId, book.id)}">${escapeHtml(hsBookTitle(book))}</a>
             ${shelfBack}
           </div>
         </div>
@@ -5112,7 +5120,19 @@ function bindNav() {
 }
 
 app.addEventListener('click', (e) => {
-  const langBtn = e.target.closest('[data-lang]');
+  const t = e.target instanceof Element ? e.target : e.target && e.target.parentElement;
+  if (!t || typeof t.closest !== 'function') return;
+  const hashLink = t.closest('a[href^="#/"]');
+  if (hashLink && app.contains(hashLink)) {
+    try {
+      unlockAudio();
+    } catch (_) {}
+    try {
+      sfxClick();
+    } catch (_) {}
+    return;
+  }
+  const langBtn = t.closest('[data-lang]');
   if (langBtn && app.contains(langBtn)) {
     e.preventDefault();
     setLang(langBtn.getAttribute('data-lang'));
@@ -5123,7 +5143,7 @@ app.addEventListener('click', (e) => {
     else softChromeRefresh();
     return;
   }
-  const sfxBtn = e.target.closest('[data-sfx-toggle]');
+  const sfxBtn = t.closest('[data-sfx-toggle]');
   if (sfxBtn && app.contains(sfxBtn)) {
     e.preventDefault();
     toggleSfx();
@@ -5135,7 +5155,7 @@ app.addEventListener('click', (e) => {
     else softChromeRefresh();
     return;
   }
-  const qlevelBtn = e.target.closest('[data-qlevel]');
+  const qlevelBtn = t.closest('[data-qlevel]');
   if (qlevelBtn && app.contains(qlevelBtn)) {
     e.preventDefault();
     quizLevel = qlevelBtn.getAttribute('data-qlevel') === 'all' ? 'all' : 'core';
@@ -5147,7 +5167,7 @@ app.addEventListener('click', (e) => {
     else navigate(currentRoute);
     return;
   }
-  const hubBtn = e.target.closest('[data-hub]');
+  const hubBtn = t.closest('[data-hub]');
   if (hubBtn && app.contains(hubBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5160,7 +5180,7 @@ app.addEventListener('click', (e) => {
     navigate('hub-' + hubBtn.getAttribute('data-hub'));
     return;
   }
-  const ieltsBtn = e.target.closest('[data-ielts-day]');
+  const ieltsBtn = t.closest('[data-ielts-day]');
   if (ieltsBtn && app.contains(ieltsBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5174,7 +5194,7 @@ app.addEventListener('click', (e) => {
     navigate('ielts-day', { day: n });
     return;
   }
-  const hsBookBtn = e.target.closest('[data-hs-book]');
+  const hsBookBtn = t.closest('[data-hs-book]');
   if (hsBookBtn && app.contains(hsBookBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5188,7 +5208,7 @@ app.addEventListener('click', (e) => {
     navigate('hs-book', { book: hsActiveBook });
     return;
   }
-  const tbShelfBtn = e.target.closest('[data-tb-shelf]');
+  const tbShelfBtn = t.closest('[data-tb-shelf]');
   if (tbShelfBtn && app.contains(tbShelfBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5198,7 +5218,7 @@ app.addEventListener('click', (e) => {
     navigate('tb-shelf', { shelf: tbActiveShelf });
     return;
   }
-  const tbBookBtn = e.target.closest('[data-tb-book]');
+  const tbBookBtn = t.closest('[data-tb-book]');
   if (tbBookBtn && app.contains(tbBookBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5211,7 +5231,7 @@ app.addEventListener('click', (e) => {
     navigate('tb-book', { shelf: tbActiveShelf, book: tbActiveBook });
     return;
   }
-  const hsUnitBtn = e.target.closest('[data-hs-unit]');
+  const hsUnitBtn = t.closest('[data-hs-unit]');
   if (hsUnitBtn && app.contains(hsUnitBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5228,7 +5248,7 @@ app.addEventListener('click', (e) => {
     navigate('hs-unit', { book: hsActiveBook, unit: hsActiveUnit });
     return;
   }
-  const tbUnitBtn = e.target.closest('[data-tb-unit]');
+  const tbUnitBtn = t.closest('[data-tb-unit]');
   if (tbUnitBtn && app.contains(tbUnitBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5242,7 +5262,7 @@ app.addEventListener('click', (e) => {
     navigate('tb-unit', { shelf: tbActiveShelf, book: tbActiveBook, unit: tbActiveUnit });
     return;
   }
-  const dayBtn = e.target.closest('[data-start-day]');
+  const dayBtn = t.closest('[data-start-day]');
   if (dayBtn && app.contains(dayBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5260,7 +5280,7 @@ app.addEventListener('click', (e) => {
     navigate('science-day', { day: n });
     return;
   }
-  const amcPaperBtn = e.target.closest('[data-amc-paper]');
+  const amcPaperBtn = t.closest('[data-amc-paper]');
   if (amcPaperBtn && app.contains(amcPaperBtn)) {
     e.preventDefault();
     e.stopPropagation();
@@ -5276,7 +5296,7 @@ app.addEventListener('click', (e) => {
     });
     return;
   }
-  const navEl = e.target.closest('[data-nav]');
+  const navEl = t.closest('[data-nav]');
   if (!navEl || !app.contains(navEl)) return;
   e.preventDefault();
   const extra = {};
@@ -5308,6 +5328,10 @@ async function navigate(name, params = {}) {
     /* ignore */
   }
   clearSessionRepaint();
+  if (name === 'hs-book' && !params.book) params = { book: hsActiveBook };
+  if (name === 'hs-unit' && (!params.book || !params.unit)) {
+    params = { book: params.book || hsActiveBook, unit: params.unit || hsActiveUnit };
+  }
   if (name === 'tb-book' && !params.shelf) params = { shelf: tbActiveShelf, book: params.book || tbActiveBook };
   if (name === 'tb-unit' && !params.shelf) params = { shelf: tbActiveShelf, book: params.book || tbActiveBook, unit: params.unit || tbActiveUnit };
   if (router) {
@@ -5377,6 +5401,13 @@ initCanvas();
 document.documentElement.classList.add('motion-ready');
 router = startRouter(async (route) => {
   clearSessionRepaint();
-  await go(() => dispatchRoute(route));
+  try {
+    await go(() => dispatchRoute(route));
+  } catch (err) {
+    console.error(err);
+    if (app) {
+      app.innerHTML = `${topbar()}<div class="screen"><p class="days-intro">${tb('tbBookLoadFail')}</p></div>`;
+    }
+  }
 });
 router.start();

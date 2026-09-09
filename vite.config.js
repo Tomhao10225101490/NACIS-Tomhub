@@ -25,7 +25,7 @@ export default defineConfig({
             urlPattern: /assets\/.+\.js$/i,
             handler: 'NetworkFirst',
             options: {
-              cacheName: 'toms-js-v3',
+              cacheName: 'toms-js-v4',
               networkTimeoutSeconds: 4,
               expiration: { maxEntries: 48, maxAgeSeconds: 60 * 60 * 6 },
             },

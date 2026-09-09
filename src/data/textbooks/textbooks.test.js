@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { TEXTBOOK_SHELVES, getShelf, getBook, getUnit, textbookTotalWords } from './meta.js';
+import { parseHash, toHash } from '../../router.js';
 
 describe('textbook shelves', () => {
   it('exposes four shelves with the expected book counts', () => {
@@ -36,5 +37,31 @@ describe('textbook shelves', () => {
     for (const shelf of TEXTBOOK_SHELVES) {
       expect(textbookTotalWords(shelf.id)).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('textbook hash routes', () => {
+  it('round-trips shelf, book and unit hashes', () => {
+    expect(toHash('tb-shelf', { shelf: 'mid' })).toBe('#/books/mid');
+    expect(toHash('tb-book', { shelf: 'mid', book: 'mid-7a' })).toBe('#/books/mid/mid-7a');
+    expect(toHash('tb-unit', { shelf: 'mid', book: 'mid-7a', unit: 'u1' })).toBe('#/books/mid/mid-7a/u1');
+    expect(toHash('tb-unit', { shelf: 'pri-g1', book: 'g1-1a', unit: 'u2' })).toBe('#/books/pri-g1/g1-1a/u2');
+    expect(toHash('tb-book', { shelf: 'hs', book: 'b1' })).toBe('#/books/hs/b1');
+    expect(parseHash('#/books/mid/mid-7a')).toEqual({
+      name: 'tb-book',
+      params: { shelf: 'mid', book: 'mid-7a' },
+    });
+    expect(parseHash('#/books/hs/b1/welcome')).toEqual({
+      name: 'tb-unit',
+      params: { shelf: 'hs', book: 'b1', unit: 'welcome' },
+    });
+    expect(parseHash(toHash('tb-unit', { shelf: 'pri-g3', book: 'g3-3a', unit: 'u1' }))).toEqual({
+      name: 'tb-unit',
+      params: { shelf: 'pri-g3', book: 'g3-3a', unit: 'u1' },
+    });
+  });
+
+  it('does not send unit clicks to the home hash', () => {
+    expect(toHash('tb-unit', { shelf: 'mid', book: 'mid-7a', unit: 'u3' })).not.toBe('#/');
   });
 });

@@ -122,6 +122,9 @@ export function toHash(name, params = {}) {
   if (name === 'hs-unit') return `#/hs/${params.book || ''}/${params.unit || ''}`;
   if (name === 'tb-shelf') return `#/books/${params.shelf || 'hs'}`;
   if (name === 'tb-book') return `#/books/${params.shelf || 'hs'}/${params.book || ''}`;
+  if (name === 'tb-unit') {
+    return `#/books/${params.shelf || 'hs'}/${params.book || ''}/${params.unit || ''}`;
+  }
   if (name === 'wrong-quiz') {
     const sub = params.subject && params.subject !== 'all' ? `/${params.subject}` : '';
     return `#/wrong/quiz${sub}`;
