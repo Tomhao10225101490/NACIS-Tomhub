@@ -1223,6 +1223,12 @@ function tbBookAttr(shelfId) {
 function tbShelfAttr(shelfId) {
   return shelfId === 'hs' ? 'data-nav' : 'data-tb-shelf';
 }
+function tbBookVal(shelfId, bookId) {
+  return shelfId === 'hs' ? bookId : `${shelfId}:${bookId}`;
+}
+function tbUnitVal(shelfId, bookId, unitId) {
+  return shelfId === 'hs' ? `${bookId}:${unitId}` : `${shelfId}:${bookId}:${unitId}`;
+}
 function tbLabel(shelfId) {
   if (shelfId === 'hs') return tb('pep2019');
   const s = getShelf(shelfId);
@@ -4179,7 +4185,7 @@ function renderTbShelf(shelfId) {
         ${shelf.books
           .map(
             (book) =>
-              `<button class="hs-book" ${bookAttr}="${shelfId}:${book.id}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
+              `<button class="hs-book" ${bookAttr}="${tbBookVal(shelfId, book.id)}" style="--book-accent:${book.accent};--book-spine:${book.spine}">
               ${hsBookCardHtml(book)}
             </button>`
           )
@@ -4222,7 +4228,7 @@ async function renderTbBook(shelfId, bookId) {
           .map((unit) => {
             const done = isTbUnitDone(shelfId, book.id, unit.id);
             const wc = unitCount(unit.id);
-            return `<button class="hs-unit-row ${done ? 'done' : ''}" ${unitAttr}="${shelfId}:${book.id}:${unit.id}">
+            return `<button class="hs-unit-row ${done ? 'done' : ''}" ${unitAttr}="${tbUnitVal(shelfId, book.id, unit.id)}">
               <div class="hs-unit-num">${escapeHtml(hsUnitNumLabel(unit))}</div>
               <div class="hs-unit-titles">
                 <div class="hs-unit-en">${escapeHtml(unit.en)}</div>
@@ -4542,9 +4548,9 @@ async function startHsUnit(bookId, unitId, shelfId = 'hs') {
           <h3 class="result-title">${spotCorrect} / ${spotItems.length} ${tb('correctN')}</h3>
           <p>${pct >= 80 ? tb('great') : pct >= 60 ? tb('okish') : tb('keepGoing')}</p>
           <div class="flash-actions">
-            ${nextUnit ? `<button class="btn btn-primary" ${unitAttr}="${shelfId}:${book.id}:${nextUnit.id}">${tb('hsNextUnit')}</button>` : ''}
-            ${nextBook ? `<button class="btn btn-primary" ${bookAttr}="${shelfId}:${nextBook.id}">${tb('hsNextBook')}</button>` : ''}
-            <button class="btn" ${bookAttr}="${shelfId}:${book.id}">${escapeHtml(hsBookTitle(book))}</button>
+            ${nextUnit ? `<button class="btn btn-primary" ${unitAttr}="${tbUnitVal(shelfId, book.id, nextUnit.id)}">${tb('hsNextUnit')}</button>` : ''}
+            ${nextBook ? `<button class="btn btn-primary" ${bookAttr}="${tbBookVal(shelfId, nextBook.id)}">${tb('hsNextBook')}</button>` : ''}
+            <button class="btn" ${bookAttr}="${tbBookVal(shelfId, book.id)}">${escapeHtml(hsBookTitle(book))}</button>
             ${shelfBack}
           </div>
         </div>
